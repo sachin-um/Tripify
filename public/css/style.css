@@ -1,0 +1,15 @@
+@import url('components/navbar.css');
+@import url('components/message.css');
+@import url('components/signup.css');
+@import url('components/login.css');
+@import url('components/footer.css');
+
+
+.home{
+    margin: 20%;
+}
+
+
+
+
+

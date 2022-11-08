@@ -1,0 +1,12 @@
+.message{
+    background-color: #03002E;
+    color: white;
+    padding: 20px 0;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    width: 70%;
+    text-align: center;
+    margin: auto;
+}
