@@ -9,10 +9,10 @@
     
         <div >
             <form action="<?php echo URLROOT; ?>/Users/register" method="POST">
-                <input type="text" id="name" name="name" placeholder="   Name" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
-                <input type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>">
-                <span class="invalid"><?php echo $data['email_err']; ?></span>
+                <input type="text" id="pickuplocation" name="pickuplocation" placeholder="Pickup location" value="<?php echo $data['pickuplocation']; ?>">
+                <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
+                <input type="text" id="destination" name="destination" placeholder="Destination"  value="<?php echo $data['destination']; ?>">
+                <span class="invalid"><?php echo $data['destination_err']; ?></span>
                 <input type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">
                 <span class="invalid"><?php echo $data['password_err']; ?></span>
                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" value="<?php echo $data['confirm-password']; ?>">
