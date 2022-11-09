@@ -1,5 +1,5 @@
 <?php
-    class M_Users{
+    class M_Guide_Request{
         private $db;
 
         public function __construct()
@@ -32,22 +32,7 @@
             $this->db->bind(':name',$data['name']);
 
             if ($this->db->execute()) {
-                $this->db->query('SELECT * FROM users WHERE Email= :email');
-                $this->db->bind(':email',$data['email']);
-                // $this->db->query('SELECT * FROM users');
-    
-                $row=$this->db->single();
-
-                $this->db->query('INSERT INTO traveler(TravelerID) VALUES(:travelerid)');
-                $this->db->bind(':travelerid',$row->UserID);
-                
-                if ($this->db->execute()) {
-
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return true;
             }
             else {
                 return false;

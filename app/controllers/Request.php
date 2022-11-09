@@ -9,65 +9,74 @@
 
         }
 
+        public function TaxiRequest(){
+            $taxirequests=$this->taxirequestModel->viewall();
+            $data=[
+                'taxirequests'=> $taxirequests
+            ];
+            $this->view('traveler/v_view_taxi_requests',$data);
+        }
+
         public function addTaxiRequest(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
+            
                 $data=[
-                    'name'=>trim($_POST['name']),
-                    'email'=>trim($_POST['email']),
-                    'password'=>trim($_POST['password']),
-                    'confirm-password'=>trim($_POST['confirm-password']),
+                        'pickuplocation'=>trim($_POST['pickuplocation']),
+                        'destination'=>trim($_POST['destination']),
+                        'date'=>trim($_POST['date']),
+                        'time'=>trim($_POST['time']),
+                        'description'=>trim($_POST['description']),
+                        'travelerid'=>trim($_POST['travelerid']),
 
-                    'name_err'=>'',
-                    'email_err'=>'',
-                    'password_err'=>'',
-                    'confirm-password_err'=>'',
 
-                ];
+                        'pickuplocation_err'=>'',
+                        'destination_err'=>'',
+                        'date_err'=>'',
+                        'time_err'=>'',
+                        'description_err'=>'',
+                        'travelerid_err'=>''
+    
+                    ];
+
 
                 //validate name
-                if (empty($data['name'])) {
-                    $data['name_err']='Please enter a name';
+                if (empty($data['pickuplocation'])) {
+                    $data['pickuplocation_err']='Please enter a Pickup Location';
                 }
                 //validate email
-                if (empty($data['email'])) {
-                    $data['email_err']='please enter a email';
+                if (empty($data['destination'])) {
+                    $data['destination_err']='please enter a Destination';
                 }
-                else{
-                    if($this->userModel->findUserByEmail($data['email'])) {
-                        $data['email_err']='Email is already registered';
-                    }
+                if (empty($data['date'])) {
+                    $data['date_err']='please enter a Pickup Date';
                 }
-
-                if (empty($data['password'])) {
-                    $data['password_err']='Please fill the password field';
-                }
-                elseif (empty($data['confirm-password'])) {
-                    $data['confirm-password_err']='Please confirm the password';
-                }
-                else{
-                    if($data['password'] != $data['confirm-password'] ) {
-                        $data['confirm-password_err']='Password and the confirm password are not matching';
-                    }
+                if (empty($data['time'])) {
+                    $data['time_err']='please enter a Pickup Time';
                 }
 
+                if (empty($data['travelerid'])) {
+                    $data['travelerid_err']='Error with traveler ID';
+                }
+                
+                
 
-                if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err'])) {
-                    $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
 
-                    //Register user
-                    if ($this->userModel->register($data)) {
-                        flash('reg_flash', 'You are Succusefully registered');
-                        redirect('Users/login');
+                if (empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
+                    
+                    //Add a Taxi Request
+                    if ($this->taxirequestModel->addtaxirequest($data)) {
+                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
+                        redirect('Request/TaxiRequest');
                     }
                     else{
                         die('Something went wrong');
                     }
                 }
                 else {
-                    $this->view('users/v_register',$data);
+                    $this->view('traveler/v_taxi_request',$data);
                 }
 
 
@@ -75,20 +84,28 @@
             }
             else {
                 $data=[
-                    'name'=>'',
-                    'email'=>'',
-                    'password'=>'',
-                    'confirm-password'=>'',
+                    'pickuplocation'=>'',
+                    'destination'=>'',
+                    'date'=>'',
+                    'time'=>'',
+                    'description'=>'',
+                    'travelerid'=>'',
 
-                    'name_err'=>'',
-                    'email_err'=>'',
-                    'password_err'=>'',
-                    'confirm-password_err'=>'',
+                    'pickuplocation_err'=>'',
+                    'destination_err'=>'',
+                    'date_err'=>'',
+                    'time_err'=>'',
+                    'description_err'=>'',
+                    'travelerid_err'=>''
 
                 ];
-                $this->view('users/v_register',$data);
+                $this->view('traveler/v_taxi_request',$data);
             }
-            $this->view('users/v_register');
+            $this->view('traveler/v_taxi_request');
+        }
+
+        public function viewTaxiRequest(){
+            $this->view('traveler/v_view_taxi_requests');
         }
         
     }
