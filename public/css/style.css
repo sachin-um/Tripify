@@ -3,10 +3,36 @@
 @import url('components/signup.css');
 @import url('components/login.css');
 @import url('components/footer.css');
+@import url('components/requrst.css');
 
 
 .home{
     margin: 20%;
+}
+
+.welcome-banner{
+    /* width: 30%; */
+    /* height: 50%; */
+    margin-top: 2%;
+    margin-right: 50px;
+    float: right;
+    text-align: center;
+    color: aliceblue;
+    display: flex;
+    align-items: baseline;
+  
+}
+
+.logout-btns{
+    /* width: 40%;
+    height: 45%; */
+    background: #35BCBF;
+    border: 2px solid #FFFFFF;
+    border-radius: 1000px;
+    /* top: 50%; */
+    padding: 15px 40px;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
 

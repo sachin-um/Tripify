@@ -157,6 +157,7 @@
 
         public function createUserSession($user){
             $_SESSION['user_id']=$user->UserID;
+            $_SESSION['user_name']=$user->Name;
             $_SESSION['user_email']=$user->Email;
             
             $data=[

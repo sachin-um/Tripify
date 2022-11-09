@@ -1,0 +1,20 @@
+.request-list{
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width: 40%;
+    border: 1px solid #d3d3d3;
+}
+
+.request-list .post-header{
+    padding: 10px;
+    font-weight: 600;
+    border-bottom: 1px solid #d3d3d3;
+
+}
+
+.request-list .post-body{
+    padding: 20px;
+}
