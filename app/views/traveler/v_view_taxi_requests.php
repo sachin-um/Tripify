@@ -15,16 +15,16 @@ if (!empty($_SESSION['user_id'])) {
         <div class="request">
             <div class="post-header"><?php echo $taxirequest->caption; ?></div>
             <div class="post-body">
-                <div class="post-date">Request Date: <?php echo $taxirequest->date; ?></div>
+                <div class="post-date">Request Date: <span id="request-data"><?php echo $taxirequest->date; ?></span></div>
                 <div class="post-time">Request Time: <?php echo $taxirequest->time; ?></div>
                 <div class="post-location">Request PickUp Location: <?php echo $taxirequest->pickup_location; ?></div>
                 <div class="post-details">Additional Details: <?php echo $taxirequest->additional_details; ?></div>
                 <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
             </div>
             <div class="request-footer">
-                <button id="sign-up-btn-1" type="submit">Make an offer</button>
-                <button id="sign-up-btn-1" type="submit">Edit</button>
-                <button id="sign-up-btn-1" type="submit">Delete</button>
+                <button id="request-offer-btn" type="submit">Make an offer</button>
+                <button id="request-edit-btn" type="submit">Edit</button>
+                <button id="request-delete-btn" type="submit">Delete</button>
             </div>
                 
             
