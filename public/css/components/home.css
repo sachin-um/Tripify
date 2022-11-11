@@ -23,13 +23,40 @@
     width: 100%;
 }
 
-#first-title{
+.title{
     margin-left: 10%;
 }
 
 .scroll-bar{
     height: 20%;
     width: 100%;
+}
+
+.btns{
+    height: 100px;
+    width: 20%;
+    border-radius: 10px;
+    background-color: #03002E;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.button__text,
+.button__icon{
+    align-items: center;
+    padding: 0 24px;
+    height: 100%;
+}
+
+.button__icon{
+    font-size: 3em;
+}
+
+.btns:hover{
+    background-color: white;
+    color: #03002E;
 }
 
 
