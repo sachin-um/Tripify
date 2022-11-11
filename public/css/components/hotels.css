@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.white-space{
+    height: 10%;
+    width: 100%;
+    color: #03002E;
+    display: inline-block;
+}
+
+.header-space{
+    height: 150px;
+    width: 100%;
+}
+
+.search-form{
+    height: 100px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.first-fill{
+    height: 100px;
+    width: 50%;
+    background-color: green;
+}
+
+.scnd-fill{
+    height: 100px;
+    width: 25%;
+    color: yellow;
+}
+
+.thrd-fill{
+    height: 100px;
+    width: 25%;
+    color: green;
+}
