@@ -42,6 +42,18 @@
                 if (empty($data['password'])) {
                     $data['password_err']='Please fill the password field';
                 }
+                elseif (strlen($data['password'])<8) {
+                    $data['password_err']='your passowrd should contains at least 8 characters';
+                }
+                elseif (strlen($data['password'])<8) {
+                    $data['password_err']='your passowrd should contains at least 8 characters';
+                }
+                elseif (ctype_lower($data['password']) || ctype_upper($data['password'])) {
+                    $data['password_err']='your passowrd should be a mix of lowercase and uppercase characters.';
+                }
+                elseif (ctype_alnum($data['password'])) {
+                    $data['password_err']='your passowrd should contains at least one or more non-alphabetic character.';
+                }
                 elseif (empty($data['confirm-password'])) {
                     $data['confirm-password_err']='Please confirm the password';
                 }

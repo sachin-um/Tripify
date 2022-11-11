@@ -1,5 +1,5 @@
 <?php
-class M_Guides{
+class M_Hotels{
     private $db;
 
     public function __construct()

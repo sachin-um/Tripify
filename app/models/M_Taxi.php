@@ -1,5 +1,5 @@
 <?php
-class M_Guides{
+class M_Taxi{
     private $db;
 
     public function __construct()

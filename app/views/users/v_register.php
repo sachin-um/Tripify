@@ -17,7 +17,6 @@
                 <span class="invalid"><?php echo $data['password_err']; ?></span>
                 <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" value="<?php echo $data['confirm-password']; ?>">
                 <span class="invalid"><?php echo $data['confirm-password_err']; ?></span><br>
-                <?= $data['password_err'] ?>
                 <button id="sign-up-btn-1" type="submit">Sign Up</button>
 
               </form> 
