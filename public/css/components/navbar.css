@@ -5,7 +5,7 @@
 .top{
     position: fixed;
     width: 100%;
-    height: fit-content;
+    height: 150px;
     left: 0px;
     top: 0px;
 
@@ -27,18 +27,18 @@
 }
 
 .login-btns{
-    /* width: 30%; */
-    /* height: 50%; */
+    width: 25%; 
+    height: 50%;
     margin-top: 20px;
     margin-right: 100px;
     float: right;
-    text-align: center;
-    
+    text-align: center; 
+    vertical-align: middle;   
 }
 
 .header-btns{
-    /* width: 40%;
-    height: 45%; */
+    width: 40%;
+    height: 45%;
     background: #35BCBF;
     border: 2px solid #FFFFFF;
     border-radius: 1000px;
