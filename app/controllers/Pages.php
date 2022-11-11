@@ -15,6 +15,11 @@
         public function home(){
             $this->view('v_home');
         }
+
+        public function hotels(){
+            $this->view('v_hotels');
+        }
+
         public function about($name,$age){
             $data=[
                 'userName'=>$name,
