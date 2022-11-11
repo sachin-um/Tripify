@@ -136,8 +136,13 @@
                     
                     $log_user=$this->userModel->login($data);
 
+                    if ($log_user->UserType !='Traveler') {
+                        flash('reg_flash', 'You Cannot logging as a Traveler');
+                        redirect('Users/login');
+                    }
+
                     //Register user
-                    if ($log_user) {
+                    elseif ($log_user) {
                         $this->createUserSession($log_user);
                     }
                     else{
