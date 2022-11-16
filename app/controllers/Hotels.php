@@ -168,41 +168,40 @@
 
             
                 $data=[
-                        'NoofBeds'=>trim($_POST['pickuplocation']),
-                        'destination'=>trim($_POST['destination']),
-                        'date'=>trim($_POST['date']),
-                        'time'=>trim($_POST['time']),
-                        'description'=>trim($_POST['description']),
-                        'travelerid'=>trim($_POST['travelerid']),
+                        'NoofBeds'=>trim($_POST['no-of-beds']),
+                        'RoomType'=>trim($_POST['roomtype']),
+                        'NoofGuests'=>trim($_POST['no-of-guests']),
+                        'RoomSize'=>trim($_POST['roomsize']),
+                        'PricePerNight'=>trim($_POST['pricepernight']),
 
 
-                        'pickuplocation_err'=>'',
-                        'destination_err'=>'',
-                        'date_err'=>'',
-                        'time_err'=>'',
+                        'NoofBeds_err'=>'',
+                        'RoomType_err'=>'',
+                        'NoofGuests_err'=>'',
+                        'RoomSize_err'=>'',
                         'description_err'=>'',
-                        'travelerid_err'=>''
+                        'PricePerNight_err'=>''
     
                     ];
 
 
                 //validate name
-                if (empty($data['pickuplocation'])) {
-                    $data['pickuplocation_err']='Please enter a Pickup Location';
+                if (empty($data['NoofBeds'])) {
+                    $data['NoofBeds_err']='Please enter the number of beds available';
                 }
                 //validate email
-                if (empty($data['destination'])) {
-                    $data['destination_err']='please enter a Destination';
+                if (empty($data['RoomType'])) {
+                    $data['RoomType_err']='please add the Room type';
                 }
-                if (empty($data['date'])) {
-                    $data['date_err']='please enter a Pickup Date';
+                if (empty($data['NoofGuests'])) {
+                    $data['NoofGuests_err']='Please enter No of guests can stay in the Room';
                 }
-                if (empty($data['time'])) {
-                    $data['time_err']='please enter a Pickup Time';
+                if (empty($data['RoomSize'])) {
+                    $data['RoomSize_err']='please enter the room size';
                 }
 
-                if (empty($data['travelerid'])) {
-                    $data['travelerid_err']='Error with traveler ID';
+                if (empty($data['PricePerNight'])) {
+                    $data['PricePerNight_err']='please enter price per night';
                 }
                 
                 

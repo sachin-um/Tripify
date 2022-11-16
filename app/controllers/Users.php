@@ -17,6 +17,7 @@
                     'email'=>trim($_POST['email']),
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
+                    'otp'=>'',
 
                     'name_err'=>'',
                     'email_err'=>'',
@@ -67,10 +68,18 @@
                 if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err'])) {
                     $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
 
+                    //send verification email and get otp code
+                    $data['otp']=sendMail($data['email'],$data['name']);
                     //Register user
+                    
                     if ($this->userModel->register($data)) {
-                        flash('reg_flash', 'You are Succusefully registered');
-                        redirect('Users/login');
+                        $this->createVerifySession($data['email']);
+
+                        //verify email
+                        //$this->login();
+                        //$this->emailverify();
+                        // flash('reg_flash', 'You are Succusefully registered');
+                        redirect('Users/emailverify');
                     }
                     else{
                         die('Something went wrong');
@@ -89,6 +98,7 @@
                     'email'=>'',
                     'password'=>'',
                     'confirm-password'=>'',
+                    'otp'=>'',
 
                     'name_err'=>'',
                     'email_err'=>'',
@@ -98,7 +108,6 @@
                 ];
                 $this->view('users/v_register',$data);
             }
-            $this->view('users/v_register');
         }
 
         //login
@@ -136,9 +145,14 @@
                     
                     $log_user=$this->userModel->login($data);
 
-                    if ($log_user->UserType !='Traveler') {
+                    if ($log_user=='TypeError') {
                         flash('reg_flash', 'You Cannot logging as a Traveler');
                         redirect('Users/login');
+                    }
+                    elseif ($log_user=='NotValidate') {
+                        flash('verify_flash', 'You Should Verify your email address first..');
+                        $this->createVerifySession($data['email']);
+                        redirect('Users/emailverify');
                     }
 
                     //Register user
@@ -171,6 +185,58 @@
             // $this->view('users/v_login');
         }
 
+        public function emailverify(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'code'=>trim($_POST['code']),
+                    'email'=>$_SESSION['v_email'],
+
+                    'code_err'=>'',
+
+                ];
+
+                //validate code
+                if (empty($data['code'])) {
+                    $data['email_err']='please enter the verification code';
+                }
+
+                if (empty($data['code_err'])) {
+                    
+                    
+                    //register user
+                    if ($this->userModel->emailverify($data)) {
+                        flash('reg_flash', 'You are Succusefully registered');
+                        redirect('Users/login');
+                    }
+                    //not valid code
+                    else{
+                        $data['code_err']='Invalid Code';
+                        $this->view('users/v_email_verify',$data);
+                    }
+                }
+                else {
+                    $this->view('users/v_email_verify',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'code'=>'',
+                    'email'=>'',
+
+                    'code_err'=>'',
+
+                ];
+                $this->view('users/v_email_verify',$data);
+            }
+            // $this->view('users/v_login');
+        }
+
 
         public function createUserSession($user){
             $_SESSION['user_id']=$user->UserID;
@@ -182,6 +248,10 @@
             ];
             $this->view('v_home',$data);
             // redirect('Pages/home',$data);
+        }
+
+        public function createVerifySession($email){
+            $_SESSION['v_email']=$email;
         }
 
 
