@@ -68,10 +68,7 @@
 
             $hashed_password=$row->Password;
 
-            if ($row->UserType !='Traveler') {
-                return 'TypeError';
-            }
-            elseif ($row->verification_status!=1) {
+            if ($row->verification_status!=1) {
                 return 'NotValidate';
             }
             if (password_verify($data['password'], $hashed_password)) {
