@@ -80,9 +80,11 @@
         <img id="logo" src="<?php echo URLROOT; ?>/img/211607_right_arrow_icon.png" alt="sigiriya">
     </div>
 
+
     <div class="three-dots" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
     <img id="logo" style="height: 60px;width:auto" src="<?php echo URLROOT; ?>/img/2205199_dot_hide_menu_more_icon.png" alt="scroll">
     </div>
+
 
     <hr class="divider">
     <br>
