@@ -73,3 +73,7 @@
 #request-data{
     margin-left: 20px;
 }
+
+#map {
+    height: 60%;
+  }

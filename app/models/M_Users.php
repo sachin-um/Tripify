@@ -26,10 +26,12 @@
         //register
 
         public function register($data){
-            $this->db->query('INSERT INTO users(Email,Password,Name) VALUES(:email,:password,:name)');
+            $this->db->query('INSERT INTO users(Email,Password,Name,otp) VALUES(:email,:password,:name,:otp)');
             $this->db->bind(':email',$data['email']);
             $this->db->bind(':password',$data['password']);
             $this->db->bind(':name',$data['name']);
+            $this->db->bind(':otp',$data['otp']);
+
 
             if ($this->db->execute()) {
                 $this->db->query('SELECT * FROM users WHERE Email= :email');
@@ -66,6 +68,9 @@
 
             $hashed_password=$row->Password;
 
+            if ($row->verification_status!=1) {
+                return 'NotValidate';
+            }
             if (password_verify($data['password'], $hashed_password)) {
                 return $row;
             }
@@ -73,16 +78,39 @@
                 return false;
             }
             
-            $this->db->bind(':password',$data['password']);
+            // $this->db->bind(':password',$data['password']);
+
+            // $row=$this->db->single();
+
+            // if ($this->db->rowCount()==1) {
+            //     return true;
+            // }
+            // else {
+            //     return false;
+            // }
+        }
+
+        //email verification
+
+        public function emailverify($data){
+            $this->db->query('SELECT * FROM users WHERE Email= :email');
+            $this->db->bind(':email',$data['email']);
 
             $row=$this->db->single();
 
-            if ($this->db->rowCount()==1) {
+            $dbotp=$row->otp;
+
+            if($dbotp==$data['code']){
+                $this->db->query('UPDATE users SET verification_status=1 WHERE Email= :email');
+                $this->db->bind(':email',$data['email']);
+                $this->db->execute();
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
+
         }
     }
 

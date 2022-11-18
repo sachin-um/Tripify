@@ -2,10 +2,9 @@
         
         <div class="row-container">
           <!--Grid row-->
-          <div class="row" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+          <div class="row">
             
             <div class="cols">
-            <br>
       
               <ul class="lists">
                 <li>
@@ -54,13 +53,14 @@
             
           </div>
           <!--Grid row-->
+          <div class="copyright">
+            © 2022 All Rights Reserved by Sri Lanka Tourism Promotion Bureau.    
+          </div>
         </div>
         
       
         
-        <div class="copyright">
-            © 2022 All Rights Reserved by Sri Lanka Tourism Promotion Bureau.    
-        </div>
+        
         
       </footer>
 </body>

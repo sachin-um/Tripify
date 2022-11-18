@@ -3,7 +3,7 @@
             <img id="logo" src="<?php echo URLROOT; ?>/img/output-onlinepngtools.png" alt="logo">
         </div>
         <?php
-        if (!empty($_SESSION['user_email'])) {
+        if (!empty($_SESSION['user_name'])) {
             ?>
                 <div class="welcome-banner">
                     <h1>Howdy <?php echo $_SESSION['user_name'];  ?>..! </h1>

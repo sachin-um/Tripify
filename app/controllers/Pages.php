@@ -9,14 +9,16 @@
                 'isLoggedIn'=>false
             ];
 
-            $this->view('hotels/v_hotelHome',$data);
+            $this->view('v_home',$data);
         }
 
         public function home(){
-            $this->view('hotels/v_hotelHome');
+            $this->view('v_home');
         }
 
-        
+        public function hotels(){
+            $this->view('v_hotels');
+        }
 
         public function about($name,$age){
             $data=[

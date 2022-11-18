@@ -5,7 +5,15 @@
 $_SESSION['user_id'];
 
 
-if (!empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    flash('reg_flash', 'Only the Travelers can add Taxi Request..');
+    redirect('Users/login');
+}
+else {
     ?>
     <div class="form">
         <div >
@@ -15,8 +23,11 @@ if (!empty($_SESSION['user_id'])) {
     
         <div >
             <form action="<?php echo URLROOT; ?>/Request/addTaxiRequest" method="POST">
+                
                 <input type="text" id="pickuplocation" name="pickuplocation" placeholder="Pickup location" value="<?php echo $data['pickuplocation']; ?>">
                 <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
+                <span>Select the location on Map</span>
+                <div id="map"></div>
                 <input type="text" id="destination" name="destination" placeholder="Destination"  value="<?php echo $data['destination']; ?>">
                 <span class="invalid"><?php echo $data['destination_err']; ?></span>
                 <input type="text" id="date" name="date" placeholder="Request Date" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
@@ -33,13 +44,25 @@ if (!empty($_SESSION['user_id'])) {
     </div>
     <?php
 }
-else {
-    flash('reg_flash', 'You need to have logged in first...');
-    redirect('Users/login');
-}
 
 ?>
- 
+<script>
+    let map;
 
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+}
+
+window.initMap = initMap;
+</script>
+ 
+ <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+      defer>
+</script>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
