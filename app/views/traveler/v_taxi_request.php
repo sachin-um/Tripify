@@ -5,7 +5,15 @@
 $_SESSION['user_id'];
 
 
-if (!empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    flash('reg_flash', 'Only the Travelers can add Taxi Request..');
+    redirect('Users/login');
+}
+else {
     ?>
     <div class="form">
         <div >
@@ -35,10 +43,6 @@ if (!empty($_SESSION['user_id'])) {
         </div>
     </div>
     <?php
-}
-else {
-    flash('reg_flash', 'You need to have logged in first...');
-    redirect('Users/login');
 }
 
 ?>

@@ -243,6 +243,7 @@
             $_SESSION['user_id']=$user->UserID;
             $_SESSION['user_name']=$user->Name;
             $_SESSION['user_email']=$user->Email;
+            $_SESSION['user_type']=$user->UserType;
             
             $data=[
                 'isLoggedIn'=>$this->isLoggedIn()
