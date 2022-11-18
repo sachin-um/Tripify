@@ -16,7 +16,7 @@
 .logo-container{
     width: 20%;
     height: 50%;
-    margin-left: 100px;
+    margin-left: 5%;
     margin-top: 35px;
     margin-bottom: 35px;
     float: left;
@@ -31,7 +31,7 @@
     width: 28%; 
     height: 50%;
     margin-top: 1%;
-    margin-right: 7%;
+    margin-right: 2%;
     float: right;
     text-align: center; 
     vertical-align: middle;   
@@ -40,18 +40,19 @@
 .header-btns{
     width: 35%;
     height: 40%;
-    background: #35BCBF;
-    border: 2px solid #FFFFFF;
+    background: #03002E;
+    border: 2px solid #35BCBF;
     border-radius: 1000px;
-    /* top: 50%; */
-    padding: 15px 40px;
+    color: white;
+    top: 50%; 
     margin-top: 10%;
     font-size: medium;
     text-align: center;
-}
+} 
 
 .header-btns:hover{
-    background-color: white;
+    background-color: #35BCBF;
+    color: #03002E;
 }
 
 .nav-buttons{
