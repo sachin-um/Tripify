@@ -96,6 +96,20 @@
             // $this->view('hotels/v_register');
         }
 
+        //login
+        public function login(){
+                $data=[
+                    'email'=>'',
+                    'password'=>'',
+
+                    'email_err'=>'',
+                    'password_err'=>'',
+
+                ];
+                $this->view('taxi/v_login',$data);
+            // $this->view('users/v_login');
+        }
+
         
 
 
