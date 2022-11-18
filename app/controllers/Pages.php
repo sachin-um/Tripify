@@ -13,12 +13,10 @@
         }
 
         public function home(){
-            $this->view('v_home');
+            $this->view('v_hotelHome');
         }
 
-        public function hotels(){
-            $this->view('v_hotels');
-        }
+        
 
         public function about($name,$age){
             $data=[
