@@ -107,6 +107,90 @@
         public function viewTaxiRequest(){
             $this->view('traveler/v_view_taxi_requests');
         }
+
+
+        //adding a Guide request
+        public function addGuideRequest(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            
+                $data=[
+                        'area'=>trim($_POST['area']),
+                        'date'=>trim($_POST['date']),
+                        'time'=>trim($_POST['time']),
+                        'language'=>trim($_POST['description']),
+                        'additional-details'=>trim($_POST['additional-details']),
+                        'travelerid'=>trim($_POST['travelerid']),
+
+
+                        'area_err'=>'',
+                        'date_err'=>'',
+                        'time_err'=>'',
+                        'language_err'=>'',
+                        'additional-details_err'=>''
+    
+                    ];
+
+
+                //validate name
+                if (empty($data['area'])) {
+                    $data['area_err']='Please enter the area you want travel';
+                }
+                //validate email
+                if (empty($data['date'])) {
+                    $data['date_err']='please enter the date';
+                }
+                if (empty($data['language'])) {
+                    $data['language_err']='please enter the language y';
+                }
+                if (empty($data['travelerid'])) {
+                    $data['travelerid_err']='Error with traveler ID';
+                }
+                
+                
+
+
+                if (empty($data['area_err']) &&  empty($data['date_err']) && empty($data['language_err']) && empty($data['travelerid_err'])) {
+                    
+                    //Add a Taxi Request
+                    if ($this->guiderequestModel->addguiderequest($data)) {
+                        flash('reg_flash', 'Guide Request is Succusefully added..!');
+                        redirect('Request/GuideRequest');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+                else {
+                    $this->view('traveler/v_guide_request',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'area'=>'',
+                    'date'=>'',
+                    'time'=>'',
+                    'language'=>'',
+                    'additional-details'=>'',
+                    'travelerid'=>'',
+
+
+                    'area_err'=>'',
+                    'date_err'=>'',
+                    'time_err'=>'',
+                    'language_err'=>'',
+                    'additional-details_err'=>''
+
+                ];
+                $this->view('traveler/v_guide_request',$data);
+            }
+            $this->view('traveler/v_guide_request');
+        }
         
     }
 
