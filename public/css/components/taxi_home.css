@@ -1,0 +1,126 @@
+
+.carrentalsearchtaxi{
+    padding-bottom: 8em;
+    padding-top: 1em;
+}
+
+
+.carrentalsearchtaxi > h1{
+    
+    text-align: center;
+}
+
+
+.taxiownlocation{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#carrentalt_pick_l,#carrentalt_drop_l{
+    width:30.5em;
+    height: 3em;
+    
+}
+
+.taxiowndatetime{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carrentalt_pick_t,#carrentalt_drop_t,#carrentalt_drop_l,#carrentalt_drop_d{
+    margin-left: 1em;
+}
+
+
+#taxiowncarrentalsearch{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    height: 2.5em;
+    width:8em;
+    background-color: #03002E;
+    border-radius: 10em;
+    margin-top: 8em;
+    color: #fff;
+}
+
+#carrentalt_pick_d,#carrentalt_drop_d,#carrentalt_pick_t,#carrentalt_drop_t,#carrentalt_pick_l,#carrentalt_drop_l{
+    background-color: #D9D9D9;
+    border-radius: 1em;;
+}
+
+
+#carrentalt_pick_d,#carrentalt_drop_d,#carrentalt_pick_t,#carrentalt_drop_t{
+    margin-top: 1.5em;
+    width: 14.75em;
+    height: 3em;
+}
+
+
+/* ...............................................  */
+
+.carrentaldriverinfo > img{
+    height:8em ;
+    width: 12em;
+}
+
+.carrentalsearchresult{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    justify-items: center;
+    
+}
+
+
+
+
+
+#carrentalrating,#carrentalrate,#carrentalregno,#carrentalreg{
+    display:inline;
+
+}
+
+
+
+.carrentaldriverinfo > article{
+    margin-left: 1em;
+}
+
+
+
+
+/* .................................................  */
+
+
+#carrentalregistercom{
+    height: 3em;
+    width:8em;
+    color: #fff;
+    background-color: #03002E;
+    border-color:#35BCBF ;
+    border-width: 0.2em;
+    border-radius: 10em;
+    
+    
+} 
+
+
+.carrentaltaxisignup{
+    margin-top: 2em;
+    display: grid;
+    place-items: center;
+    padding-bottom: 5em;
+ 
+}
+
+#carrentaldrivername,#carrentaltaxcom{
+    font-weight: bold;
+    
+}
