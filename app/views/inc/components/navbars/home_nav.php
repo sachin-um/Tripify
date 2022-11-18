@@ -15,7 +15,7 @@
         else {
             ?>
             <div class="login-btns">
-            <button class="header-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/login'">Login</button>
+            <button class="header-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/login'">Login</button>&nbsp;
             <button class="header-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/register'">Sign Up</button>
             </div>
                 <!-- <a href="<?php echo URLROOT?>/Users/register">Register</a>
@@ -25,5 +25,13 @@
         }
 
     ?>
-        
+    <div class="nav-buttons" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+        <button class="nbtns" type="button" >Stays</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Taxis</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Guides</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Attractions</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Plan itinerary</button>
+    </div>
 </div>
+
+
