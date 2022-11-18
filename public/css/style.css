@@ -6,6 +6,12 @@
 @import url('components/requrst.css');
 @import url('components/home.css');
 @import url('components/hotels.css');
+@import url('components/addtaxiowner.css');
+@import url('components/add_taxi_vehicle.css');
+@import url('components/view_taxi_vehicle.css');
+@import url('components/taxi_login.css');
+@import url('components/taxi_signup.css');
+@import url('components/taxi_home.css');
 
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 

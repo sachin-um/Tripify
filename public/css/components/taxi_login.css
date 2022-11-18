@@ -1,0 +1,52 @@
+.taxi_login_cont{
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    /* display: grid;
+    justify-content: center;
+    align-content: center; */
+    
+}
+
+
+.taxi_login_div{
+
+    border: 1px solid #000;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin-top: 3em;
+    display: grid;
+    justify-content: center;
+}
+
+.taxi_login_form > input{
+    background-color: #D9D9D9;
+    height: 2.5em;
+    border: solid 1px #03002E;
+    width:25em ;
+    border-radius: 0.3em;
+
+    margin-top: 1em;
+}
+
+#taxi_login_img{
+    width: 120%;
+}
+
+#taxi_login_but{
+    margin-top: 1.5em;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0%);
+
+
+    height: 2.5em;
+    width:8em;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10em;
+    background-color:#03002E;
+    border-color: #35BCBF;
+}
