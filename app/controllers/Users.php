@@ -119,6 +119,7 @@
                 $data=[
                     'email'=>trim($_POST['email']),
                     'password'=>trim($_POST['password']),
+                    'usertype'=>trim($_POST['usertype']),
 
                     'email_err'=>'',
                     'password_err'=>'',
@@ -145,7 +146,7 @@
                     
                     $log_user=$this->userModel->login($data);
 
-                    if ($log_user=='TypeError') {
+                    if ($log_user->UserType!=$data['usertype']) {
                         flash('reg_flash', 'You Cannot logging as a Traveler');
                         redirect('Users/login');
                     }

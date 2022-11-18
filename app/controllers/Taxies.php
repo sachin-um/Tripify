@@ -96,99 +96,13 @@
             // $this->view('hotels/v_register');
         }
 
-        //login
-        public function login(){
-            if ($_SERVER['REQUEST_METHOD']=='POST') {
-                //Data validation
-                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-
-                $data=[
-                    'email'=>trim($_POST['email']),
-                    'password'=>trim($_POST['password']),
-
-                    'email_err'=>'',
-                    'password_err'=>'',
-
-                ];
-
-                
-                //validate email
-                if (empty($data['email'])) {
-                    $data['email_err']='please enter a email';
-                }
-                else{
-                    if(!$this->userModel->findUserByEmail($data['email'])) {
-                        $data['email_err']='Account doesnt Exist..!!';
-                    }
-                }
-
-                if (empty($data['password'])) {
-                    $data['password_err']='Please fill the password field';
-                }
+        
 
 
-                if (empty($data['email_err']) && empty($data['password_err'])) {
-                    
-                    $log_user=$this->userModel->login($data);
-
-                    if ($log_user->UserType !='Hotel') {
-                        flash('reg_flash', 'You Cannot logging as a Taxi Owner here');
-                        redirect('Taxis/login');
-                    }
-
-                    //Register user
-                    elseif ($log_user) {
-                        $this->createUserSession($log_user);
-
-                    }
-                    else{
-                        $data['password_err']='Password is incorrect';
-                        $this->view('taxi/v_login',$data);
-                    }
-                }
-                else {
-                    $this->view('taxi/v_login',$data);
-                }
+        
 
 
-
-            }
-            else {
-                $data=[
-                    'email'=>'',
-                    'password'=>'',
-
-                    'email_err'=>'',
-                    'password_err'=>'',
-
-                ];
-                $this->view('taxi/v_login',$data);
-            }
-            // $this->view('users/v_login');
-        }
-
-
-        public function createUserSession($user){
-            $_SESSION['user_id']=$user->UserID;
-            $_SESSION['user_name']=$user->Name;
-            $_SESSION['user_email']=$user->Email;
-            
-            $data=[
-                'isLoggedIn'=>$this->isLoggedIn()
-            ];
-            $this->view('v_home',$data);
-            // redirect('Pages/home',$data);
-        }
-
-
-        public function isLoggedIn(){
-            if (isset($_SESSION['user_id'])) {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+        
     }
 
 ?>
