@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
  <div class="taxi_login_cont">
         <div class="taxi_login_img_div">
@@ -19,6 +19,6 @@
             
         </div>
 
-    </div>
+</div>
 
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
