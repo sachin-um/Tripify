@@ -9,7 +9,7 @@
                 'isLoggedIn'=>false
             ];
 
-            $this->view('v_home',$data);
+            $this->view('hotels/v_hotelReg',$data);
         }
 
         public function home(){
