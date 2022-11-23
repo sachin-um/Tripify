@@ -32,4 +32,23 @@ function flash($name='',$message='', $class='message'){
 
 
 
+function filteritems($items,$usertype,$userid){
+    switch ($usertype) {
+        case 'Taxi':
+            return $items;
+            break;
+        case 'Guide':
+            return $items;
+            break;
+        case 'Traveler':
+            return array_filter($items,function ($item) use($userid){
+                return ($item->traveler_id == $userid);
+            });
+            break;
+    }
+
+    
+}
+
+
 ?>

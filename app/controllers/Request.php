@@ -10,9 +10,10 @@
         }
 
         public function TaxiRequest(){
-            $taxirequests=$this->taxirequestModel->viewall();
+            $alltaxirequests=$this->taxirequestModel->viewall();
+            $requests=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
-                'taxirequests'=> $taxirequests
+                'taxirequests'=> $requests
             ];
             $this->view('traveler/v_view_taxi_requests',$data);
         }
@@ -30,6 +31,10 @@
                         'time'=>trim($_POST['time']),
                         'description'=>trim($_POST['description']),
                         'travelerid'=>trim($_POST['travelerid']),
+                        'p-latitude'=>trim($_POST['p-latitude']),
+                        'p-longitude'=>trim($_POST['p-longitude']),
+                        'd-latitude'=>trim($_POST['d-latitude']),
+                        'd-longitude'=>trim($_POST['d-longitude']),
 
 
                         'pickuplocation_err'=>'',
@@ -40,6 +45,7 @@
                         'travelerid_err'=>''
     
                     ];
+                    
 
 
                 //validate name
@@ -90,6 +96,11 @@
                     'time'=>'',
                     'description'=>'',
                     'travelerid'=>'',
+                    'p-latitude'=>'',
+                    'p-longitude'=>'',
+                    'd-latitude'=>'',
+                    'd-longitude'=>'',
+
 
                     'pickuplocation_err'=>'',
                     'destination_err'=>'',
@@ -129,7 +140,8 @@
                         'date_err'=>'',
                         'time_err'=>'',
                         'language_err'=>'',
-                        'additional-details_err'=>''
+                        'additional-details_err'=>'',
+                        'travelerid_err'=>''
     
                     ];
 
@@ -184,12 +196,12 @@
                     'date_err'=>'',
                     'time_err'=>'',
                     'language_err'=>'',
-                    'additional-details_err'=>''
+                    'additional-details_err'=>'',
+                    'travelerid_err'=>''
 
                 ];
                 $this->view('traveler/v_guide_request',$data);
             }
-            $this->view('traveler/v_guide_request');
         }
         
     }

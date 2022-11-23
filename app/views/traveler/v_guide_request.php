@@ -24,7 +24,7 @@ if (!empty($_SESSION['user_id'])) {
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
                 <input type="text" id="language" name="language" placeholder="Language you prefer" value="<?php echo $data['language']; ?>">
                 <span class="invalid"><?php echo $data['language_err']; ?></span>
-                <textarea name="additional-details" id="additional-details" cols="52" rows="10" placeholder="Additional Details"></textarea>
+                <textarea name="additional-details" id="additional-details" cols="82" rows="10" placeholder="Additional Details"></textarea>
                 <span class="invalid"><?php echo $data['additional-details_err']; ?></span>
                 <button id="sign-up-btn-1" type="submit">Request a Guide</button>
                 <input type="hidden" name="travelerid" id="travelerid" value="<?php echo $_SESSION['user_id'];?>">
