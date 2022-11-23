@@ -111,7 +111,7 @@ else {
 </script>
  
  <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-J84eYkpCT8Oa7quqBdZhYlCIxty7CH8&callback=initMap&v=weekly"
+      src="<?php echo MAP_URL ?>"
       defer>
 </script>
 
