@@ -98,16 +98,38 @@
 
             $row=$this->db->single();
 
+
             $dbotp=$row->otp;
 
             if($dbotp==$data['code']){
-                $this->db->query('UPDATE users SET verification_status=1 WHERE Email= :email');
+                $this->db->query('UPDATE users SET verification_status=1 WHEretRE Email= :email');
                 $this->db->bind(':email',$data['email']);
                 $this->db->execute();
                 return true;
             }
             else
             {
+                return false;
+            }
+
+        }
+
+
+        //forgot password
+        public function passwordverify($data){
+            $this->db->query('SELECT * FROM users WHERE Email= :email');
+            $this->db->bind(':email',$data['email']);
+
+            $row=$this->db->single();
+
+            if ($row) {
+                $this->db->query('UPDATE users SET pw_reset_otp=:pw_rest_otp WHERE Email=:email');
+                $this->db->bind(':email',$data['email']);
+                $this->db->bind(':pw_rest_otp',$data['pw_rest_otp']);    
+                $this->db->execute();
+                return true;
+            }
+            else {
                 return false;
             }
 

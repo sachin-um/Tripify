@@ -13,13 +13,19 @@
         //register
 
         public function addtaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination)');
+            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude)');
             $this->db->bind(':date',$data['date']);
             $this->db->bind(':time',$data['time']);
             $this->db->bind(':description',$data['description']);
             $this->db->bind(':travelerid',$data['travelerid']);
             $this->db->bind(':pickuplocation',$data['pickuplocation']);
             $this->db->bind(':destination',$data['destination']);
+            $this->db->bind(':p_latitude',$data['p-latitude']);
+            $this->db->bind(':p_longitude',$data['p-longitude']);
+            $this->db->bind(':d_latitude',$data['d-latitude']);
+            $this->db->bind(':d_longitude',$data['d-longitude']);
+
+            
 
             if ($this->db->execute()) {
                 return true;
@@ -37,35 +43,7 @@
         }
 
 
-        //login
-        public function login($data){
-
-            $this->db->query('SELECT * FROM users WHERE Email= :email');
-            $this->db->bind(':email',$data['email']);
-            // $this->db->query('SELECT * FROM users');
-
-            $row=$this->db->single();
-
-            $hashed_password=$row->Password;
-
-            if (password_verify($data['password'], $hashed_password)) {
-                return $row;
-            }
-            else {
-                return false;
-            }
-            
-            $this->db->bind(':password',$data['password']);
-
-            $row=$this->db->single();
-
-            if ($this->db->rowCount()==1) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        
     }
 
 ?>
