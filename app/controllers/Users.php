@@ -183,7 +183,7 @@
                 ];
                 $this->view('users/v_login',$data);
             }
-            // $this->view('users/v_login');
+            $this->view('users/v_login');
         }
 
         public function emailverify(){
@@ -347,22 +347,22 @@
                         $data['confirm-password_err']='Password and the confirm password are not matching';
                     }
                 }
-                if (empty($data['email_err']) || empty($data['password_err']) || empty($data['confirm-password_err'])) {
-                    
-                    //register user
+                if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err']) && empty($data['reset_code_err'])) {
+                    $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
+                    //reset password
                     if ($this->userModel->resetpassword($data)) {
-                        
                         flash('reg_flash', 'Your Password is successfully Changed..');
                         redirect('Users/login');
                     }
                     //error
                     else{
-                        flash('verify_flash', 'ERROR... Please Check the verifiation code and try again..');
-                        redirect('Users/resetpassword');
+                        $data['confirm-password_err']='Something went wrong please check your verification code and try again...';
+                        $this->view('users/v_reset_password',$data);
                     }
                 }
                 else {
                     $this->view('users/v_reset_password',$data);
+                    echo "HI";
                 }
 
 
@@ -370,10 +370,15 @@
             }
             else {
                 $data=[
+                    'reset_code'=>'',
                     'email'=>'',
-                    'pw_rest_otp'=>'',
-    
+                    'password'=>'',
+                    'confirm-password'=>'',
+                    
                     'email_err'=>'',
+                    'reset_code_err'=>'',
+                    'password_err'=>'',
+                    'confirm-password_err'=>''
 
                 ];
                 $this->view('users/v_reset_password',$data);

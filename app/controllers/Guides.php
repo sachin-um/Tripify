@@ -1,5 +1,5 @@
 <?php
-    class Users extends Controller{
+    class Guides extends Controller{
         public function __construct(){
             $this->guideModel=$this->model('M_Guides');
         }
@@ -78,7 +78,7 @@
                     }
                 }
                 else {
-                    $this->view('guides/v_register',$data);
+                    $this->view('guide/v_register',$data);
                 }
 
 
@@ -107,8 +107,84 @@
                     'languages_err'=>'',
 
                 ];
-                $this->view('guides/v_register',$data);
+                $this->view('guide/v_register',$data);
             }
+        }
+
+        //login
+        public function login(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'email'=>trim($_POST['email']),
+                    'password'=>trim($_POST['password']),
+                    'usertype'=>trim($_POST['usertype']),
+
+                    'email_err'=>'',
+                    'password_err'=>'',
+
+                ];
+
+                
+                //validate email
+                if (empty($data['email'])) {
+                    $data['email_err']='please enter a email';
+                }
+                else{
+                    if(!$this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err']='Account doesnt Exist..11';
+                    }
+                }
+
+                if (empty($data['password'])) {
+                    $data['password_err']='Please fill the password field';
+                }
+
+
+                if (empty($data['email_err']) && empty($data['password_err'])) {
+                    
+                    $log_user=$this->userModel->login($data);
+
+                    if ($log_user->UserType!=$data['usertype']) {
+                        flash('reg_flash', 'You Cannot logging as a Traveler');
+                        redirect('Users/login');
+                    }
+                    elseif ($log_user=='NotValidate') {
+                        flash('verify_flash', 'You Should Verify your email address first..');
+                        $this->createVerifySession($data['email']);
+                        redirect('Users/emailverify');
+                    }
+
+                    //Register user
+                    elseif ($log_user) {
+                        $this->createUserSession($log_user);
+                    }
+                    else{
+                        $data['password_err']='Password is incorrect';
+                        $this->view('users/v_login',$data);
+                    }
+                }
+                else {
+                    $this->view('users/v_login',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'email'=>'',
+                    'password'=>'',
+
+                    'email_err'=>'',
+                    'password_err'=>'',
+
+                ];
+                $this->view('guide/v_login',$data);
+            }
+            $this->view('guide/v_login');
         }
 
     }
