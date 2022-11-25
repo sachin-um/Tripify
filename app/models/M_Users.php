@@ -102,7 +102,7 @@
             $dbotp=$row->otp;
 
             if($dbotp==$data['code']){
-                $this->db->query('UPDATE users SET verification_status=1 WHEretRE Email= :email');
+                $this->db->query('UPDATE users SET verification_status=1 WHERE Email= :email');
                 $this->db->bind(':email',$data['email']);
                 $this->db->execute();
                 return true;
@@ -133,6 +133,31 @@
                 return false;
             }
 
+        }
+
+        public function resetpassword($data){
+            $this->db->query('SELECT * FROM users WHERE Email=:email AND pw_reset_otp=:pw_reset_otp');
+            $this->db->bind(':email',$data['email']);
+            $this->db->bind(':pw_reset_otp',$data['reset_code']);
+
+
+            $row=$this->db->single();
+
+            if ($row) {
+                $this->db->query('UPDATE users SET Password=:password WHERE Email=:email');
+                $this->db->bind(':password',$data['password']);
+                $this->db->bind(':email',$data['email']);
+                if ($this->db->execute()) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                echo 'HI';
+                return false;
+            }
         }
     }
 
