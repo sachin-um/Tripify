@@ -91,7 +91,7 @@
     <h2 class="title">Select what you want to search!</h2>
     <br>        
     <div class="user-btns" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-        <button id="btn-1" class="btns">
+        <button id="btn-1" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/hotels'">
             <span class="button__icon">
                 <ion-icon name="bed-outline"></ion-icon>
             </span>

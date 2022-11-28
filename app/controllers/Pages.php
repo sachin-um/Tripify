@@ -17,7 +17,7 @@
         }
 
         public function hotels(){
-            $this->view('v_hotels');
+            $this->view('hotels/v_hotelHome');
         }
 
         public function about($name,$age){

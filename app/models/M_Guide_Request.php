@@ -7,29 +7,14 @@
             $this->db=new Database();
         }
 
-
-        public function findUserByEmail($email){
-            $this->db->query('SELECT * FROM users WHERE Email= :email');
-            $this->db->bind(':email',$email);
-
-            $row=$this->db->single();
-
-            if ($this->db->rowCount()>0) {
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-
-
-        //register
-
-        public function register($data){
-            $this->db->query('INSERT INTO users(Email,Password,Name) VALUES(:email,:password,:name)');
-            $this->db->bind(':email',$data['email']);
-            $this->db->bind(':password',$data['password']);
-            $this->db->bind(':name',$data['name']);
+        public function addtaxirequest($data){
+            $this->db->query('INSERT INTO guide requests(Location,Date,Time,TravelerID,language,Description) VALUES(:area,:date,:time,:travelerid,:language,:additional-details)');
+            $this->db->bind(':area',$data['area']);
+            $this->db->bind(':date',$data['date']);
+            $this->db->bind(':time',$data['time']);
+            $this->db->bind(':travelerid',$data['travelerid']);
+            $this->db->bind(':language',$data['language']);
+            $this->db->bind(':additional-details',$data['additional-details']);
 
             if ($this->db->execute()) {
                 return true;
@@ -39,36 +24,15 @@
             }
         }
 
+        public function viewall(){
+            $this->db->query('SELECT * FROM v_taxi_request');
+            $posts=$this->db->resultSet();
 
-        //login
-        public function login($data){
-
-            $this->db->query('SELECT * FROM users WHERE Email= :email');
-            $this->db->bind(':email',$data['email']);
-            // $this->db->query('SELECT * FROM users');
-
-            $row=$this->db->single();
-
-            $hashed_password=$row->Password;
-
-            if (password_verify($data['password'], $hashed_password)) {
-                return $row;
-            }
-            else {
-                return false;
-            }
-            
-            $this->db->bind(':password',$data['password']);
-
-            $row=$this->db->single();
-
-            if ($this->db->rowCount()==1) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return $posts;
         }
+        
+
+        
     }
 
 ?>
