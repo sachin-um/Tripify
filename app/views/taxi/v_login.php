@@ -1,24 +1,41 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
+<div class="wrapper">
 
- <div class="taxi_login_cont">
-        <div class="taxi_login_img_div">
-            <img src="Pics/logo1-removebg-preview 1.png" id="taxi_login_img">
-    
-    
-        </div>
-    
-        <div class="taxi_login_div">
-            <form action="" method="post" class="taxi_login_form">
-                <input type="text" name="" id="taxi_login_user" placeholder="User Name" required ><br>
-                <input type="password" name="" id="taxi_login_password" placeholder="Password" required>
 
-            </form>
-
-            <input type="button" id="taxi_login_but" value="Login">
+    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+    <div class="content">
+        <div class="taxi_login_cont">
             
+            <div >
+                <img id="taxi_login_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+                <p id="taxi_v_login_p">Login</p> 
+            </div>
+
+            <div class="taxi_login_div">
+                <form class="taxi_login_form" action="<?php echo URLROOT; ?>/Users/login" method="POST">
+                    <input type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>">
+                    <span class="invalid"><?php echo $data['email_err']; ?></span>
+                    <input type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">
+                    <span class="invalid"><?php echo $data['password_err']; ?></span><br>
+                    <!-- <input type="hidden" id="usertype" name="usertype" value="Traveler"> -->
+                    <button id="taxi_login_but" type="submit">Login</button>
+                
+
+                </form> 
+                <!-- <?php flash('reg_flash'); ?> -->
+            
+            </div>
+        
         </div>
+    </div>
+    
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+</div>   
 
-</div>
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
+
+
+    
+

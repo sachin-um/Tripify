@@ -1,83 +1,122 @@
-
 #taxi_add_own_img{
-    width: 25em;
+    width: 80%;
+    
+}
 
+.add_taxi_info_caption{
+    position: relative;
+    top:50%;
+    transform: translate(0%,-10%);
+    margin-left: 10%;
 }
 
 
-
+#taxi_add_own_hed_tex{
+    text-align: center;
+}
 
 
 .addtaxiownerinfo{
-    line-height: 3em;
-    margin-top: 2em;
-    display: grid;
-    justify-content: center;
-    width:30em;
-    padding-bottom: 2em;
+    
+    width: fit-content;
     border: solid 1px #D9D9E9;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding-bottom: 5em;
 
-    
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: center;
     position: relative;
     left: 50%;
     transform: translate(-50%,0%);
+    
 }
 
-#add_taxiown_p{
-    /* font-weight: bold; */
-}
-
-.addtaxiownerregform > input{
-    /* margin-top: 1em; */
-}
 
 #taxiownname,#taxicomname,#taxiownnic,#taxiownmobile,#taxiownnov,#taxiowncode,#taxiownsadd,#taxiownsl2,#taxiowncity{
+    all: unset;
     background-color: #D9D9D9;
-    height: 2em;
+    height: 3em;
     border: solid 1px #03002E;
+    padding: 0%;
+
+    margin-top: 1em;
+
 }
+
+
+.addtaxiownerregform {
+    
+
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    /* line-height: 1em; */
+}
+
 
 #taxiownname,#taxicomname,#taxiownnic,#taxiownnov,#taxiownsadd,#taxiownsl2,#taxiowncity{
     width:24.5em ;
     border-radius: 0.3em;
+   
 }
 
+.taxi_own_mob_div{
+    display: flex;
+    margin-bottom: 1.5em;
+}
 
 #taxiownmobile {
-    /* margin-top: 0.72em; */
-    /* position: fixed; */
-    /* position: relative; */
-    
-    width: 22em;
+
+    width: 22.375em;
     border-radius: 0em 0.3em 0.3em 0em;
+    
     
 }
 #taxiowncode{
-    display: inline;
+
     border-radius: 0.3em 0em 0em 0.3em;
     width:2em;
+    padding: 0%;
+
 }
+
+#add_taxiown_p{
+    line-height: 1em;
+}
+
+
+#com_add_dis{
+    all: unset;
+}
+
+
 
 /* ....................................  */
+
 .taxicreatecom{
-    display: grid;
-    justify-items: center;
-    
+    display: flex;
+    justify-content: center;
 }
 
+#taxiowncreate_but{
+    all: unset;
 
-#taxiowncreate{
+    width: 8em;
     height: 3em;
-    width:8em;
+
+    margin-top: 1em;
+
     color: #fff;
     background-color: #03002E;
     border-color:#35BCBF ;
     border-width: 0.2em;
     border-radius: 10em;
+
     font-weight: bold;
+    text-align: center;
 
-
-    margin-top: 2em;
 }
 

@@ -1,14 +1,17 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
+<div class="wrapper">
 
 
-<div class="taxi_add_vehicle_info">
+    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
-<img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_v_form_img">
+    <div class="content">
+    <div class="form-login">
+    <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
 
-<p id="taxi_add_v_p">Add Your Vehicle</h1>
 
-<form action="" class="taxi_add_v_form" method="post">
+    <p id="taxi_add_v_p">Add Your Vehicle</h1>
+
+    <form action="" class="taxi_add_v_form" method="post">
 
         <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br>
 
@@ -34,13 +37,23 @@
 </form>
 <input type="button" id="taxi_add_v_but" value="Add Vehicle">
 </div>
-
-
-</div>
-
-
-
+    </div>
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+</div>   
 
 
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+
