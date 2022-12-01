@@ -8,8 +8,7 @@
             $data=[
                 'isLoggedIn'=>false
             ];
-
-            $this->view('hotels/v_hotelPricing',$data);
+            $this->view('v_home',$data);
         }
 
         public function home(){
@@ -17,7 +16,7 @@
         }
 
         public function hotels(){
-            $this->view('v_hotels');
+            $this->view('hotels/v_hotelHome');
         }
 
         public function about($name,$age){

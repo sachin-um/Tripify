@@ -183,7 +183,7 @@
                 ];
                 $this->view('users/v_login',$data);
             }
-            // $this->view('users/v_login');
+            $this->view('users/v_login');
         }
 
         public function emailverify(){
@@ -236,6 +236,154 @@
                 $this->view('users/v_email_verify',$data);
             }
             // $this->view('users/v_login');
+        }
+
+        //password reset verification
+
+        public function passwordverify(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'email'=>trim($_POST['email']),
+                    'pw_rest_otp'=>'',
+                    
+                    'email_err'=>'',
+                    'pw_rest_otp_err'=>''
+                ];
+
+                //validate code
+                if (empty($data['email'])) {
+                    $data['email_err']='Please Enter a valid email address...';
+                }
+                if (empty($data['pw_rest_otp'])) {
+                    $data['pw_rest_otp_err']='ERROR with OTP sending, please try again later...';
+                }
+
+                if (empty($data['email_err'])) {
+                    
+                    $data['pw_rest_otp']=sendResetPasswordMail($data['email']);
+                    
+                    //register user
+                    if ($this->userModel->passwordverify($data)) {
+                        flash('reset_flash', 'We send you a verification code to '.$data['email'].'.');
+                        $this->createVerifySession($data['email']);
+                        redirect('Users/resetpassword');
+                    }
+                    //error
+                    else{
+                        flash('verify_flash', 'ERROR... Please Try again..');
+                        redirect('Users/passwordverify');
+                    }
+                }
+                else {
+                    $this->view('users/v_forget_password',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'email'=>'',
+                    'pw_rest_otp'=>'',
+    
+                    'email_err'=>'',
+
+                ];
+                $this->view('users/v_forget_password',$data);
+            }
+
+        }
+
+        public function resetpassword(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'reset_code'=>trim($_POST['reset_code']),
+                    'email'=>$_SESSION['v_email'],
+                    'password'=>trim($_POST['password']),
+                    'confirm-password'=>trim($_POST['confirm-password']),
+                    
+                    'email_err'=>'',
+                    'reset_code_err'=>'',
+                    'password_err'=>'',
+                    'confirm-password_err'=>''
+                ];
+
+                //validate code
+                if (empty($data['email'])) {
+                    $data['email_err']='ERROR... Please try again later..';
+                }
+                if (empty($data['reset_code'])) {
+                    $data['reset_code_err']='Please enter your verificaion code';
+                }
+                if (empty($data['reset_code'])) {
+                    $data['reset_code_err']='Please enter your verificaion code';
+                }
+                if (empty($data['password'])) {
+                    $data['password_err']='Please fill the password field';
+                }
+                elseif (strlen($data['password'])<8) {
+                    $data['password_err']='your passowrd should contains at least 8 characters';
+                }
+                elseif (strlen($data['password'])<8) {
+                    $data['password_err']='your passowrd should contains at least 8 characters';
+                }
+                elseif (ctype_lower($data['password']) || ctype_upper($data['password'])) {
+                    $data['password_err']='your passowrd should be a mix of lowercase and uppercase characters.';
+                }
+                elseif (ctype_alnum($data['password'])) {
+                    $data['password_err']='your passowrd should contains at least one or more non-alphabetic character.';
+                }
+                elseif (empty($data['confirm-password'])) {
+                    $data['confirm-password_err']='Please confirm the password';
+                }
+                else{
+                    if($data['password'] != $data['confirm-password'] ) {
+                        $data['confirm-password_err']='Password and the confirm password are not matching';
+                    }
+                }
+                if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err']) && empty($data['reset_code_err'])) {
+                    $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
+                    //reset password
+                    if ($this->userModel->resetpassword($data)) {
+                        flash('reg_flash', 'Your Password is successfully Changed..');
+                        redirect('Users/login');
+                    }
+                    //error
+                    else{
+                        $data['confirm-password_err']='Something went wrong please check your verification code and try again...';
+                        $this->view('users/v_reset_password',$data);
+                    }
+                }
+                else {
+                    $this->view('users/v_reset_password',$data);
+                    echo "HI";
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'reset_code'=>'',
+                    'email'=>'',
+                    'password'=>'',
+                    'confirm-password'=>'',
+                    
+                    'email_err'=>'',
+                    'reset_code_err'=>'',
+                    'password_err'=>'',
+                    'confirm-password_err'=>''
+
+                ];
+                $this->view('users/v_reset_password',$data);
+            }
+
         }
 
 
