@@ -105,7 +105,7 @@
                     'price_per_km_err'=>'',
 
                 ];
-                $this->view('taxies/add_vehicle',$data);
+                $this->view('taxi/add_taxi_vehicle',$data);
             }
             
         }

@@ -4,7 +4,7 @@
 
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
-    <div class="content">
+    <!-- <div class="content">
     <div class="white-space">
         <h2 class="title" >Discover popular destinations across Sri Lanka!</h2>
     </div>
@@ -62,7 +62,7 @@
             <span class="button__text">Plan a Trip</span>
         </button>
     </div>
-    </div>
+    </div> -->
     <div class="content">
     <div class="white-space">
         <h2 class="title" >Discover popular destinations across Sri Lanka!</h2>
