@@ -2,6 +2,7 @@
         
         <div class="row-container">
           <!--Grid row-->
+          <br>
           <div class="row">
             
             <div class="cols">

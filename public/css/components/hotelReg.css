@@ -5,31 +5,66 @@
 
 .hotel-page{
     display: inline;
-    width: 100%;    
-    color: #03002E;
-    position: absolute;
+    width: 100%;
+    padding: 5%;
+}
+
+.main-flex{
+    display: flex;
+    justify-content: center;
+    column-gap: 5%;
 }
 
 .first-info{
-    padding: 10%;
-    width: 70%;
+    width: 35%;
     height: 25%;
-    box-shadow: 10px 10px;
+    text-align: center;
+    border: 3px solid grey;
+    border-radius: 20px;
 }
 
 .scnd-info{
-    width: 70%;
+    width: 35%;
     height: 25%;
-    box-shadow: 10px 10px;
+    text-align: center;
+    border: 3px solid grey;
+    border-radius: 20px;
 }
 
 .thrd-info{
-    width: 70%;
-    height: 25%;
-    box-shadow: 10px 10px;
+    margin: auto;
+    width: 75%;
+    height: 40%;
+    border: 3px solid grey;
+    border-radius: 20px;
+    text-align: center;
 }
 
 .info{
-    width: 50%;
+    width: 60%;
     height: 20%;
+    border: none;
+}
+
+.info-2{
+    width: 70%;
+    height: 48%;
+    border: none;
+}
+
+.flex-2{
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
+    justify-content: center;
+}
+
+.h-address{
+    width: 100%;
+}
+
+.btn-info{
+    width: 100%;
+    height: 8%;
+    text-align: center;
 }

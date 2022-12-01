@@ -8,7 +8,6 @@
             $data=[
                 'isLoggedIn'=>false
             ];
-
             $this->view('v_home',$data);
         }
 
