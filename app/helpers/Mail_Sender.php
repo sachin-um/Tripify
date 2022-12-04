@@ -45,4 +45,41 @@ function sendMail($email,$user){
 }
 
 
+
+function sendResetPasswordMail($email){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Reset Password of Your Tripify Account';
+        $mail->Body    = " <h3>Your verification code is $otp.<br></h3>
+        <p> Use this code to reset your Tripify account password.</p>
+        <br><br>
+        <p>With regards,</p>
+        <b>Tripify.</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
 ?>

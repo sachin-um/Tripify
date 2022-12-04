@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
+<?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
 
 <?php
 $_SESSION['user_id'];
@@ -24,12 +24,22 @@ else {
         <div >
             <form action="<?php echo URLROOT; ?>/Request/addTaxiRequest" method="POST">
                 
-                <input type="text" id="pickuplocation" name="pickuplocation" placeholder="Pickup location" value="<?php echo $data['pickuplocation']; ?>">
+                <input type="text" id="pickuplocation" name="pickuplocation" placeholder="From Where journey Begin...?" value="<?php echo $data['pickuplocation']; ?>">
                 <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
-                <span>Select the location on Map</span>
-                <div id="map"></div>
-                <input type="text" id="destination" name="destination" placeholder="Destination"  value="<?php echo $data['destination']; ?>">
+                <span>Select the pickup location on Map(Optional)</span>
+                <div id="map-container">
+                    <div id="map"></div>
+                </div>
+                <input type="hidden" name="p-latitude" id="p-latitude" value="">
+                <input type="hidden" name="p-longitude" id="p-longitude" value="">
+                <input type="text" id="destination" name="destination" placeholder="From Where journey End...?"  value="<?php echo $data['destination']; ?>">
                 <span class="invalid"><?php echo $data['destination_err']; ?></span>
+                <span>Select the Destination on Map(Optional)</span>
+                <div id="map-container">
+                    <div id="map-d"></div>
+                </div>
+                <input type="hidden" name="d-latitude" id="d-latitude" value="">
+                <input type="hidden" name="d-longitude" id="d-longitude" value="">
                 <input type="text" id="date" name="date" placeholder="Request Date" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Pickup Time" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>">
@@ -48,19 +58,60 @@ else {
 ?>
 <script>
     let map;
-
+    let map_d;
+    let srilanka={lat: 7.8731 ,lng: 80.7718};
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
+        center: srilanka,
         zoom: 8,
     });
-}
 
-window.initMap = initMap;
+
+        var marker = new google.maps.Marker({
+        position: srilanka,
+        map: map,
+        draggable:true,
+        title:"Pickup location"
+        });
+
+        google.maps.event.addListener(marker,'position_changed',
+            function () {
+                document.getElementById('p-latitude').value=marker.position.lat();
+                document.getElementById('p-longitude').value=marker.position.lng();
+            }
+        )
+
+
+        // destination map
+        map_d = new google.maps.Map(document.getElementById("map-d"), {
+        center: srilanka,
+        zoom: 8,
+    });
+
+        var marker_d = new google.maps.Marker({
+            position: srilanka,
+            map: map_d,
+            draggable:true,
+            title:"Destination"
+        });
+        google.maps.event.addListener(marker_d,'position_changed',
+            function () {
+                document.getElementById('d-latitude').value=marker_d.position.lat();
+                document.getElementById('d-longitude').value=marker_d.position.lng();
+            }
+        )
+    }
+    function initialize() {
+        initMap();
+    }
+
+    
+    
+
 </script>
  
  <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+      src="<?php echo MAP_URL ?>"
       defer>
 </script>
 

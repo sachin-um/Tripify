@@ -10,7 +10,8 @@ if (!empty($_SESSION['user_id'])) {
     <div class="request-list">
 
         <?php
-            foreach($data['taxirequests'] as $taxirequest):
+            $requests=$data['taxirequests'];
+            foreach($requests as $taxirequest):
         ?>
         <div class="request">
             <div class="post-header"><?php echo $taxirequest->caption; ?></div>
@@ -20,6 +21,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="post-location">Request PickUp Location: <?php echo $taxirequest->pickup_location; ?></div>
                 <div class="post-details">Additional Details: <?php echo $taxirequest->additional_details; ?></div>
                 <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
+                <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
             </div>
             <div class="request-footer">
                 <button id="request-offer-btn" type="submit">Make an offer</button>

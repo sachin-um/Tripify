@@ -6,13 +6,10 @@
 }
 
 .footer-class{
-<<<<<<< HEAD
-    margin-top: 10px;
-=======
-    position: fixed;
+    /* position: fixed; */
     margin-top: 30px;
->>>>>>> 25c06ebcb7522278d4d082833c7d8e8759a405a4
     width: 100%;
+    height: 10%;
     background-color: #03002E;
     color: white;
     bottom: 0;
