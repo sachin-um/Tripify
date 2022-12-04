@@ -4,8 +4,3 @@
 <div class="header-space">
 
 </div>
-<br>
-
-<div class="amenities-page">
-    
-</div>
