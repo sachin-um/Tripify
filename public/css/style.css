@@ -5,9 +5,11 @@
 @import url('components/footer.css');
 @import url('components/requrst.css');
 @import url('components/home.css');
-@import url('components/hotels.css');
 @import url('components/hotelReg.css');
-@import url('components/hotelHome.css');
+@import url('components/1hotelHome.css');
+@import url('components/2hotelReg.css');
+@import url('components/3hotelPricing.css');
+@import url('components/5hotelPhoto.css');
 @import url('components/addtaxiowner.css');
 @import url('components/add_taxi_vehicle.css');
 @import url('components/view_taxi_vehicle.css');

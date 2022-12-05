@@ -9,8 +9,11 @@
 <div class="pricing-page">
     
     <div class="first-div">
+        <div class="h-title">
         <h3>Tell us about your first room. 
-        After entering all the necessary info, you can fill in the details of your other rooms.</h3> 
+        After entering all the necessary info, you can fill in the details of your other rooms.</h3>
+        </div>
+         
         <br>
         <div class="flex-2">
 
@@ -18,7 +21,7 @@
                 <h4>Room Type</h4>
                 <input type="text" class="info-2" id="line-3" name="line-3">
             </div>
-                
+            <br>   
             <div class="h-address">
                 <h4>Room size</h4>
                 <input type="text" class="info-2" id="city" name="city">
