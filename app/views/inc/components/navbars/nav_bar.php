@@ -28,9 +28,9 @@
     ?>
     </div>
     <div class="nav-buttons">
-        <button class="nbtns" type="button" >Stays</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Taxis</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Guides</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" onclick="window.location='<?php echo URLROOT; ?>/Pages/hotels'">Stays</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" onclick="window.location='<?php echo URLROOT; ?>/Pages/taxies'">Taxis</button>&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" onclick="window.location='<?php echo URLROOT; ?>/Pages/guides'">Guides</button>&nbsp;&nbsp;&nbsp;
         <button class="nbtns" type="button" >Attractions</button>&nbsp;&nbsp;&nbsp;
         <button class="nbtns" type="button" >Plan itinerary</button>
     </div>
