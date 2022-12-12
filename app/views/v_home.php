@@ -99,7 +99,7 @@
             <span class="button__text">Hotel</span>
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         
-        <button id="#2" class="btns">
+        <button id="#2" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/taxies'">
             <span class="button__icon">
                 <ion-icon name="car-outline"></ion-icon>
             </span>
@@ -107,7 +107,7 @@
             <span class="button__text">Taxi</span>
         </button>&nbsp;&nbsp;&nbsp;&nbsp;        
         
-        <button id="#3" class="btns">
+        <button id="#3" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/guides'">
             <span class="button__icon">
                 <ion-icon name="accessibility-outline"></ion-icon>
             </span>

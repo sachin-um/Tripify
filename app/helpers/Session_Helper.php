@@ -50,5 +50,33 @@ function filteritems($items,$usertype,$userid){
     
 }
 
+//user session
+function createUserSession($user){
+    $_SESSION['user_id']=$user->UserID;
+    $_SESSION['user_name']=$user->Name;
+    $_SESSION['user_email']=$user->Email;
+    $_SESSION['user_type']=$user->UserType;
+    
+    $data=[
+        'isLoggedIn'=>$this->isLoggedIn()
+    ];
+    $this->view('v_home',$data);
+    // redirect('Pages/home',$data);
+}
+
+function isLoggedIn(){
+    if (isset($_SESSION['user_id'])) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+function createVerifySession($email){
+    $_SESSION['v_email']=$email;
+}
+
 
 ?>
