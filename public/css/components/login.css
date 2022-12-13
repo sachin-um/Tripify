@@ -5,9 +5,19 @@
     background: #FFFFFF;
     max-width: 600px;
     margin: auto;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-bottom: 3%;
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+.middle{
+    width: 225px;
+    float:right;
+}
+.middle2{
+    width: 225px;
+    float:right;
+}
+
