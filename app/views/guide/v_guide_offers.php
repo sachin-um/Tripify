@@ -8,24 +8,64 @@
         <div class="form-login">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-                <p id="tag">Login</p> 
+                <p id="tag"><strong> Requests for Guides </strong> </p> 
             </div>
     
             <div >
-                <form action="<?php echo URLROOT; ?>/Users/login" method="POST">
-                    <input type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>">
-                    <span class="invalid"><?php echo $data['email_err']; ?></span>
-                    <input type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">
-                    <p><a href="<?php echo URLROOT; ?>/Users/passwordverify" style="margin-bottom: 15px; display: block; text-align: center;">Forgot Password?</a></p>
-                    <span class="invalid"><?php echo $data['password_err']; ?></span><br>
-                    <input type="hidden" id="usertype" name="usertype" value="Traveler">
-                    <button id="sign-up-btn-1" type="submit">Login</button>
-                
+               <h2> <strong> R1206 </strong> </h2> 
+               <h2> <strong> posted by Jack Daniels </strong> </h2> <br>
+               <table>
+                <tr>
+                    <td>Location:</td>
+                    <td>Dabulla</td>
+                </tr>
+                <tr>
+                    <td>Duration:</td>
+                    <td>12 dec 2022 to 14 dec 2022</td>
+                </tr>
+                <tr>
+                    <td>Languages prefered:</td>
+                    <td>English , German</td>
+                </tr>
+                <tr>
+                    <td>Additional Information:</td>
+                    <td>Additional Information : We’re a group of four hikers looking to go sightseeing around Dabulla area. Need a guide who knows the area well and can get us good deals</td>
+                </tr>
+               </table>
+               <button>Make an offer</button>
+               
 
-                </form> 
-                <?php flash('reg_flash'); ?>
+                <!-- <?php flash('reg_flash'); ?> -->
               
             </div>
+            <div >
+               <h2> <strong> R1208 </strong> </h2> 
+               <h2> <strong> posted by Apple Wild </strong> </h2> <br>
+               <table>
+                <tr>
+                    <td>Location:</td>
+                    <td>Matara</td>
+                </tr>
+                <tr>
+                    <td>Duration:</td>
+                    <td>12 dec 2022 to 14 dec 2022</td>
+                </tr>
+                <tr>
+                    <td>Languages prefered:</td>
+                    <td>English , German</td>
+                </tr>
+                <tr>
+                    <td>Additional Information:</td>
+                    <td>Additional Information :None </td>
+                </tr>
+               </table>
+               <button>Make an offer</button>
+               
+
+                <!-- <?php flash('reg_flash'); ?> -->
+              
+            </div>
+
         </div>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  

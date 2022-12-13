@@ -1,5 +1,5 @@
 .request-list{
-    margin-top: 10%;
+    margin-top: 4%;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
@@ -7,7 +7,10 @@
     width: 40%;
     border: 1px solid #d3d3d3;
 }
-
+.request-white-space{
+    margin-left: 40%;
+    color: #03002E;
+}
 .request-list .post-header{
     padding: 10px;
     font-weight: 600;

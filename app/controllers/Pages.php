@@ -15,8 +15,22 @@
             $this->view('hotels/v_loginHotel');
         }
 
+
+        public function logins(){
+            $this->view('v_logins');
+        }
+
+
         public function hotels(){
             $this->view('hotels/v_hotelHome');
+        }
+
+        public function taxies(){
+            $this->view('taxi/v_taxi_home');
+        }
+
+        public function guides(){
+            $this->view('guide/v_guide_home');
         }
 
         public function about($name,$age){
