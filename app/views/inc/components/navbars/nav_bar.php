@@ -1,7 +1,7 @@
 <div class="top">
         <div>
         <div class="logo-container">
-            <img id="logo" src="<?php echo URLROOT; ?>/img/output-onlinepngtools.png" alt="logo">
+        <a href="<?php echo URLROOT?>/Pages/home"><img id="logo" src="<?php echo URLROOT; ?>/img/output-onlinepngtools.png" alt="logo"></a>
         </div>
         <?php
         if (!empty($_SESSION['user_name'])) {

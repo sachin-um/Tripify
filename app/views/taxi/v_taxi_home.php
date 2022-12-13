@@ -41,7 +41,7 @@
         <h2 class="title" >Didn't find what you looking for ? Don't Worry you can still get what you want</h2>
     </div>
     <div class="btn-div">
-        <button class="reg-btn" type="button">Request a Ride</button>
+        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
     </div>
     <br>
     <hr>

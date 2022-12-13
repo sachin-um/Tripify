@@ -395,8 +395,8 @@
             $data=[
                 'isLoggedIn'=>$this->isLoggedIn()
             ];
-            $this->view('v_home',$data);
-            // redirect('Pages/home',$data);
+            // $this->view('v_home',$data);
+            redirect('Pages/home');
         }
 
         public function createVerifySession($email){

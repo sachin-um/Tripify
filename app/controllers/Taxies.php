@@ -12,10 +12,10 @@
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $ad1=>trim($_POST['taxiownsadd']),
-                $ad2=>trim($_POST['taxiownsl2']),
-                $ad3=>trim($_POST['taxiowncity']),
-                $address=$ad1+','+$ad2+','+$ad3+'.'
+                $ad1=trim($_POST['taxiownsadd']);
+                $ad2=trim($_POST['taxiownsl2']);
+                $ad3=trim($_POST['taxiowncity']);
+                $address=$ad1+','+$ad2+','+$ad3+'.';
                 $data=[
                     'owner_name'=>trim($_POST['ownername']),
                     'NIC_no'=>trim($_POST['ownernic']),
