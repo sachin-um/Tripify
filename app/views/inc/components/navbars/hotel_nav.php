@@ -26,7 +26,7 @@
 
     ?>
     <div class="nav-buttons" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-        <button class="nbtns" type="button" >Basic Info</button>
+        <button class="nbtns" type="button">Basic Info</button>
     </div>
 </div>
 
