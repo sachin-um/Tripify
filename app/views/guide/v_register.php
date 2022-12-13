@@ -8,44 +8,51 @@
         </div>
     
         <div >
-            <form action="<?php echo URLROOT; ?>/Users/register" method="POST">
+            <form action="<?php echo URLROOT; ?>/Guides/register" method="POST">
                 <label class="abc"> Name</label><br>
                 <input type="text" id="name" name="name" placeholder="   Name" value="<?php echo $data['name']; ?>">
                 <span class="invalid"><?php echo $data['name_err']; ?></span>
                 
                 <label class="abc"> Phone Number</label><br>
                 <input type="text" id="number" name="number" placeholder="+94" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <span class="invalid"><?php echo $data['number_err']; ?></span>
 
-                <label class="abc"> area you choose to</label><br>
-                <input type="text" id="name" name="name" placeholder="RS" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <label class="abc"> area you choose to guide</label><br>
+                <input type="text" id="area" name="area" placeholder="" value="<?php echo $data['name']; ?>">
+                <span class="invalid"><?php echo $data['area_err']; ?></span>
 
                 <label class="abc"> Price per hour</label><br>
-                <input type="text" id="name" name="name" placeholder="" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <input type="text" id="price" name="price" placeholder="Rs:" value="<?php echo $data['name']; ?>">
+                <span class="invalid"><?php echo $data['price_err']; ?></span>
 
                 <label class="abc"> More Information</label><br>
 
                 <label class="abc"> NIC</label><br>
-                <input type="text" id="name" name="name" placeholder="" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <input type="text" id="nic" name="nic" placeholder="" value="<?php echo $data['name']; ?>">
+                <span class="invalid"><?php echo $data['nic_err']; ?></span>
 
                 <label class="abc"> National Tourist Licence</label><br>
-                <input type="text" id="name" name="name" placeholder="" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <input type="text" id="NTL" name="NTL" placeholder="" value="<?php echo $data['name']; ?>">
+                <span class="invalid"><?php echo $data['NTL_err']; ?></span>
 
                 <label class="abc"> Languages that you know </label><br>
-                <input type="text" id="name" name="name" placeholder="" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
-
+                <select class="guide-reg-select" size="8" multiple name="languages[]">
+                    <option value='sinhala'>Sinhala</option>
+                    <option value='english'>English</option>
+                    <option value='tamil'>Tamil</option>
+                    <option value='chinese'>Chinese</option>
+                    <option value='japanese'>Japanese</option>
+                    <option value='russian'>Russian</option>
+                    <option value='french'>French</option>
+                    <option value='artabic'>Arabic</option>
+                    <option value='spanish'>Spanish</option>
+                    
+                </select>
+                <span class="invalid"><?php echo $data['languages_err']; ?></span>
                 <label class="abc"> Bio </label><br>
-                <input type="text" id="name" name="name" placeholder="" value="<?php echo $data['name']; ?>">
-                <span class="invalid"><?php echo $data['name_err']; ?></span>
-            
-                
-                <button id="sign-up-btn-1" type="submit" href="v_register_continue.php">Continue</button>
-
+                <textarea class="guide-reg-textarea" name="bio" id="bio" cols="52" rows="10" placeholder="Tell us about you"></textarea>    
+                <button id="sign-up-btn-1" type="submit" >Register as Guide</button>
+                <input type="hidden" id="id" name="id" value="<?php echo $_SESSION['user_id']; ?>">
               </form> 
         </div>
     </div>

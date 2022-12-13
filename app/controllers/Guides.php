@@ -2,6 +2,7 @@
     class Guides extends Controller{
         public function __construct(){
             $this->guideModel=$this->model('M_Guides');
+            $this->userModel=$this->model('M_Users');
         }
         public function index(){
 
@@ -14,7 +15,7 @@
 
                 $data=[
                     'name'=>trim($_POST['name']),
-                    'phone_number'=>trim($_POST['phone-number']),
+                    'phone_number'=>trim($_POST['number']),
                     'area'=>trim($_POST['area']),
                     'price_per_hour'=>trim($_POST['price']),
                     'nic'=>trim($_POST['nic']),
@@ -27,9 +28,9 @@
                     
 
                     'name_err'=>'',
-                    'phone_number_err'=>'',
+                    'number_err'=>'',
                     'area_err'=>'',
-                    'price_per_hour_err'=>'',
+                    'price_err'=>'',
                     'nic_err'=>'',
                     'NTL_err'=>'',
                     'languages_err'=>'',
@@ -42,14 +43,14 @@
                 }
                 //validate phone number
                 if (empty($data['phone_number'])) {
-                    $data['phone_number_err']='please enter a phone number';
+                    $data['number_err']='please enter a phone number';
                 }
                 //validate area
                 if (empty($data['area'])) {
                     $data['area_err']='please enter the area you want to travel';
                 }
                 //validate price
-                if (empty($data['price_per_hour'])) {
+                if (empty($data['price_hour'])) {
                     $data['area_err']='please enter the Service charges.';
                 }
                 //validate nic
@@ -99,9 +100,9 @@
                     
 
                     'name_err'=>'',
-                    'phone_number_err'=>'',
+                    'number_err'=>'',
                     'area_err'=>'',
-                    'price_per_hour_err'=>'',
+                    'price_err'=>'',
                     'nic_err'=>'',
                     'NTL_err'=>'',
                     'languages_err'=>'',
@@ -150,7 +151,7 @@
                         $data['password_err']= 'Password is incorrect';
                         $this->view('guide/v_login',$data);
                     }
-                    else if ($log_user->UserType!='Taxi') {
+                    else if ($log_user->UserType!='Guide') {
                         flash('reg_flash', 'You Cannot logging as a Guide');
                         redirect('Guides/login');
                     }
@@ -161,7 +162,7 @@
                     }
                     //logging user
                     else{
-                        createUserSession($log_user);
+                        $this->createUserSession($log_user);
                     }
                 }
                 else {
@@ -183,7 +184,31 @@
                 $this->view('guide/v_login',$data);
             }
         }
+        //user session
+        public function createUserSession($user){
+            $_SESSION['user_id']=$user->UserID;
+            $_SESSION['user_name']=$user->Name;
+            $_SESSION['user_email']=$user->Email;
+            $_SESSION['user_type']=$user->UserType;
+        
+            $data=[
+                'isLoggedIn'=>$this->isLoggedIn()
+            ];
+            $this->view('v_home',$data);
+            // redirect('Pages/home',$data);
+        }
+
+        public function isLoggedIn(){
+            if (isset($_SESSION['user_id'])) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 
     }
+
+    
 
 ?>
