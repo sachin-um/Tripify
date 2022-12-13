@@ -1,7 +1,16 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
-<?php
+<div class="wrapper">
+
+
+    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
+    
+    <div class="content">
+        <div class="request-white-space">
+            <h2 class="title" >Guide Requests</h2>
+        </div>
+        <?php
 $_SESSION['user_id'];
 
 
@@ -10,7 +19,7 @@ if (!empty($_SESSION['user_id'])) {
     <div class="request-list">
 
         <?php
-            $requests=$data['taxirequests'];
+            $requests=$data['guiderequests'];
             foreach($requests as $taxirequest):
         ?>
         <div class="request">
@@ -18,8 +27,9 @@ if (!empty($_SESSION['user_id'])) {
             <div class="post-body">
                 <div class="post-date">Request Date: <span id="request-data"><?php echo $taxirequest->date; ?></span></div>
                 <div class="post-time">Request Time: <?php echo $taxirequest->time; ?></div>
-                <div class="post-location">Request PickUp Location: <?php echo $taxirequest->pickup_location; ?></div>
+                <div class="post-location">Area Want to Travel: <?php echo $taxirequest->pickup_location; ?></div>
                 <div class="post-details">Additional Details: <?php echo $taxirequest->additional_details; ?></div>
+                <div class="post-details">Preffer language: <?php echo $taxirequest->additional_details; ?></div>
                 <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
                 <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
             </div>
@@ -57,7 +67,13 @@ else {
 }
 
 ?>
- 
+    
 
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+    
+
+
+    
+    </div>
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+</div> 

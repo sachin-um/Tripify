@@ -1,6 +1,6 @@
 .taxi_add_vehicle_info{
     line-height: 3em;
-    margin-top: 3em;
+
     display: grid;
     justify-content: center;
     width:30em;
@@ -12,6 +12,7 @@
     position: relative;
     left: 50%;
     transform: translate(-50%,0%);
+    
 }
 
 #taxi_add_v_form_img{
@@ -45,34 +46,43 @@
 
 #taxi_add_v_img{
     all: revert;
+    margin-left: 4em;
+    
 }
 .taxi_add_v_imgbox{
-    /* margin-top: 2em; */
     height: 5em;
+    width: 24.5em;
     
     display: flex;
-
-    /* justify-items: center; */
-    justify-content: right;
-    border:1px solid #03002E;
+    justify-content: center;
     align-items: center;
+
+    border:1px solid #03002E;
+    
+
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0%);
+
 }
 
 #taxi_add_v_but{
+    all: unset;
+
+    width: 8em;
     height: 3em;
-    width:8em;
+
+    
+    margin-top: 1em;
+
+
     color: #fff;
     background-color: #03002E;
     border-color:#35BCBF ;
     border-width: 0.2em;
     border-radius: 10em;
+
     font-weight: bold;
     text-align: center;
-
-   
-    margin-top: 2em;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%,0%);
 }
     

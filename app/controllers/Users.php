@@ -134,7 +134,7 @@
                 }
                 else{
                     if(!$this->userModel->findUserByEmail($data['email'])) {
-                        $data['email_err']='Account doesnt Exist..11';
+                        $data['email_err']='Account doesnt exist...';
                     }
                 }
 
@@ -147,23 +147,22 @@
                     
                     $log_user=$this->userModel->login($data);
 
-                    if ($log_user->UserType!=$data['usertype']) {
+                    if (!$log_user) {
+                        $data['password_err']= 'Password is incorrect';
+                        $this->view('users/v_login',$data);
+                    }
+                    else if ($log_user->UserType!=$data['usertype']) {
                         flash('reg_flash', 'You Cannot logging as a Traveler');
-                        redirect('Users/login');
+                        
                     }
                     elseif ($log_user=='NotValidate') {
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
                     }
-
-                    //Register user
-                    elseif ($log_user) {
-                        $this->createUserSession($log_user);
-                    }
+                    //logging user
                     else{
-                        $data['password_err']='Password is incorrect';
-                        $this->view('users/v_login',$data);
+                        $this->createUserSession($log_user);
                     }
                 }
                 else {

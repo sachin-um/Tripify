@@ -26,11 +26,10 @@
 
     ?>
     <div class="nav-buttons" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-        <button class="nbtns" type="button" >Basic Info</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Layout & Pricing</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Policies</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Amenities</button>&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Payments</button>
+        <button class="nbtns" type="button" >Basic Info</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Policies</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Amenities</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="nbtns" type="button" >Photos</button>
     </div>
 </div>
 
