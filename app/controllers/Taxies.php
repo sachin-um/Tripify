@@ -12,51 +12,24 @@
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-
+                $ad1=>trim($_POST['taxiownsadd']),
+                $ad2=>trim($_POST['taxiownsl2']),
+                $ad3=>trim($_POST['taxiowncity']),
+                $address=$ad1+','+$ad2+','+$ad3+'.'
                 $data=[
-                    'owner_name'=>trim($_POST['owener-name']),
-                    'NIC_no'=>trim($_POST['nicno']),
-                    'company_name'=>trim($_POST['company-name']),
-                    'contact_number'=>trim($_POST['contact-number']),
-                    'noOfVehicle'=>trim($_POST['no-of-vehicle']),
-                    'address'=>($_POST['address']),
-                    'owner_id'=>$_SESSION['user_id'],
+                    'owner_name'=>trim($_POST['ownername']),
+                    'NIC_no'=>trim($_POST['ownernic']),
+                    'company_name'=>trim($_POST['taxicomname']),
+                    'contact_number'=>trim($_POST['taxiownmobile']),
+                    'noOfVehicle'=>trim($_POST['taxiownnov']),
+                    'address'=>$address,
 
-                    'owner_name_err'=>'',
-                    'NIC_no_err'=>'',
-                    'company_name_err'=>'',
-                    'contact_number_err'=>'',
-                    'noOfVehicle_err'=>'',
-                    'address_err'=>'',
-                    'owner_id_err'=>'',
-
+                    
                 ];
 
-                //validate name
-                if (empty($data['owner_name'])) {
-                    $data['owner_name_err']='Please enter the Property Name';
-                }
-                //validate email
-                if (empty($data['NIC_no'])) {
-                    $data['NIC_no_err']='please enter the Property Address';
-                }
-                
-                if (empty($data['contact_number'])) {
-                    $data['contact_number_err']='Please enter a Contact number';
-                }
-                if (empty($data['noOfVehicle'])) {
-                    $data['noOfVehicle_err']='Please enter a Registration number';
-                }
-                if (empty($data['address'])) {
-                    $data['address_err']='Please enter an address';
-                }
-                if (empty($data['owner_id'])) {
-                    $data['owner_id_err']='Error in Owner ID';
-                }
-
-                if (empty($data['owner_name_err']) &&  empty($data['NIC_no_err']) && empty($data['contact_number_err']) && empty($data['noOfVehicle_err']) && empty($data['address_err']) && empty($data['owner_id_err'])) {
                 
 
+                
                     //Register Taxi Account
                     if ($this->taxiModel->register($data)) {
                         flash('reg_flash', 'You are Succusefully registered as Taxi Owner');
@@ -65,10 +38,7 @@
                     else{
                         die('Something went wrong');
                     }
-                }
-                else {
-                    $this->view('taxi/v_register',$data);
-                }
+                
 
 
 
