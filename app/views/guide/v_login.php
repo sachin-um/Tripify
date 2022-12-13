@@ -5,33 +5,25 @@
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
-        <div class="form-login">
+        <div class="guide_login_cont">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
                 <p id="tag">Login</p> 
             </div>
-    
-            <div >
-                <form  action="<?php echo URLROOT; ?>/Users/login" method="POST">
-                    
-                    <div class="middle">
-                    <input  class="" type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>"
+            <div class="guide_login_div">
+                <form class="taxi_login_form" action="<?php echo URLROOT; ?>/Guides/login" method="POST">
+                    <input type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>">
                     <span class="invalid"><?php echo $data['email_err']; ?></span>
-
-                    <input class="" type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">
-</div>
-<div class="middle2">
+                    <input type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">
+                    <span class="invalid"><?php echo $data['password_err']; ?></span><br>
                     <p><a href="<?php echo URLROOT; ?>/Users/passwordverify" style="margin-bottom: 15px; display: block; text-align: center;">Forgot Password?</a></p>
                     <span class="invalid"><?php echo $data['password_err']; ?></span><br>
-
                     <input  type="hidden" id="usertype" name="usertype" value="Traveler">
                     <button id="sign-up-btn-1" type="submit">Login</button>
-</div>
                 
 
                 </form> 
                 <?php flash('reg_flash'); ?>
-              
             </div>
         </div>
     </div>
