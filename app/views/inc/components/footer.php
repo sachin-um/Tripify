@@ -9,7 +9,7 @@
       
               <ul class="lists">
                 <li>
-                  <a href="#!" class="text-dark">About Tripify</a>
+                  <a href="#!" class="text-dark">Service Provider Logins</a>
                 </li>
                 <li>
                   <a href="#!" class="text-dark">Privacy Policy</a>
@@ -27,9 +27,9 @@
 
             <div class="cols">
               <h4 class="header-col">Contact Us</h4>
-                <p>Lorem ipsum dolor</p>
-                <p>consectetur adipiscing</p>
-                <p>eiusmod</p>
+                <p>No 36</p>
+                <p>Galle Road</p>
+                <p>Bambalapitiya</p>
             </div>
             
 
@@ -55,7 +55,7 @@
           </div>
           <!--Grid row-->
           <div class="copyright">
-            © 2022 All Rights Reserved by Sri Lanka Tourism Promotion Bureau.    
+            © 2022 All Rights Reserved by Tripify(pvt)ltd    
           </div>
         </div>
         
