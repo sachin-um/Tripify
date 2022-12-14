@@ -8,6 +8,14 @@
         }
 
 
+        public function viewvehicles(){
+            $allvehicles=$this->taxi_vehicleModel->viewall();
+            $requests=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
+            $data=[
+                'vehicles'=> $allvehicles
+            ];
+            $this->view('taxi/v_taxi_vehicles',$data);
+        }
         public function addavehicle(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation

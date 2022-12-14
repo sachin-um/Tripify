@@ -9,7 +9,7 @@
             <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->
                 <img id="taxi_add_own_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-                <h1 id="taxi_add_own_hed_tex"> Create Your Company</h1>
+                <h1 id="taxi_add_own_hed_tex"> Join with us </h1>
 
             </div>
 
@@ -17,10 +17,8 @@
 
                 <form action="" class="addtaxiownerregform">
 
-                    <input type="text" id="taxiownname" placeholder="Owner Name" required><br>
-
-                    <input type="text" id="taxiownnic" placeholder="Nic Number" required><br>
-
+                    <input type="text" id="ownername" name="ownername" placeholder="Owner Name" required><br>
+                    <input type="text" id="ownernic" name="ownernic" placeholder="NIC Number" required><br>
                     <input type="text" id="taxicomname" placeholder="Company Name If Exist" ><br>
 
                     <div class="taxi_own_mob_div">
