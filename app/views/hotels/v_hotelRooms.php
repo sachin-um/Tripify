@@ -10,9 +10,9 @@
             <br>
                 <h3>Tell us about your first room. 
                 After entering all the necessary info, you can fill in the details of your other rooms.</h3>
-            </div>
+        </div>
             
-            <br>
+        <br>
 
         <form class="form-div" action="" method="post">
             <div class='parent'>
