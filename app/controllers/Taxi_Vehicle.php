@@ -24,12 +24,13 @@
             
                 $data=[
                         'driver'=>trim($_POST['driver']),
-                        'vehicleType'=>trim($_POST['vehicle-type']),
+                        'vehicleType'=>trim($_POST['type']),
                         'model'=>trim($_POST['model']),
-                        'yearofProduction'=>trim($_POST['year-of-production']),
-                        'vehicleNumber'=>trim($_POST['vehicle-number']),
-                        'noOfSeats'=>trim($_POST['no-of-seats']),
-                        'price_per_km'=>trim($_POST['price-per-km']),                        
+                        'yearofProduction'=>trim($_POST['year']),
+                        'vehicleNumber'=>trim($_POST['number']),
+                        'area'=>trim($_POST['area']),
+                        'noOfSeats'=>trim($_POST['max']),
+                        'price_per_km'=>trim($_POST['flag']),                        
 
 
                         'driver_err'=>'',
@@ -37,6 +38,7 @@
                         'model_err'=>'',
                         'yearofProduction_err'=>'',
                         'vehicleNumber_err'=>'',
+                        'area_err'=>'',
                         'noOfSeats_err'=>'',
                         'price_per_km_err'=>'',
     
@@ -63,6 +65,10 @@
                 if (empty($data['vehicleNumber'])) {
                     $data['vehicleNumber_err']='please enter your vehicle Number';
                 }
+                //validate area
+                if (empty($data['area'])) {
+                    $data['area_err']='Please enter your vehicle model';
+                }    
                 //validate number of seats
                 if (empty($data['price_per_km'])) {
                     $data['price_per_km_err']='please enter your service charges';
@@ -100,6 +106,7 @@
                     'model'=>'',
                     'yearofProduction'=>'',
                     'vehicleNumber'=>'',
+                    'area'=>'',
                     'noOfSeats'=>'',
                     'price_per_km'=>'',                        
 
@@ -109,8 +116,10 @@
                     'model_err'=>'',
                     'yearofProduction_err'=>'',
                     'vehicleNumber_err'=>'',
+                    'area_err'=>'',
                     'noOfSeats_err'=>'',
                     'price_per_km_err'=>'',
+
 
                 ];
                 $this->view('taxi/add_taxi_vehicle',$data);
