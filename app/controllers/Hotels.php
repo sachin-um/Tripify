@@ -2,6 +2,7 @@
     class Hotels extends Controller{
         public function __construct(){
             $this->hotelModel=$this->model('M_Hotels');
+            $this->userModel=$this->model('M_Users');
         }
         public function index(){
 
@@ -91,7 +92,101 @@
             // $this->view('hotels/v_register');
         }
 
-        
+        //login
+        public function login(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'email'=>trim($_POST['email']),
+                    'password'=>trim($_POST['password']),
+
+                    'email_err'=>'',
+                    'password_err'=>'',
+
+                ];
+
+                
+                //validate email
+                if (empty($data['email'])) {
+                    $data['email_err']='please enter a email';
+                }
+                else{
+                    if(!$this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err']='Account doesnt exist...';
+                    }
+                }
+
+                if (empty($data['password'])) {
+                    $data['password_err']='Please fill the password field';
+                }
+
+
+                if (empty($data['email_err']) && empty($data['password_err'])) {
+                    
+                    $log_user=$this->userModel->login($data);
+
+                    if (!$log_user) {
+                        $data['password_err']= 'Password is incorrect';
+                        $this->view('hotels/v_loginHotel',$data);
+                    }
+                    else if ($log_user->UserType!='Hotel') {
+                        flash('reg_flash', 'You Cannot logging as a Hotel Owner');
+                        redirect('Hotels/login');
+                    }
+                    elseif ($log_user=='NotValidate') {
+                        flash('verify_flash', 'You Should Verify your email address first..');
+                        $this->createVerifySession($data['email']);
+                        redirect('Users/emailverify');
+                    }
+                    //logging user
+                    else{
+                        $this->createUserSession($log_user);
+                    }
+                }
+                else {
+                    $this->view('hotels/v_loginHotel',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'email'=>'',
+                    'password'=>'',
+
+                    'email_err'=>'',
+                    'password_err'=>'',
+
+                ];
+                $this->view('hotels/v_loginHotel',$data);
+            }
+        }
+
+        //user session
+        public function createUserSession($user){
+            $_SESSION['user_id']=$user->UserID;
+            $_SESSION['user_name']=$user->Name;
+            $_SESSION['user_email']=$user->Email;
+            $_SESSION['user_type']=$user->UserType;
+            
+            $data=[
+                'isLoggedIn'=>$this->isLoggedIn()
+            ];
+            $this->view('v_home',$data);
+            // redirect('Pages/home',$data);
+        }
+
+        public function isLoggedIn(){
+            if (isset($_SESSION['user_id'])) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 
         public function addroom(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
