@@ -57,15 +57,15 @@
                     
                     //Add a Taxi Request
                     if ($this->guideofferModel->addguideoffer($data)) {
-                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
-                        redirect('Request/TaxiRequest');
+                        flash('reg_flash', 'Your Guide Offer is Succusefully added..!');
+                        redirect('Offers/guideoffers');
                     }
                     else{
                         die('Something went wrong');
                     }
                 }
                 else {
-                    $this->view('traveler/v_taxi_request',$data);
+                    $this->view('guide/v_add_guide_offer',$data);
                 }
 
 
@@ -74,7 +74,7 @@
             else {
 
                 $data=[
-                        'charges'=>trim($_POST['charges']),
+                        'charges'=>'',
                         'payment-option'=>'',
                         'additional-info'=>'',
                         'guide_id'=>'',
