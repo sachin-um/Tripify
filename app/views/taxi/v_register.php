@@ -19,29 +19,29 @@
 
                     <input type="text" id="ownername" name="ownername" placeholder="Owner Name" required><br>
                     <input type="text" id="ownernic" name="ownernic" placeholder="NIC Number" required><br>
-                    <input type="text" id="taxicomname" placeholder="Company Name If Exist" ><br>
+                    <input type="text" id="taxicomname" name="taxicomname" placeholder="Company Name If Exist" ><br>
 
                     <div class="taxi_own_mob_div">
-                        <input id="taxiowncode" type="text" value="+94" disabled >
-                        <input type="tel" id="taxiownmobile" value="" / placeholder="Business Phone"  required ><br>
+                        <input id="taxiowncode" name="taxiowncode" type="text" value="+94" disabled >
+                        <input type="tel" id="taxiownmobile" name="taxiownmobile" value=""  placeholder="Business Phone"  required ><br>
                     </div>
                     
 
-                    <input type="number" id="taxiownnov" placeholder="Number of vehicle" required min="1"><br>
+                    <input type="number" id="taxiownnov" name="taxiownnov" placeholder="Number of vehicle" required min="1"><br>
 
                     <!-- <label id="add_taxiown_p">Company Address</lable><br> -->
-                    <input type="text" id="com_add_dis" value="Company Address" disabled>
-                    <input type="text" id="taxiownsadd" placeholder="Street Address" required><br>
+                    <input type="text" id="com_add_dis"  name="com_add_dis" value="Company Address" disabled>
+                    <input type="text" id="taxiownsadd" name="taxiownsadd" placeholder="Street Address" required><br>
 
-                    <input type="text" id="taxiownsl2" placeholder="Address Line 2" required><br>
+                    <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" required><br>
         
-                    <input type="text" id="taxiowncity" placeholder="City" required ><br>
+                    <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
 
                 </form>
 
                 <div class="taxicreatecom">
             
-                <input type="button" id="taxiowncreate_but" value="Create">
+                <input type="button" id="taxiowncreate_but" name="taxiowncreate_but" value="Create">
 
                 </div>
 

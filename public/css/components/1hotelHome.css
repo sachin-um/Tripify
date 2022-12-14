@@ -91,10 +91,13 @@ input{
 
 .first-fill{
     height: 70%;
-    width: 50%;
+    width: 100px;
     margin: 0%;
 }
 
+
+.info-2{
+    width: 100px
 .scnd-fill{
     height: 70%;
     width: 25%;
@@ -119,14 +122,20 @@ input{
     align-items: center;
 }
 
-.btn{
+.btn-home{
     width: 10%;
+
     height: 60px;
     text-align: center;
-    border-radius: 10px;
-    color: white;
     background-color: #03002E;
-    cursor: pointer;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.btn-home:hover{
+    color: #03002E;
+    background-color: white;
 }
 
 .reg-btn{
@@ -138,14 +147,4 @@ input{
     background-color: #03002E;
     cursor: pointer;
     margin-top: 4%;
-}
-
-.btn:hover{
-    color: #03002E;
-    background-color: white;
-}
-
-.reg-btn:hover{
-    color: #03002E;
-    background-color: white;
 }

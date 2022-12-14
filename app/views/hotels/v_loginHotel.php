@@ -24,10 +24,10 @@
                     <h4>Password</h4>
                     <input type="password" class="login-info" id="password" name="password">
                     <span class="invalid"><?php echo $data['password_err']; ?></span><br>
-                    <button class="start-btn" type="submit">Log in</button>
-                    
+                    <button class="start-btn" type="submit">Log in</button> 
                 </form>
                 <?php flash('reg_flash'); ?>
+
                 <br><br><br><br>
         </div>
     </div>
