@@ -25,7 +25,7 @@
                     <button class="start-btn" type="submit">Log in</button>
                     <br><br>
                     <a href="signup.html"><button class="start-btn" type="submit">Sign up</button></a>     
-                </form>
+            </form>
                 
                 <br><br><br><br>
         </div>

@@ -79,4 +79,5 @@
 .nbtns:hover{
     background-color: #35BCBF;
     color: #03002E;
+    float: left;
 }
