@@ -28,6 +28,7 @@ h4{
     width: 80%;
     margin-left: 10%;
     justify-content: center;
+    column-gap: 5%;
 }
 
 .h-address{

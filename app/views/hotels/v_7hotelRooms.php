@@ -1,5 +1,6 @@
 <?php require APPROOT.'/views/inc/components/navbars/hotel_nav.php'; ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php require APPROOT.'/views/inc/components/navbars/hotel-dashboard.php'; ?>
 
 <div class="header-space">
 
