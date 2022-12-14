@@ -17,16 +17,17 @@
             <h2>Travel Sri Lanka the easy way!</h2>
             <h4>Login to join the biggest exclusive platform for travelers in Sri Lanka.</h4>
 
-            <form action="login.php" method="post">
+            <form action="<?php echo URLROOT; ?>/Hotels/login" method="post">
                 <h4>Email</h4>
                 <input type="text" class="login-info" id="email" name="email">  
+                <span class="invalid"><?php echo $data['email_err']; ?></span>
                     <h4>Password</h4>
                     <input type="password" class="login-info" id="password" name="password">
-                    <button class="start-btn" type="submit">Log in</button>
-                    <br><br>
-                    <a href="signup.html"><button class="start-btn" type="submit">Sign up</button></a>     
-            </form>
-                
+                    <span class="invalid"><?php echo $data['password_err']; ?></span><br>
+                    <button class="start-btn" type="submit">Log in</button> 
+                </form>
+                <?php flash('reg_flash'); ?>
+
                 <br><br><br><br>
         </div>
     </div>
