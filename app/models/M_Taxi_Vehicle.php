@@ -7,8 +7,8 @@ class M_Taxi_Vehicle{
             $this->db=new Database();
         }
 
-        public function addtaxivehicler($data){
-            $this->db->query('INSERT INTO vehicles(OwnerID,Model,VehicleType,YearOfProduction,driver_name,vehicle_number,area,no_of_seats,price_per_km) VALUES(:OwnerID,:Model,:VehicleType,:YearOfProduction,:driver_name,:vehicle_number,area,:no_of_seats,:price_per_km)');
+        public function addtaxivehicle($data){
+            $this->db->query('INSERT INTO vehicles(OwnerID,Model,VehicleType,YearOfProduction,driver_name,vehicle_number,area,no_of_seats,price_per_km) VALUES(:OwnerID,:Model,:VehicleType,:YearOfProduction,:driver_name,:vehicle_number,:area,:no_of_seats,:price_per_km)');
             $this->db->bind(':OwnerID',$data['owner']);
             $this->db->bind(':Model',$data['model']);
             $this->db->bind(':VehicleType',$data['vehicleType']);

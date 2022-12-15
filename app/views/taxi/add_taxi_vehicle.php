@@ -2,7 +2,20 @@
 <div class="wrapper">
 <?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
 
+<?php
+$_SESSION['user_id'];
 
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Taxi') {
+    flash('reg_flash', 'Only the Taxi Owner can add Taxi Request..');
+    redirect('Users/login');
+}
+else {
+    ?>
     <div class="content">
     <div class="form-login">
     <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
@@ -34,10 +47,13 @@
         </div> -->
         <input type="submit" id="taxi_add_v_but" name="taxi_add_v_but" value="Add Vehicle">          
 
-</form>
-
-</div>
+    </form>
     </div>
+</div>
+<?php
+}
+
+?>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div>   
 

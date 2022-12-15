@@ -10,12 +10,13 @@ class M_Hotel_Rooms{
     
 
     public function addaroom($data){
-        $this->db->query('INSERT INTO room(NoofBeds,RoomType,NoofGuests,RoomSize,PricePerNight,HotelID) VALUES(:NoofBeds,:RoomType,:NoofGuests,:RoomSize,:PricePerNight,:HotelID)');
+        $this->db->query('INSERT INTO room(NoofBeds,RoomType,NoofGuests,RoomSize,PricePerNight,HotelID,no_of_rooms) VALUES(:NoofBeds,:RoomType,:NoofGuests,:RoomSize,:PricePerNight,:HotelID,:NoOfRooms)');
         $this->db->bind(':NoofBeds',$data['NoofBeds']);
         $this->db->bind(':RoomType',$data['RoomType']);
         $this->db->bind(':NoofGuests',$data['NoofGuests']);
         $this->db->bind(':RoomSize',$data['RoomSize']);
         $this->db->bind(':PricePerNight',$data['PricePerNight']);
+        $this->db->bind(':NoOfRooms',$data['NoOfRooms']);
         $this->db->bind(':HotelID',$data['hotelid']);
 
         if ($this->db->execute()) {
