@@ -16,7 +16,7 @@
                 $ad2=trim($_POST['line2']);
                 $ad3=trim($_POST['line3']);
                 $ad4=trim($_POST['city']);
-                $address=$ad1+','+$ad2+','+$ad3+','+$ad4+'.';
+                $address=$ad1.','.$ad2.','.$ad3.','.$ad4.'.';
                 $data=[
                     'property_name'=>trim($_POST['name']),
                     'property_address'=>$address,
@@ -145,7 +145,7 @@
             $data=[
                 'isLoggedIn'=>$this->isLoggedIn()
             ];
-            $this->view('v_home',$data);
+            $this->view('hotels/v_hotelProfile',$data);
             // redirect('Pages/home',$data);
         }
 

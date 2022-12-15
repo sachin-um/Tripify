@@ -14,7 +14,7 @@
             
         <br>
 
-        <form class="form-div" action="<?php echo URLROOT; ?>/HotelRooms/addroom'" method="post">
+        <form class="form-div" action="<?php echo URLROOT; ?>/HotelRooms/addroom" method="post">
             <div class='parent'>
                 <div class='child'>
                     <label>Room type :</label><br>
@@ -34,8 +34,8 @@
 
             <div class='parent'>
                 <div class='child'>
-                    <label for="fname">No of rooms of this type :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
+                    <label for="fname">No of guests :</label><br>
+                    <input type="text" id="fname" name="no-of-guests"><br>
                 </div>
                 <div class='child'>
                     <label for="fname">Price per night :</label><br>

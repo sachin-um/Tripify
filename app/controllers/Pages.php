@@ -12,7 +12,7 @@
         }
 
         public function home(){
-            $this->view('hotels/v_hotelReg');
+            $this->view('v_home');
         }
 
 
@@ -20,6 +20,9 @@
             $this->view('v_logins');
         }
 
+        public function rooms(){
+            $this->view('hotels/v_hotelviewroom');
+        }
 
         public function hotels(){
             $this->view('hotels/v_hotelHome');

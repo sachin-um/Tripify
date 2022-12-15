@@ -35,7 +35,7 @@
         <h2 class="title" >Join our network today..</h2>
     </div>
     <div class="btn-div">
-        <button class="reg-btn" type="button">Register as a Guide</button>
+        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Guides/register'">Register as a Guide</button>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div>   

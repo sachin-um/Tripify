@@ -6,7 +6,7 @@
             <ul>
                 <li><button class="dash-btn">Profile</button></li>
                 <br>
-                <li><button class="dash-btn">Rooms</button></li>
+                <li><button class="dash-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/rooms'">Rooms</button></li>
                 <br>
                 <li><button class="dash-btn">Bookings</button></li>
                 <br>

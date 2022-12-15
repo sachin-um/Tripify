@@ -32,22 +32,20 @@ class M_Hotels{
         $this->db->bind(':hotel_id',$data['hotel_id']);
 
         if ($this->db->execute()) {
-            // $this->db->query('SELECT * FROM users WHERE Email= :email');
-            // $this->db->bind(':email',$data['email']);
-            // // $this->db->query('SELECT * FROM users');
+            $this->db->query('DELETE FROM traveler WHERE TravelerID=:travelerid');
+            $this->db->bind(':travelerid',$data['hotel_id']);
+            $updatetraveler=$this->db->execute();
 
-            // $row=$this->db->single();
+            $this->db->query('UPDATE users SET UserType="Hotel" WHERE UserID=:hotel_id');
+            $this->db->bind(':hotel_id',$data['hotel_id']);
+            $userupdate=$this->db->execute();
+            if ($updatetraveler && $userupdate) {
 
-            // $this->db->query('INSERT INTO traveler(TravelerID) VALUES(:travelerid)');
-            // $this->db->bind(':travelerid',$row->UserID);
-            
-            // if ($this->db->execute()) {
-
-            //     return true;
-            // }
-            // else {
-            //     return false;
-            // }
+                return true;
+            }
+            else {
+                return false;
+            }
             return true;
         }
         else {
