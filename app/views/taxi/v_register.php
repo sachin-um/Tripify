@@ -24,12 +24,14 @@
                     <div class="taxi_own_mob_div">
                         <input id="taxiowncode" name="taxiowncode" type="text" value="+94" disabled >
                         <input type="tel" id="taxiownmobile" name="taxiownmobile" value=""  placeholder="Business Phone"  required ><br>
+
                     </div>
                     
 
                     <input type="number" id="taxiownnov" name="taxiownnov" placeholder="Number of vehicle" required min="1"><br>
 
                     <!-- <label id="add_taxiown_p">Company Address</lable><br> -->
+
                     <input type="text" id="com_add_dis"  name="com_add_dis" value="Company Address" disabled>
                     <input type="text" id="taxiownsadd" name="taxiownsadd" placeholder="Street Address" required><br>
 
@@ -43,7 +45,8 @@
             
                 
 
-                </div>
+
+                
 
             </div>
 

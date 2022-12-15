@@ -135,6 +135,10 @@
             }
         }
 
+        public function createVerifySession($email){
+            $_SESSION['v_email']=$email;
+        }
+
         //user session
         public function createUserSession($user){
             $_SESSION['user_id']=$user->UserID;

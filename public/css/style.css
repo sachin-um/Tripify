@@ -5,6 +5,7 @@
 @import url('components/footer.css');
 @import url('components/requrst.css');
 @import url('components/home.css');
+@import url('components/dashboard.css');
 @import url('components/hotelReg.css');
 @import url('components/hotelRooms.css');
 @import url('components/loginHotel.css');
@@ -17,9 +18,10 @@
 @import url('components/taxi_login.css');
 @import url('components/taxi_signup.css');
 @import url('components/taxi_home.css');
+@import url('components/taxi_dashboard.css');
 @import url('components/guide.css');
+@import url('components/taxiDashboard.css');
 @import url('components/1hotelHome.css');
-
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 

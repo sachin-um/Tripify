@@ -21,10 +21,12 @@ else {
     <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
 
 
-    <p id="taxi_add_v_p">Add Your Vehicle</h1>
+    <h1 id="taxi_add_v_p">Add Your Vehicle</h1>
+
 
     <form action="<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle" class="taxi_add_v_form" method="post">
         <input type="text" id="driver" name="driver" placeholder="driver" required><br>
+
 
         <input type="text" id="taxi_add_v_type" name="type" placeholder="Vehicle Type" required><br>
 
@@ -40,6 +42,7 @@ else {
         
         <input type="text" id="taxi_add_v_area" name="area"placeholder="Available Area" required ><br>
         
+
         <!-- <label>Upload Vehicle Photos</label>
 
         <div class="taxi_add_v_imgbox">    
