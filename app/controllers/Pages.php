@@ -12,8 +12,7 @@
         }
 
         public function home(){
-            $this->view('v_home');
-            $this->view('hotels/v_hotelRoomsUpdated');
+            $this->view('hotels/v_hotelReg');
         }
 
 
