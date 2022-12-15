@@ -28,6 +28,7 @@
                         'NoofGuests'=>trim($_POST['no-of-guests']),
                         'RoomSize'=>trim($_POST['roomsize']),
                         'PricePerNight'=>trim($_POST['pricepernight']),
+                        'NoOfRooms'=>trim($_POST['no-of-rooms']),
                         'hotelid'=>$_SESSION['user_id'],
 
                         'NoofBeds_err'=>'',

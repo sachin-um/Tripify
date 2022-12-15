@@ -15,7 +15,10 @@
                 $ad1=trim($_POST['taxiownsadd']);
                 $ad2=trim($_POST['taxiownsl2']);
                 $ad3=trim($_POST['taxiowncity']);
-                $address=$ad1+','+$ad2+','+$ad3+'.';
+                $address=$ad1.','.$ad2.','.$ad3.'.';
+                // echo $address;
+                // $a=trim($_POST['taxicomname']);
+                // echo $a;
                 $data=[
                     'owner_name'=>trim($_POST['ownername']),
                     'NIC_no'=>trim($_POST['ownernic']),
@@ -32,6 +35,8 @@
                 
                     //Register Taxi Account
                     if ($this->taxiModel->register($data)) {
+                        unset($_SESSION['user_id']);
+                        unset($_SESSION['user_email']);
                         flash('reg_flash', 'You are Succusefully registered as Taxi Owner');
                         redirect('Taxies/login');
                     }
