@@ -34,23 +34,20 @@ class M_Taxi{
         $this->db->bind(':owner_id',$data['owner_id']);
 
         if ($this->db->execute()) {
-            // $this->db->query('SELECT * FROM users WHERE Email= :email');
-            // $this->db->bind(':email',$data['email']);
-            // // $this->db->query('SELECT * FROM users');
+            $this->db->query('DELETE FROM traveler WHERE TravelerID=:travelerid');
+            $this->db->bind(':travelerid',$data['owner_id']);
+            $updatetraveler=$this->db->execute();
 
-            // $row=$this->db->single();
+            $this->db->query('UPDATE users SET UserType="Taxi" WHERE UserID=:taxiid');
+            $this->db->bind(':taxiid',$data['owner_id']);
+            $userupdate=$this->db->execute();
+            if ($updatetraveler && $userupdate) {
 
-            // $this->db->query('INSERT INTO traveler(TravelerID) VALUES(:travelerid)');
-            // $this->db->bind(':travelerid',$row->UserID);
-            
-            // if ($this->db->execute()) {
-
-            //     return true;
-            // }
-            // else {
-            //     return false;
-            // }
-            return true;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         else {
             return false;

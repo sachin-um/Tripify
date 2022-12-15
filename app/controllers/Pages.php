@@ -23,7 +23,7 @@
 
 
         public function hotels(){
-            $this->view('hotels/v_1hotelHome');
+            $this->view('hotels/v_hotelHome');
         }
 
         public function taxies(){

@@ -55,7 +55,7 @@
         }
 
         public function viewall(){
-            $this->db->query('SELECT * FROM guide_offers');
+            $this->db->query('SELECT * FROM v_guide_offers');
             $offers=$this->db->resultSet();
 
             return $offers;

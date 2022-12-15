@@ -23,7 +23,7 @@
                     'contact_number'=>trim($_POST['taxiownmobile']),
                     'noOfVehicle'=>trim($_POST['taxiownnov']),
                     'address'=>$address,
-
+                    'owner_id'=>$_SESSION['user_id'],
                     
                 ];
 
@@ -51,15 +51,6 @@
                     'contact_number'=>'',
                     'noOfVehicle'=>'',
                     'address'=>'',
-                    'owner_id'=>$_SESSION['user_id'],
-
-                    'owner_name_err'=>'',
-                    'NIC_no_err'=>'',
-                    'company_name_err'=>'',
-                    'contact_number_err'=>'',
-                    'noOfVehicle_err'=>'',
-                    'address_err'=>'',
-                    'owner_id_err'=>'',
 
                 ];
                 $this->view('taxi/v_register',$data);
