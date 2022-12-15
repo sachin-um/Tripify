@@ -11,7 +11,7 @@
     <br>
     <h2 style="text-align: center;">Fill information below to get registered.</h2>
     <br>
-    <form class="form-div" action="<?php echo URLROOT; ?>/Hotels/register'" method="post">
+    <form class="form-div" action="<?php echo URLROOT; ?>/Hotels/register" method="post">
         <div class="flex-2">
             <div class="h-address">
                 <h4>Property Name</h4>
