@@ -17,12 +17,18 @@
         <form class="form-div" action="<?php echo URLROOT; ?>/HotelRooms/addroom'" method="post">
             <div class='parent'>
                 <div class='child'>
-                    <label for="fname">Room type :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
+                    <label>Room type :</label><br>
+                    <select name="roomtype">  
+                        <option>Deluxe</option>  
+                        <option>Queen Suite</option>  
+                        <option>King Suite</option>  
+                        <option>Normal Single Room</option>  
+                        <option>Normal Double Room</option>  
+                    </select>
                 </div>
                 <div class='child'>
-                    <label for="fname">Room size :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
+                    <label for="room-size">Room size :</label><br>
+                    <input type="text" id="roomsize" name="roomsize"><br>
                 </div>
             </div>
 
@@ -33,21 +39,21 @@
                 </div>
                 <div class='child'>
                     <label for="fname">Price per night :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
+                    <input type="text" id="pricepernight" name="pricepernight"><br>
                 </div>
             </div>
-            <br>
-            <h2 style="text-align: center;">Bed Options</h2>
-
+            
             <div class='parent'>
-                <div class='child'>
-                    <label for="fname">Type of beds available :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
-                </div>
-                <div class='child'>
+            <div class='child'>
                     <label for="fname">No of beds :</label><br>
-                    <input type="text" id="fname" name="fname"><br>
+                    <input type="text" id="no-of-beds" name="no-of-beds"><br>
                 </div>
+
+                <div class='child'>
+                    <label for="fname">No of rooms of this type :</label><br>
+                    <input type="text" id="no-of-rooms" name="no-of-rooms"><br>
+                </div>
+                
             </div>
             <br><br>
             <button style="text-align: center;" class="rooms-btn" type="submit">Add</button>   
