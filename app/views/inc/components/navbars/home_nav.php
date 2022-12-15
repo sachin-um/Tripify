@@ -7,7 +7,7 @@
         if (!empty($_SESSION['user_name'])) {
             ?>
                 <div class="welcome-banner">
-                    <h1>Howdy <?php echo $_SESSION['user_name'];  ?>..! </h1>
+                    <h2>Howdy <?php echo $_SESSION['user_name'];  ?>..! </h2>
                     <button class="logout-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/logout'">Log Out</button>
                 </div>
                 

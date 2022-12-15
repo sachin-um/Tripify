@@ -12,7 +12,7 @@
             </div>
     
             <div >
-                <form action="<?php echo URLROOT; ?>/Users/login" method="POST">
+                <form action="<?php echo URLROOT; ?>/Offers/addGuideOffer/<?php echo $data['requestid'] ?>" method="POST">
                     
                     
                     <label class="abc"> Service charges</label><br>

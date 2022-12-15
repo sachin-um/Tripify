@@ -13,10 +13,10 @@
         //add taxi request
 
         public function addguideoffer($data){
-            $this->db->query('INSERT INTO guide_offers(GuideID,RequestsID,HourlyRate,AdditionalDetails,PaymentMethod) VALUES(:guide_id,:requestid,:charges,:additional-info,:payment-option)');
+            $this->db->query('INSERT INTO guide_offers(GuideID,RequestsID,HourlyRate,AdditionalDetails,PaymentMethod) VALUES(:guide_id,:requestid,:charges,:additional_info,:payment_option)');
             $this->db->bind(':charges',$data['charges']);
-            $this->db->bind(':payment-option',$data['payment-option']);
-            $this->db->bind(':additional-info',$data['additional-info']);
+            $this->db->bind(':payment_option',$data['payment-option']);
+            $this->db->bind(':additional_info',$data['additional-info']);
             $this->db->bind(':guide_id',$data['guide_id']);
             $this->db->bind(':requestid',$data['requestid']);
 
@@ -55,7 +55,7 @@
         }
 
         public function viewall(){
-            $this->db->query('SELECT * FROM guide_offers');
+            $this->db->query('SELECT * FROM v_guide_offers');
             $offers=$this->db->resultSet();
 
             return $offers;

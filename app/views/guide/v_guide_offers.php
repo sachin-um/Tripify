@@ -5,76 +5,68 @@
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
-        <div class="form-login">
-            <div >
-                <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-                <p id="tag"><strong> Requests for Guides </strong> </p> 
-            </div>
-    
-            <div >
-               <h2> <strong> R1206 </strong> </h2> 
-               <h2> <strong> posted by Jack Daniels </strong> </h2> <br>
-               <table>
-                <tr>
-                    <td>Location:</td>
-                    <td>Dabulla</td>
-                </tr>
-                <tr>
-                    <td>Duration:</td>
-                    <td>12 dec 2022 to 14 dec 2022</td>
-                </tr>
-                <tr>
-                    <td>Languages prefered:</td>
-                    <td>English , German</td>
-                </tr>
-                <tr>
-                    <td>Additional Information:</td>
-                    <td>Additional Information : We’re a group of four hikers looking to go sightseeing around Dabulla area. Need a guide who knows the area well and can get us good deals</td>
-                </tr>
-               </table>
-               <button>Make an offer</button>
-               
+    <div class="request-white-space">
+            <h2 class="title" >Guide Offers</h2>
+        </div>
+    <?php
+$_SESSION['user_id'];
 
-                <!-- <?php flash('reg_flash'); ?> -->
-              
-            </div>
-            <div >
-               <h2> <strong> R1208 </strong> </h2> 
-               <h2> <strong> posted by Apple Wild </strong> </h2> <br>
-               <table>
-                <tr>
-                    <td>Location:</td>
-                    <td>Matara</td>
-                </tr>
-                <tr>
-                    <td>Duration:</td>
-                    <td>12 dec 2022 to 14 dec 2022</td>
-                </tr>
-                <tr>
-                    <td>Languages prefered:</td>
-                    <td>English , German</td>
-                </tr>
-                <tr>
-                    <td>Additional Information:</td>
-                    <td>Additional Information :None </td>
-                </tr>
-               </table>
-               <button>Make an offer</button>
-               
 
-                <!-- <?php flash('reg_flash'); ?> -->
-              
+if (!empty($_SESSION['user_id'])) {
+    ?>
+    <div class="request-list">
+
+        <?php
+            $offers=$data['guideoffers'];
+            foreach($offers as $guideoffer):
+        ?>
+        <div class="request">
+            <div class="post-header"><?php ?></div>
+            <div class="post-body">
+                <h6>Request ID : <?php echo $guideoffer->request_id; ?></h6>
+                <h5>Offer Details :</h5>
+                <div class="post-date">HourlyRate: <span id="request-data"><?php echo $guideoffer->hourlyrate; ?></span></div>
+                <div class="post-time">PaymentMethod: <?php echo $guideoffer->paymentmethod; ?></div>
+                <div class="post-details">Additional Details: <?php echo $guideoffer->additionaldetails; ?></div>
+                <div class="post-by">Offered By: <?php echo $guideoffer->guidename; ?></div>
+                <div class="post-by">Guide contact number: <?php echo $guideoffer->guide_number; ?></div>
+                <div class="post-by">Offered at: <?php echo convertTime($guideoffer->offer_at); ?></div>
             </div>
+            <div class="request-footer">
+                <?php
+                    if ($_SESSION['user_type']=='Guide') {
+                        ?>
+                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                            <button id="request-delete-btn" type="submit">Delete</button>
+                        <?php
+                    }
+                    elseif ($_SESSION['user_type']=='Traveler') {
+                        ?>
+                        <button id="request-offer-btn" type="submit">Accept offer</button>
+                        <?php
+                    }
+                ?>
+                
+                
+            </div>
+                
+            
 
         </div>
+        <?php
+            endforeach;
+        ?>
+    </div>
+    
+    <?php
+}
+else {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+
+?>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
-</div>   
-
-
-
-
-
-
-    
+</div> 
 

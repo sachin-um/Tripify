@@ -1,7 +1,14 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
+<div class="wrapper">
 
-<?php
+
+    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
+    <div class="content">
+        <div class="request-white-space">
+            <h2 class="title" >Taxi Requests</h2>
+        </div>
+    <?php
 $_SESSION['user_id'];
 
 
@@ -57,7 +64,6 @@ else {
 }
 
 ?>
- 
-
-
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+    </div>
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+</div>   
