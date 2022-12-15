@@ -2,7 +2,7 @@
     class Offers extends Controller{
         public function __construct(){
             $this->taxirequestModel=$this->model('M_Taxi_Request');
-            $this->guideofferModel=$this->model('M_Guide_Offer');
+            $this->guideofferModel=$this->model('M_Guide_Offers');
         }
 
         public function index(){
@@ -78,7 +78,7 @@
                         'payment-option'=>'',
                         'additional-info'=>'',
                         'guide_id'=>'',
-                        'requestid'=>'',
+                        'requestid'=>$requestid,
 
 
                         'charges_err'=>'',

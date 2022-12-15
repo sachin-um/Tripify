@@ -1,7 +1,14 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
+<div class="wrapper">
 
-<?php
+
+    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
+    <div class="content">
+    <div class="request-white-space">
+            <h2 class="title" >Guide Offers</h2>
+        </div>
+    <?php
 $_SESSION['user_id'];
 
 
@@ -10,16 +17,17 @@ if (!empty($_SESSION['user_id'])) {
     <div class="request-list">
 
         <?php
-            $offers=$data['guide_offers'];
+            $offers=$data['guideoffers'];
             foreach($offers as $guideoffer):
         ?>
         <div class="request">
-            <div class="post-header"><?php echo $guideoffer->caption; ?></div>
+            <div class="post-header"><?php ?></div>
             <div class="post-body">
+                <h6>Request ID : <?php echo $guideoffer->request_id; ?></h6>
+                <h5>Offer Details :</h5>
                 <div class="post-date">HourlyRate: <span id="request-data"><?php echo $guideoffer->hourlyrate; ?></span></div>
                 <div class="post-time">PaymentMethod: <?php echo $guideoffer->paymentmethod; ?></div>
                 <div class="post-details">Additional Details: <?php echo $guideoffer->additionaldetails; ?></div>
-                <div class="post-location">Request By: <?php echo $guideoffer->traveler; ?></div>
                 <div class="post-by">Offered By: <?php echo $guideoffer->guidename; ?></div>
                 <div class="post-by">Guide contact number: <?php echo $guideoffer->guide_number; ?></div>
                 <div class="post-by">Offered at: <?php echo convertTime($guideoffer->offer_at); ?></div>
@@ -58,7 +66,7 @@ else {
 }
 
 ?>
- 
+    </div>
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+</div> 
 
-
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>

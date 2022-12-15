@@ -10,7 +10,7 @@
 
     <p id="taxi_add_v_p">Add Your Vehicle</h1>
 
-    <form action="" class="taxi_add_v_form" method="post">
+    <form action="<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle" class="taxi_add_v_form" method="post">
         <input type="text" id="driver" name="driver" placeholder="driver" required><br>
 
         <input type="text" id="taxi_add_v_type" name="type" placeholder="Vehicle Type" required><br>
@@ -27,15 +27,15 @@
         
         <input type="text" id="taxi_add_v_area" name="area"placeholder="Available Area" required ><br>
         
-        <label>Upload Vehicle Photos</label>
+        <!-- <label>Upload Vehicle Photos</label>
 
         <div class="taxi_add_v_imgbox">    
             <input type="file" id="taxi_add_v_img" name="img" placeholder="taxi_add_v_imgbox" required accept="image/*"  multiple>
-        </div>
-                       
+        </div> -->
+        <input type="submit" id="taxi_add_v_but" name="taxi_add_v_but" value="Add Vehicle">          
 
 </form>
-<input type="button" id="taxi_add_v_but" name="taxi_add_v_but" value="Add Vehicle">
+
 </div>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  

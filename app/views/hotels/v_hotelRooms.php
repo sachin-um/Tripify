@@ -14,7 +14,7 @@
             
         <br>
 
-        <form class="form-div" action="" method="post">
+        <form class="form-div" action="<?php echo URLROOT; ?>/HotelRooms/addroom'" method="post">
             <div class='parent'>
                 <div class='child'>
                     <label for="fname">Room type :</label><br>

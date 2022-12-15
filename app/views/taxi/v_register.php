@@ -15,10 +15,10 @@
 
             <div class="addtaxiownerregform">
 
-                <form action="" class="addtaxiownerregform">
+                <form action="<?php echo URLROOT; ?>/Taxies/register" class="addtaxiownerregform">
 
-                    <input type="text" id="ownername" name="ownername" placeholder="Owner Name" required><br>
-                    <input type="text" id="ownernic" name="ownernic" placeholder="NIC Number" required><br>
+                    <input type="text" id="taxicomname" name="ownername" placeholder="Owner Name" required><br>
+                    <input type="text" id="taxicomname" name="ownernic" placeholder="NIC Number" required><br>
                     <input type="text" id="taxicomname" name="taxicomname" placeholder="Company Name If Exist" ><br>
 
                     <div class="taxi_own_mob_div">
@@ -41,7 +41,7 @@
 
                 <div class="taxicreatecom">
             
-                <input type="button" id="taxiowncreate_but" name="taxiowncreate_but" value="Create">
+                <input type="submit" id="taxiowncreate_but" name="taxiowncreate_but" value="Create">
 
                 </div>
 

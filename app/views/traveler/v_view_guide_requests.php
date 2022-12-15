@@ -30,7 +30,7 @@ if (!empty($_SESSION['user_id'])) {
                 <div class="post-location">Area Want to Travel: <?php echo $guiderequest->p_location; ?></div>
                 <div class="post-details">Additional Details: <?php echo $guiderequest->description; ?></div>
                 <div class="post-details">Preffer language: <?php echo $guiderequest->p_language; ?></div>
-                <div class="post-by">Post By: <?php echo $guiderequest->traveler_id; ?></div>
+                <div class="post-by">Post By: <?php echo $guiderequest->name; ?></div>
                 <div class="post-by">Post at: <?php echo convertTime($guiderequest->post_at); ?></div>
             </div>
             <div class="request-footer">
@@ -41,7 +41,7 @@ if (!empty($_SESSION['user_id'])) {
                             <button id="request-delete-btn" type="submit">Delete</button>
                         <?php
                     }
-                    elseif ($_SESSION['user_type']=='guide') {
+                    elseif ($_SESSION['user_type']=='Guide') {
                         ?>
                         <a href="<?php echo URLROOT; ?>/Offers/addGuideOffer/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">Make an offer</button></a>
                         
