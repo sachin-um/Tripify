@@ -5,7 +5,7 @@
 .top{
     width: 100%;
 
-    height: 200px;
+    height: 120px;
     z-index: 9999;
     left: 0px;
     top: 0px;
@@ -14,11 +14,11 @@
 }
 
 .logo-container{
-    width: 20%;
+    width: 12%;
     height: 50%;
-    margin-left: 5%;
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-left: 3%;
+    margin-top: 1.2%;
+    margin-bottom: 45px;
     float: left;
 }
 
@@ -29,9 +29,9 @@
 
 .login-btns{
     width: 28%; 
-    height: 50%;
+    /* height: 50%;
     margin-top: 1%;
-    margin-right: 2%;
+    margin-right: 2%; */
     float: right;
     text-align: center; 
     vertical-align: middle;   
@@ -41,12 +41,12 @@
     width: 25%;
     /* height: 40%; */
     background: #03002E;
-    border: 2px solid #35BCBF;
+    border: 2px solid #00C895;
     border-radius: 1000px;
-    color: white;
+    color: #F2ECFF;
     /* top: 50%; */
     margin-top: 6%;
-    font-size: medium;
+    /* font-size: medium; */
     text-align: center;
     padding: 3%;
     float: right;
@@ -54,12 +54,12 @@
 } 
 
 .header-btns:hover{
-    background-color: #35BCBF;
+    background-color: #00C895;
     color: #03002E;
 }
 
 .nav-buttons{
-    width: 100%;
+    width: 70%;
     display:flex;
     justify-content: center; 
     align-items: center;
@@ -73,7 +73,7 @@
     border: 2px solid #35BCBF;
     border-radius: 1000px;
     color: white;
-    margin-top: -3%;
+    margin-top: -4%;
 }
 
 .nbtns:hover{
