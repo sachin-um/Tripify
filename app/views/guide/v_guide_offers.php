@@ -8,11 +8,19 @@
     <div class="request-white-space">
             <h2 class="title" >Guide Offers</h2>
         </div>
-    <?php
+        <?php
 $_SESSION['user_id'];
 
 
-if (!empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler' || $_SESSION['user_type']!='Guide') {
+    flash('reg_flash', 'Only the Travelers and Guides can see the Guide Offers');
+    redirect('Pages/home');
+}
+else {
     ?>
     <div class="request-list">
 
@@ -56,14 +64,10 @@ if (!empty($_SESSION['user_id'])) {
         <?php
             endforeach;
         ?>
-    </div>
-    
+    </div>    
     <?php
 }
-else {
-    flash('reg_flash', 'You need to have logged in first...');
-    redirect('Users/login');
-}
+
 
 ?>
     </div>
