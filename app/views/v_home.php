@@ -65,6 +65,7 @@
     </div> -->
     <div class="content">
     <div class="white-space">
+        <?php flash('reg_flash'); ?>
         <h2 class="title" >Discover popular destinations across Sri Lanka!</h2>
     </div>
 

@@ -18,7 +18,7 @@ else {
     <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Sign Up is fast and easy!</p> 
+            <p id="tag">Tell Us About Your Need</p> 
         </div>
     
         <div >
@@ -34,13 +34,13 @@ else {
                 <input type="hidden" name="p-longitude" id="p-longitude" value="">
                 <input type="text" id="destination" name="destination" placeholder="From Where journey End...?"  value="<?php echo $data['destination']; ?>">
                 <span class="invalid"><?php echo $data['destination_err']; ?></span>
-                <span>Select the Destination on Map(Optional)</span>
+                <span>Select the destination on Map(Optional)</span>
                 <div id="map-container">
                     <div id="map-d"></div>
                 </div>
                 <input type="hidden" name="d-latitude" id="d-latitude" value="">
                 <input type="hidden" name="d-longitude" id="d-longitude" value="">
-                <input type="text" id="date" name="date" placeholder="Request Date" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
+                <input type="text" id="date" name="date" placeholder="Request Date" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>" min="<?php echo date('Y-m-d'); ?>">
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Pickup Time" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
