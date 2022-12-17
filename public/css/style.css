@@ -43,7 +43,7 @@ body{
     text-align: center;
     color: aliceblue;
     display: flex;
-    align-items: baseline;
+    align-items: center;
   
 }
 
@@ -58,6 +58,17 @@ body{
     padding: 15px 40px;
     margin-top: 30px;
     margin-left: 30px;
+}
+
+.profile-img{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.greeting{
+    margin-top: 30px;
 }
 
 .logout-btns:hover{
