@@ -1,16 +1,32 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/hotel-dashboard.php'; ?>
+<div class="app">
+    <aside class="sidebar">
 
-<div class="wrapper">   
-    <br>
-    <div class="profile">
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#" class="menu-item is-active">User Profile</a>
+            <a href="#" class="menu-item">Rooms</a>
+            <a href="#" class="menu-item">Bookings</a>
+            <a href="#" class="menu-item">Payments</a>
+            <a href="#" class="menu-item">Exit Dashboard</a>
+        </nav>
+    </aside>
+
+    <main class="right-side-content">
+        <br>
+        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
+        <hr>
         <div class="profile-image">
             <br><br>
             <img id="pro-picture" src="<?php echo URLROOT; ?>/img/istockphoto-104731717-612x612.jpg" alt="picture">
-        </div>
 
-        <div class="profile-description">
+            <div class="profile-description">
             <br>
             <br>
             <div class="flex-2">
@@ -66,15 +82,12 @@
                 <div class="profile-tags">
                     <h4>R45671</h4>
                 </div>
-                    
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
+<<<<<<< HEAD:app/views/hotels/v_hotel-dashboard.php
+        </div> 
+    </main>
+ </div>
+=======
 
         <div>
             <div class="profile-tags">
@@ -96,3 +109,4 @@
 
     
 
+>>>>>>> main:app/views/hotels/v_hotelProfile.php
