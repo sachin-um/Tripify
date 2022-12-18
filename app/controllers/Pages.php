@@ -12,7 +12,7 @@
         }
 
         public function home(){
-            $this->view('hotels/v_hotelReg');
+            $this->view('guide/v_guide_dashboard');
         }
 
 
