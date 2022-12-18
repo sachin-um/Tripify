@@ -11,7 +11,7 @@
             $allrooms=$this->roomModel->viewall();
             // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
-                'guideoffers'=> $allrooms
+                'allrooms'=> $allrooms
             ];
             $this->view('hotels/v_hotelviewroom',$data);
         }
@@ -28,6 +28,7 @@
                         'NoofGuests'=>trim($_POST['no-of-guests']),
                         'RoomSize'=>trim($_POST['roomsize']),
                         'PricePerNight'=>trim($_POST['pricepernight']),
+                        'NoOfRooms'=>trim($_POST['no-of-rooms']),
                         'hotelid'=>$_SESSION['user_id'],
 
                         'NoofBeds_err'=>'',

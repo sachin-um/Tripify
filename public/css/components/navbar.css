@@ -5,7 +5,7 @@
 .top{
     width: 100%;
 
-    height: 100px;
+    height: 120px;
     z-index: 9999;
     left: 0px;
     top: 0px;
@@ -14,11 +14,11 @@
 }
 
 .logo-container{
-    width: 20%;
+    width: 12%;
     height: 50%;
-    margin-left: 5%;
-    margin-top: 10px;
-    margin-bottom: 35px;
+    margin-left: 3%;
+    margin-top: 1.2%;
+    margin-bottom: 45px;
     float: left;
 }
 
@@ -29,8 +29,9 @@
 
 .login-btns{
     width: 28%; 
-    height: 50%;
-    margin-right: 2%;
+    /* height: 50%;
+    margin-top: 1%;
+    margin-right: 2%; */
     float: right;
     text-align: center; 
     vertical-align: middle;   
@@ -40,12 +41,12 @@
     width: 25%;
     /* height: 40%; */
     background: #03002E;
-    border: 2px solid #35BCBF;
+    border: 2px solid #00C895;
     border-radius: 1000px;
-    color: white;
+    color: #F2ECFF;
     /* top: 50%; */
     margin-top: 6%;
-    font-size: medium;
+    /* font-size: medium; */
     text-align: center;
     padding: 3%;
     float: right;
@@ -53,12 +54,12 @@
 } 
 
 .header-btns:hover{
-    background-color: #35BCBF;
+    background-color: #00C895;
     color: #03002E;
 }
 
 .nav-buttons{
-    width: 100%;
+    width: 70%;
     display:flex;
     justify-content: center; 
     align-items: center;
@@ -72,11 +73,68 @@
     border: 2px solid #35BCBF;
     border-radius: 1000px;
     color: white;
-    margin-top: -3%;
+    margin-top: -4%;
 }
 
 .nbtns:hover{
     background-color: #35BCBF;
     color: #03002E;
     float: left;
+}
+
+.profile-menu-wrap{
+    position: absolute;
+    top: 95%;
+    right: 0%;
+    width: 350px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.profile-menu-wrap.open-menu{
+    max-height: 400px;
+}
+
+.user-menu{
+    background: #00C895;
+    padding: 20px;
+    margin: 10px;
+}
+.user-info{
+    color: #03002E;
+    align-items: center;
+}
+.user-info h2{
+    font-weight: 500;
+}
+.sub-link-menu{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #03002E;
+    margin: 12px 0;
+}
+
+.sub-link-menu h2{
+    width: 100%;
+    text-align: justify;
+}
+.sub-link-menu span{
+    font-size: 22px;
+}
+.sub-link-menu img{
+    width: 40px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+
+.sub-link-menu:hover span{
+    transform: translateX(5px);
+}
+
+.sub-link-menu:hover h2{
+    font-weight: 600;
 }

@@ -83,6 +83,30 @@
                     <h4>R45671</h4>
                 </div>
         </div>
+<<<<<<< HEAD:app/views/hotels/v_hotel-dashboard.php
         </div> 
     </main>
  </div>
+=======
+
+        <div>
+            <div class="profile-tags">
+                <button class="profile-btn">Edit Info</button>
+            </div>
+                    
+            <div class="profile-tags">
+                <button class="profile-btn">Rooms</button>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
+
+
+    
+
+>>>>>>> main:app/views/hotels/v_hotelProfile.php

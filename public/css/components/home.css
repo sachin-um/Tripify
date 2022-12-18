@@ -6,7 +6,7 @@
 }
 
 .content{
-    margin-top: 250px;
+    margin-top: 200px;
     overflow: auto;
     flex: 1;
     min-height: 650px;

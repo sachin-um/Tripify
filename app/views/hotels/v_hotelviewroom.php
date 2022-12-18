@@ -10,6 +10,10 @@
     </div>
 
     <div class='parent'>
+        <?php
+            $rooms=$data['allrooms'];
+            foreach($rooms as $room):
+        ?>
         <div class='child' style="background-color: lightgrey; height: 370px;">
             <h2>Deluxe Room</h2>
             <!-- <img id="hotel-room" style="width: 75px;" src="<?php echo URLROOT; ?>/img/10910023.png" alt="hotel-room">
@@ -17,31 +21,31 @@
 
             <div class="label-one">
                 <div class="label-two">
-                    <label for="r-size"><b>Room size (sqft):</b></label><br>
+                    <label for="r-size"><b>Room ID:</b></label><br>
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">165</label><br>
+                    <label for="r-size-1"><?php echo $room->RoomID; ?></label><br>
                 </div>
             </div>
 
             <div class="label-one">
                 <div class="label-two">
-                    <label for="r-size"><b>Smoking Policy :</b></label><br>
+                    <label for="r-size"><b>RoomType :</b></label><br>
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">No</label><br>
+                    <label for="r-size-1"><?php echo $room->RoomType; ?></label><br>
                 </div>
             </div>
 
             <div class="label-one">
                 <div class="label-two">
-                    <label for="r-size"><b>No of rooms :</b></label><br>
+                    <label for="r-size"><b>RoomSize :</b></label><br>
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">10</label><br>
+                    <label for="r-size-1"><?php echo $room->RoomSize; ?></label><br>
                 </div>
             </div>
 
@@ -51,17 +55,17 @@
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">10,000.00</label><br>
+                    <label for="r-size-1"><?php echo $room->PricePerNight; ?></label><br>
                 </div>
             </div>
 
             <div class="label-one">
                 <div class="label-two">
-                    <label for="r-size"><b>Type of beds in this room :</b></label><br>
+                    <label for="r-size"><b>NoofGuests :</b></label><br>
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">Queen bed</label><br>
+                    <label for="r-size-1"><?php echo $room->NoofGuests; ?></label><br>
                 </div>
             </div>
 
@@ -71,23 +75,17 @@
                 </div>
 
                 <div class="label-three">
-                    <label for="r-size-1">01</label><br>
+                    <label for="r-size-1"><?php echo $room->NoofBeds; ?></label><br>
                 </div>
             </div>
 
             <button class="dash-btn">Edit Info</button>
         </div>
-                
-        <div class='child' style="background-color: white;">
-            <!-- <h2>Queen Room</h2>
-            <img id="hotel-room" style="text-align: center;" src="<?php echo URLROOT; ?>/img/10910023.png" alt="hotel-room">
-            <br>
-
-            <label for="fname">Room size :</label><br>
-            <label type="text" id="fname" name="fname"><br> -->
-        </div>
+        <?php
+            endforeach;
+        ?>        
         <br><br>
-        <button class="dash-btn" style="width: 30%;">Add Room</button>        
+        <button class="dash-btn" style="width: 30%;" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Room</button>        
     </div>
 
         

@@ -71,7 +71,7 @@
             if ($row->verification_status!=1) {
                 return 'NotValidate';
             }
-            if (password_verify($data['password'], $hashed_password)) {
+            else if (password_verify($data['password'], $hashed_password)) {
                 return $row;
             }
             else {
