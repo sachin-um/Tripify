@@ -13,7 +13,7 @@
                     <div class="profile-menu-wrap" id="sub-menu">
                         <div class="user-menu">
                             <div class="user-info">
-                                <a href="" class="sub-link-menu">
+                                <a href="<?php echo URLROOT; ?>/Pages/profile" class="sub-link-menu">
                                     <img src="<?php echo URLROOT; ?>/img/profile.png" alt="">
                                     <h2>View Profile</h2>
                                     <span>></span>
