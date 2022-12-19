@@ -12,7 +12,7 @@
         }
 
         public function home(){
-            $this->view('guide/v_guide_dashboard');
+            $this->view('traveler/v_traveler_dashboard2');
         }
 
 
