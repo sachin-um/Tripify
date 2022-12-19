@@ -9,8 +9,10 @@
     transform: translate(-50%,0%);
 
 
+
     width: fit-content;
     padding: 2em;
+    /* padding-bottom: 2em; */
     border: solid 1px #D9D9E9;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     

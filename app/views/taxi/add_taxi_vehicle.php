@@ -12,7 +12,16 @@
 
     <form action="" class="taxi_add_v_form" method="POST">
 
-        <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br>
+        <!-- <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br> -->
+        <select name="v_type"  id="taxi_add_v_type" id="cars" required>
+            
+            <option value="" disabled selected hidden>Vehicle Type</option>
+
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+       
+        </select>
 
         <input type="text" id="taxi_add_v_model" placeholder="Model" required><br>
 
@@ -33,9 +42,9 @@
             <input type="file" id="taxi_add_v_img" placeholder="taxi_add_v_imgbox" required accept="image/*"  multiple>
         </div>
                        
-
+        <input type="submit" id="taxi_add_v_but" value="Add Vehicle">
 </form>
-<input type="button" id="taxi_add_v_but" value="Add Vehicle">
+
 </div>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
