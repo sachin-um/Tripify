@@ -1,7 +1,4 @@
-<?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<div class="app">
-    <aside class="sidebar">
+<aside class="sidebar">
 
         <div class="menu-toggle">
             <div class="hamburger">
@@ -18,11 +15,3 @@
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
-
-    <main class="right-side-content">
-        <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
-        <hr>
-        
-    </main>
- </div>
