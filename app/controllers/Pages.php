@@ -12,7 +12,7 @@
         }
 
         public function home(){
-            $this->view('v_home');
+            $this->view('hotels/v_hotel_dashboard');
         }
 
         public function profile()

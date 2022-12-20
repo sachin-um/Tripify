@@ -10,10 +10,11 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxis</a>
-            <a href="#" class="menu-item">Guides</a>
+            <a href="#" class="menu-item">User Profile</a>
+            <a href="#" class="menu-item">Trip Requests</a>
+            <a href="#" class="menu-item is-active">Offers</a>
+            <a href="#" class="menu-item">Bookings</a>
+            <a href="#" class="menu-item">Payments</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -22,6 +23,6 @@
         <br>
         <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
         <hr>
-        <p> code profile details here</p>
+        
     </main>
  </div>

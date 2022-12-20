@@ -10,10 +10,14 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxis</a>
-            <a href="#" class="menu-item">Guides</a>
+            <a href="#" class="menu-item">User Profile</a>
+            <a href="#" class="menu-item">Company</a>
+            <a href="#" class="menu-item is-active">Drivers</a>
+            <a href="#" class="menu-item">Vehicles</a>
+            <a href="#" class="menu-item">Payments</a>
+            <a href="#" class="menu-item">Trip Requests</a>
+            <a href="#" class="menu-item">Offers</a>
+            <a href="#" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>

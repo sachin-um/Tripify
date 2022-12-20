@@ -50,3 +50,11 @@
     background-color: #03002E;
 }
 
+.footer-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-columns{
+    text-align: center;
+}

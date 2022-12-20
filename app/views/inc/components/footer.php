@@ -1,11 +1,9 @@
 <footer class="footer-class">
         
-        <div class="row-container">
-          <!--Grid row-->
-          <br>
-          <div class="row">
+        <div class="footer-container">
+          
             
-            <div class="cols">
+          <div class="footer-columns">
       
               <ul class="lists">
                 <li>
@@ -21,44 +19,42 @@
                   <a href="#!" class="text-dark">Careers</a>
                 </li>
               </ul>
-            </div>
+          </div>
             
 
 
-            <div class="cols">
-              <h4 class="header-col">Contact Us</h4>
-                <p>No 36</p>
-                <p>Galle Road</p>
-                <p>Bambalapitiya</p>
-            </div>
+          <div class="footer-columns">
+            <p><b>About Us</b></p>
+            <p>No 36, Galle Road</p>
+            <p>Bambalapitiya</p>
+            <p>Bambalapitiya</p>
+          </div>
             
 
 
-            <div class="cols">
-              <h4 class="header-col">Email</h4>
-              <p>contact@tripify.com</p>
-              <p>careers@tripify.com</p>
-              <br>
-            </div>
+          <div class="footer-columns">
+            <p><b>Email</b></p>
+            <p>contact@tripify.com</p>
+            <p>careers@tripify.com</p>
+            <br>
+          </div>
             
 
 
-            <div class="cols">
+          <div class="footer-columns">
               <h4 class="header-col">Phone</h4>
                 
               <p>+94 77 123 4567</p>
               <p>+94 71 123 4567</p>
               <br>
     
-            </div>
-            
           </div>
-          <!--Grid row-->
-          <div class="copyright">
-            © 2022 All Rights Reserved by Tripify(pvt)ltd    
-          </div>
+          
         </div>
         
+        <div class="copyright">
+              © 2022 All Rights Reserved by Tripify(pvt)ltd    
+          </div>
       
         
         
