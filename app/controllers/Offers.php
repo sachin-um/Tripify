@@ -10,6 +10,7 @@
         }
 
         public function guideoffers(){
+            echo $_SESSION['user_type'];
             $alloffers=$this->guideofferModel->viewall();
             $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[

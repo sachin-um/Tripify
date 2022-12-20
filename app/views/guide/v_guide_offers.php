@@ -10,13 +10,14 @@
         </div>
         <?php
 $_SESSION['user_id'];
+$_SESSION['user_type'];
 
 
 if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Traveler' || $_SESSION['user_type']!='Guide') {
+elseif ($_SESSION['user_type']!='Traveler' && $_SESSION['user_type']!='Guide') {
     flash('reg_flash', 'Only the Travelers and Guides can see the Guide Offers');
     redirect('Pages/home');
 }
