@@ -20,8 +20,94 @@
 
     <main class="right-side-content">
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
+        <br>
+        <h2 style="text-align: left; margin-left:8%;">Profile Settings</h1>
         <hr>
-        <p> code profile details here</p>
+        <br>
+        <div class="first-container">
+            <div class="profile-image" style="width: 450px; text-align: center;">
+                <br>
+                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                <br>
+                <br>
+                <button class="profile-btn">Edit</button>
+            </div>
+
+            <div class="profile-description">
+            <br>
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Profile ID : </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3>USER12345</h3>
+                    </div>
+                            
+                </div>
+
+
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Name :</h3>
+                    </div>
+                 
+                    <div class="sub-sub">
+                        <h3>P.K. Jayarathne</h3>
+                    </div>
+                    
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Email : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>jayarathne@gmail.com</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Password : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>**********</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <button class="profile-btn">Edit Info</button>
+                        
+                </div>
+            </div>
+        </div>
     </main>
  </div>
