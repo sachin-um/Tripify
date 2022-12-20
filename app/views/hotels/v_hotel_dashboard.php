@@ -15,98 +15,174 @@
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
+            <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p>
         </nav>
     </aside>
 
     <main class="right-side-content">
-        <br>
+        <br><br>
         <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
         <hr>
-        <div class="profile-image">
-            <br><br>
-            <img id="pro-picture" src="<?php echo URLROOT; ?>/img/istockphoto-104731717-612x612.jpg" alt="picture">
+        <div class="first-container">
+            <br>
+            <div class="profile-image">
+                <br>
+                <img id="pro-picture" src="<?php echo URLROOT; ?>/img/istockphoto-104731717-612x612.jpg" alt="picture">
+            </div>
+
+            <div class="profile-description">
+                <br>
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Property Name : </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3>Blue Mountain Hotel</h3>
+                    </div>
+                            
+                </div>
+
+
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Address :</h3>
+                    </div>
+                 
+                    <div class="sub-sub">
+                        <h3>Hikkaduwa, Sri Lanka</h3>
+                    </div>
+                    
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Rating : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>N/A</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div style="text-align: center;">
+                    <button class="profile-btn">Edit Info</button>
+                        
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <h2 style="text-align: left; margin-left:8%;">Settings</h1>
+        <hr>
+        <br>
+        <div class="first-container">
+            <div class="profile-image" style="width: 450px; text-align: center;">
+                <br>
+                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                <br>
+                <br>
+                <button class="profile-btn">Edit</button>
+            </div>
 
             <div class="profile-description">
             <br>
-            <br>
-            <div class="flex-2">
-                <div class="profile-tags">
-                    <h4>Property Name : </h4>
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Name : </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3>P.K. Jayarathne</h3>
+                    </div>
+                            
                 </div>
-                   
-                <div class="profile-tags">
-                    <h4>Blue Mountain Hotel</h4>
-                </div>
-                        
-            </div>
-            <br> 
-            <div class="flex-2">
-                <div class="profile-tags">
-                    <h4>Address :</h4>
-                </div>
+
+
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Account ID :</h3>
+                    </div>
                  
-                <div class="profile-tags">
-                    <h4>Hikkaduwa, Sri Lanka</h4>
-                </div>
+                    <div class="sub-sub">
+                        <h3>A1234</h3>
+                    </div>
                     
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Password : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>***********</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br> 
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Contact : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3>+94 77 123 4567</h3>
+                    </div>
+                        
+                </div>
+                <br>
+                <div style="text-align: center;">
+                    <button class="profile-btn">Edit Info</button>
+                        
+                </div>
             </div>
-            <br> 
-            <div class="flex-2">
-                <div class="profile-tags">
-                    <h4>Rating : </h4>
-                </div>
-                    
-                <div class="profile-tags">
-                    <h4>4.8</h4>
-                </div>
-                    
-            </div>
-            <br> 
-            <div class="flex-2">
-                <div class="profile-tags">
-                    <h4>Contact : </h4>
-                </div>
-                    
-                <div class="profile-tags">
-                    <h4>+94 77 123 4567</h4>
-                </div>
-                    
-            </div>
-
-            <br> 
-            <div class="flex-2">
-                <div class="profile-tags">
-                    <h4>Registration No : </h4>
-                </div>
-                    
-                <div class="profile-tags">
-                    <h4>R45671</h4>
-                </div>
         </div>
-<<<<<<< HEAD:app/views/hotels/v_hotel-dashboard.php
-        </div> 
-    </main>
- </div>
-=======
-
-        <div>
-            <div class="profile-tags">
-                <button class="profile-btn">Edit Info</button>
-            </div>
-                    
-            <div class="profile-tags">
-                <button class="profile-btn">Rooms</button>
-            </div>
-        </div>
-        
+        <br><br>
     </div>
 
 </div>
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+<!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
 
 
 
 
     
 
->>>>>>> main:app/views/hotels/v_hotelProfile.php

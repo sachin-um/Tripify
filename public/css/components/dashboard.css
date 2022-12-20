@@ -51,7 +51,7 @@
 
  .right-side-content{
     margin-top: 100px;
-    margin-left: 250px;
+    margin-left: 270px;
     width: 80%;
  }
 
@@ -61,8 +61,7 @@
  }
 
  .profile-image{
-    width: 30%;
-    height: 60%;
+    height: 300px;
     float: left;
     margin-left: 8%;
     text-align: center;
@@ -88,3 +87,42 @@
         
     }
  } */
+
+ .first-container{
+   display: flex;
+ }
+
+ .profile-description{
+   width: 50%;
+   height: 40%;
+ }
+
+ .sub-description{
+   display: flex;
+
+ }
+
+ .sub-sub{
+   width: 50%;
+ }
+
+#pro-picture{
+   height: 300px;
+}
+
+.profile-btn{
+   width: 40%;
+   height: 50px;
+   background-color: #03002E;
+   color: white;
+   border-radius: 50px;
+}
+
+.profile-btn:hover{
+   background-color: #35BCBF;
+   color: #03002E;
+}
+
+#pro-picture-2{
+   height: 200px;
+}
