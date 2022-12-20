@@ -1,11 +1,11 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 
 <div class="wrapper">
-
-
-    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<div class="app">
     
+<?php require APPROOT.'/views/inc/components/sidebars/guide_sidebar.php'; ?>
+    <main class="right-side-content">
     <div class="content">
         <div class="request-white-space">
             <h2 class="title" >Guide Requests</h2>
@@ -68,13 +68,9 @@ else {
 }
 
 ?>
-    
-
-
-    
-
-
-    
     </div>
+        
+    </main>
+ </div>    
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div> 

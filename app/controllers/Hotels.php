@@ -145,7 +145,7 @@
             $data=[
                 'isLoggedIn'=>$this->isLoggedIn()
             ];
-            $this->view('hotels/v_hotelProfile',$data);
+            $this->view('v_home',$data);
             // redirect('Pages/home',$data);
         }
 

@@ -1,10 +1,26 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Guide') {
+    flash('reg_flash', 'Only the Guides can add a Offer');
+    redirect('Pages/home');
+}
+else {
+    ?>
 <div class="wrapper">
 
 
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
+
         <div class="form-login">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
@@ -39,6 +55,11 @@
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div>   
+<?php
+}
+
+
+?>
 
 
 

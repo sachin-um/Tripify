@@ -1,6 +1,16 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
- 
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+else {
+    ?> 
 <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
@@ -58,3 +68,8 @@
     </div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+<?php
+}
+
+
+?>
