@@ -12,13 +12,13 @@
         }
 
         public function home(){
-            $this->view('hotels/v_hotel_dashboard');
+            $this->view('traveler/v_traveler_dashboard');
         }
 
 
-        public function logins(){
-            $this->view('v_logins');
-        }
+        // public function logins(){
+        //     $this->view('v_logins');
+        // }
 
         public function rooms(){
             $this->view('hotels/v_hotelviewroom');

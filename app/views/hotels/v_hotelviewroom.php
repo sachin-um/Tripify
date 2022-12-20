@@ -1,8 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/hotel-dashboard.php'; ?>
 
-<div class="profile">
+<div class="profile" style="margin-top: 300px;">
     <div class="h-title">
         <br>
         <h3 style="color: green;">The rooms you add to your hotel will appear here.</h3>
