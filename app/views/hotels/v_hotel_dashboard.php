@@ -11,10 +11,10 @@
 
         <nav class="menu">
             <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="#" class="menu-item">Rooms</a>
-            <a href="#" class="menu-item">Bookings</a>
-            <a href="#" class="menu-item">Payments</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Rooms</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
@@ -83,6 +83,30 @@
                     <h4>R45671</h4>
                 </div>
         </div>
+<<<<<<< HEAD:app/views/hotels/v_hotel-dashboard.php
         </div> 
     </main>
  </div>
+=======
+
+        <div>
+            <div class="profile-tags">
+                <button class="profile-btn">Edit Info</button>
+            </div>
+                    
+            <div class="profile-tags">
+                <button class="profile-btn">Rooms</button>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
+
+
+    
+
+>>>>>>> main:app/views/hotels/v_hotelProfile.php

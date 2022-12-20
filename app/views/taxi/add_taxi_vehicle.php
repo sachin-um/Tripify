@@ -2,16 +2,31 @@
 <div class="wrapper">
 <?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
 
+<?php
+$_SESSION['user_id'];
 
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Taxi') {
+    flash('reg_flash', 'Only the Taxi Owner can add Taxi Request..');
+    redirect('Users/login');
+}
+else {
+    ?>
     <div class="content">
     <div class="form-login">
     <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
 
 
-    <p id="taxi_add_v_p">Add Your Vehicle</h1>
+    <h1 id="taxi_add_v_p">Add Your Vehicle</h1>
+
 
     <form action="<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle" class="taxi_add_v_form" method="post">
         <input type="text" id="driver" name="driver" placeholder="driver" required><br>
+
 
         <input type="text" id="taxi_add_v_type" name="type" placeholder="Vehicle Type" required><br>
 
@@ -27,6 +42,7 @@
         
         <input type="text" id="taxi_add_v_area" name="area"placeholder="Available Area" required ><br>
         
+
         <!-- <label>Upload Vehicle Photos</label>
 
         <div class="taxi_add_v_imgbox">    
@@ -34,10 +50,13 @@
         </div> -->
         <input type="submit" id="taxi_add_v_but" name="taxi_add_v_but" value="Add Vehicle">          
 
-</form>
-
-</div>
+    </form>
     </div>
+</div>
+<?php
+}
+
+?>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div>   
 

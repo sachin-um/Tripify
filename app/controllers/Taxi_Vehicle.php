@@ -14,7 +14,7 @@
             $data=[
                 'vehicles'=> $allvehicles
             ];
-            $this->view('taxi/v_taxi_vehicles',$data);
+            $this->view('taxi/v_taxiProfile',$data);
         }
         public function addavehicle(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -78,7 +78,7 @@
                     //Add a Taxi Request
                     if ($this->taxi_vehicleModel->addtaxivehicle($data)) {
                         flash('vehicle_flash', 'Your Vehicle is Succusefully added..!');
-                        redirect('Taxi_Vehicle/viewvehicles');
+                        redirect('Taxi_Vehicle/v_taxiProfile');
                     }
                     else{
                         die('Something went wrong');
