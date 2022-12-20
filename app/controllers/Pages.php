@@ -15,6 +15,7 @@
             $this->view('v_home');
         }
 
+
         public function profile()
         {
             $data=$this->userModel->getUserDetails($_SESSION['user_id']);

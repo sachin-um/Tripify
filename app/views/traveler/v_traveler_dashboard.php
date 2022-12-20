@@ -36,7 +36,8 @@ else {
 
     <main class="right-side-content">
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
+        <br>
+        <h2 style="text-align: left; margin-left:8%;">Profile Settings</h1>
         <hr>
         <br>
         <div class="first-container">
@@ -57,6 +58,7 @@ else {
                     
                     <div class="sub-sub">
                         <h3><?php echo $data->Name;  ?></h3>
+
                     </div>
                             
                 </div>
@@ -70,6 +72,7 @@ else {
                  
                     <div class="sub-sub">
                         <h3><?php echo $data->Email;  ?></h3>
+
                     </div>
                     
                 </div>
@@ -92,6 +95,7 @@ else {
                 <div class="sub-description">
                     <div class="sub-sub">
                         <h3>Contact Number: </h3>
+
                     </div>
                         
                     <div class="sub-sub">
@@ -100,7 +104,7 @@ else {
                         
                 </div>
                 <br> 
-                
+          
                 <br>
                 <div style="text-align: center;">
                     <button class="profile-btn">Edit Info</button>
