@@ -1,12 +1,41 @@
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Hotel') {
+    flash('reg_flash', 'Only the Hotel Owners can add Rooms');
+    redirect('Pages/home');
+}
+else {
+    ?> 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/hotel-dashboard.php'; ?>
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<div class="app">
+    <aside class="sidebar">
 
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
+        </div>
 
-    <div class="profile">
-        
-    
-        <div class="h-title">
+        <nav class="menu">
+            <a href="#" class="menu-item">User Profile</a>
+            <a class="menu-item is-active" href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item">Rooms</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
+            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
+            <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p>
+        </nav>
+    </aside>
+
+    <main class="right-side-content">
+    <div class="h-title">
             <br>
                 <h3>Tell us about your first room. 
                 After entering all the necessary info, you can fill in the details of your other rooms.</h3>
@@ -57,12 +86,12 @@
             </div>
             <br><br>
             <button style="text-align: center;" class="rooms-btn" type="submit">Add</button>   
-        </form>   
-        <br><br><br>    
-        <br><br>
-            
-        
-
-        
+        </form>
     </div>
 
+</div>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+<?php
+}
+?>

@@ -55,7 +55,14 @@
                 return false;
             }
         }
+        public function getUserDetails($userID)
+        {
+            $this->db->query('SELECT * FROM users WHERE UserID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
 
+            return $row;
+        }
 
         //login
         public function login($data){
