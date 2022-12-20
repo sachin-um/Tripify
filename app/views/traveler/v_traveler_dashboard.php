@@ -1,3 +1,18 @@
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    flash('reg_flash', 'Only the Traveler can have access...');
+    redirect('Pages/home');
+}
+else {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="app">
@@ -12,8 +27,9 @@
         <nav class="menu">
             <a href="#" class="menu-item is-active">User Profile</a>
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxis</a>
-            <a href="#" class="menu-item">Guides</a>
+            <a href="#" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Request</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Request</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -37,11 +53,12 @@
             <br>
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Profile ID : </h3>
+                        <h3>Name : </h3>
                     </div>
                     
                     <div class="sub-sub">
-                        <h3>USER12345</h3>
+                        <h3><?php echo $data->Name;  ?></h3>
+
                     </div>
                             
                 </div>
@@ -50,40 +67,35 @@
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Name :</h3>
+                        <h3>Email:</h3>
                     </div>
                  
                     <div class="sub-sub">
-                        <h3>P.K. Jayarathne</h3>
+                        <h3><?php echo $data->Email;  ?></h3>
+
                     </div>
                     
                 </div>
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Email : </h3>
+                        <h3>verificaion Status: </h3>
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>jayarathne@gmail.com</h3>
-                    </div>
-                        
-                </div>
-                <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Password : </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                        <h3>**********</h3>
+                        <?php if ($data->verification_status ==1) {
+                            ?><h3>Verified</h3><?php
+                        }else {
+                            ?><h3>Not Verified </h3><?php
+                        } ?>
                     </div>
                         
                 </div>
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Contact : </h3>
+                        <h3>Contact Number: </h3>
+
                     </div>
                         
                     <div class="sub-sub">
@@ -92,16 +104,7 @@
                         
                 </div>
                 <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Contact : </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                        <h3>+94 77 123 4567</h3>
-                    </div>
-                        
-                </div>
+          
                 <br>
                 <div style="text-align: center;">
                     <button class="profile-btn">Edit Info</button>
@@ -111,3 +114,7 @@
         </div>
     </main>
  </div>
+
+ <?php
+}
+?>
