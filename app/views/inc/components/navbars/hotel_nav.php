@@ -6,8 +6,38 @@
         if (!empty($_SESSION['user_name'])) {
             ?>
                 <div class="welcome-banner">
-                    <h1>Howdy <?php echo $_SESSION['user_name'];  ?>..! </h1>
-                    <button class="logout-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/logout'">Log Out</button>
+                    <h2 class="greeting">Howdy <?php echo $_SESSION['user_name'];  ?>..! </h2>
+                    <!-- <button class="logout-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/logout'">Log Out</button> -->
+                    <img src="<?php echo URLROOT; ?>/img/user-profile1.png" alt="" class="profile-img" onclick="toggleMenu()">
+                    <div class="profile-menu-wrap" id="sub-menu">
+                        <div class="user-menu">
+                            <div class="user-info">
+                                <a href="<?php echo URLROOT; ?>/Pages/profile" class="sub-link-menu">
+                                    <img src="<?php echo URLROOT; ?>/img/profile.png" alt="">
+                                    <h2>View Profile</h2>
+                                    <span>></span>
+                                </a>
+                                <a href="" class="sub-link-menu">
+                                    <img src="<?php echo URLROOT; ?>/img/setting.png" alt="">
+                                    <h2>Privacy and policy</h2>
+                                    <span>></span>
+                                </a>
+                                <a href="" class="sub-link-menu">
+                                    <img src="<?php echo URLROOT; ?>/img/help.png" alt="">
+                                    <h2>Help & Support</h2>
+                                    <span>></span>
+                                </a>
+                                <a href="<?php echo URLROOT?>/Users/logout" class="sub-link-menu">
+                                    <img src="<?php echo URLROOT; ?>/img/logout.png" alt="">
+                                    <h2>Logout</h2>
+                                    <span>></span>
+                                </a>
+                                
+                                
+                            </div>
+                                
+                        </div>
+                    </div>
                 </div>
                 
             <?php
@@ -26,11 +56,8 @@
 
     ?>
     <div class="nav-buttons" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-        <button class="nbtns" type="button" >Basic Info</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Policies</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Amenities</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="nbtns" type="button" >Photos</button>
+        <button class="nbtns" type="button">Basic Info</button>
     </div>
 </div>
 
-
+ 

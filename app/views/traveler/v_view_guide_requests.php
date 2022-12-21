@@ -1,11 +1,11 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 
 <div class="wrapper">
-
-
-    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<div class="app">
     
+<?php require APPROOT.'/views/inc/components/sidebars/guide_sidebar.php'; ?>
+    <main class="right-side-content">
     <div class="content">
         <div class="request-white-space">
             <h2 class="title" >Guide Requests</h2>
@@ -20,18 +20,18 @@ if (!empty($_SESSION['user_id'])) {
 
         <?php
             $requests=$data['guiderequests'];
-            foreach($requests as $taxirequest):
+            foreach($requests as $guiderequest):
         ?>
         <div class="request">
-            <div class="post-header"><?php echo $taxirequest->caption; ?></div>
+            <div class="post-header"><?php echo $guiderequest->caption; ?></div>
             <div class="post-body">
-                <div class="post-date">Request Date: <span id="request-data"><?php echo $taxirequest->date; ?></span></div>
-                <div class="post-time">Request Time: <?php echo $taxirequest->time; ?></div>
-                <div class="post-location">Area Want to Travel: <?php echo $taxirequest->pickup_location; ?></div>
-                <div class="post-details">Additional Details: <?php echo $taxirequest->additional_details; ?></div>
-                <div class="post-details">Preffer language: <?php echo $taxirequest->additional_details; ?></div>
-                <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
-                <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
+                <div class="post-date">Request Date: <span id="request-data"><?php echo $guiderequest->date; ?></span></div>
+                <div class="post-time">Request Time: <?php echo $guiderequest->time; ?></div>
+                <div class="post-location">Area Want to Travel: <?php echo $guiderequest->p_location; ?></div>
+                <div class="post-details">Additional Details: <?php echo $guiderequest->description; ?></div>
+                <div class="post-details">Preffer language: <?php echo $guiderequest->p_language; ?></div>
+                <div class="post-by">Post By: <?php echo $guiderequest->name; ?></div>
+                <div class="post-by">Post at: <?php echo convertTime($guiderequest->post_at); ?></div>
             </div>
             <div class="request-footer">
                 <?php
@@ -41,9 +41,10 @@ if (!empty($_SESSION['user_id'])) {
                             <button id="request-delete-btn" type="submit">Delete</button>
                         <?php
                     }
-                    elseif ($_SESSION['user_type']=='Taxi') {
+                    elseif ($_SESSION['user_type']=='Guide') {
                         ?>
-                        <button id="request-offer-btn" type="submit">Make an offer</button>
+                        <a href="<?php echo URLROOT; ?>/Offers/addGuideOffer/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">Make an offer</button></a>
+                        
                         <?php
                     }
                 ?>
@@ -67,13 +68,9 @@ else {
 }
 
 ?>
-    
-
-
-    
-
-
-    
     </div>
+        
+    </main>
+ </div>    
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div> 

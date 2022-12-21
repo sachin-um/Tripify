@@ -1,0 +1,29 @@
+.parent {
+    text-align: center;
+    height: 75px;
+}
+
+.child {
+    display: inline-block;
+    width: 450px;
+    height: 100%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+.rooms-btn{
+    width: 10%;
+    height: 8%;
+    text-align: center;
+    background-color: #03002E;
+    color: white;
+    border-radius: 20px;
+    margin-left: 35%;
+}
+
+.rooms-btn:hover{
+    background-color: lightgray;
+    color: #03002E;
+}
+  
+  

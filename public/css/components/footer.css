@@ -11,7 +11,7 @@
     width: 100%;
     height: 10%;
     background-color: #03002E;
-    color: white;
+    color: #F2ECFF;
     bottom: 0;
 }
 
@@ -50,3 +50,11 @@
     background-color: #03002E;
 }
 
+.footer-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.footer-columns{
+    text-align: center;
+}

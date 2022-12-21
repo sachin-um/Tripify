@@ -20,7 +20,7 @@
                     'price_per_hour'=>trim($_POST['price']),
                     'nic'=>trim($_POST['nic']),
                     'NTL'=>trim($_POST['NTL']),
-                    'languages'=>trim($_POST['languages']),
+                    'languages'=>$_POST['languages'],
                     'bio'=>trim($_POST['bio']),
                     'id'=>$_SESSION['user_id'],
                     
@@ -50,8 +50,8 @@
                     $data['area_err']='please enter the area you want to travel';
                 }
                 //validate price
-                if (empty($data['price_hour'])) {
-                    $data['area_err']='please enter the Service charges.';
+                if (empty($data['price_per_hour'])) {
+                    $data['price_err']='please enter the Service charges.';
                 }
                 //validate nic
                 if (empty($data['nic'])) {
@@ -68,10 +68,11 @@
                 
 
 
-                if (empty($data['name_err']) &&  empty($data['phone_number_err']) && empty($data['area_err']) && empty($data['nic_err']) && empty($data['NTL_err']) && empty($data['languages_err'])) {
+                if (empty($data['name_err']) &&  empty($data['phone_number_err']) && empty($data['area_err']) && empty($data['price_err']) && empty($data['nic_err']) && empty($data['NTL_err']) && empty($data['languages_err'])) {
                     
                     //register guide
                     if ($this->guideModel->register($data)) {
+                        $this->logout();
                         redirect('Guides/login');
                     }
                     else{
@@ -190,7 +191,6 @@
             $_SESSION['user_name']=$user->Name;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
-        
             $data=[
                 'isLoggedIn'=>$this->isLoggedIn()
             ];
@@ -205,6 +205,16 @@
             else{
                 return false;
             }
+        }
+
+        public function logout(){
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+
+
+            session_destroy();
+
+            redirect('Pages/index');
         }
 
     }

@@ -24,31 +24,28 @@ class M_Hotels{
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Address,PropertyCatagory,contact_number,reg_number) VALUES(:hotel_id,:property_name,:property_address,:property_catagory,:contact_number,:reg_number,:hotel_id)');
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Address,contact_number,reg_number) VALUES(:hotel_id,:property_name,:property_address,:contact_number,:reg_number)');
         $this->db->bind(':property_name',$data['property_name']);
         $this->db->bind(':property_address',$data['property_address']);
-        $this->db->bind(':property_catagory',$data['property_catagory']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':reg_number',$data['reg_number']);
         $this->db->bind(':hotel_id',$data['hotel_id']);
 
         if ($this->db->execute()) {
-            // $this->db->query('SELECT * FROM users WHERE Email= :email');
-            // $this->db->bind(':email',$data['email']);
-            // // $this->db->query('SELECT * FROM users');
+            $this->db->query('DELETE FROM traveler WHERE TravelerID=:travelerid');
+            $this->db->bind(':travelerid',$data['hotel_id']);
+            $updatetraveler=$this->db->execute();
 
-            // $row=$this->db->single();
+            $this->db->query('UPDATE users SET UserType="Hotel" WHERE UserID=:hotel_id');
+            $this->db->bind(':hotel_id',$data['hotel_id']);
+            $userupdate=$this->db->execute();
+            if ($updatetraveler && $userupdate) {
 
-            // $this->db->query('INSERT INTO traveler(TravelerID) VALUES(:travelerid)');
-            // $this->db->bind(':travelerid',$row->UserID);
-            
-            // if ($this->db->execute()) {
-
-            //     return true;
-            // }
-            // else {
-            //     return false;
-            // }
+                return true;
+            }
+            else {
+                return false;
+            }
             return true;
         }
         else {

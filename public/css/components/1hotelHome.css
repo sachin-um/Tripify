@@ -86,19 +86,21 @@ input{
     display:flex; 
     flex-direction: row; 
     justify-content: center; 
-    align-items: center;
 }
 
 .first-fill{
     height: 70%;
-    width: 50%;
+    width: 90%;
     margin: 0%;
 }
 
+
+/* .info-2{
+    width: 100px;
+} */
 .scnd-fill{
     height: 70%;
     width: 25%;
-    margin-bottom: auto;
 }
 
 .thrd-fill{
@@ -121,12 +123,18 @@ input{
 
 .btn{
     width: 10%;
+
     height: 60px;
     text-align: center;
-    border-radius: 10px;
-    color: white;
     background-color: #03002E;
-    cursor: pointer;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.btn:hover{
+    color: #03002E;
+    background-color: white;
 }
 
 .reg-btn{
@@ -138,14 +146,4 @@ input{
     background-color: #03002E;
     cursor: pointer;
     margin-top: 4%;
-}
-
-.btn:hover{
-    color: #03002E;
-    background-color: white;
-}
-
-.reg-btn:hover{
-    color: #03002E;
-    background-color: white;
 }

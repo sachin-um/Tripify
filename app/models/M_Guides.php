@@ -10,7 +10,7 @@ class M_Guides{
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO guides(GuideID,Name,Rate,NIC,Area,NTL,bio,phone_number) VALUES(:guideid,:name,:rate,:nic,:area,:ntl,bio,phone_number)');
+        $this->db->query('INSERT INTO guides(GuideID,Name,Rate,NIC,Area,NTL,bio,phone_number) VALUES(:guideid,:name,:rate,:nic,:area,:ntl,:bio,:phone_number)');
         $this->db->bind(':guideid',$data['id']);
         $this->db->bind(':name',$data['name']);
         $this->db->bind(':rate',$data['price_per_hour']);
@@ -23,18 +23,20 @@ class M_Guides{
         $guide=$this->db->execute();
 
         foreach ($data['languages'] as $language) {
-            $this->db->query('INSERT INTO guide_languages(guide_id,language) VALUES(:language)');//check  typing above
+            $this->db->query('INSERT INTO guide_languages(guide_id,language) VALUES(:guideid,:language)');//check  typing above
             $this->db->bind(':language',$language);
+            $this->db->bind(':guideid',$data['id']);
             $this->db->execute();
         }
 
         if ($guide) {
             
-            $this->db->query('DELETE FROM traveler(TravelerID) VALUES(:travelerid)');
+            $this->db->query('DELETE FROM traveler WHERE TravelerID=:travelerid');
             $this->db->bind(':travelerid',$data['id']);
             $updatetraveler=$this->db->execute();
 
-            $this->db->query('UPDATE users SET UserType="Guide" WHERE UserID= :guideid');
+            $this->db->query('UPDATE users SET UserType="Guide" WHERE UserID=:guideid');
+            $this->db->bind(':guideid',$data['id']);
             $userupdate=$this->db->execute();
             if ($updatetraveler && $userupdate) {
 

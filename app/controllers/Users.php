@@ -151,15 +151,16 @@
                         $data['password_err']= 'Password is incorrect';
                         $this->view('users/v_login',$data);
                     }
-                    else if ($log_user->UserType!=$data['usertype']) {
-                        flash('reg_flash', 'You Cannot logging as a Traveler');
-                        
-                    }
                     elseif ($log_user=='NotValidate') {
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
                     }
+                    else if ($log_user->UserType!='Traveler') {
+                        flash('reg_flash', 'You Cannot logging as a Traveler');
+                        $this->view('users/v_login',$data);
+                    }
+                    
                     //logging user
                     else{
                         $this->createUserSession($log_user);
