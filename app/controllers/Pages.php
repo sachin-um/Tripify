@@ -12,7 +12,9 @@
         }
 
         public function home(){
+
             $this->view('v_home');
+
         }
 
 

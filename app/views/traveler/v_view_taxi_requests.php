@@ -63,6 +63,8 @@ else {
             $requests=$data['taxirequests'];
             foreach($requests as $taxirequest):
         ?>
+
+        <div class="request-wrapper">
         <div class="request">
             <div class="post-header"><?php echo $taxirequest->caption; ?></div>
             <div class="post-body">
@@ -88,8 +90,10 @@ else {
             }
             ?>
         </div>
-        <br>
-        <br>
+        </div>
+
+        
+
         <?php
             endforeach;
         ?>
