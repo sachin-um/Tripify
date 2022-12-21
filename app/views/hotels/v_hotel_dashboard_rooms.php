@@ -259,3 +259,71 @@
         </div>
     </main>
  </div>
+
+ <div class='child' style="background-color: lightgrey; height: 370px;">
+            <h2>Deluxe Room</h2>
+            <!-- <img id="hotel-room" style="width: 75px;" src="<?php echo URLROOT; ?>/img/10910023.png" alt="hotel-room">
+            <br> -->
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>Room ID:</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->RoomID; ?></label><br>
+                </div>
+            </div>
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>RoomType :</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->RoomType; ?></label><br>
+                </div>
+            </div>
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>RoomSize :</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->RoomSize; ?></label><br>
+                </div>
+            </div>
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>Price per night(Rs) :</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->PricePerNight; ?></label><br>
+                </div>
+            </div>
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>NoofGuests :</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->NoofGuests; ?></label><br>
+                </div>
+            </div>
+
+            <div class="label-one">
+                <div class="label-two">
+                    <label for="r-size"><b>No of beds :</b></label><br>
+                </div>
+
+                <div class="label-three">
+                    <label for="r-size-1"><?php echo $room->NoofBeds; ?></label><br>
+                </div>
+            </div>
+
+            <button class="dash-btn">Edit Info</button>
+        </div>

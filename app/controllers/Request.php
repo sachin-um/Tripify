@@ -36,6 +36,7 @@
 
             
                 $data=[
+                        'caption'=>trim($_POST['caption']),
                         'pickuplocation'=>trim($_POST['pickuplocation']),
                         'destination'=>trim($_POST['destination']),
                         'date'=>trim($_POST['date']),
@@ -48,6 +49,7 @@
                         'd-longitude'=>trim($_POST['d-longitude']),
 
 
+                        'caption_err',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -101,6 +103,7 @@
             }
             else {
                 $data=[
+                    'caption'=>'',
                     'pickuplocation'=>'',
                     'destination'=>'',
                     'date'=>'',
@@ -113,6 +116,7 @@
                     'd-longitude'=>'',
 
 
+                    'caption_err'=>'',
                     'pickuplocation_err'=>'',
                     'destination_err'=>'',
                     'date_err'=>'',

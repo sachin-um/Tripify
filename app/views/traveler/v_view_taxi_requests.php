@@ -53,8 +53,8 @@ else {
     </aside>
 
     <main class="right-side-content">
-    <div class="content">
-        <div class="request-white-space">
+    <div class="dashboad-content">
+        <div>
             <h2 class="title" >Taxi Requests</h2>
         </div>    
         <div class="request-list">
