@@ -12,7 +12,7 @@
         }
 
         public function home(){
-            $this->view('traveler/v_traveler_dashboard');
+            $this->view('traveler/v_view_taxi_requests');
         }
 
 
