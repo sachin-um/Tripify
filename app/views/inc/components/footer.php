@@ -1,5 +1,5 @@
 <footer class="footer-class">
-        <br> 
+        
         <div class="footer-container">
           
             
@@ -27,7 +27,7 @@
             <p><b>About Us</b></p>
             <p>No 36, Galle Road</p>
             <p>Bambalapitiya</p>
-            <p>Colombo 07</p>
+            <p>Bambalapitiya</p>
           </div>
             
 
@@ -42,7 +42,8 @@
 
 
           <div class="footer-columns">
-              <p><b>Phone</b></p>  
+              <h4 class="header-col">Phone</h4>
+                
               <p>+94 77 123 4567</p>
               <p>+94 71 123 4567</p>
               <br>
@@ -53,11 +54,11 @@
         
         <div class="copyright">
               © 2022 All Rights Reserved by Tripify(pvt)ltd    
-        </div>
+          </div>
       
         
         
         
-</footer>
+      </footer>
 </body>
 </html>
