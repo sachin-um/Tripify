@@ -1,0 +1,21 @@
+.taxi_dri_mob_div{
+    all:unset;
+    margin-top: 1em;
+    display: flex;
+    margin-bottom: 1.5em;
+   
+}
+
+#taxidrimobile {
+    
+    width: 22.375em;
+    border-radius: 0em 0.3em 0.3em 0em;
+    
+    
+}
+#taxidricode{
+    border-radius: 0.3em 0em 0em 0.3em;
+    width:2em;
+    padding: 0%;
+
+}

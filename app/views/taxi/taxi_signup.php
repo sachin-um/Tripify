@@ -3,7 +3,8 @@
 
 <div class="taxi_sign_cont">
         <div class="taxi_sign_left">
-            <img src="Pics/logo1-removebg-preview 1.png" id="taxi_sign_img">
+        <!-- <img src="<?php echo URLROOT; ?>/img/logo1-removebg-preview 1.png" -->
+        <img src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" id="taxi_sign_img">
             <p>Sign Up is Fast and Easy</p>
     
     
@@ -15,7 +16,7 @@
                 <input type="email" name="" id="taxi_sign_email" placeholder="Email" required><br>
                 <input type="password" name="" id="taxi_sign_password" placeholder="Password" required><br>
                 <input type="password" name="" id="taxi_sign_con_password" placeholder="Confirm Password" required><br>
-                <input type="button" id="taxi_sign_but" value="Sign Up">
+                <button type="submit" id="taxi_sign_but" >Sign Up</button>
 
             </form>
             

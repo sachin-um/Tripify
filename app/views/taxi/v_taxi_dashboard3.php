@@ -11,9 +11,9 @@
 
         <nav class="menu">
             <a href="#" class="menu-item">User Profile</a>
-            <a href="#" class="menu-item">Company</a>
-            <a href="#" class="menu-item is-active">Drivers</a>
-            <a href="#" class="menu-item">Vehicles</a>
+            <!-- <a href="#" class="menu-item">Company</a> -->
+            <a href="#" class="menu-item ">Drivers</a>
+            <a href="#" class="menu-item is-active">Vehicles</a>
             <a href="#" class="menu-item">Payments</a>
             <a href="#" class="menu-item">Trip Requests</a>
             <a href="#" class="menu-item">Offers</a>
