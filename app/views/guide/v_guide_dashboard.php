@@ -1,3 +1,18 @@
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Guide') {
+    flash('reg_flash', 'Only the Guides can have access...');
+    redirect('Pages/home');
+}
+else {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="app">
@@ -11,8 +26,8 @@
 
         <nav class="menu">
             <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Trip Request</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Trip Request</a>
+            <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
@@ -45,7 +60,7 @@
                     </div>
                     
                     <div class="sub-sub">
-                        <h3>B.M.L.Wathsan</h3>
+                        <h3><?php echo $data->Name;  ?></h3>
                     </div>
                             
                 </div>
@@ -54,29 +69,33 @@
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Account ID :</h3>
+                        <h3>Email :</h3>
                     </div>
                  
                     <div class="sub-sub">
-                        <h3>A1234</h3>
+                        <h3><?php echo $data->Email;  ?></h3>
                     </div>
                     
                 </div>
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Password : </h3>
+                        <h3>verificaion Status: </h3>
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>***********</h3>
+                    <?php if ($data->verification_status ==1) {
+                            ?><h3>Verified </h3><?php
+                        }else {
+                            ?><h3>Not Verified </h3><?php
+                        } ?>
                     </div>
                         
                 </div>
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Contact : </h3>
+                        <h3>Contact Number: </h3>
                     </div>
                         
                     <div class="sub-sub">
@@ -85,27 +104,6 @@
                         
                 </div>
                 <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Contact : </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                        <h3>+94 77 123 5687</h3>
-                    </div>
-                        
-                </div>
-                <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Contact : </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                        <h3>+94 77 973 3456</h3>
-                    </div>
-                        
-                </div>
                 <br>
                 <div style="text-align: center;">
                     <button class="profile-btn">Edit Info</button>
@@ -118,8 +116,9 @@
 
 </div>
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
-
-
+<?php
+}
+?>
 
 
     

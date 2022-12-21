@@ -1,7 +1,7 @@
 <?php
     class Pages extends Controller{
         public function __construct(){
-            // echo 'This is the pages controller';
+            $this->userModel=$this->model('M_Users');
         }
         public function index(){
 
@@ -12,24 +12,26 @@
         }
 
         public function home(){
-            $this->view('traveler/v_view_taxi_requests');
+
+            $this->view('v_home');
+
         }
 
 
         public function profile()
         {
-            
+            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
             if ($_SESSION['user_type']=='Traveler') {
-                $this->view('traveler/v_traveler_dashboard');
+                $this->view('traveler/v_traveler_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Taxi') {
-                $this->view('taxi/v_taxi_dashboard');
+                $this->view('taxi/v_taxi_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Guide') {
-                $this->view('guide/v_guide_dashboard');
+                $this->view('guide/v_guide_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Hotel') {
-                $this->view('hotels/v_hotel-dashboard');
+                $this->view('hotels/v_hotel_dashboard',$data);
             }
         }
         public function logins(){

@@ -7,6 +7,9 @@
     width: 40%;
     border: 1px solid #d3d3d3;
 }
+.request{
+    background-color: #d3d3d3;
+}
 .request-white-space{
     margin-left: 40%;
     color: #03002E;

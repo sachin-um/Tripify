@@ -1,22 +1,63 @@
-<?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
 
-<div class="wrapper">
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler' && $_SESSION['user_type']!='Guide') {
+    flash('reg_flash', 'Access Denied');
+    redirect('Pages/home');
+}
+else {
+    ?> 
+<?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="app">
-    
-<?php require APPROOT.'/views/inc/components/sidebars/guide_sidebar.php'; ?>
-    <main class="right-side-content">
-    <div class="content">
-        <div class="request-white-space">
-            <h2 class="title" >Guide Requests</h2>
+    <aside class="sidebar">
+
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
         </div>
         <?php
-$_SESSION['user_id'];
+        if ($_SESSION['user_type']=='Traveler') {
+        ?>
 
+        <nav class="menu">
+            <a href="#" class="menu-item">User Profile</a>
+            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
+            <a href="#" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Request</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Request</a>
+            <a href="#" class="menu-item">Exit Dashboard</a>
+        </nav>
+        <?php
+        }
+        else if ($_SESSION['user_type']=='Guide') {
+        ?>
+        <nav class="menu">
+        <a href="#" class="menu-item">User Profile</a>
+        <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Trip Request</a>
+        <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item">Offers</a>
+        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Bookings</a>
+        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Payments</a>
+        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
+        </nav>
+        <?php
+        }
+        ?>
+    </aside>
 
-if (!empty($_SESSION['user_id'])) {
-    ?>
-    <div class="request-list">
+    <main class="right-side-content">
+    <div class="dashboad-content">
+        <div>
+            <h2 class="title" >Guide Requests</h2>
+        </div>
+        <div class="request-list">
 
         <?php
             $requests=$data['guiderequests'];
@@ -58,19 +99,11 @@ if (!empty($_SESSION['user_id'])) {
         <?php
             endforeach;
         ?>
-    </div>
-    
-    <?php
-}
-else {
-    flash('reg_flash', 'You need to have logged in first...');
-    redirect('Users/login');
-}
+        </div>
+        </div>
 
-?>
-    </div>
-        
     </main>
- </div>    
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
-</div> 
+ </div>
+<?php
+}
+?>
