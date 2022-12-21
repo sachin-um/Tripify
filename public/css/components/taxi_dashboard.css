@@ -6,7 +6,7 @@
 .taxi_dash_container{
     position: absolute;
     margin-left: 25%; 
-    margin-top: 12em;
+    /* margin-top: 12em; */
    
     padding: 5em;
 
@@ -18,7 +18,7 @@
 
 #view_veh_h1{
     position: absolute;
-    margin-top: 10em;
+    /* margin-top: 10em; */
     /* margin-bottom: 2em; */
     left: 50%;
     transform: translate(-50%,0%);

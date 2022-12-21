@@ -23,7 +23,7 @@ else {
 
     <h1 id="taxi_add_v_p">Add Your Vehicle</h1>
 
-
+    <form action="<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle"  method="POST">
         <!-- <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br> -->
         <select name="v_type"  id="taxi_add_v_type" id="cars" required>
             
@@ -34,9 +34,6 @@ else {
             <option value="audi">Audi</option>
        
         </select>
-
-
-        <input type="text" id="taxi_add_v_type" name="type" placeholder="Vehicle Type" required><br>
 
         <input type="text" id="taxi_add_v_model"name="model" placeholder="Model" required><br>
 
@@ -51,10 +48,10 @@ else {
         <input type="text" id="taxi_add_v_area" name="area"placeholder="Available Area" required ><br>
         
 
-        <div class="taxi_add_v_imgbox"> 
+        <!-- <div class="taxi_add_v_imgbox"> 
             <label>Upload Vehicle Photos</label>   
             <input type="file" id="taxi_add_v_img" placeholder="taxi_add_v_imgbox" required accept="image/*"  multiple>
-        </div>
+        </div> -->
                        
         <input type="submit" id="taxi_add_v_but" value="Add Vehicle">
 </form>

@@ -1,3 +1,18 @@
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Taxi') {
+    flash('reg_flash', 'Only the Taxi Owners can have access...');
+    redirect('Pages/home');
+}
+else {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="app">
@@ -10,10 +25,10 @@
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">User Profile</a>
             <!-- <a href="#" class="menu-item">Company</a> -->
             <a href="#" class="menu-item">Drivers</a>
-            <a href="#" class="menu-item">Vehicles</a>
+            <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="#" class="menu-item">Payments</a>
             <a href="#" class="menu-item">Trip Requests</a>
             <a href="#" class="menu-item">Offers</a>
@@ -217,3 +232,7 @@
 
     </main>
  </div>
+
+<?php
+}
+?>
