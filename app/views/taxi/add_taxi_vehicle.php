@@ -25,16 +25,16 @@ else {
 
     <form action="<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle"  method="POST">
         <!-- <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br> -->
-        <select name="v_type"  id="taxi_add_v_type" id="cars" required>
+        <select name="type"  id="taxi_add_v_type" id="cars" required>
             
             <option value="" disabled selected hidden>Vehicle Type</option>
 
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+            <option value="Tuk Tuk">Tuk Tuk</option>
+            <option value="Car">Car</option>
+            <option value="Van">Van</option>
+            <option value="Bus">Bus</option>
        
         </select>
-
         <input type="text" id="taxi_add_v_model"name="model" placeholder="Model" required><br>
 
         <input type="text" id="taxi_add_v_year" name="year" placeholder="Year Of Production" required ><br>
