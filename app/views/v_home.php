@@ -64,7 +64,7 @@
     </div>
     </div> -->
     <div class="content">
-
+    <?php flash('reg_flash'); ?>
     <p class="title" ><b>Plan your dream Sri Lankan vacation cost free!</b></p>
 
     <div class="scroll-bar">

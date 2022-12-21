@@ -7,7 +7,7 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Traveler' && $_SESSION['user_type']!='Taxi') {
+elseif ($_SESSION['user_type']!='Traveler' && $_SESSION['user_type']!='Guide') {
     flash('reg_flash', 'Access Denied');
     redirect('Pages/home');
 }
@@ -41,8 +41,8 @@ else {
         ?>
         <nav class="menu">
         <a href="#" class="menu-item">User Profile</a>
-        <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Trip Request</a>
-        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Offers</a>
+        <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Trip Request</a>
+        <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item">Offers</a>
         <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Bookings</a>
         <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Payments</a>
         <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
@@ -53,8 +53,8 @@ else {
     </aside>
 
     <main class="right-side-content">
-    <div class="content">
-        <div class="request-white-space">
+    <div class="dashboad-content">
+        <div>
             <h2 class="title" >Guide Requests</h2>
         </div>
         <div class="request-list">
@@ -99,7 +99,8 @@ else {
         <?php
             endforeach;
         ?>
-    </div>
+        </div>
+        </div>
 
     </main>
  </div>
