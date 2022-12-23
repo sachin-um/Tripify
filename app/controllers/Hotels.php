@@ -1,18 +1,15 @@
 <?php
-class Hotels extends Controller
-{
-    public function __construct()
-    {
-        $this->hotelModel = $this->model('M_Hotels');
-        $this->userModel = $this->model('M_Users');
-    }
-    public function index()
-    {
+    class Hotels extends Controller{
+        public function __construct(){
+            $this->hotelModel=$this->model('M_Hotels');
+            $this->userModel=$this->model('M_Users');
+        }
+        public function index(){
 
-    }
+        }
 
-    public function register()
-    {
+        public function register()
+        {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Data validation
             $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
@@ -106,187 +103,192 @@ class Hotels extends Controller
             $this->view('hotels/v_hotelReg', $data);
         }
         // $this->view('hotels/v_register');
-    }
+       }
 
-    //login
-    public function login()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //Data validation
-            $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+        //login
+        public function login(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
-            $data = [
-                'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
+                $data=[
+                    'email'=>trim($_POST['email']),
+                    'password'=>trim($_POST['password']),
 
-                'email_err' => '',
-                'password_err' => '',
+                    'email_err'=>'',
+                    'password_err'=>'',
 
-            ];
+                ];
 
-
-            //validate email
-            if (empty($data['email'])) {
-                $data['email_err'] = 'please enter a email';
-            } else {
-                if (!$this->userModel->findUserByEmail($data['email'])) {
-                    $data['email_err'] = 'Account doesnt exist...';
+                
+                //validate email
+                if (empty($data['email'])) {
+                    $data['email_err']='please enter a email';
                 }
-            }
-
-            if (empty($data['password'])) {
-                $data['password_err'] = 'Please fill the password field';
-            }
-
-
-            if (empty($data['email_err']) && empty($data['password_err'])) {
-
-                $log_user = $this->userModel->login($data);
-
-                if (!$log_user) {
-                    $data['password_err'] = 'Password is incorrect';
-                    $this->view('hotels/v_loginHotel', $data);
-                } else if ($log_user->UserType != 'Hotel') {
-                    flash('reg_flash', 'You Cannot logging as a Hotel Owner');
-                    redirect('Hotels/login');
-                } elseif ($log_user == 'NotValidate') {
-                    flash('verify_flash', 'You Should Verify your email address first..');
-                    $this->createVerifySession($data['email']);
-                    redirect('Users/emailverify');
+                else{
+                    if(!$this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err']='Account doesnt exist...';
+                    }
                 }
-                //logging user
+
+                if (empty($data['password'])) {
+                    $data['password_err']='Please fill the password field';
+                }
+
+
+                if (empty($data['email_err']) && empty($data['password_err'])) {
+                    
+                    $log_user=$this->userModel->login($data);
+
+                    if (!$log_user) {
+                        $data['password_err']= 'Password is incorrect';
+                        $this->view('hotels/v_loginHotel',$data);
+                    }
+                    else if ($log_user->UserType!='Hotel') {
+                        flash('reg_flash', 'You Cannot logging as a Hotel Owner');
+                        redirect('Hotels/login');
+                    }
+                    elseif ($log_user=='NotValidate') {
+                        flash('verify_flash', 'You Should Verify your email address first..');
+                        $this->createVerifySession($data['email']);
+                        redirect('Users/emailverify');
+                    }
+                    //logging user
+                    else{
+                        $this->createUserSession($log_user);
+                    }
+                }
                 else {
-                    $this->createUserSession($log_user);
+                    $this->view('hotels/v_loginHotel',$data);
                 }
-            } else {
-                $this->view('hotels/v_loginHotel', $data);
+
+
+
             }
+            else {
+                $data=[
+                    'email'=>'',
+                    'password'=>'',
 
+                    'email_err'=>'',
+                    'password_err'=>'',
 
-
-        } else {
-            $data = [
-                'email' => '',
-                'password' => '',
-
-                'email_err' => '',
-                'password_err' => '',
-
-            ];
-            $this->view('hotels/v_loginHotel', $data);
+                ];
+                $this->view('hotels/v_loginHotel',$data);
+            }
         }
-    }
 
-    //user session
-    public function createUserSession($user)
-    {
-        $_SESSION['user_id'] = $user->UserID;
-        $_SESSION['user_name'] = $user->Name;
-        $_SESSION['user_email'] = $user->Email;
-        $_SESSION['user_type'] = $user->UserType;
-
-        $data = [
-            'isLoggedIn' => $this->isLoggedIn()
-        ];
-        $this->view('v_home', $data);
-        // redirect('Pages/home',$data);
-    }
-
-    public function isLoggedIn()
-    {
-        if (isset($_SESSION['user_id'])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function addroom()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            //Data validation
-            $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
-
-
-            $data = [
-                'NoofBeds' => trim($_POST['no-of-beds']),
-                'RoomType' => trim($_POST['roomtype']),
-                'NoofGuests' => trim($_POST['no-of-guests']),
-                'RoomSize' => trim($_POST['roomsize']),
-                'PricePerNight' => trim($_POST['pricepernight']),
-
-
-                'NoofBeds_err' => '',
-                'RoomType_err' => '',
-                'NoofGuests_err' => '',
-                'RoomSize_err' => '',
-                'description_err' => '',
-                'PricePerNight_err' => ''
-
+        //user session
+        public function createUserSession($user){
+            $_SESSION['user_id']=$user->UserID;
+            $_SESSION['user_name']=$user->Name;
+            $_SESSION['user_email']=$user->Email;
+            $_SESSION['user_type']=$user->UserType;
+            
+            $data=[
+                'isLoggedIn'=>$this->isLoggedIn()
             ];
+            $this->view('v_home',$data);
+            // redirect('Pages/home',$data);
+        }
 
-
-            //validate name
-            if (empty($data['NoofBeds'])) {
-                $data['NoofBeds_err'] = 'Please enter the number of beds available';
+        public function isLoggedIn(){
+            if (isset($_SESSION['user_id'])) {
+                return true;
             }
-            //validate email
-            if (empty($data['RoomType'])) {
-                $data['RoomType_err'] = 'please add the Room type';
+            else{
+                return false;
             }
-            if (empty($data['NoofGuests'])) {
-                $data['NoofGuests_err'] = 'Please enter No of guests can stay in the Room';
-            }
-            if (empty($data['RoomSize'])) {
-                $data['RoomSize_err'] = 'please enter the room size';
-            }
+        }
 
-            if (empty($data['PricePerNight'])) {
-                $data['PricePerNight_err'] = 'please enter price per night';
-            }
+        public function addroom(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            
+                $data=[
+                        'NoofBeds'=>trim($_POST['no-of-beds']),
+                        'RoomType'=>trim($_POST['roomtype']),
+                        'NoofGuests'=>trim($_POST['no-of-guests']),
+                        'RoomSize'=>trim($_POST['roomsize']),
+                        'PricePerNight'=>trim($_POST['pricepernight']),
 
 
+                        'NoofBeds_err'=>'',
+                        'RoomType_err'=>'',
+                        'NoofGuests_err'=>'',
+                        'RoomSize_err'=>'',
+                        'description_err'=>'',
+                        'PricePerNight_err'=>''
+    
+                    ];
 
 
-            if (empty($data['pickuplocation_err']) && empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
-
-                //Add a Taxi Request
-                if ($this->taxirequestModel->addtaxirequest($data)) {
-                    flash('reg_flash', 'Taxi Request is Succusefully added..!');
-                    redirect('Request/TaxiRequest');
-                } else {
-                    die('Something went wrong');
+                //validate name
+                if (empty($data['NoofBeds'])) {
+                    $data['NoofBeds_err']='Please enter the number of beds available';
                 }
-            } else {
-                $this->view('traveler/v_taxi_request', $data);
+                //validate email
+                if (empty($data['RoomType'])) {
+                    $data['RoomType_err']='please add the Room type';
+                }
+                if (empty($data['NoofGuests'])) {
+                    $data['NoofGuests_err']='Please enter No of guests can stay in the Room';
+                }
+                if (empty($data['RoomSize'])) {
+                    $data['RoomSize_err']='please enter the room size';
+                }
+
+                if (empty($data['PricePerNight'])) {
+                    $data['PricePerNight_err']='please enter price per night';
+                }
+                
+                
+
+
+                if (empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
+                    
+                    //Add a Taxi Request
+                    if ($this->taxirequestModel->addtaxirequest($data)) {
+                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
+                        redirect('Request/TaxiRequest');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+                else {
+                    $this->view('traveler/v_taxi_request',$data);
+                }
+
+
+
             }
+            else {
+                $data=[
+                    'pickuplocation'=>'',
+                    'destination'=>'',
+                    'date'=>'',
+                    'time'=>'',
+                    'description'=>'',
+                    'travelerid'=>'',
 
+                    'pickuplocation_err'=>'',
+                    'destination_err'=>'',
+                    'date_err'=>'',
+                    'time_err'=>'',
+                    'description_err'=>'',
+                    'travelerid_err'=>''
 
-
-        } else {
-            $data = [
-                'pickuplocation' => '',
-                'destination' => '',
-                'date' => '',
-                'time' => '',
-                'description' => '',
-                'travelerid' => '',
-
-                'pickuplocation_err' => '',
-                'destination_err' => '',
-                'date_err' => '',
-                'time_err' => '',
-                'description_err' => '',
-                'travelerid_err' => ''
-
-            ];
-            $this->view('traveler/v_taxi_request', $data);
+                ];
+                $this->view('traveler/v_taxi_request',$data);
+            }
+            $this->view('traveler/v_taxi_request');
+        
         }
-        $this->view('traveler/v_taxi_request');
 
+        
     }
-
-
-}
 
 ?>
