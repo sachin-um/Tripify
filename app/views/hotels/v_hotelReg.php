@@ -3,16 +3,17 @@
 
 
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-    <div class="hotel-reg">
 
+    <div class="content">
+    <div class="hotel-reg">
+    <br><br>
     <h2 style="text-align: center;">Fill information below to get registered.</h2>
     <br>
     <form class="form-div" action="<?php echo URLROOT; ?>/Hotels/register" method="post">
         <div class="flex-2">
             <div class="h-address">
                 <h4>Property Name<sup> *</sup></h4>
-                <input type="text" id="name" name="name" class="form-control form-control-lg <?php echo (!empty($data
-                ['property_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['name'];?>">
+                <input type="text" id="name" name="name" class="form-control form-control-lg">
             </div>
                     
             <div class="h-address">
@@ -64,6 +65,9 @@
         <button class="btn-info" type="submit">Register</button>   
     </form>
 
+    
+    </div>
+</div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 </div>

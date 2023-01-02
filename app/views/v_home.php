@@ -65,7 +65,7 @@
     </div> -->
     <div class="content">
     <?php flash('reg_flash'); ?>
-    <p class="title" ><b>Plan your dream Sri Lankan vacation cost free!</b></p>
+    <p class="title" ><b>Discover popular destinations across Sri Lanka!</b></p>
 
     <div class="scroll-bar">
         <img id="logo" src="<?php echo URLROOT; ?>/img/211689_left_arrow_icon.png" alt="logo">

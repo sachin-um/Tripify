@@ -30,21 +30,21 @@ else {
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
-            <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p>
+            <!-- <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p> -->
         </nav>
     </aside>
 
     <main class="right-side-content">
 
 
-<div class="profile" style="margin-top: 300px;">
-    <div class="h-title">
-        <br>
-        <h3 style="color: green;">The rooms you add to your hotel will appear here.</h3>
-        <br>
-    </div>
+        <div class="profile">
+            <div class="h-title">
+                <br><br><br>
+                <h1 style="color: black;">Hotel Rooms</h1>
+                <br>
+            </div>
 
-    <div class="room-cards-row-1">
+        <div class="room-cards-row-1">
         <?php
             $rooms=$data['allrooms'];
             foreach($rooms as $room):
@@ -111,9 +111,11 @@ else {
             endforeach;
         ?>        
         <br><br>
-        <div style="text-align: center;">
-            <button class="card-btn" style="width: 20%;">Add Room</button>
-        </div>
+        
+    </div>
+
+    <div style="text-align: center; width: 1700px;">
+            <button class="card-btn" style="width: 10%;" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Rooms</button>
     </div>
         
     </div>

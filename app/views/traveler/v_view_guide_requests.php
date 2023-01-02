@@ -31,8 +31,8 @@ else {
             <a href="#" class="menu-item">User Profile</a>
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
             <a href="#" class="menu-item">Taxi Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Request</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Request</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Requests</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -71,8 +71,10 @@ else {
                 <div class="post-location">Area Want to Travel: <?php echo $guiderequest->p_location; ?></div>
                 <div class="post-details">Additional Details: <?php echo $guiderequest->description; ?></div>
                 <div class="post-details">Preffer language: <?php echo $guiderequest->p_language; ?></div>
-                <div class="post-by">Post By: <?php echo $guiderequest->name; ?></div>
-                <div class="post-by">Post at: <?php echo convertTime($guiderequest->post_at); ?></div>
+                <div class="post-by-content">
+                    <div class="post-by">Post By: <?php echo $guiderequest->name; ?></div>
+                    <div class="post-by">Post at: <?php echo convertTime($guiderequest->post_at); ?></div>
+                </div>
             </div>
             <div class="request-footer">
                 <?php

@@ -2,7 +2,6 @@
         
         <div class="footer-container">
           
-            
           <div class="footer-columns">
       
               <ul class="lists">

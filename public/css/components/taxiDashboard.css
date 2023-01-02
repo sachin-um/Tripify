@@ -65,3 +65,14 @@
 #taxi_over_driver:hover,#taxi_over_vehicle:hover{
     background-color: #33337d;
 }
+
+.taxi-first-container{
+    display: flex;
+    /* margin-left: 420px; */
+}
+
+.taxi-right-side-content{
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 80%;
+ }

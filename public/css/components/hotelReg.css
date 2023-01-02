@@ -11,7 +11,14 @@
 }
 
 .hotel-reg{
-    margin-top: 80px;
+    /* margin-top: 80px; */
+    background-color: white;
+    box-shadow: 0 0 20px 0 rgb(0 0 0 / 20%), 0 5px 5px 0 rgb(0 0 0 / 24%);
+    width: 80%;
+    border-style: solid;
+    border: 2px solid #03002E;
+    padding-bottom: 30px;
+    margin-left: 10%;
 }
 
 h3{

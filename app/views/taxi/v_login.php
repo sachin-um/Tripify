@@ -9,7 +9,7 @@
             <div >
                 <img id="taxi_login_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
                 <p id="taxi_v_login_p">Taxi Login</p> 
-                <p id="taxi_v_login_p2">KEEP CLAM DRIVE SAFLEY</p>
+                
 
             </div>
 

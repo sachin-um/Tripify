@@ -35,6 +35,9 @@
                 if (empty($data['email'])) {
                     $data['email_err']='please enter a email';
                 }
+                else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                    $data['email_err'] = "Invalid email format";
+                }
                 else{
                     if($this->userModel->findUserByEmail($data['email'])) {
                         $data['email_err']='Email is already registered';
@@ -131,6 +134,9 @@
                 //validate email
                 if (empty($data['email'])) {
                     $data['email_err']='please enter a email';
+                }
+                else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                    $data['email_err'] = "Invalid email format";
                 }
                 else{
                     if(!$this->userModel->findUserByEmail($data['email'])) {
