@@ -19,11 +19,11 @@
 .addtaxiownerinfo{
     
     width: fit-content;
-    border: solid 1px #D9D9E9;
+    border: solid 1px black;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     padding-bottom: 5em;
 
-
+    background-color: #fff;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     justify-content: center;

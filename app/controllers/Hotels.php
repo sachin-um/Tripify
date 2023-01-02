@@ -14,9 +14,9 @@
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $ad1=trim($_POST['line1']);
                 $ad2=trim($_POST['line2']);
-                $ad3=trim($_POST['line3']);
+                // $ad3=trim($_POST['line3']);
                 $ad4=trim($_POST['city']);
-                $address=$ad1.','.$ad2.','.$ad3.','.$ad4.'.';
+                $address=$ad1.','.$ad2.','.$ad4.'.';
                 $data=[
                     'property_name'=>trim($_POST['name']),
                     'property_address'=>$address,

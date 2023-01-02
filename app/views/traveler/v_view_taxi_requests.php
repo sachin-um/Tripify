@@ -31,8 +31,8 @@ else {
             <a href="#" class="menu-item">User Profile</a>
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
             <a href="#" class="menu-item">Taxi Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item is-active">Taxi Request</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Request</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item is-active">Taxi Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -41,7 +41,7 @@ else {
         ?>
         <nav class="menu">
         <a href="#" class="menu-item">User Profile</a>
-        <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
+        <a href="#" class="menu-item">Hotel Bookings</a>
         <a href="#" class="menu-item">Taxi Bookings</a>
         <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item is-active">Taxi Request</a>
         <a href="#" class="menu-item">Guides</a>
@@ -63,15 +63,47 @@ else {
             $requests=$data['taxirequests'];
             foreach($requests as $taxirequest):
         ?>
+
         <div class="request">
             <div class="post-header"><?php echo $taxirequest->caption; ?></div>
             <div class="post-body">
-            <div class="post-date">Request Date: <span id="request-data"><?php echo $taxirequest->date; ?></span></div>
-            <div class="post-time">Request Time: <?php echo $taxirequest->time; ?></div>
-            <div class="post-location">Request PickUp Location: <?php echo $taxirequest->pickup_location; ?></div>
-            <div class="post-details">Additional Details: <?php echo $taxirequest->additional_details; ?></div>
-            <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
-            <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
+            <div class="post-content">
+            <div class="spandiv">
+                <div class="post-tag">Request Date</div>
+                <div class="colon">:</div>
+                <div class="result"><?php echo $taxirequest->date; ?></div>
+                    <!-- <label for="request-data">Request-data</label>
+                    <label for="colon">:</label>
+                    <label for="result"><?php echo $taxirequest->date; ?></label> -->
+                </div>
+                <!-- <div><span id="request-data"><span>:</span><?php echo $taxirequest->date; ?></span></div>
+                 -->
+            </div>
+            <div class="post-content">
+                <div class="post-tag">Request Time</div>
+                <div ><span id="request-data"><span>:</span><?php echo $taxirequest->time; ?></span></div>
+                
+            </div>
+            <div class="post-content">
+                <div class="post-tag">PickUp Location</div>
+                <div ><span id="request-data"><span>:</span><?php echo $taxirequest->pickup_location; ?></span></div>
+                
+            </div>
+            <div class="post-content">
+                <div class="post-tag">Destination</div>
+                <div><span id="request-data"><span>:</span><?php echo $taxirequest->destination; ?></span></div>
+                
+            </div>
+            <div class="post-content">
+                <div class="post-tag">Additional Details</div>
+                <div><span id="request-data"><span>:</span><?php echo $taxirequest->additional_details; ?></span></div>
+                
+            </div>
+
+            <div class="post-by-content">
+                <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
+                <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
+            </div>
             </div>
             <div class="request-footer">
             <?php
@@ -87,9 +119,9 @@ else {
                 <?php
             }
             ?>
+            </div>
         </div>
-        <br>
-        <br>
+        
         <?php
             endforeach;
         ?>

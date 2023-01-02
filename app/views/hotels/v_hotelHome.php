@@ -31,11 +31,12 @@
         </div>
     </div>
 </form>
+<br>
 
 <div class="btn-div" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
     <button class="btn" type="button">Search</button>
 </div>
-
+<br>
 <br>
 <hr>
 <br>
@@ -49,5 +50,10 @@
 <div class="btn-div" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
     <button class="btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Hotels/register'">Register Hotel</button>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>

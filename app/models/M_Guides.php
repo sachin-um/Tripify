@@ -10,13 +10,12 @@ class M_Guides{
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO guides(GuideID,Name,Rate,NIC,Area,NTL,bio,phone_number) VALUES(:guideid,:name,:rate,:nic,:area,:ntl,:bio,:phone_number)');
+        $this->db->query('INSERT INTO guides(GuideID,Name,Rate,NIC,Area,bio,phone_number) VALUES(:guideid,:name,:rate,:nic,:area,:bio,:phone_number)');
         $this->db->bind(':guideid',$data['id']);
         $this->db->bind(':name',$data['name']);
         $this->db->bind(':rate',$data['price_per_hour']);
         $this->db->bind(':nic',$data['nic']);
         $this->db->bind(':area',$data['area']);
-        $this->db->bind(':ntl',$data['NTL']);
         $this->db->bind(':bio',$data['bio']);
         $this->db->bind(':phone_number',$data['phone_number']);
 

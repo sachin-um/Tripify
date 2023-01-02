@@ -8,7 +8,7 @@
         <div class="guide_login_cont">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-                <p id="tag">Login</p> 
+                <p id="tag">Travel Guide Login</p> 
             </div>
             <div class="guide_login_div">
                 <form class="taxi_login_form" action="<?php echo URLROOT; ?>/Guides/login" method="POST">
@@ -18,7 +18,7 @@
                     <span class="invalid"><?php echo $data['password_err']; ?></span><br>
                     <p><a href="<?php echo URLROOT; ?>/Users/passwordverify" style="margin-bottom: 15px; display: block; text-align: center;">Forgot Password?</a></p>
                     <input  type="hidden" id="usertype" name="usertype" value="Traveler">
-                    <button id="sign-up-btn-1" type="submit">Login</button>
+                    <button id="sign-up-btn-1" type="submit" style="margin-left:100px">Login</button>
                 
 
                 </form> 

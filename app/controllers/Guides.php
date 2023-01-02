@@ -19,7 +19,6 @@
                     'area'=>trim($_POST['area']),
                     'price_per_hour'=>trim($_POST['price']),
                     'nic'=>trim($_POST['nic']),
-                    'NTL'=>trim($_POST['NTL']),
                     'languages'=>$_POST['languages'],
                     'bio'=>trim($_POST['bio']),
                     'id'=>$_SESSION['user_id'],
@@ -32,7 +31,6 @@
                     'area_err'=>'',
                     'price_err'=>'',
                     'nic_err'=>'',
-                    'NTL_err'=>'',
                     'languages_err'=>'',
 
                 ];
@@ -44,6 +42,9 @@
                 //validate phone number
                 if (empty($data['phone_number'])) {
                     $data['number_err']='please enter a phone number';
+                }
+                if (strlen((string)$data['phone_number'])!=10) {
+                    $data['number_err']='please enter a Valid phone number';
                 }
                 //validate area
                 if (empty($data['area'])) {
@@ -57,9 +58,8 @@
                 if (empty($data['nic'])) {
                     $data['nic_err']='please enter your NIC number.';
                 }
-                //validate NTL
-                if (empty($data['NTL'])) {
-                    $data['NTL_err']='please enter your National Tourist Guide License';
+                if (strlen((string)$data['nic'])!=10) {
+                    $data['nic_err']='please enter a Valid NIC number';
                 }
                 //validate language
                 if (empty($data['languages'])) {
@@ -68,7 +68,7 @@
                 
 
 
-                if (empty($data['name_err']) &&  empty($data['phone_number_err']) && empty($data['area_err']) && empty($data['price_err']) && empty($data['nic_err']) && empty($data['NTL_err']) && empty($data['languages_err'])) {
+                if (empty($data['name_err']) &&  empty($data['phone_number_err']) && empty($data['area_err']) && empty($data['price_err']) && empty($data['nic_err']) && empty($data['languages_err'])) {
                     
                     //register guide
                     if ($this->guideModel->register($data)) {
@@ -93,7 +93,6 @@
                     'area'=>'',
                     'price_per_hour'=>'',
                     'nic'=>'',
-                    'NTL'=>'',
                     'languages'=>'',
                     'bio'=>'',
                     
@@ -105,7 +104,6 @@
                     'area_err'=>'',
                     'price_err'=>'',
                     'nic_err'=>'',
-                    'NTL_err'=>'',
                     'languages_err'=>'',
 
                 ];
