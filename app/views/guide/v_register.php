@@ -20,30 +20,31 @@ else {
         <div >
             <form action="<?php echo URLROOT; ?>/Guides/register" method="POST">
                 <label class="abc"> Name</label><br>
-                <input type="text" id="name" name="name" placeholder="   Name" value="<?php echo $data['name']; ?>">
+                <input type="text" id="name" name="name" placeholder="   Eg: Saman Kumara" value="<?php echo $data['name']; ?>">
                 <span class="invalid"><?php echo $data['name_err']; ?></span>
+                <br>
                 
                 <label class="abc"> Phone Number</label><br>
-                <input type="text" id="number" name="number" placeholder="+94" value="<?php echo $data['phone_number']; ?>">
+                <input type="text" id="number" name="number" placeholder="Eg: 0761234567" value="<?php echo $data['phone_number']; ?>">
                 <span class="invalid"><?php echo $data['number_err']; ?></span>
-
+                <br>
                 <label class="abc"> area you choose to guide</label><br>
-                <input type="text" id="area" name="area" placeholder="" value="<?php echo $data['area']; ?>">
+                <input type="text" id="area" name="area" placeholder="Eg: Anuradhapura" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
-
+                <br>
                 <label class="abc"> Price per hour</label><br>
-                <input type="text" id="price" name="price" placeholder="Rs:" value="<?php echo $data['price_per_hour']; ?>">
+                <input type="text" id="price" name="price" placeholder="Eg: 5000.00" value="<?php echo $data['price_per_hour']; ?>">
                 <span class="invalid"><?php echo $data['price_err']; ?></span>
-
+                <br>
                 <label class="abc"> More Information</label><br>
 
                 <label class="abc"> NIC</label><br>
-                <input type="text" id="nic" name="nic" placeholder="" value="<?php echo $data['nic']; ?>">
+                <input type="text" id="nic" name="nic" placeholder="Eg: 981033017V" value="<?php echo $data['nic']; ?>">
                 <span class="invalid"><?php echo $data['nic_err']; ?></span>
-
-                <label class="abc"> National Tourist Licence</label><br>
+                <br>
+                <!-- <label class="abc"> National Tourist Licence</label><br>
                 <input type="text" id="NTL" name="NTL" placeholder="" value="<?php echo $data['NTL']; ?>">
-                <span class="invalid"><?php echo $data['NTL_err']; ?></span>
+                <span class="invalid"><?php echo $data['NTL_err']; ?></span> -->
 
                 <label class="abc"> Languages that you know </label><br>
                 <select class="guide-reg-select" multiple="mutiple" name="languages[]">
@@ -59,6 +60,7 @@ else {
                     
                 </select>
                 <span class="invalid"><?php echo $data['languages_err']; ?></span>
+                <br>
                 <label class="abc"> Bio </label><br>
                 <textarea class="guide-reg-textarea" name="bio" id="bio" cols="52" rows="10" placeholder="Tell us about you"></textarea>    
                 <button id="sign-up-btn-1" type="submit" >Register as Guide</button>

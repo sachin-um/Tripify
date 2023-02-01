@@ -39,7 +39,7 @@
 }
 
 .header-col{
-    text-align: left;
+    text-align: justify;
     margin-top: 0;
 }
 
@@ -52,7 +52,6 @@
 .footer-container{
     display: flex;
     justify-content: space-evenly;
-    background-color: #03002E;
 }
 
 .footer-columns{

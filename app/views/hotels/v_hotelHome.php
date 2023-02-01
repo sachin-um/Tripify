@@ -40,6 +40,7 @@
             </div>
         </div>
 
+
         <p class="home-title-2" >Top Picks From Around The Island</p>
 
         <div class="hotel-home-top-picks">
@@ -49,6 +50,7 @@
                         <img src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
                         <span class="dot">3.0</span>
                     </div>                    
+
 
                     <div class="hotel-ad-card-desc">
                        <label id="display-hotel-name" for="hotel-name"><b>Hotel Sea Breeze</b></label> <br>
@@ -88,5 +90,7 @@
     </div>
 
 </div>
+
+
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>

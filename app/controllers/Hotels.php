@@ -8,6 +8,7 @@
 
         }
 
+
         public function register()
         {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -35,6 +36,7 @@
                 'contact_number_err' => '',
                 'reg_number_err' => '',
                 'hotel_id_err' => '',
+
 
             ];
             if (empty($data['property_name'])) {

@@ -7,6 +7,7 @@
     <div class="hotel-reg-form-div">
         <p class="home-title-2" style="margin-bottom: 10px;">It's Only a Few Clicks Away.</p>
 
+
         
         <form class="hotel-reg-form" action="<?php echo URLROOT; ?>/Hotels/register" method="post">
             <p class="home-title-3">General Information</p>
@@ -22,6 +23,7 @@
                     <p class="home-title-4">Hotel Registration No<sup> *</sup> :</p>
                     <input class="hotel-labels-2" type="text" id="name" name="name" class="form-control form-control-lg">
                 </div>
+
             </div>
 
             <div class="hotel-reg-form-div-2">
@@ -125,6 +127,9 @@
     
     </div>
 
+    
+    </div>
+</div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 </div>

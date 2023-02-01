@@ -27,6 +27,7 @@
 @import url('components/1hotelHome.css');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
+
 :root{
     --dark: #03002E;
     --light:#2A9D8F;    /*42, 157, 143*/
@@ -43,6 +44,9 @@
     margin: 0;
     font-family: 'Poppins', sans-serif;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 
 body{
     background-color: #F2ECFF;

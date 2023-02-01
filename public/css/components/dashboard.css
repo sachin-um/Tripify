@@ -10,8 +10,10 @@
     max-width: 250px;
     height: 100%;
     padding: 2rem 1rem;
-    background-color: #D9D9D9;
-    margin-top: 100px   ;
+    background-color: #777586;
+    margin-top: 100px;
+    color: #03002E;
+    font-weight: 800;
  }
 .sidebar-nav{
     width: 20%;
@@ -51,7 +53,7 @@
 
  .right-side-content{
     margin-top: 100px;
-    margin-left: 270px;
+    margin-left: 340px;
     width: 80%;
  }
 
@@ -121,15 +123,15 @@
 }
 
 .hotel-room-card{
-   width: 20%;
+   width: 15%;
    height: 350px;
    background-color: white;
 }
 
 .room-cards-row-1{
+   width: 1800px;
    display: flex;
-   margin-left: 8%;
-   margin-right: 6%;
+   padding: 30px;
    justify-content: space-around;
 }
 
@@ -153,4 +155,18 @@ ul{
    background-color: grey;
    color: black;
    border-radius: 50px;
+}
+
+.profile{
+   text-align: center;
+}
+
+.h-title{
+   width: 2000px;
+   text-align: center;
+   margin-left: -150px;
+}
+
+.btn-div-hotel{
+   text-align: center;
 }

@@ -133,6 +133,7 @@ img {
    color: #03002E;
 }
 
+
 #item-1:checked ~ .cards #song-4, #item-2:checked ~ .cards #song-4, #item-3:checked ~ .cards #song-4 {
     transform: translatex(-40%) scale(.8);
     opacity: .4;
@@ -246,6 +247,7 @@ img {
   #item-3:checked ~ .player #test  {
     transform: translateY(-80px);
   }
+
 
 
 

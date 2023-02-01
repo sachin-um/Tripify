@@ -48,11 +48,11 @@ else {
             ?>
                 <div class="taxi_view_v_dash">
            
-                <img src="<?php echo URLROOT; ?>/img/Grouptax15.png" id="taxi_v_c_pic"  alt="Driver image">
+                <img src="<?php echo URLROOT; ?>/img/car.png" id="taxi_v_c_pic"  alt="Driver image" style="width: 250px;">
           
                 <article class="taxi_view_v_art" >
           
-                    <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><p id="taxi_view_v_vname"><?php echo $vehicle->Model  ?> Wagon</p>
+                    <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><p id="taxi_view_v_vname"><?php echo $vehicle->Model  ?></p>
                
                     <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p>
                
@@ -70,11 +70,11 @@ else {
             <?php
                 endforeach;
             ?>
-            <button class="dash-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle'">Add More Vehicle</button>
-            </div>
             
+            </div>
+            <button class="taxi-dash-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle'">Add Vehicles</button>
         </article>
-
+        
     
     
         </main>
