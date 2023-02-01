@@ -1,75 +1,132 @@
--<?php require APPROOT . '/views/inc/components/header.php'; ?>
-<div class="wrapper">
+<?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<div class="wrapper">    
+        
+    <div class="container">
 
+    <div class="hotel-reg-form-div">
+        <p class="home-title-2" style="margin-bottom: 10px;">It's Only a Few Clicks Away.</p>
 
-    <?php require APPROOT . '/views/inc/components/navbars/home_nav.php'; ?>
-    <div class="hotel-reg">
-
-        <h2 style="text-align: center;">Fill information below to get registered.</h2>
-        <br>
-        <form class="form-div" action="<?php echo URLROOT; ?>/Hotels/register" method="post">
-            <div class="flex-2">
-                <div class="h-address">
-                    <h4>Property Name<sup> *</sup></h4>
-                    <input type="text" id="name" name="name" class="form-control form-control-lg">
-                    <span class="error-span" style="padding-left: 5%;color:red"><?php echo $data['property_name_err'] ?></span>
+        
+        <form class="hotel-reg-form" action="<?php echo URLROOT; ?>/Hotels/register" method="post">
+            <p class="home-title-3">General Information</p>
+            <hr>
+            <br>    
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Property Name<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="name" name="name" class="form-control form-control-lg">
                 </div>
 
-                <div class="h-address">
-                    <h4>Phone Number<sup> *</sup></h4>
-                    <input type="text" class="info-2" id="contact_number" name="contact_number">
-                    <span class="error-span" style="padding-left: 5%;color:red"><?php echo $data['contact_number_err'] ?></span>
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Hotel Registration No<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="name" name="name" class="form-control form-control-lg">
                 </div>
-
             </div>
+
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Address Line 1<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="line1" name="line1">
+                </div>
+
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Address Line 2<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="line2" name="line2">
+                </div>
+            </div>
+
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">City<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="city" name="city">
+                </div>
+
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Contact Number<sup> *</sup> :</p>
+                    <input class="hotel-labels-2" type="text" id="contact" name="contact">
+                </div>
+            </div>
+
+            <p class="home-title-3">Policies</p>
+            <hr>
             <br>
-
-            <div class="flex-2">
-                <div class="h-address">
-                    <h4>Hotel Registration No :<sup> *</sup></h4>
-                    <input type="text" class="info-2" id="reg_number" name="reg_number">
-                    <span class="error-span" style="padding-left: 5%;color:red"><?php echo $data['reg_number_err'] ?></span>
-
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Pets :</p>
+                    <input class="hotel-labels-2" type="text" id="reg_number" name="reg_number">
                 </div>
 
-                <div class="h-address">
-                    <!-- <h4>Phone Number</h4>
-                <input type="text" class="info-2" id="contact_number" name="contact_number"> -->
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Children :</p>
+                    <input class="hotel-labels-2" type="text" id="name" name="name">
                 </div>
-
             </div>
 
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">How many days in advance can guests cancel free of charge?</p>
+                    <input class="hotel-labels-2" type="text" id="reg_number" name="reg_number">
+                </div>
+
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Cancellation Fee :</p>
+                    <input class="hotel-labels-2" type="text" id="name" name="name">
+                </div>
+            </div>
+
+            <div class="hotel-reg-form-div-2">
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Check-In  :</p>
+                    <input class="hotel-labels-2" type="text" id="reg_number" name="reg_number">
+                </div>
+
+                <div class="hotel-reg-elements">
+                    <p class="home-title-4">Check-Out :</p>
+                    <input class="hotel-labels-2" type="text" id="name" name="name">
+                </div>
+            </div>
+
+            <p class="home-title-3">Amenities</p>
+            <hr>
             <br>
-
-            <h3>Property Address</h3>
-            <div class="flex-2">
-                <div class="h-address">
-                    <h4>Address Line 1<sup> *</sup></h4>
-                    <input type="text" class="info-2" id="line1" name="line1">
+            <p class="home-title-4">Select all that apply.</p>
+            <div class="nav-main">
+                <div class="nav-parts">
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                 </div>
 
-                <div class="h-address">
-                    <h4>Address Line 2<sup> *</sup></h4>
-                    <input type="text" class="info-2" id="line2" name="line2">
+                <div class="nav-parts">
+                    <label for="vehicle1"> I have a bike</label>
                 </div>
 
+                <div class="nav-parts">
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1"> I have a bike</label>
+                </div>
+
+                <div class="nav-parts">
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                    <label for="vehicle1"> I have a bike</label>
+                </div>
+
+                <div class="nav-parts">
+
+                </div>
             </div>
+        </form>
+    </div>
 
-            <div class="flex-2">
+    
 
-                <div class="h-address">
-                    <h4>City<sup> *</sup></h4>
-                    <input type="text" class="info-2" id="city" name="city">
-                </div>
-
-            </div>
-            <span class="error-span" style="padding-left: 5%;color:red;position: absolute;
-    top: 98%;
-    left: 15%;"><?php echo $data['property_address_err'] ?></span>
-
-            <button class="btn-info" type="submit">Register</button>
+            <button class="btn-info" type="submit">Register</button>   
         </form>
 
-        <?php require APPROOT . '/views/inc/components/footer.php'; ?>
-
+    
     </div>
+
+    <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+</div>
+            
+    

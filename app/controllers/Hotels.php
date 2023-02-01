@@ -103,7 +103,7 @@
             $this->view('hotels/v_hotelReg', $data);
         }
         // $this->view('hotels/v_register');
-       }
+    }
 
         //login
         public function login(){
