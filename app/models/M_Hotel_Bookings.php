@@ -1,5 +1,5 @@
 <?php
-    class M_Taxi_Request{
+    class M_Hotel_Bookings{
         private $db;
 
         public function __construct()
@@ -69,6 +69,19 @@
             return $posts;
         }
 
+        //view bookings with filter
+        public function viewbookings($usertype,$userid){
+            $this->db->query('SELECT * FROM hotel_bookings');
+            $bookings=$this->db->resultSet();
+            $filteredbookings=filterBookings($bookings,$usertype,$userid);
+            foreach ($filteredbookings as $booking) {
+                $hotel=$this->getHotelById($booking->hotel_id);
+                $hotel_name=$hotel->Name;
+                $booking->hotel_id=$hotel_name;
+            }
+            return $filteredbookings;
+        }
+
         //delete taxi request
         public function deletetaxirequest($id){
             $this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
@@ -85,9 +98,36 @@
         }
 
 
-        public function getTaxiRequestById($id){
-            $this->db->query('SELECT * FROM v_taxi_request WHERE request_id=:request_id');
-            $this->db->bind(':request_id',$id);
+        public function getHotelById($id){
+            $this->db->query('SELECT * FROM hotels WHERE HotelID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getUserDetails($userID)
+        {
+            $this->db->query('SELECT * FROM users WHERE UserID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getTaxiById($id){
+            $this->db->query('SELECT * FROM taxiowner WHERE OwnerID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getGuideById($id){
+            $this->db->query('SELECT * FROM guides WHERE GuideID=:id');
+            $this->db->bind(':id',$id);
 
             $row=$this->db->single();
 

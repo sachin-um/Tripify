@@ -22,7 +22,7 @@ else {
         </div>
     
         <div >
-            <form action="<?php echo URLROOT; ?>/Request/editTaxiRequest" method="POST">
+            <form action="<?php echo URLROOT; ?>/Request/editTaxiRequest/<? echo $data['request_id'] ?>" method="POST">
                 
                 <input type="text" id="pickuplocation" name="pickuplocation" placeholder="From Where journey Begin...?" value="<?php echo $data['pickuplocation']; ?>">
                 <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
@@ -44,7 +44,7 @@ else {
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Pickup Time" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
-                <textarea name="description" id="description" cols="52" rows="10" placeholder="Additional Details"></textarea>
+                <textarea name="description" id="description" cols="52" rows="10" placeholder="Additional Details"><?php echo $data['description']; ?></textarea>
                 <span class="invalid"><?php echo $data['description_err']; ?></span>
                 <button id="sign-up-btn-1" type="submit">Update</button>
                 <input type="hidden" name="travelerid" id="travelerid" value="<?php echo $_SESSION['user_id'];?>">

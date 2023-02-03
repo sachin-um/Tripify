@@ -12,7 +12,7 @@
                   <a href="#!" class="text-dark">Privacy Policy</a>
                 </li>
                 <li>
-                  <a href="#!" class="text-dark">Resources and Links</a>
+                  <a href="<?php echo URLROOT; ?>/Users/contactus" class="text-dark">Contact Us</a>
                 </li>
                 <li>
                   <a href="#!" class="text-dark">Careers</a>

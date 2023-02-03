@@ -7,7 +7,7 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Traveler') {
+elseif ($_SESSION['user_type']!='Admin') {
     flash('reg_flash', 'Only the Traveler can have access...');
     redirect('Pages/home');
 }
@@ -25,13 +25,11 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item ">Guide Requests</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Complains</a>
+            <a href="#" class="menu-item is-active">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item">Messages</a>
+            <a href="#" class="menu-item">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Articles</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -39,7 +37,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left;">Profile Settings</h1>
+        <h2 style="text-align: left; margin-left:8%;">Profile Settings</h1>
         <hr>
         <br>
         <div class="first-container">
@@ -81,15 +79,11 @@ else {
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>verificaion Status: </h3>
+                        <h3>Assigned Area: </h3>
                     </div>
                         
                     <div class="sub-sub">
-                        <?php if ($data->verification_status ==1) {
-                            ?><h3>Verified</h3><?php
-                        }else {
-                            ?><h3>Not Verified </h3><?php
-                        } ?>
+                        <h3><?php $data->assigned_area ?></h3> 
                     </div>
                         
                 </div>
