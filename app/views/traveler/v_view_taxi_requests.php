@@ -29,10 +29,12 @@ else {
 
         <nav class="menu">
             <a href="#" class="menu-item">User Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item is-active">Taxi Requests</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item ">Guide Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item ">Complains</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -56,7 +58,8 @@ else {
     <div class="dashboad-content">
         <div>
             <h2 class="title" >Taxi Requests</h2>
-        </div>    
+        </div>  
+        <?php flash('request_flash'); ?>  
         <div class="request-list">
 
         <?php
@@ -109,8 +112,9 @@ else {
             <?php
             if ($_SESSION['user_type']=='Traveler') {
                 ?>
-                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
-                    <button id="request-delete-btn" type="submit">Delete</button>
+                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                    <a href="<?php echo URLROOT; ?>/Request/deleteTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-delete-btn" type="submit">Delete</button></a>
+                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
                 <?php
             }
             elseif ($_SESSION['user_type']=='Taxi') {

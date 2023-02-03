@@ -18,11 +18,11 @@ else {
     <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Tell us about your need</p> 
+            <p id="tag">Edit Your Guide Request</p> 
         </div>
     
         <div >
-            <form action="<?php echo URLROOT; ?>/Request/addGuideRequest" method="POST">
+            <form action="<?php echo URLROOT; ?>/Request/editGuideRequest/<? echo $data['request_id'] ?>" method="POST">
                 
                 <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
                 <span class="invalid"><?php echo $data['caption_err']; ?></span>
@@ -45,7 +45,7 @@ else {
                     <option value='spanish'>Spanish</option>
                 </select>
                 <span class="invalid"><?php echo $data['language_err']; ?></span>
-                <textarea name="additional-details" id="additional-details" cols="82" rows="10" placeholder="Additional Details"></textarea>
+                <textarea name="additional-details" id="additional-details" cols="82" rows="10" placeholder="Additional Details"><?php echo $data['additional-details']; ?></textarea>
                 <span class="invalid"><?php echo $data['additional-details_err']; ?></span>
                 <button id="sign-up-btn-1" type="submit">Request a Guide</button>
                 <input type="hidden" name="travelerid" id="travelerid" value="<?php echo $_SESSION['user_id'];?>">

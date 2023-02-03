@@ -69,6 +69,14 @@
     text-align: center;
 }
 
+
+ hr{
+    height: 5px;
+    background:#35BCBF;
+    border: none;
+ }
+
+
  /* @media(max-width: 768px){
     .menu-toggle{
         display: block;

@@ -1,0 +1,17 @@
+.contact-form{
+    z-index: 999;
+    background: #FFFFFF;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 1%;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.contact-content{
+    width: 70%;
+    /* text-align: center; */
+    padding-left: 15%;
+}
