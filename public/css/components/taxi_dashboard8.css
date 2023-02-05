@@ -1,0 +1,29 @@
+#taxi_dash_Buser_img{
+    width: 10em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.taxi_dash_trip_art{
+    margin-top: 1em;
+    line-height: 2em;
+}
+
+
+#taxi_dash_Vreq{
+    margin-top: 1.5em;
+    height: 2.5em;
+    width:fit-content;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10em;
+
+    border-color: #35BCBF;
+    background-color: #03002E;
+    
+
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0%);
+}
+
