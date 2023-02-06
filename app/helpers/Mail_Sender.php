@@ -44,6 +44,47 @@ function sendMail($email,$user){
     }
 }
 
+function sendAdminMail($email,$user,$password){
+    $mail = new PHPMailer(true);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Admin Ragistration Confirmation';
+        $mail->Body    = "<p> Dear $user,</p> Congratulations for being singned up as an adminstrator of the Tripfy team.<br>
+        <p> Your username : $email</p>
+        <br>
+        <p> Your Password : $password</p>
+        <br>
+        <p>Click the link below to change the password of your account</p>
+        <br>
+        <p>http://localhost/Tripify/Admins/changepassword</p>
+        <br><br>
+        <p>With regards,</p>
+        <b>Tripify.</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
 
 
 function sendResetPasswordMail($email){

@@ -5,14 +5,14 @@
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
-        <div class="form-admin-login">
+        <div class="form-login">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
                 <p id="tag">Admin Login</p> 
             </div>
     
             <div >
-                <form action="<?php echo URLROOT; ?>/Users/login" method="POST">
+                <form action="<?php echo URLROOT; ?>/Admins/login" method="POST">
                     <input type="email" id="email" name="email" placeholder="   Email"  value="<?php echo $data['email']; ?>">
                     <span class="invalid"><?php echo $data['email_err']; ?></span>
                     <input type="password" id="password" name="password" placeholder="   Password" value="<?php echo $data['password']; ?>">

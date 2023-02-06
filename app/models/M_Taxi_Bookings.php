@@ -1,5 +1,5 @@
 <?php
-    class M_Taxi_Request{
+    class M_Taxi_Bookings{
         private $db;
 
         public function __construct()
@@ -63,10 +63,25 @@
         }
 
         public function viewall(){
-            $this->db->query('SELECT * FROM v_taxi_request');
+            $this->db->query('SELECT * FROM taxi_bookings');
             $posts=$this->db->resultSet();
 
             return $posts;
+        }
+
+        //view bookings with filter
+        public function viewbookings($usertype,$userid){
+            $this->db->query('SELECT * FROM taxi_reservation');
+            $bookings=$this->db->resultSet();
+            $filteredbookings=filterBookings($bookings,$usertype,$userid);
+            foreach ($filteredbookings as $booking) {
+                $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
+                $number=$vehicle->vehicle_number;
+                $name=$vehicle->driver_name;
+                $booking->driver_name=$name;
+                $booking->vehicle_number=$number;
+            }
+            return $filteredbookings;
         }
 
         //delete taxi request
@@ -85,9 +100,21 @@
         }
 
 
-        public function getTaxiRequestById($id){
-            $this->db->query('SELECT * FROM v_taxi_request WHERE request_id=:request_id');
-            $this->db->bind(':request_id',$id);
+        
+
+        public function getUserDetails($userID)
+        {
+            $this->db->query('SELECT * FROM users WHERE UserID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+
+        public function getVehicleById($id){
+            $this->db->query('SELECT * FROM vehicles WHERE VehicleID=:id');
+            $this->db->bind(':id',$id);
 
             $row=$this->db->single();
 

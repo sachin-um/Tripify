@@ -69,13 +69,13 @@
     text-align: center;
 }
 
+
  hr{
-    width: 86%;
     height: 5px;
     background:#35BCBF;
     border: none;
-    margin-left: 8%;
  }
+
 
  /* @media(max-width: 768px){
     .menu-toggle{

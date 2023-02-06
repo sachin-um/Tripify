@@ -4,7 +4,7 @@
 <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Assign am Admin...</p> 
+            <p id="tag">Assign an Admin</p> 
         </div>
     
         <div >
@@ -25,8 +25,8 @@
                     <option value="" disabled selected hidden>Assigned Area</option>
                     <option value="verification">User Verification</option>
                     <option value="editing">Editing</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
+                    <option value="fiat">Complaint Handling</option>
+                    <option value="audi">Maintainace</option>
                 </select>
                 <span class="invalid"><?php echo $data['assigned-area_err']; ?></span><br>
                 <button id="sign-up-btn-1" type="submit">Register Admin</button>

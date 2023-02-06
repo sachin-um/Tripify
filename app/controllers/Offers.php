@@ -9,14 +9,19 @@
 
         }
 
-        public function guideoffers(){
-            echo $_SESSION['user_type'];
+        public function guideoffers($request_id=NULL){
             $alloffers=$this->guideofferModel->viewall();
-            $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
+            $offers=filteroffers($alloffers,$_SESSION['user_type'],$request_id);
             $data=[
                 'guideoffers'=> $offers
             ];
-            $this->view('guide/v_guide_offers',$data);
+            if ($_SESSION['user_type']=='Guide') {
+                $this->view('guide/v_guide_offers',$data);
+            }
+            else {
+                $this->view('traveler/v_guide_offers',$data);
+            }
+            
         }
 
         public function addGuideOffer($requestid){
