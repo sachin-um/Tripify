@@ -25,11 +25,11 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item">Back</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item is-active">Travelers</a>
-            <a href="#" class="menu-item">Guides</a>
-            <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Hotels</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Taxies</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Back</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item is-active">Travelers</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item">Guides</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotels" class="menu-item">Hotels</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -49,18 +49,29 @@ else {
                             <th>Name</th>
                             <th>Contact Number</th>
                             <th>Email</th>
-                            <th>status</th>
-                            <th>#</th>
+                            <th>Verification status</th>
+                            <th>Account status</th>
+                            <th>Action</th>
                             
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $travelers=$data['UserData'];
+                            foreach($travelers as $traveler):
+                        ?>
                         <tr>
-                            <td data-lable="ID"><?php echo $message->id ?></td>
-                            <td data-lable="Name"><?php echo $message->name ?></td>
-                            <td data-lable="Contact Number"><?php echo $message->email ?></td>
-                            <td data-lable="Email"><?php echo $message->message ?></td>
+                            <td data-lable="ID"><?php echo $traveler->UserID ?></td>
+                            <td data-lable="Name"><?php echo $traveler->Name ?></td>
+                            <td data-lable="Contact Number"><?php echo $traveler->ContactNo ?></td>
+                            <td data-lable="Email"><?php echo $traveler->Email ?></td>
+                            <td data-lable="Email"><?php echo $traveler->verification_status ?></td>
+                            <td data-lable="Email"><?php echo $traveler->acc_status ?></td>
+                            <td data-lable="Email"><?php echo $traveler->Email ?></td>
                         </tr>
+                        <?php
+                            endforeach;
+                        ?>
                     </tbody>
                 </table>
             </div>

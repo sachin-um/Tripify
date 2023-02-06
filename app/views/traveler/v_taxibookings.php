@@ -76,6 +76,7 @@ else {
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
                             <td data-lable="Message"><?php echo $booking->PaymentStatus ?></td>
                             <td data-lable="Message"><?php echo $booking->DateAdded ?></td>
+                            <td data-lable="Name"><button class="btn" type="button">Cancel</button></td>
                         </tr>
                         <?php
                             endforeach;

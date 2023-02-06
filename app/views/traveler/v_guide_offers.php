@@ -29,10 +29,12 @@ else {
 
         <nav class="menu">
             <a href="#" class="menu-item">User Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxi Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Request</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Request</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Complains</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -53,7 +55,7 @@ else {
     </aside>
 
     <main class="right-side-content">
-    <div class="content">
+    <div class="dashboad-content">
         <div>
             <h2 class="title" >Guide Offers</h2>
         </div>
@@ -89,6 +91,7 @@ else {
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
                         <button id="request-offer-btn" type="submit">Accept offer</button>
+                        <button id="request-delete-btn" type="submit">Reject Offer</button>
                         <?php
                     }
                 ?>

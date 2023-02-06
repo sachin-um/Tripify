@@ -50,7 +50,7 @@ function filteritems($items,$usertype,$userid){
     
 }
 
-function filteroffers($items,$usertype,$request_id){
+function filteroffers($items,$usertype,$id){
     switch ($usertype) {
         case 'Taxi':
             return $items;
@@ -59,8 +59,8 @@ function filteroffers($items,$usertype,$request_id){
             return $items;
             break;
         case 'Traveler':
-            return array_filter($items,function ($item) use($request_id){
-                return ($item->traveler_id == $userid);
+            return array_filter($items,function ($item) use($id){
+                return ($item->request_id == $id);
             });
             break;
     }

@@ -1,0 +1,84 @@
+.trip-details{
+    
+    margin: auto;
+    /* display: flex; */
+    flex-direction: row;
+    justify-content: center;
+}
+
+.trip-name{
+    width: 100%;
+}
+
+.trip-location{
+    width: 100%;
+}
+
+.trip-startdate{
+    width: 100%;
+}
+
+.trip_enddate{
+    width: 100%;
+}
+
+.plan-table-container{
+    margin: 40px 10% 40px;
+}
+
+.plan-table{
+    width: 100%;
+    border-collapse: collapse;
+    min-height: 700px;
+}
+
+.plan-table thead{
+    background-color: #03002E;
+}
+
+.plan-table thead tr th{
+    width: 33%;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    color: #FFFFFF;
+    opacity: 1;
+    padding: 12px;
+    vertical-align: top;
+    border: 1px solid #dee2e685;
+}
+
+.plan-table tbody tr td{
+    width: 33%;
+    font-size: 14px;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    color: black;
+    background-color: #f1f1f1;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #dee2e685;
+}
+
+
+.plan-table tbody tr td .btn{
+    width: 130px;
+    text-decoration: none;
+    line-height: 35px;
+    display: block;
+    background-color: #ff1046;
+    
+}
+
+.plan-item-add-button{
+    width: 60%;
+    height: 60px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #03002E;
+    cursor: pointer;
+    margin-top: 4%;
+}
+
+

@@ -25,11 +25,11 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item">Back</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Travelers</a>
-            <a href="#" class="menu-item is-active">Guides</a>
-            <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item ">Hotels</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Taxies</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Back</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">Travelers</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item">Guides</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotels" class="menu-item">Hotels</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item is-active">Taxies</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -48,24 +48,35 @@ else {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Contact Number</th>
-                            <th>No of Vehicles</th>
+                            <th>NIC </th>
                             <th>Email</th>
-                            <th>Area</th>
+                            <th>Address</th>
+                            <th>Company Name</th>
+                            <th>No of Vehicles</th>
                             <th>status</th>
-                            <th>#</th>
+                            <th>Action</th>
                             
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $taxies=$data['UserData'];
+                            foreach($taxies as $taxi):
+                        ?>
                         <tr>
-                            <td data-lable="ID"><?php echo $message->id ?></td>
-                            <td data-lable="Name"><?php echo $message->name ?></td>
-                            <td data-lable="Contact Number"><?php echo $message->email ?></td>
-                            <td data-lable="No of Vehicles"><?php echo $message->message ?></td>
-                            <td data-lable="Email"><?php echo $message->message ?></td>
-                            <td data-lable="Area"><?php echo $message->message ?></td>
-                            <td data-lable="Status"><?php echo $message->message ?></td>
+                            <td data-lable="ID"><?php echo $taxi->UserID ?></td>
+                            <td data-lable="Name"><?php echo $taxi->moreDetails->owner_name ?></td>
+                            <td data-lable="Contact Number"><?php echo $taxi->moreDetails->contact_number ?></td>
+                            <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->nic_no ?></td>
+                            <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->address ?></td>
+                            <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->company_name ?></td>
+                            <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
+                            <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
+                            <td data-lable="Email"><?php echo Suspend?></td>
                         </tr>
+                        <?php
+                            endforeach;
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -53,7 +53,6 @@ else {
                             <th>Booking Date</th>
                             <th>Payment</th>
                             <th>Payment Status</th>
-                            <th>Paid Date</th>
                             <th>Booked Date and time</th>
                             <th>Cancel</th>
                             
@@ -73,7 +72,7 @@ else {
                             <td data-lable="Name"><?php echo $booking->payment ?></td>
                             <td data-lable="Name"><?php echo $booking->payment_status ?></td>
                             <td data-lable="Name"><?php echo $booking->date_added ?></td>
-                            <td data-lable="Message"><?php echo 'hi'  ?></td>
+                            <td data-lable="Name"><button class="btn" type="button">Cancel</button></td>
                         </tr>
                         <?php
                             endforeach;
