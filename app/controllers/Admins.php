@@ -319,6 +319,28 @@
                 $this->view('users/v_reset_password',$data);
             }
         }
+
+
+        public function profiles($usertype){
+
+            $userData=$this->userModel->getAllUserDetails($usertype);
+            $data=[
+                'UserData'=>$userData
+            ];
+            if($usertype=='Traveler'){
+                $this->view('admin/v_admin_up_traveler',$data);
+            }
+            elseif($usertype=='Hotel'){
+                $this->view('admin/v_admin_up_Hotels',$data);
+            }
+            elseif($usertype=='Guide'){
+                $this->view('admin/v_admin_up_guides',$data);
+            }
+            elseif($usertype=='Taxi'){
+                $this->view('admin/v_admin_up_Taxies',$data);
+            }
+
+        }
         
     }
 

@@ -82,9 +82,9 @@ else {
                 <?php
                     if ($_SESSION['user_type']=='Traveler') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
                             <a href="<?php echo URLROOT; ?>/Request/deleteTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-delete-btn" type="submit">Delete</button></a>
-                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
+                            <a href="<?php echo URLROOT; ?>/Offers/guideoffers/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
                         <?php
                     }
                     elseif ($_SESSION['user_type']=='Guide') {

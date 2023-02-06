@@ -32,7 +32,8 @@
                 $this->view('hotels/v_hotel_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Admin') {
-                echo $_SESSION['user_type'];
+                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+                $data->details=$admindetails;
                 $this->view('admin/v_admin_dashboard',$data);
             }
         }

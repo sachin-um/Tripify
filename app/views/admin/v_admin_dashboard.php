@@ -25,11 +25,11 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">Admin Profile</a>
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item">Messages</a>
-            <a href="#" class="menu-item">Complains</a>
-            <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Articles</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">User Profiles</a>
+            <a href="<?php echo URLROOT; ?>/Complains/viewall" class="menu-item">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -83,7 +83,7 @@ else {
                     </div>
                         
                     <div class="sub-sub">
-                        <h3><?php $data->assigned_area ?></h3> 
+                        <h3><?php echo $data->details->AssignedArea ?></h3> 
                     </div>
                         
                 </div>
