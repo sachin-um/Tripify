@@ -15,29 +15,64 @@ else {
     ?> 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<div class="app">
-    <aside class="sidebar">
+<?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
-        <div class="menu-toggle">
-            <div class="hamburger">
-                <span></span>
+<main class="right-side-content">
+    <p class="home-title-2">Account Details</p>
+        
+        <div class="hotel-room-top-picks">
+
+            <div class="information-container">
+
+            </div>
+
+            <div class="slideshow-container fade">
+
+                <div class="Containers">
+                    <div class="MessageInfo">1 / 4</div>
+                    <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
+                    <div class="H-Room-Info">First caption</div>
+                </div>
+
+                <div class="Containers">
+                    <div class="MessageInfo">2 / 4</div>
+                    <img src="<?php echo URLROOT?>/img/Galadari2.jpg" style="width:100%">
+                    <div class="H-Room-Info">Second Caption</div>
+                </div>
+
+                <div class="Containers">
+                    <div class="MessageInfo">3 / 4</div>
+                    <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
+                    <div class="H-Room-Info">Third Caption</div>
+                </div>
+
+                <div class="Containers">
+                    <div class="MessageInfo">4 / 4</div>
+                    <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
+                    <div class="H-Room-Info">F Caption</div>
+                </div>
+
+                <!-- Back and forward buttons -->
+                <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="forward" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+                <!-- The circles/beads -->
+            <div style="text-align:center">
+                <span class="beads" onclick="currentSlide(1)"></span>
+                <span class="beads" onclick="currentSlide(2)"></span>
+                <span class="beads" onclick="currentSlide(3)"></span>
+                <span class="beads" onclick="currentSlide(4)"></span>
+            </div> 
+            <br>
+            <div class="home-div-3">
+                <a href=""></a> <button class="all-purpose-btn">Add More Pics</button>
             </div>
         </div>
 
-        <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item">Rooms</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
-            <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p>
-        </nav>
-    </aside>
-
-    <main class="right-side-content">
-        <br><br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
-        <hr>
+        
+        <!-- Edit from here -->
         <div class="first-container">
             <br>
             <div class="profile-image">
@@ -157,7 +192,7 @@ else {
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>Contact Nummber: </h3>
+                        <h3>Contact Number: </h3>
                     </div>
                         
                     <div class="sub-sub">
@@ -175,13 +210,42 @@ else {
         <br><br>
     </div>
 
-</div>
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
 
 <?php
 }
 ?>
 
+<script>
+    var slidePosition = 1;
+    SlideShow(slidePosition);
+
+    // forward/Back controls
+    function plusSlides(n) {
+    SlideShow(slidePosition += n);
+    }
+
+    //  images controls
+    function currentSlide(n) {
+    SlideShow(slidePosition = n);
+    }
+
+    function SlideShow(n) {
+    var i;
+    var slides = document.getElementsByClassName("Containers");
+    var circles = document.getElementsByClassName("beads");
+    if (n > slides.length) {slidePosition = 1}
+    if (n < 1) {slidePosition = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < circles.length; i++) {
+        circles[i].className = circles[i].className.replace(" enable", "");
+    }
+    slides[slidePosition-1].style.display = "block";
+    circles[slidePosition-1].className += " enable";
+    } 
+</script>
 
     
 

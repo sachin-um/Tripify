@@ -21,11 +21,12 @@
                 <h4>Email</h4>
                 <input type="text" class="login-info" id="email" name="email">  
                 <span class="invalid"><?php echo $data['email_err']; ?></span>
-                    <h4>Password</h4>
-                    <input type="password" class="login-info" id="password" name="password">
-                    <span class="invalid"><?php echo $data['password_err']; ?></span><br>
-                    <button class="start-btn" type="submit">Log in</button> 
-                </form>
+
+                <h4>Password</h4>
+                <input type="password" class="login-info" id="password" name="password">
+                <span class="invalid"><?php echo $data['password_err']; ?></span><br>
+                <button class="start-btn" type="submit">Log in</button> 
+            </form>
                 <?php flash('reg_flash'); ?>
 
                 <br><br><br><br>

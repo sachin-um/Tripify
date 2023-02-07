@@ -5,14 +5,13 @@
 
  .sidebar{
     position: fixed;
-    flex: 1 1 0;
-    width: 250px;
-    max-width: 250px;
+    width: 14%;
     height: 100%;
     padding: 2rem 1rem;
-    background-color: #D9D9D9;
-    margin-top: 100px   ;
+    background-image: linear-gradient(#03002E, black);
+    margin-top: 5%;
  }
+
 .sidebar-nav{
     width: 20%;
     height: 600px;
@@ -37,22 +36,23 @@
  .sidebar .menu .menu-item{
     display: block;
     padding: 1rem;
-    color: #03002E;
+    color: white;
     text-decoration: none;
     transition: 0.2s linear;
  }
 
  .sidebar .menu .menu-item:hover,
  .sidebar .menu .menu-item.is-active{
-    color: #35BCBF;
+    color: #03002E;
     background-color: white;
     border-right: 5px solid #35BCBF;
  }
 
  .right-side-content{
-    margin-top: 100px;
-    margin-left: 270px;
-    width: 80%;
+   margin-top: 8%;
+   margin-left: 14%;
+   width: 86%;
+   float: right;
  }
 
  .right-side-content.h3{

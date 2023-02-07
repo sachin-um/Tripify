@@ -288,7 +288,17 @@
         
         }
 
-        
+        public function showHotels(){
+            $this->view('hotels/v_hotel_list');
+        }
+
+        public function showHotelDetails(){
+            $this->view('hotels/v_hotel_details_page');
+        }
+
+        public function showRoomDetails(){
+            $this->view('hotels/v_booking');
+        }
     }
 
 ?>

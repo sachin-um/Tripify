@@ -1,0 +1,10 @@
+.hotel-details-main-div{
+    width: 80%;
+    min-height: 50%;
+    background: rgba(211, 211, 211, 0.3);
+    display: flex;
+}
+
+.hotel-details-div-one{
+    width: 50%;
+}
