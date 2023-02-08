@@ -1,55 +1,129 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<div class="wrapper">
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
+<div class="wrapper"> 
+    <div class="tax-home-content">
+        <br><br><br>
+        <p class="home-title-2" >Where are you going?</p>
+        
+
+        <form action="" method="post">
+            <div class="nav-main">
+                
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Vehicle Type</p>
+                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
+                        <option value="car">Tuk Tuk</option>
+                        <option value="van">Car</option>
+                        <option value="fiat">Van</option>
+                        <option value="audi">Bus</option>
+                    </select>
+                </div>
+
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Trip Date</p> 
+                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
+                    <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
+                </div>
+
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Pick up location</p>
+                    <input type="text" class="hotel-labels-1" id="place" name="place" placeholder="Pick up location">
+                </div>
+
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Pick up location</p>
+                    <input type="text" class="hotel-labels-1" id="destination" name="destination" placeholder="Destination">
+                </div>
+
+                
+                
+                
+            </div>
+
+            <div class="home-div-3">
+                <button class="all-purpose-btn">Go</button>
+            </div>
+            
+        </form>
 
 
-<?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?>
+        <div class="hotel-home-join-network">
+            
+            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find what you looking for ? Don't Worry you can still get what you want</p>
+            
+            <div class="home-div-3">
+                <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
+            </div>
 
-    <div class="content">
-    <div class="white-space">
-        <h2 class="title" >Rent any vehicle for your trip!</h2>
-        <br>
-    </div>
-    <br>
-    <br>
-    <div class="search-form">
-        <div class="first-fill">
-            <input type="text" class="search" id="place" name="place" placeholder="Pick up location">
-        </div>    
-    
-        <div class="scnd-fill">
-            <select class="search" id="vehicle-type" name="vehicle-type">
-            <option value="" disabled selected hidden>Vehicle Type</option>
-                <option value="car">Car</option>
-                <option value="van">Van</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
-            </select>
         </div>
-    
-        <div class="thrd-fill">
-            <input type="text" class="search" id="destination" name="destination" placeholder="Destination">
+
+
+        <div class="hotel-home-join-network">
+            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+            <div class="home-div-3">
+                <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register Taxi Owner</button>
+            </div>
         </div>
+
+
+        <p class="home-title-2" >Top Taxi Companies Around The Island</p>
+
+        <div class="hotel-home-top-picks">
+            <div class="nav-main">
+                <div class="hotel-ad-card">
+                    <div class="hotel-ad-card-pic">
+                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
+                        <span class="dot">4.5</span>
+                    </div>                    
+
+
+                    <div class="hotel-ad-card-desc">
+                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
+                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                    </div>
+                </div>
+
+
+                <div class="hotel-ad-card">
+                    <div class="hotel-ad-card-pic">
+                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
+                        <span class="dot">3.8</span>
+                    </div>                    
+
+
+                    <div class="hotel-ad-card-desc">
+                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
+                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                    </div>
+                </div>
+
+
+                <div class="hotel-ad-card">
+                    <div class="hotel-ad-card-pic">
+                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
+                        <span class="dot">4.0</span>
+                    </div>                    
+
+
+                    <div class="hotel-ad-card-desc">
+                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
+                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>        
+        
     </div>
-    <br>
-    <div class="btn-div">
-        <button class="btn" type="button">Search</button>
-    </div>
-    </div>
-    <br>
-    <hr>
-    <div class="white-space">
-        <h2 class="title" >Didn't find what you looking for ? Don't Worry you can still get what you want</h2>
-    </div>
-    <div class="btn-div">
-        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
-    </div>
-    <br>
-    <hr>
-    <div class="white-space">
-        <h2 class="title" >Join our network today..</h2>
-    </div>
-    <div class="btn-div">
-        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register a Taxi Owner</button>
-    </div>
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
-</div>   
+
+</div>
+
+
+
+
+

@@ -114,7 +114,7 @@
 }
 #taxi_veh_delete{
     float: right;
-    background-color:black;
+    background-color:#CB2400;
 }
 
 #taxi_veh_view:hover,#taxi_veh_delete:hover,#taxi_pro_addv:hover{
