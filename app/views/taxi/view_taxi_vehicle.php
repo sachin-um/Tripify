@@ -1,3 +1,32 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ..................... CAN BE DELETE.......................... -->
+
+
+
+
+
+
+
+
+
+
+
+
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
@@ -17,7 +46,6 @@
     
     <hr>
 
-    <!-- <diV class="taxi_view_v_dri"> -->
 
         
         

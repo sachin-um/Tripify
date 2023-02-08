@@ -55,6 +55,23 @@
                 return false;
             }
         }
+
+        //contact admin
+        public function contactus($data){
+            $this->db->query('INSERT INTO message(Email,Message,Name,) VALUES(:email,:message,:name)');
+            $this->db->bind(':email',$data['email']);
+            $this->db->bind(':message',$data['message']);
+            $this->db->bind(':name',$data['name']);
+
+
+            if ($this->db->execute()) {
+                
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
         public function getUserDetails($userID)
         {
             $this->db->query('SELECT * FROM users WHERE UserID= :userid');
@@ -63,6 +80,76 @@
 
             return $row;
         }
+
+        public function getAllUserDetails($usertype)
+        {
+            $this->db->query('SELECT * FROM users WHERE UserType= :usertype');
+            $this->db->bind(':usertype',$usertype);
+            $users=$this->db->resultSet();
+            
+            if($usertype=='Traveler'){
+                return $users;
+            }
+            elseif($usertype=='Hotel'){
+                foreach($users as $user){
+                    $details=$this->getHotelById($user->UserID);
+                    $user->moreDetails=$details;
+                }
+                return $users;
+            }
+            elseif($usertype=='Guide'){
+                foreach($users as $user){
+                    $details=$this->getGuideById($user->UserID);
+                    $user->moreDetails=$details;
+                }
+                return $users;
+            }
+            elseif($usertype=='Taxi'){
+                foreach($users as $user){
+                    $details=$this->getTaxiById($user->UserID);
+                    $user->moreDetails=$details;
+                }
+                return $users;
+            }
+            
+        }
+
+        public function getAdminDetails($userID)
+        {
+            $this->db->query('SELECT * FROM admins WHERE AdminID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getHotelById($id){
+            $this->db->query('SELECT * FROM hotels WHERE HotelID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getGuideById($id){
+            $this->db->query('SELECT * FROM guides WHERE GuideID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getTaxiById($id){
+            $this->db->query('SELECT * FROM taxiowner WHERE OwnerID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
 
         //login
         public function login($data){

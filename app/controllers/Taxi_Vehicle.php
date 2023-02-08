@@ -14,8 +14,9 @@
             $data=[
                 'vehicles'=> $allvehicles
             ];
-            $this->view('taxi/v_taxiProfile',$data);
+            $this->view('taxi/v_taxi_dashboard3',$data);
         }
+
         public function addavehicle(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -118,6 +119,18 @@
             }
             
         }
+
+
+        public function edit(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard3_1',$data);
+        }
+
+
+
+
+
+
     }
 
 

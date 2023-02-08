@@ -83,6 +83,8 @@ class M_Taxi{
             return false;
         }
     }
+
+    
 }
 
 ?>

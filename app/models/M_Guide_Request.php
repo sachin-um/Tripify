@@ -10,20 +10,49 @@
 
 
 
-        //add taxi request
+        //add guide request
 
-        public function addtaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude)');
-            $this->db->bind(':date',$data['date']);
-            $this->db->bind(':time',$data['time']);
-            $this->db->bind(':description',$data['description']);
+        public function addguiderequest($data){
+            $this->db->query('INSERT INTO guide_request(language,Location,Date,Time,Description,caption,TravelerID) VALUES(:language,:Location,:Date,:Time,:Description,:caption,:travelerid)');
+            $this->db->bind(':language',$data['language']);
+            $this->db->bind(':Location',$data['area']);
+            $this->db->bind(':Date',$data['date']);
             $this->db->bind(':travelerid',$data['travelerid']);
-            $this->db->bind(':pickuplocation',$data['pickuplocation']);
-            $this->db->bind(':destination',$data['destination']);
-            $this->db->bind(':p_latitude',$data['p-latitude']);
-            $this->db->bind(':p_longitude',$data['p-longitude']);
-            $this->db->bind(':d_latitude',$data['d-latitude']);
-            $this->db->bind(':d_longitude',$data['d-longitude']);
+            $this->db->bind(':Time',$data['time']);
+            $this->db->bind(':Description',$data['additional-details']);
+            $this->db->bind(':caption',$data['caption']);
+            
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //edit guide request
+        public function editguiderequest($data){
+            $this->db->query('UPDATE guide_request set language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestID=:request_id');
+            $this->db->bind(':language',$data['language']);
+            $this->db->bind(':Location',$data['area']);
+            $this->db->bind(':Date',$data['date']);
+            $this->db->bind(':travelerid',$data['travelerid']);
+            $this->db->bind(':Time',$data['time']);
+            $this->db->bind(':Description',$data['additional-details']);
+            $this->db->bind(':caption',$data['caption']);
+            $this->db->bind(':request_id',$data['request_id']);
+            
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        //delete guide request
+        public function deleteguiderequest($id){
+            $this->db->query('DELETE from guide_request WHERE RequestID=:request_id');
+            $this->db->bind(':request_id',$data['request_id']);
 
             
 
@@ -35,29 +64,14 @@
             }
         }
 
-        //edit taxi request
-        public function edittaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude)');
-            $this->db->bind(':date',$data['date']);
-            $this->db->bind(':time',$data['time']);
-            $this->db->bind(':description',$data['description']);
-            $this->db->bind(':travelerid',$data['travelerid']);
-            $this->db->bind(':pickuplocation',$data['pickuplocation']);
-            $this->db->bind(':destination',$data['destination']);
-            $this->db->bind(':p_latitude',$data['p-latitude']);
-            $this->db->bind(':p_longitude',$data['p-longitude']);
-            $this->db->bind(':d_latitude',$data['d-latitude']);
-            $this->db->bind(':d_longitude',$data['d-longitude']);
-            $this->db->bind(':request_id',$data['request_id']);
 
-            
+        public function getGuideRequestById($id){
+            $this->db->query('SELECT * FROM v_guide_request WHERE request_id=:request_id');
+            $this->db->bind(':request_id',$id);
 
-            if ($this->db->execute()) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            $row=$this->db->single();
+
+            return $row;
         }
 
         public function viewall(){
