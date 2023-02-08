@@ -139,10 +139,12 @@
   
         </div>  
        
-        <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+        
     </div>
       
 </div> 
+
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 
 

@@ -35,7 +35,7 @@
                         'area'=>trim($_POST['area']),
                         'date'=>trim($_POST['date']),
                         'time'=>trim($_POST['time']),
-                        'language'=>trim($_POST['description']),
+                        'language'=>trim($_POST['language']),
                         'additional-details'=>trim($_POST['additional-details']),
                         'travelerid'=>trim($_POST['travelerid']),
                         'caption'=>trim($_POST['caption']),
@@ -140,7 +140,7 @@
 
                 ];
 
-
+                
                 //validate name
                 if (empty($data['area'])) {
                     $data['area_err']='Please enter the area you want travel';
@@ -163,8 +163,8 @@
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->editguiderequest($data)) {
-                        flash('request_flash', 'Guide Request is Succusefully Updated..!');
-                        redirect('Request/GuideRequest');
+                        // flash('request_flash', 'Guide Request is Succusefully Updated..!');
+                        // redirect('Request/GuideRequest');
                     }
                     else{
                         die('Something went wrong');

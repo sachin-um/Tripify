@@ -77,12 +77,7 @@ input[type="radio"]{
     -webkit-appearance: radio;
 }
 
-select{
-    border: none;
-    background-color: white;
-    padding-left: 5%;
-    font-size: 1rem;
-}
+
 
 
 .welcome-banner{
