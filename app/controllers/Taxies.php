@@ -168,6 +168,14 @@
             
         }
 
+        public function makeoffers(){
+            $data=[];
+            $this->view('taxi/v_add_taxi_offer',$data);
+            
+        }
+
+        
+
         public function bookings(){
             $data=[];
             $this->view('taxi/v_taxi_dashboard7',$data);

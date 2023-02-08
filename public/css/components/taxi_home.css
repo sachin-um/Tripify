@@ -1,4 +1,4 @@
-
+/* 
 .carrentalsearchtaxi{
     padding-bottom: 8em;
     padding-top: 1em;
@@ -65,7 +65,7 @@
 
 /* ...............................................  */
 
-.carrentaldriverinfo > img{
+/* .carrentaldriverinfo > img{
     height:8em ;
     width: 12em;
 }
@@ -92,13 +92,13 @@
 .carrentaldriverinfo > article{
     margin-left: 1em;
 }
-
+ */
 
 
 
 /* .................................................  */
 
-
+/* 
 #carrentalregistercom{
     height: 3em;
     width:8em;
@@ -123,4 +123,26 @@
 #carrentaldrivername,#carrentaltaxcom{
     font-weight: bold;
     
+}
+
+  */
+
+.tax-home-content{
+    /* overflow: auto;
+    flex: 1;
+    min-height: 750px; */
+
+    margin-top: 2em;
+
+}
+
+
+
+.home-title-2{
+    text-align: center;
+    font-size: 2rem;
+}
+
+#tax_home_img{
+    width: 5em;
 }

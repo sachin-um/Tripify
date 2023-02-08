@@ -20,7 +20,7 @@
             <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/trip" class="menu-item">Trip Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item is-active">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
@@ -28,7 +28,78 @@
     </aside>
 
     <main class="right-side-content">
-        <div class="taxi_off_cont">
+        <p>Confrimed offers will be moved to the bookings section.</p>
+        <div class="request-list">
+            
+            <div class="request">
+                 <div class="post-header">Request ID : 8695</div>
+                    <div class="post-body">
+
+                        <h5>Offer Details</h5>
+                    
+                        <div class="post-details">Vehicle Number: PE-5659  </div>
+                        <div class="post-details">Vehicle Type: Car </div>
+                        <div class="post-details">Driver Name: Karththi </div>
+                        <div class="post-date">Price per KM: <span id="request-data">2500.00</span></div>
+                        <div class="post-time">PaymentMethod: End of the trip</div>
+                        <div class="post-details">Additional Details:N/A </div>
+                        <div class="post-by-content">
+                            <div class="post-by">Offered By: Karththi</div>
+                        <div class="post-by">Contact number: 0778964983 </div>
+                        <div class="post-by">Offered at: 12/01/2023 </div>
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="request">
+                 <div class="post-header">Request ID : 8695</div>
+                    <div class="post-body">
+
+                        <h5>Offer Details</h5>
+                    
+                        <div class="post-details">Vehicle Number: PE-5659  </div>
+                        <div class="post-details">Vehicle Type: Car </div>
+                        <div class="post-details">Driver Name: Karththi </div>
+                        <div class="post-date">Price per KM: <span id="request-data">2500.00</span></div>
+                        <div class="post-time">PaymentMethod: End of the trip</div>
+                        <div class="post-details">Additional Details:N/A </div>
+                        <div class="post-by-content">
+                            <div class="post-by">Offered By: Karththi</div>
+                        <div class="post-by">Contact number: 0778964983 </div>
+                        <div class="post-by">Offered at: 12/01/2023 </div>
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="request">
+                 <div class="post-header">Request ID : 8695</div>
+                    <div class="post-body">
+
+                        <h5>Offer Details</h5>
+                    
+                        <div class="post-details">Vehicle Number: PE-5659  </div>
+                        <div class="post-details">Vehicle Type: Car </div>
+                        <div class="post-details">Driver Name: Karththi </div>
+                        <div class="post-date">Price per KM: <span id="request-data">2500.00</span></div>
+                        <div class="post-time">PaymentMethod: End of the trip</div>
+                        <div class="post-details">Additional Details:N/A </div>
+                        <div class="post-by-content">
+                            <div class="post-by">Offered By: Karththi</div>
+                        <div class="post-by">Contact number: 0778964983 </div>
+                        <div class="post-by">Offered at: 12/01/2023 </div>
+                        </div>
+                        
+                </div>
+            </div>
+
+            
+
+            
+        </div>
+
+        <!-- <div class="taxi_off_cont">
             <p>Confrimed offers will be moved to the bookings section.</p>
 
             <table class="taxi_off_cont_table">
@@ -74,6 +145,6 @@
             
             </table>
 
-        </div>
+        </div> -->
     </main>
  </div>
