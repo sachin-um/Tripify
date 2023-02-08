@@ -25,14 +25,14 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item">User Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>
             <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
             <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item is-active">Guide Bookings</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Complains</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
@@ -56,7 +56,7 @@ else {
                             <th>Duration</th>
                             <th>Payment</th>
                             <th>Payment Method</th>
-                            <th>Payment status</th>
+                            <th>Booking Status</th>
                             <th>Cancel</th>
                         </tr>
                     </thead>
@@ -74,7 +74,7 @@ else {
                             <td data-lable="Message"><?php echo $booking->Duration ?></td>
                             <td data-lable="Message"><?php echo $booking->payment ?></td>
                             <td data-lable="Message"><?php echo $booking->PaymentMethod ?></td>
-                            <td data-lable="Message"><?php echo $booking->PaymentStatus ?></td>
+                            <td data-lable="Message"><?php echo $booking->status ?></td>
                             <td data-lable="Name"><button class="btn" type="button">Cancel</button></td>
                         </tr>
                         <?php

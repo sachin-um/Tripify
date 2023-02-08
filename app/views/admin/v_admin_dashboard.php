@@ -37,7 +37,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Settings</h1>
+        <h2>Profile Settings</h1>
         <hr>
         <br>
         <div class="first-container">

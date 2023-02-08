@@ -56,22 +56,7 @@
             }
         }
 
-        //contact admin
-        public function contactus($data){
-            $this->db->query('INSERT INTO message(Email,Message,Name,) VALUES(:email,:message,:name)');
-            $this->db->bind(':email',$data['email']);
-            $this->db->bind(':message',$data['message']);
-            $this->db->bind(':name',$data['name']);
-
-
-            if ($this->db->execute()) {
-                
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        
         public function getUserDetails($userID)
         {
             $this->db->query('SELECT * FROM users WHERE UserID= :userid');

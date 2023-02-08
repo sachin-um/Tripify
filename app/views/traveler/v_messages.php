@@ -25,13 +25,13 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item">User Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
             <a href="#" class="menu-item">Taxi Bookings</a>Guide Bookings</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Guide Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Messages</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
