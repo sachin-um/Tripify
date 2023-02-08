@@ -84,13 +84,6 @@
 
 /*Commented part*/
 
-.nav-buttons{
-    width: 70%;
-    display:flex;
-    justify-content: center; 
-    align-items: center;
-}
-
 .nbtns{
     width: 8%;
     /* height: 100%; */

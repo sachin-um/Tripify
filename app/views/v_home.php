@@ -3,8 +3,6 @@
 <br><br>
 <div class="wrapper"> 
     <div class="content">
-
-        <br>
         <?php flash('reg_flash'); ?>
         <p class="home-title" ><b>Plan your dream Sri Lankan vacation cost free!</b></p>
 
