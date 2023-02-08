@@ -1,6 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
+
 <div class="wrapper"> 
     <div class="tax-home-content">
         <br><br><br>
@@ -55,6 +56,7 @@
             <div class="home-div-3">
                 <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
             </div>
+
 
         </div>
 

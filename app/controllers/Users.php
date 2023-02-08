@@ -2,7 +2,7 @@
     class Users extends Controller{
         public function __construct(){
             $this->userModel=$this->model('M_Users');
-            // $this->messageModel=$this->model('M_Messages');
+            $this->messageModel=$this->model('M_Messages');
         }
         public function index(){
 
@@ -402,7 +402,23 @@
                 'isLoggedIn'=>$this->isLoggedIn()
             ];
             // $this->view('v_home',$data);
-            redirect('Pages/home');
+
+            if ($_SESSION['user_type']=='Traveler') {
+                redirect('Pages/home');
+            }
+            elseif ($_SESSION['user_type']=='Hotel') {
+                $this->view('v_hotel_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Taxi') {
+                $this->view('v_taxi_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Guide') {
+                $this->view('v_guide_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Admin') {
+                $this->view('v_admin_dashboard',$data);
+            }
+            
         }
 
         public function createVerifySession($email){
@@ -445,7 +461,7 @@
                 $data=[
                     'name'=>trim($_POST['name']),
                     'email'=>trim($_POST['email']),
-                    'message'=>trim($_POST['messeage']),
+                    'message'=>trim($_POST['message']),
                     
 
                     'name_err'=>'',
@@ -475,7 +491,7 @@
                 if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['message_err'])) {
                     
                     
-                    if ($this->userModel->contactus($data)) {
+                    if ($this->messageModel->contactus($data)) {
                         
                         flash('reg_flash', 'Your message is recieved, we w');
                         redirect('Users/contactus');
@@ -509,13 +525,13 @@
 
         public function messages()
         {
-            $allmessages=$this->messageModel->viewall();
-            $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
+            $messages=$this->messageModel->viewall();
+            // $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'messages'=>$messages
             ];
             if ($_SESSION['user_type']=='Admin') {
-                $this->view('admin/v_admin_messages');
+                $this->view('admin/v_admin_messages',$data);
             }
             elseif ($_SESSION['user_type']=='Traveler') {
                 $this->view('traveler/v_messages');

@@ -29,7 +29,7 @@
                 $this->view('guide/v_guide_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Hotel') {
-                $this->view('hotels/v_hotel_dashboard',$data);
+                $this->view('hotels/v_dash_profile',$data);
             }
             else if ($_SESSION['user_type']=='Admin') {
                 $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);

@@ -1,0 +1,134 @@
+.hotel-details-main-div{
+    width: 80%;
+    min-height: 50%;
+    background: rgba(211, 211, 211, 0.3);
+    display: flex;
+}
+
+.hotel-details-div-one{
+    width: 50%;
+}
+
+.hotel-disc-2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-disc-3{
+    display: flex;
+    flex-direction: row;
+}
+
+.hotel-disc-1{
+    font-weight: 500;
+    width: 50%;
+}
+
+#review-btn{
+    width: 80%;
+    margin-top: 10%;
+}
+
+#view-review-btn{
+    width: 80%;
+    margin-top: 10%;
+}
+
+#hotel-map{
+    margin: auto;
+}
+
+#hotel-address{
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 5%;
+}
+
+#view-address{
+    margin: auto;
+}
+
+#review-btns-div{
+    text-align: center;
+}
+
+#booking-slideshow{
+    width: 90%;
+}
+
+#hotel-booking-form{
+    background-color: rgba(211, 211, 211, 0);
+}
+
+.price-details-1{
+    display: flex;
+}
+
+.hotel-price-check{
+    width: 40%;
+    text-align: left;
+    margin-left: 1%;
+}
+
+#hotel-nights-days{
+    text-align: center;
+    width:20%;
+    background-color: #03002E;
+    color: #e8b122;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    line-height: 3rem;
+    margin-left: 0;
+}
+
+.price-details-2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-price-details{
+    width: 40%;
+    display: flex;
+    margin: auto;
+}
+
+#No-of-rooms{
+    width: 30%;
+}
+
+#X{
+    width: 20%;
+}
+
+#No-of-nights{
+    width: 30%;
+}
+
+#Priceofroom{
+    width: 20%;
+}
+
+#hotel-taxes{
+    width: 80%;
+}
+
+#hotel-taxes-1{
+    width: 20%;
+}
+
+#prices-hr{
+    height: 2px;
+}
+
+#confirm-booking-btn{
+    width: 30%;
+    margin: auto;
+}
+
+#hotel-booking-title-1{
+    color: #e8b122;
+    justify-content: space-around;
+}

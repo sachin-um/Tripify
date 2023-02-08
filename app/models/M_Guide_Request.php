@@ -32,7 +32,7 @@
 
         //edit guide request
         public function editguiderequest($data){
-            $this->db->query('UPDATE guide_request set language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestID=:request_id');
+            $this->db->query('UPDATE guide_request set language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestsID=:request_id');
             $this->db->bind(':language',$data['language']);
             $this->db->bind(':Location',$data['area']);
             $this->db->bind(':Date',$data['date']);
@@ -51,7 +51,7 @@
         }
         //delete guide request
         public function deleteguiderequest($id){
-            $this->db->query('DELETE from guide_request WHERE RequestID=:request_id');
+            $this->db->query('DELETE from guide_request WHERE RequestsID=:request_id');
             $this->db->bind(':request_id',$data['request_id']);
 
             
