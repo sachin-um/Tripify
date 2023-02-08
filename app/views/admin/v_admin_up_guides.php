@@ -28,7 +28,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Back</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">Travelers</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item is-active">Guides</a>
-            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotels" class="menu-item">Hotels</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotel" class="menu-item">Hotels</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -37,7 +37,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Guides Profiles</h1>
+        <h2>Guides Profiles</h1>
         <hr>
         <br>
         <div class="first-container">
@@ -52,12 +52,13 @@ else {
                             <th>NIC</th>
                             <th>Area</th>
                             <th>Account status</th>
-                            <th>#</th>
+                            <th>Suspend</th>
+                            <th>Remove</th>
                             
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                             $guides=$data['UserData'];
                             foreach($guides as $guide):
                         ?>
@@ -69,7 +70,8 @@ else {
                             <td data-lable="Status"><?php echo $guide->moreDetails->NIC ?></td>
                             <td data-lable="Status"><?php echo $guide->moreDetails->Area ?></td>
                             <td data-lable="Status"><?php echo $guide->acc_status ?></td>
-                            <td data-lable="Status"><?php echo $guide->moreDetails->Area ?></td>
+                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
+                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
                         </tr>
                         <?php
                             endforeach;

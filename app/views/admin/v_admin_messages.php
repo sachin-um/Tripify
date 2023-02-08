@@ -25,11 +25,11 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">Admin Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Messages</a>
-            <a href="#" class="menu-item">Complains</a>
-            <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Articles</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">User Profiles</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item is-active">Messages</a>
+            <a href="<?php echo URLROOT; ?>/Complains/viewall" class="menu-item">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -37,7 +37,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Messages</h1>
+        <h2>Messages</h1>
         <hr>
         <br>
         <div class="first-container">
@@ -48,18 +48,27 @@ else {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Message</th>
+                            <th style="max-width=70px;">Message</th>
                             <th>Reply</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $messages=$data['messages'];
+                            foreach($messages as $message):
+                        ?>
                         <tr>
-                            <td data-lable="ID"><?php echo $message->id ?></td>
-                            <td data-lable="Name"><?php echo $message->name ?></td>
-                            <td data-lable="Email"><?php echo $message->email ?></td>
-                            <td data-lable="Message"><?php echo $message->message ?></td>
+                            <td data-lable="ID"><?php echo $message->MessageID ?></td>
+                            <td data-lable="Name"><?php echo $message->Name ?></td>
+                            <td data-lable="Email"><?php echo $message->Email ?></td>
+                            <td data-lable="Message" style="max-width=70px;"><?php echo $message->Message ?></td>
+                            <td data-lable="Email"><button class="reply-btn" type="button">Reply</button></td>
+                            <td data-lable="Email"><button class="btn" type="button">Delete</button></td>
                         </tr>
+                        <?php
+                            endforeach;
+                        ?>
                     </tbody>
                 </table>
             </div>
