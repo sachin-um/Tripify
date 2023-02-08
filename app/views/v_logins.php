@@ -4,35 +4,24 @@
 
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
     <div class="content">
-    <br>
-    <h2 class="logins-title">Select your User Role to Login...</h2>
-    <br>        
-    <div class="user-btns" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-        <button id="btn-1" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Hotels/login'">
+    <p class="home-title-2">Select your User Role to Login...</p>
+    <br><br>     
+    <div class="user-btns">
+        <button id="btn-1" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Users/login/Service'">
             <span class="button__icon">
                 <ion-icon name="bed-outline"></ion-icon>
             </span>
-            <br>
-            <span class="button__text">Hotel</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        
-        <button id="#2" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Taxies/login'">
             <span class="button__icon">
                 <ion-icon name="car-outline"></ion-icon>
             </span>
-            <br>
-            <span class="button__text">Taxi</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;        
-        
-        <button id="#3" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Guides/login'">
             <span class="button__icon">
                 <ion-icon name="accessibility-outline"></ion-icon>
             </span>
             <br>
-            <span class="button__text">Guide</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;
-        
-        <button id="#4" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Admins/login'">
+            <span class="button__text">Service Providers</span>
+        </button>      
+        <br><br>
+        <button id="btn-2" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Users/login'">
             <span class="button__icon">
                 <ion-icon name="map-outline"></ion-icon>
             </span>

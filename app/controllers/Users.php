@@ -113,7 +113,7 @@
         }
 
         //login
-        public function login(){
+        public function login($usertype=NULL){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -159,19 +159,21 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
-                    }
-                    else if ($log_user->UserType!='Traveler') {
-                        flash('reg_flash', 'You Cannot logging as a Traveler');
-                        $this->view('users/v_login',$data);
-                    }
-                    
+                    }        
                     //logging user
                     else{
                         $this->createUserSession($log_user);
                     }
                 }
                 else {
-                    $this->view('users/v_login',$data);
+                    if($usertype=='Service'){
+                        $this->view('users/v_service-login',$data);
+                    }
+                    else if($usertype=='Admin'){
+                        $this->view('admin/v_login',$data);
+                    }else{
+                        $this->view('users/v_login',$data);
+                    }
                 }
 
 
@@ -186,7 +188,16 @@
                     'password_err'=>'',
 
                 ];
-                $this->view('users/v_login',$data);
+                if($usertype=='Service'){
+                    $this->view('users/v_service-login',$data);
+                }
+                else if($usertype=='Admin'){
+                    $this->view('admin/v_login',$data);
+                }
+                else{
+                    $this->view('users/v_login',$data);
+                }
+                
             }
             $this->view('users/v_login');
         }
@@ -398,25 +409,25 @@
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
-            $data=[
-                'isLoggedIn'=>$this->isLoggedIn()
-            ];
+            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
             // $this->view('v_home',$data);
 
             if ($_SESSION['user_type']=='Traveler') {
                 redirect('Pages/home');
             }
             elseif ($_SESSION['user_type']=='Hotel') {
-                $this->view('v_hotel_dashboard',$data);
+                $this->view('hotel/v_hotel_dashboard',$data);
             }
             elseif ($_SESSION['user_type']=='Taxi') {
-                $this->view('v_taxi_dashboard',$data);
+                $this->view('taxi/v_taxi_dashboard',$data);
             }
             elseif ($_SESSION['user_type']=='Guide') {
-                $this->view('v_guide_dashboard',$data);
+                $this->view('guide/v_guide_dashboard',$data);
             }
             elseif ($_SESSION['user_type']=='Admin') {
-                $this->view('v_admin_dashboard',$data);
+                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+                $data->details=$admindetails;
+                $this->view('admin/v_admin_dashboard',$data);
             }
             
         }

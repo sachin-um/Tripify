@@ -32,7 +32,7 @@
 
         //edit guide request
         public function editguiderequest($data){
-            $this->db->query('UPDATE guide_request set language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestsID=:request_id');
+            $this->db->query('UPDATE guide_request SET language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestsID=:request_id');
             $this->db->bind(':language',$data['language']);
             $this->db->bind(':Location',$data['area']);
             $this->db->bind(':Date',$data['date']);
@@ -41,6 +41,7 @@
             $this->db->bind(':Description',$data['additional-details']);
             $this->db->bind(':caption',$data['caption']);
             $this->db->bind(':request_id',$data['request_id']);
+            
             
             if ($this->db->execute()) {
                 return true;

@@ -58,6 +58,7 @@ else {
     <div class="dashboad-content">
         <div>
             <h2 class="title" >Guide Offers</h2>
+            <hr>
         </div>
         <div class="request-list">
 

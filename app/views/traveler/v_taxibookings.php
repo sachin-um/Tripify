@@ -39,7 +39,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left;">Taxi Bookings</h1>
+        <h2 style="text-align: left;">Taxi Bookings</h2>
         <hr>
         <br>
         <div class="first-container">
@@ -54,7 +54,7 @@ else {
                             <th>Booking Time</th>
                             <th>Pickup Location</th>
                             <th>Destination</th>
-                            <th>Payment</th>>
+                            <th>Payment</th>
                             <th>Booking Status</th>
                             <th>Cancel</th>
                         </tr>
