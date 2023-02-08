@@ -9,7 +9,7 @@
             <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->
                 <img id="taxi_add_own_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-                <h1 id="taxi_add_own_hed_tex"> Join with us </h1>
+                <h1 id="taxi_add_own_hed_tex"> Become a member of our Community as Taxi Owner </h1>
 
             </div>
 
@@ -38,7 +38,7 @@
                     <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" required><br>
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
-                    <input type="submit" id="taxiowncreate_but" name="taxiowncreate_but" value="Create">
+                    <input type="submit" id="taxiowncreate_but" name="taxiowncreate_but" value="Register">
                 </form>
 
                 <div class="taxicreatecom">

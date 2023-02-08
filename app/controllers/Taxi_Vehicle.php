@@ -78,7 +78,7 @@
                     //Add a Taxi Request
                     if ($this->taxi_vehicleModel->addtaxivehicle($data)) {
                         flash('vehicle_flash', 'Your Vehicle is Succusefully added..!');
-                        redirect('Taxi_Vehicle/v_taxiProfile');
+                        redirect('Taxi_Vehicle/viewvehicles');
                     }
                     else{
                         die('Something went wrong');

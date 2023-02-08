@@ -8,6 +8,7 @@
 
         }
 
+
         public function register()
         {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -15,14 +16,31 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
             $ad1 = trim($_POST['line1']);
             $ad2 = trim($_POST['line2']);
-            $ad3 = trim($_POST['line3']);
-            $ad4 = trim($_POST['city']);
-            $address = $ad1 . ',' . $ad2 . ',' . $ad3 . ',' . $ad4 . '.';
+            $ad3 = trim($_POST['district']);
+            $address = $ad1 . ',' . $ad2 . ',' . $ad3 . '.';
+
+            if($_POST['pets']=='yes'){
+                $pets = true;
+            }else{
+                $pets = false;
+            }
+
+            if($_POST['children']=='yes'){
+                $children = true;
+            }else{
+                $children = false;
+            }
             $data = [
                 'property_name' => trim($_POST['name']),
+                'hotel_reg_number' => trim($_POST['hotel_reg_number']),
                 'property_address' => $address,
+                'district' => trim($_POST['district']),
+                'property_category' => trim($_POST['property_category']),
                 'contact_number' => trim($_POST['contact_number']),
-                'reg_number' => trim($_POST['reg_number']),
+                'pets' => (bool)($_POST['pets']),
+                'children' => (bool)($_POST['children']),
+                'cancel_period' => trim($_POST['cancel_period']),
+                'cancel_fee' => trim($_POST['cancellation_fee']),
                 'hotel_id' => $_SESSION['user_id'],
 
 
@@ -35,6 +53,7 @@
                 'contact_number_err' => '',
                 'reg_number_err' => '',
                 'hotel_id_err' => '',
+
 
             ];
             if (empty($data['property_name'])) {

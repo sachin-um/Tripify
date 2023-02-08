@@ -105,8 +105,8 @@
                         <p class="home-title-4">Pets :</p>
                         <select name="category" id="category" required>
                                 <option selected>--</option>  
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                         </select>
                     </div>
 
@@ -114,15 +114,15 @@
                         <p class="home-title-4">Children :</p>
                         <select name="category" id="category" required>
                                 <option selected>--</option>  
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="hotel-reg-form-div-2">
                     <div class="hotel-reg-elements">
-                        <p class="home-title-4">Period in advance that guests can cancel free of charge?</p>
+                        <p class="home-title-4">Advance period to cancel free of charge?</p>
                         <select name="category" id="category" required>
                                 <option selected>--</option>  
                                 <option>12 hours</option>
@@ -265,8 +265,10 @@
     
         </div>
 
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>
-
+    
+    </div>
 </div>
+    
+<!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
             
     

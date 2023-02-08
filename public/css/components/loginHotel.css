@@ -1,5 +1,6 @@
 body{
     background-image: url('img/ezgif.com-gif-maker.png');
+    background-color: white;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -25,14 +26,22 @@ body{
 
 .vertical{
     border-left: 6px solid black;
-    height: 50%;
+    height: 100px;
     left: 50%;
 }
 
 .start-btn{
-    height: 30px;
+    height: 60px;
     width: 20%;
     background-color: #03002E;
     color: white;
+    border-radius: 10px;
+}
+
+.start-btn:hover{
+    height: 60px;
+    width: 20%;
+    background-color: #00C895;
+    color: black;
     border-radius: 10px;
 }

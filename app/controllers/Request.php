@@ -49,7 +49,7 @@
                         'd-longitude'=>trim($_POST['d-longitude']),
 
 
-                        'caption_err',
+                        'caption_err'=>'',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -62,6 +62,9 @@
 
 
                 //validate name
+                if (empty($data['caption'])) {
+                    $data['caption_err']='Add a Caption to ypur request';
+                }
                 if (empty($data['pickuplocation'])) {
                     $data['pickuplocation_err']='Please enter a Pickup Location';
                 }

@@ -24,7 +24,7 @@
         </div>
     
         <div class="thrd-fill">
-            <input type="text" class="search" id="check-out" name="check-out" placeholder="Check-out">
+            <input type="text" class="search" id="destination" name="destination" placeholder="Destination">
         </div>
     </div>
     <br>
@@ -46,7 +46,7 @@
         <h2 class="title" >Join our network today..</h2>
     </div>
     <div class="btn-div">
-        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register a Ride</button>
+        <button class="reg-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register a Taxi Owner</button>
     </div>
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
 </div>   

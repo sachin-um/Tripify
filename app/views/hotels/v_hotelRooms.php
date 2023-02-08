@@ -30,15 +30,16 @@ else {
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
-            <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p>
+            <!-- <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p> -->
         </nav>
     </aside>
 
     <main class="right-side-content">
     <div class="h-title">
             <br>
-                <h3>Tell us about your first room. 
-                After entering all the necessary info, you can fill in the details of your other rooms.</h3>
+            <br>
+            <br>
+                <h1>Tell us about your room.</h1>
         </div>
             
         <br>
@@ -85,7 +86,11 @@ else {
                 
             </div>
             <br><br>
-            <button style="text-align: center;" class="rooms-btn" type="submit">Add</button>   
+
+            <div class="btn-div-hotel">
+                <button style="text-align: center; width : 200px;" class="card-btn" type="submit">Add</button> 
+            </div>
+              
         </form>
     </div>
 

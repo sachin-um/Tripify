@@ -3,7 +3,6 @@
 <br><br>
 <div class="wrapper"> 
     <div class="content">
-        <br>
         <?php flash('reg_flash'); ?>
         <p class="home-title" ><b>Plan your dream Sri Lankan vacation cost free!</b></p>
 
@@ -12,6 +11,7 @@
         <div class="home-div-3">
             <button class="all-purpose-btn">Start planning</button>
         </div>
+
         
         <br>
         <!-- <h2 class="title">Select what you want to search!</h2>

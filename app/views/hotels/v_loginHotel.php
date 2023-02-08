@@ -5,20 +5,21 @@
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
+        <br><br><br><br><br><br>
         <div class="left-side-bar">
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+            <br>
+            <h2>Login to join the biggest exclusive platform for travelers in Sri Lanka.</h2>
         </div>
 
-        <div class="vertical">
-            
-        </div>
 
-        <div class="side-bar">   
+        <div class="side-bar"> 
+            <br><br>  
             <h2>Travel Sri Lanka the easy way!</h2>
-            <h4>Login to join the biggest exclusive platform for travelers in Sri Lanka.</h4>
 
             <form action="<?php echo URLROOT; ?>/Hotels/login" method="post">
-                <h4>Email</h4>
+                <br>
+                <h2>Email</h2>
                 <input type="text" class="login-info" id="email" name="email">  
                 <span class="invalid"><?php echo $data['email_err']; ?></span>
 

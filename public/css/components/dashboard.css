@@ -49,8 +49,8 @@
  }
 
  .right-side-content{
+   margin-left: 16%;
    margin-top: 8%;
-   margin-left: 14%;
    width: 86%;
    float: right;
  }
@@ -121,15 +121,15 @@
 }
 
 .hotel-room-card{
-   width: 20%;
+   width: 15%;
    height: 350px;
    background-color: white;
 }
 
 .room-cards-row-1{
+   width: 1800px;
    display: flex;
-   margin-left: 8%;
-   margin-right: 6%;
+   padding: 30px;
    justify-content: space-around;
 }
 
@@ -153,4 +153,68 @@ ul{
    background-color: grey;
    color: black;
    border-radius: 50px;
+}
+
+.profile{
+   text-align: center;
+}
+
+.h-title{
+   width: 2000px;
+   text-align: center;
+   margin-left: -150px;
+}
+
+.btn-div-hotel{
+   text-align: center;
+}
+
+.hotel-profile-top{
+   background-color: white;
+   width: 80%;
+   margin: auto;
+   padding: 3%;
+   display: flex;
+}
+
+.hotel-profile-top-containers{
+   width: 50%;
+}
+
+#hotel-profile-photos{
+   width: 100%;
+}
+
+#hotel-profile-top-right{
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+}
+
+#hotel-profile-sub-div{
+   width: 100%;
+   margin: auto;
+}
+
+.hotel-profile-sub-div-elements{
+   width: 45%;
+}
+
+#hotel-middle-colon{
+   width: 10%;
+}
+
+#hotel-profile-info-ul.li{
+   line-height: 1.5rem;
+}
+
+#hotel-add-pics{
+   width: 40%;
+   height: 2rem;
+}
+
+#hotel-edit-info{
+   width: 40%;
+   height: 2rem;
+   margin-top: 5%;
 }

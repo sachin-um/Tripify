@@ -137,12 +137,6 @@ hr{
     margin-top: 4%;
 }
 
-i{
-   width: 5vh;
-   height: 0.5vh;
-   margin-top: 0.5vh;
-}
-
 #room-remain{
     color: crimson;
 }
@@ -184,5 +178,6 @@ i{
     margin: 2% auto 2%;
     width: 80%;
     padding: 3%;
-    background: rgba(232,177,34,0.8);
+    background: black;
 }
+
