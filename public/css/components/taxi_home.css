@@ -144,5 +144,18 @@
 }
 
 #tax_home_img{
-    width: 5em;
+    width: 100%;
+}
+
+
+/* ......................v_taxi_deatails_page.php.............................. */
+
+.taxi-room-card-pic{
+    border-radius: 0px;
+    height: fit-content;
+}
+
+.taxi-nav-main{
+    display: grid;
+    /* flex-direction: column; */
 }

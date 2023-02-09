@@ -14,7 +14,7 @@
             $data=[
                 'vehicles'=> $allvehicles
             ];
-            $this->view('taxi/v_taxi_dashboard3',$data);
+            $this->view('taxi/v_taxi_vehicles',$data);
         }
 
         public function addavehicle(){
@@ -123,8 +123,17 @@
 
         public function edit(){
             $data=[];
-            $this->view('taxi/v_taxi_dashboard3_1',$data);
+            $this->view('taxi/v_taxi_vehicle_deatails',$data);
         }
+
+        public function taxideatails(){
+            $allvehicles=$this->taxi_vehicleModel->viewall();
+            $data=[
+                'vehicles'=> $allvehicles
+            ];
+            $this->view('taxi/v_taxi_details_page',$data);
+        }
+
 
 
 

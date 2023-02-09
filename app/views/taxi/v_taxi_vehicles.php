@@ -33,7 +33,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
@@ -50,7 +50,7 @@ else {
                 ?>
                     <div class="taxi_view_v_dash">
             
-                    <img src="<?php echo URLROOT; ?>/img/car.png" id="taxi_v_c_pic"  alt="Driver image" style="width: 250px;">
+                    <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch" style="width: 250px;">
             
                     <article class="taxi_view_v_art" >
             

@@ -40,5 +40,17 @@
             }
         }
 
+        public function TaxiBookingPage(){
+           
+            $data=[
+                
+            ];
+            $this->view('taxi/v_bookings',$data);
+        }
+
+        
+
+
+
     }
 ?>

@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="nav-parts">
-                    <p class="hotel-labels-1">Pick up location</p>
+                    <p class="hotel-labels-1">Drop off location</p>
                     <input type="text" class="hotel-labels-1" id="destination" name="destination" placeholder="Destination">
                 </div>
 
@@ -73,7 +73,7 @@
 
         <div class="hotel-home-top-picks">
             <div class="nav-main">
-                <div class="hotel-ad-card">
+                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
                     <div class="hotel-ad-card-pic">
                         <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
                         <span class="dot">4.5</span>
@@ -83,12 +83,12 @@
                     <div class="hotel-ad-card-desc">
                        <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
                        <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
-                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                       <label id="display-hotel-price" for="hotel-price"><b>5 USD/KM</b> </label>
                     </div>
                 </div>
 
 
-                <div class="hotel-ad-card">
+                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
                     <div class="hotel-ad-card-pic">
                         <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
                         <span class="dot">3.8</span>
@@ -96,14 +96,14 @@
 
 
                     <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
-                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                       <label id="display-hotel-name" for="hotel-name"><b>Yoyo Cabs</b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address">No 10/A, Wellawatta</label><br>
+                       <label id="display-hotel-price" for="hotel-price"><b>6 USD/KM</b></label>
                     </div>
                 </div>
 
 
-                <div class="hotel-ad-card">
+                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
                     <div class="hotel-ad-card-pic">
                         <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
                         <span class="dot">4.0</span>
@@ -111,9 +111,9 @@
 
 
                     <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
-                       <label id="display-hotel-price" for="hotel-price">5 USD/KM</label>
+                       <label id="display-hotel-name" for="hotel-name"><b>A9 Cabs</b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address">No 12/57, Jaffna</label><br>
+                       <label id="display-hotel-price" for="hotel-price"><b>5 USD/KM</b></label>
                     </div>
                 </div>
 

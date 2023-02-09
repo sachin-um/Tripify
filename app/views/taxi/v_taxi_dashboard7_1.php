@@ -24,10 +24,21 @@
         </nav>
     </aside>
 
-    <main class="right-side-content">
+
+
+<!-- ....................... CAN BE DELETE................. -->
+
+
+
+
+
+
+
+
+    <!-- <main class="right-side-content">
     
     
-    <div class="taxi_off_cont">
+        <div class="taxi_off_cont">
         <button id="tax_book_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxies/bookings'">Back</button>
 
         <div class="tax_book_view_cont">
@@ -86,5 +97,5 @@
         
 
         </div>
-    </main>
+    </main> -->
  </div>
