@@ -56,6 +56,7 @@ else {
     <div class="content">
         <div>
             <h2 class="title" >Guide Offers</h2>
+            <hr>
         </div>
         <div class="request-list">
 

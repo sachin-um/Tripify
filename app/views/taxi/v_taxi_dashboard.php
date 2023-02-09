@@ -27,12 +27,12 @@ else {
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">User Profile</a>
             <!-- <a href="#" class="menu-item">Company</a> -->
-            <a href="#" class="menu-item">Drivers</a>
+            <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
-            <a href="#" class="menu-item">Payments</a>
-            <a href="#" class="menu-item">Trip Requests</a>
-            <a href="#" class="menu-item">Offers</a>
-            <a href="#" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
+            <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -52,7 +52,7 @@ else {
             </div>
 
             <div class="profile-description">
-            <br>
+                 <br>
                 <div class="sub-description">
                     <div class="sub-sub">
                         <h3>Name : </h3>
@@ -134,9 +134,7 @@ else {
             </div>
         </div>
         <br><br>
-    </div>
-
-</div>
+   
 
     </main>
  </div>

@@ -25,19 +25,21 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item is-active">User Profile</a>
-            <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
-            <a href="#" class="menu-item">Taxi Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Request</a>
-            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Request</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">User Profile</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item ">Guide Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Settings</h1>
+        <h2 style="text-align: left;">Profile Settings</h1>
         <hr>
         <br>
         <div class="first-container">

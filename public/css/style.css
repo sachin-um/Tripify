@@ -21,12 +21,46 @@
 @import url('components/taxi_dashboard.css');
 @import url('components/guide.css');
 @import url('components/taxiDashboard.css');
-@import url('components/v_taxi_dashboadrd.css');
+@import url('components/v_taxi_dashboadrd3.css');
 @import url('components/v_taxi_add_driver.css');
+@import url('components/hotel_details_page.css'); 
+@import url('components/taxi_dashboard2.css');
+@import url('components/taxi_dashboard6.css');
+@import url('components/taxi_dashboard7.css');
+@import url('components/taxi_dashboard5.css');
+@import url('components/taxi_dashboard7_1.css');
+@import url('components/taxi_dashboard8.css');
+@import url('components/taxi_dashboard8_1.css');
+@import url('components/v_add_taxi_offer.css');
+@import url('components/taxi_dashboard3_1.css');
+@import url('components/contactus.css');
+@import url('components/admin.css');
+@import url('components/trip.css');
+
 
 @import url('components/1hotelHome.css');
 @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+
+:root{
+    --dark: #03002E;
+    --light:#2A9D8F;    /*42, 157, 143*/
+    --gray:#687280;     /*211, 211, 211*/
+    --yellow:#E9C46A;
+    --darkyellow:#e8b122;
+    --burgundy:#6c0E23;
+    --snow:#F4EDED;
+    --darker: #1f2937;
+    --darkest: #111827;
+}
+
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 
 body{
     background-color: #F2ECFF;
@@ -36,6 +70,17 @@ body{
     flex-direction: column;
     height: 100%;
 }
+
+input{
+    text-align: justify;
+}
+
+input[type="radio"]{
+    -webkit-appearance: radio;
+}
+
+
+
 
 .welcome-banner{
     /* width: 30%; */
@@ -79,7 +124,84 @@ body{
     background-color: #00C895;
 }
 
+/*Slider CSS*/
 
+.carousel-wrapper {
+    height: 400px;
+    position: relative;
+    width: 800px;
+    display: block;
+    margin: 50px auto ;
+    border: 2px solid black;
+  }
+  
+  .carousel-item {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px 50px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .arrow{
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 12px;
+  }
+  .arrow-prev {
+    left: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+  
+  }
+  .arrow-next {
+    right: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+  
+  [id^= "item"] {
+    display: none;
+  }
+  .item-1 {
+    z-index: 2;
+    opacity: 1;
+    background: url('img1.jpg');
+    background-size: cover;
+  }
+  .item-2 {
+    background: url('img2.jpg');
+    background-size: cover;
+  }
+  .item-3 {
+    background: url('img3.jpg');
+    background-size: cover;
+  }
+  
+  *:target ~ .item-1{
+    opacity: 0;
+  }
+  #item-1:target ~ .item-1 {
+    opacity: 1;
+  
+  }
+  #item-2:target ~ .item-2, #item-3:target ~ .item-3 {
+    z-index: 3;
+    opacity: 1;
+  } 
 
+  .hotel-details-main-div{
+    width: 80%;
+    min-height: 50%;
+    background: rgba(211, 211, 211, 0.3);
+    display: flex;
+}
 
-
+.hotel-details-div-one{
+    width: 50%;
+}

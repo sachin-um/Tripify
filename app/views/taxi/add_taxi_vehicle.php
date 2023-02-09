@@ -1,6 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="wrapper">
-<?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
+
 
 <?php
 $_SESSION['user_id'];
@@ -59,12 +60,12 @@ else {
         
         <input type="text" id="taxi_add_v_area" name="area"placeholder="Available Area" required ><br>
         
-
-        <!-- <div class="taxi_add_v_imgbox"> 
+<!-- 
+        <div class="taxi_add_v_imgbox"> 
             <label>Upload Vehicle Photos</label>   
-            <input type="file" id="taxi_add_v_img" placeholder="taxi_add_v_imgbox" required accept="image/*"  multiple>
-        </div> -->
-                       
+            <input type="file" name="tax_img" id="taxi_add_v_img"  placeholder="taxi_add_v_imgbox" required accept="image/*"  multiple>
+        </div>
+                        -->
         <input type="submit" id="taxi_add_v_but" value="Add a Vehicle">
 </form>
 

@@ -38,7 +38,7 @@
 
         //edit taxi request
         public function edittaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,Caption) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:caption)');
+            $this->db->query('UPDATE taxi_request set Date=:date,StartingTime=:time,Description=:description,TravelerID=:travelerid,PickupLocation=:pickuplocation,Destination=:destination,p_latitude=:p_latitude,p_longitude=:p_longitude,d_latitude=:d_latitude,d_longitude=:d_longitude,Caption=:caption WHERE RequestID=:request_id');
             $this->db->bind(':caption',$data['caption']);
             $this->db->bind(':date',$data['date']);
             $this->db->bind(':time',$data['time']);
@@ -67,6 +67,31 @@
             $posts=$this->db->resultSet();
 
             return $posts;
+        }
+
+        //delete taxi request
+        public function deletetaxirequest($id){
+            $this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
+            $this->db->bind(':request_id',$data['request_id']);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        public function getTaxiRequestById($id){
+            $this->db->query('SELECT * FROM v_taxi_request WHERE request_id=:request_id');
+            $this->db->bind(':request_id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
         }
 
 

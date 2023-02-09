@@ -162,6 +162,50 @@
             }
         }
 
+        public function offers(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard6',$data);
+            
+        }
+
+        public function makeoffers(){
+            $data=[];
+            $this->view('taxi/v_add_taxi_offer',$data);
+            
+        }
+
+        
+
+        public function bookings(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard7',$data);
+           
+        }
+
+        public function bookingsview(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard7_1',$data);
+           
+        }
+
+        public function payments(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard5',$data);
+        }
+
+        
+        public function trip(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard8',$data);
+        }
+
+
+        public function tripview(){
+            $data=[];
+            $this->view('taxi/v_taxi_dashboard8_1',$data);
+        }
+
+
         
 
 

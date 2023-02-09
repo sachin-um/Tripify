@@ -57,7 +57,6 @@ else {
                     <option value='french'>French</option>
                     <option value='artabic'>Arabic</option>
                     <option value='spanish'>Spanish</option>
-                    
                 </select>
                 <span class="invalid"><?php echo $data['languages_err']; ?></span>
                 <br>

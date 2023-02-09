@@ -5,7 +5,7 @@
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
-        <div class="form-admin-login">
+        <div class="form-login">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
                 <p id="tag">Admin Login</p> 

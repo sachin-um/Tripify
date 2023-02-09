@@ -2,6 +2,7 @@
     class Users extends Controller{
         public function __construct(){
             $this->userModel=$this->model('M_Users');
+            $this->messageModel=$this->model('M_Messages');
         }
         public function index(){
 
@@ -46,9 +47,6 @@
 
                 if (empty($data['password'])) {
                     $data['password_err']='Please fill the password field';
-                }
-                elseif (strlen($data['password'])<8) {
-                    $data['password_err']='your passowrd should contains at least 8 characters';
                 }
                 elseif (strlen($data['password'])<8) {
                     $data['password_err']='your passowrd should contains at least 8 characters';
@@ -115,7 +113,7 @@
         }
 
         //login
-        public function login(){
+        public function login($usertype=NULL){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -161,19 +159,21 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
-                    }
-                    else if ($log_user->UserType!='Traveler') {
-                        flash('reg_flash', 'You Cannot logging as a Traveler');
-                        $this->view('users/v_login',$data);
-                    }
-                    
+                    }        
                     //logging user
                     else{
                         $this->createUserSession($log_user);
                     }
                 }
                 else {
-                    $this->view('users/v_login',$data);
+                    if($usertype=='Service'){
+                        $this->view('users/v_service-login',$data);
+                    }
+                    else if($usertype=='Admin'){
+                        $this->view('admin/v_login',$data);
+                    }else{
+                        $this->view('users/v_login',$data);
+                    }
                 }
 
 
@@ -188,7 +188,16 @@
                     'password_err'=>'',
 
                 ];
-                $this->view('users/v_login',$data);
+                if($usertype=='Service'){
+                    $this->view('users/v_service-login',$data);
+                }
+                else if($usertype=='Admin'){
+                    $this->view('admin/v_login',$data);
+                }
+                else{
+                    $this->view('users/v_login',$data);
+                }
+                
             }
             $this->view('users/v_login');
         }
@@ -400,11 +409,27 @@
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
-            $data=[
-                'isLoggedIn'=>$this->isLoggedIn()
-            ];
+            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
             // $this->view('v_home',$data);
-            redirect('Pages/home');
+
+            if ($_SESSION['user_type']=='Traveler') {
+                redirect('Pages/home');
+            }
+            elseif ($_SESSION['user_type']=='Hotel') {
+                $this->view('hotel/v_hotel_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Taxi') {
+                $this->view('taxi/v_taxi_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Guide') {
+                $this->view('guide/v_guide_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Admin') {
+                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+                $data->details=$admindetails;
+                $this->view('admin/v_admin_dashboard',$data);
+            }
+            
         }
 
         public function createVerifySession($email){
@@ -437,6 +462,113 @@
                 'userAge'=>$age
             ];
             $this->view('v_about',$data);
+        }
+
+        public function contactus(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'name'=>trim($_POST['name']),
+                    'email'=>trim($_POST['email']),
+                    'message'=>trim($_POST['message']),
+                    
+
+                    'name_err'=>'',
+                    'email_err'=>'',
+                    'message_err'=>''
+                    
+
+                ];
+
+                //validate name
+                if (empty($data['name'])) {
+                    $data['name_err']='Please enter a name';
+                }
+                //validate email
+                if (empty($data['email'])) {
+                    $data['email_err']='please enter a email';
+                }
+                else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                    $data['email_err'] = "Invalid email format";
+                }
+                
+                if (empty($data['message'])) {
+                    $data['message_err']='Please leave us any message...';
+                }
+                
+
+                if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['message_err'])) {
+                    
+                    
+                    if ($this->messageModel->contactus($data)) {
+                        
+                        flash('reg_flash', 'Your message is recieved, we w');
+                        redirect('Users/contactus');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+                else {
+                    $this->view('users/v_contact_admin',$data);
+                }
+
+
+
+            }
+            else {
+                $data=[
+                    'name'=>'',
+                    'email'=>'',
+                    'message'=>'',
+                    
+
+                    'name_err'=>'',
+                    'email_err'=>'',
+                    'message_err'=>''
+
+                ];
+                $this->view('users/v_contact_admin',$data);
+            }
+        }
+
+        public function messages()
+        {
+            $messages=$this->messageModel->viewall();
+            // $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
+            $data=[
+                'messages'=>$messages
+            ];
+            if ($_SESSION['user_type']=='Admin') {
+                $this->view('admin/v_admin_messages',$data);
+            }
+            elseif ($_SESSION['user_type']=='Traveler') {
+                $this->view('traveler/v_messages');
+            }
+            elseif ($_SESSION['user_type']=='Guide') {
+                $this->view('guide/v_messages');
+            }
+            elseif ($_SESSION['user_type']=='Guide') {
+                $this->view('guide/v_messages');
+            }
+            
+        }
+
+        public function complains()
+        {
+            $allcomplains=$this->complainModel->viewall();
+            $complains=filtercomplains($allcomplains,$_SESSION['user_type'],$_SESSION['user_id']);
+            $data=[
+                'complains'=>$complains
+            ];
+            if ($_SESSION['user_type']=='Admin') {
+                $this->view('admin/v_admin_complains');
+            }
+            elseif ($_SESSION['user_type']=='Traveler') {
+                $this->view('traveler/v_complains');
+            }
         }
     }
 

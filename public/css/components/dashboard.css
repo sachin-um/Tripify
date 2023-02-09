@@ -5,16 +5,13 @@
 
  .sidebar{
     position: fixed;
-    flex: 1 1 0;
-    width: 250px;
-    max-width: 250px;
+    width: 14%;
     height: 100%;
     padding: 2rem 1rem;
-    background-color: #777586;
-    margin-top: 100px;
-    color: #03002E;
-    font-weight: 800;
+    background-image: linear-gradient(#03002E, black);
+    margin-top: 5%;
  }
+
 .sidebar-nav{
     width: 20%;
     height: 600px;
@@ -39,22 +36,23 @@
  .sidebar .menu .menu-item{
     display: block;
     padding: 1rem;
-    color: #03002E;
+    color: white;
     text-decoration: none;
     transition: 0.2s linear;
  }
 
  .sidebar .menu .menu-item:hover,
  .sidebar .menu .menu-item.is-active{
-    color: #35BCBF;
+    color: #03002E;
     background-color: white;
     border-right: 5px solid #35BCBF;
  }
 
  .right-side-content{
-    margin-top: 100px;
-    margin-left: 340px;
-    width: 80%;
+   margin-left: 17%;
+   margin-top: 5%;
+   width: 86%;
+   float: right;
  }
 
  .right-side-content.h3{
@@ -69,13 +67,15 @@
     text-align: center;
 }
 
- hr{
-    width: 86%;
-    height: 5px;
-    background:#35BCBF;
-    border: none;
-    margin-left: 8%;
- }
+
+.right-side-content hr{
+   width: 100%;
+   margin-top: 15px;
+   height: 5px;
+   background:#35BCBF;
+   border: none;
+}
+
 
  /* @media(max-width: 768px){
     .menu-toggle{
@@ -177,4 +177,54 @@ ul{
 
 .btn-div-hotel{
    text-align: center;
+}
+
+.hotel-profile-top{
+   background-color: white;
+   width: 80%;
+   margin: auto;
+   padding: 3%;
+   display: flex;
+}
+
+.hotel-profile-top-containers{
+   width: 50%;
+}
+
+#hotel-profile-photos{
+   width: 100%;
+}
+
+#hotel-profile-top-right{
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+}
+
+#hotel-profile-sub-div{
+   width: 100%;
+   margin: auto;
+}
+
+.hotel-profile-sub-div-elements{
+   width: 45%;
+}
+
+#hotel-middle-colon{
+   width: 10%;
+}
+
+#hotel-profile-info-ul.li{
+   line-height: 1.5rem;
+}
+
+#hotel-add-pics{
+   width: 40%;
+   height: 2rem;
+}
+
+#hotel-edit-info{
+   width: 40%;
+   height: 2rem;
+   margin-top: 5%;
 }

@@ -50,6 +50,51 @@ function filteritems($items,$usertype,$userid){
     
 }
 
+function filteroffers($items,$usertype,$id){
+    switch ($usertype) {
+        case 'Taxi':
+            return $items;
+            break;
+        case 'Guide':
+            return $items;
+            break;
+        case 'Traveler':
+            return array_filter($items,function ($item) use($id){
+                return ($item->request_id == $id);
+            });
+            break;
+    }
+
+    
+}
+
+function filterBookings($items,$usertype,$userid){
+    switch ($usertype) {
+        case 'Taxi':
+            return array_filter($items,function ($item) use($userid){
+                return ($item->traveler_id == $userid);
+            });
+            break;
+        case 'Guide':
+            return array_filter($items,function ($item) use($userid){
+                return ($item->traveler_id == $userid);
+            });
+            break;
+        case 'Hotel':
+            return array_filter($items,function ($item) use($userid){
+                return ($item->traveler_id == $userid);
+            });
+            break;
+        case 'Traveler':
+            return array_filter($items,function ($item) use($userid){
+                return ($item->TravelerID == $userid);
+            });
+            break;
+    }
+
+    
+}
+
 //user session
 function createUserSession($user){
     $_SESSION['user_id']=$user->UserID;
