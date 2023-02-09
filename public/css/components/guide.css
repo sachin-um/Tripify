@@ -51,7 +51,7 @@
     
     .guide-table {
         position: absolute;
-        left: 50%;
+        left: 57%;
         top: 50%;
         transform: translate(-50%, -50%);
         border-collapse: collapse;
@@ -98,4 +98,11 @@
         }
     }
 
+    #guide-book-btn{
+        margin: auto;
+        width: 50%;
+    }
 
+    #guide-profile-pic{
+        margin: auto;
+    }

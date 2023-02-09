@@ -78,8 +78,6 @@
 </div> 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
-
 
 
 
