@@ -48,7 +48,7 @@ else {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th style="max-width=70px;">Message</th>
+                            <th style="max-width: 70px">Message</th>
                             <th>Reply</th>
                             <th>Delete</th>
                         </tr>
