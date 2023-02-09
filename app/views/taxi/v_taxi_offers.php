@@ -23,12 +23,12 @@
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item is-active">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
     <main class="right-side-content">
-        <p>Confrimed offers will be moved to the bookings section.</p>
+        <br><p>Confrimed offers will be moved to the bookings section.</p>
         <div class="request-list">
             
             <div class="request">
