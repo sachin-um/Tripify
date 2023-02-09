@@ -13,7 +13,7 @@
             <a href="#" class="menu-item">User Profile</a>
             <a href="#" class="menu-item">Trip Requests</a>
             <a href="#" class="menu-item is-active">Offers</a>
-            <a href="#" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT?>/" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Payments</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>

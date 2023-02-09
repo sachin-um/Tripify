@@ -22,9 +22,12 @@
         </nav>
     </aside>
 
-    <main class="right-side-content">
 
-    <button id="tax_trip_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxies/trip'">Back</button>
+    <!-- ...................... CAN BE DELETE ......................... -->
+
+    <!-- <main class="right-side-content">
+
+        <button id="tax_trip_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxies/trip'">Back</button>
         <div class="taxi_dash_tripcontainer">
             
            
@@ -79,5 +82,5 @@
             </div>
                
         </div>
-    </main>
+    </main> -->
  </div>

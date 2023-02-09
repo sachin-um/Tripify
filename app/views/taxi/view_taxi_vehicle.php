@@ -31,7 +31,7 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
 
-    <h1 id="taxi_v_com_name">Company Name</h1>
+    <!-- <h1 id="taxi_v_com_name">Company Name</h1>
 
     <hr>
     <diV class="taxi_view_v_compic">
@@ -121,7 +121,7 @@
 
        </div>
 
-    </article>
+    </article> -->
 
     
 

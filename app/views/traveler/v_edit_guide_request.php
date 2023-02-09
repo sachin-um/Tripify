@@ -22,7 +22,7 @@ else {
         </div>
     
         <div >
-            <form action="<?php echo URLROOT; ?>/Request/editGuideRequest/<? echo $data['request_id'] ?>" method="POST">
+            <form action="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $data['request_id'] ?>" method="POST">
                 
                 <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
                 <span class="invalid"><?php echo $data['caption_err']; ?></span>

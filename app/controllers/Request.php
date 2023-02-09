@@ -163,8 +163,8 @@
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->editguiderequest($data)) {
-                        // flash('request_flash', 'Guide Request is Succusefully Updated..!');
-                        // redirect('Request/GuideRequest');
+                        flash('request_flash', 'Guide Request is Succusefully Updated..!');
+                        redirect('Request/GuideRequest');
                     }
                     else{
                         die('Something went wrong');
@@ -356,6 +356,7 @@
 
             
                 $data=[
+                        'caption'=>trim($_POST['caption']),
                         'pickuplocation'=>trim($_POST['pickuplocation']),
                         'destination'=>trim($_POST['destination']),
                         'date'=>trim($_POST['date']),
@@ -369,6 +370,7 @@
                         'request_id'=>$request_id,
 
 
+                        'caption_err'=>'',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -381,6 +383,9 @@
 
 
                 //validate name
+                if (empty($data['caption'])) {
+                    $data['caption_err']='Add a Caption to ypur request';
+                }
                 if (empty($data['pickuplocation'])) {
                     $data['pickuplocation_err']='Please enter a Pickup Location';
                 }
@@ -429,6 +434,7 @@
                     redirect('Users/login');
                 }
                 $data=[
+                    'caption'=>$taxirequest->caption,
                     'pickuplocation'=>$taxirequest->pickup_location,
                     'destination'=>$taxirequest->destination,
                     'date'=>$taxirequest->date,
@@ -439,9 +445,9 @@
                     'p-longitude'=>$taxirequest->p_longitude,
                     'd-latitude'=>$taxirequest->d_latitude,
                     'd-longitude'=>$taxirequest->d_longitude,
-                    'request_id'=>$request_id,
+                    'request_id'=>$taxirequest->request_id,
 
-
+                    'caption_err'=>'',
                     'pickuplocation_err'=>'',
                     'destination_err'=>'',
                     'date_err'=>'',

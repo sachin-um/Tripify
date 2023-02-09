@@ -4,6 +4,10 @@
 
         }
 
+        public function index(){
+
+        }
+
         public function tripplan(){
             $this->view('traveler/v_trip_plan');
         }

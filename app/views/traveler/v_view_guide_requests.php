@@ -45,8 +45,8 @@ else {
         <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>
         <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">Trip Request</a>
         <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item">Offers</a>
-        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Bookings</a>
-        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Payments</a>
+        <a href="<?php echo URLROOT; ?>Guides/GuideBookings.php" class="menu-item">Bookings</a>
+        <a href="#" class="menu-item">Payments</a>
         <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -60,6 +60,7 @@ else {
             <h2 class="title" >Guide Requests</h2>
             <hr>
         </div>
+        <?php flash('request_flash'); ?>
         <div class="request-list">
 
         <?php

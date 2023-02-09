@@ -422,7 +422,7 @@
                 $this->view('taxi/v_taxi_dashboard',$data);
             }
             elseif ($_SESSION['user_type']=='Guide') {
-                $this->view('guide/v_guide_dashboard',$data);
+                $this->view('guide/v_dash_profile',$data);
             }
             elseif ($_SESSION['user_type']=='Admin') {
                 $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
