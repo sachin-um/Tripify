@@ -56,7 +56,12 @@
             
             <?php
             $offers=$data['taxioffers'];
+            // foreach($offers as $key => $value)
+            // {
+            //     echo $key." has the value". $value;
+            // }
             foreach($offers as $taxioffer):
+                // echo $taxioffer->RequestID;
             ?>
             <div class="request">
                 <div class="post-header">Request ID : <?php echo $taxioffer->RequestID; ?></div>
@@ -65,7 +70,7 @@
                         <h5>Offer Details</h5>
                     
                         <div class="post-details">Vehicle Number: <?php echo $taxioffer->vehicle->VehicleID ?> </div>
-                        <div class="post-details">Vehicle Type: <?php echo $taxioffer->vehicle->vehicleType ?> </div>
+                        <div class="post-details">Vehicle Type: <?php echo $taxioffer->vehicle->VehicleType ?> </div>
                         <div class="post-date">Price per KM: <span id="request-data"><?php echo $taxioffer->PricePerKm ?></span></div>
                         <div class="post-time">PaymentMethod: <?php echo $taxioffer->PaymentMethod ?></div>
                         <div class="post-details">Driver Name: <?php echo $taxioffer->vehicle->driver_name ?> </div>
