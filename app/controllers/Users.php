@@ -320,7 +320,7 @@
 
                 $data=[
                     'reset_code'=>trim($_POST['reset_code']),
-                    'email'=>$_SESSION['v_email'],
+                    'email'=>$_SESSION['email'],
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
                     
@@ -416,7 +416,7 @@
                 redirect('Pages/home');
             }
             elseif ($_SESSION['user_type']=='Hotel') {
-                $this->view('hotel/v_hotel_dashboard',$data);
+                $this->view('hotels/v_dash_profile',$data);
             }
             elseif ($_SESSION['user_type']=='Taxi') {
                 $this->view('taxi/v_taxi_dashboard',$data);
