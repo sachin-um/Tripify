@@ -7,7 +7,7 @@
         <div class="taxi_login_cont">
             
             <div >
-                <img id="taxi_login_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+                <img id="taxi_login_img" src="<?php echo URLROOT; ?>/img/logo.png" alt="logo">
                 <p id="taxi_v_login_p">Taxi Login</p> 
                 
 

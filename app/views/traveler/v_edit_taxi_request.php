@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <?php
 $_SESSION['user_id'];
