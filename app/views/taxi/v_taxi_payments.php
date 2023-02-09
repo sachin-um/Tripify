@@ -16,13 +16,17 @@
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item is-active">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
     <main class="right-side-content">
+        <br><br>
+        <div>
+            <h2 class="title" >Payments</h2>
+            <hr>
         <div class="taxi_pay_cont">
             <div class="taxi_dash_payment">
                 <table class="taxi_pay_cont_table">
@@ -46,20 +50,20 @@
                     </tr>
 
                     <tr>
-                        <td>R1001</td>
-                        <td>V7589</td>
-                        <td>02.10.2022</td>
-                        <td>10000.00</td>
+                        <td>R1015</td>
+                        <td>V1005</td>
+                        <td>05.06.2023</td>
+                        <td>15000.00</td>
                         <td>Online</td>
                         <td>Paid</td>
                         <td><button id="tax_off_tb_not">view</button></td>
                     </tr>
 
                     <tr>
-                        <td>R1001</td>
-                        <td>V7589</td>
-                        <td>02.10.2022</td>
-                        <td>10000.00</td>
+                        <td>R1056</td>
+                        <td>V1156</td>
+                        <td>16.08.2023</td>
+                        <td>26000.00</td>
                         <td>Online</td>
                         <td>Pending</td>
                         <td><button id="tax_off_tb_not">view</button></td>

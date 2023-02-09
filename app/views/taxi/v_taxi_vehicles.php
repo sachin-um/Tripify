@@ -31,7 +31,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item is-active">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -39,10 +39,14 @@ else {
 
     <main class="right-side-content">
         <br><br>
-
+        
+        <div>
+            <h2 class="title" >Your Vehicles</h2>
+            <hr>
+        </div>
 
         <article >
-            <h1 id="view_veh_h1">YOUR VEHICLES</h1> 
+            
             <div class="taxi_dash_container">
                 <?php
                     $allvehicles=$data['vehicles'];
