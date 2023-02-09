@@ -15,34 +15,39 @@ else {
     ?> 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<div class="app">
-    <aside class="sidebar">
+<?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
-        <div class="menu-toggle">
-            <div class="hamburger">
-                <span></span>
+<main class="right-side-content">
+    <p class="home-title-2">Hotel Rooms</p>
+
+    <div class="nav-main">
+        
+        <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showRoomDetails'">
+            <div class="hotel-room-card-pic">
+                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+            </div>                    
+
+            <div class="hotel-ad-card-desc">
+                <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br> <!-- Queen Suite -->
+                
+                <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
+                <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
+                <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
+                <label id="room-remain" for="hotel-address">Only 1 room left</label>
             </div>
+
+                    
+            <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
+                    
         </div>
+        
+    </div>
 
-        <nav class="menu">
-            <a href="#" class="menu-item">User Profile</a>
-            <a href="<?php echo URLROOT; ?>/HotelRooms/addroom" class="menu-item is-active">Rooms</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard3.php" class="menu-item">Bookings</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard4.php" class="menu-item">Payments</a>
-            <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
-            <!-- <br><br><br><br><br><br><br><br><br><p style="text-align: center; font-size: 12px;">© 2022 All Rights Reserved by <br>Tripify(pvt)ltd </p> -->
-        </nav>
-    </aside>
-
-    <main class="right-side-content">
-
+    <div class="nav-main">
+        <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Rooms</button>
+    </div>
 
         <div class="profile">
-            <div class="h-title">
-                <br><br><br>
-                <h1 style="color: black;">Hotel Rooms</h1>
-                <br>
-            </div>
 
         <div class="room-cards-row-1">
         <?php
@@ -121,7 +126,6 @@ else {
     </div>
 
 </div>
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 <?php
 }

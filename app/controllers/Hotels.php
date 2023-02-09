@@ -19,6 +19,14 @@
             $ad3 = trim($_POST['district']);
             $address = $ad1 . ',' . $ad2 . ',' . $ad3 . '.';
 
+            if(isset($_POST['submit'])){
+                if(!empty($_POST['lang'])) {    
+                    foreach($_POST['lang'] as $value){
+                        echo "value : ".$value.'<br/>';
+                    }
+                }
+            }
+
             if($_POST['pets']=='yes'){
                 $pets = true;
             }else{
@@ -31,10 +39,9 @@
                 $children = false;
             }
             $data = [
-                'property_name' => trim($_POST['name']),
+                'name' => trim($_POST['name']),
                 'hotel_reg_number' => trim($_POST['hotel_reg_number']),
                 'property_address' => $address,
-                'district' => trim($_POST['district']),
                 'property_category' => trim($_POST['property_category']),
                 'contact_number' => trim($_POST['contact_number']),
                 'pets' => (bool)($_POST['pets']),
@@ -47,11 +54,15 @@
 
 
 
-                'property_name_err' => '',
+                'name_err' => '',
+                'hotel_reg_number_err' => '',
                 'property_address_err' => '',
-                'property_catagory_err' => '',
+                'property_category_err' => '',
                 'contact_number_err' => '',
-                'reg_number_err' => '',
+                'pets_err' => '',
+                'children_err' => '',
+                'cancel_period_err' => '',
+                'cancel_fee_err' => '',
                 'hotel_id_err' => '',
 
 
@@ -61,30 +72,43 @@
             } else if (!preg_match("/^[a-zA-Z]+$/", $data['property_name'])) {
                 $data['property_name_err'] = 'Invalid Property Name';
             }
-            if (empty($data['hotel_id'])) {
-                $data['hotel_id_err'] = 'This field is required';
+
+            if (empty($data['hotel_reg_number'])) {
+                $data['hotel_reg_number_err'] = 'This field is required';
             }
+
             if (empty($ad1) || empty($ad2) || empty($ad4)) {
                 $data['property_address_err'] = 'All address fields need to be filled';
             }
+
+            if(empty($data['property_category'])){
+                $data['property_category_err'] = 'Please specify the property category';
+            }
+
             if (empty($data['contact_number'])) {
                 $data['contact_number_err'] = 'This field is required';
             } else if (!preg_match('/^[0-9]{10}+$/', $data['contact_number'])) {
                 $data['contact_number_err'] = 'Invalid Contact Number';
             } 
+
+            if(empty($data['cancel_period'])){
+                $data['cancel_period_err'] = 'This field is required';
+            }
+
+            if(empty($data['cancel_fee'])){
+                $data['cancel_fee_err'] = 'This field is required';
+            }
             // else if (strlen($data['contact_number']) == 10) {
             //     $data['contact_number_err'] = 'Invalid Contact Number';
             // }
 
-
-
-            if (empty($data['reg_number'])) {
-                $data['reg_number_err'] = 'This field is required';
-            }
+            // if (empty($data['reg_number'])) {
+            //     $data['reg_number_err'] = 'This field is required';
+            // }
 
             if (
-                $data['property_name_err'] && $data['property_address_err'] && $data['contact_number_err']
-                && $data['reg_number_err'] && $data['hotel_id_err']
+                $data['property_name_err'] && $data['hotel_reg_number_err'] && $data['property_address_err'] && $data['property_category_err']&&
+                $data['contact_number_err'] && $data['cancel_period_err'] && $data['cancel_fee_err']
             ) {
                 //Register Hotel
                 if ($this->hotelModel->register($data)) {
@@ -318,6 +342,31 @@
         public function showRoomDetails(){
             $this->view('hotels/v_booking');
         }
+
+        public function load(){
+            $this->view('hotels/v_dash_profile');
+        }
+
+        public function loadBooking(){
+            $this->view('hotels/v_dash_bookings');
+        }
+
+        public function loadPayments(){
+            $this->view('hotels/v_dash_payments');
+        }
+
+        public function loadMessages(){
+            $this->view('hotels/v_dash_messages');
+        }
+
+        public function loadReviews(){
+            $this->view('hotels/v_dash_reviews');
+        }
+
+        public function hotelSupport(){
+            $this->view('hotels/v_dash_support');
+        }
+
     }
 
 ?>
