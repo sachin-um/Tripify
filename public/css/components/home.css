@@ -2,6 +2,7 @@
     overflow: auto;
     flex: 1;
     min-height: 750px;
+    margin-top:8%;
 }
 
 .dashboad-content{
