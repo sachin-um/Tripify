@@ -2,7 +2,7 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
-    <div class="tax-content">
+    <div class="content">
         <div class="addtaxiownerinfo">
             <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->

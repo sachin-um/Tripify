@@ -29,7 +29,7 @@
         </nav>
         <?php
         }
-        else if ($_SESSION['user_type']=='Guide') {
+        else if ($_SESSION['user_type']=='Taxi') {
         ?>
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>

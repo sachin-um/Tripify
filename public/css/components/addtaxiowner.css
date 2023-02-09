@@ -13,7 +13,7 @@
 
 .add_taxi_info_caption{
     position: relative;
-    top:50%;
+    top:40%;
     transform: translate(0%,-10%);
     margin-left: 10%;
 }
@@ -25,7 +25,7 @@
 
 
 .addtaxiownerinfo{
-    
+    margin-left: 200px;
     width: fit-content;
     border: solid 1px black;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);

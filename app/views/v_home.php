@@ -75,8 +75,7 @@
         
     </div>
       
-</div> 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+</div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 

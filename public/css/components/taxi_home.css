@@ -128,11 +128,10 @@
   */
 
 .tax-home-content{
-    /* overflow: auto;
+    overflow: auto;
     flex: 1;
-    min-height: 750px; */
-
-    margin-top: 2em;
+    min-height: 750px;
+    margin-top: 5%;
 
 }
 
