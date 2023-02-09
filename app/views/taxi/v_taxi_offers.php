@@ -64,7 +64,7 @@
                 // echo $taxioffer->RequestID;
             ?>
             <div class="request">
-                <div class="post-header">Request ID : <?php echo $taxioffer->RequestID; ?></div>
+                <div class="post-header">Request ID : <?php echo $taxioffer->request_id; ?></div>
                     <div class="post-body">
 
                         <h5>Offer Details</h5>
