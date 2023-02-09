@@ -1,0 +1,38 @@
+.tax_vech_view_cont{
+    
+    display: grid;
+    justify-items: center;
+    
+}
+
+.tax-vec-sp-cont{
+    display: flex;
+    /* justify-content: center; */
+    justify-items: center;
+    justify-content:center;
+    gap: 10em;
+
+    background-color: #E89E9E;
+}
+
+.taxi_dash_edit_veh{
+    display: grid;
+    justify-items: center;
+    height: fit-content;
+    padding: 1em;
+}
+
+
+
+.tax_book_viewTable input{
+    width: 8em;
+}
+
+
+#tax-dash-view-veh-img{
+    width: 15em;
+}
+
+#taxi-dash-vec-view-slt {
+    width: 9em;
+}

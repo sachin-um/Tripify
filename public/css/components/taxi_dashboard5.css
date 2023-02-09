@@ -1,0 +1,41 @@
+#tax_dash_paybut{    
+   /* ........... get full report button........... */
+    margin-top: 1em;
+
+    height: 3em;
+    width: 10em;
+    background-color: #03002E;
+    color: white;
+    border-radius: 1.5em;
+
+    
+}
+
+.taxi_pay_cont{
+    margin-top: 2.5em;
+    margin-right: 2em;
+    width: 100%;
+
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
+
+
+.taxi_pay_cont_table{
+    margin-top: 2em;
+    padding-bottom: 1em;
+    /* border-radius: 0.5em; */
+    
+
+    text-align: center;
+    background-color: #D9D9D9;
+}
+
+.taxi_pay_cont_table td {
+    padding: 1em;
+}
+
+.taxi_pay_cont_table th{
+    padding: 1em;
+}

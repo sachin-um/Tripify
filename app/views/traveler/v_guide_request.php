@@ -24,13 +24,26 @@ else {
         <div >
             <form action="<?php echo URLROOT; ?>/Request/addGuideRequest" method="POST">
                 
+                <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
+                <span class="invalid"><?php echo $data['caption_err']; ?></span>
                 <input type="text" id="area" name="area" placeholder="Area you want to travel" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
                 <input type="text" id="date" name="date" placeholder="Date you want travel" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Time (Optional)" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>" min="<?php echo date('Y-m-d'); ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
-                <input type="text" id="language" name="language" placeholder="Language you prefer" value="<?php echo $data['language']; ?>">
+                <select class="search" id="language" name="language">
+                    <option value="" disabled selected hidden>prefer Language</option>
+                    <option value='sinhala'>Sinhala</option>
+                    <option value='english'>English</option>
+                    <option value='tamil'>Tamil</option>
+                    <option value='chinese'>Chinese</option>
+                    <option value='japanese'>Japanese</option>
+                    <option value='russian'>Russian</option>
+                    <option value='french'>French</option>
+                    <option value='artabic'>Arabic</option>
+                    <option value='spanish'>Spanish</option>
+                </select>
                 <span class="invalid"><?php echo $data['language_err']; ?></span>
                 <textarea name="additional-details" id="additional-details" cols="82" rows="10" placeholder="Additional Details"></textarea>
                 <span class="invalid"><?php echo $data['additional-details_err']; ?></span>

@@ -10,3 +10,53 @@
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+.admin-table-container{
+    margin: 40px auto 0;
+}
+
+.message-table{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.message-table thead{
+    background-color: #03002E;
+}
+
+.message-table thead tr th{
+    padding: 25px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    color: #FFFFFF;
+    opacity: 1;
+    vertical-align: top;
+    border: 1px solid #dee2e685;
+}
+
+.message-table tbody tr td{
+    padding: 25px 32px;
+    font-size: 14px;
+    letter-spacing: 0.35px;
+    font-weight: normal;
+    color: black;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #dee2e685;
+}
+
+
+.message-table tbody tr td .btn{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-top: 4%; */
+    background-color: #ff1046;
+    
+}

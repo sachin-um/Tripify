@@ -1,0 +1,45 @@
+.tax_book_view_cont{
+    
+    display: grid;
+    /* justify-content: center; */
+    justify-items: center;
+    
+}
+
+.tax_book_view_innerCont{
+
+
+    width: 50%;
+    /* padding-left: 5em;
+    padding-right: 5em; */
+    background-color: #E89E9E;
+
+    
+}
+
+
+.tax_book_viewTable td{
+    padding: 1em;
+    width: 100%;
+}
+
+#tax_book_backBut{
+    width: 8em;
+    height: 3em;
+    border-radius: 1.5em;
+    background-color: #03002E;
+    color: white;
+
+    margin-bottom: 1em;
+}
+
+#tax_book_comBut{
+    width: 8em;
+    height: 3em;
+    border-radius: 1.5em;
+    background-color: #03002E;
+    color: white;
+
+    margin-top: 1em;
+   
+}

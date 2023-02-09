@@ -31,6 +31,11 @@
             else if ($_SESSION['user_type']=='Hotel') {
                 $this->view('hotels/v_dash_profile',$data);
             }
+            else if ($_SESSION['user_type']=='Admin') {
+                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+                $data->details=$admindetails;
+                $this->view('admin/v_admin_dashboard',$data);
+            }
         }
         public function logins(){
             $this->view('v_logins');
@@ -59,6 +64,9 @@
             ];
             $this->view('v_about',$data);
         }
+
+        
+        
     }
 
 ?>
