@@ -23,6 +23,13 @@
    
 }
 
+.guide-content{
+    overflow: auto;
+    flex: 1;
+    min-height: 750px;
+    margin-top:3%;
+}
+
 .guide-reg-textarea{
     /* width: 70%;
     height: 40px; */

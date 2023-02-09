@@ -19,7 +19,7 @@ else {
 
 <main class="right-side-content">
     <br><br>
-    <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
+    <h2>Profile Information</h1>
     <hr>
     <br>
     <div class="profile-image" style="width: 450px; text-align: center;">

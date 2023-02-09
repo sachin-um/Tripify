@@ -23,7 +23,7 @@
     <main class="right-side-content">
 
         <br><br>
-        <h2 style="text-align: left; margin-left:8%;">Bookings</h1>
+        <h2>Bookings</h1>
         <hr>
 
         <table class="guide-table">
