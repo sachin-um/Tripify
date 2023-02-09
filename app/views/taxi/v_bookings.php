@@ -179,7 +179,7 @@
                         </div>
                     </div>
 
-                    <p class="home-title-3"><u>Billing Information</u></p>
+                    <!-- <p class="home-title-3"><u>Billing Information</u></p>
 
                     <form action="">
                         <div class="hotel-reg-form">
@@ -233,10 +233,10 @@
                                 <div class="hotel-reg-elements">
                                     
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="hotel-reg-form-div-2">
-                                <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Confirm Booking</button>
+                                <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Book Now</button>
                             </div>
                         </div>
                     </form>

@@ -18,7 +18,7 @@
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item is-active">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -26,7 +26,10 @@
 
     <main class="right-side-content">
     <div class="taxi_off_cont">
-           
+        <div>
+            <h2 class="title" >Bookings</h2>
+            <hr>
+        </div>    
             <table class="taxi_off_cont_table">
             <tr id="tax_off_th">
                 <th>BookingID</th>
@@ -53,25 +56,25 @@
             </tr>
 
             <tr>
-                <td>B1001</td>
-                <td>Perera</td>
-                <td>Kumar</td>
-                <td>PE-5659</td>
-                <td>02.10.2022</td>
-                <td>Colombo</td>
+                <td>B1002</td>
+                <td>Isuru</td>
+                <td>Udhana</td>
+                <td>251-1369</td>
+                <td>12.06.2023</td>
+                <td>Jaffna</td>
                 <td>Kandy</td>
                 <!-- <td>Yes</td> -->
                 <td><button id="tax_book_tb" >Confirm </button></td>
             </tr>
 
             <tr>
-                <td>B1001</td>
-                <td>Perera</td>
-                <td>Kumar</td>
-                <td>PE-5659</td>
-                <td>02.10.2022</td>
+                <td>B1003</td>
+                <td>Sanga</td>
+                <td>Sanath</td>
+                <td>59-6859</td>
+                <td>25.09.2023</td>
                 <td>Colombo</td>
-                <td>Kandy</td>
+                <td>Vavuniya</td>
                 <!-- <td>Yes</td> -->
                 <td><button id="tax_book_tb" >Confirm </button></td>
             </tr>

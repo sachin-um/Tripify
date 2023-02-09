@@ -31,7 +31,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
+            <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -39,8 +39,10 @@ else {
 
         <main class="right-side-content">
         <br><br>
-        <h2 style="text-align: left; margin-left:8%;">Settings</h1>
-        <hr>
+        <div>
+            <h2 class="title" >Settings</h2>
+            <hr>
+        </div> 
         <br>
         <div class="taxi-first-container">
             <div class="profile-image" style="width: 450px; text-align: center;">
@@ -59,7 +61,7 @@ else {
                     </div>
                     
                     <div class="sub-sub">
-                        <h3>P.K. Jayarathne</h3>
+                        <h3>Karththikeyan</h3>
                     </div>
                             
                 </div>
@@ -72,7 +74,7 @@ else {
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>curran@gmail.com</h3>
+                        <h3>kkarththi15@gmail.com.com</h3>
                     </div>
                         
                 </div>
@@ -85,7 +87,7 @@ else {
                     </div>
                  
                     <div class="sub-sub">
-                        <h3>A1234</h3>
+                        <h3>4</h3>
                     </div>
                     
                 </div>
@@ -110,7 +112,7 @@ else {
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>12AB</h3>
+                        <h3>1</h3>
                     </div>
                         
                 </div>
