@@ -53,7 +53,7 @@
         //delete guide request
         public function deleteguiderequest($id){
             $this->db->query('DELETE from guide_request WHERE RequestsID=:request_id');
-            $this->db->bind(':request_id',$data['request_id']);
+            $this->db->bind(':request_id',$id);
 
             
 
