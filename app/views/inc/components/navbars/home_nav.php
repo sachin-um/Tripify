@@ -1,5 +1,5 @@
 <div class="top">
-    <div class="nav-main">
+    <div class="system-nav-main">
         <div class="nav-logo-container">
             <a href="<?php echo URLROOT ?>/Pages/home"><img id="logo" src="<?php echo URLROOT; ?>/img/logo.png" alt="logo"></a>
         </div>
@@ -78,11 +78,11 @@
         ?>
 
 
-            <div class="nav-parts" style="padding:10px 0">
+            <div class="nav-parts" style="padding:20px 0">
                 <button class="nav-btns" onclick="location.href='<?php echo URLROOT ?>/Users/login'">Login</button>
             </div>
 
-            <div class="nav-parts" style="padding: 10px 0">
+            <div class="nav-parts" style="padding: 20px 0">
                 <button class="nav-btns" onclick="location.href='<?php echo URLROOT ?>/Users/register'">Sign Up</button>
             </div>
             <!-- <div class="login-btns">

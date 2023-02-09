@@ -15,7 +15,7 @@
             <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/trip" class="menu-item is-active">Trip Requests</a>
+            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item is-active">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
@@ -74,7 +74,7 @@
 
             <div class="taxi_trip_but_cont">
                 <button>Contact</button>
-                <button>Make Offer</button>
+                <button onclick="window.location='<?php echo URLROOT; ?>/Taxies/makeoffers'">Make Offer</button>
                 <button>Decline Offer</button>
             </div>
                

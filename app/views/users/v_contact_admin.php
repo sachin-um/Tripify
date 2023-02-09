@@ -8,7 +8,7 @@
         </div>
     
         <div >
-            <form class="contact-content" action="<?php echo URLROOT; ?>/Users/contactadmin" method="POST">
+            <form class="contact-content" action="<?php echo URLROOT; ?>/Users/contactus" method="POST">
                 
 
                 <input type="text" id="name" name="name" placeholder="Name" value="<?php echo $data['name']; ?>">

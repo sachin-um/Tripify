@@ -49,8 +49,8 @@
  }
 
  .right-side-content{
-   margin-left: 16%;
-   margin-top: 8%;
+   margin-left: 17%;
+   margin-top: 5%;
    width: 86%;
    float: right;
  }
@@ -68,11 +68,13 @@
 }
 
 
- hr{
-    height: 5px;
-    background:#35BCBF;
-    border: none;
- }
+.right-side-content hr{
+   width: 100%;
+   margin-top: 15px;
+   height: 5px;
+   background:#35BCBF;
+   border: none;
+}
 
 
  /* @media(max-width: 768px){

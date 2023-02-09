@@ -33,7 +33,7 @@ else {
                 <input type="text" id="time" name="time" placeholder="Time (Optional)" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>" min="<?php echo date('Y-m-d'); ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
                 <select class="search" id="language" name="language">
-                    <option value="" disabled selected hidden>prefer Language</option>
+                    <option value="<?php echo $data['language']; ?>" selected>prefer Language - <?php echo $data['language']; ?></option>
                     <option value='sinhala'>Sinhala</option>
                     <option value='english'>English</option>
                     <option value='tamil'>Tamil</option>
@@ -47,7 +47,7 @@ else {
                 <span class="invalid"><?php echo $data['language_err']; ?></span>
                 <textarea name="additional-details" id="additional-details" cols="82" rows="10" placeholder="Additional Details"><?php echo $data['additional-details']; ?></textarea>
                 <span class="invalid"><?php echo $data['additional-details_err']; ?></span>
-                <button id="sign-up-btn-1" type="submit">Request a Guide</button>
+                <button id="sign-up-btn-1" type="submit">Save Changes</button>
                 <input type="hidden" name="travelerid" id="travelerid" value="<?php echo $_SESSION['user_id'];?>">
                 <span class="invalid"><?php echo $data['travelerid_err']; ?></span>
               </form> 

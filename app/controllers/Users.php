@@ -2,7 +2,7 @@
     class Users extends Controller{
         public function __construct(){
             $this->userModel=$this->model('M_Users');
-            // $this->messageModel=$this->model('M_Messages');
+            $this->messageModel=$this->model('M_Messages');
         }
         public function index(){
 
@@ -113,7 +113,7 @@
         }
 
         //login
-        public function login(){
+        public function login($usertype=NULL){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -159,19 +159,21 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
-                    }
-                    else if ($log_user->UserType!='Traveler') {
-                        flash('reg_flash', 'You Cannot logging as a Traveler');
-                        $this->view('users/v_login',$data);
-                    }
-                    
+                    }        
                     //logging user
                     else{
                         $this->createUserSession($log_user);
                     }
                 }
                 else {
-                    $this->view('users/v_login',$data);
+                    if($usertype=='Service'){
+                        $this->view('users/v_service-login',$data);
+                    }
+                    else if($usertype=='Admin'){
+                        $this->view('admin/v_login',$data);
+                    }else{
+                        $this->view('users/v_login',$data);
+                    }
                 }
 
 
@@ -186,7 +188,16 @@
                     'password_err'=>'',
 
                 ];
-                $this->view('users/v_login',$data);
+                if($usertype=='Service'){
+                    $this->view('users/v_service-login',$data);
+                }
+                else if($usertype=='Admin'){
+                    $this->view('admin/v_login',$data);
+                }
+                else{
+                    $this->view('users/v_login',$data);
+                }
+                
             }
             $this->view('users/v_login');
         }
@@ -398,11 +409,27 @@
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
-            $data=[
-                'isLoggedIn'=>$this->isLoggedIn()
-            ];
+            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
             // $this->view('v_home',$data);
-            redirect('Pages/home');
+
+            if ($_SESSION['user_type']=='Traveler') {
+                redirect('Pages/home');
+            }
+            elseif ($_SESSION['user_type']=='Hotel') {
+                $this->view('hotel/v_hotel_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Taxi') {
+                $this->view('taxi/v_taxi_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Guide') {
+                $this->view('guide/v_guide_dashboard',$data);
+            }
+            elseif ($_SESSION['user_type']=='Admin') {
+                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+                $data->details=$admindetails;
+                $this->view('admin/v_admin_dashboard',$data);
+            }
+            
         }
 
         public function createVerifySession($email){
@@ -445,7 +472,7 @@
                 $data=[
                     'name'=>trim($_POST['name']),
                     'email'=>trim($_POST['email']),
-                    'message'=>trim($_POST['messeage']),
+                    'message'=>trim($_POST['message']),
                     
 
                     'name_err'=>'',
@@ -475,7 +502,7 @@
                 if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['message_err'])) {
                     
                     
-                    if ($this->userModel->contactus($data)) {
+                    if ($this->messageModel->contactus($data)) {
                         
                         flash('reg_flash', 'Your message is recieved, we w');
                         redirect('Users/contactus');
@@ -509,13 +536,13 @@
 
         public function messages()
         {
-            $allmessages=$this->messageModel->viewall();
-            $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
+            $messages=$this->messageModel->viewall();
+            // $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'messages'=>$messages
             ];
             if ($_SESSION['user_type']=='Admin') {
-                $this->view('admin/v_admin_messages');
+                $this->view('admin/v_admin_messages',$data);
             }
             elseif ($_SESSION['user_type']=='Traveler') {
                 $this->view('traveler/v_messages');

@@ -28,7 +28,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Back</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">Travelers</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item">Guides</a>
-            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotels" class="menu-item is-active">Hotels</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotel" class="menu-item is-active">Hotels</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -37,7 +37,7 @@ else {
     <main class="right-side-content">
         <br>
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Hotels Profiles</h1>
+        <h2 >Hotels Profiles</h1>
         <hr>
         <br>
         <div class="first-container">
@@ -53,7 +53,8 @@ else {
                             <th>Address</th>
                             <th>Registration Number</th>
                             <th>Account status</th>
-                            <th>Action</th>
+                            <th>Suspend</th>
+                            <th>Remove</th>
                             
                         </tr>
                     </thead>
@@ -71,8 +72,8 @@ else {
                             <td data-lable="Address"><?php echo $hotel->moreDetails->Address ?></td>
                             <td data-lable="Status"><?php echo $hotel->moreDetails->reg_number ?></td>
                             <td data-lable="Status"><?php echo $hotel->acc_status ?></td>
-                            <td data-lable="Status"><?php echo $hotel->acc_status  ?></td>
-                            <td data-lable="Status"><?php echo $hotel->acc_status ?></td>
+                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
+                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
                         </tr>
                         <?php
                             endforeach;
