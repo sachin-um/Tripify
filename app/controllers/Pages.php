@@ -26,7 +26,7 @@
                 $this->view('taxi/v_taxi_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Guide') {
-                $this->view('guide/v_guide_dashboard',$data);
+                $this->view('guide/v_dash_profile',$data);
             }
             else if ($_SESSION['user_type']=='Hotel') {
                 $this->view('hotels/v_dash_profile',$data);

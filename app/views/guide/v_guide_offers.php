@@ -40,12 +40,12 @@ else {
         else if ($_SESSION['user_type']=='Guide') {
         ?>
         <nav class="menu">
-        <a href="#" class="menu-item">User Profile</a>
+        <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>
         <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Trip Request</a>
         <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item is-active">Offers</a>
-        <a href="<?php echo URLROOT; ?>/Bookings/guidebookings" class="menu-item">Bookings</a>
-        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Payments</a>
-        <a href="<?php echo URLROOT; ?>hotels/v_hotel_dashboard2.php" class="menu-item">Exit Dashboard</a>
+        <a href="<?php echo URLROOT; ?>/Guides/viewGuideBookings" class="menu-item">Bookings</a>
+        <a href="#" class="menu-item">Payments</a>
+        <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
         }

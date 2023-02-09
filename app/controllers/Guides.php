@@ -215,6 +215,26 @@
             redirect('Pages/index');
         }
 
+        public function loadProfile(){
+            $this->view('guide/v_dash_profile');
+        }
+
+        public function showGuides(){
+            $this->view('guide/v_guide_list');
+        }
+
+        public function showGuideDetails(){
+            $this->view('guide/v_guide_details');
+        }
+
+        public function viewGuideBookings(){
+            $this->view('guide/v_guide_bookings');
+        }
+
+        public function loadBooking(){
+            $this->view('guide/v_guide_booking_form');
+        }
+
     }
 
     

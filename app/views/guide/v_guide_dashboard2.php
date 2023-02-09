@@ -21,7 +21,7 @@
 
     <main class="right-side-content">
         <br>
-        <h2 style="text-align: left; margin-left:8%;">Profile Information</h1>
+        <h2 style="text-align: left; margin-left:8%;">Trip Requests</h1>
         <hr>
         
     </main>
