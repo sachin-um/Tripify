@@ -96,6 +96,18 @@
             $this->view('guide/v_add_guide_offer');
         }
 
+
+        public function taxioffers($request_id=NULL){
+            $alloffers=$this->guideofferModel->viewall();
+            $offers=filteroffers($alloffers,$_SESSION['user_type'],$request_id);
+            $data=[
+                'taxioffers'=> $offers
+            ];
+            
+                $this->view('taxi/v_taxi_offers',$data);
+            
+        }
+
         
         
     }

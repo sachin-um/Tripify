@@ -22,8 +22,10 @@ else {
         </div>
     
         <div >
-            <form action="<?php echo URLROOT; ?>/Request/editTaxiRequest/<? echo $data['request_id'] ?>" method="POST">
+            <form action="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $data['request_id'] ?>" method="POST">
                 
+                <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
+                <span class="invalid"><?php echo $data['caption_err']; ?></span>
                 <input type="text" id="pickuplocation" name="pickuplocation" placeholder="From Where journey Begin...?" value="<?php echo $data['pickuplocation']; ?>">
                 <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
                 <span>Select the pickup location on Map(Optional)</span>

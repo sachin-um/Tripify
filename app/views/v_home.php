@@ -9,7 +9,7 @@
         <p class="home-title-2">No Agencies. No Cost. No Hassle.</p>
         <br>
         <div class="home-div-3">
-            <button class="all-purpose-btn">Start planning</button>
+            <a href="<?php echo URLROOT; ?>/Trips/tripplan"><button class="all-purpose-btn">Start planning</button></a>
         </div>
 
         

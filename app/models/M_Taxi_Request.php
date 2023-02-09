@@ -52,7 +52,6 @@
             $this->db->bind(':d_longitude',$data['d-longitude']);
             $this->db->bind(':request_id',$data['request_id']);
 
-            
 
             if ($this->db->execute()) {
                 return true;
@@ -71,8 +70,9 @@
 
         //delete taxi request
         public function deletetaxirequest($id){
-            $this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
-            $this->db->bind(':request_id',$data['request_id']);
+            //$this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
+            $this->db->query('DELETE FROM `taxi_request` WHERE RequestID=:request_id');
+            $this->db->bind(':request_id',$id);
 
             
 

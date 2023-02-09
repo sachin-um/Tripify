@@ -60,6 +60,7 @@ else {
             <h2 class="title" >Guide Requests</h2>
             <hr>
         </div>
+        <?php flash('request_flash'); ?>
         <div class="request-list">
 
         <?php
