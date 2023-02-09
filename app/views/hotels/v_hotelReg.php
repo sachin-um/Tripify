@@ -15,31 +15,39 @@
                 <div class="hotel-reg-form-div-2">
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Property Name<sup> *</sup> :</p>
-                        <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                        <input class="hotel-labels-2" type="text" id="name" name="name" 
+                        value="<?php echo $data['name'];?>">
+                        <span><?php echo $data['name_err']; ?></span>
                     </div>
 
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Hotel Registration No<sup> *</sup> :</p>
-                        <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                        <input class="hotel-labels-2" type="text" id="hotel_reg_number" name="hotel_reg_number" 
+                        value="<?php echo $data['hotel_reg_number'];?>">
+                        <span><?php echo $data['hotel_reg_number_err']; ?></span>
                     </div>
                 </div>
 
                 <div class="hotel-reg-form-div-2">
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Address Line 1<sup> *</sup> :</p>
-                        <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
+                        <input class="hotel-labels-2" type="text" id="line1" name="line1"
+                        value="<?php echo $data['line1'];?>">
+                        <span><?php echo $data['property_address_err']; ?></span>
                     </div>
 
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Address Line 2 :</p>
-                        <input class="hotel-labels-2" type="text" id="line2" name="line2">
+                        <input class="hotel-labels-2" type="text" id="line2" name="line2"
+                        value="<?php echo $data['line2'];?>">
+                        <span><?php echo $data['property_address_err']; ?></span>
                     </div>
                 </div>
 
                 <div class="hotel-reg-form-div-2">
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">District<sup> *</sup> :</p>
-                        <select name="district" id="district" required>
+                        <select name="district" id="district">
                             <option selected>--</option>  
                             <option>Ampara</option>  
                             <option>Anuradhapura</option>  
@@ -66,7 +74,8 @@
                             <option>Ratnapura</option>
                             <option>Trincomalee</option>
                             <option>Vavuniya</option>
-                    </select>
+                        </select>
+                        <span><?php echo $data['property_address_err']; ?></span>
                     </div>
 
                     <div class="hotel-reg-elements">
@@ -150,111 +159,7 @@
                     </div>
                 </div>
 
-                <p class="home-title-3">Amenities</p>
-                <hr>
-                <p class="home-title-4">Select all that apply.</p>
-                <br>
-                <div class="amenities">
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="pool" value="pool">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="pool">&nbsp;&nbsp;Swimming Pool</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="parking" value="parking">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="parking">&nbsp;&nbsp;Parking</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="wifi" value="wifi">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="wifi">&nbsp;&nbsp;Free Wifi</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="ac" value="ac">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="ac">&nbsp;&nbsp;Air Conditioning</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="gym" value="gyn">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="gym">&nbsp;&nbsp;Gym</label>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="amenities">
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="service" value="service">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="service">&nbsp;&nbsp;24/7 Room Service</label>
-                        </div>                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="buffet" value="buffet">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="buffet">&nbsp;&nbsp;Restaurent</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="spa" value="spa">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="spa">&nbsp;&nbsp;Spa Lounge/Relaxation Area</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="airport" value="ariport">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="airport">&nbsp;&nbsp;Airport Shuttle</label>
-                        </div>
-                        
-                    </div>
-
-                    <div class="check-element-div">
-                        <div class="check-box-element">
-                            <input type="checkbox" class="registerCheckbox" id="bar" value="bar">
-                        </div>
-                        <div class="check-box-element">
-                            <label for="bar">&nbsp;&nbsp;Bar</label>
-                        </div>
-                        
-                    </div>
-                </div>         
+                         
                 <br>
                 <br>
                 <div class="home-div-3">

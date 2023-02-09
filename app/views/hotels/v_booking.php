@@ -2,6 +2,7 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
+    <br><br><br>
     <div class="content">
         <div class="hotel-booking-title">
             <p id="hotel-booking-title-1" class="home-title-2" ><b>DELUXE ROOM</b></p>
@@ -122,21 +123,31 @@
                     <br>
                     <p class="home-title-3"><u>Price Details</u></p>
                     <br>
-                    <div class="price-details-1">
-                        <div class="hotel-price-check">
-                            <label><b>Check In :</b></label><br>
-                            <label>Monday</label>
-                            <label><b>November 13</b></label>
+
+                    <div class="nav-main">
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Check-In Date</b></p>
+                            <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
+                            <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                         </div>
-                        <div class="hotel-price-check">
-                            <label><b>Check Out :</b></label><br>
-                            <label>Tuesday</label>
-                            <label><b>November 14</b></label>
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
+                            <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
+                            <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                         </div>
-                        <div id="hotel-nights-days" class="hotel-price-check">
-                            <label>1-Night</label>
-                        </div>
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Duration</b></p>
+                            <div id="hotel-nights-days" class="hotel-price-check">
+                                <label>1-Night</label>
+                            </div>
+                        </div>                       
+
                     </div>
+
+                    
                     <br>
                     <div class="price-details-2">
                         <div class="hotel-price-details">

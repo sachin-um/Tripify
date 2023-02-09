@@ -46,7 +46,7 @@ else {
                     <div class="Containers">
                         <div class="MessageInfo">4 / 4</div>
                         <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
-                        <div class="H-Room-Info">F Caption</div>
+                        <div class="H-Room-Info">Fourth Caption</div>
                     </div>
 
                     <!-- Back and forward buttons -->
@@ -80,7 +80,8 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->Name;  ?></p>
+                            <p class="home-title-4">U12763</p>
+                            <!-- <p class="home-title-4"><?php echo $data->Name;  ?></p> -->
                         </div>
                     </div></li>
 
@@ -95,7 +96,8 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <!-- <p class="home-title-4"><?php echo $data->Email;  ?></p> -->
+                            <p class="home-title-4">kaveesha@gmail.com</p>
                         </div>
                     </div></li>
 
@@ -110,14 +112,17 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4">
+                                P1234
+                                <!-- <?php echo $data->Password;  ?> -->
+                            </p>
                         </div>
                     </div></li>
-                    <br>
+                    
                     <li>
                     <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Property ID</p>
+                            <p class="home-title-4">Verification Status</p>
                         </div>
 
                         <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
@@ -125,10 +130,17 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4">
+                                <!-- <?php if ($data->verification_status ==1) {
+                                ?><h3>Verified </h3><?php
+                                }else {
+                                ?><h3>Not Verified </h3><?php
+                            } ?> -->
+                            Verified
+                        </p>
                         </div>
                     </div></li>
-
+                    <br>
                     <li>
                     <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
                         <div class="hotel-profile-sub-div-elements">
@@ -259,82 +271,7 @@ else {
             
         </div>
 
-        
-        
-        <br>
-        <br>
-        <h2 style="text-align: left; margin-left:8%;">Settings</h1>
-        <hr>
-        <br>
-        <div class="first-container">
-            <div class="profile-image" style="width: 450px; text-align: center;">
-                <br>
-                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
-                <br>
-                <br>
-                <button class="profile-btn">Edit</button>
-            </div>
-
-            <div class="profile-description">
-            <br>
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Name : </h3>
-                    </div>
-                    
-                    <div class="sub-sub">
-                        <h3><?php echo $data->Name;  ?></h3>
-                    </div>
-                            
-                </div>
-
-
-                <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Email :</h3>
-                    </div>
-                 
-                    <div class="sub-sub">
-                        <h3><?php echo $data->Email;  ?></h3>
-                    </div>
-                    
-                </div>
-                <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>verificaion Status: </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                    <?php if ($data->verification_status ==1) {
-                            ?><h3>Verified </h3><?php
-                        }else {
-                            ?><h3>Not Verified </h3><?php
-                        } ?>
-                    </div>
-                        
-                </div>
-                <br> 
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Contact Number: </h3>
-                    </div>
-                        
-                    <div class="sub-sub">
-                        <h3>+94 77 123 4567</h3>
-                    </div>
-                        
-                </div>
-                <br>
-                <div style="text-align: center;">
-                    <button class="profile-btn">Edit Info</button>
-                        
-                </div>
-            </div>
-        </div>
-        <br><br>
-    </div>
+</div>
 
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
 

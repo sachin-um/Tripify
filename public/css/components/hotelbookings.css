@@ -1,0 +1,50 @@
+.hotel-bookings-main-div{
+    width: 90%;
+    margin: auto;
+}
+
+table{
+    top: 25%;
+    margin: auto;
+    width: 100%; 
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+   
+}
+td , th{
+    padding: 15px 20px;
+    text-align: center;
+}
+
+th{
+    background-color: #03002E;
+    color: #fafafa;
+    font-family: 'Open Sans',Sans-serif;
+    font-weight: 200;
+    text-transform: uppercase;
+
+}
+
+tr{
+    width: 100%;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+}
+
+tr:nth-child(even){
+    background-color: #eeeeee;
+}
+
+#hotel-support-form{
+    margin: auto;
+    margin-top: 3%;
+    width: 70%;
+}
+
+#hotel-support-desc{
+    height: 60%;
+}
+
