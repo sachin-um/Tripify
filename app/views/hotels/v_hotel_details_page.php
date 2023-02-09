@@ -100,8 +100,8 @@
             <hr><br>
             <div class="nav-main">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showRoomDetails'">
-                    <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+                    <div id="hotel-img" class="hotel-room-card-pic">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
 
                     <div class="hotel-ad-card-desc">
@@ -114,13 +114,13 @@
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
                     
                 </div>
 
                 <div class="hotel-ad-card">
                     <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>
 
                     <div class="hotel-ad-card-desc">
@@ -132,13 +132,13 @@
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
                     
                 </div>
 
                 <div class="hotel-ad-card">
                     <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
+                        <img id="hotel-img" id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
                     </div>
 
                     <div class="hotel-ad-card-desc">
@@ -150,7 +150,7 @@
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
                     
                 </div>
             </div>  
@@ -159,7 +159,7 @@
             <div class="nav-main">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showHotelDetails'">
                     <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
 
                     <div class="hotel-ad-card-desc">
@@ -177,7 +177,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>
 
                     <div class="hotel-ad-card-desc">
@@ -194,7 +194,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-room-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
                     </div>
 
                     <div class="hotel-ad-card-desc">

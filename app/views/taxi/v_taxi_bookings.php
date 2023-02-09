@@ -20,7 +20,7 @@
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Taxies/offers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item is-active">Bookings</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
 
@@ -49,7 +49,7 @@
                 <td>Colombo</td>
                 <td>Kandy</td>
                 <!-- <td>Yes</td> -->
-                <td><button id="tax_book_tb" onclick="window.location='<?php echo URLROOT; ?>/Taxies/bookingsview'">Confirm </button></td>
+                <td><button id="tax_book_tb" >Confirm </button></td>
             </tr>
 
             <tr>
@@ -61,7 +61,7 @@
                 <td>Colombo</td>
                 <td>Kandy</td>
                 <!-- <td>Yes</td> -->
-                <td><button id="tax_book_tb" onclick="window.location='<?php echo URLROOT; ?>/Taxies/bookingsview'">Confirm </button></td>
+                <td><button id="tax_book_tb" >Confirm </button></td>
             </tr>
 
             <tr>
@@ -73,7 +73,7 @@
                 <td>Colombo</td>
                 <td>Kandy</td>
                 <!-- <td>Yes</td> -->
-                <td><button id="tax_book_tb" onclick="window.location='<?php echo URLROOT; ?>/Taxies/bookingsview'">Confirm </button></td>
+                <td><button id="tax_book_tb" >Confirm </button></td>
             </tr>
             
             </table>

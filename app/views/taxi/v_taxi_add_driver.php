@@ -7,24 +7,29 @@
             <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
 
 
-            <h1 id="taxi_add_v_p">Add Your Vehicle</h1>
+            <h1 id="taxi_add_v_p">Add Your Driver</h1>
 
             <form action="<?php echo URLROOT; ?>/Taxi_Driver/adddriver" class="taxi_add_v_form" method="POST">
-
-                <!-- <input type="text" id="taxi_add_v_type" placeholder="Vehicle Type" required><br> -->
-            
-                <input name="name" type="text" id="taxi_add_v_model" placeholder="Driver Name" required><br>
-
-                <!-- <input name="nic" type="text" id="taxi_add_v_year" placeholder="NIC"  ><br> -->
-                <input name="age" type="number" id="taxi_add_v_year" placeholder="Age" required ><br>
-
-                <input name="licenseno" type="text" id="taxi_add_v_number" placeholder="License Number" required ><br>
-
+                <div class="taxi_add_v_form">
+                    <input name="name" type="text" id="taxi_add_v_model" placeholder="Driver Name" required><br>
+                </div>
+                
+                <div class="taxi_add_v_form">
+                    <input name="age" type="number" id="taxi_add_v_year" placeholder="Age" required ><br>
+                </div>
+                
+                <div class="taxi_add_v_form">
+                    <input name="licenseno" type="text" id="taxi_add_v_number" placeholder="License Number" required ><br>
+                </div>
+                
                 <!-- <div class="taxi_dri_mob_div">
                     <input id="taxidricode" type="text" value="+94" disabled >
                     <input type="tel" id="taxidrimobile" name="taxiownmobile" value="" / placeholder="Business Phone"  required ><br>
                 </div> -->
-                
+                <div class="taxi_dri_mob_div">
+                        <input id="taxiowncode" name="taxiowncode" type="text" value="+94" disabled >
+                        <input type="tel" id="taxiownmobile" name="contact_number" value=""  placeholder="Business Phone"  required ><br>
+                </div>
                 
                 
 

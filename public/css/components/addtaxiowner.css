@@ -1,3 +1,11 @@
+.tax-content{
+    margin-top: 5em;
+    height: fit-content;
+
+}
+
+
+
 #taxi_add_own_img{
     width: 80%;
     
@@ -24,12 +32,14 @@
     padding-bottom: 5em;
 
     background-color: #fff;
+
     display: grid;
     grid-template-columns: repeat(2,1fr);
     justify-content: center;
-    position: relative;
+    
+    /* position: relative;
     left: 50%;
-    transform: translate(-50%,0%);
+    transform: translate(-50%,0%); */
     
 }
 
@@ -101,7 +111,7 @@
     justify-content: center;
 }
 
-#taxiowncreate_but{
+#taxi-register-but{
     all: unset;
 
     position: relative;
@@ -122,5 +132,9 @@
     font-weight: bold;
     text-align: center;
 
+}
+
+#taxi-register-but:hover{
+    background-color: black;
 }
 

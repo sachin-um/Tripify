@@ -46,7 +46,7 @@
             <div class="nav-main">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showHotels'">
                     <div class="hotel-ad-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
                         <span class="dot">3.0</span>
                     </div>                    
 
@@ -63,7 +63,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
                         <span class="dot">4.1</span>
                     </div>
 
@@ -79,7 +79,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
                         <span class="dot">4.5</span>
                     </div>
 

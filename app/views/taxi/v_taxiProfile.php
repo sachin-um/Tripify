@@ -24,6 +24,33 @@ else {
             </div>
         </div>
 
+
+
+
+
+
+<!-- ...................... Can be Delete..................... -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item ">User Profile</a>
             <!-- <a href="#" class="menu-item">Company</a> -->
@@ -37,7 +64,7 @@ else {
         </nav>
     </aside>
 
-    <main class="right-side-content">
+    <!-- <main class="right-side-content">
         <br><br>
 
 
@@ -86,7 +113,7 @@ else {
         </article>
             
     </main>
-        
+         -->
         
  </div>
 

@@ -106,7 +106,7 @@
 }
 
 #taxi_veh_view:hover,#taxi_veh_delete:hover,#taxi_pro_addv:hover{
-    background-color: #33337d;
+    background-color: black;
 }
 
 #taxi_pro_addv{

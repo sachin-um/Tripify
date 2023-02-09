@@ -8,10 +8,11 @@ class M_Taxi_Driver{
         }
 
         public function addtaxidriver($data){
-            $this->db->query('INSERT INTO taxi_drivers(OwnerID,Age,Name,LicenseNo) VALUES(:OwnerID,:Age,:Name,:LicenseNo)');
+            $this->db->query('INSERT INTO taxi_drivers(OwnerID,Age,Name,contact_number,LicenseNo) VALUES(:OwnerID,:Age,:Name,:contact_number,:LicenseNo)');
             $this->db->bind(':OwnerID',$data['owner']);
             $this->db->bind(':Age',$data['age']);
             $this->db->bind(':Name',$data['name']);
+            $this->db->bind(':contact_number',$data['contact_number']);
             $this->db->bind(':LicenseNo',$data['licenseno']);
             
             

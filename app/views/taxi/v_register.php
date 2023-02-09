@@ -2,7 +2,7 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
-    <div class="content">
+    <div class="tax-content">
         <div class="addtaxiownerinfo">
             <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->
@@ -36,7 +36,7 @@
                     <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" required><br>
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
-                    <input type="submit" id="taxiowncreate_but" name="taxiowncreate_but" value="Register">
+                    <input type="submit" id="taxi-register-but" name="taxiowncreate_but" value="Register">
                 </form>
 
                 <div class="taxicreatecom">
@@ -49,11 +49,12 @@
             </div>
 
 
-         </div>
+        </div>
 
-    </div>
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+    </div>  
 </div>   
+
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 
 

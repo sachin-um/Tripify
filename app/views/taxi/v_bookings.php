@@ -2,10 +2,9 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
-    <br><br><br>
     <div class="content">
         <div class="hotel-booking-title">
-            <p id="hotel-booking-title-1" class="home-title-2" ><b>DELUXE ROOM</b></p>
+            <p id="hotel-booking-title-1" class="home-title-2" ><b>KARTHTHIKEYAN &nbsp; PE-5659</b></p>
         </div>
         <div class="hotel-room-top-picks">
             <div class="hotel-desc-page-div">
@@ -13,12 +12,12 @@
 
                     <div id="hotel-address" class="hotel-disc-3">
                         <label id="view-address">
-                        2 Double Beds
+                            Toyota Auqa
                         </label><br>
                         
                     </div>
 
-                    <div class="hotel-disc-3">
+                    <!-- <div class="hotel-disc-3">
                         <label id="view-address">
                         3 Adults
                         </label><br>
@@ -27,23 +26,39 @@
                         0 children
                         </label><br>
                         
-                    </div>
+                    </div> -->
                     <br>
                     <div class="hotel-disc-3">
                         <div class="hotel-disc-1">
+                            
+                            <label id="view-address">
+                                Car
+                            </label><br><br>
+
                             <ul style="list-style: circle;">
-                            <li><i class="fa-solid fa-person-swimming fa-lg"></i><label>Coffee Maker</label></li>
+                            <i class="fa-solid fa-person-swimming fa-lg">
+
+                                <li><label>Yellow Colour</label></li>
+                                <li><label>4 Seats</label></li>
                                 <li><label>Air Conditioning</label></li>
                                 <li><label>Free Wifi</label></li>
+                            </i>
                             </ul>
                             
                         </div>
 
                         <div class="hotel-disc-1">
+                            <label id="view-address">
+                                Driver
+                            </label><br><br>
+
                             <ul style="list-style: circle;">
-                                <li><label>24/7 Room Service</label></li>
-                                <li><label>TV</label></li>
-                                <li><label>Mini Fridge</label></li>
+                                <i>
+                                    <li><label>Name: Karththikeyan</label></li>
+                                    <li><label>Age: 22</label></li>
+                                    <li><label>Contact Number: 0778964983</label></li>
+                                </i>
+                                
                             </ul>
                         </div>
                     </div>
@@ -54,23 +69,27 @@
                     <div id="booking-slideshow" class="slideshow-container fade">
                         <div class="Containers">
                             <div class="MessageInfo">1 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
+                            <img src="<?php echo URLROOT?>/img/taxi-galary-1.jpg" style="width:100%">
+                            <div class="H-Room-Info"></div>
                         </div>
 
-                        <div class="Containers">
-                            <div class="MessageInfo">2 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
-                        </div>
+                    <div class="Containers">
+                        <div class="MessageInfo">2 / 4</div>
+                        <img src="<?php echo URLROOT?>/img/taxi-galary-2.jpg" style="width:100%">
+                        <div class="H-Room-Info"></div>
+                    </div>
 
-                        <div class="Containers">
-                            <div class="MessageInfo">3 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
-                        </div>
+                    <div class="Containers">
+                        <div class="MessageInfo">3 / 4</div>
+                        <img src="<?php echo URLROOT?>/img/taxi-galary-3.jpg" style="width:100%">
+                        <div class="H-Room-Info"></div>
+                    </div>
 
-                        <div class="Containers">
-                            <div class="MessageInfo">4 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
-                        </div>
+                    <div class="Containers">
+                        <div class="MessageInfo">4 / 4</div>
+                        <img src="<?php echo URLROOT?>/img/taxi-galary-4.jpg" style="width:100%">
+                        <div class="H-Room-Info"></div>
+                    </div>
 
                         <!-- Back and forward buttons -->
                         <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
@@ -97,24 +116,24 @@
                         <div class="hotel-reg-form">
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">First Name<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                                    <p class="home-title-4">Date<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="date" id="name" name="name" required>
                                 </div>
 
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Second Name<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                                    <p class="home-title-4">Time<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="time" id="name" name="name" required>
                                 </div>
                             </div>
 
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Phone Number<sup> *</sup> :</p>
+                                    <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
                                     <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
                                 </div>
 
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Special Requests :</p>
+                                    <p class="home-title-4">Destination Location <sup> *</sup> :</p>
                                     <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
                                 </div>
                             </div>
@@ -123,38 +142,28 @@
                     <br>
                     <p class="home-title-3"><u>Price Details</u></p>
                     <br>
-
-                    <div class="nav-main">
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-In Date</b></p>
-                            <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
-                            <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
+                    <div class="price-details-1">
+                        <div class="hotel-price-check">
+                            <label><b>Trip Start :</b></label><br>
+                            <label>Monday</label>
+                            <label><b>November 13</b></label>
                         </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
-                            <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
-                            <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
+                        <div class="hotel-price-check">
+                            <label><b>Trip End :</b></label><br>
+                            <label>Tuesday</label>
+                            <label><b>November 14</b></label>
                         </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Duration</b></p>
-                            <div id="hotel-nights-days" class="hotel-price-check">
-                                <label>1-Night</label>
-                            </div>
-                        </div>                       
-
+                        <div id="hotel-nights-days" class="hotel-price-check">
+                            <label>410KM</label>
+                        </div>
                     </div>
-
-                    
                     <br>
                     <div class="price-details-2">
                         <div class="hotel-price-details">
-                            <label id="No-of-rooms">1 Room</label>
+                            <label id="No-of-rooms">410KM</label>
                             <label id="X">X</label>
-                            <label id="No-of-nights">1 Night</label>
-                            <label id="Priceofroom"><b>11,000LKR</b></label>
+                            <label id="No-of-nights">100</label>
+                            <label id="Priceofroom"><b>41,000LKR</b></label>
                         </div>
 
                         <div class="hotel-price-details">
@@ -166,7 +175,7 @@
                         
                         <div class="hotel-price-details">
                             <label id="hotel-taxes">Total</label>
-                            <label id="hotel-taxes-1"><b>12,000LKR</b></label>
+                            <label id="hotel-taxes-1"><b>42,000LKR</b></label>
                         </div>
                     </div>
 

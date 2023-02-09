@@ -22,7 +22,20 @@
         </nav>
     </aside>
 
-    <main class="right-side-content">
+
+
+
+
+
+
+    <!-- ....................... CAN BE DELETE....................... -->
+
+
+
+
+
+
+    <!-- <main class="right-side-content">
 
         <p> Requests made by travelers to schedule trips appear here </p>
 
@@ -130,5 +143,5 @@
 
                
             </div>
-    </main>
+    </main> -->
  </div>

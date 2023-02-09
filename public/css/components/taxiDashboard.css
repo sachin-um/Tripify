@@ -63,7 +63,7 @@
 }
 
 #taxi_over_driver:hover,#taxi_over_vehicle:hover{
-    background-color: #33337d;
+    background-color: black;
 }
 
 .taxi-first-container{

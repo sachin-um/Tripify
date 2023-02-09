@@ -24,6 +24,7 @@
 @import url('components/v_taxi_dashboadrd3.css');
 @import url('components/v_taxi_add_driver.css');
 @import url('components/hotel_details_page.css'); 
+@import url('components/hotelbookings.css');
 @import url('components/taxi_dashboard2.css');
 @import url('components/taxi_dashboard6.css');
 @import url('components/taxi_dashboard7.css');
@@ -36,6 +37,7 @@
 @import url('components/contactus.css');
 @import url('components/admin.css');
 @import url('components/trip.css');
+
 
 
 @import url('components/1hotelHome.css');
@@ -79,6 +81,13 @@ input[type="radio"]{
     -webkit-appearance: radio;
 }
 
+
+#hotel-select{
+    border: none;
+    background-color: white;
+    padding-left: 5%;
+    font-size: 1rem;
+}
 
 
 

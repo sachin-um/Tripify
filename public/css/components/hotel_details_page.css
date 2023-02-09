@@ -73,13 +73,14 @@
 
 #hotel-nights-days{
     text-align: center;
-    width:20%;
+    height: 50%;
+    width:100%;
     background-color: #03002E;
     color: #e8b122;
     border-radius: 10px;
     font-size: 0.8rem;
     line-height: 3rem;
-    margin-left: 0;
+    margin-left: 3%;
 }
 
 .price-details-2{
