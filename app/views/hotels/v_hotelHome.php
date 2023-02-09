@@ -27,7 +27,7 @@
             </div>
 
             <div class="home-div-3">
-                <a href=""></a> <button class="all-purpose-btn">Go</button>
+                <a href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn">Go</button></a> 
             </div>
             
         </form>

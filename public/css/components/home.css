@@ -363,6 +363,49 @@ input[type=radio] {
   to {opacity: 2}
 }
 
+.home-destination-scroll{
+  width: 40%;
+  margin: auto;
+}
+
+.home-scroll-divs{
+  margin-top: 5%;
+  width: 80%;
+  margin: auto;
+  background-color: rgba(232,177,34,0.2);
+}
+
+#home-ad-arrows-left{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  margin: auto;
+  right: -10%;
+  bottom: 18%;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 1;
+  text-align: center;
+  line-height: 40px;
+}
+
+#home-ad-arrows-right{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  margin: auto;
+  right: 92%;
+  bottom: 18%;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  display: inline-block;
+  z-index: 1;
+  text-align: center;
+  line-height: 40px;
+}
 
 
 

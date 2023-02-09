@@ -7,7 +7,7 @@
     <div class="content">
         <div class="guide_login_cont">
             <div >
-                <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+                <img id="logo" src="<?php echo URLROOT; ?>/img/logo.png" alt="logo">
                 <p id="tag">Travel Guide Login</p> 
             </div>
             <div class="guide_login_div">

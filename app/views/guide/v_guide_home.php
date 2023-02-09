@@ -13,6 +13,7 @@
                     <input class="hotel-labels-1" type="text" id="place" placeholder="Your Destination">
                 </div>
 
+
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Start Date</p>
                     <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
