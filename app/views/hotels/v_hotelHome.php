@@ -57,39 +57,39 @@
                     </div>
 
                     <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>1,234USD</b></label>
+                        <label id="display-hotel-price" for="hotel-price"><b>334USD</b></label>
                     </div>
                 </div>
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/hotel1.jpeg" alt="nine-arch">
                         <span class="dot">4.1</span>
                     </div>
 
                     <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Hotel Sea Breeze</b></label><br>
-                       <label id="display-hotel-address" for="hotel-address">Galle Rd, Panadura</label> 
+                       <label id="display-hotel-name" for="hotel-name"><b>Hotel Galadari</b></label><br>
+                       <label id="display-hotel-address" for="hotel-address">Galle Rd, Colombo 2</label> 
                     </div>
 
                     <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>1,234USD</b></label>
+                        <label id="display-hotel-price" for="hotel-price"><b>124USD</b></label>
                     </div>
                 </div>
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/hotel2.jpeg" alt="nine-arch">
                         <span class="dot">4.5</span>
                     </div>
 
                     <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Hotel Sea Breeze</b></label><br>
-                       <label id="display-hotel-address" for="hotel-address">Galle Rd, Panadura</label> 
+                       <label id="display-hotel-name" for="hotel-name"><b>Hotel Lighthouse</b></label><br>
+                       <label id="display-hotel-address" for="hotel-address">Kandana, Kiribathgoda</label> 
                     </div>
 
                     <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>1,234USD</b></label>
+                        <label id="display-hotel-price" for="hotel-price"><b>234USD</b></label>
                     </div>
                 </div>
             </div>

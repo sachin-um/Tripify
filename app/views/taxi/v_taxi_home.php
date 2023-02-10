@@ -90,7 +90,7 @@
 
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
                     <div class="hotel-ad-card-pic">
-                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
+                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi1.jpeg" alt="nine-arch">
                         <span class="dot">3.8</span>
                     </div>                    
 
@@ -105,7 +105,7 @@
 
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
                     <div class="hotel-ad-card-pic">
-                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
+                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi2.jpg" alt="nine-arch">
                         <span class="dot">4.0</span>
                     </div>                    
 

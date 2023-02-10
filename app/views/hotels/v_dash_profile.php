@@ -18,6 +18,9 @@ else {
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
 <main class="right-side-content">
+    <br>
+    <br>
+    <br>
     <p class="home-title-2">Account Details</p>
         
         <div class="hotel-profile-top">
