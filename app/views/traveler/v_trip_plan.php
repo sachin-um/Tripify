@@ -6,7 +6,7 @@
 
     <div class="content">
     <div class="white-space">
-        <h2 class="title" >Plan your Trip</h2>
+        <p class="home-title-2">Plan Your Trip</p>
         <br>
     </div>
     <br>
@@ -47,9 +47,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-lable="ID"><button class="plan-item-add-button" type="button">Select a Place to Stay</button></td>
-                            <td data-lable="Name"><button class="plan-item-add-button" type="button">Select a Ride </button></td>
-                            <td data-lable="Email"><button class="plan-item-add-button" type="button">Select a Guide </button></td>
+                            <td id="hotel-column" data-lable="ID">
+                                <button class="plan-item-add-button" type="button">Add Stays</button>
+                            </td>
+                            <td id="taxi-column" data-lable="Name">
+                                <button class="plan-item-add-button" type="button">Add a Ride</button>
+                            </td>
+                            <td id="guide-column" data-lable="Email">
+                                <button class="plan-item-add-button" type="button">Add a Guide</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

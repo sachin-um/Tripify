@@ -20,43 +20,37 @@ else {
 
 
 <main class="right-side-content">
+    <br><br>
+    <p class="home-title-2">Reviews</p>
     <div class="hotel-bookings-main-div">
         <table>
     
             <tr>
-                <th>ReservationID</th>
-                <th>CustomerID</th>
-                <th>Payment Amount</th>
-                <th>Payment Date</th>
-                <th>Payment Method</th>
-                <th>View Details</th>
+                <th>UserID</th>
+                <th>Rating</th>
+                <th style="width:50%">Review</th>
+                <th>Delete</th>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Visa</td>
-                <td><button>View</button></td>
+                <td>U1024</td>
+                <td>4.0</td>
+                <td>Great Hotel. Good Customer Service plus good food.</td>
+                <td><button>Delete</button></td>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Master Card</td>
-                <td><button>View</button></td>
+                <td>U4254</td>
+                <td>3.5</td>
+                <td>Great Hotel. Good Customer Service plus good food.</td>
+                <td><button>Delete</button></td>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>On Site</td>
-                <td><button>View</button></td>
+                <td>U1324</td>
+                <td>3.0</td>
+                <td>Great Hotel. Good Customer Service plus good food.</td>
+                <td><button>Delete</button></td>
             </tr>
 
         </table>
