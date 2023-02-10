@@ -36,7 +36,14 @@
         <div class="hotel-home-join-network">
             <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a guide as you wish? Don't worry you can make a Request.</p>
             <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'">Request a guide</button>
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Request/addGuideRequest'">Request a guide</button>
+            </div>
+        </div>
+
+        <div class="hotel-home-join-network">
+            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+            <div class="home-div-3">
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Register Hotel</button>
             </div>
         </div>
 
