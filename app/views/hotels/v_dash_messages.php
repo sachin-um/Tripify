@@ -20,43 +20,37 @@ else {
 
 
 <main class="right-side-content">
+    <br><br>
+    <p class="home-title-2">Messages</p>
     <div class="hotel-bookings-main-div">
         <table>
     
             <tr>
-                <th>ReservationID</th>
-                <th>CustomerID</th>
-                <th>Payment Amount</th>
-                <th>Payment Date</th>
-                <th>Payment Method</th>
-                <th>View Details</th>
+                <th>UserID</th>
+                <th>User Type</th>
+                <th>Message</th>
+                <th>Delete</th>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Visa</td>
+                <td>U4530</td>
+                <td>Admin</td>
                 <td><button>View</button></td>
+                <td><button>Delete</button></td>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Master Card</td>
+                <td>U3245</td>
+                <td>traveler</td>
                 <td><button>View</button></td>
+                <td><button>Delete</button></td>
             </tr>
 
             <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>On Site</td>
+                <td>U7810</td>
+                <td>traveler</td>
                 <td><button>View</button></td>
+                <td><button>Delete</button></td>
             </tr>
 
         </table>

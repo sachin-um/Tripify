@@ -60,6 +60,17 @@
     border: 1px solid #dee2e685;
 }
 
+#hotel-column{
+    background-color: rgb(3,0,46,0.3);
+}
+
+#taxi-column{
+    background-color: rgb(232,177,34,0.3);
+}
+
+#guide-column{
+    background-color: rgb(42, 157, 143,0.3);
+}
 
 .plan-table tbody tr td .btn{
     width: 130px;
