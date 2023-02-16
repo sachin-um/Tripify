@@ -44,7 +44,7 @@ class M_Hotel_Rooms{
     }
 
     public function viewall(){
-        $this->db->query('SELECT * FROM room');
+        $this->db->query('SELECT * FROM hotelroomtypes');
         $posts=$this->db->resultSet();
 
         return $posts;

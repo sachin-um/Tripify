@@ -21,15 +21,38 @@ class M_Hotels{
         }
     }
 
+    public function findHotelNumber($reg_number){
+        $this->db->query('SELECT * FROM hotels WHERE reg_number= :reg_number');
+        $this->db->bind(':reg_number',$reg_number);
+
+        $row=$this->db->single();
+
+        if ($this->db->rowCount()>0) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Address,contact_number,reg_number) VALUES(:hotel_id,:property_name,:property_address,:contact_number,:reg_number)');
-        $this->db->bind(':property_name',$data['property_name']);
-        $this->db->bind(':property_address',$data['property_address']);
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Line1,Line2,District,Category,contact_number,Pets,Children,Cancel_period,Cancel_fee,Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:line1,:line2,:district,:property_category,:contact_number,:pets,:children,:cancel_period,:cancel_fee,:check_in,:check_out,:reg_number)');
+        $this->db->bind(':HotelID',$data['hotel_id']);
+        $this->db->bind(':name',$data['name']);
+        $this->db->bind(':line1',$data['line1']);
+        $this->db->bind(':line2',$data['line2']);
+        $this->db->bind(':district',$data['district']);
+        $this->db->bind(':property_category',$data['property_category']);
         $this->db->bind(':contact_number',$data['contact_number']);
-        $this->db->bind(':reg_number',$data['reg_number']);
-        $this->db->bind(':hotel_id',$data['hotel_id']);
+        $this->db->bind(':pets',$data['pets']);
+        $this->db->bind(':children',$data['children']);
+        $this->db->bind(':cancel_period',$data['cancel_period']);
+        $this->db->bind(':cancel_fee',$data['cancel_fee']);
+        $this->db->bind(':check_in',$data['check_in']);
+        $this->db->bind(':check_out',$data['check_out']);
+        $this->db->bind(':reg_number',$data['hotel_reg_number']);
 
         if ($this->db->execute()) {
             $this->db->query('DELETE FROM traveler WHERE TravelerID=:travelerid');
