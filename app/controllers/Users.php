@@ -112,6 +112,34 @@
             }
         }
 
+        //edit travler details
+        public function editTravelerDetails($travlerid){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($travlerid==$_SESSION['user_id']) {
+                    $data=[
+                        'name'=>trim($_POST['name']),
+                        'contactno'=>trim($_POST['contact-number']),
+                        'country'=>trim($_POST['country']),
+                        'id'=>$travlerid
+                    ];
+    
+                    if ($this->userModel->editTravelerDetails($data)) {
+                        redirect('Pages/profile');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+                
+            }
+        }
+
         //login
         public function login($usertype=NULL){
             if ($_SERVER['REQUEST_METHOD']=='POST') {

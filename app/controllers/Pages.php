@@ -20,6 +20,8 @@
         {
             $data=$this->userModel->getUserDetails($_SESSION['user_id']);
             if ($_SESSION['user_type']=='Traveler') {
+                $travelerDetails=$this->userModel->getTravelerDetails($_SESSION['user_id']);
+                $data->travelerDetails=$travelerDetails;
                 $this->view('traveler/v_traveler_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Taxi') {

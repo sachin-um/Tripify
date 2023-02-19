@@ -18,6 +18,22 @@
             }
         }
 
+        public function CancelHotelBooking($bookingid){
+            $booking=$this->hotelBookingModel->getHotelBookingbyId($bookingid);
+            if ($booking->TravelerID!=$_SERVER['user_id']) {
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+            else {
+                if($this->hotelBookingModel->cancelBooking($bookingid)){
+                    flash('request_flash', 'Hotel Booking is Canceled');
+                    redirect('Bookings/HotelBookings');
+                }
+            }
+        }
+
+        
+
         public function GuideBookings($usertype,$userid)
         {
             if ($usertype=='Traveler') {
@@ -29,6 +45,20 @@
             }
         }
 
+        public function CancelGuideBooking($bookingid){
+            $booking=$this->GuideBookingModel->getGuideBookingbyId($bookingid);
+            if ($booking->TravelerID!=$_SERVER['user_id']) {
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+            else {
+                if($this->GuideBookingModel->cancelBooking($bookingid)){
+                    flash('request_flash', 'Guide Booking is Canceled');
+                    redirect('Bookings/GuideBookings');
+                }
+            }
+        }
+
         public function TaxiBookings($usertype,$userid)
         {
             if ($usertype=='Traveler') {
@@ -37,6 +67,20 @@
                     'taxibookings'=> $taxibookings
                 ];
                 $this->view('traveler/v_taxibookings',$data);
+            }
+        }
+
+        public function CancelTaxiBooking($bookingid){
+            $booking=$this->taxiBookingModel->getTaxiBookingbyId($bookingid);
+            if ($booking->TravelerID!=$_SERVER['user_id']) {
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+            else {
+                if($this->taxiBookingModel->cancelBooking($bookingid)){
+                    flash('request_flash', 'Taxi Booking is Canceled');
+                    redirect('Bookings/TaxiBookings');
+                }
             }
         }
 

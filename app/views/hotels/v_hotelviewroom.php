@@ -18,7 +18,8 @@ else {
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
 <main class="right-side-content">
-    <p class="home-title-2">Hotel Rooms</p>
+    
+    <p class="home-title-2" style="margin-top:60px;">Hotel Rooms</p>
 
     <div class="nav-main">
         

@@ -24,8 +24,7 @@ else {
         <div >
             <form action="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $data['request_id'] ?>" method="POST">
                 
-                <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
-                <span class="invalid"><?php echo $data['caption_err']; ?></span>
+                
                 <input type="text" id="area" name="area" placeholder="Area you want to travel" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
                 <input type="text" id="date" name="date" placeholder="Date you want travel" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
