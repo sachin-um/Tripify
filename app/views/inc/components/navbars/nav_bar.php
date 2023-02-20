@@ -9,7 +9,7 @@
                 <div class="welcome-banner">
                     <h2 class="greeting">Hi,  <?php echo $_SESSION['user_name'];  ?>..! </h2>
                     <!-- <button class="logout-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/logout'">Log Out</button> -->
-                    <img src="<?php echo URLROOT; ?>/img/user-profile1.png" alt="" class="profile-img" onclick="toggleMenu()">
+                    <img src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $_SESSION['user_profile_image']; ?>" alt="" class="profile-img" onclick="toggleMenu()">
                     <div class="profile-menu-wrap" id="sub-menu">
                         <div class="user-menu">
                             <div class="user-info">
