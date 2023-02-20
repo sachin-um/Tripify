@@ -13,7 +13,7 @@
             $data=[
                 'drivers'=> $alldrivers
             ];
-            $this->view('taxi/v_taxi_dashboard2',$data);
+            $this->view('taxi/v_taxi_drivers',$data);
         }
 
         public function adddriver(){
@@ -25,15 +25,16 @@
                 $data=[
                         'name'=>trim($_POST['name']),
                         'age'=>trim($_POST['age']),
+                        'contact_number'=>trim($_POST['contact_number']),
                         'licenseno'=>trim($_POST['licenseno']),
                         'owner'=>$_SESSION['user_id']                 
                     ];
 
 
                     if ($this->taxi_driverModel->addtaxidriver($data)) {
-                        // flash('vehicle_flash', 'Your Driver is Succusefully added..!');
-                        // redirect('Taxi_Vehicle/viewvehicles');
-                        die("Driver was sucessfully Added");
+                        flash('driver_flash', 'Your Driver is Succusefully added..!');
+                        redirect('Taxi_Driver/viewdrivers');
+                        // die("Driver was sucessfully Added");
                     }
                     else{
                         die('Something went wrong');
@@ -71,9 +72,11 @@
 
         public function editdrivers(){
             $data=[];
-            $this->view('taxi/v_taxi_dashboard2_1',$data);
+            $this->view('taxi/v_taxi_driver_deatails',$data);
         }
 
+
+    
     }
 
 

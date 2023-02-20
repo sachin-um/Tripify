@@ -53,7 +53,7 @@ else {
     </aside>
 
     <main class="right-side-content">
-    <div class="content">
+    <div class="guide-content">
         <div>
             <h2 class="title" >Guide Offers</h2>
             <hr>

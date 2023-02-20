@@ -13,14 +13,13 @@
         //add guide request
 
         public function addguiderequest($data){
-            $this->db->query('INSERT INTO guide_request(language,Location,Date,Time,Description,caption,TravelerID) VALUES(:language,:Location,:Date,:Time,:Description,:caption,:travelerid)');
+            $this->db->query('INSERT INTO guide_request(language,Location,Date,Time,Description,TravelerID) VALUES(:language,:Location,:Date,:Time,:Description,:travelerid)');
             $this->db->bind(':language',$data['language']);
             $this->db->bind(':Location',$data['area']);
             $this->db->bind(':Date',$data['date']);
             $this->db->bind(':travelerid',$data['travelerid']);
             $this->db->bind(':Time',$data['time']);
             $this->db->bind(':Description',$data['additional-details']);
-            $this->db->bind(':caption',$data['caption']);
             
             if ($this->db->execute()) {
                 return true;
@@ -32,14 +31,13 @@
 
         //edit guide request
         public function editguiderequest($data){
-            $this->db->query('UPDATE guide_request SET language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,caption=:caption,TravelerID=:travelerid WHERE RequestsID=:request_id');
+            $this->db->query('UPDATE guide_request SET language=:language,Location=:Location,Date=:Date,Time=:Time,Description=:Description,TravelerID=:travelerid WHERE RequestsID=:request_id');
             $this->db->bind(':language',$data['language']);
             $this->db->bind(':Location',$data['area']);
             $this->db->bind(':Date',$data['date']);
             $this->db->bind(':travelerid',$data['travelerid']);
             $this->db->bind(':Time',$data['time']);
             $this->db->bind(':Description',$data['additional-details']);
-            $this->db->bind(':caption',$data['caption']);
             $this->db->bind(':request_id',$data['request_id']);
             
             
@@ -53,7 +51,7 @@
         //delete guide request
         public function deleteguiderequest($id){
             $this->db->query('DELETE from guide_request WHERE RequestsID=:request_id');
-            $this->db->bind(':request_id',$data['request_id']);
+            $this->db->bind(':request_id',$id);
 
             
 

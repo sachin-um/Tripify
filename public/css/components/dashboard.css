@@ -109,6 +109,16 @@
    width: 50%;
  }
 
+ .info{
+   width: 50%;
+   display: block;
+ }
+
+ .sub-sub-edit{
+   width: 50%;
+   display: none;
+ }
+
 #pro-picture{
    height: 300px;
 }
@@ -123,6 +133,46 @@
 
 .profile-btn:hover{
    background-color: #35BCBF;
+   color: #03002E;
+}
+
+.profile-btn-edit{
+   width: 30%;
+   height: 50px;
+   background-color: #03002E;
+   color: white;
+   border-radius: 50px;
+   display: block;
+}
+
+.profile-btn-edit:hover{
+   background-color: #35BCBF;
+   color: #03002E;
+}
+
+.profile-btn-cancel{
+   width: 30%;
+   height: 50px;
+   background-color: red;
+   color: white;
+   border-radius: 50px;
+   display: none;
+}
+
+.profile-btn-cancel:hover{
+   color: #03002E;
+}
+
+.profile-btn-save{
+   width: 30%;
+   height: 50px;
+   background-color: green;
+   color: white;
+   border-radius: 50px;
+   display: none;
+}
+
+.profile-btn-save:hover{
    color: #03002E;
 }
 

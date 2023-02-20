@@ -164,7 +164,7 @@
 
         public function offers(){
             $data=[];
-            $this->view('taxi/v_taxi_dashboard6',$data);
+            $this->view('taxi/v_taxi_offers',$data);
             
         }
 
@@ -178,7 +178,7 @@
 
         public function bookings(){
             $data=[];
-            $this->view('taxi/v_taxi_dashboard7',$data);
+            $this->view('taxi/v_taxi_bookings',$data);
            
         }
 
@@ -190,7 +190,7 @@
 
         public function payments(){
             $data=[];
-            $this->view('taxi/v_taxi_dashboard5',$data);
+            $this->view('taxi/v_taxi_payments',$data);
         }
 
         
@@ -205,6 +205,8 @@
             $this->view('taxi/v_taxi_dashboard8_1',$data);
         }
 
+        
+        
 
         
 

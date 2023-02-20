@@ -36,7 +36,7 @@
                     <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" required><br>
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
-                    <input type="submit" id="taxiowncreate_but" name="taxiowncreate_but" value="Register">
+                    <input type="submit" id="taxi-register-but" name="taxiowncreate_but" value="Register">
                 </form>
 
                 <div class="taxicreatecom">
@@ -49,11 +49,12 @@
             </div>
 
 
-         </div>
+        </div>
 
-    </div>
-    <?php require APPROOT.'/views/inc/components/footer.php'; ?>  
+    </div>  
 </div>   
+
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 
 

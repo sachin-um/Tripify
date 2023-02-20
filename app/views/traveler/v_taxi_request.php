@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/nav_bar.php'; ?> 
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
 <?php
 $_SESSION['user_id'];
@@ -25,8 +25,13 @@ else {
             <form action="<?php echo URLROOT; ?>/Request/addTaxiRequest" method="POST">
                 
 
-                <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
-                <span class="invalid"><?php echo $data['caption_err']; ?></span>
+                <select class="search" id="vehicle_type" name="vehicle_type">
+                    <option value="" disabled>Vehicle type you prefer</option>
+                    <option value='tok-tok'>Tok Tok</option>
+                    <option value='car'>Car</option>
+                    <option value='van'>Van</option>
+                    
+                </select>
                 <input type="text" id="pickuplocation" name="pickuplocation" placeholder="From Where journey Begin...?" value="<?php echo $data['pickuplocation']; ?>">
                 <span class="invalid"><?php echo $data['pickuplocation_err']; ?></span>
                 <span>Select the pickup location on Map(Optional)</span>
@@ -47,6 +52,19 @@ else {
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Pickup Time" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
+                <select class="search" id="passengers" name="passengers">
+                    <option value="" disabled>No: of Passengers</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                </select>
+                <span class="invalid"><?php echo $data['passengers_err']; ?></span>
                 <textarea name="description" id="description" cols="52" rows="10" placeholder="Additional Details"></textarea>
                 <span class="invalid"><?php echo $data['description_err']; ?></span>
                 <button id="sign-up-btn-1" type="submit">Request a Taxi</button>

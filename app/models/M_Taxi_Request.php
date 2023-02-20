@@ -38,8 +38,9 @@
 
         //edit taxi request
         public function edittaxirequest($data){
-            $this->db->query('UPDATE taxi_request set Date=:date,StartingTime=:time,Description=:description,TravelerID=:travelerid,PickupLocation=:pickuplocation,Destination=:destination,p_latitude=:p_latitude,p_longitude=:p_longitude,d_latitude=:d_latitude,d_longitude=:d_longitude,Caption=:caption WHERE RequestID=:request_id');
-            $this->db->bind(':caption',$data['caption']);
+            $this->db->query('UPDATE taxi_request set Date=:date,StartingTime=:time,Description=:description,TravelerID=:travelerid,PickupLocation=:pickuplocation,Destination=:destination,p_latitude=:p_latitude,p_longitude=:p_longitude,d_latitude=:d_latitude,d_longitude=:d_longitude,passengers=:passengers,vehicle_type=:vehicle_type WHERE RequestID=:request_id');
+            $this->db->bind(':vehicle_type',$data['vehicle_type']);
+            $this->db->bind(':passengers',$data['passengers']);
             $this->db->bind(':date',$data['date']);
             $this->db->bind(':time',$data['time']);
             $this->db->bind(':description',$data['description']);
@@ -52,7 +53,6 @@
             $this->db->bind(':d_longitude',$data['d-longitude']);
             $this->db->bind(':request_id',$data['request_id']);
 
-            
 
             if ($this->db->execute()) {
                 return true;
@@ -71,8 +71,9 @@
 
         //delete taxi request
         public function deletetaxirequest($id){
-            $this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
-            $this->db->bind(':request_id',$data['request_id']);
+            //$this->db->query('DELETE from taxi_request WHERE RequestID=:request_id');
+            $this->db->query('DELETE FROM `taxi_request` WHERE RequestID=:request_id');
+            $this->db->bind(':request_id',$id);
 
             
 

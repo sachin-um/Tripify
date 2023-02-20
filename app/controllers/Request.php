@@ -38,7 +38,6 @@
                         'language'=>trim($_POST['language']),
                         'additional-details'=>trim($_POST['additional-details']),
                         'travelerid'=>trim($_POST['travelerid']),
-                        'caption'=>trim($_POST['caption']),
 
 
                         'area_err'=>'',
@@ -47,7 +46,6 @@
                         'language_err'=>'',
                         'additional-details_err'=>'',
                         'travelerid_err'=>'',
-                        'caption_err'=>''
     
                     ];
 
@@ -96,8 +94,6 @@
                     'language'=>'',
                     'additional-details'=>'',
                     'travelerid'=>'',
-                    'caption'=>'',
-
 
                     'area_err'=>'',
                     'date_err'=>'',
@@ -105,7 +101,6 @@
                     'language_err'=>'',
                     'additional-details_err'=>'',
                     'travelerid_err'=>'',
-                    'caption_err'=>''
 
                 ];
                 $this->view('traveler/v_guide_request',$data);
@@ -126,7 +121,6 @@
                     'language'=>trim($_POST['language']),
                     'additional-details'=>trim($_POST['additional-details']),
                     'travelerid'=>trim($_POST['travelerid']),
-                    'caption'=>trim($_POST['caption']),
                     'request_id'=>$request_id,
 
 
@@ -136,7 +130,6 @@
                     'language_err'=>'',
                     'additional-details_err'=>'',
                     'travelerid_err'=>'',
-                    'caption_err'=>''
 
                 ];
 
@@ -163,8 +156,8 @@
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->editguiderequest($data)) {
-                        // flash('request_flash', 'Guide Request is Succusefully Updated..!');
-                        // redirect('Request/GuideRequest');
+                        flash('request_flash', 'Guide Request is Succusefully Updated..!');
+                        redirect('Request/GuideRequest');
                     }
                     else{
                         die('Something went wrong');
@@ -192,7 +185,6 @@
                     'language'=>$guiderequest->p_language,
                     'additional-details'=>$guiderequest->description,
                     'travelerid'=>$guiderequest->traveler_id,
-                    'caption'=>$guiderequest->caption,
                     'request_id'=>$request_id,
 
 
@@ -202,7 +194,6 @@
                     'language_err'=>'',
                     'additional-details_err'=>'',
                     'travelerid_err'=>'',
-                    'caption_err'=>''
 
                 ];
                 $this->view('traveler/v_edit_guide_request',$data);
@@ -250,7 +241,8 @@
 
             
                 $data=[
-                        'caption'=>trim($_POST['caption']),
+                        'vehicle_type'=>trim($_POST['vehicle_type']),
+                        'passengers'=>trim($_POST['passengers']),
                         'pickuplocation'=>trim($_POST['pickuplocation']),
                         'destination'=>trim($_POST['destination']),
                         'date'=>trim($_POST['date']),
@@ -263,7 +255,9 @@
                         'd-longitude'=>trim($_POST['d-longitude']),
 
 
-                        'caption_err'=>'',
+                        'vehicle_type_err'=>'',
+                        'passengers_err'=>'',
+                        'passengers_err'=>'',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -276,9 +270,13 @@
 
 
                 //validate name
-                if (empty($data['caption'])) {
-                    $data['caption_err']='Add a Caption to ypur request';
+                if (empty($data['vehicle_type'])) {
+                    $data['vehicle_type_err']='Please secelect a prefer vehicle type';
                 }
+                if (empty($data['passengers'])) {
+                    $data['passengers_err']='Please select the no of ppassengers';
+                }
+
                 if (empty($data['pickuplocation'])) {
                     $data['pickuplocation_err']='Please enter a Pickup Location';
                 }
@@ -300,7 +298,7 @@
                 
 
 
-                if (empty($data['caption_err']) && empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
+                if (empty($data['passengers_err']) && empty($data['vehicle_type_err']) && empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
                     
                     //Add a Taxi Request
                     if ($this->taxirequestModel->addtaxirequest($data)) {
@@ -320,6 +318,8 @@
             }
             else {
                 $data=[
+                    'vehicle_type'=>'',
+                    'passengers'=>'',
                     'caption'=>'',
                     'pickuplocation'=>'',
                     'destination'=>'',
@@ -333,6 +333,8 @@
                     'd-longitude'=>'',
 
 
+                    'vehicle_type_err'=>'',
+                    'passengers_err'=>'',
                     'caption_err'=>'',
                     'pickuplocation_err'=>'',
                     'destination_err'=>'',
@@ -356,6 +358,9 @@
 
             
                 $data=[
+                        
+                        'vehicle_type'=>trim($_POST['vehicle_type']),
+                        'passengers'=>trim($_POST['passengers']),
                         'pickuplocation'=>trim($_POST['pickuplocation']),
                         'destination'=>trim($_POST['destination']),
                         'date'=>trim($_POST['date']),
@@ -369,6 +374,8 @@
                         'request_id'=>$request_id,
 
 
+                        'vehicle_type_err'=>'',
+                        'passengers_err'=>'',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -381,6 +388,13 @@
 
 
                 //validate name
+                if (empty($data['vehicle_type'])) {
+                    $data['vehicle_type_err']='Please secelect a prefer vehicle type';
+                }
+                if (empty($data['passengers'])) {
+                    $data['passengers_err']='Please select the no of ppassengers';
+                }
+
                 if (empty($data['pickuplocation'])) {
                     $data['pickuplocation_err']='Please enter a Pickup Location';
                 }
@@ -402,7 +416,7 @@
                 
 
 
-                if (empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
+                if (empty($data['passengers_err']) && empty($data['vehicle_type_err']) && empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
                     
                     //Add a Taxi Request
                     if ($this->taxirequestModel->edittaxirequest($data)) {
@@ -429,6 +443,8 @@
                     redirect('Users/login');
                 }
                 $data=[
+                    'vehicle_type'=>$taxirequest->vehicle_type,
+                    'passengers'=>$taxirequest->passengers,
                     'pickuplocation'=>$taxirequest->pickup_location,
                     'destination'=>$taxirequest->destination,
                     'date'=>$taxirequest->date,
@@ -439,9 +455,9 @@
                     'p-longitude'=>$taxirequest->p_longitude,
                     'd-latitude'=>$taxirequest->d_latitude,
                     'd-longitude'=>$taxirequest->d_longitude,
-                    'request_id'=>$request_id,
+                    'request_id'=>$taxirequest->request_id,
 
-
+                    'caption_err'=>'',
                     'pickuplocation_err'=>'',
                     'destination_err'=>'',
                     'date_err'=>'',

@@ -2,9 +2,13 @@
     all:unset;
     margin-top: 1em;
     display: flex;
+    justify-content: center;
+    justify-items: center;
     margin-bottom: 1.5em;
+    /* width:min-content; */
    
 }
+
 
 #taxidrimobile {
     

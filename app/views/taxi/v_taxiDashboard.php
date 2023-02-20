@@ -2,7 +2,38 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> 
 
 
-    <h1 id="taxi_v_com_name">Company Name</h1>
+
+
+
+
+
+
+
+
+
+<!-- ................... CAN BE DELETE...................................... -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <h1 id="taxi_v_com_name">Company Name</h1>
 
     <hr>
     <diV class="taxi_view_v_compic">
@@ -37,7 +68,7 @@
             <button id="taxi_over_vehicle">Vehicles</button>
     </div>
     
- 
+  -->
 
 
     <?php require APPROOT.'/views/inc/components/footer.php'; ?>

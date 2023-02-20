@@ -20,6 +20,8 @@ else {
 
 
 <main class="right-side-content">
+    <br><br>
+    <p class="home-title-2">Bookings</p>
     <div class="hotel-bookings-main-div">
         <table>
     

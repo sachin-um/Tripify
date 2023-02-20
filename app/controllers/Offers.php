@@ -1,7 +1,7 @@
 <?php
     class Offers extends Controller{
         public function __construct(){
-            $this->taxirequestModel=$this->model('M_Taxi_Request');
+            $this->taxiofferModel=$this->model('M_Taxi_Offers');
             $this->guideofferModel=$this->model('M_Guide_Offers');
         }
 
@@ -94,6 +94,22 @@
                 $this->view('guide/v_add_guide_offer',$data);
             }
             $this->view('guide/v_add_guide_offer');
+        }
+
+
+        public function taxioffers($request_id=NULL){
+            $alloffers=$this->taxiofferModel->viewall();
+            // foreach($alloffers as $key => $value)
+            // {
+            //     echo $key." has the value". $value;
+            // }
+            $offers=filteroffers($alloffers,$_SESSION['user_type'],$request_id);
+            $data=[
+                'taxioffers'=> $offers
+            ];
+            
+                $this->view('taxi/v_taxi_offers',$data);
+            
         }
 
         

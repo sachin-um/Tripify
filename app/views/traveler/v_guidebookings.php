@@ -41,6 +41,7 @@ else {
         <br>
         <h2 style="text-align: left;">Guide Bookings</h1>
         <hr>
+        <?php flash('request_flash'); ?>
         <br>
         <div class="first-container">
             <div class="admin-table-container">

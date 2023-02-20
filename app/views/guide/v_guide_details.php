@@ -40,7 +40,11 @@
                     </div>
                 </div>
 
-                <div id="review-btns-div" class="hotel-disc-3">
+
+                <div class="review-btns-div" style="margin-left: 30%; margin-top:10%">
+                    <a href="<?php echo URLROOT?>/Guides/loadBooking"><button id="guide-book-btn" class="all-purpose-btn" >Book Now</button></a> 
+                </div>
+                <div id="review-btns-div" class="hotel-disc-3" style="margin-top:5%">
                     <div class="hotel-disc-1">
                         <button id="review-btn" class="all-purpose-btn">Review </button>
                     </div>
@@ -52,16 +56,14 @@
                 </div>
                 <br>
               
-                <div class="review-btns-div">
-                    <a href="<?php echo URLROOT?>/Guides/loadBooking"><button id="guide-book-btn" class="all-purpose-btn" >Book Now</button></a> 
-                </div>
+                
                         
                                      
                     
             </div>
                 
             <div class="hotel-disc-2">
-                <img id="guide-profile-pic" src="<?php echo URLROOT?>/img/guidehome.png" style="width:80%">
+                <img id="guide-profile-pic" src="<?php echo URLROOT?>/img/guidehome.png" style="width:50%">
             </div>     
 
            
