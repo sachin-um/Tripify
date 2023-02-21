@@ -61,7 +61,7 @@ else {
             <hr>
         </div>
         <div class="request-list">
-
+        <?php flash('offer_flash'); ?>
         <?php
             $offers=$data['guideoffers'];
             foreach($offers as $guideoffer):

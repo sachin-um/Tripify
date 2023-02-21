@@ -15,7 +15,6 @@
 
                 $data=[
                     'name'=>trim($_POST['name']),
-                    'number'=>trim($_POST['number']),
                     'email'=>trim($_POST['email']),
                     'contactno'=>trim($_POST['contactno']),
                     'country'=>trim($_POST['country']),

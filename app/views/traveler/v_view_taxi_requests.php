@@ -72,45 +72,29 @@ else {
         ?>
 
         <div class="request">
-            <div class="post-header"><?php echo $taxirequest->caption; ?></div>
+            <div class="post-header">Request ID : <?php echo $taxirequest->request_id; ?></div>
             <div class="post-body">
-            <div class="post-content">
-            <div class="spandiv">
-                <div class="post-tag">Request Date</div>
-                <div class="colon">:</div>
-                <div class="result"><?php echo $taxirequest->date; ?></div>
-                    <!-- <label for="request-data">Request-data</label>
-                    <label for="colon">:</label>
-                    <label for="result"><?php echo $taxirequest->date; ?></label> -->
+                <div class="req-slot1">
+                    <div class="post-tag post-date"><img src="<?php echo URLROOT; ?>/img/date.png" alt="date" ><span class="request-data">:<?php echo $taxirequest->date; ?></span></div>
+                    <div class="post-tag post-time"><img src="<?php echo URLROOT; ?>/img/time.png" alt="time" ><span class="request-data">:<?php echo $taxirequest->time; ?></span></div>
+                
                 </div>
-                <!-- <div><span id="request-data"><span>:</span><?php echo $taxirequest->date; ?></span></div>
-                 -->
-            </div>
-            <div class="post-content">
-                <div class="post-tag">Request Time</div>
-                <div ><span id="request-data"><span>:</span><?php echo $taxirequest->time; ?></span></div>
-                
-            </div>
-            <div class="post-content">
-                <div class="post-tag">PickUp Location</div>
-                <div ><span id="request-data"><span>:</span><?php echo $taxirequest->pickup_location; ?></span></div>
-                
-            </div>
-            <div class="post-content">
-                <div class="post-tag">Destination</div>
-                <div><span id="request-data"><span>:</span><?php echo $taxirequest->destination; ?></span></div>
-                
-            </div>
-            <div class="post-content">
-                <div class="post-tag">Additional Details</div>
-                <div><span id="request-data"><span>:</span><?php echo $taxirequest->additional_details; ?></span></div>
-                
-            </div>
-
-            <div class="post-by-content">
-                <div class="post-by">Post By: <?php echo $taxirequest->name; ?></div>
-                <div class="post-by">Post at: <?php echo convertTime($taxirequest->post_at); ?></div>
-            </div>
+                <div class="req-slot2">
+                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/start.png" alt="start" style="width: 50px; height: 50px;"><span class="request-data">:<?php echo $taxirequest->pickup_location; ?></span></div>
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/finish.png" alt="finish" style="width: 50px; height: 50px;"><span class="request-data">: <?php echo $taxirequest->destination; ?></span></div>
+                </div>
+                <div class="req-slot2">
+                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/passengers.png" alt="area" ><span class="request-data">: <?php echo $taxirequest->passengers; ?></span></div>
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/vtype.png" alt="language" ><span class="request-data">: <?php echo $taxirequest->vehicle_type; ?></span></div>
+                </div>
+                <div class="req-slot3">
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $taxirequest->additional_details; ?></span></div>
+                </div>
+                <div class="post-by-content">
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->name; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->contact_no; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($taxirequest->post_at); ?></span></div>
+                </div>
             </div>
             <div class="request-footer">
             <?php
