@@ -3,6 +3,8 @@
         public function __construct(){
             $this->taxiofferModel=$this->model('M_Taxi_Offers');
             $this->guideofferModel=$this->model('M_Guide_Offers');
+            $this->taxirequestModel=$this->model('M_Taxi_Request');
+            $this->guiderequestModel=$this->model('M_Guide_Request');
         }
 
         public function index(){
@@ -97,6 +99,26 @@
         }
 
 
+        //reject guide offer
+        public function rejectGuideOffer($offerid,$requestid)
+        {
+            $request=$this->guiderequestModel->getGuideRequestById($requestid); 
+            if ($request->traveler_id!=$_SESSION['user_id']) {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            else {
+                if ($this->guideofferModel->rejectGuideOffer($offerid)) {
+                    flash('offer_flash', 'Offer succesfully rejeced');
+                    redirect('Offers/taxioffers/'.$requestid);   
+                }
+                else {
+                    flash('offer_flash', 'Something went wrong..!');
+                    redirect('Offers/taxioffers/'.$requestid);   
+                }
+            }
+        }
+
         public function taxioffers($request_id=NULL){
             $alloffers=$this->taxiofferModel->viewall();
             // foreach($alloffers as $key => $value)
@@ -110,6 +132,26 @@
             
                 $this->view('taxi/v_taxi_offers',$data);
             
+        }
+
+        //reject taxi offer
+        public function rejectTaxiOffer($offerid,$requestid)
+        {
+            $request=$this->taxirequestModel->getTaxiRequestById($requestid); 
+            if ($request->traveler_id!=$_SESSION['user_id']) {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            else {
+                if ($this->taxiofferModel->rejectTaxiOffer($offerid)) {
+                    flash('offer_flash', 'Offer succesfully rejeced');
+                    redirect('Offers/taxioffers/'.$requestid);   
+                }
+                else {
+                    flash('offer_flash', 'Something went wrong..!');
+                    redirect('Offers/taxioffers/'.$requestid);   
+                }
+            }
         }
 
         

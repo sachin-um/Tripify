@@ -26,11 +26,12 @@
         //register
 
         public function register($data){
-            $this->db->query('INSERT INTO users(Email,Password,Name,otp) VALUES(:email,:password,:name,:otp)');
+            $this->db->query('INSERT INTO users(Email,Password,Name,otp,ContactNo) VALUES(:email,:password,:name,:otp,:contactno)');
             $this->db->bind(':email',$data['email']);
             $this->db->bind(':password',$data['password']);
             $this->db->bind(':name',$data['name']);
             $this->db->bind(':otp',$data['otp']);
+            $this->db->bind(':contactno',$data['contactno']);
 
 
             if ($this->db->execute()) {
@@ -41,7 +42,6 @@
                 $row=$this->db->single();
 
                 $this->db->query('INSERT INTO traveler(TravelerID,contact_number,country) VALUES(:travelerid,:contactno,:country)');
-                $this->db->bind(':contactno',$data['contactno']);
                 $this->db->bind(':country',$data['country']);
                 $this->db->bind(':travelerid',$row->UserID);
                 

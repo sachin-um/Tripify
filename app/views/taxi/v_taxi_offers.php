@@ -53,7 +53,7 @@
             <hr>
         </div>
         <div class="request-list">
-            
+            <?php flash('offer_flash'); ?>
             <?php
             $offers=$data['taxioffers'];
             // foreach($offers as $key => $value)
@@ -92,8 +92,8 @@
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
-                        <button id="request-offer-btn" type="submit">Accept offer</button>
-                        <button id="request-delete-btn" type="submit">Reject Offer</button>
+                        <a href="<?php echo URLROOT; ?>/Offers/acceptTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
+                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
                     }
                     ?>
