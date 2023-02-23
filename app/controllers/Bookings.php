@@ -43,6 +43,14 @@
                 ];
                 $this->view('traveler/v_guidebookings',$data);
             }
+            else if ($usertype=='Guide') {
+                $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
+                print_r($guidebookings);
+                $data=[
+                    'guidebookings'=> $guidebookings
+                ];
+                $this->view('guide/v_guide_bookings',$data);
+            }
         }
 
         public function CancelGuideBooking($bookingid){

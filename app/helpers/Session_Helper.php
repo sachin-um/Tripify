@@ -77,7 +77,7 @@ function filterBookings($items,$usertype,$userid){
             break;
         case 'Guide':
             return array_filter($items,function ($item) use($userid){
-                return ($item->traveler_id == $userid);
+                return ($item->Guides_GuideID == $userid);
             });
             break;
         case 'Hotel':

@@ -14,10 +14,21 @@
             $this->db->query('SELECT * FROM guide_bookings');
             $bookings=$this->db->resultSet();
             $filteredbookings=filterBookings($bookings,$usertype,$userid);
-            foreach ($filteredbookings as $booking) {
-                $guide=$this->getGuideById($booking->Guides_GuideID);
-                $guide_name=$guide->Name;
-                $booking->guide_name=$guide_name;
+            if ($usertype='Traveler') {
+                foreach ($filteredbookings as $booking) {
+                    $guide=$this->getGuideById($booking->Guides_GuideID);
+                    $guide_name=$guide->Name;
+                    $booking->guide_name=$guide_name;
+                }
+            }
+            elseif ($usertype='Guide') {
+                foreach ($filteredbookings as $booking) {
+                    $traveler=$this->getUserDetails($booking->TravelerID);
+                    $traveler_name=$traveler->Name;
+                    $booking->traveler_name=$traveler_name;
+                    echo $traveler->Name;
+                    
+                }
             }
             return $filteredbookings;
         }
