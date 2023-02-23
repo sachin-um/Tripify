@@ -39,85 +39,26 @@
                     <th>Accept Booking</th>
                     <th>Ignore Booking</th>
                 </tr>
+                <?php
+                    $bookings=$data['guidebookings'];
+                    foreach($bookings as $booking):
+                ?>
                 <tr>
-                    <td>2023-09-3 </td>
-                    <td>Doe </td>
-                    <td>2023-11-10 </td>
-                    <td>10 AM </td>
-                    <td>3 Days </td>
-                    <td>Colombo</td>
-                    <td>50USD </td>
-                    <td>card </td>
+                    <td><?php echo $booking->DateAdded?></td>
+                    <td><?php ?> </td>
+                    <td><?php echo $booking->ReservedDate?> </td>
+                    <td><?php echo $booking->StartingTime?> </td>
+                    <td><?php echo $booking->Duration?> </td>
+                    <td><?php echo $booking->Location?> </td>
+                    <td><?php echo $booking->payment?> </td>
+                    <td><?php echo $booking->PaymentStatus?> </td>
                     <td><button id="guide_booking">Accept</button></td>
                     <td><button id="guide_booking">Ignore</button></td>
-
                 </tr>
-                <tr>
-                <td>2023-02-14 </td>
-                    <td>john </td>
-                    <td>2023-09-30 </td>
-                    <td>8 AM </td>
-                    <td>10 Days </td>
-                    <td>panadura</td>
-                    <td>50USD </td>
-                    <td>card </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
-
-                </tr>
-                <tr>
-                <td>2023-05-30 </td>
-                    <td>dave </td>
-                    <td>2023-10-10 </td>
-                    <td>11 AM </td>
-                    <td>5 Days </td>
-                    <td>kaluthara</td>
-                    <td>55USD </td>
-                    <td>card </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
-
-                </tr>
-                <tr>
-                <td>2023-06-15 </td>
-                    <td>shevon </td>
-                    <td>2023-08-10 </td>
-                    <td>6 AM </td>
-                    <td>4 Days </td>
-                    <td>Katunayake</td>
-                    <td>50USD </td>
-                    <td>card </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
-
-                </tr>
-                <tr>
-                <td>2023-05-31 </td>
-                    <td>Doe </td>
-                    <td>2024-04-10 </td>
-                    <td>12 PM </td>
-                    <td>7 Days </td>
-                    <td>Colombo</td>
-                    <td>50USD </td>
-                    <td>card </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
-
-
-                </tr>
-                <tr>
-                <td>2023-03-3 </td>
-                    <td>Doe </td>
-                    <td>2023-01-10 </td>
-                    <td>2 PM </td>
-                    <td>5 Days </td>
-                    <td>Colombo</td>
-                    <td>50USD </td>
-                    <td>card </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
-
-                </tr>
+                <?php
+                    endforeach;
+                ?>
+                
                 
 
         </table> 
