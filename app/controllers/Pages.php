@@ -2,6 +2,7 @@
     class Pages extends Controller{
         public function __construct(){
             $this->userModel=$this->model('M_Users');
+            $this->guideModel=$this->model('M_Guides');
         }
         public function index(){
 
@@ -28,6 +29,10 @@
                 $this->view('taxi/v_taxi_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Guide') {
+                $guide=$this->guideModel->getGuideById($_SESSION['user_id']);
+                $languages=$this->guideModel->getGuideLanguageById($_SESSION['user_id']);
+                $data->guideDetails=$guide;
+                $data->guideLanguages=$languages;
                 $this->view('guide/v_dash_profile',$data);
             }
             else if ($_SESSION['user_type']=='Hotel') {

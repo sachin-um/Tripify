@@ -45,6 +45,7 @@
             }
             else if ($usertype=='Guide') {
                 $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
+                print_r($guidebookings);
                 $data=[
                     'guidebookings'=> $guidebookings
                 ];

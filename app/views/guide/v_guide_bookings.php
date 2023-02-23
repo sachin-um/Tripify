@@ -40,6 +40,7 @@
                     <th>Ignore Booking</th>
                 </tr>
                 <?php
+                    //print_r($data);
                     $bookings=$data['guidebookings'];
                     foreach($bookings as $booking):
                 ?>
