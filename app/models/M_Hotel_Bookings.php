@@ -12,6 +12,31 @@
 
         
 
+        
+
+        //Add hotel booking
+        public function addHotelBooking(){
+            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomID,roomTypeID,
+            payment,paymentmethod,booking_start_date,booking_end_date)
+            VALUES(:hoteID,:travelerID,:roomID,:roomTypeID,:payment,:paymentMethod,:booking_start,:booking_end)' );
+            $this->db->bind(':hoteID',$data['caption']);
+            $this->db->bind(':travelerID',$data['caption']);
+            $this->db->bind(':roomID',$data['caption']);
+            $this->db->bind(':roomTypeID',$data['caption']);
+            $this->db->bind(':payment',$data['caption']);
+            $this->db->bind(':paymentMethod',$data['caption']);
+            $this->db->bind(':booking_start',$data['caption']);
+            $this->db->bind(':booking_end',$data['caption']);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
         //view bookings with filter
         public function viewbookings($usertype,$userid){
             $this->db->query('SELECT * FROM hotel_bookings');
