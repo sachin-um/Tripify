@@ -2,6 +2,7 @@
     class HotelRooms extends Controller{
         public function __construct(){
             $this->roomModel=$this->model('M_Hotel_Rooms');
+            $this->roomVar=100;
         }
         public function index(){
 
@@ -18,11 +19,13 @@
 
         public function addroom(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
+                // echo 'register1';
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
             
                 $data=[
+                        'RoomTypeID'=>rand(100000,999999),
                         'NoofBeds'=>trim($_POST['no-of-beds']),
                         'RoomType'=>trim($_POST['roomtype']),
                         'NoofGuests'=>trim($_POST['no-of-guests']),
@@ -46,13 +49,12 @@
                
                     //Add a Taxi Request
                     if ($this->roomModel->addaroom($data)) {
-                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
+                        flash('reg_flash', 'Room is successfully added..!');
                         redirect('HotelRooms/rooms');
                     }
                     else{
                         die('Something went wrong');
-                    }
-                
+                    }              
 
 
 

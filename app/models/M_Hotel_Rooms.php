@@ -10,7 +10,10 @@ class M_Hotel_Rooms{
     
 
     public function addaroom($data){
-        $this->db->query('INSERT INTO room(NoofBeds,RoomType,NoofGuests,RoomSize,PricePerNight,HotelID,no_of_rooms) VALUES(:NoofBeds,:RoomType,:NoofGuests,:RoomSize,:PricePerNight,:HotelID,:NoOfRooms)');
+        $this->db->query('INSERT INTO hotelroomtypes(RoomTypeID,NoofBeds,RoomTypeName,NoofGuests,RoomSize,PricePerNight,HotelID,no_of_rooms)
+         VALUES(:RoomtypeID,:NoofBeds,:RoomType,:NoofGuests,:RoomSize,:PricePerNight,:HotelID,:NoOfRooms)');
+        $this->db->bind(':RoomtypeID',$data['RoomTypeID']);
+        $this->db->bind(':NoofBeds',$data['NoofBeds']);
         $this->db->bind(':NoofBeds',$data['NoofBeds']);
         $this->db->bind(':RoomType',$data['RoomType']);
         $this->db->bind(':NoofGuests',$data['NoofGuests']);
@@ -19,6 +22,8 @@ class M_Hotel_Rooms{
         $this->db->bind(':NoOfRooms',$data['NoOfRooms']);
         $this->db->bind(':HotelID',$data['hotelid']);
 
+    
+        echo 'test1';
         if ($this->db->execute()) {
             // $this->db->query('SELECT * FROM users WHERE Email= :email');
             // $this->db->bind(':email',$data['email']);
@@ -36,15 +41,32 @@ class M_Hotel_Rooms{
             // else {
             //     return false;
             // }
-            return true;
+            // $temproomnumber = 100;
+                
+                for ($x=0;$x<$data['NoOfRooms'];$x++){
+                    $this->db->query('INSERT INTO hotelrooms(RoomTypeID,bookingStatus)
+                    VALUES(:RoomtypeID,"Not Booked")');
+                    $this->db->bind(':RoomtypeID',$data['RoomTypeID']);
+                    // $this->db->bind(':A',$x+1); 
+
+                    if (!$this->db->execute()) {
+                        return false;
+                    }
+                }
+                return true;
+           
         }
         else {
             return false;
         }
     }
 
+    public function viewRooms($roomID){
+        $this->db->query('SELECT * FROM hotelrooms WHERE ')
+    }
+
     public function viewall(){
-        $this->db->query('SELECT * FROM room');
+        $this->db->query('SELECT * FROM hotelroomtypes');
         $posts=$this->db->resultSet();
 
         return $posts;
@@ -53,5 +75,3 @@ class M_Hotel_Rooms{
     
 
 }
-
-?>
