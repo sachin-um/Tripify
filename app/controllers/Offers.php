@@ -109,11 +109,11 @@
             }
             else {
                 if ($this->guideofferModel->rejectGuideOffer($offerid)) {
-                    flash('offer_flash', 'Offer succesfully rejeced');
+                    flash('guide_offer_flash', 'Offer succesfully rejeced');
                     redirect('Offers/taxioffers/'.$requestid);   
                 }
                 else {
-                    flash('offer_flash', 'Something went wrong..!');
+                    flash('guide_offer_flash', 'Something went wrong..!');
                     redirect('Offers/taxioffers/'.$requestid);   
                 }
             }
@@ -144,15 +144,17 @@
             }
             else {
                 if ($this->taxiofferModel->rejectTaxiOffer($offerid)) {
-                    flash('offer_flash', 'Offer succesfully rejeced');
+                    flash('taxi_offer_flash', 'Offer succesfully rejeced');
                     redirect('Offers/taxioffers/'.$requestid);   
                 }
                 else {
-                    flash('offer_flash', 'Something went wrong..!');
+                    flash('taxi_offer_flash', 'Something went wrong..!');
                     redirect('Offers/taxioffers/'.$requestid);   
                 }
             }
         }
+
+        
 
         
         

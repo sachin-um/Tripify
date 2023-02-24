@@ -53,7 +53,7 @@
             <hr>
         </div>
         <div class="request-list">
-            <?php flash('offer_flash'); ?>
+            <?php flash('taxi_offer_flash'); ?>
             <?php
             $offers=$data['taxioffers'];
             // foreach($offers as $key => $value)
@@ -67,13 +67,19 @@
                 <div class="post-header">Request ID : <?php echo $taxioffer->request_id; ?></div>
                     <div class="post-body">
 
-                        <h5>Offer Details</h5>
-                    
-                        <div class="post-details">Vehicle Number: <?php echo $taxioffer->vehicle->VehicleID ?> </div>
-                        <div class="post-details">Vehicle Type: <?php echo $taxioffer->vehicle->VehicleType ?> </div>
-                        <div class="post-date">Price per KM: <span id="request-data"><?php echo $taxioffer->PricePerKm ?></span></div>
-                        <div class="post-time">PaymentMethod: <?php echo $taxioffer->PaymentMethod ?></div>
-                        <div class="post-details">Driver Name: <?php echo $taxioffer->vehicle->driver_name ?> </div>
+                        <h5 style="text-align:center;">Offer Details</h5>
+                        <div class="req-slot1" style="margin-top:10px">
+                            <div class="post-tag "><img src="<?php echo URLROOT; ?>/img/vehicle_number.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->VehicleID; ?></span></div>
+                            <div class="post-tag "><img src="<?php echo URLROOT; ?>/img/vtype.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->VehicleType; ?></span></div>
+                        </div>
+                        <div class="req-slot2">
+                            <div class="post-date"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->PricePerKm ?></span></div>
+                            <div class="post-time"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->PaymentMethod ?></span></div>
+                        </div>
+                        <div class="req-slot2">
+                            <div class="post-details"><img src="<?php echo URLROOT; ?>/img/driver.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->driver_name ?></span></div>
+                        </div>
+                        
                         <div class="post-details">Additional Details: <?php echo $taxioffer->additional_details ?> </div>
                         <div class="post-by-content">
                             <div class="post-by">Offered By: <?php echo $taxioffer->owner->owner_name ?></div>
@@ -92,8 +98,8 @@
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
-                        <a href="<?php echo URLROOT; ?>/Offers/acceptTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
-                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
+                        <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
+                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
                     }
                     ?>
