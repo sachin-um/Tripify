@@ -2,6 +2,7 @@
     class Pages extends Controller{
         public function __construct(){
             $this->userModel=$this->model('M_Users');
+            $this->hotelModel=$this->model('M_Hotels');
         }
         public function index(){
 
@@ -29,6 +30,9 @@
                 $this->view('guide/v_dash_profile',$data);
             }
             else if ($_SESSION['user_type']=='Hotel') {
+                $hotelvar=$this->hotelModel->findUserDetails();
+                $data->hoteldetails=$hotelvar;
+                $data->hotelaccountdetails=$this->userModel->getUserDetails($_SESSION['user_id']);
                 $this->view('hotels/v_dash_profile',$data);
             }
             else if ($_SESSION['user_type']=='Admin') {
@@ -46,7 +50,12 @@
         }
 
         public function hotels(){
-            $this->view('hotels/v_hotelHome');
+            $allhotels=$this->hotelModel->viewAllHotels();
+
+            $data=[
+                'allhotels'=> $allhotels
+            ];
+            $this->view('hotels/v_hotelHome',$data);
         }
 
         public function taxies(){

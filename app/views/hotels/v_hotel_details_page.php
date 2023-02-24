@@ -4,14 +4,13 @@
 <div class="wrapper"> 
     <div class="content">
         
-        <p class="home-title-2" >Hotel Galadari, Colombo</p>
+        <p class="home-title-2" ><?php echo $data["profileName"]?></p>
         <hr>
         <div class="hotel-desc-page-div">
             <div class="hotel-disc-2">
 
                 <div id="hotel-address" class="hotel-disc-3">
-                    <label id="view-address">
-                    64 Lotus Rd, Colombo 00100
+                    <label id="view-address"><?php echo $data["profileAddress"]?>
                     </label>
                 </div>
                 <div class="hotel-disc-3">
@@ -53,7 +52,7 @@
             </div>
         </div>
 
-        <div class="slideshow-container fade">
+        <!-- <div class="slideshow-container fade">
 
                 <div class="Containers">
                     <div class="MessageInfo">1 / 4</div>
@@ -80,26 +79,26 @@
                 </div>
 
                 <!-- Back and forward buttons -->
-                <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
+                <!-- <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="forward" onclick="plusSlides(1)">&#10095;</a>
             </div>
             <br>
 
                 <!-- The circles/beads -->
-            <div style="text-align:center">
+            <!-- <div style="text-align:center">
                 <span class="beads" onclick="currentSlide(1)"></span>
                 <span class="beads" onclick="currentSlide(2)"></span>
                 <span class="beads" onclick="currentSlide(3)"></span>
                 <span class="beads" onclick="currentSlide(4)"></span>
             </div> 
-        </div>
+        </div>  -->
 
         <div class="hotel-home-top-picks">
 
             <p class="home-title-2" >Our Rooms</p><br>
             <hr><br>
             <div class="nav-main">
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showRoomDetails'">
+                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'">
                     <div id="hotel-img" class="hotel-room-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
@@ -110,11 +109,11 @@
                        <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
                        <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
                        <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label>
+                       <label id="room-remain" for="hotel-address">Only 2 rooms left</label>
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
                     
                 </div>
 
@@ -132,7 +131,7 @@
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
                     
                 </div>
 
@@ -150,7 +149,7 @@
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
+                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
                     
                 </div>
             </div>  

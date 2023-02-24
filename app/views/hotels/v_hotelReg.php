@@ -8,7 +8,7 @@
             <p class="home-title-2" style="margin-bottom: 10px;">It's Only a Few Clicks Away.</p>
 
 
-            <form class="hotel-reg-form" action="<?php echo URLROOT?>/Hotels/register" method="post">
+            <form class="hotel-reg-form" action="<?php echo URLROOT ?>/Hotels/register" method="post">
                 <p class="home-title-3">General Information</p>
                 <hr>
                 <br>
@@ -44,12 +44,12 @@
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">District<sup> *</sup> :</p>
                         <select name="district" id="district" name="district" value="<?php echo $data['district']; ?>">
-                            <option selected>--</option>  
-                                     <option>Ampara</option>  
-                                     <option>Anuradhapura</option>  
-                                     <option>Badulla</option>  
-                                     <option>Batticaloa</option>  
-                                     <option>Colombo</option>
+                            <option selected>--</option>
+                            <option>Ampara</option>
+                            <option>Anuradhapura</option>
+                            <option>Badulla</option>
+                            <option>Batticaloa</option>
+                            <option>Colombo</option>
                             <option>Galle</option>
                             <option>Gampaha</option>
                             <option>Hambantota</option>
@@ -79,13 +79,13 @@
                         <div class="hotel-reg-elements">
                             <p class="home-title-4">Property Category<sup> *</sup> :</p>
                             <select name="category" id="category" name="category" value="<?php echo $data['property_category']; ?>">
-                                <option selected>--</option>  
+                                <option selected>--</option>
                                 <option>Chain Hotel</option>
-                                         <option>Resort</option>  
-                                         <option>Villa</option>  
-                                         <option>Hostel</option>  
-                                         <option>Inn</option>  
-                                         <option>Boutique</option>
+                                    <option>Resort</option>
+                                    <option>Villa</option>
+                                    <option>Hostel</option>
+                                    <option>Inn</option>
+                                    <option>Boutique</option>
                                 <option>Bread and Breakfast</option>
                             </select>
                             <span><?php echo $data['property_category_err']; ?></span>

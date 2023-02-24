@@ -20,6 +20,18 @@ class M_Hotels{
             return false;
         }
     }
+    public function findUserDetails(){
+        $this->db->query('SELECT * FROM hotels WHERE HotelID= :hotelid');
+        $this->db->bind(':hotelid',$_SESSION['user_id']);
+
+        $row=$this->db->single();
+ 
+        return  $row; 
+    }
+    // public function loadData($hotelID){
+    //     $this->db->query('SELECT * FROM hotels WHERE HotelID= :hotelID');
+    //     $this->db->bind(':hotelID',$hotelID);
+    // }
 
     public function findHotelNumber($reg_number){
         $this->db->query('SELECT * FROM hotels WHERE reg_number= :reg_number');
@@ -37,8 +49,34 @@ class M_Hotels{
 
     //register
 
+    public function viewAllHotels(){
+        $this->db->query('SELECT * FROM hotels');
+        $hotelset=$this->db->resultSet();
+
+        return $hotelset;
+    }
+
+    public function getProfileInfo($hotelDetails){
+        $this->db->query('SELECT * FROM hotels where HotelID= :hotelID');
+        $this->db->bind(':hotelID',$hotelDetails);
+        $hotelrecord1=$this->db->single();
+
+        return $hotelrecord1;
+    }
+
+
+    public function searchForHotels($data){
+        $this->db->query('SELECT * FROM hotels where Line1= :destination OR Line2= :destination OR District= :destination');
+        $this->db->bind(':destination',$data['destination']);
+        $hotelrecord=$this->db->single();
+
+        return $hotelrecord;
+    }
+
     public function register($data){
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Line1,Line2,District,Category,contact_number,Pets,Children,Cancel_period,Cancel_fee,Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:line1,:line2,:district,:property_category,:contact_number,:pets,:children,:cancel_period,:cancel_fee,:check_in,:check_out,:reg_number)');
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Line1,Line2,District,Category,contact_number,Pets,Children,Cancel_period,
+        Cancel_fee,Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:line1,:line2,:district,:property_category,:contact_number,:pets,
+        :children,:cancel_period,:cancel_fee,:check_in,:check_out,:reg_number)');
         $this->db->bind(':HotelID',$data['hotel_id']);
         $this->db->bind(':name',$data['name']);
         $this->db->bind(':line1',$data['line1']);

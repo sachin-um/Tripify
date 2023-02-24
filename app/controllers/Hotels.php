@@ -13,7 +13,7 @@
         {
             // echo "register0";
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo "register1";
+            // echo "register1";
 
             //Data validation
             $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
@@ -149,7 +149,7 @@
             $this->view('hotels/v_hotelReg', $data);
         }
         // $this->view('hotels/v_register');
-    }
+        }
 
         //login
         public function login(){
@@ -296,7 +296,7 @@
                     
                     //Add a Taxi Request
                     if ($this->taxirequestModel->addtaxirequest($data)) {
-                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
+                        flash('reg_flash', 'Taxi Request is Successfully added..!');
                         redirect('Request/TaxiRequest');
                     }
                     else{
@@ -333,17 +333,55 @@
         
         }
 
-        public function showHotels(){
+        // public function hotels(){
+        //     $allhotels=$this->hotelModel->viewAllHotels();
+
+        //     $data=[
+        //         'allhotels'=> $allhotels
+        //     ];
+        //     $this->view('hotels/v_hotelHome',$data);
+        // }
+
+        public function searchForHotels(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+                $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+                
+                $data = [
+                    'destination' => trim($_POST['place'])
+                ];
+
+                if ($this->hotelModel->searchForHotels($data)) {
+                    redirect('Hotels/showHotels');
+                } else {
+                    redirect('Hotels/hotels');
+                }
+            }
+        }
+
+        public function showHotels(){        
             $this->view('hotels/v_hotel_list');
         }
 
-        public function showHotelDetails(){
-            $this->view('hotels/v_hotel_details_page');
+        public function hotelProfile($hotelID){
+            echo $hotelID;
+
+            $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+            echo $profileDetails->Name;
+            $data=[
+                'profileName'=> $profileDetails->Name,
+                'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District
+                // 'profileName'=> $profileDetails->Name,
+                // 'profileName'=> $profileDetails->Name
+
+            ];
+            
+            $this->view('hotels/v_hotel_details_page',$data);
         }
 
-        public function showRoomDetails(){
-            $this->view('hotels/v_booking');
-        }
+        // public function showHotelDetails(){
+        //     $this->view('hotels/v_hotel_details_page');            
+        // }
 
         public function load(){
             $this->view('hotels/v_dash_profile');

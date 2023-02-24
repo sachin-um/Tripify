@@ -15,7 +15,7 @@
 
                 $data=[
                     'name'=>trim($_POST['name']),
-                    'number'=>trim($_POST['number']),
+                    // 'number'=>trim($_POST['number']),
                     'email'=>trim($_POST['email']),
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),

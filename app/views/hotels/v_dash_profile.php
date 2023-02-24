@@ -18,6 +18,7 @@ else {
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
 <main class="right-side-content">
+    <br>
     <p class="home-title-2">Account Details</p>
         
         <div class="hotel-profile-top">
@@ -72,7 +73,7 @@ else {
                     <li>
                     <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">User Name</p>
+                            <p class="home-title-4">Property Name</p>
                         </div>
 
                         <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
@@ -80,7 +81,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">U12763</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Name;  ?></p>
                             <!-- <p class="home-title-4"><?php echo $data->Name;  ?></p> -->
                         </div>
                     </div></li>
@@ -97,28 +98,10 @@ else {
 
                         <div class="hotel-profile-sub-div-elements">
                             <!-- <p class="home-title-4"><?php echo $data->Email;  ?></p> -->
-                            <p class="home-title-4">kaveesha@gmail.com</p>
+                            <p class="home-title-4"><?php echo $data->hotelaccountdetails->Email;  ?></p>
                         </div>
                     </div></li>
 
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Password</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">
-                                P1234
-                                <!-- <?php echo $data->Password;  ?> -->
-                            </p>
-                        </div>
-                    </div></li>
-                    
                     <li>
                     <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
                         <div class="hotel-profile-sub-div-elements">
@@ -131,13 +114,30 @@ else {
 
                         <div class="hotel-profile-sub-div-elements">
                             <p class="home-title-4">
-                                <!-- <?php if ($data->verification_status ==1) {
-                                ?><h3>Verified </h3><?php
-                                }else {
-                                ?><h3>Not Verified </h3><?php
-                            } ?> -->
-                            Verified
-                        </p>
+                                <?php 
+                                if($data->hotelaccountdetails->verification_status==1){
+                                    echo "Verified";
+                                }else{
+                                    echo "Not verified";
+                                };  ?>
+                            </p>
+                        </div>
+                    </div></li>
+                    
+                    <li>
+                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
+                        <div class="hotel-profile-sub-div-elements">
+                            <p class="home-title-4">Account Status</p>
+                        </div>
+
+                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
+                            <p class="home-title-4">:</p>
+                        </div>
+
+                        <div class="hotel-profile-sub-div-elements">
+                            <p class="home-title-4">
+                                <?php echo $data->hotelaccountdetails->acc_status; ?>
+                            </p>
                         </div>
                     </div></li>
                     <br>
@@ -152,7 +152,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->HotelID;  ?></p>
                         </div>
                     </div></li>
 
@@ -167,7 +167,10 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <?php 
+                                $address = $data->hoteldetails->Line1.", ".$data->hoteldetails->Line2.", ".$data->hoteldetails->District;
+                            ?>
+                            <p class="home-title-4"><?php echo $address; ?></p>
                         </div>
                     </div></li>
 
@@ -182,7 +185,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->contact_number; ?></p>
                         </div>
                     </div></li>
 
@@ -197,7 +200,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Category; ?></p>
                         </div>
                     </div></li>
 
@@ -212,7 +215,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Check_in; ?></p>
                         </div>
                     </div></li>
 
@@ -227,7 +230,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Check_out; ?></p>
                         </div>
                     </div></li>
 
@@ -242,7 +245,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Cancel_period; ?></p>
                         </div>
                     </div></li>
 
@@ -257,7 +260,7 @@ else {
                         </div>
 
                         <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">P120345</p>
+                            <p class="home-title-4"><?php echo $data->hoteldetails->Cancel_fee; ?></p>
                         </div>
                     </div></li>
                 </ul>
