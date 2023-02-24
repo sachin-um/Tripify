@@ -18,14 +18,12 @@ else {
     <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Tell us about your need</p> 
+            <p id="tag">Tell us about your Tour</p> 
         </div>
     
         <div >
             <form action="<?php echo URLROOT; ?>/Request/addGuideRequest" method="POST">
                 
-                <input type="text" id="caption" name="caption" placeholder="Briefly describe Your need.." value="<?php echo $data['caption']; ?>">
-                <span class="invalid"><?php echo $data['caption_err']; ?></span>
                 <input type="text" id="area" name="area" placeholder="Area you want to travel" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
                 <input type="text" id="date" name="date" placeholder="Date you want travel" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">

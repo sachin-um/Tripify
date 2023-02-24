@@ -228,6 +228,7 @@
         }
 
         public function viewGuideBookings(){
+            
             $this->view('guide/v_guide_bookings');
         }
 

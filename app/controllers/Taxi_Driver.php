@@ -32,9 +32,9 @@
 
 
                     if ($this->taxi_driverModel->addtaxidriver($data)) {
-                        // flash('vehicle_flash', 'Your Driver is Succusefully added..!');
-                        // redirect('Taxi_Vehicle/viewvehicles');
-                        die("Driver was sucessfully Added");
+                        flash('driver_flash', 'Your Driver is Succusefully added..!');
+                        redirect('Taxi_Driver/viewdrivers');
+                        // die("Driver was sucessfully Added");
                     }
                     else{
                         die('Something went wrong');

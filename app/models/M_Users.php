@@ -26,11 +26,12 @@
         //register
 
         public function register($data){
-            $this->db->query('INSERT INTO users(Email,Password,Name,otp) VALUES(:email,:password,:name,:otp)');
+            $this->db->query('INSERT INTO users(Email,Password,Name,otp,ContactNo) VALUES(:email,:password,:name,:otp,:contactno)');
             $this->db->bind(':email',$data['email']);
             $this->db->bind(':password',$data['password']);
             $this->db->bind(':name',$data['name']);
             $this->db->bind(':otp',$data['otp']);
+            $this->db->bind(':contactno',$data['contactno']);
 
 
             if ($this->db->execute()) {
@@ -40,7 +41,8 @@
     
                 $row=$this->db->single();
 
-                $this->db->query('INSERT INTO traveler(TravelerID) VALUES(:travelerid)');
+                $this->db->query('INSERT INTO traveler(TravelerID,contact_number,country) VALUES(:travelerid,:contactno,:country)');
+                $this->db->bind(':country',$data['country']);
                 $this->db->bind(':travelerid',$row->UserID);
                 
                 if ($this->db->execute()) {
@@ -56,10 +58,45 @@
             }
         }
 
+        //edit travler details
+
+        public function editTravelerDetails($data){
+            $this->db->query('UPDATE traveler set country=:country WHERE TravelerID=:id');
+            $this->db->bind(':country',$data['country']);
+            $this->db->bind(':id',$data['id']);
+
+            $s1=$this->db->execute();
+
+
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+            $this->db->bind(':name',$data['name']);
+            $this->db->bind(':profile_img',$data['profile-img_name']);
+            $this->db->bind(':contactno',$data['contactno']);
+            $this->db->bind(':id',$data['id']);
+
+            $s2=$this->db->execute();
+
+            if ($s1 && $s2) {
+                $_SESSION['user_name']=$data['name'];
+                return true;
+            }
+        }
+
+
         
         public function getUserDetails($userID)
         {
             $this->db->query('SELECT * FROM users WHERE UserID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        //get traveler details
+        public function getTravelerDetails($userID)
+        {
+            $this->db->query('SELECT * FROM traveler WHERE TravelerID= :userid');
             $this->db->bind(':userid',$userID);
             $row=$this->db->single();
 

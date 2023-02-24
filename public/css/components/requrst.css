@@ -3,8 +3,7 @@
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
-    
-    width: 40%;
+    width: 50%;
     
 }
 .request{
@@ -34,15 +33,22 @@
 }
 
 .request-list .post-body{
-    padding: 20px;
+    padding: 50px 60px;
     font-size: 28px;
 }
 
 .request-list .post-body .post-by{
-    padding: 20px;
+    padding: 20px 0px;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
 
+}
+.post-by-img{
+    width: 25px;
+    height: 25px;
+}
+.post-by-data{
+    vertical-align: super;
 }
 .request-list .post-body .post-content{
     display: flex;
@@ -55,7 +61,8 @@
 .request-list .post-body .post-by-content{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px dashed;
+    border-bottom: 1px dashed #005782;
+    padding: 10px;
 }
 
 .request-list .request .request-footer{
@@ -64,6 +71,44 @@
     justify-content: space-around;
     
 }
+
+.post-tag{
+    opacity: 1;
+    
+}
+
+.request-data{
+    font-weight: 600;
+    font-size: 36px;
+    margin-top: auto;
+    color: #5ADCB8;
+}
+
+.additional-data{
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: auto;
+}
+
+.request-list .post-body .req-slot1{
+    display: flex;
+    justify-content: space-between;
+    color: #00839E;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.request-list .post-body .req-slot2{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    color: #00839E;
+}
+
+.request-list .post-body .req-slot3{
+    padding: 10px 0;
+    padding-bottom: 10px;
+}
+    
 
 #request-delete-btn{
     box-sizing: border-box;

@@ -23,7 +23,7 @@
     <main class="right-side-content">
 
         <br><br>
-        <h2 style="text-align: left; margin-left:8%;">Bookings</h1>
+        <h2>Bookings</h1>
         <hr>
 
         <table class="guide-table">
@@ -36,72 +36,30 @@
                     <th>Location</th>
                     <th>Payment</th>
                     <th>Payment Status</th>
+                    <th>Accept Booking</th>
+                    <th>Ignore Booking</th>
                 </tr>
+                <?php
+                    //print_r($data);
+                    $bookings=$data['guidebookings'];
+                    foreach($bookings as $booking):
+                ?>
                 <tr>
-                    <td>John </td>
-                    <td>Doe </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
+                    <td><?php echo $booking->DateAdded?></td>
+                    <td><?php ?> </td>
+                    <td><?php echo $booking->ReservedDate?> </td>
+                    <td><?php echo $booking->StartingTime?> </td>
+                    <td><?php echo $booking->Duration?> </td>
+                    <td><?php echo $booking->Location?> </td>
+                    <td><?php echo $booking->payment?> </td>
+                    <td><?php echo $booking->PaymentStatus?> </td>
+                    <td><button id="guide_booking">Accept</button></td>
+                    <td><button id="guide_booking">Ignore</button></td>
                 </tr>
-                <tr>
-                    <td>steve </td>
-                    <td>Doe </td>
-                    <td>28 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
-                </tr>
-                <tr>
-                    <td>simo </td>
-                    <td>Doe </td>
-                    <td>26 </td>
-                    <td>USA </td>
-                    <td>Male </td><td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
-                </tr>
-                <tr>
-                    <td>karim </td>
-                    <td>Doe </td>
-                    <td>21 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
-                </tr>
-                <tr>
-                    <td>adam </td>
-                    <td>Doe </td>
-                    <td>20 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
-                </tr>
-                <tr>
-                    <td>keven </td>
-                    <td>Doe </td>
-                    <td>20 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-                    <td>25 </td>
-                    <td>USA </td>
-                    <td>Male </td>
-
-                </tr>
+                <?php
+                    endforeach;
+                ?>
+                
                 
 
         </table> 

@@ -44,7 +44,7 @@ else {
             <h2 class="title" >Your Vehicles</h2>
             <hr>
         </div>
-
+        <?php flash('vehicle_flash'); ?>
         <article >
             
             <div class="taxi_dash_container">
