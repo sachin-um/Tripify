@@ -97,8 +97,13 @@
 
             <p class="home-title-2" >Our Rooms</p><br>
             <hr><br>
-            <div class="nav-main">
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'">
+
+            <div class="nav-grid">
+                <?php                
+                foreach($data['allrooms'] as $room):
+                ?>
+                <div class="hotel-ad-card">
+                    <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
                     <div id="hotel-img" class="hotel-room-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
@@ -116,99 +121,13 @@
                     <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
                     
                 </div>
-
-                <div class="hotel-ad-card">
-                    <div class="hotel-room-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-                    </div>
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label> 
-                    </div>
-
-                    
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
-                    
-                </div>
-
-                <div class="hotel-ad-card">
-                    <div class="hotel-room-card-pic">
-                        <img id="hotel-img" id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
-                    </div>
-
-                    <div class="hotel-ad-card-desc">
-                        <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label> 
-                    </div>
-
-                    
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
-                    
-                </div>
-            </div>  
-            
-            
-            <div class="nav-main">
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showHotelDetails'">
-                    <div class="hotel-room-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-                    </div>                    
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label>
-                    </div>
-
-                    
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
-                    
-                </div>
-
-                <div class="hotel-ad-card">
-                    <div class="hotel-room-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-                    </div>
-
-                    <div class="hotel-ad-card-desc">
-                        <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label> 
-                    </div>
-
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
+                <?php
+                endforeach;
+                ?>
                 
-                </div>
 
-                <div class="hotel-ad-card">
-                    <div class="hotel-room-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
-                    </div>
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 1 room left</label> 
-                    </div>
-
-                    
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
-                    
-                </div>
-            </div>
+                
+            </div>  
         </div>
 
         

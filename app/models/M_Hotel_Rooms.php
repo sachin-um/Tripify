@@ -61,6 +61,10 @@ class M_Hotel_Rooms{
         }
     }
 
+    public function viewRooms($roomID){
+        $this->db->query('SELECT * FROM hotelrooms WHERE ')
+    }
+
     public function viewall(){
         $this->db->query('SELECT * FROM hotelroomtypes');
         $posts=$this->db->resultSet();

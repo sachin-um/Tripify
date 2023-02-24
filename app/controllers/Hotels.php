@@ -3,6 +3,7 @@
         public function __construct(){
             $this->hotelModel=$this->model('M_Hotels');
             $this->userModel=$this->model('M_Users');
+            $this->roomModel=$this->model('M_Hotel_Rooms');
         }
         public function index(){
 
@@ -333,15 +334,6 @@
         
         }
 
-        // public function hotels(){
-        //     $allhotels=$this->hotelModel->viewAllHotels();
-
-        //     $data=[
-        //         'allhotels'=> $allhotels
-        //     ];
-        //     $this->view('hotels/v_hotelHome',$data);
-        // }
-
         public function searchForHotels(){
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
@@ -358,6 +350,16 @@
                 }
             }
         }
+
+        public function rooms(){
+            $hotelrooms=$this->roomModel->viewRooms();
+
+            $data=[
+                'allhotels'=> $allhotels
+            ];
+            $this->view('hotels/v_hotelHome',$data);
+        }
+
 
         public function showHotels(){        
             $this->view('hotels/v_hotel_list');
