@@ -23,14 +23,28 @@ else {
     <hr>
     <br>
     <div class="first-container">
-            <div class="profile-image" style="width: 450px; text-align: center;">
+    <div class="profile-image" >
+            <form action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
                 <br>
-                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                <div class="drag-area">
+                    <div class="icon">
+                        <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $_SESSION['user_profile_image']; ?>" alt="picture">
+                    </div>
+                </div>
                 <br>
-                <br>
-                <button class="profile-btn">Edit</button>
+                <div class="sub-sub-edit" style="margin-left: 25%;">
+                    <div class="img-description">Drag & Drop to upload File</div>
+                    <div class="img-upload">
+                        <input type="file" name="profile-imgupload" id="profile-imgupload" style="display:none;">Browse File
+                    </div>
+                    <div class="img-validation">
+                        <img src="<?php echo URLROOT; ?>/img/tick.png" alt="tick" width="25px" height="20px">
+                        <span style="vertical-align:top;" class="img-select">Select a Profile picture</span>
+                    </div>    
+                </div>
+                
             </div>
-        <br>
+        
         <div class="profile-description">
         <form action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST">
          <br>
@@ -171,6 +185,7 @@ else {
     </div>
 
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 <script>
     var editbtn=document.getElementById("edit-btn");
     var cancelbtn=document.getElementById("cancel-btn");
@@ -204,6 +219,8 @@ else {
     editbtn.addEventListener('click', toggeleEdit);
     cancelbtn.addEventListener('click', toggeleReload);
  </script>
+
+   
 <?php
 }
 ?>
