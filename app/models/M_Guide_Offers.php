@@ -29,10 +29,45 @@
             }
         }
 
+        //reject guide offer
+        public function rejectGuideOffer($id)
+        {
+            $this->db->query('UPDATE guide_offers set status="Rejected" WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //accept offer
+        public function acceptGuideOffer($id){
+            $this->db->query('UPDATE guide_offers set status="Accepted" WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        public function getGuideOfferId($offerid){
+            $this->db->query('SELECT * FROM guide_offers WHERE OfferID=:offerid');
+            $this->db->bind(':offerid',$offerid);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
         
 
         public function viewall(){
-            $this->db->query('SELECT * FROM v_guide_offers');
+            $this->db->query('SELECT * FROM v_guide_offers WHERE status="Pending"');
             $offers=$this->db->resultSet();
 
             return $offers;

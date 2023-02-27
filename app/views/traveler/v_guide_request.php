@@ -18,7 +18,7 @@ else {
     <div class="form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Tell us about your need</p> 
+            <p id="tag">Tell us about your Tour</p> 
         </div>
     
         <div >

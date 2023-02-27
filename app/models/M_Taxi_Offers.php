@@ -16,7 +16,20 @@
         //reject taxi offer
         public function rejectTaxiOffer($id)
         {
-            $this->db->query('UPDATE taxi_offers set status="Rejected"');
+            $this->db->query('UPDATE taxi_offers set status="Rejected" WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //accept offer
+        public function acceptTaxiOffer($id){
+            $this->db->query('UPDATE taxi_offers set status="Accepted" WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
             if ($this->db->execute()) {
                 return true;
             }

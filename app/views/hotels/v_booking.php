@@ -2,7 +2,7 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
-    <br><br><br>
+    
     <div class="content">
         <div class="hotel-booking-title">
             <p id="hotel-booking-title-1" class="home-title-2" ><b>DELUXE ROOM</b></p>
@@ -89,66 +89,63 @@
 
                 </div>
 
-                <p class="home-title-2" >Book Now</p>
-                <hr>
-
                 <div id="hotel-booking-form" class="hotel-room-top-picks">
-                    <form action="">
+
+                    
+                
+                    <p class="home-title-2" >Book Now</p>
+                    <hr>
+
+                    <form action="<?php echo URLROOT?>/HotelBookings/bookaroom" method="post">
                         <div class="hotel-reg-form">
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">First Name<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                                    <p class="home-title-4">Check-In<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="date" id="name" name="custName" value="<?php echo $data['checkInDate']; ?>">
                                 </div>
 
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Second Name<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
+                                    <p class="home-title-4">Check-Out<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="date" id="name" name="custLastName" value="<?php echo $data['checkOutDate']; ?>">
                                 </div>
                             </div>
 
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Phone Number<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
+                                    <p class="home-title-4">No of rooms of this type<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="number" id="noofrooms" name="noofrooms" min = "0" max="20" value="1">
+                                    <!-- <p class="home-title-4">Phone Number<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="text" id="line1" name="custPhone" value="<?php echo $data['custPhone']; ?>"> -->
+                                </div>
+
+                                <div class="hotel-reg-elements">
+                                    <p class="home-title-4">No of nights<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="number" id="noofnights" name="noofnights" min = "0" max="20" value="1">
+                                </div>
+                            </div>
+
+                            <div class="hotel-reg-form-div-2">
+                                <div class="hotel-reg-elements">
+                                    <p class="home-title-4">Payment Method<sup> *</sup> :</p>
+                                    <select class="hotel-labels-2" name="payMethod" id="payMethod" value="<?php echo $data['payMethod']; ?>">
+                                        <option selected>Online</option> 
+                                        <option selected>On Site</option> 
+                                    </select>
+                                    <!-- <p class="home-title-4">Phone Number<sup> *</sup> :</p>
+                                    <input class="hotel-labels-2" type="text" id="line1" name="custPhone" value="<?php echo $data['custPhone']; ?>"> -->
                                 </div>
 
                                 <div class="hotel-reg-elements">
                                     <p class="home-title-4">Special Requests :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
+                                    <input class="hotel-labels-2" type="text" id="line1" name="custRequests" value="<?php echo $data['specialRequests']; ?>">
                                 </div>
                             </div>
                         </div>
                     </form>
                     <br>
-                    <p class="home-title-3"><u>Price Details</u></p>
-                    <br>
-
-                    <div class="nav-main">
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-In Date</b></p>
-                            <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
-                            <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
-                        </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
-                            <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
-                            <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
-                        </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Duration</b></p>
-                            <div id="hotel-nights-days" class="hotel-price-check">
-                                <label>1-Night</label>
-                            </div>
-                        </div>                       
-
-                    </div>
-
                     
-                    <br>
+                    <p class="home-title-3"><u>Price Details</u></p>
+               
                     <div class="price-details-2">
                         <div class="hotel-price-details">
                             <label id="No-of-rooms">1 Room</label>
@@ -170,7 +167,38 @@
                         </div>
                     </div>
 
-                    <p class="home-title-3"><u>Billing Information</u></p>
+                    <div class="hotel-reg-form-div-2">
+                        <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Continue</button>
+                    </div>
+
+                    <!-- <div class="nav-main">
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Check-In Date</b></p>
+                            <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date" name="checkInDate" value="<?php echo $data['checkInDate']; ?>">-->
+                            <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
+                        <!-- </div>
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
+                            <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date" name="checkOutDate" value="<?php echo $data['checkOutDate']; ?>">
+                            <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
+                        <!-- </div>
+
+                        <div class="nav-parts">
+                            <p class="hotel-labels-1"><b>Duration</b></p>
+                            <div id="hotel-nights-days" class="hotel-price-check">
+                                <label>1-Night</label>
+                            </div>
+                        </div>                       
+
+                    </div>  -->
+
+                    
+                    <br>
+                    
+
+                    <!-- <p class="home-title-3"><u>Billing Information</u></p>
 
                     <form action="">
                         <div class="hotel-reg-form">
@@ -230,7 +258,7 @@
                                 <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Confirm Booking</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
             </div>
 
