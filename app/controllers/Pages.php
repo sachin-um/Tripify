@@ -23,6 +23,8 @@
                 $this->view('traveler/v_traveler_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Taxi') {
+                $taxidetails=$this->userModel->getTaxiById($_SESSION['user_id']);
+                $data->details=$taxidetails;
                 $this->view('taxi/v_taxi_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Guide') {

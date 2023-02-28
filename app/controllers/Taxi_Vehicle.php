@@ -2,6 +2,9 @@
     class Taxi_Vehicle extends Controller{
         public function __construct(){
             $this->taxi_vehicleModel=$this->model('M_Taxi_Vehicle');
+
+            $this->taxi_driverModel=$this->model('M_Taxi_Driver');
+        
         }
         public function index(){
 
@@ -9,8 +12,9 @@
 
 
         public function viewvehicles(){
+           
             $allvehicles=$this->taxi_vehicleModel->viewall();
-            // $ve=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
+
             $data=[
                 'vehicles'=> $allvehicles
             ];
@@ -18,12 +22,15 @@
         }
 
         public function addavehicle(){
+            
+            $alldrivers=$this->taxi_driverModel->viewall();
+
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
             
-                $data=[
+                $data=[ 
                         'driver'=>trim($_POST['driver']),
                         'vehicleType'=>trim($_POST['type']),
                         'model'=>trim($_POST['model']),
@@ -94,6 +101,9 @@
             }
             else {
                 $data=[
+
+                    'drivers'=> $alldrivers,
+
                     'driver'=>'',
                     'vehicleType'=>'',
                     'model'=>'',
@@ -121,10 +131,90 @@
         }
 
 
-        public function edit(){
-            $data=[];
-            $this->view('taxi/v_taxi_vehicle_deatails',$data);
+        public function deleteTaxiVehicle($request_id){
+
+            $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($request_id);
+            
+            if ($taxiVehicle->OwnerID !=$_SESSION['user_id']) {
+                flash('reg_flash', 'You need to have logged in first...');
+                redirect('Users/login');
+            }
+            else {
+                if ($this->taxi_vehicleModel->deletetaxiVehicle($request_id)) {
+                    flash('request_flash', 'Vehicle was Succusefully Deleted');
+                    redirect('Taxi_Vehicle/viewvehicles');
+                }
+                else {
+                    die('Something went wrong');
+                }
+            }
+
         }
+
+
+        // public function edit(){
+        //     $data=[];
+        //     $this->view('taxi/v_taxi_vehicle_deatails',$data);
+        // }
+
+
+        public function edit($vehicle_id){
+          
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+
+                //Data validation
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            
+                $data=[
+                    'driver'=>trim($_POST['driver']),
+                    'area'=>trim($_POST['area']),
+                    'no_of_seats'=>trim($_POST['noOfSeats']),
+                    'price_per_km'=>trim($_POST['price_per_km']),      
+                    'VehicleID'=>$vehicle_id
+                    ];
+
+                    if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                        flash('request_flash', 'Vehicle is Succusefully Updated..!');
+                        redirect('Taxi_Vehicle/viewvehicles');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+                
+
+
+
+            }
+            else {
+
+                $alldrivers=$this->taxi_driverModel->viewall();
+
+                $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
+                
+                if ($taxiVehicle->OwnerID !=$_SESSION['user_id']) {
+                    flash('reg_flash', 'You need to have logged in first...');
+                    redirect('Users/login');
+                }
+                $data=[
+                        'drivers'=> $alldrivers, // user want to change to driver also editing purpose
+                        'driver'=>$taxiVehicle->driver_name,
+                        'ID' => $taxiVehicle->VehicleID,
+                        'vehicleType'=>$taxiVehicle->VehicleType,
+                        'model'=>$taxiVehicle->Model,
+                        'yearofProduction'=>$taxiVehicle->YearOfProduction,
+                        'vehicleNumber'=>$taxiVehicle->vehicle_number,
+                        'area'=>$taxiVehicle->area,
+                        'noOfSeats'=>$taxiVehicle->no_of_seats,
+                        'price_per_km'=>$taxiVehicle->price_per_km,      
+                        'owner'=>$_SESSION['user_id'] 
+
+                ];
+
+                $this->view('taxi/v_taxi_vehicle_deatails',$data);
+            }
+        }
+
 
         public function taxideatails(){
             $allvehicles=$this->taxi_vehicleModel->viewall();

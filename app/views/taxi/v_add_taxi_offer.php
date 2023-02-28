@@ -28,13 +28,19 @@ else {
             </div>
     
             <div >
-                <form  method="POST">
+                <form action="<?php echo URLROOT; ?>/Offers/taxiMakeOffers/<?php echo $data['requestid'] ?>" method="POST">
                     
-                    <label class="abc">Vehicle ID</label><br>
-                    <select class="search" id="payment-option" name="payment-option">
-                        <option value="" disabled selected hidden>Vehicle ID</option>
-                        <option value="card">V1000</option>
-                        <option value="cash">V1001</option>
+                    <label class="abc">Vehicle Number</label><br>
+                    <select class="search" id="payment-option" name="VehicleID">
+                    <option value="" disabled selected hidden>Vehicle Number</option>
+                    <?php
+                        $allvehicles=$data['vehicles'];
+                        foreach($allvehicles as $vehicle):
+                    ?>
+                       <?php echo "<option value='" . $vehicle->VehicleID. "'>" . $vehicle->vehicle_number. "</option>"?>
+                    <?php
+                        endforeach;
+                    ?>
                     </select>
                     <span class="invalid"></span>
 
@@ -43,7 +49,7 @@ else {
                     <span class="invalid"></span>
                     
                     <label class="abc">Payment option </label><br>
-                    <select class="search" id="payment-option" name="payment-option">
+                    <select class="search" id="payment-option" name="payment_option">
                         <option value="" disabled selected hidden>Payment Option</option>
                         <option value="card">End Of The Trip</option>
                         <option value="cash">Online</option>
@@ -52,6 +58,8 @@ else {
                     
                     <label class="abc"> Additional Information: </label><br>
                     <input type="info" id="info" name="info" placeholder="Ex: Full Air Conditon " >
+                    
+                    
                     <button id="sign-up-btn-1" type="submit">Make an Offer</button>
                 
 

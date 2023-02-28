@@ -37,6 +37,49 @@ class M_Taxi_Vehicle{
             return $vehicles;
         }
 
+        public function getVehicleByID($id){
+            $this->db->query('SELECT * FROM vehicles WHERE VehicleID=:VehicleID');
+            $this->db->bind(':VehicleID',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+
+        public function deletetaxiVehicle($id){
+        
+            $this->db->query('DELETE FROM `vehicles` WHERE VehicleID=:VehicleID');
+            $this->db->bind(':VehicleID',$id);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public function editTaxiVehicle($data){
+            $this->db->query('UPDATE vehicles SET driver_name=:driver, area=:area,no_of_seats=:no_of_seats,price_per_km=:price_per_km WHERE VehicleID=:VehicleID');
+            $this->db->bind(':driver',$data['driver']);
+            $this->db->bind(':area',$data['area']);
+            $this->db->bind(':no_of_seats',$data['no_of_seats']);
+            $this->db->bind(':price_per_km',$data['price_per_km']);
+            $this->db->bind(':VehicleID',$data['VehicleID']);
+
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
 }
 
 ?>

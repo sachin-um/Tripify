@@ -40,15 +40,23 @@ else {
         <input type="text" id="taxi_add_v_model"name="model" placeholder="Model" required><br>
 
         <select name="driver"  id="taxi_add_v_type" id="cars" required>
-            
-            <option value="" disabled selected hidden>Select Driver</option>
 
-            <option value="Nimal Gunawardana">Nimal Gunawardana</option>
-            <option value="Sunil Perera">Sunil Perera</option>
-            <option value="Sam Curran">Kamal Silva</option>
-            <option value="Nihal Silva">Nihal Silva</option>
+            <?php
+                $alldrivers=$data['drivers'];
+                foreach($alldrivers as $driver):
+            ?>
+                
+                <?php echo "<option value='" . $driver->Name. "'>" . $driver->Name. "</option>"?>
+
+                
+            <?php
+                endforeach;
+            ?>
+            
        
         </select>
+    
+
 
         <input type="text" id="taxi_add_v_year" name="year" placeholder="Year Of Production" required ><br>
 

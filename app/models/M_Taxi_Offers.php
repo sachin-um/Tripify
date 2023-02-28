@@ -94,6 +94,39 @@
             return $row;
         }
 
+        // public function getVehicleByNumber($number){
+        //     $this->db->query('SELECT * FROM vehicles WHERE vehicleNumber=:number');
+        //     $this->db->bind(':vehicleNumber',$number);
+
+        //     $row=$this->db->single();
+
+        //     return $row;
+        // }
+
+
+        public function makeTaxiOffer($data){
+
+           // $vehicle = getVehicleByNumber($data['vehicleNumber']);
+           
+            $this->db->query('INSERT INTO taxi_offers(OwnerID,VehicleID,PaymentMethod,PricePerKm,RequestID,additional_details) VALUES(:OwnerID,:VehicleID,:PaymentMethod,:PricePerKm,:RequestID,:additional_details)');
+           $this->db->bind(':VehicleID',$data['VehicleID']);
+            $this->db->bind(':PaymentMethod',$data['PaymentMethod']);
+            $this->db->bind(':PricePerKm',$data['PricePerKm']);
+            $this->db->bind(':RequestID',$data['request_id']);
+            $this->db->bind(':OwnerID',$data['OwnerID']);
+            $this->db->bind(':additional_details',$data['additional_details']);
+            
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
 
         
     }

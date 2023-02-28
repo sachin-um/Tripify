@@ -1,3 +1,20 @@
+
+
+
+
+
+
+
+
+/* .............Taxi vehicle edit style ................. */
+
+
+
+
+
+
+
+
 .tax_vech_view_cont{
     
     display: grid;
@@ -6,13 +23,22 @@
 }
 
 .tax-vec-sp-cont{
-    display: flex;
-    /* justify-content: center; */
+    /* display: flex;
     justify-items: center;
     justify-content:center;
-    gap: 10em;
+    gap: 10em; */
+    
+}
 
-    background-color: #E89E9E;
+.taxi_veh_grid_edit_cont{
+    background: rgba(211, 211, 211, 0.3);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: flex;
+}
+
+.taxi_veh_editBut_cont{
+   display: flex;
+   justify-content: center;
 }
 
 .taxi_dash_edit_veh{
@@ -36,3 +62,5 @@
 #taxi-dash-vec-view-slt {
     width: 9em;
 }
+
+

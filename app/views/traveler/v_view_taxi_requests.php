@@ -123,7 +123,7 @@ else {
             }
             elseif ($_SESSION['user_type']=='Taxi') {
                 ?>
-                <button onclick="window.location='<?php echo URLROOT; ?>/Taxies/makeoffers'" id="request-offer-btn" type="submit">Make an offer</button>
+                <a href="<?php echo URLROOT; ?>/Offers/taxiMakeOffers/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit">Make an offer</button></a>
                 <?php
             }
             ?>
