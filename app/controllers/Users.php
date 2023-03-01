@@ -17,12 +17,16 @@
                     'name'=>trim($_POST['name']),
                     'number'=>trim($_POST['number']),
                     'email'=>trim($_POST['email']),
+                    'contactno'=>trim($_POST['contactno']),
+                    'country'=>trim($_POST['country']),
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
                     'otp'=>'',
 
                     'name_err'=>'',
                     'email_err'=>'',
+                    'contactno_err'=>'',
+                    'country_err'=>'',
                     'password_err'=>'',
                     'confirm-password_err'=>'',
 
@@ -35,6 +39,14 @@
                 //validate email
                 if (empty($data['email'])) {
                     $data['email_err']='please enter a email';
+                }
+                if (empty($data['country'])) {
+                    $data['country_err']='please Select your country';
+                }
+                if (empty($data['contactno'])) {
+                    $data['contactno_err'] = 'This field is required';
+                } else if (!preg_match('/^[0-9]{10}+$/', $data['contactno'])) {
+                    $data['contactno_err'] = 'Invalid Contact Number';
                 }
                 else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                     $data['email_err'] = "Invalid email format";
@@ -67,7 +79,7 @@
                 }
 
 
-                if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err'])) {
+                if (empty($data['name_err']) &&  empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err']) && empty($data['country_err']) && empty($data['contactno_err'])) {
                     $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
 
                     //send verification email and get otp code
@@ -98,17 +110,64 @@
                 $data=[
                     'name'=>'',
                     'email'=>'',
+                    'contactno'=>'',
+                    'country'=>'',
                     'password'=>'',
                     'confirm-password'=>'',
                     'otp'=>'',
 
                     'name_err'=>'',
                     'email_err'=>'',
+                    'contactno_err'=>'',
+                    'country_err'=>'',
                     'password_err'=>'',
                     'confirm-password_err'=>'',
 
                 ];
                 $this->view('users/v_register',$data);
+            }
+        }
+
+        //edit travler details
+        public function editTravelerDetails($travlerid){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($travlerid==$_SESSION['user_id']) {
+                    $data=[
+                        'profile-img'=>$_FILES['profile-imgupload'],
+                        'profile-img_name'=>time().'_'.$_FILES['profile-imgupload']['name'],
+                        'name'=>trim($_POST['name']),
+                        'contactno'=>trim($_POST['contact-number']),
+                        'country'=>trim($_POST['country']),
+                        'id'=>$travlerid
+                    ];
+
+                    if (uploadImage($data['profile-img']['tmp_name'],$data['profile-img_name'],'/img/profileImgs/')) {
+                        if ($this->userModel->editTravelerDetails($data)) {
+                            unset($_SESSION['user_profile_image']);
+                            $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                            $_SESSION['user_profile_image']=$user->profileimg;
+
+                            redirect('Pages/profile');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                    }
+                    else {
+                        
+                        flash('img_flash', 'Image Upload Failed'.$data['profile-img_name']);
+                        redirect('Pages/profile');
+                    }
+    
+                    
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+                
             }
         }
 
@@ -406,6 +465,7 @@
         public function createUserSession($user){
             $_SESSION['user_id']=$user->UserID;
             $_SESSION['user_name']=$user->Name;
+            $_SESSION['user_profile_image']=$user->profileimg;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
@@ -440,6 +500,7 @@
         public function logout(){
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
+            unset($_SESSION['user_profile_image']);
 
 
             session_destroy();

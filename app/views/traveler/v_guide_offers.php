@@ -61,24 +61,29 @@ else {
             <hr>
         </div>
         <div class="request-list">
-
+        <?php flash('guide_offer_flash'); ?>
         <?php
             $offers=$data['guideoffers'];
             foreach($offers as $guideoffer):
         ?>
         <div class="request">
-            <div class="post-header">Request ID : <?php echo $guideoffer->request_id; ?></div>
+            <div class="post-header">Offer ID : <?php echo $guideoffer->offer_id; ?></div>
             <div class="post-body">
 
-                <h5>Offer Details :</h5>
-                <div class="post-date">HourlyRate: <span id="request-data"><?php echo $guideoffer->hourlyrate; ?></span></div>
-                <div class="post-time">PaymentMethod: <?php echo $guideoffer->paymentmethod; ?></div>
-                <div class="post-details">Additional Details: <?php echo $guideoffer->additionaldetails; ?></div>
-                <div class="post-by-content">
-                    <div class="post-by">Offered By: <?php echo $guideoffer->guidename; ?></div>
-                    <div class="post-by">Guide contact number: <?php echo $guideoffer->guide_number; ?></div>
-                    <div class="post-by">Offered at: <?php echo convertTime($guideoffer->offer_at); ?></div>
+                <h5 style="text-align:center;">Offer Details</h5>
+                <div class="req-slot3">
+                    <div class="post-tag post-date" style="margin-bottom: 40px;"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">  Rs:<?php echo $guideoffer->hourlyrate; ?> /per hour.</span></div>
+                    <div class="post-tag post-time" style="margin-bottom: 30px;"><img src="<?php echo URLROOT; ?>/img/payment-option.png" alt="time" ><span class="request-data">:<?php echo $guideoffer->paymentmethod; ?></span></div>
                 </div>
+                <div class="req-slot3">
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $guideoffer->additionaldetails; ?></span></div>
+                </div>
+                <div class="post-by-content">
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $guideoffer->guidename; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guideoffer->guide_number; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guideoffer->offer_at); ?></span></div>
+                </div>
+                
                 
             </div>
             <div class="request-footer">
@@ -91,8 +96,8 @@ else {
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
-                        <button id="request-offer-btn" type="submit">Accept offer</button>
-                        <button id="request-delete-btn" type="submit">Reject Offer</button>
+                        <a href="<?=URLROOT;?>/Bookings/acceptGuideOffer/<?=$guideoffer->offer_id;?>/<?=$guideoffer->request_id;?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
+                        <a href="<?php echo URLROOT; ?>/Offers/rejectGuideOffer/<?=$guideoffer->offer_id;?>/<?=$guideoffer->request_id;?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
                     }
                 ?>

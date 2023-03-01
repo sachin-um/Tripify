@@ -68,16 +68,25 @@ else {
             foreach($requests as $guiderequest):
         ?>
         <div class="request">
-            <div class="post-header"><?php echo $guiderequest->caption; ?></div>
+            <div class="post-header">Request ID : <?php echo $guiderequest->request_id; ?></div>
             <div class="post-body">
-                <div class="post-date">Request Date: <span id="request-data"><?php echo $guiderequest->date; ?></span></div>
-                <div class="post-time">Request Time: <?php echo $guiderequest->time; ?></div>
-                <div class="post-location">Area Want to Travel: <?php echo $guiderequest->p_location; ?></div>
-                <div class="post-details">Additional Details: <?php echo $guiderequest->description; ?></div>
-                <div class="post-details">Preffer language: <?php echo $guiderequest->p_language; ?></div>
+                <div class="req-slot1">
+                    <div class="post-tag post-date"><img src="<?php echo URLROOT; ?>/img/date.png" alt="date" ><span class="request-data">:<?php echo $guiderequest->date; ?></span></div>
+                    <div class="post-tag post-time"><img src="<?php echo URLROOT; ?>/img/time.png" alt="time" ><span class="request-data">:<?php echo $guiderequest->time; ?></span></div>
+                </div>
+                <div class="req-slot2">
+                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/area.png" alt="area" ><span class="request-data">: <?php echo $guiderequest->p_location; ?></span></div>
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/language.png" alt="language" ><span class="request-data">: <?php echo $guiderequest->p_language; ?></span></div>
+                </div>
+                <div class="req-slot3">
+                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $guiderequest->description; ?></span></div>
+                </div>
+                
+                
                 <div class="post-by-content">
-                    <div class="post-by">Post By: <?php echo $guiderequest->name; ?></div>
-                    <div class="post-by">Post at: <?php echo convertTime($guiderequest->post_at); ?></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $guiderequest->name; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guiderequest->contact_no; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guiderequest->post_at); ?></span></div>
                 </div>
             </div>
             <div class="request-footer">

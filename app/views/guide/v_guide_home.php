@@ -43,7 +43,7 @@
         <div class="hotel-home-join-network">
             <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
             <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Register Hotel</button>
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Register As a Guide</button>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
             <div class="nav-main">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Guides/showGuides'">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guidehome.png" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">
                         <span class="dot">3.0</span>
                     </div>                    
 
@@ -71,7 +71,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guidehome.png" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide2.jpeg" alt="nine-arch">
                         <span class="dot">4.1</span>
                     </div>
 
@@ -87,7 +87,7 @@
 
                 <div class="hotel-ad-card">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guidehome.png" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide3.jpg" alt="nine-arch">
                         <span class="dot">4.5</span>
                     </div>
 

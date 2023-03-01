@@ -49,6 +49,23 @@ class M_Guides{
             return false;
         }
     }
+    public function getGuideById($id){
+        $this->db->query('SELECT * FROM guides WHERE GuideID=:id');
+        $this->db->bind(':id',$id);
+
+        $row=$this->db->single();
+
+        return $row;
+    }
+
+    public function getGuideLanguageById($id){
+        $this->db->query('SELECT language FROM guide_languages WHERE guide_id=:id');
+        $this->db->bind(':id',$id);
+
+        $languages=$this->db->resultSet();
+
+        return $languages;
+    }
 }
 
 ?>

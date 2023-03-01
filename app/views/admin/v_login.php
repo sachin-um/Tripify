@@ -7,7 +7,7 @@
     <div class="content">
         <div class="form-login">
             <div >
-                <img id="logo" src="<?php echo URLROOT; ?>/img/logo.png" alt="logo">
+                <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
                 <p id="tag">Admin Login</p> 
             </div>
     

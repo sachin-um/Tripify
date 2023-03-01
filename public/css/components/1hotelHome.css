@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+
+.nav-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px; /* space between columns, change as needed */
+    grid-row-gap: 20px; /* space between rows, change as needed */
+}
+
 .hotel-labels-1{
     border: none;
     text-align: center;
     padding: 5px 10px;
     font-size: 1rem;
     color: #03002E;
+}
+
+#hotel-view-hotel:hover{
+    cursor: pointer;
 }
 
 hr{
@@ -38,8 +50,9 @@ hr{
 }
 
 .hotel-ad-card{
-    width: 25%;
+    width: 75%;
     /* height: ; */
+    margin: auto;
     display: flex;
     flex-direction: column;
     position: relative;
