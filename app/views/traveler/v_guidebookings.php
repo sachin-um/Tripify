@@ -41,7 +41,7 @@ else {
         <br>
         <h2 style="text-align: left;">Guide Bookings</h1>
         <hr>
-        <?php flash('request_flash'); ?>
+        <?php flash('booking_flash'); ?>
         <br>
         <div class="first-container">
             <div class="admin-table-container">
@@ -58,7 +58,7 @@ else {
                             <th>Payment</th>
                             <th>Payment Method</th>
                             <th>Booking Status</th>
-                            <th>Cancel</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,7 +76,48 @@ else {
                             <td data-lable="Message"><?php echo $booking->payment ?></td>
                             <td data-lable="Message"><?php echo $booking->PaymentMethod ?></td>
                             <td data-lable="Message"><?php echo $booking->status ?></td>
-                            <td data-lable="Name"><button class="btn" type="button">Cancel</button></td>
+                            <?php
+                                if ($booking->status=='Yet To Confirm') {
+                                    ?>
+                                    
+                                    <td data-lable="Name">
+                                        <a href="<?php echo URLROOT; ?>/Bookings/EditlGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">Edit</button></a>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button class="btn" type="button">Cancel</button></a>
+                                    </td>
+                                    
+                                    <?php
+                                }
+                                elseif ($booking->status=='Confirmed') {
+                                    if ($booking->PaymentStatus!='Paid') {
+                                        if ($booking->PaymentMethod=='Online') {
+                                            ?>
+                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button></td>
+                                            <?php
+                                        }
+                                        else {
+                                            ?>
+                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site</span></td>
+                                            <?php
+                                        }
+                                    }
+                                    else {
+                                        ?>
+                                            <td data-lable="Name"><span class="enjoy">Enjoy your Trip</span></td>
+                                        <?php
+                                    }
+                                    
+                                }
+                                elseif ($booking->status=='Finished') {
+                                    ?>
+                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"></td>
+                                    <?php
+                                }
+                                elseif ($booking->status=='Canceled') {
+                                    ?>
+                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"></td>
+                                    <?php
+                                }
+                            ?>
                         </tr>
                         <?php
                             endforeach;
