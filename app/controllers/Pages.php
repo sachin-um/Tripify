@@ -72,8 +72,14 @@
         }
 
         public function guides(){
-            $this->view('guide/v_guide_home');
+            $allguides=$this->guideModel->viewAllguides();
+
+            $data=[
+                'allguides'=> $allguides
+            ];
+            $this->view('guide/v_guide_home',$data);
         }
+
 
         public function about($name,$age){
             $data=[
