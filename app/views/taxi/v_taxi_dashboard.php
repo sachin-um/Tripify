@@ -50,9 +50,9 @@ else {
                 <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
                 <br>
                 <br>
-                <button class="profile-btn">Edit</button>
+                <!-- <button class="profile-btn">Edit</button> -->
             </div>
-
+    
             <div class="profile-description">
                  <br>
                 <div class="sub-description">
@@ -61,7 +61,57 @@ else {
                     </div>
                     
                     <div class="sub-sub">
-                        <h3>Karththikeyan</h3>
+                        <h3><?php echo $data->details->owner_name;  ?></h3>
+                    </div>
+                            
+                </div>
+
+                <br>
+
+
+                <div class="sub-description" id="taxi-hide-cont">
+                    <div class="sub-sub">
+                        <h3>Company Name : </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3><?php echo $data->details->company_name;  ?></h3>
+                    </div>
+                            
+                </div>
+
+                <br>
+
+                <?php 
+                    if(!$data->details->company_name){
+                ?>
+                    <script type="text/javascript">document.getElementById('taxi-hide-cont').style.display = 'none';</script>
+                <?php
+                    }
+                ?>
+                
+                <div class="sub-description" id="taxi-hide-cont">
+                    <div class="sub-sub">
+                        <h3>NIC: </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3><?php echo $data->details->nic_no;  ?></h3>
+                    </div>
+                            
+                </div>
+
+                <br>
+                
+                
+                
+                <div class="sub-description" id="taxi-hide-cont">
+                    <div class="sub-sub">
+                        <h3>Number of Vehicles: </h3>
+                    </div>
+                    
+                    <div class="sub-sub">
+                        <h3><?php echo $data->details->NoOfVehicles;  ?></h3>
                     </div>
                             
                 </div>
@@ -74,11 +124,13 @@ else {
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>kkarththi15@gmail.com.com</h3>
+                        <h3><?php echo $data->Email;  ?></h3>
                     </div>
                         
                 </div>
                 <br>
+
+                
 
 
                 <div class="sub-description">
@@ -87,7 +139,7 @@ else {
                     </div>
                  
                     <div class="sub-sub">
-                        <h3>4</h3>
+                        <h3><?php echo $data->UserID;  ?></h3>
                     </div>
                     
                 </div>
@@ -99,30 +151,45 @@ else {
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>+94 77 123 4567</h3>
+                        <h3> <h3><?php echo $data->details->contact_number;  ?></h3></h3>
                     </div>
                         
                 </div>
                 <br> 
 
 
-                <div class="sub-description">
+                <!-- <div class="sub-description">
                     <div class="sub-sub">
                         <h3>Owner ID : </h3>
                     </div>
                         
                     <div class="sub-sub">
-                        <h3>1</h3>
+                        <h3> <h3><?php echo $data->details->OwnerID;  ?></h3></h3>
+                    </div>
+                        
+                </div>
+                <br> -->
+
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>Owner Address : </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3> <h3><?php echo $data->details->address;  ?></h3></h3>
                     </div>
                         
                 </div>
                 <br>
 
                 <div style="text-align: center;">
-                    <button class="profile-btn">Edit Info</button>
+                    <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
                         
                 </div>
             </div>
+
+
+            
         </div>
         <br><br>
    

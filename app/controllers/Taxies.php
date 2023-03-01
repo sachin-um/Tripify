@@ -162,15 +162,50 @@
             }
         }
 
-        public function offers(){
-            $data=[];
-            $this->view('taxi/v_taxi_offers',$data);
+        public function OwnerDeatails(){
+
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                $data = [
+                    'name'=>trim($_POST['name']),
+                    // 'nic'=>trim($_POST['nic']),
+                    'company_name'=>trim($_POST['company_name']),
+                    'contact_number'=>trim($_POST['contact_number']),
+                    'address'=>trim($_POST['address']),
+                    'OwnerID'=>$_SESSION['user_id']
+                ];
+
+                if($this->taxiModel->editOwnerInfo($data)){
+                    flash('request_flash', 'Owner Deatails was Succusefully Updated..!');
+                    redirect('Pages/profile');
+                }else{
+                    die('Something went wrong');
+                }
+
+            }else{
+
+                $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
+                $data=[
+                    
+                    'name'=>$taxiOwner->owner_name,
+                    'nic'=>$taxiOwner->nic_no,
+                    'company_name'=>$taxiOwner->company_name,
+                    'contact_number'=>$taxiOwner->contact_number,
+                    'address'=> $taxiOwner->address,
+                    'ownerID'=>$taxiOwner->OwnerID
+                ];
+                $this->view('taxi/v_taxi_dashboard_deatails',$data);
+            }
             
         }
 
-        public function makeoffers(){
+
+
+
+
+        public function offers(){
             $data=[];
-            $this->view('taxi/v_add_taxi_offer',$data);
+            $this->view('taxi/v_taxi_offers',$data);
             
         }
 

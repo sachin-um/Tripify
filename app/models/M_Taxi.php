@@ -84,6 +84,30 @@ class M_Taxi{
         }
     }
 
+    public function getOwnerByID($id){
+        $this->db->query('SELECT * FROM taxiowner WHERE OwnerID=:ID');
+        $this->db->bind(':ID',$id);
+
+        $row = $this->db->single();
+        return $row;
+    }
+
+    public function editOwnerInfo($data){
+        $this->db->query('UPDATE taxiowner SET owner_name=:owner_name, company_name=:company_name, contact_number=:contact_number, address=:address WHERE OwnerID=:OwnerID');
+        $this->db->bind(':owner_name',$data['name']);
+        // $this->db->bind('nic_no',$data['nic']);
+        $this->db->bind(':company_name',$data['company_name']);
+        $this->db->bind(':contact_number',$data['contact_number']);
+        $this->db->bind(':address',$data['address']);
+        $this->db->bind(':OwnerID',$data['OwnerID']);
+        // die($data['OwnerID']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     
 }
 
