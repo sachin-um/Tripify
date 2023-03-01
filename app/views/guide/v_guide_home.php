@@ -52,6 +52,12 @@
 
         <div class="hotel-home-top-picks">
             <div class="nav-main">
+                <?php
+                
+                foreach($data['allguides'] as $guide):
+                    
+                ?>
+                <a href="<?php echo URLROOT?>/Guides/loadGuideProfile/<?php echo $guide->GuideID?>">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Guides/showGuides'">
                     <div class="hotel-ad-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">
@@ -60,46 +66,20 @@
 
 
                     <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Sunil Shantha</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">colombo,western province</label>
+                       <label id="display-hotel-name" for="hotel-name"><b><?php echo $guide->Name;?></b></label> <br>
+                       <label id="display-hotel-address" for="hotel-address"><?php echo $guide->Area;?></label>
                     </div>
 
                     <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>50USD per day</b></label>
+                        <label id="display-hotel-price" for="hotel-price"><b>Rs:<?php echo $guide->Rate;?> per hour</b></label>
                     </div>
                 </div>
+                </a>
+                <?php
+                endforeach;
+                ?>
 
-                <div class="hotel-ad-card">
-                    <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide2.jpeg" alt="nine-arch">
-                        <span class="dot">4.1</span>
-                    </div>
 
-                    <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Shehan liyanage</b></label><br>
-                       <label id="display-hotel-address" for="hotel-address">Kandy,Central Province</label> 
-                    </div>
-
-                    <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>60USD per day</b></label>
-                    </div>
-                </div>
-
-                <div class="hotel-ad-card">
-                    <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide3.jpg" alt="nine-arch">
-                        <span class="dot">4.5</span>
-                    </div>
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>hasindu guruge</b></label><br>
-                       <label id="display-hotel-address" for="hotel-address">jaffna,North province</label> 
-                    </div>
-
-                    <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>80USD per day</b></label>
-                    </div>
-                </div>
             </div>
         </div>        
         

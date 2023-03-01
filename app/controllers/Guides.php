@@ -215,8 +215,13 @@
             redirect('Pages/index');
         }
 
-        public function loadProfile(){
-            $this->view('guide/v_dash_profile');
+        public function loadGuideProfile($id){
+            $guideDetails=$this->guideModel->getGuideById($id);
+
+            $data=[
+                'guideDetails'=> $guideDetails
+            ];
+            $this->view('guide/v_guide_details',$data);
         }
 
         public function showGuides(){
