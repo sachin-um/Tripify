@@ -75,6 +75,62 @@
     
 }
 
+.message-table tbody tr td .edit-btn{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 4%;
+    background-color: #F9AE55;
+    
+}
+
+.message-table tbody tr td .edit-btn:hover{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #F9AE55;
+    margin-bottom: 4%;
+    background-color: white;
+    
+}
+
+.message-table tbody tr td .pay-btn{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-top: 4%; */
+    background-color: #D86C57;
+    
+}
+
+
+
+.message-table tbody tr td .pay-btn:hover{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #D86C57;
+    /* margin-top: 4%; */
+    background-color: white;
+    
+}
+
 .message-table tbody tr td .sus-btn{
     width: 100px;
     height: 40px;

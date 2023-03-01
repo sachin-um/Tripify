@@ -63,9 +63,13 @@
                 flash('reg_flash', 'Access Denied...');
                 redirect('Users/login');
             }
+            elseif ($booking->status!='Yet To Confirm') {
+                flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+                redirect('Bookings/TaxiBookings');
+            }
             else {
                 if($this->GuideBookingModel->cancelBooking($bookingid)){
-                    flash('request_flash', 'Guide Booking is Canceled');
+                    flash('booking_flash', 'Guide Booking is Canceled');
                     redirect('Bookings/GuideBookings');
                 }
             }
@@ -118,9 +122,13 @@
                 flash('reg_flash', 'Access Denied...');
                 redirect('Users/login');
             }
+            elseif ($booking->status!='Yet To Confirm') {
+                flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+                redirect('Bookings/TaxiBookings');
+            }
             else {
                 if($this->taxiBookingModel->cancelBooking($bookingid)){
-                    flash('request_flash', 'Taxi Booking is Canceled');
+                    flash('booking_flash', 'Taxi Booking is Canceled');
                     redirect('Bookings/TaxiBookings');
                 }
             }
