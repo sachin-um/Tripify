@@ -21,6 +21,17 @@
 
 }
 
+.add-admin-btn{
+    height: 60px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #03002E;
+    cursor: pointer;
+    margin-top: 5%;
+    padding: 20px;
+}
+
 .message-table thead{
     background-color: #03002E;
 }
