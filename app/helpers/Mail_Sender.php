@@ -44,9 +44,9 @@ function sendMail($email,$user){
     }
 }
 
-function sendAdminMail($email,$user,$password){
+function sendAdminMail($email,$user){
     $mail = new PHPMailer(true);
-
+    $otp=rand(100000,999999);
     try {
         //Server settings
         $mail->isSMTP();                                            
@@ -68,11 +68,10 @@ function sendAdminMail($email,$user,$password){
         $mail->Body    = "<p> Dear $user,</p> Congratulations for being singned up as an adminstrator of the Tripfy team.<br>
         <p> Your username : $email</p>
         <br>
-        <p> Your Password : $password</p>
-        <br>
+        
         <p>Click the link below to change the password of your account</p>
         <br>
-        <p>http://localhost/Tripify/Admins/changepassword</p>
+        <p>http://localhost/Tripify/Admins/changepassword/$otp</p>
         <br><br>
         <p>With regards,</p>
         <b>Tripify.</b>";

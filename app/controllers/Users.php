@@ -454,7 +454,7 @@
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
-            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
+            
             // $this->view('v_home',$data);
 
             if ($_SESSION['user_type']=='Traveler') {

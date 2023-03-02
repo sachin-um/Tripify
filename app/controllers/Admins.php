@@ -29,7 +29,7 @@
                     'assigned-area_err'=>''
 
                 ];
-
+                
                 //validate name
                 if (empty($data['name'])) {
                     $data['name_err']='Please enter a name';
@@ -83,15 +83,20 @@
                     $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
 
                     //send verification email and get otp code
-                    $data['otp']=sendAdminMail($data['email'],$data['name'], $data['password']);
+                    $data['otp']=sendAdminMail($data['email'],$data['name']);
                     //Register user
-                    
-                    if ($this->userModel->register($data)) {
-                        redirect('Admins/admins');
+                    if ($data['otp']!='') {
+                        if ($this->adminModel->register($data)) {
+                            redirect('Admins/manageadmins');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
                     }
                     else{
                         die('Something went wrong');
                     }
+                    
                 }
                 else {
                     $this->view('admin/v_admin_register',$data);
@@ -223,41 +228,29 @@
             redirect('Pages/index');
         }
 
-        public function changepassword()
+        public function changepassword($otp)
         {
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
                 $data=[
-                    'email'=>$_SESSION['v_email'],
-                    'old_password'=>trim($_POST['old_password']),
+                    'otp'=>$otp,
+                    'email'=>trim($_POST['email']),
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
                     
                     'email_err'=>'',
-                    'old_password_err'=>'',
                     'password_err'=>'',
                     'confirm-password_err'=>''
                 ];
 
                 //validate code
                 if (empty($data['email'])) {
-                    $data['email_err']='Please enter an Email';
+                    $data['email_err']='please enter your Username';
                 }
-                else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                    $data['email_err'] = "Invalid email format";
-                }
-                else{
-                    if(!$this->userModel->findUserByEmail($data['email'])) {
-                        $data['email_err']='Account doesnt exist...';
-                    }
-                }
-                if (empty($data['reset_code'])) {
-                    $data['reset_code_err']='Please enter your verificaion code';
-                }
-                if (empty($data['reset_code'])) {
-                    $data['reset_code_err']='Please enter your verificaion code';
+                if (empty($data['otp'])) {
+                    $data['confirm-password_err']='OTP Error..!';
                 }
                 if (empty($data['password'])) {
                     $data['password_err']='Please fill the password field';
@@ -282,22 +275,21 @@
                         $data['confirm-password_err']='Password and the confirm password are not matching';
                     }
                 }
-                if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm-password_err']) && empty($data['reset_code_err'])) {
+                if (empty($data['password_err']) && empty($data['confirm-password_err'])) {
                     $data['password']=password_hash($data['password'], PASSWORD_DEFAULT);
                     //reset password
-                    if ($this->userModel->resetpassword($data)) {
+                    if ($this->adminModel->resetpassword($data)) {
                         flash('reg_flash', 'Your Password is successfully Changed..');
                         redirect('Users/login');
                     }
                     //error
                     else{
                         $data['confirm-password_err']='Something went wrong please check your verification code and try again...';
-                        $this->view('users/v_reset_password',$data);
+                        $this->view('admin/v_reset_password',$data);
                     }
                 }
                 else {
-                    $this->view('users/v_reset_password',$data);
-                    echo "HI";
+                    $this->view('admin/v_reset_password',$data);
                 }
 
 
@@ -305,18 +297,17 @@
             }
             else {
                 $data=[
-                    'reset_code'=>'',
+                    'otp'=>$otp,
                     'email'=>'',
                     'password'=>'',
                     'confirm-password'=>'',
                     
                     'email_err'=>'',
-                    'reset_code_err'=>'',
                     'password_err'=>'',
                     'confirm-password_err'=>''
 
                 ];
-                $this->view('users/v_reset_password',$data);
+                $this->view('admin/v_reset_password',$data);
             }
         }
 
@@ -340,6 +331,22 @@
                 $this->view('admin/v_admin_up_Taxies',$data);
             }
 
+        }
+
+        public function manageadmins()
+        {
+            
+            if ($_SESSION['user_id']==1) {
+                $adminData=$this->adminModel->getAllAdminDetails();
+                $data=[
+                    'AdminData'=>$adminData
+                ];
+                $this->view('admin/v_admin_manage',$data); 
+            }
+            else {
+                flash('reg_flash', 'Access denied');
+                redirect('Users/login');
+            }
         }
         
     }

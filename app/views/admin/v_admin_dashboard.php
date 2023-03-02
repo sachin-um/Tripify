@@ -27,7 +27,15 @@ else {
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">Admin Profile</a>
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item">Messages</a>
-            <a href="<?php echo URLROOT; ?>/Complains/viewall" class="menu-item">Complains</a>
+            <?php
+
+                if($data->details->AssignedArea=='Super Admin'){
+                    ?>
+                    <a href="<?php echo URLROOT; ?>/Admins/manageadmins" class="menu-item">Manage Admins</a>
+                    <?php
+                }
+            ?>
+            
             <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
