@@ -103,12 +103,21 @@
             return $row;
         }
 
-        public function getAllUserDetails($usertype)
+        public function getAllUserDetails($usertype,$action=NULL)
         {
-            $this->db->query('SELECT * FROM users WHERE UserType= :usertype');
-            $this->db->bind(':usertype',$usertype);
+            
+            
+            
+            if ($action=='verify') {
+                $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND verification_status=2' );
+                $this->db->bind(':usertype',$usertype);
+            } else {
+                $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND (verification_status=3 OR verification_status=1)');
+                $this->db->bind(':usertype',$usertype);
+            }
             $users=$this->db->resultSet();
             
+
             if($usertype=='Traveler'){
                 return $users;
             }
@@ -184,7 +193,7 @@
 
             $hashed_password=$row->Password;
 
-            if ($row->verification_status!=1) {
+            if ($row->verification_status==0) {
                 return 'NotValidate';
             }
             else if (password_verify($data['password'], $hashed_password)) {
@@ -264,7 +273,14 @@
                 $this->db->bind(':password',$data['password']);
                 $this->db->bind(':email',$data['email']);
                 if ($this->db->execute()) {
-                    return true;
+                    $this->db->query('UPDATE users SET pw_reset_otp=NULL WHERE Email=:email');
+                    $this->db->bind(':email',$data['email']);
+                    if ($this->db->execute()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else {
                     return false;

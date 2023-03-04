@@ -82,6 +82,7 @@ else {
                                     <td data-lable="Name">
                                         <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">Edit</button></a>
                                         <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button">Cancel</button></a>
+                                        
                                     </td>
                                     <?php
                                 }
@@ -94,7 +95,7 @@ else {
                                         }
                                         else {
                                             ?>
-                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site</span></td>
+                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><span class="pay-on-site">Pay On Site</span></td>
                                             <?php
                                         }
                                     }
@@ -106,12 +107,15 @@ else {
                                 }
                                 elseif ($booking->status=='Finished') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"></td>
+                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                    <br>
+                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
+                                    </td>
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"></td>
+                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td>
                                     <?php
                                 }
                             ?>

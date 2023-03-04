@@ -113,6 +113,31 @@
     
 }
 
+.message-table tbody tr td .review-btn{
+    
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #00C895;
+    
+}
+
+.message-table tbody tr td .review-btn:hover{
+    
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #00C895;
+    background-color: white;
+    
+}
+
 .message-table tbody tr td .pay-btn{
     width: 100px;
     height: 40px;
@@ -164,6 +189,60 @@
     padding: 10px;
     cursor: pointer;
     border: 3px solid #ffcc00;
+    /* margin-top: 4%; */
+    background-color: white;
+    
+}
+
+.message-table tbody tr td .acc-view-btn{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-top: 4%; */
+    background-color: #00C895;
+    
+}
+
+.message-table tbody tr td .acc-view-btn:hover{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #00C895;
+    /* margin-top: 4%; */
+    background-color: white;
+    
+}
+
+.message-table tbody tr td .verify-btn{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-top: 4%; */
+    background-color: #007D5C;
+    
+}
+
+.message-table tbody tr td .verify-btn:hover{
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #007D5C;
     /* margin-top: 4%; */
     background-color: white;
     
