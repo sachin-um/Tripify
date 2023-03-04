@@ -54,8 +54,24 @@ else {
                             <th>Company Name</th>
                             <th>No of Vehicles</th>
                             <th>status</th>
-                            <th>Suspend</th>
-                            <th>Remove</th>
+                            <?php
+                                if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    <th>View </th>
+                                    <th>Verify</th>
+                                    
+                                    <th>Suspend</th>
+                                    <th>Remove</th>
+                                    <?php
+                                } elseif ($_SESSION['admin_type']=='management') {
+                                    ?>
+                                    <th>Suspend</th>
+                                    <th>Remove</th>
+                                    <?php
+                                }
+                                
+                            ?>
                             
                         </tr>
                     </thead>
@@ -74,8 +90,40 @@ else {
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->company_name ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
-                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                            <?php
+                            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    <td data-lable="Email"><button class="acc-view-btn" type="button">View </button></td>
+                                    <td data-lable="Email">
+                                        <?php
+                                            if ($taxi->verification_status==2) {
+                                                ?>
+                                                <button class="verify-btn" type="button">Verify</button>
+                                                <?php
+                                            }
+                                            elseif($taxi->verification_status==3)
+                                            {
+                                                ?>
+                                                <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img">
+                                                <?php
+                                            }
+                                        ?>
+                                        
+                                    </td>
+                                    
+                                    <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
+                                    <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                                    <?php
+                            } elseif ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    
+                                    <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
+                                    <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                                    <?php
+                            }
+                            ?>
                         </tr>
                         <?php
                             endforeach;

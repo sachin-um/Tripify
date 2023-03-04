@@ -47,6 +47,7 @@
             else if ($_SESSION['user_type']=='Admin') {
                 $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
                 $data->details=$admindetails;
+                $_SESSION['admin_type']=$data->details->AssignedArea;
                 $this->view('admin/v_admin_dashboard',$data);
             }
         }

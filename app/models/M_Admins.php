@@ -45,6 +45,23 @@ class M_Admins{
     }
 
 
+
+    //edit admin details
+    public function editAdminDetails($data){
+        
+        $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+        $this->db->bind(':name',$data['name']);
+        $this->db->bind(':profile_img',$data['profile-img_name']);
+        $this->db->bind(':contactno',$data['contactno']);
+        $this->db->bind(':id',$data['id']);
+
+        if ($this->db->execute()) {
+            $_SESSION['user_name']=$data['name'];
+            return true;
+        }
+    }
+
+
     public function getAllAdminDetails()
     {
         $this->db->query('SELECT * from admins WHERE AdminID!=1');
