@@ -12,7 +12,7 @@
     <br>
     <br>
     <div class="trip-details">
-       <form class="form-div" action="" method="post">   
+       <form class="form-div" action="<?php echo URLROOT; ?>/Trips/tripplan" method="post">   
     
             <div class="flex-2">
                 <div class="trip-name">
@@ -31,7 +31,15 @@
                 </div>
                 
             </div>
-         
+            <div style="text-align: center;">
+                <span class="invalid"><?php echo $data['trip_err']; ?></span>
+            </div>
+            
+            <div class="btn-div">
+                <button class="create-plan-btn" type="submit">Create Your Trip</button>
+            </div>
+        </form>
+        <?php flash('trip_flash'); ?>
     </div>
     <br>
     <div class="plan-div">
@@ -61,9 +69,7 @@
                 </table>
             </div>
     </div>
-    <div class="btn-div">
-            <button class="reg-btn" type="button">Create Your Trip</button>
-    </div>
+    
     <!-- <br>
         <hr>
         <div class="white-space">

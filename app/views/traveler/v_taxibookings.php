@@ -101,7 +101,7 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <td data-lable="Name"><span class="enjoy">Enjoy your Trip</span></td>
+                                            <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
                                         <?php
                                     }
                                 }

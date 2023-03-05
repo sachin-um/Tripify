@@ -77,8 +77,9 @@ else {
                                     ?>
                                     
                                     <td data-lable="Name">
-                                        <a href="<?php echo URLROOT; ?>/Bookings/EditlGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">Edit</button></a>
+                                        
                                         <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button class="btn" type="button">Cancel</button></a>
+                                        
                                     </td>
                                     
                                     <?php
@@ -98,7 +99,8 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <td data-lable="Name"><span class="enjoy">Enjoy your Trip</span></td>
+                                            <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
+                                            
                                         <?php
                                     }
                                     
