@@ -61,12 +61,10 @@ else {
                                     <th>Verify</th>
                                     
                                     <th>Suspend</th>
-                                    <th>Remove</th>
                                     <?php
                                 } elseif ($_SESSION['admin_type']=='management') {
                                     ?>
                                     <th>Suspend</th>
-                                    <th>Remove</th>
                                     <?php
                                 }
                                 
@@ -99,7 +97,9 @@ else {
                                         <?php
                                             if ($guide->verification_status==2) {
                                                 ?>
-                                                <button class="verify-btn" type="button">Verify</button>
+                                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $guide->UserID ?>/Guide">
+                                                    <button class="verify-btn" type="button">Verify</button>
+                                                </a>
                                                 <?php
                                             }
                                             elseif($guide->verification_status==3)
@@ -111,16 +111,13 @@ else {
                                         ?>
                                         
                                     </td>
-                                    
-                                    <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                                    <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
                                     <?php
-                            } elseif ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
+                            }
+                            if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
                                     
-                                    <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                                    <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                                    <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $guide->UserID ?>/Guide/<?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $guide->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button"><?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a></td>
                                     <?php
                             }
                             ?>

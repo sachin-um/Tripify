@@ -182,6 +182,37 @@
         }
 
 
+        //action on account
+
+        //suspend
+        public function suspendaccount($id,$action)
+        {
+            $this->db->query('UPDATE users set acc_status=:act WHERE UserID=:id');
+            $this->db->bind(':id',$id);
+            $this->db->bind(':act',$action);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        }
+
+        public function verifyaccount($id)
+        {
+            $this->db->query('UPDATE users set verification_status=3 WHERE UserID=:id');
+            $this->db->bind(':id',$data['id']);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        }
+
+
         //login
         public function login($data){
 

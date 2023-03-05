@@ -52,7 +52,6 @@ else {
                             <th>Verification status</th>
                             <th>Account status</th>
                             <th>Suspend Account</th>
-                            <th>Remove Account</th>
                             
                         </tr>
                     </thead>
@@ -68,8 +67,8 @@ else {
                             <td data-lable="Email"><?php echo $traveler->Email ?></td>
                             <td data-lable="Email"><?php echo $traveler->verification_status ?></td>
                             <td data-lable="Email"><?php echo $traveler->acc_status ?></td>
-                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $traveler->UserID ?>/Traveler/<?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $traveler->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button"><?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a></td>
+                            
                         </tr>
                         <?php
                             endforeach;
