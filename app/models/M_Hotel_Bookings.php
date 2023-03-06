@@ -5,35 +5,36 @@
         public function __construct()
         {
             $this->db=new Database();
-        }
-
-
-
-
-        
+        }        
 
         
 
         //Add hotel booking
-        public function addHotelBooking(){
-            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomID,roomTypeID,
-            payment,paymentmethod,booking_start_date,booking_end_date)
-            VALUES(:hoteID,:travelerID,:roomID,:roomTypeID,:payment,:paymentMethod,:booking_start,:booking_end)' );
-            $this->db->bind(':hoteID',$data['caption']);
-            $this->db->bind(':travelerID',$data['caption']);
-            $this->db->bind(':roomID',$data['caption']);
-            $this->db->bind(':roomTypeID',$data['caption']);
-            $this->db->bind(':payment',$data['caption']);
-            $this->db->bind(':paymentMethod',$data['caption']);
-            $this->db->bind(':booking_start',$data['caption']);
-            $this->db->bind(':booking_end',$data['caption']);
+        public function addHotelBooking($data){
+            $array = unserialize($data['roomIDs']);
 
-            if ($this->db->execute()) {
-                return true;
+            print_r($array);
+            echo $data['noofrooms'];
+            for($i=0; $i<$data['noofrooms']; $i++){               
+                
+                $thisroom = array_shift($array); // Get the first value and remove it from the array
+                $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomID,roomTypeID,
+                paymentDue,check_in,check_out)
+                VALUES(:hotelID,:travelerID,:roomID,:roomTypeID,:paymentDue,:check_in,:check_out)' );
+
+                $this->db->bind(':hotelID',$data['hotelID']);
+                $this->db->bind(':travelerID',$data['travelerID']);
+                $this->db->bind(':roomID',$thisroom);
+                $this->db->bind(':roomTypeID',$data['roomTypeID']);
+                $this->db->bind(':paymentDue',$data['paymentDue']);
+                $this->db->bind(':check_in',$data['check_in']);
+                $this->db->bind(':check_out',$data['check_out']);
+
+                $this->db->execute();                
+
             }
-            else {
-                return false;
-            }
+            return true;
+            
         }
 
 
@@ -51,20 +52,18 @@
         }
 
 
-        public function cancelBooking($id)
-        {
-            $this->db->query('DELETE FROM `hotel_bookings` WHERE booking_id=:booking_id');
-            $this->db->bind(':booking_id',$id);
+        // public function cancelBooking($id)
+        // {
+        //     $this->db->query('DELETE FROM `hotel_bookings` WHERE booking_id=:booking_id');
+        //     $this->db->bind(':booking_id',$id);            
 
-            
-
-            if ($this->db->execute()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        //     if ($this->db->execute()) {
+        //         return true;
+        //     }
+        //     else {
+        //         return false;
+        //     }
+        // }
 
 
         public function getHotelById($id){
@@ -113,7 +112,18 @@
             return $row;
         }
 
+        public function RoomAvailabilityRecords($roomTypeID){
+            $this->db->query("SELECT * FROM hotel_bookings WHERE RoomTypeID=:roomTypeID");
+            $this->db->bind(':roomTypeID',$roomTypeID);
 
+            $availability=$this->db->resultSet();
+            
+            return $availability;
+        }
+
+        public function bookingTheRoom(){
+
+        }
         
     }
 

@@ -1,0 +1,29 @@
+Do check availability
+
+hotelroomtypes && hotelrooms && bookings
+
+pass the RoomTypeID to check from bookings
+select all krala okkoma roomtypeid samana ewa ganna resultset ekakta
+for each ekak danna dates deka check kranna
+dates overlap wenawa nan e rooms wala roomID aragena array ekakta daganna
+hotelrooms table ekata gihin roomtype ekata set wena roomIDs okkoma ganna
+aragena ara available nathi room eka e room array eken ain kranna
+ra mulu rooms ganen available nathi count eka adu kranna
+karala flash msg ekak danna proceed da kiyala
+
+
+dates shape nan array ekakta ganna eke roomIDs
+e roomIDs count eka ganna
+count eka illala thina room ganta equal d blanna
+nattan only <count> rooms available kiyla danna
+equal nan e roomID tika dala booking records tika danna 
+
+hotel eke details walin checkout wena welawa ganna
+hama dawasema checkout wena welawata e dawase checkout wena bookings ain kranna trigger ekk gahanna
+
+hama dawasema checkout wena welawata e specific room eka occupied d blanna dates walta trigger ekk gahnna
+occupied 1 nattan 0 danna
+ethakota ada dawase room eka occupied d nadda kiyla blganna puluwn
+
+ 
+
