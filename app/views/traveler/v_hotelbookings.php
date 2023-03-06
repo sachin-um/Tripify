@@ -31,6 +31,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
+            <a href="<?php echo URLROOT; ?>/Trips/yourtrips/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Your Trips</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item ">Complains</a>
             <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
@@ -99,7 +100,7 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
+                                            <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
                                             
                                         <?php
                                     }
@@ -109,7 +110,7 @@ else {
                                     ?>
                                     <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                     <br>
-                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
+                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->booking_id ?>/Hotel"><button class="review-btn" type="button">Add a Review</button></a>
                                     </td>
                                     <?php
                                 }
