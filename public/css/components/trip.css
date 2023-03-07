@@ -1,25 +1,102 @@
 .trip-details{
     
+    margin: 6% auto;
+}
+
+.trip-details .form-div{
+    border: 2px solid black;
+    border-radius: 10px;
     margin: auto;
-    /* display: flex; */
+    padding: 4% 1%;
+    width: 60%;
+    background-color: white;
+}
+
+.trip-details .btn-div{
+    margin-top: 2%;
+    display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+
+    
+}
+
+.trip-details-view{
+    display: none;
+    margin: 0 auto;
+}
+
+.trip-details-view .form-div{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: auto;
+    padding: 1% 1%;
+    width: 78%;
+    background-color: white;
+}
+
+.trip-details-view .form-div .flex-2{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    justify-content: space-between;
+    margin-left: 0;
 }
 
 .trip-name{
+    margin: 1% 0px;
     width: 100%;
 }
 
 .trip-location{
+    margin: 1% 0px;
     width: 100%;
 }
 
 .trip-startdate{
     width: 100%;
+    margin: 1% 0px;
 }
 
 .trip_enddate{
     width: 100%;
+    margin: 1% 0px;
+}
+
+.trip_edit_button{
+    width: 100%;
+}
+
+.trip-details-view .form-div .flex-2 .trip_edit_button .trip-edit-btn{
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #005782;
+    cursor: pointer;
+    margin-top: 2%;
+    margin-left: 10%;
+}
+
+.trip-details-view .form-div .flex-2 .trip_edit_button .trip-edit-btn:hover{
+
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    background-color: #F2ECFF;
+    cursor: pointer;
+    margin-top: 2%;
+    /* margin: auto; */
+    margin-left: 10%;
+    border: 2px solid #005782;
+}
+
+.plan-div{
+    display: none;
 }
 
 .plan-table-container{
@@ -109,7 +186,7 @@
     text-align: center;
     border-radius: 10px;
     color: black;
-    background-color: white;
+    background-color: #F2ECFF;
     cursor: pointer;
     margin-top: 2%;
     border: 2px solid #005782;

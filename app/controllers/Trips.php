@@ -26,10 +26,11 @@
                     'start_date'=>trim($_POST['trip_startdate']),
                     'end_date'=>trim($_POST['trip_enddate']),
                     'traveler_id'=>$_SESSION['user_id'],
+                    'trip_id'=>'',
+
+                    'view'=>1,
 
                     'trip_err'=>'',
-
-                    'create_status'=>''
                 ];
 
                 if (empty($data['trip_name']) || empty($data['trip_location']) || empty($data['start_date']) || empty($data['end_date'])) {
@@ -37,10 +38,13 @@
                 }
 
                 if (empty($data['trip_err'])) {
-                    if ($this->tripModel->createAtrip($data)) {
+                    $trip_id=$this->tripModel->createAtrip($data);
+                    if ($trip_id) {
+                        $data['trip_id']=$trip_id;
                         $this->view('traveler/v_trip_plan',$data);
                     }
                     else {
+                        
                         flash('trip_flash', 'Somthing went Wrong please try again');
                         redirect('Trips/tripplan');
                     }
@@ -61,40 +65,66 @@
 
                     'trip_err'=>'',
 
-                    'create_status'=>0
-
                 ];
                 $this->view('traveler/v_trip_plan',$data);
             }
             
         }
 
-
-        public function addToTripPlan($id,$type)
+        public function viewTripPlan($tripid)
         {
-            if ($this->tripModel->addTripPlan($id,$type)) {
+            
+            $trip=$this->tripModel->viewTripPlan($tripid);
+            if ($trip->TravelerID==$_SESSION['user_id']) {
+                $data=[
+                    'trip_name'=>$trip->trip_name,
+                    'trip_location'=>$trip->location,
+                    'start_date'=>$trip->start_date,
+                    'end_date'=>$trip->end_date,
+                    'traveler_id'=>$trip->TravelerID,
+                    'trip_id'=>$trip->TourPlanID,
+    
+                    'view'=>1,
+    
+                    'trip_err'=>'',
+                ];
+
+                $this->view('traveler/v_trip_plan',$data);
+            } else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+            
+            
+            
+        }
+
+
+        public function addToTripPlan($bookingid,$type,$tripid)
+        {
+            if ($this->tripModel->addToTripPlan($bookingid,$type,$tripid)) {
                 flash('booking_flash', 'Booking was added to Trip plan');
                 switch ($type) {
-                    case 'Guide':
+                    case 'guide':
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
-                    case 'Taxi':
+                    case 'taxi':
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
-                    case 'Hotel':
+                    case 'hotel':
                         redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
                 }
             } else {
                 flash('booking_flash', 'Somthing went wrong try again');
                 switch ($type) {
-                    case 'Guide':
+                    case 'guide':
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
-                    case 'Taxi':
+                    case 'taxi':
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
-                    case 'Hotel':
+                    case 'hotel':
                         redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
                 }
@@ -102,9 +132,9 @@
             
         }
         
-        public function yourtrips($id)
+        public function yourtrips()
         {
-            $trips=$this->tripModel->yourtrips($id);
+            $trips=$this->tripModel->yourtrips();
             $data=[
                 'trips'=> $trips
             ];
@@ -114,9 +144,9 @@
 
 
 
-        public function gettrips($id)
+        public function gettrips()
         {
-            $trips=$this->tripModel->yourtrips($id);
+            $trips=$this->tripModel->yourtrips();
             header('Content-Type: application/json');
             echo json_encode($trips);
         }
