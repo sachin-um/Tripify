@@ -100,31 +100,36 @@
 
             <div class="nav-grid">
                 <?php                
-                foreach($data['allrooms'] as $room):
+                foreach($data['allroomtypes'] as $room):
                 ?>
+                
+                <a href="<?php echo URLROOT?>/HotelRooms/viewhotelroom/<?php echo $room->RoomTypeID?>" style="text-decoration: none;">
+                <!-- <?php echo URLROOT?>/HotelRooms/rooms/<?php echo $hotel->HotelID?> -->
+
                 <div class="hotel-ad-card">
+                    
                     <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
                     <div id="hotel-img" class="hotel-room-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
 
                     <div class="hotel-ad-card-desc">
-                       <label id="room-type" for="hotel-name"><b>Queen Suite</b></label> <br>
+                       <label id="room-type" for="hotel-name"><h2><?php echo $room->RoomTypeName; ?></h2></label>
                        
-                       <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                       <label id="room-price" for="hotel-address"><b>1,234USD Per Night</b></label><br>
-                       <label id="room-remain" for="hotel-address">Only 2 rooms left</label>
+                       <label id="display-hotel-address" for="hotel-address"><?php echo $room->RoomSize." "; ?>Square Feet</label><br>
+                       <label id="display-hotel-address" for="hotel-address"><?php echo $room->NoofBeds." "; ?>Beds</label><br>
+                       <label id="room-price" for="hotel-address"><b><?php echo $room->PricePerNight." "; ?>LKR per night</b></label><br>
+                       <label id="room-remain" for="hotel-address"><?php echo $room->no_of_rooms." "; ?>Bedrooms left</label>
                     </div>
 
                     
                     <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
                     
                 </div>
+                </a>
                 <?php
                 endforeach;
-                ?>
-                
+                ?>         
 
                 
             </div>  
@@ -136,6 +141,8 @@
 </div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
 <script>
     var slidePosition = 1;
     SlideShow(slidePosition);

@@ -10,3 +10,12 @@
     text-align: center;
     margin: auto;
 }
+
+.invalid-booking{
+    background-color: #bc544b;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    transition: 300ms;
+}

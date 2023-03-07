@@ -1,11 +1,11 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
 
 <div class="wrapper">
     
     <div class="content">
         <div class="hotel-booking-title">
-            <p id="hotel-booking-title-1" class="home-title-2" ><b>DELUXE ROOM</b></p>
+            <p id="hotel-booking-title-1" class="home-title-2" ><b><?php echo $data['wantedRoom']->RoomTypeName." "; ?> Room</b></p>
         </div>
         <div class="hotel-room-top-picks">
             <div class="hotel-desc-page-div">
@@ -13,7 +13,7 @@
 
                     <div id="hotel-address" class="hotel-disc-3">
                         <label id="view-address">
-                        2 Double Beds
+                        <?php echo $data['wantedRoom']->NoofBeds." "; ?> Beds
                         </label><br>
                         
                     </div>
@@ -89,62 +89,72 @@
 
                 </div>
 
-                <div id="hotel-booking-form" class="hotel-room-top-picks">
-
-                    
+                <div id="hotel-booking-form" class="hotel-room-top-picks">                    
                 
-                    <p class="home-title-2" >Book Now</p>
+                    <p class="home-title-2" >Check Availability</p>
                     <hr>
 
-                    <form action="<?php echo URLROOT?>/HotelBookings/bookaroom" method="post">
+                    
+                    <form action="<?php echo URLROOT?>/HotelBookings/checkAvailability/<?php echo $data['wantedRoom']->RoomTypeID?>" method="post">
+                        
+                        <br>
+                        <!-- <input type="hidden" name="hotel_id" value="<?php echo $data['wantedRoom']->HotelID; ?>">
+                        <input type="hidden" name="roomTypeID" value="<?php echo $data['wantedRoom']->RoomTypeID; ?>"> -->
                         <div class="hotel-reg-form">
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
                                     <p class="home-title-4">Check-In<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="date" id="name" name="custName" value="<?php echo $data['checkInDate']; ?>">
+                                    <input class="hotel-labels-2" type="date" name="check_in">
                                 </div>
 
                                 <div class="hotel-reg-elements">
                                     <p class="home-title-4">Check-Out<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="date" id="name" name="custLastName" value="<?php echo $data['checkOutDate']; ?>">
+                                    <input class="hotel-labels-2" type="date" name="check_out">
                                 </div>
                             </div>
 
                             <div class="hotel-reg-form-div-2">
                                 <div class="hotel-reg-elements">
                                     <p class="home-title-4">No of rooms of this type<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="number" id="noofrooms" name="noofrooms" min = "0" max="20" value="1">
-                                    <!-- <p class="home-title-4">Phone Number<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="custPhone" value="<?php echo $data['custPhone']; ?>"> -->
+                                    
+                                    <input class="hotel-labels-2" type="number" id="noofrooms" name="noofrooms" min = "1" max="<?php echo $data['wantedRoom']->no_of_rooms?>" value="1">
                                 </div>
 
                                 <div class="hotel-reg-elements">
                                     <p class="home-title-4">No of nights<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="number" id="noofnights" name="noofnights" min = "0" max="20" value="1">
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Payment Method<sup> *</sup> :</p>
-                                    <select class="hotel-labels-2" name="payMethod" id="payMethod" value="<?php echo $data['payMethod']; ?>">
-                                        <option selected>Online</option> 
-                                        <option selected>On Site</option> 
-                                    </select>
-                                    <!-- <p class="home-title-4">Phone Number<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="custPhone" value="<?php echo $data['custPhone']; ?>"> -->
+                                    <label classid="noofnights" name="noofnights" min = "1" value="1"></label>
                                 </div>
 
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Special Requests :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="custRequests" value="<?php echo $data['specialRequests']; ?>">
-                                </div>
+                
                             </div>
                         </div>
+
+                        <div class="hotel-reg-form-div-2">
+                            <button name="confirm-booking-btn" class="all-purpose-btn" type="submit">Continue</button>
+                        </div>
                     </form>
-                    <br>
+
+                    <!-- modal -->
+
+                    <!-- <button data-modal-target="#modal">Open Modal</button> -->
+                    <div class="modal" id="modal">
+                        <div class="modal-header">
+                            <div class="title">Sorry</div>
+                            <button data-close-button class="close-button">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            Only ..... rooms left
+                        </div>
+                    </div>
+
+                    <div id="overlay">
+
+                    </div>
                     
-                    <p class="home-title-3"><u>Price Details</u></p>
+                    <!-- <?php flash('reg_flash'); ?> -->
+                    <?php flash('checkAvailability');?>
+                    <!-- <p class="home-title-3"><u>Price Details</u></p>
                
                     <div class="price-details-2">
                         <div class="hotel-price-details">
@@ -165,100 +175,9 @@
                             <label id="hotel-taxes">Total</label>
                             <label id="hotel-taxes-1"><b>12,000LKR</b></label>
                         </div>
-                    </div>
-
-                    <div class="hotel-reg-form-div-2">
-                        <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Continue</button>
-                    </div>
-
-                    <!-- <div class="nav-main">
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-In Date</b></p>
-                            <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date" name="checkInDate" value="<?php echo $data['checkInDate']; ?>">-->
-                            <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
-                        <!-- </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
-                            <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date" name="checkOutDate" value="<?php echo $data['checkOutDate']; ?>">
-                            <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
-                        <!-- </div>
-
-                        <div class="nav-parts">
-                            <p class="hotel-labels-1"><b>Duration</b></p>
-                            <div id="hotel-nights-days" class="hotel-price-check">
-                                <label>1-Night</label>
-                            </div>
-                        </div>                       
-
-                    </div>  -->
+                    </div> -->
 
                     
-                    <br>
-                    
-
-                    <!-- <p class="home-title-3"><u>Billing Information</u></p>
-
-                    <form action="">
-                        <div class="hotel-reg-form">
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Name on Card<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Debit/Credit Card Number<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-form-div-2">
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Expiration Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="line1" placeholder="Month">
-                                    </div>
-
-                                    <div class="hotel-reg-elements">
-                                        <br>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="line1" placeholder="Date">
-                                    </div>
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Security Code<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1">
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Please enter your email for confirmation<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1">
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Confirm Booking</button>
-                            </div>
-                        </div>
-                    </form> -->
                 </div>
             </div>
 
@@ -268,9 +187,13 @@
         
         
     </div>
+
+    
 </div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+
 
 <script>
     var slidePosition = 1;
@@ -301,4 +224,51 @@
     slides[slidePosition-1].style.display = "block";
     circles[slidePosition-1].className += " enable";
     } 
+
+    const input1 = document.getElementById('date1');
+    const input2 = document.getElementById('date2');
+    const resultLabel = document.getElementById('noofnights');
+  
+    input1.addEventListener('input', calculate);
+    input2.addEventListener('input', calculate);
+  
+  function calculate() {
+    const value1 = parseFloat(input1.value);
+    const value2 = parseFloat(input2.value);
+    const result = value1 + value2; // Replace this with your calculation
+    resultLabel.innerHTML = result;
+  }
+
+
+//   const openModalButtons = document.querySelectorAll('[data-modal-target]');
+//   const closeModalButtons = document.querySelectorAll('[data-close-button]');
+//   const overlay = document.getElementById('overlay')
+
+//   openModalButtons.foreach(button=>{
+//     button.addEventListener('click' , () => {
+//         const modal = document.querySelector(button.dataset.modalTarget)
+//         openModal(modal)
+//     })
+//   })
+
+//   closeModalButtons.foreach(button=>{
+//     button.addEventListener('click' , () => {
+//         const modal = button.closest('.modal')
+//         closeModal(modal)
+//     })
+//   })
+
+//   function openModal(modal){
+//     if(modal == null) return
+//     modal.classList.add('active')
+//     overlay.classList.add('active')
+//   }
+
+
+//   function closeModal(modal){
+//     if(modal == null) return
+//     modal.classList.remove('active')
+//     overlay.classList.remove('active')
+//   }
+
 </script>

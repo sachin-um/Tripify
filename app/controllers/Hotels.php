@@ -351,14 +351,7 @@
             }
         }
 
-        public function rooms(){
-            $hotelrooms=$this->roomModel->viewRooms();
-
-            $data=[
-                'allhotels'=> $allhotels
-            ];
-            $this->view('hotels/v_hotelHome',$data);
-        }
+        
 
 
         public function showHotels(){        
@@ -369,21 +362,27 @@
             echo $hotelID;
 
             $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+            $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
             echo $profileDetails->Name;
             $data=[
                 'profileName'=> $profileDetails->Name,
-                'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District
+                'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
+                'allroomtypes'=> $allroomtypes
                 // 'profileName'=> $profileDetails->Name,
                 // 'profileName'=> $profileDetails->Name
 
             ];
-            
             $this->view('hotels/v_hotel_details_page',$data);
         }
 
-        // public function showHotelDetails(){
-        //     $this->view('hotels/v_hotel_details_page');            
-        // }
+        public function rooms($hotelID){
+            $allrooms=$this->roomModel->viewRooms($hotelID);
+            // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
+            $data=[
+                'allroomtypes'=> $allrooms
+            ];
+            $this->view('hotels/v_hotel_details_page',$data);
+        }
 
         public function load(){
             $this->view('hotels/v_dash_profile');
@@ -407,6 +406,10 @@
 
         public function hotelSupport(){
             $this->view('hotels/v_dash_support');
+        }
+
+        public function test(){
+            $this->view('hotels/v_hotelviewroom');
         }
 
     }
