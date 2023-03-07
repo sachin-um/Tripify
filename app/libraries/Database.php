@@ -70,6 +70,10 @@
             return $this->statement->rowCount();
         }
 
+        public function getLastId(){
+            return $this->dbh->lastInsertId();
+        }
+
     }
 
 

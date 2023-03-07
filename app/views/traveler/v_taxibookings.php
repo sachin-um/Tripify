@@ -102,7 +102,7 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>/Taxi"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
+                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">Add to Trip Plan</button>
                                         <?php
                                     }
                                 }
@@ -133,6 +133,7 @@ else {
     </main>
  </div>
 
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
  <?php
 }
 ?>

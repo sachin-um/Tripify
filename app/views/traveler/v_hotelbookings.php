@@ -100,7 +100,7 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>"><button class="add-to-plan-btn" type="button">Add to Trip Plan</button></a>
+                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button>
                                             
                                         <?php
                                     }
