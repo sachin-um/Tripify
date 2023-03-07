@@ -28,7 +28,7 @@
                 </div> -->
                 <div class="taxi_dri_mob_div">
                         <input id="taxiowncode" name="taxiowncode" type="text" value="+94" disabled >
-                        <input type="tel" id="taxiownmobile" name="contact_number" value=""  placeholder="Business Phone"  required ><br>
+                        <input type="tel" id="taxiownmobile" name="contact_number"  value=""  placeholder="Business Phone"  required ><br>
                 </div>
                 
                 

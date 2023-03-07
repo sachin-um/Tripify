@@ -6,9 +6,6 @@
       
               <ul class="lists">
                 <li>
-                  <a href="<?php echo URLROOT; ?>/Pages/logins" class="text-dark">Service Provider Logins</a>
-                </li>
-                <li>
                   <a href="#!" class="text-dark">Privacy Policy</a>
                 </li>
                 <li>

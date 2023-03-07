@@ -36,7 +36,7 @@
 
         public function cancelBooking($id)
         {
-            $this->db->query('DELETE FROM `taxi_reservation` WHERE ReservationID=:booking_id');
+            $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
             $this->db->bind(':booking_id',$id);
 
             

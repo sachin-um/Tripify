@@ -53,24 +53,26 @@ else {
                     foreach($allvehicles as $vehicle):
                 ?>
                     <div class="taxi_view_v_dash">
-            
+                    
                     <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch" style="width: 250px;">
-            
+                    <h3><?php echo $vehicle->vehicle_number?></h3>
                     <article class="taxi_view_v_art" >
             
-                        <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><p id="taxi_view_v_vname"><?php echo $vehicle->Model  ?></p>
+                        <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><p id="taxi_view_v_vname"><?php echo $vehicle->Model."(".$vehicle->VehicleType.")"  ?></p>
                 
                         <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p>
                 
-                        <img src="<?php echo URLROOT; ?>/img/Display.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->vehicle_number  ?></p>
-                
+                        
+
                         <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p>
-                
+                        
                         <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><p id="taxi_view_v_flag"><?php echo $vehicle->price_per_km  ?> LKR</p>
-            
+                        
+                        <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->driver_name  ?></p>
+
                     </article>
-                    <button onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/edit'" id="taxi_veh_view">View</button>
-                    <button id="taxi_veh_delete">Delete</button>
+                    <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/edit/<?php echo $vehicle->VehicleID ?>"><button id="taxi_veh_view">View</button></a>
+                    <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/deleteTaxiVehicle/<?php echo $vehicle->VehicleID ?>"><button id="taxi_veh_delete">Delete</button></a>
 
                 </div>
 

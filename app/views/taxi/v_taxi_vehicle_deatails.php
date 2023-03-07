@@ -39,72 +39,108 @@
             <div class="tax_vech_view_cont">
 
                 <div class="tax-vec-sp-cont">
-                
-                    <div class="taxi_dash_edit_veh">
-                        <div>
-                            <img src="<?php echo URLROOT; ?>/img/car.png" id="tax-dash-view-veh-img"  alt="Driver image">
-                        </div>
+                    
+                    <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxi_Vehicle/edit/<?php echo $data['ID']?>"  method="POST">
                         
-
-                        <div class="taxi_add_v_imgbox"> 
-                            <label>Change Vehicle Photos</label>   
-                            <input type="file" name="tax_img" id="taxi_add_v_img"  placeholder="taxi_add_v_imgbox" accept="image/*"  multiple>
-                        </div>
-
-                    </div>
-                
-                    <div>
-                        
-                        <table class="tax_book_viewTable">
-                        
-                            <tr>
-                                <td>Vehicle ID:</td>
-                                <td>V1025</td>
-                            </tr>
-
-                            <tr>
-                                <td>Vehicle Type:</td>
-                                <td>Car</td>
-                            </tr>
-
-                            <tr>
-                                <td>Vehicle Number:</td>
-                                <td>PE-5659</td>
-                            </tr>
-
-                            <tr>
-                                <td>No of Passengers:</td>
-                                <td><input id="tax-dash-vec-editBut"  type="number" value="6"></td>
-                            </tr>
-
-                            <tr>
-                                <td>Price per KM(Rs):</td>
-                                <td><input id="tax-dash-vec-editBut"  type="number" value="1000"></td>
-                            </tr>
-
-                            <tr>
-                                <td>Paymnet method:</td>
-                                <td>
-                                <select id="taxi-dash-vec-view-slt">
-                                    <option value="End of the Trip">End of the Trip</option>
-                                    <option value="Full Payment before Trip">Full Payment before Trip</option>
-                                </select>
-                                </td>
+                        <div class="taxi_veh_grid_edit_cont">
+                            <div class="taxi_dash_edit_veh">
                                 
-                            </tr>
+                                <div>
+                                    <img src="<?php echo URLROOT; ?>/img/car.png" id="tax-dash-view-veh-img"  alt="Driver image">
+                                </div>
+                                
 
-                            <tr>
-                                <td>Based In:</td>
-                                <td><input id="tax-dash-vec-editBut"  type="text"  value="Colombo"></td>
-                            </tr>
-                        
-                        </table>
-                    </div>
+                                <div class="taxi_add_v_imgbox"> 
+                                    <label>Change Vehicle Photos</label>   
+                                    <input type="file" name="tax_img" id="taxi_add_v_img"  placeholder="taxi_add_v_imgbox" accept="image/*"  multiple>
+                                </div>
+
+                            </div>
+                    
+                            <div>
+                                
+                                <table class="tax_book_viewTable">
+                                
+                                    <tr>
+                                        <td>Vehicle ID:</td>
+                                        <td><?php echo $data['ID']?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Vehicle Type:</td>
+                                        <td><?php echo $data['vehicleType']?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Vehicle Number:</td>
+                                        <td><?php echo $data['vehicleNumber']?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Driver:</td>
+                                        <td>
+                                            <select name="driver"  id="taxi_add_v_type" id="cars" required>
+                                            <option value="<?php echo $data['driver']?>" selected  hidden><?php echo $data['driver']?></option>
+                                                <?php
+                                                    $alldrivers=$data['drivers'];
+                                                    foreach($alldrivers as $driver):
+                                                ?>
+                                                    
+                                                    <?php echo "<option value='" . $driver->Name. "'>" . $driver->Name. "</option>"?>
+
+                                                    
+                                                <?php
+                                                    endforeach;
+                                                ?>
+
+                                            </select>
+
+                                        </td>
+                                    </tr>
+                                    
+
+                                    <tr>
+                                        <td>No of Passengers:</td>
+                                        <td><input name="noOfSeats" id="tax-dash-vec-editBut"  type="number" value="<?php echo $data['noOfSeats']?>"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Price per KM(Rs):</td>
+                                        <td><input name="price_per_km" id="tax-dash-vec-editBut"  type="number" value="<?php echo $data['price_per_km']?>"></td>
+                                    </tr>
+
+                                    <!-- <tr>
+                                        <td>Paymnet method:</td>
+                                        <td>
+                                        <select id="taxi-dash-vec-view-slt">
+                                            <option value="End of the Trip">End of the Trip</option>
+                                            <option value="Full Payment before Trip">Full Payment before Trip</option>
+                                        </select>
+                                        </td>
+                                        
+                                    </tr> -->
+
+                                    <tr>
+                                        <td>Based In:</td>
+                                        <td><input name="area" id="tax-dash-vec-editBut"  type="text"  value="<?php echo $data['area']?>"></td>
+                                    </tr>
+
+                                    
+                                
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="taxi_veh_editBut_cont">
+                            <input type="submit" id="taxi_add_v_but" value="Edit Info">
+                        </div>
+
+
+                    </form>
+                    
                 </div>
                 
-                <div>
-                    <button id="tax_book_comBut">Edit Info</button>
-                </div>
+                
 
             </div>  
         

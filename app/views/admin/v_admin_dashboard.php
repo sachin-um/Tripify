@@ -27,7 +27,20 @@ else {
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">Admin Profile</a>
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item">Messages</a>
-            <a href="<?php echo URLROOT; ?>/Complains/viewall" class="menu-item">Complains</a>
+            <?php
+
+                if($data->details->AssignedArea=='Super Admin'){
+                    ?>
+                    <a href="<?php echo URLROOT; ?>/Admins/manageadmins" class="menu-item">Manage Admins</a>
+                    <?php
+                }
+                elseif($data->details->AssignedArea=='verification'){
+                    ?>
+                    <a href="<?php echo URLROOT; ?>/Admins/verification/Guide" class="menu-item">Account Verifcation</a>
+                    <?php
+                }
+            ?>
+            
             <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
@@ -41,12 +54,26 @@ else {
         <hr>
         <br>
         <div class="first-container">
-            <div class="profile-image" style="width: 450px; text-align: center;">
+            <div class="profile-image" >
+            <form action="<?php echo URLROOT; ?>/Admins/editAdminDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
                 <br>
-                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                <div class="drag-area">
+                    <div class="icon">
+                        <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $_SESSION['user_profile_image']; ?>" alt="picture">
+                    </div>
+                </div>
                 <br>
-                <br>
-                <button class="profile-btn">Edit</button>
+                <div class="sub-sub-edit" style="margin-left: 25%;">
+                    <div class="img-description">Drag & Drop to upload File</div>
+                    <div class="img-upload">
+                        <input type="file" name="profile-imgupload" id="profile-imgupload" style="display:none;">Browse File
+                    </div>
+                    <div class="img-validation">
+                        <img src="<?php echo URLROOT; ?>/img/tick.png" alt="tick" width="25px" height="20px">
+                        <span style="vertical-align:top;" class="img-select">Select a Profile picture</span>
+                    </div>    
+                </div>
+                
             </div>
 
             <div class="profile-description">
@@ -56,14 +83,18 @@ else {
                         <h3>Name : </h3>
                     </div>
                     
-                    <div class="sub-sub">
+                    <div class="info">
                         <h3><?php echo $data->Name;  ?></h3>
+
+                    </div>
+                    <div class="sub-sub-edit">
+                        <input type="text" name="name" id="name" placeholder="<?php echo $data->Name; ?>" value="<?php echo $data->Name; ?>">
 
                     </div>
                             
                 </div>
 
-
+                
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
@@ -87,6 +118,17 @@ else {
                     </div>
                         
                 </div>
+                <br>
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>NIC Number: </h3>
+
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <h3><?php echo $data->details->nic ?></h3>
+                    </div>
+                </div>
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
@@ -94,22 +136,66 @@ else {
 
                     </div>
                         
-                    <div class="sub-sub">
-                        <h3>+94 77 123 4567</h3>
+                    <div class="info">
+                        <h3><?php echo $data->ContactNo ?></h3>
+                    </div>
+                    <div class="sub-sub-edit">
+                        <input type="text" name="contact-number" id="contact-number" placeholder="<?php echo $data->ContactNo ?>" value="<?php echo $data->ContactNo ?>">
+
                     </div>
                         
                 </div>
                 <br> 
           
-                <br>
-                <div style="text-align: center;">
-                    <button class="profile-btn">Edit Info</button>
+                <div style="display: flex; justify-content: space-around;">
+                    <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                    <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
+                    <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>
                         
                 </div>
             </div>
+            </form>
         </div>
+        <?php flash('img_flash'); ?>
     </main>
  </div>
+
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
+
+
+<script>
+   var editbtn=document.getElementById("edit-btn");
+   var cancelbtn=document.getElementById("cancel-btn");
+   var savebtn=document.getElementById("save-btn");
+   var info = document.getElementsByClassName("info");
+   var infoEdit = document.getElementsByClassName("sub-sub-edit");
+   function toggeleEdit() {
+       // editbtn.onclick=function() {window.location.reload();}; 
+       Array.from(info).forEach(function(element) {
+           if (element.style.display === "none") {
+               element.style.display = "block";
+           } else {
+               element.style.display = "none";
+           }
+       });
+       
+       
+       Array.from(infoEdit).forEach(function(element) {
+           element.style.display = "block";
+       });
+       editbtn.style.display="none";
+       cancelbtn.style.display="block";
+       savebtn.style.display="block";
+       event.preventDefault();
+   }
+   function toggeleReload() {
+       window.location.reload();; 
+       event.preventDefault();
+   }
+
+   editbtn.addEventListener('click', toggeleEdit);
+   cancelbtn.addEventListener('click', toggeleReload);
+</script>
 
  <?php
 }

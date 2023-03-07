@@ -70,10 +70,64 @@
             
         }
 
-        public function editdrivers(){
-            $data=[];
-            $this->view('taxi/v_taxi_driver_deatails',$data);
+        public function deleteTaxiDrivers($request_id){
+
+            $taxiDriver= $this->taxi_driverModel->getDriverByID($request_id);
+            
+            if ($taxiDriver->OwnerID !=$_SESSION['user_id']) {
+                flash('reg_flash', 'You need to have logged in first...');
+                redirect('Users/login');
+            }
+            else {
+                if ($this->taxi_driverModel->deletetaxiDriver($request_id)) {
+                    flash('request_flash', 'Driver was Succusefully Deleted');
+                    redirect('Taxi_Driver/viewdrivers');
+                }
+                else {
+                    die('Something went wrong');
+                }
+            }
+
         }
+
+        public function editdrivers($driverID){
+
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                $data=[
+                    'name'=>trim($_POST['name']),
+                    'age'=>trim($_POST['age']),
+                    'contact_number'=>trim($_POST['contact_number']),
+                    'LicenseNo'=>trim($_POST['LicenseNo']),      
+                    'TaxiDriverID'=>$driverID
+                    ];
+
+                    if ($this->taxi_driverModel->editTaxiDriver($data)) {
+                        flash('request_flash', 'Driver Deatails was Succusefully Updated..!');
+                        redirect('Taxi_Driver/viewdrivers');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
+            }
+            
+            else{
+                
+                $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
+                $data=[
+                    'name'=>$taxiDriver->Name,
+                    'age'=>$taxiDriver->Age,
+                    'contact_number'=>$taxiDriver->contact_number,
+                    'licenseno'=>$taxiDriver->LicenseNo,
+                    'ID'=>$taxiDriver->TaxiDriverID
+                ];
+                $this->view('taxi/v_taxi_driver_deatails',$data);
+            }
+            
+            
+        }
+
+        
 
 
     

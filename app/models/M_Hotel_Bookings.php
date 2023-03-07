@@ -52,18 +52,18 @@
         }
 
 
-        // public function cancelBooking($id)
-        // {
-        //     $this->db->query('DELETE FROM `hotel_bookings` WHERE booking_id=:booking_id');
-        //     $this->db->bind(':booking_id',$id);            
 
+        public function cancelBooking($id)
+        {
+            $this->db->query('UPDATE `hotel_bookings` SET status="Canceled" WHERE booking_id=:booking_id');
+            $this->db->bind(':booking_id',$id);
         //     if ($this->db->execute()) {
         //         return true;
         //     }
         //     else {
         //         return false;
         //     }
-        // }
+        }
 
 
         public function getHotelById($id){

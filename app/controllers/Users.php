@@ -225,14 +225,7 @@
                     }
                 }
                 else {
-                    if($usertype=='Service'){
-                        $this->view('users/v_service-login',$data);
-                    }
-                    else if($usertype=='Admin'){
-                        $this->view('admin/v_login',$data);
-                    }else{
-                        $this->view('users/v_login',$data);
-                    }
+                    $this->view('users/v_login',$data);
                 }
 
 
@@ -247,18 +240,10 @@
                     'password_err'=>'',
 
                 ];
-                if($usertype=='Service'){
-                    $this->view('users/v_service-login',$data);
-                }
-                else if($usertype=='Admin'){
-                    $this->view('admin/v_login',$data);
-                }
-                else{
-                    $this->view('users/v_login',$data);
-                }
+                
+                $this->view('users/v_login',$data);
                 
             }
-            $this->view('users/v_login');
         }
 
         public function emailverify(){
@@ -469,25 +454,23 @@
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
             
-            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
+            
             // $this->view('v_home',$data);
 
             if ($_SESSION['user_type']=='Traveler') {
                 redirect('Pages/home');
             }
             elseif ($_SESSION['user_type']=='Hotel') {
-                $this->view('hotels/v_dash_profile',$data);
+                redirect('Pages/profile');
             }
             elseif ($_SESSION['user_type']=='Taxi') {
-                $this->view('taxi/v_taxi_dashboard',$data);
+                redirect('Pages/profile');
             }
             elseif ($_SESSION['user_type']=='Guide') {
-                $this->view('guide/v_dash_profile',$data);
+                redirect('Pages/profile');
             }
             elseif ($_SESSION['user_type']=='Admin') {
-                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
-                $data->details=$admindetails;
-                $this->view('admin/v_admin_dashboard',$data);
+                redirect('Pages/profile');
             }
             
         }
@@ -525,6 +508,71 @@
             $this->view('v_about',$data);
         }
 
+
+        //action on account
+
+        //suspend
+        public function suspendaccount($id,$usertype,$action)
+        {
+            if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
+                if ($this->messageModel->suspendaccount($id,$action)) {
+                    if ($usertype=='Traveler') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Hotel') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Taxi') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Guide') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                }
+            } else {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            
+        }
+
+        //veriify
+        public function verifyaccount($id,$usertype)
+        {
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                if ($this->messageModel->verifyaccount($id)) {
+                    if ($usertype=='Hotel') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }    
+                    }
+                    elseif ($usertype=='Taxi') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }
+                    }
+                    elseif ($usertype=='Guide') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }
+                    }
+                }
+            } else {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            
+        }
+        
         public function contactus(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
