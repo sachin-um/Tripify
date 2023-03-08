@@ -66,7 +66,7 @@ else {
                 <input type="hidden" id="id" name="id" value="<?php echo $_SESSION['user_id']; ?>">
               </form> 
         </div>
-    </div>
+</div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 <?php

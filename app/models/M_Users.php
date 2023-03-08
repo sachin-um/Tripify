@@ -227,6 +227,9 @@
             if ($row->verification_status==0) {
                 return 'NotValidate';
             }
+            elseif ($row->verification_status==2) {
+                return 'ServiceNotValidate';
+            }
             else if (password_verify($data['password'], $hashed_password)) {
                 return $row;
             }
