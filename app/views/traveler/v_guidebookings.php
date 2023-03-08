@@ -108,35 +108,7 @@ else {
                                         ?>
                                             <button class="add-to-plan-btn" type="button" onclick="showTrips()">Add to Trip Plan</button>
                                             <!-- <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>/Guide"></a> -->
-                                            <div class="profile-menu-wrap" id="sub-menu">
-                                                <div class="user-menu">
-                                                    <div class="user-info">
-                                                        <a href="<?php echo URLROOT; ?>/Pages/profile" class="sub-link-menu">
-                                                            <img src="<?php echo URLROOT; ?>/img/profile.png" alt="">
-                                                            <h2><?php echo $booking->BookingID; ?>View Profile</h2>
-                                                            <span>></span>
-                                                        </a>
-                                                        <a href="" class="sub-link-menu">
-                                                            <img src="<?php echo URLROOT; ?>/img/setting.png" alt="">
-                                                            <h2>Privacy and policy</h2>
-                                                            <span>></span>
-                                                        </a>
-                                                        <a href="" class="sub-link-menu">
-                                                            <img src="<?php echo URLROOT; ?>/img/help.png" alt="">
-                                                            <h2>Help & Support</h2>
-                                                            <span>></span>
-                                                        </a>
-                                                        <a href="<?php echo URLROOT?>/Users/logout" class="sub-link-menu">
-                                                            <img src="<?php echo URLROOT; ?>/img/logout.png" alt="">
-                                                            <h2>Logout</h2>
-                                                            <span>></span>
-                                                        </a>
-                                
-                                
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                            
                                         <?php
                                     }
                                     

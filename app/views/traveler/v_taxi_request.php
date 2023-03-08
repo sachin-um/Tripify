@@ -87,14 +87,35 @@ else {
         zoom: 8,
     });
 
-
+        var input = document.getElementById("pickuplocation");
+        var autocomplete = new google.maps.places.Autocomplete(input);
         var marker = new google.maps.Marker({
-        position: srilanka,
         map: map,
         draggable:true,
         title:"Pickup location"
         });
+        autocomplete.bindTo("bounds", map);
+        autocomplete.setFields(['address_components','geometry','name'])
+        autocomplete.addListener('place_changed', function () {
+            // marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
 
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+        });
         google.maps.event.addListener(marker,'position_changed',
             function () {
                 document.getElementById('p-latitude').value=marker.position.lat();
@@ -107,14 +128,43 @@ else {
         map_d = new google.maps.Map(document.getElementById("map-d"), {
         center: srilanka,
         zoom: 8,
-    });
+        });
 
         var marker_d = new google.maps.Marker({
-            position: srilanka,
             map: map_d,
             draggable:true,
             title:"Destination"
         });
+        var input_des = document.getElementById("destination");
+        var autocomplete_des = new google.maps.places.Autocomplete(input_des);
+        var marker_d = new google.maps.Marker({
+        map: map_d,
+        draggable:true,
+        title:"Pickup location"
+        });
+        autocomplete_des.bindTo("bounds", map_d);
+        autocomplete_des.setFields(['address_components','geometry','name'])
+        autocomplete_des.addListener('place_changed', function () {
+            // marker.setVisible(false);
+            var place_d = autocomplete_des.getPlace();
+            if (!place_d.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place_d.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place_d.geometry.viewport) {
+                map_d.fitBounds(place_d.geometry.viewport);
+            } else {
+                map_d.setCenter(place_d.geometry.location);
+                map_d.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker_d.setPosition(place_d.geometry.location);
+            marker_d.setVisible(true);
+        });
+
         google.maps.event.addListener(marker_d,'position_changed',
             function () {
                 document.getElementById('d-latitude').value=marker_d.position.lat();
@@ -131,10 +181,11 @@ else {
 
 </script>
  
- <script
-      src="<?php echo MAP_URL ?>"
-      defer>
-</script>
+    <!-- <script
+        src="<?php echo MAP_URL ?>"
+        defer>
+    </script> -->
+<script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 

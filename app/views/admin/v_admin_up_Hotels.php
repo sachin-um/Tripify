@@ -90,7 +90,7 @@ else {
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button">View </button></td>
+                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="showProfile(this,'Hotel','<?php echo URLROOT; ?>')">View </button></td>
                                     <td data-lable="Email">
                                         <?php
                                             if ($hotel->verification_status==2) {
@@ -128,11 +128,13 @@ else {
                     </tbody>
                 </table>
             </div>
-            
+            <div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+            </div>
         </div>
     </main>
  </div>
-
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
  <?php
 }
 ?>

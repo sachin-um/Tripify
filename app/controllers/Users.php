@@ -8,6 +8,23 @@
 
         }
 
+        public function getuser($type,$userid)
+        {
+            $user=[];
+            if ($type=="Guide") {
+                $user=$this->userModel->getGuideByID($userid);
+            }
+            elseif ($type=="Hotel") {
+                $user=$this->userModel->getHotelById($userid);
+            }
+            elseif ($type=="Taxi") {
+                $user=$this->userModel->getTaxiById($userid);
+            }
+            
+            header('Content-Type: application/json');
+            echo json_encode($user);
+        }
+
         public function register(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -218,6 +235,10 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
+                    } 
+                    elseif ($log_user=='ServiceNotValidate') {
+                        flash('reg_flash', 'Please Wait for review of your account');
+                        redirect('Users/login');
                     }        
                     //logging user
                     else{
@@ -679,6 +700,9 @@
                 $this->view('traveler/v_complains');
             }
         }
+
+
+        
     }
 
 ?>
