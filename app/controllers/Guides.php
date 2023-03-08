@@ -217,10 +217,19 @@
 
         public function loadGuideProfile($id){
             $guideDetails=$this->guideModel->getGuideById($id);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($id);
+
 
             $data=[
+                //'guidename'=>$guideDetails->Name,
+               // 'guidearea'=>$guideDetails->Area,
+                
+                'guidelanguages'=>$guidelanguages,
+
                 'guideDetails'=> $guideDetails
             ];
+           
+            
             $this->view('guide/v_guide_details',$data);
         }
 

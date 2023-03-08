@@ -30,13 +30,19 @@
                     </div>
 
                     <div class="hotel-disc-1">
-                        <label>Sunil shantha</label><br>
-                        <label>A234554-12</label><br>
-                        <label>Colombo,Sri lanka</label><br>
-                        <label>+94 77 45656546</label><br>
-                        <label>Sinhala,English,French</label><br>
-                        <label>4.0</label><br>
-                        <label>500.00 Rs</label>
+                        <label><?php echo $data['guideDetails']-> Name ?></label><br>
+                        <label>A234554-12</label><br>    // we have to do
+                        <label><?php echo $data['guideDetails']->Area ?></label><br>
+                        <label><?php echo $data['guideDetails']->phone_number ?></label><br>
+                        <label><?php
+                            $languages=$data['guidelanguages'];
+                            //  print_r($languages);
+                            foreach($languages as $key=>$value):
+                                 echo $value->language . ' ';
+                            endforeach;    
+                        ?></label><br>
+                        <label><?php echo $data['guideDetails']->Rate ?></label><br> //we have to do
+                        <label><?php echo $data['guideDetails']->Rate ?></label>
                     </div>
                 </div>
 
