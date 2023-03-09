@@ -2,19 +2,18 @@
     class HotelRooms extends Controller{
         public function __construct(){
             $this->roomModel=$this->model('M_Hotel_Rooms');
-            $this->roomVar=100;
         }
         public function index(){
 
         }
 
-        public function rooms(){
-            $allrooms=$this->roomModel->viewall();
+        public function viewhotelroom($roomTypeID){
+            $roomdetails=$this->roomModel->viewWantedRoom($roomTypeID);
             // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
-                'allrooms'=> $allrooms
+                'wantedRoom'=> $roomdetails
             ];
-            $this->view('hotels/v_hotelviewroom',$data);
+            $this->view('hotels/v_booking',$data);
         }
 
         public function addroom(){
@@ -80,6 +79,14 @@
             }
             
         
+        }
+
+        public function rooms(){            
+            $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+            $data=[
+                'allroomtypes'=>$allroomtypes
+            ];
+            $this->view('hotels/v_hotelviewroom',$data);
         }
 
         

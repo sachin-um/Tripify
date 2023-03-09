@@ -56,9 +56,9 @@ class M_Hotels{
         return $hotelset;
     }
 
-    public function getProfileInfo($hotelDetails){
+    public function getProfileInfo($hotelID){
         $this->db->query('SELECT * FROM hotels where HotelID= :hotelID');
-        $this->db->bind(':hotelID',$hotelDetails);
+        $this->db->bind(':hotelID',$hotelID);
         $hotelrecord1=$this->db->single();
 
         return $hotelrecord1;

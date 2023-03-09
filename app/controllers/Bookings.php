@@ -33,8 +33,12 @@
             }
             else {
                 if($this->hotelBookingModel->cancelBooking($bookingid)){
-                    flash('request_flash', 'Hotel Booking is Canceled');
-                    redirect('Bookings/HotelBookings');
+                    flash('booking_flash', 'Hotel Booking is Canceled');
+                    redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                }
+                else {
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                 }
             }
         }
@@ -68,12 +72,16 @@
             }
             elseif ($booking->status!='Yet To Confirm') {
                 flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-                redirect('Bookings/TaxiBookings');
+                redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
             }
             else {
                 if($this->GuideBookingModel->cancelBooking($bookingid)){
                     flash('booking_flash', 'Guide Booking is Canceled');
-                    redirect('Bookings/GuideBookings');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                }
+                else {
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                 }
             }
         }
@@ -132,7 +140,11 @@
             else {
                 if($this->taxiBookingModel->cancelBooking($bookingid)){
                     flash('booking_flash', 'Taxi Booking is Canceled');
-                    redirect('Bookings/TaxiBookings');
+                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                }
+                else {
+                    flash('guide_offer_flash', 'Something went wrong..!');
+                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }
             }
         }

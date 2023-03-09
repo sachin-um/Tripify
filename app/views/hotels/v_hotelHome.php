@@ -55,7 +55,7 @@
                 ?>
                 <!-- $hotels=$data['allhotels']; -->
 
-                <a href="<?php echo URLROOT?>/Hotels/hotelProfile/<?php echo $hotel->HotelID?>">
+                <a href="<?php echo URLROOT?>/Hotels/hotelProfile/<?php echo $hotel->HotelID?>" >
                     <div class="hotel-ad-card">     
                         <div class="hotel-ad-card-pic">                        
                             <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">                        

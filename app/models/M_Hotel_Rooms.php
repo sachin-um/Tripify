@@ -7,7 +7,7 @@ class M_Hotel_Rooms{
         $this->db=new Database();
     }
 
-    
+       
 
     public function addaroom($data){
         $this->db->query('INSERT INTO hotelroomtypes(RoomTypeID,NoofBeds,RoomTypeName,NoofGuests,RoomSize,PricePerNight,HotelID,no_of_rooms)
@@ -61,17 +61,31 @@ class M_Hotel_Rooms{
         }
     }
 
-    public function viewRooms($roomID){
-        $this->db->query('SELECT * FROM hotelrooms WHERE ')
+    public function viewAllRooms($hotelID){
+        $this->db->query('SELECT * FROM hotelroomtypes WHERE HotelID=:id');
+        $this->db->bind(':id',$hotelID);
+
+        $roomset=$this->db->resultSet();
+
+        return $roomset;
     }
 
-    public function viewall(){
-        $this->db->query('SELECT * FROM hotelroomtypes');
-        $posts=$this->db->resultSet();
+    public function viewWantedRoom($roomTypeID){
+        $this->db->query('SELECT * FROM hotelroomtypes WHERE RoomTypeID=:id');
+        $this->db->bind(':id',$roomTypeID);
 
-        return $posts;
+        $wantedHotelRoom=$this->db->single();
+
+        return $wantedHotelRoom;
     }
 
-    
+    public function viewAllIndividualRooms($roomTypeID){
+        $this->db->query('SELECT * FROM hotelrooms WHERE RoomTypeID=:id');
+        $this->db->bind(':id',$roomTypeID);
+
+        $individualRoomSet = $this->db->resultSet();
+
+        return $individualRoomSet;
+    }
 
 }

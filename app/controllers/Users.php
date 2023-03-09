@@ -8,6 +8,23 @@
 
         }
 
+        public function getuser($type,$userid)
+        {
+            $user=[];
+            if ($type=="Guide") {
+                $user=$this->userModel->getGuideByID($userid);
+            }
+            elseif ($type=="Hotel") {
+                $user=$this->userModel->getHotelById($userid);
+            }
+            elseif ($type=="Taxi") {
+                $user=$this->userModel->getTaxiById($userid);
+            }
+            
+            header('Content-Type: application/json');
+            echo json_encode($user);
+        }
+
         public function register(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -218,6 +235,10 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
+                    } 
+                    elseif ($log_user=='ServiceNotValidate') {
+                        flash('reg_flash', 'Please Wait for review of your account');
+                        redirect('Users/login');
                     }        
                     //logging user
                     else{
@@ -508,6 +529,71 @@
             $this->view('v_about',$data);
         }
 
+
+        //action on account
+
+        //suspend
+        public function suspendaccount($id,$usertype,$action)
+        {
+            if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
+                if ($this->messageModel->suspendaccount($id,$action)) {
+                    if ($usertype=='Traveler') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Hotel') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Taxi') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                    elseif ($usertype=='Guide') {
+                        redirect('Admins/profiles/'.$usertype);
+                    }
+                }
+            } else {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            
+        }
+
+        //veriify
+        public function verifyaccount($id,$usertype)
+        {
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                if ($this->messageModel->verifyaccount($id)) {
+                    if ($usertype=='Hotel') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }    
+                    }
+                    elseif ($usertype=='Taxi') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }
+                    }
+                    elseif ($usertype=='Guide') {
+                        if ($_SESSION['admin_type']=='Super Admin') {
+                            redirect('Admins/profiles/'.$usertype);
+                        }
+                        else {
+                            redirect('Admins/verification/'.$usertype);
+                        }
+                    }
+                }
+            } else {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+            
+        }
+        
         public function contactus(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -614,6 +700,9 @@
                 $this->view('traveler/v_complains');
             }
         }
+
+
+        
     }
 
 ?>

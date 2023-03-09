@@ -5,6 +5,10 @@
             $this->userModel=$this->model('M_Users');
         }
 
+        public function index(){
+
+        }
+
         //Register an Admin
         public function register(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -196,6 +200,47 @@
                 $this->view('admin/v_login',$data);
             }
         }
+
+        public function editAdminDetails($adminid){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($adminid==$_SESSION['user_id']) {
+                    $data=[
+                        'profile-img'=>$_FILES['profile-imgupload'],
+                        'profile-img_name'=>time().'_'.$_FILES['profile-imgupload']['name'],
+                        'name'=>trim($_POST['name']),
+                        'contactno'=>trim($_POST['contact-number']),
+                        'id'=>$adminid
+                    ];
+
+                    if (uploadImage($data['profile-img']['tmp_name'],$data['profile-img_name'],'/img/profileImgs/')) {
+                        if ($this->adminModel->editAdminDetails($data)) {
+                            unset($_SESSION['user_profile_image']);
+                            $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                            $_SESSION['user_profile_image']=$user->profileimg;
+
+                            redirect('Pages/profile');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                    }
+                    else {
+                        
+                        flash('img_flash', 'Image Upload Failed'.$data['profile-img_name']);
+                        redirect('Pages/profile');
+                    }
+    
+                    
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+                
+            }
+        }
         //user session
         public function createUserSession($user){
             $_SESSION['user_id']=$user->UserID;
@@ -322,6 +367,24 @@
                 $this->view('admin/v_admin_up_traveler',$data);
             }
             elseif($usertype=='Hotel'){
+                $this->view('admin/v_admin_up_Hotels',$data);
+            }
+            elseif($usertype=='Guide'){
+                $this->view('admin/v_admin_up_guides',$data);
+            }
+            elseif($usertype=='Taxi'){
+                $this->view('admin/v_admin_up_Taxies',$data);
+            }
+
+        }
+
+        public function verification($usertype){
+
+            $userData=$this->userModel->getAllUserDetails($usertype,'verify');
+            $data=[
+                'UserData'=>$userData
+            ];
+            if($usertype=='Hotel'){
                 $this->view('admin/v_admin_up_Hotels',$data);
             }
             elseif($usertype=='Guide'){

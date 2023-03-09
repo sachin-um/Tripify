@@ -1,0 +1,60 @@
+.trip-popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .trip-popup-content {
+    max-height: 600px;
+    background-color: #fefefe;
+    margin: 15% 40%;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    border-radius: 10px;
+    overflow-y: auto;
+    display: inline-grid;
+  }
+
+  .trip-popup-content .add-to-plan-btn{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    border-radius: 6px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 3px;
+    /* margin-top: 4%; */
+    background-color: #9D3A5A;
+    
+}
+
+.trip-popup-content .add-to-plan-btn:hover{
+    width: 100%;
+    height: 60px;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #9D3A5A;
+    margin-bottom: 3px;
+    /* margin-top: 4%; */
+    background-color: white;
+    
+}
+
+
+.trip-popup-content p{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
