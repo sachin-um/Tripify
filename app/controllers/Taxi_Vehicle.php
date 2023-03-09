@@ -4,6 +4,8 @@
             $this->taxi_vehicleModel=$this->model('M_Taxi_Vehicle');
 
             $this->taxi_driverModel=$this->model('M_Taxi_Driver');
+
+            $this->taxiModel=$this->model('M_Taxi');
         
         }
         public function index(){
@@ -13,7 +15,7 @@
 
         public function viewvehicles(){
            
-            $allvehicles=$this->taxi_vehicleModel->viewall();
+            $allvehicles=$this->taxi_vehicleModel->viewall($_SESSION['user_id']);
 
             $data=[
                 'vehicles'=> $allvehicles
@@ -23,7 +25,7 @@
 
         public function addavehicle(){
             
-            $alldrivers=$this->taxi_driverModel->viewall();
+            $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
 
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -167,7 +169,7 @@
 
             
                 $data=[
-                    'driver'=>trim($_POST['driver']),
+                    'driverID'=>trim($_POST['driver']),
                     'area'=>trim($_POST['area']),
                     'no_of_seats'=>trim($_POST['noOfSeats']),
                     'price_per_km'=>trim($_POST['price_per_km']),      
@@ -188,7 +190,7 @@
             }
             else {
 
-                $alldrivers=$this->taxi_driverModel->viewall();
+                $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
 
                 $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
                 
@@ -198,7 +200,7 @@
                 }
                 $data=[
                         'drivers'=> $alldrivers, // user want to change to driver also editing purpose
-                        'driver'=>$taxiVehicle->driver_name,
+                        'driver'=>$taxiVehicle->Name,
                         'ID' => $taxiVehicle->VehicleID,
                         'vehicleType'=>$taxiVehicle->VehicleType,
                         'model'=>$taxiVehicle->Model,
@@ -216,10 +218,22 @@
         }
 
 
-        public function taxideatails(){
-            $allvehicles=$this->taxi_vehicleModel->viewall();
+        public function taxideatails($id){
+            
+            $allvehicles=$this->taxi_vehicleModel->getVehicleByOwnerID($id);
+
+            $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
+
+            if(isset($taxiOwner->company_name)){
+                $com_name = $taxiOwner->company_name;
+            }else{
+                $com_name = $taxiOwner->owner_name.'CABS';
+            }
+
             $data=[
-                'vehicles'=> $allvehicles
+                'vehicles'=> $allvehicles,
+                'com_name'=>$com_name,
+                'owner'=> $taxiOwner
             ];
             $this->view('taxi/v_taxi_details_page',$data);
         }

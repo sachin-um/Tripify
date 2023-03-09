@@ -4,6 +4,7 @@
             $this->userModel=$this->model('M_Users');
             $this->hotelModel=$this->model('M_Hotels');
             $this->guideModel=$this->model('M_Guides');
+            $this->taxiModel=$this->model('M_Taxi');
         }
         public function index(){
 
@@ -68,7 +69,11 @@
         }
 
         public function taxies(){
-            $this->view('taxi/v_taxi_home');
+            $allOwners=$this->taxiModel->viewall();
+            $data=[
+                'owners'=>$allOwners
+            ];
+            $this->view('taxi/v_taxi_home',$data);
         }
 
         public function guides(){

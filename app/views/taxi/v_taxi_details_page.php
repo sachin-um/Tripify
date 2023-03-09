@@ -19,14 +19,14 @@ else {
 <div class="wrapper"> 
     <div class="content">
         
-        <p class="home-title-2" >KANGAROO CABS</p>
+        <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']?></b></p>
         <hr>
         <div class="hotel-desc-page-div">
             <div class="hotel-disc-2">
 
                 <div id="hotel-address" class="hotel-disc-3">
                     <label id="view-address">
-                    64 Lotus Rd, Colombo 00100
+                        <?php echo $data['owner']->address?>
                     </label>
                 </div>
                 <div class="hotel-disc-3">
@@ -123,38 +123,33 @@ else {
                     $allvehicles=$data['vehicles'];
                     foreach($allvehicles as $vehicle):
                 ?>
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage'">
+                <div class="hotel-ad-card">
                     
                     
 
                     <div class="room-card-pic">
                         <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="Taxi Vehicle Image">
+                        
                     </div>                    
                     
                     <div class="hotel-ad-card-desc">
                         <article class="taxi_view_v_art" >
-                            <label id="room-type" for="hotel-name"><b><?php echo $vehicle->VehicleType  ?></b></label> <br>
+                            <h3><?php echo $vehicle->VehicleType ?></h3>
+                            <!-- <label id="room-type" for="hotel-name"><b><?php echo $vehicle->VehicleType  ?></b></label> <br> -->
 
                             <img src="<?php echo URLROOT; ?>/img/Display.png" alt=""><b><p id="taxi_view_v_num"><?php echo $vehicle->vehicle_number  ?></p></b>
                             
-                            <!-- <label id="display-hotel-address" for="hotel-address">Size in square feet</label><br>
-                            <label id="display-hotel-address" for="hotel-address">No of beds</label><br>
-                            
-                            <label id="room-remain" for="hotel-address">Only 1 room left</label> -->
                             <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><b><p id="taxi_view_v_vname"><?php echo $vehicle->Model  ?></p></b>
                             
                             <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><b><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p></b>
                     
-                            
-                    
                             <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><b><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p></b>
                             <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM</b></label><br>
-                            <!-- <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><b><p id="taxi_view_v_flag"><?php echo $vehicle->price_per_km  ?> LKR</p></b> -->
-                        </article>
+                            </article>
                     </div>
 
                     
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
+                    <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
                     
                 </div>
                 
