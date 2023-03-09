@@ -21,9 +21,125 @@ else {
     <br>
     <p class="home-title-2">Account Details</p>
         
-        <div class="hotel-profile-top">
+        <div class="hotel-profile-modified">
+            
 
-            <div class="hotel-profile-top-containers">
+            <div class="sub-profile-div">
+            <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/date.png" alt="picture">
+            </div>
+
+            <div class="sub-profile-div">
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Property ID : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->HotelID; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Property Name : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Property Catagory : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Email : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Verification Status : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Account Status :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Address : 
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Contact :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Check In :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Check Out :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Cancelation Period :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-left">
+                        Cancelation Fee :
+                    </div>
+                    <div class="profile-right">
+                        <?php echo $data['hoteldetails']->Name; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="hotel-profile-top-containers">
                 <div id="hotel-profile-photos" class="slideshow-container fade">
 
                     <div class="Containers">
@@ -51,12 +167,12 @@ else {
                     </div>
 
                     <!-- Back and forward buttons -->
-                    <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
+                    <!-- <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                </div>
+                </div> -->
 
                 <!-- The circles/beads -->
-                <div style="text-align:center">
+                <!-- <div style="text-align:center">
                     <span class="beads" onclick="currentSlide(1)"></span>
                     <span class="beads" onclick="currentSlide(2)"></span>
                     <span class="beads" onclick="currentSlide(3)"></span>
@@ -83,7 +199,7 @@ else {
                         <div class="hotel-profile-sub-div-elements">
                             <p class="home-title-4"><?php echo $data->hoteldetails->Name;  ?></p>
                             <!-- <p class="home-title-4"><?php echo $data->Name;  ?></p> -->
-                        </div>
+                        <!-- </div>
                     </div></li>
 
                     <li>
@@ -98,7 +214,7 @@ else {
 
                         <div class="hotel-profile-sub-div-elements">
                             <!-- <p class="home-title-4"><?php echo $data->Email;  ?></p> -->
-                            <p class="home-title-4"><?php echo $data->hotelaccountdetails->Email;  ?></p>
+                            <!-- <p class="home-title-4"><?php echo $data->hotelaccountdetails->Email;  ?></p>
                         </div>
                     </div></li>
 
@@ -268,7 +384,7 @@ else {
                 <div class="home-div-3">
                     <a href=""></a> <button id="hotel-edit-info" class="all-purpose-btn">Edit Info</button>
                 </div>
-            </div>
+            </div> --> 
              
             <br>
             

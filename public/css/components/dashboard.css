@@ -351,3 +351,21 @@ ul{
    height: 2rem;
    margin-top: 5%;
 }
+
+.hotel-profile-modified{
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+.sub-profile-div{
+   text-align: center;
+}
+
+.profile-grid{
+   margin: auto;
+   width: 60%;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-column-gap: 2px;
+}

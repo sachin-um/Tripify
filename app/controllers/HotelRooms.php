@@ -81,6 +81,14 @@
         
         }
 
+        public function rooms(){            
+            $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+            $data=[
+                'allroomtypes'=>$allroomtypes
+            ];
+            $this->view('hotels/v_hotelviewroom',$data);
+        }
+
         
     }
 

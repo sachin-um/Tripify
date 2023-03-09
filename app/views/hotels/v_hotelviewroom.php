@@ -19,42 +19,44 @@ else {
 
 <main class="right-side-content">
     <br>
-    <p class="home-title-2">Hotel Rooms</p>    
+    <p class="home-title-2">The Rooms You Add To Your Hotel Can Be Viewed Here</p>    
 
-    <div class="room-cards-row-1">
+    <div class="nav-grid" style="margin-top: 3%;">
+                
         <?php
-            $rooms=$data['allrooms'];
-            foreach($rooms as $room):
+        
+        foreach($data['allroomtypes'] as $roomType):
         ?>
 
-        <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showRoomDetails'">
-            <div class="hotel-room-card-pic">
-                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-            </div>                    
+            <!-- <a href="<?php echo URLROOT?>/Hotels/hotelProfile/<?php echo $hotel->HotelID?>" > -->
+            <div class="hotel-ad-card">
+                    
+                <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
+                <div id="hotel-img" class="hotel-room-card-pic">
+                    <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
+                </div>                    
 
-            <div class="hotel-ad-card-desc">
-                <label id="room-type" for="hotel-name"><b><?php echo $room->RoomType; ?></b></label> <br> <!-- Queen Suite -->
-                
-                <label id="display-hotel-address" for="hotel-address"><?php echo $room->RoomSize; ?> sqft</label><br>
-                <label id="display-hotel-address" for="hotel-address"><?php echo $room->NoofGuests; ?></label><br>
-                <label id="room-price" for="hotel-address"><b><?php echo $room->PricePerNight; ?></b></label><br>
-                <label id="room-remain" for="hotel-address">4 Rooms of this type</label>
+                <div class="hotel-ad-card-desc">
+                    <label id="room-type" for="hotel-name"><h2><?php echo $roomType->RoomTypeName; ?></h2></label>
+                    
+                    <label id="display-hotel-address" for="hotel-address"><?php echo $roomType->RoomSize." "; ?>Square Feet</label><br>
+                    <label id="display-hotel-address" for="hotel-address"><?php echo $roomType->NoofBeds." "; ?>Beds</label><br>
+                    <label id="room-price" for="hotel-address"><b><?php echo $roomType->PricePerNight." "; ?>LKR per night</b></label><br>
+                    <label id="room-remain" for="hotel-address"><?php echo $roomType->no_of_rooms." "; ?>Bedrooms left</label>
+                </div>
+
+                    
+                <button class="reserve-room" for="hotel-price"><b>View and Edit</b></button>
+                    
             </div>
-
-                    
-            <button class="reserve-room" for="hotel-price"><b>Edit Details</b></button>
-                    
-        </div>
-    
-    
+            <!-- </a> -->
         <?php
-            endforeach;
-        ?>        
-        <br><br>
+        endforeach;
+        ?>
     </div>
 
-    <div class="nav-main">
-    <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Rooms</button>
+    <div class="hotel-room-button-part" style="margin-top: 3%; margin-bottom: 5%; text-align: center;">
+        <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add More Rooms</button>
     </div>
         
     
