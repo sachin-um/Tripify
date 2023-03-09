@@ -51,9 +51,25 @@ else {
                             <th>Email</th>
                             <th>NIC</th>
                             <th>Area</th>
+                            <th>Rate</th>
                             <th>Account status</th>
-                            <th>Suspend</th>
-                            <th>Remove</th>
+                            <?php
+                                if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    <th>View </th>
+                                    <th>Verify</th>
+                                    
+                                    <th>Suspend</th>
+                                    <?php
+                                } elseif ($_SESSION['admin_type']=='management') {
+                                    ?>
+                                    <th>Suspend</th>
+                                    <?php
+                                }
+                                
+                            ?>
+                            
                             
                         </tr>
                     </thead>
@@ -69,9 +85,43 @@ else {
                             <td data-lable="Email"><?php echo $guide->Email ?></td>
                             <td data-lable="Status"><?php echo $guide->moreDetails->NIC ?></td>
                             <td data-lable="Status"><?php echo $guide->moreDetails->Area ?></td>
+                            <td data-lable="Status"><?php echo $guide->moreDetails->Rate ?></td>
                             <td data-lable="Status"><?php echo $guide->acc_status ?></td>
-                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                            
+                            <?php
+                            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    <td data-lable="Email"><button class="acc-view-btn" type="button">View </button></td>
+                                    <td data-lable="Email">
+                                        <?php
+                                            if ($guide->verification_status==2) {
+                                                ?>
+                                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $guide->UserID ?>/Guide">
+                                                    <button class="verify-btn" type="button">Verify</button>
+                                                </a>
+                                                <?php
+                                            }
+                                            elseif($guide->verification_status==3)
+                                            {
+                                                ?>
+                                                <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img">
+                                                <?php
+                                            }
+                                        ?>
+                                        
+                                    </td>
+                                    <?php
+                            }
+                            if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                    
+                                    <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $guide->UserID ?>/Guide/<?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $guide->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button"><?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a></td>
+                                    <?php
+                            }
+                            ?>
+                            
                         </tr>
                         <?php
                             endforeach;

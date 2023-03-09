@@ -66,8 +66,11 @@
                 
                        
                     </article>
-                    <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/editdrivers'"  >View</button>
-                    <button id="taxi_veh_delete">Delete</button>
+
+
+
+                    <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
+                    <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>
 
                 </div>
 

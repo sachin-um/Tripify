@@ -27,6 +27,8 @@
                 $this->view('traveler/v_traveler_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Taxi') {
+                $taxidetails=$this->userModel->getTaxiById($_SESSION['user_id']);
+                $data->details=$taxidetails;
                 $this->view('taxi/v_taxi_dashboard',$data);
             }
             else if ($_SESSION['user_type']=='Guide') {
@@ -48,6 +50,7 @@
             else if ($_SESSION['user_type']=='Admin') {
                 $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
                 $data->details=$admindetails;
+                $_SESSION['admin_type']=$data->details->AssignedArea;
                 $this->view('admin/v_admin_dashboard',$data);
             }
         }
@@ -74,8 +77,14 @@
         }
 
         public function guides(){
-            $this->view('guide/v_guide_home');
+            $allguides=$this->guideModel->viewAllguides();
+
+            $data=[
+                'allguides'=> $allguides
+            ];
+            $this->view('guide/v_guide_home',$data);
         }
+
 
         public function about($name,$age){
             $data=[

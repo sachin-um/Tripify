@@ -17,9 +17,9 @@
         </div>
 
         <nav class="menu">
-            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">User Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">User Profile</a>
             <!-- <a href="#" class="menu-item is-active">Company</a> -->
-            <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item is-active">Drivers</a>
+            <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item ">Vehicles</a>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
@@ -31,12 +31,12 @@
 
     <main class="right-side-content">
         <div class="taxi_off_cont">
-            <button id="tax_book_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers'">Back</button>
+            <button id="tax_book_backBut" onclick="window.location='<?php echo URLROOT; ?>/Pages/profile'">Back</button>
 
             <div class="tax_vech_view_cont">
 
                 <div class="tax-vec-sp-cont">
-                    <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $data['ID']?>"  method="POST">
+                    <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxies/OwnerDeatails"  method="POST">
                         <div class="taxi_veh_grid_edit_cont">
                             <div class="taxi_dash_edit_veh">
                                 <div>
@@ -45,7 +45,7 @@
                                 
 
                                 <div class="taxi_add_v_imgbox"> 
-                                    <label>Change Driver Profile Picture</label>   
+                                    <label>Change Profile Picture</label>   
                                     <input type="file" name="tax_img" id="taxi_add_v_img"  placeholder="taxi_add_v_imgbox" accept="image/*">
                                 </div>
 
@@ -57,30 +57,39 @@
                                 <table class="tax_book_viewTable">
                                 
                                     <tr>
-                                        <td>Driver ID:</td>
-                                        <td><?php echo $data['ID']?></td>
+                                        <td>Owner ID:</td>
+                                        <td><?php echo $data['ownerID']?></td>
                                     </tr>
 
                                     <tr>
-                                        <td>Driver Name:</td>
+                                        <td>Owner Name:</td>
                                         <td><input name="name" type="text" value="<?php echo $data['name']?>"></td>
                                     </tr>
 
                                     <tr>
-                                        <td>Age:</td>
-                                        <td><input name="age" id="tax-dash-vec-editBut"  type="number" value="<?php echo $data['age']?>"></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>License Number:</td>
-                                        <td><input name="LicenseNo"id="tax-dash-vec-editBut"   type="text" value="<?php echo $data['licenseno']?>"></td>
+                                        <td>Company Name:</td>
+                                        <td><input name="company_name" type="text" value="<?php echo $data['company_name']?>"></td>
                                     </tr>
 
+                                    <tr>
+                                        <td>NIC:</td>
+                                        <td><?php echo $data['nic']?></td>
+                                    </tr>
                                     
                                     <tr>
                                         <td>Contact Number:</td>
                                         <td><input name="contact_number"id="tax-dash-vec-editBut"  type="tel"  value="<?php echo $data['contact_number']?>"></td>
                                     </tr>
+
+                                    
+                                    <tr>
+                                        <td>Address:</td>
+                                        <td><input name='address'type="text" value="<?php echo $data['address']?>">
+</td>
+                                        <!-- <td><textarea name="address" id="" cols="20" rows="5" value=""><?php echo $data['address']?></textarea></td> -->
+                                    </tr>
+
+                                    
 
 
                                 
@@ -89,7 +98,7 @@
                         </div>
 
                         <div class="taxi_veh_editBut_cont">
-                            <input type="submit" id="taxi_add_v_but" value="Edit Info">
+                            <input type="submit" id="taxi_add_v_but" value="UPDATE">
                         </div>
                     </form>
                 </div>
