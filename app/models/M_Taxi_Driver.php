@@ -26,8 +26,9 @@ class M_Taxi_Driver{
             }
         }
 
-        public function viewall(){
-            $this->db->query('SELECT * FROM taxi_drivers');
+        public function viewall($id){
+            $this->db->query('SELECT * FROM taxi_drivers WHERE OwnerID=:OwnerID');
+            $this->db->bind(':OwnerID',$id);
             $drivers=$this->db->resultSet();
 
             return $drivers;

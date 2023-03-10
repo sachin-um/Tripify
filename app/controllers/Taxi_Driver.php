@@ -8,7 +8,7 @@
         }
 
         public function viewdrivers(){
-            $alldrivers=$this->taxi_driverModel->viewall();
+            $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
             // $ve=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'drivers'=> $alldrivers

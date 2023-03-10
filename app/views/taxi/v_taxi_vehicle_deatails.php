@@ -86,7 +86,7 @@
                                                     foreach($alldrivers as $driver):
                                                 ?>
                                                     
-                                                    <?php echo "<option value='" . $driver->Name. "'>" . $driver->Name. "</option>"?>
+                                                    <?php echo "<option value='" . $driver->driverID. "'>" . $driver->Name. "</option>"?>
 
                                                     
                                                 <?php

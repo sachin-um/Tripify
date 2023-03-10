@@ -46,7 +46,7 @@ else {
                 foreach($alldrivers as $driver):
             ?>
                 
-                <?php echo "<option value='" . $driver->Name. "'>" . $driver->Name. "</option>"?>
+                <?php echo "<option value='" . $driver->TaxiDriverID. "'>" . $driver->Name. "</option>"?>
 
                 
             <?php

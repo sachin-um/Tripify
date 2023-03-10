@@ -92,6 +92,13 @@ class M_Taxi{
         return $row;
     }
 
+    public function viewall(){
+        $this->db->query('SELECT * FROM taxiowner');
+        $owners=$this->db->resultSet();
+
+        return $owners;
+    }
+
     public function editOwnerInfo($data){
         $this->db->query('UPDATE taxiowner SET owner_name=:owner_name, company_name=:company_name, contact_number=:contact_number, address=:address WHERE OwnerID=:OwnerID');
         $this->db->bind(':owner_name',$data['name']);

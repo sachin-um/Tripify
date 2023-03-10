@@ -137,7 +137,7 @@
 
 
         public function taxiMakeOffers($request_id){
-            $allvehicles=$this->taxi_vehicleModel->viewall();
+            $allvehicles=$this->taxi_vehicleModel->viewall($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
