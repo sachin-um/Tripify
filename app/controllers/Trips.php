@@ -2,7 +2,9 @@
     class Trips extends Controller{
         public function __construct(){
             $this->tripModel=$this->model('M_Trips');
-
+            $this->guideBookingModel=$this->model('M_Guide_Bookings');
+            $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
+            $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
             if (empty($_SESSION['user_id'])) {
                 flash('reg_flash', 'You need to have logged in first...');
                 redirect('Users/login');
@@ -76,6 +78,7 @@
             
             $trip=$this->tripModel->viewTripPlan($tripid);
             if ($trip->TravelerID==$_SESSION['user_id']) {
+                
                 $data=[
                     'trip_name'=>$trip->trip_name,
                     'trip_location'=>$trip->location,
@@ -85,10 +88,25 @@
                     'trip_id'=>$trip->TourPlanID,
     
                     'view'=>1,
+                    'guide_bookings'=>array(),
+                    'hotel_bookings'=>array(),
+                    'taxi_bookings'=>array(),
     
                     'trip_err'=>'',
                 ];
-
+                foreach ($trip->trip_guide_bookings as $booking) {
+                    $trip_booking=$this->guideBookingModel->getGudieBookingbyId($booking->trip_id);
+                    array_push($data['guide_bookings'],$trip_booking);
+                }
+                foreach ($trip->trip_taxi_bookings as $booking) {
+                    $trip_booking=$this->taxiBookingModel->getTaxiBookingbyId($booking->trip_id);
+                    array_push($data['taxi_bookings'],$trip_booking);
+                }
+                foreach ($trip->trip_hotel_bookings as $booking) {
+                    $trip_booking=$this->hotelBookingModel->getHotelBookingbyId($booking->trip_id);
+                    array_push($data['hotel_bookings'],$trip_booking);
+                }
+                print_r($data);
                 $this->view('traveler/v_trip_plan',$data);
             } else {
                 flash('reg_flash', 'Access Denied');

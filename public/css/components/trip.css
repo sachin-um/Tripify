@@ -103,10 +103,44 @@
     margin: 40px 10% 40px;
 }
 
-.plan-table{
-    width: 100%;
+
+
+.plan-container{
+    display: flex;
+    min-height: 700px;   
     border-collapse: collapse;
-    min-height: 700px;
+    border-spacing: 0;
+    box-shadow: 0 2px 15px rgb(64 64 64 / 70%);
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+}
+
+.plan-container .column{
+    flex: 1;
+    border: 2px solid black;
+    width: 33%;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    color: #FFFFFF;
+    opacity: 1;
+    vertical-align: top;
+}
+
+.plan-container .column .header{
+    font-weight: bold;
+    color: #F2ECFF;
+    background-color: #00839E;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plan-container .column .row{
+    margin: 2px 2px 0 2px;
+    border-radius: 5px;
+    height: 15%;
 }
 
 .plan-table thead{
@@ -166,7 +200,20 @@
     color: white;
     background-color: #03002E;
     cursor: pointer;
-    margin-top: 4%;
+    margin-top: 50%;
+    margin-left: 25%;
+}
+
+.plan-item-add-another-button{
+    width: 60%;
+    height: 60px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #03002E;
+    cursor: pointer;
+    margin-top: 4%;  
+    margin-left: 25%;  
 }
 
 .create-plan-btn{
