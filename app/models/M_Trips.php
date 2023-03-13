@@ -55,9 +55,23 @@ class M_Trips{
     {
         $this->db->query('SELECT * FROM tour_plans WHERE TourPlanID=:tripid');
         $this->db->bind(':tripid',$id);
-
         $row=$this->db->single();
+        
+        $this->db->query('SELECT * FROM trip_guide_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        print_r($trips);
+        $row->trip_guide_bookings=$trips;
 
+        $this->db->query('SELECT * FROM trip_hotel_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        $row->trip_hotel_bookings=$trips;
+
+        $this->db->query('SELECT * FROM trip_taxi_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        $row->trip_taxi_bookings=$trips;
         return $row;
     }
 }

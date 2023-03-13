@@ -76,6 +76,9 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
+            $guide=$this->getGuideById($row->Guides_GuideID);
+            $guide_name=$guide->Name;
+            $row->guide_name=$guide_name;
 
             return $row;
         }

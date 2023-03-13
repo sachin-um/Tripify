@@ -76,7 +76,11 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $vehicle=$this->getVehicleById($row->Vehicles_VehicleID);
+            $number=$vehicle->vehicle_number;
+            $name=$vehicle->driver_name;
+            $row->driver_name=$name;
+            $row->vehicle_number=$number;
             return $row;
         }
 
