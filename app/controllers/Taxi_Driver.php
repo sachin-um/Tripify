@@ -127,6 +127,20 @@
             
         }
 
+        public function viewDriversByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $drivers=$this->taxi_driverModel->viewall($id);
+                $data=[
+                    'drivers'=> $drivers
+                ];
+                $this->view('admin/v_admin_taxi_drivers',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+
         
 
 

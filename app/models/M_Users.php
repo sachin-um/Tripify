@@ -168,7 +168,10 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $this->db->query('SELECT * FROM guide_languages WHERE guide_id=:id');
+            $this->db->bind(':id',$row->GuideID);
+            $languages=$this->db->resultSet();
+            $row->languages=$languages;
             return $row;
         }
 
@@ -177,7 +180,8 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $details=$this->getUserDetails($id);
+            $row->moreDetails=$details;
             return $row;
         }
 
@@ -202,7 +206,7 @@
         public function verifyaccount($id)
         {
             $this->db->query('UPDATE users set verification_status=3 WHERE UserID=:id');
-            $this->db->bind(':id',$data['id']);
+            $this->db->bind(':id',$id);
 
             if ($this->db->execute()) {
                 return true;
@@ -226,9 +230,6 @@
 
             if ($row->verification_status==0) {
                 return 'NotValidate';
-            }
-            elseif ($row->verification_status==2) {
-                return 'ServiceNotValidate';
             }
             else if (password_verify($data['password'], $hashed_password)) {
                 return $row;
