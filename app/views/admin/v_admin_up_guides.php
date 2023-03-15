@@ -92,7 +92,7 @@ else {
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="showProfile(this,'Guide','<?php echo URLROOT; ?>')">View </button></td>
+                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $guide->UserID ?>/Guide'">View </button></td>
                                     <td data-lable="Email">
                                         <?php
                                             if ($guide->verification_status==2) {
@@ -100,6 +100,7 @@ else {
                                                 <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $guide->UserID ?>/Guide">
                                                     <button class="verify-btn" type="button">Verify</button>
                                                 </a>
+                                                <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">
                                                 <?php
                                             }
                                             elseif($guide->verification_status==3)

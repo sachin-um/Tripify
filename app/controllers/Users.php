@@ -235,11 +235,7 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
-                    } 
-                    elseif ($log_user=='ServiceNotValidate') {
-                        flash('reg_flash', 'Please Wait for review of your account');
-                        redirect('Users/login');
-                    }        
+                    }         
                     //logging user
                     else{
                         $this->createUserSession($log_user);
@@ -474,6 +470,7 @@
             $_SESSION['user_profile_image']=$user->profileimg;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
+            $_SESSION['admin_type']='';
             
             
             // $this->view('v_home',$data);

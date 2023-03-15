@@ -21,6 +21,20 @@
             $this->view('taxi/v_taxi_vehicles',$data);
         }
 
+        public function viewVehicleByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $vehicles=$this->taxi_vehicleModel->viewall($id);
+                $data=[
+                    'vehicles'=> $vehicles
+                ];
+                $this->view('admin/v_admin_taxi_vehicles',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+
         public function addavehicle(){
             
             $alldrivers=$this->taxi_driverModel->viewall();
