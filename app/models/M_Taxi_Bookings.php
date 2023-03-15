@@ -84,6 +84,23 @@
             return $row;
         }
 
+        public function getTaxiOwnerbyID($id){
+            $this->db->query('SELECT * FROM taxiowner WHERE OwnerID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
+        public function getVehicleAndDriversbyID($id){
+            $this->db->query('SELECT vehicles.*,taxi_drivers.* FROM vehicles JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID WHERE vehicles.VehicleID=:VehicleID');
+            $this->db->bind(':VehicleID',$id);
+            $details=$this->db->single();
+            return $details;
+        }
+
+
         
     }
 

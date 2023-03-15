@@ -4,60 +4,46 @@
 <div class="wrapper">
     <div class="content">
         <div class="hotel-booking-title">
-            <p id="hotel-booking-title-1" class="home-title-2" ><b>KARTHTHIKEYAN &nbsp; PE-5659</b></p>
+
+            <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name'] ?></b></p>    
+        
         </div>
         <div class="hotel-room-top-picks">
             <div class="hotel-desc-page-div">
-                <div class="hotel-disc-2">
+                <div class="taxi-disc-2">
 
-                    <div id="hotel-address" class="hotel-disc-3">
-                        <label id="view-address">
-                            Toyota Auqa
+                    <div class="taxi-disc-3">
+                        <label id="taxi_book_subhead">
+                            <b><?php echo $data['details']->Model.'&nbsp;&nbsp;'.$data['details']->vehicle_number?></b>
                         </label><br>
                         
                     </div>
-
-                    <!-- <div class="hotel-disc-3">
-                        <label id="view-address">
-                        3 Adults
-                        </label><br>
-
-                        <label id="view-address">
-                        0 children
-                        </label><br>
-                        
-                    </div> -->
                     <br>
-                    <div class="hotel-disc-3">
-                        <div class="hotel-disc-1">
+                    <div class="taxi-disc-3">
+                        <div class="taxi-disc-1">
                             
-                            <label id="view-address">
-                                Car
-                            </label><br><br>
+                            <label id="taxi_book_subhead">    
+                                <b><?php echo $data['details']->VehicleType?></b>       
+                            </label><br>          
 
-                            <ul style="list-style: circle;">
-                            <i class="fa-solid fa-person-swimming fa-lg">
-
+                            <ul class="taxi_book_ul" style="list-style: circle;">
                                 <li><label>Yellow Colour</label></li>
-                                <li><label>4 Seats</label></li>
-                                <li><label>Air Conditioning</label></li>
-                                <li><label>Free Wifi</label></li>
-                            </i>
+                                <li><label><?php echo $data['details']->no_of_seats?> Seats</label></li>
+                                <li><label>Air Conditioning</label></li>   
                             </ul>
                             
                         </div>
 
-                        <div class="hotel-disc-1">
-                            <label id="view-address">
-                                Driver
-                            </label><br><br>
+                        <div class="taxi-disc-1">
+                            <label id="taxi_book_subhead">
+                                <b>Driver</b>
+                            </label><br>
 
-                            <ul style="list-style: circle;">
-                                <i>
-                                    <li><label>Name: Karththikeyan</label></li>
-                                    <li><label>Age: 22</label></li>
-                                    <li><label>Contact Number: 0778964983</label></li>
-                                </i>
+                            <ul class="taxi_book_ul" style="list-style: circle;">
+                                    <li><label>Name: <?php echo $data['details']->Name?></label></li>
+                                    <li><label>Age: <?php echo $data['details']->Age?></label></li>
+                                    <li><label>Contact Number: <?php echo $data['details']->contact_number?></label></li>
+                                
                                 
                             </ul>
                         </div>
@@ -107,139 +93,114 @@
                     </div>
 
                 </div>
-
-                <p class="home-title-2" >Book Now</p>
-                <hr>
+                
+               
+                
 
                 <div id="hotel-booking-form" class="hotel-room-top-picks">
-                    <form action="">
-                        <div class="hotel-reg-form">
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Date<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="date" id="name" name="name" required>
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Time<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="time" id="name" name="name" required>
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Destination Location <sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1" required>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <br>
-                    <p class="home-title-3"><u>Price Details</u></p>
-                    <br>
-                    <div class="price-details-1">
-                        <div class="hotel-price-check">
-                            <label><b>Trip Start :</b></label><br>
-                            <label>Monday</label>
-                            <label><b>November 13</b></label>
-                        </div>
-                        <div class="hotel-price-check">
-                            <label><b>Trip End :</b></label><br>
-                            <label>Tuesday</label>
-                            <label><b>November 14</b></label>
-                        </div>
-                        <div id="hotel-nights-days" class="hotel-price-check">
-                            <label>410KM</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="price-details-2">
-                        <div class="hotel-price-details">
-                            <label id="No-of-rooms">410KM</label>
-                            <label id="X">X</label>
-                            <label id="No-of-nights">100</label>
-                            <label id="Priceofroom"><b>41,000LKR</b></label>
-                        </div>
-
-                        <div class="hotel-price-details">
-                            <label id="hotel-taxes">Taxes</label>
-                            <label id="hotel-taxes-1"><b>1,000LKR</b></label>
-                        </div>
-
-                        <hr id="prices-hr">
-                        
-                        <div class="hotel-price-details">
-                            <label id="hotel-taxes">Total</label>
-                            <label id="hotel-taxes-1"><b>42,000LKR</b></label>
-                        </div>
-                    </div>
-
-                    <!-- <p class="home-title-3"><u>Billing Information</u></p>
-
-                    <form action="">
-                        <div class="hotel-reg-form">
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Name on Card<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Debit/Credit Card Number<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="name" name="name" required>
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
+                    <?php 
+                        if(isset($data['hide'])){
+                    ?>
+                        <p class="home-title-2" >Book Now</p>
+                        <hr>
+                        <form action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
+                            <div class="hotel-reg-form">
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Expiration Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="line1" placeholder="Month">
+                                        <p class="home-title-4">Date<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="date" id="booking-date" name="s_date" required>
+                                    </div>
+                                    
+
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Time<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="time" id="name"  name="s_time" required>
+                                    </div>
+
+                                   
+                                </div>
+
+                                <div class="hotel-reg-form-div-2">
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="text" id="line1" name="pickupL" required>
                                     </div>
 
                                     <div class="hotel-reg-elements">
-                                        <br>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="line1" placeholder="Date">
+                                        <p class="home-title-4">Destination Location <sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="text" id="line1" name="dropL" required>
                                     </div>
                                 </div>
+                            </div><br>
 
-                                <div class="hotel-reg-elements">
-                                    
+                            <div class="hotel-reg-form-div-2">
+                                    <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Get Price Details</button>
+                            </div>
+                        </form>
+                        <br>
+                    <?php
+                        }
+                    ?>
+
+
+                    <?php 
+                        if(isset($data['distance'])){
+                    ?>
+
+                    
+                        <div>
+                            <p class="home-title-3"><u>Price Details</u></p>
+                            <br>
+                            <div class="price-details-1">
+                                <div class="hotel-price-check">
+                                    <label><b>Trip Start :</b></label><br>
+                                    <label><b><?php echo $data['s_date']?></b></label>
+                                    <label><b><?php echo $data['s_time']?></b></label>
+                                </div>
+                                <div class="hotel-price-check">
+                                    <label><b><?php echo $data['pickupL']?></b></label><br>
+                                    <label><p><b>To</b></p></label>
+                                    <label><b><?php echo $data['dropL']?></b></label>
+                                </div>
+                                <div id="hotel-nights-days" class="hotel-price-check">
+                                    <label><?php echo $data['distance']?>KM</label>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="price-details-2">
+                                <div class="hotel-price-details">
+                                    <label id="No-of-rooms"><?php echo $data['distance']?></label>
+                                    <label id="X">X</label>
+                                    <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
+                                    <label id="Priceofroom"><b><?php echo $data['cost']?></b></label>
+                                </div>
+
+                                <div class="hotel-price-details">
+                                    <label id="hotel-taxes">Taxes(3%)</label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['tax']?></b></label>
+                                </div>
+
+                                <hr id="prices-hr">
+                                
+                                <div class="hotel-price-details">
+                                    <label id="hotel-taxes">Total</label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
                             </div>
 
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Security Code<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1">
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    
-                                </div>
-                            </div>
-
-                            <div class="hotel-reg-form-div-2">
-                                <div class="hotel-reg-elements">
-                                    <p class="home-title-4">Please enter your email for confirmation<sup> *</sup> :</p>
-                                    <input class="hotel-labels-2" type="text" id="line1" name="line1">
-                                </div>
-
-                                <div class="hotel-reg-elements">
-                                    
-                                </div>
-                            </div> -->
 
                             <div class="hotel-reg-form-div-2">
                                 <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Book Now</button>
                             </div>
+                            <br>
+                            <div class="hotel-reg-form-div-2">
+                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_all-purpose-btn" type="submit">Cancel</button>
+                            </div>
+                            
                         </div>
-                    </form>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
 

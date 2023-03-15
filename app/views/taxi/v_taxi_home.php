@@ -73,49 +73,39 @@
 
         <div class="hotel-home-top-picks">
             <div class="nav-main">
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
+               <?php
+                    foreach($data['owners'] as $owners):
+               ?> 
+            
+                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails/<?php echo $owners->OwnerID?>'">
                     <div class="hotel-ad-card-pic">
                         <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
                         <span class="dot">4.5</span>
                     </div>                    
 
 
-                    <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Kankaroo Cabs</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
-                       <label id="display-hotel-price" for="hotel-price"><b>5 USD/KM</b> </label>
+                    <div class="hotel-ad-card-desc">      
+                       
+                       <?php 
+                            if(!$owners->company_name){
+                        ?>
+                        <label id="" for="hotel-name"><b>Owner Name:<?php echo $owners->owner_name?></b></label> <br>
+                        <?php
+                            }else{
+                        ?>
+                        <label id="taxi-hide-homeCont" for="hotel-name"><b><?php echo $owners->company_name?></b></label> <br>
+                        <?php 
+                            }
+                        ?>
+
+                       <label id="display-hotel-address" for="hotel-address"><?php echo $owners->address?></label><br>
+                       <!-- <label id="display-hotel-price" for="hotel-price"><b>5 USD/KM</b> </label> -->
                     </div>
                 </div>
 
-
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
-                    <div class="hotel-ad-card-pic">
-                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi1.jpeg" alt="nine-arch">
-                        <span class="dot">3.8</span>
-                    </div>                    
-
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>Yoyo Cabs</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">No 10/A, Wellawatta</label><br>
-                       <label id="display-hotel-price" for="hotel-price"><b>6 USD/KM</b></label>
-                    </div>
-                </div>
-
-
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails'">
-                    <div class="hotel-ad-card-pic">
-                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi2.jpg" alt="nine-arch">
-                        <span class="dot">4.0</span>
-                    </div>                    
-
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="display-hotel-name" for="hotel-name"><b>A9 Cabs</b></label> <br>
-                       <label id="display-hotel-address" for="hotel-address">No 12/57, Jaffna</label><br>
-                       <label id="display-hotel-price" for="hotel-price"><b>5 USD/KM</b></label>
-                    </div>
-                </div>
+                <?php
+                    endforeach;
+                ?>
 
                 
             </div>

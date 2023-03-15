@@ -4,6 +4,7 @@
             $this->userModel=$this->model('M_Users');
             $this->hotelModel=$this->model('M_Hotels');
             $this->guideModel=$this->model('M_Guides');
+            $this->taxiModel=$this->model('M_Taxi');
         }
         public function index(){
 
@@ -53,8 +54,11 @@
             }
             else if ($user_type=='Hotel') {
                 $hotelvar=$this->hotelModel->findUserDetails();
-                $data->hoteldetails=$hotelvar;
-                $data->hotelaccountdetails=$this->userModel->getUserDetails($user_id);
+                $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
+                $data=[
+                    'hoteldetails'=>$hotelvar,
+                    'hotelaccountdetails' => $hotelaccountvar
+                ];
                 $this->view('hotels/v_dash_profile',$data);
             }
             else if ($user_type=='Admin') {
@@ -64,6 +68,7 @@
                 $this->view('admin/v_admin_dashboard',$data);
             }
         }
+
         public function logins(){
             $this->view('v_logins');
         }
@@ -82,7 +87,11 @@
         }
 
         public function taxies(){
-            $this->view('taxi/v_taxi_home');
+            $allOwners=$this->taxiModel->viewall();
+            $data=[
+                'owners'=>$allOwners
+            ];
+            $this->view('taxi/v_taxi_home',$data);
         }
 
         public function guides(){

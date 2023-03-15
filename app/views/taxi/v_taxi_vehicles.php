@@ -64,7 +64,7 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
                         
                         <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><p id="taxi_view_v_flag"><?php echo $vehicle->price_per_km  ?> LKR</p>
                         
-                        <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->driver_name  ?></p>
+                        <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->Name  ?></p>
 
                     </article>
                     <div>
