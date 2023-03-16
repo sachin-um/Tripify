@@ -113,3 +113,4 @@
         
         
     </main>
+    <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>

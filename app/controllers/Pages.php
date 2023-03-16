@@ -25,8 +25,10 @@
             $user_type='';
             if ($id!=null) {
                 $user_id=$id;
+                $_SESSION['service_id']=$id;
             } else {
                 $user_id=$_SESSION['user_id'];
+                
             }
             if ($type!=null) {
                 $user_type=$type;
@@ -54,11 +56,7 @@
             }
             else if ($user_type=='Hotel') {
                 $hotelvar=$this->hotelModel->findUserDetails();
-                $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
-                $data=[
-                    'hoteldetails'=>$hotelvar,
-                    'hotelaccountdetails' => $hotelaccountvar
-                ];
+                $data->hoteldetails=$hotelvar;
                 $this->view('hotels/v_dash_profile',$data);
             }
             else if ($user_type=='Admin') {

@@ -7,12 +7,8 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Hotel') {
-    flash('reg_flash', 'Access Denied');
-    redirect('Pages/home');
-}
-else {
-    ?> 
+elseif ($_SESSION['user_type']!='Hotel' || $_SESSION['user_type']!='Admin') {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
@@ -35,7 +31,7 @@ else {
                         Property ID : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->HotelID; ?>
+                        <?php echo $data->hoteldetails->HotelID; ?>
                     </div>
                 </div>
 
@@ -44,7 +40,7 @@ else {
                         Property Name : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -53,7 +49,7 @@ else {
                         Property Catagory : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -62,7 +58,7 @@ else {
                         Email : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -71,7 +67,23 @@ else {
                         Verification Status : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <div class="sub-sub" style="width:100%;">
+                            <?php if ($data->verification_status ==2) {
+                                ?><h3>Verified</h3><?php
+                            }else {
+                                if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    <button class="acc-view-btn" type="button" onclick="showProfile('<?php echo $data->UserID; ?>','Taxi','<?php echo URLROOT; ?>')">Verification Details</button>
+                                    <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                                        <button class="verify-btn" type="button">Verify</button>
+                                                    </a>
+                                    <?php
+                                }
+                                else {
+                                    ?><h3>Not Verified</h3><?php
+                                }
+                            } ?>
+                        </div>
                     </div>
                 </div>
 
@@ -80,7 +92,7 @@ else {
                         Account Status :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -89,7 +101,7 @@ else {
                         Address : 
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -98,7 +110,7 @@ else {
                         Contact :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo$data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -107,7 +119,7 @@ else {
                         Check In :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -116,7 +128,7 @@ else {
                         Check Out :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -125,7 +137,7 @@ else {
                         Cancelation Period :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
 
@@ -134,7 +146,7 @@ else {
                         Cancelation Fee :
                     </div>
                     <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
+                        <?php echo $data->hoteldetails->Name; ?>
                     </div>
                 </div>
             </div>
@@ -391,10 +403,17 @@ else {
         </div>
 
 </div>
-
+<div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+</div>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
 
 <?php
+}
+else {
+    flash('reg_flash', 'Access Denied');
+    redirect('Pages/home');
 }
 ?>
 

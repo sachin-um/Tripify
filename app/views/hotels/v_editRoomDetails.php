@@ -18,5 +18,6 @@ else {
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
 
 <main class="right-side-content">
-
-</div>
+<?php
+}
+?>

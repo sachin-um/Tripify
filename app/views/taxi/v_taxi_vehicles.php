@@ -112,10 +112,13 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
         </article>
             
     </main>
-        
+    <div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+    </div>
+      
         
  </div>
-
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script> 
 <?php
 }
 else {
