@@ -149,6 +149,26 @@
             }
             
         }
+
+        public function removeFromTripPlan($tripid,$bookingid,$type)
+        {
+            $trip=$this->tripModel->viewTripPlan($tripid);
+            if ($trip->TravelerID==$_SESSION['user_id']) {
+                if ($this->tripModel->removeFromTripPlan($tripid,$bookingid,$type)) {
+                    flash('trip_flash', 'Booking Removed');
+                    redirect('Trips/viewTripPlan/'.$tripid);
+                } else {
+                    flash('trip_flash', 'Somthing went wrong please try again..!');
+                    redirect('Trips/viewTripPlan/'.$tripid);
+                }
+                
+            } else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+            
+        
         
         public function yourtrips()
         {

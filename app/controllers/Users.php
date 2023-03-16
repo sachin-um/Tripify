@@ -502,6 +502,11 @@
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['user_profile_image']);
+            unset( $_SESSION['user_email']);
+            if ($_SESSION['user_type']=='Admin') {
+                unset($_SESSION['admin_type']);
+            }
+            unset($_SESSION['user_type']);
 
 
             session_destroy();

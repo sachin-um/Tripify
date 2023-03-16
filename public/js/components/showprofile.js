@@ -262,24 +262,28 @@ function showVehicleDetails(id,baseurl) {
               dataType: 'json',
               success: function(data) {
                 console.log(data);
-                    $('#popup-content').append('<p>Review Driver Details</p>');
+                    $('#popup-content').append('<p>Review Vehicle Details</p>');
                     $('#popup-content').append(`
                     <div class="form">
                     <div >
                         <form action="<?php echo URLROOT; ?>/Guides/register" method="POST">
-                            <label class="abc"> Name</label><br>
-                            <input type="text" id="name" name="name" placeholder="" value="`+data.Name+`" disabled>
+                            <label class="abc"> Vehicle Type</label><br>
+                            <input type="text" id="type" name="type" placeholder="" value="`+data.VehicleType+`" disabled>
                             <br>
                             
-                            <label class="abc"> License Number</label><br>
-                            <input type="text" id="licenceno" name="licenceno" placeholder="" value="`+data.LicenceNo+`" disabled>
+                            <label class="abc"> Vehicle Model</label><br>
+                            <input type="text" id="model" name="model" placeholder="" value="`+data.Model+`" disabled>
                             <br>
-                            <label class="abc"> Age</label><br>
-                            <input type="text" id="area" name="area" placeholder="" value="`+data.Age+`" disabled>
+                            <label class="abc"> Vehicle Number</label><br>
+                            <input type="text" id="vehicle_number" name="vehicle_number" placeholder="" value="`+data.vehicle_number+`" disabled>
                             
                             <br>
-                            <label class="abc"> Contact number</label><br>
-                            <input type="text" id="price" name="price" placeholder="" value="`+data.contact_number+`" disabled>
+                            <label class="abc"> Year of Production</label><br>
+                            <input type="text" id="yop" name="yop" placeholder="" value="`+data.YearOfProduction+`" disabled>
+                            
+                            <br>
+                            <label class="abc"> Available Area </label><br>
+                            <input type="text" id="area" name="area" placeholder="" value="`+data.area+`" disabled>
                             
                             <br>    
                           </form>
