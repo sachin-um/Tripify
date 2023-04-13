@@ -40,4 +40,21 @@
         }
         },2000);
     }
+
+    function showChat() {
+      const popup = document.getElementById("popup");
+      const popupContent = document.getElementById("chat-content");
+
+      popup.style.display = "block";
+
+
+      document.addEventListener('click', function(event) {
+        // check if the click event target is outside of the popup window
+        if (!popupContent.contains(event.target)) {
+            // remove the popup window from the DOM
+            popup.style.display = "none";
+            $('#popup-content').empty();
+        }
+        },2000);
+    }
         
