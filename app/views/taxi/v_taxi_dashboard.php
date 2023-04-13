@@ -8,7 +8,7 @@ if (empty($_SESSION['user_id'])) {
     redirect('Users/login');
 }
 
-elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
+else{
     ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
@@ -203,7 +203,19 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
                         
                 </div>
                 <div style="text-align: center;">
-                    <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                    <?php
+                    if ($_SESSION['user_id']== $data->UserID) {
+                        ?>
+                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                        <?php
+                    } else {
+                        ?>
+                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Contact </button>
+                        <?php
+                    }
+                    ?>
+                        
+                    
                         
                 </div>
             </div>
@@ -221,9 +233,5 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
 </div>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
 <?php
-}
-else {
-    flash('reg_flash', 'Access Denied');
-    redirect('Pages/home');
 }
 ?>

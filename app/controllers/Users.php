@@ -381,7 +381,7 @@
 
                 $data=[
                     'reset_code'=>trim($_POST['reset_code']),
-                    'email'=>$_SESSION['email'],
+                    'email'=>$_SESSION['v_email'],
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
                     
@@ -439,7 +439,6 @@
                 }
                 else {
                     $this->view('users/v_reset_password',$data);
-                    echo "HI";
                 }
 
 
@@ -499,19 +498,26 @@
 
 
         public function logout(){
-            unset($_SESSION['user_id']);
-            unset($_SESSION['user_email']);
-            unset($_SESSION['user_profile_image']);
-            unset( $_SESSION['user_email']);
-            if ($_SESSION['user_type']=='Admin') {
-                unset($_SESSION['admin_type']);
+            if ($this->userModel->logout()) {
+                unset($_SESSION['user_id']);
+                unset($_SESSION['user_email']);
+                unset($_SESSION['user_profile_image']);
+                unset( $_SESSION['user_email']);
+                if ($_SESSION['user_type']=='Admin') {
+                    unset($_SESSION['admin_type']);
+                }
+                unset($_SESSION['user_type']);
+
+
+                session_destroy();
+
+                redirect('Pages/index');
             }
-            unset($_SESSION['user_type']);
-
-
-            session_destroy();
-
-            redirect('Pages/index');
+            //error
+            else{
+                die('Something went wrong');
+            }
+            
         }
 
 

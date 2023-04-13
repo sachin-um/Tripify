@@ -232,7 +232,14 @@
                 return 'NotValidate';
             }
             else if (password_verify($data['password'], $hashed_password)) {
-                return $row;
+                $this->db->query('UPDATE users set active_status="Active" WHERE Email= :email');
+                $this->db->bind(':email',$data['email']);
+                if ($this->db->execute()) {
+                    return $row;
+                } else {
+                    return false;
+                }
+                
             }
             else {
                 return false;
@@ -325,6 +332,17 @@
                 echo 'HI';
                 return false;
             }
+        }
+
+        public function logout()
+        {
+                $this->db->query('UPDATE users set active_status="Offline" WHERE UserID=:id');
+                $this->db->bind(':id',$_SESSION['user_id']);
+                if ($this->db->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 

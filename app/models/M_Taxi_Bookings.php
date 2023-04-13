@@ -27,7 +27,7 @@
             foreach ($filteredbookings as $booking) {
                 $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
                 $number=$vehicle->vehicle_number;
-                $name=$vehicle->driver_name;
+                $name=$vehicle->Name;
                 $booking->driver_name=$name;
                 $booking->vehicle_number=$number;
             }
@@ -63,7 +63,7 @@
 
 
         public function getVehicleById($id){
-            $this->db->query('SELECT * FROM vehicles WHERE VehicleID=:id');
+            $this->db->query('SELECT vehicles.*,taxi_drivers.Name FROM vehicles JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID WHERE vehicles.VehicleID=:id');
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();

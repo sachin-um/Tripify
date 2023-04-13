@@ -74,7 +74,6 @@ class M_Trips{
         $this->db->query('SELECT * FROM trip_guide_bookings WHERE trip_id=:tripid');
         $this->db->bind(':tripid',$row->TourPlanID);
         $trips=$this->db->resultSet();
-        print_r($trips);
         $row->trip_guide_bookings=$trips;
 
         $this->db->query('SELECT * FROM trip_hotel_bookings WHERE trip_id=:tripid');
