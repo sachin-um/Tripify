@@ -26,10 +26,7 @@
             $filteredbookings=filterBookings($bookings,$usertype,$userid);
             foreach ($filteredbookings as $booking) {
                 $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
-                $number=$vehicle->vehicle_number;
-                $name=$vehicle->Name;
-                $booking->driver_name=$name;
-                $booking->vehicle_number=$number;
+                $booking->vehicle=$vehicle;
             }
             return $filteredbookings;
         }

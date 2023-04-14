@@ -80,7 +80,7 @@ else {
                     <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $guideoffer->additionaldetails; ?></span></div>
                 </div>
                 <div class="post-by-content">
-                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $guideoffer->guidename; ?></span></div>
+                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $guideoffer->guide_id; ?>"><?php echo $guideoffer->guidename; ?></a></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guideoffer->guide_number; ?></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guideoffer->offer_at); ?></span></div>
                 </div>
@@ -115,8 +115,6 @@ else {
         </div>
     </div>
     </main>
-
-    <
  </div>
 <?php
 }

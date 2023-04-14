@@ -77,12 +77,12 @@
                             <div class="post-time"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->PaymentMethod ?></span></div>
                         </div>
                         <div class="req-slot2">
-                            <div class="post-details"><img src="<?php echo URLROOT; ?>/img/driver.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->driver_name ?></span></div>
+                            <div class="post-details"><img src="<?php echo URLROOT; ?>/img/driver.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->driver->Name?></span></div>
                         </div>
                         
                         <div class="post-details">Additional Details: <?php echo $taxioffer->additional_details ?> </div>
                         <div class="post-by-content">
-                            <div class="post-by">Offered By: <?php echo $taxioffer->owner->owner_name ?></div>
+                            <div class="post-by">Offered By: <a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxioffer->OwnerID; ?>"><?php echo $taxioffer->owner->owner_name ?></a></div>
                             <div class="post-by">Contact number: <?php echo $taxioffer->owner->contact_number ?> </div>
                             <div class="post-by">Offered at: <?php echo $taxioffer->post_at ?> </div>
                         </div>
@@ -107,101 +107,7 @@
             </div>
             <?php
             endforeach;
-            ?>
-
-            <div class="request">
-                 <div class="post-header">Request ID : 8695</div>
-                    <div class="post-body">
-
-                        <h5>Offer Details</h5>
-                    
-                        <div class="post-details">Vehicle Number: PE-5659  </div>
-                        <div class="post-details">Vehicle Type: Car </div>
-                        <div class="post-details">Driver Name: Karththi </div>
-                        <div class="post-date">Price per KM: <span id="request-data">2500.00</span></div>
-                        <div class="post-time">PaymentMethod: End of the trip</div>
-                        <div class="post-details">Additional Details:N/A </div>
-                        <div class="post-by-content">
-                            <div class="post-by">Offered By: Karththi</div>
-                        <div class="post-by">Contact number: 0778964983 </div>
-                        <div class="post-by">Offered at: 12/01/2023 </div>
-                        </div>
-                        
-                </div>
-            </div>
-
-            <div class="request">
-                 <div class="post-header">Request ID : 8695</div>
-                    <div class="post-body">
-
-                        <h5>Offer Details</h5>
-                    
-                        <div class="post-details">Vehicle Number: PE-5659  </div>
-                        <div class="post-details">Vehicle Type: Car </div>
-                        <div class="post-details">Driver Name: Karththi </div>
-                        <div class="post-date">Price per KM: <span id="request-data">2500.00</span></div>
-                        <div class="post-time">PaymentMethod: End of the trip</div>
-                        <div class="post-details">Additional Details:N/A </div>
-                        <div class="post-by-content">
-                            <div class="post-by">Offered By: Karththi</div>
-                        <div class="post-by">Contact number: 0778964983 </div>
-                        <div class="post-by">Offered at: 12/01/2023 </div>
-                        </div>
-                        
-                </div>
-            </div>
-
-            
-
-            
+            ?>   
         </div>
-
-        <!-- <div class="taxi_off_cont">
-            <p>Confrimed offers will be moved to the bookings section.</p>
-
-            <table class="taxi_off_cont_table">
-            <tr id="tax_off_th">
-                <th>OfferID</th>
-                <th>TravelerID</th>
-                <th>Date Added</th>
-                <th>Start</th>
-                <th>Destination</th>
-                <th>Fee</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>1001</td>
-                <td>T7589</td>
-                <td>02.10.2022</td>
-                <td>Colombo</td>
-                <td>Kandy</td>
-                <td>20000.00</td>
-                <td><button id="tax_off_tb_not">pending</button></td>
-            </tr>
-
-            <tr>
-                <td>1001</td>
-                <td>T7589</td>
-                <td>02.10.2022</td>
-                <td>Colombo</td>
-                <td>Kandy</td>
-                <td>20000.00</td>
-                <td><button id="tax_off_tb_not">pending</button></td>
-            </tr>
-
-
-            <tr>
-                <td>1001</td>
-                <td>T7589</td>
-                <td>02.10.2022</td>
-                <td>Colombo</td>
-                <td>Kandy</td>
-                <td>20000.00</td>
-                <td><button id="tax_off_tb">Accepted</button></td>
-            </tr>
-            
-            </table>
-
-        </div> -->
     </main>
  </div>

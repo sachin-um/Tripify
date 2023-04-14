@@ -64,7 +64,7 @@ else {
             <h2 class="title" >Taxi Requests</h2>
             <hr>
         </div>  
-        <?php flash('request_flash'); ?>  
+        <?php flash('taxi_request_flash'); ?>  
         <div class="request-list">
 
         <?php
