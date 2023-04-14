@@ -17,8 +17,7 @@
             if ($usertype='Traveler') {
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
-                    $guide_name=$guide->Name;
-                    $booking->guide_name=$guide_name;
+                    $booking->guide=$guide;
                 }
             }
             elseif ($usertype='Guide') {

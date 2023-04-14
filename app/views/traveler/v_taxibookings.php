@@ -68,8 +68,8 @@ else {
                         ?>
                         <tr>
                             <td data-lable="ID"><?php echo  $booking->ReservationID ?></td>
-                            <td data-lable="Name"><?php echo $booking->vehicle_number ?></td>
-                            <td data-lable="Email"><?php echo $booking->driver_name ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>"><?php echo $booking->vehicle->vehicle_number ?></a></td>
+                            <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
