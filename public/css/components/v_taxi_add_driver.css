@@ -23,3 +23,26 @@
     padding: 0%;
 
 }
+
+.taxi_DriverPro_imgbox{
+    height: 5em;
+    width: 24.5em;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    border: 1px solid #03002E;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0%);
+}
+
+
+.taxi-pic-cont{
+    margin-top: 2em;
+    text-align: center;
+}
+
+.taxi-pic-cont img{
+    border-radius: 50%;
+}

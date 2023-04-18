@@ -22,13 +22,23 @@
                 $data=[
                     'owner_name'=>trim($_POST['ownername']),
                     'NIC_no'=>trim($_POST['ownernic']),
+                    'profileImg'=>$_FILES['profileImg'],
+                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                     'company_name'=>trim($_POST['taxicomname']),
                     'contact_number'=>trim($_POST['taxiownmobile']),
                     'noOfVehicle'=>trim($_POST['taxiownnov']),
                     'address'=>$address,
                     'owner_id'=>$_SESSION['user_id'],
+
+                    'profileImg_err'=>''
                     
                 ];
+
+                if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+
+                }else{
+                    $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                }
 
                 
 
@@ -163,17 +173,26 @@
         }
 
         public function OwnerDeatails(){
-
+            $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
             if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data = [
                     'name'=>trim($_POST['name']),
                     // 'nic'=>trim($_POST['nic']),
+                    'profileImg'=>$_FILES['profileImg'],
+                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                     'company_name'=>trim($_POST['company_name']),
                     'contact_number'=>trim($_POST['contact_number']),
                     'address'=>trim($_POST['address']),
                     'OwnerID'=>$_SESSION['user_id']
                 ];
+
+
+                if(updateImage($taxiOwner->profileImg,$data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+
+                }else{
+                    $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                }
 
                 if($this->taxiModel->editOwnerInfo($data)){
                     flash('request_flash', 'Owner Deatails was Succusefully Updated..!');
@@ -184,11 +203,12 @@
 
             }else{
 
-                $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
+                
                 $data=[
                     
                     'name'=>$taxiOwner->owner_name,
                     'nic'=>$taxiOwner->nic_no,
+                    'profileImg'=>$taxiOwner->profileImg,
                     'company_name'=>$taxiOwner->company_name,
                     'contact_number'=>$taxiOwner->contact_number,
                     'address'=> $taxiOwner->address,

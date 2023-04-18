@@ -24,11 +24,21 @@
             
                 $data=[
                         'name'=>trim($_POST['name']),
+                        'profileImg'=>$_FILES['profileImg'],
+                        'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                         'age'=>trim($_POST['age']),
                         'contact_number'=>trim($_POST['contact_number']),
                         'licenseno'=>trim($_POST['licenseno']),
-                        'owner'=>$_SESSION['user_id']                 
+                        'owner'=>$_SESSION['user_id'],
+                        
+                        'profileImg_err'=>''
                     ];
+
+                    if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+
+                    }else{
+                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    }
 
 
                     if ($this->taxi_driverModel->addtaxidriver($data)) {
@@ -91,16 +101,26 @@
         }
 
         public function editdrivers($driverID){
-
+            $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
             if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data=[
                     'name'=>trim($_POST['name']),
+                    'profileImg'=>$_FILES['profileImg'],
+                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                     'age'=>trim($_POST['age']),
                     'contact_number'=>trim($_POST['contact_number']),
                     'LicenseNo'=>trim($_POST['LicenseNo']),      
-                    'TaxiDriverID'=>$driverID
+                    'TaxiDriverID'=>$driverID,
+
+                    'profileImg_err'=>''
                     ];
+
+                    if(updateImage($taxiDriver->profileImg,$data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
+
+                    }else{
+                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    }
 
                     if ($this->taxi_driverModel->editTaxiDriver($data)) {
                         flash('request_flash', 'Driver Deatails was Succusefully Updated..!');
@@ -112,15 +132,16 @@
             }
             
             else{
-                
-                $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
                 $data=[
                     'name'=>$taxiDriver->Name,
+                    'profileImg'=>$taxiDriver->profileImg,
                     'age'=>$taxiDriver->Age,
                     'contact_number'=>$taxiDriver->contact_number,
                     'licenseno'=>$taxiDriver->LicenseNo,
                     'ID'=>$taxiDriver->TaxiDriverID
                 ];
+
+            
                 $this->view('taxi/v_taxi_driver_deatails',$data);
             }
             
