@@ -74,7 +74,7 @@
         <br>
         <div class="plan-div" id="plan-div">
                 <div class="plan-table-container">
-                    <table class="plan-table">
+                    <!-- <table class="plan-table">
                         <thead>
                             <tr>
                                 <th>Hotels</th>
@@ -86,7 +86,9 @@
                         <tbody>
                             <tr>
                                 <td id="hotel-column" data-lable="ID">
-                                    <button class="plan-item-add-button" type="button">Add Stays</button>
+                                  
+                                  <button class="plan-item-add-button" type="button">Add Stays</button>  
+                                
                                 </td>
                                 <td id="taxi-column" data-lable="Name">
                                     <button class="plan-item-add-button" type="button">Add a Ride</button>
@@ -96,7 +98,75 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    <div class="plan-container">
+                        <div class="column">
+                            <div class="header">Stays</div>
+                            <?php
+                                $hotel_bookings=$data['hotel_bookings'];
+                                if (!empty($hotel_bookings)) {
+                                    foreach($hotel_booking as $hotel_bookings):
+                                        ?>
+                                            <div class="row"><?php echo $hotel_booking->hotel_id ?></div>
+                                        <?php
+                                            endforeach;
+                                        ?>
+                                            <button class="plan-item-add-another-button" type="button">Add another Hotel</button>
+                                        <?php
+                                } else {
+                                    ?>
+                                    <button class="plan-item-add-button" type="button">Add a Hotel</button>
+                                    <?php
+                                }
+                            ?>
+                                
+                                
+                            
+                        </div>
+                        <div class="column">
+                            <div class="header">Taxies</div>
+                            <?php
+                                $taxi_bookings=$data['taxi_bookings'];
+                                if (!empty($taxi_bookings)) {
+                                    foreach($taxi_bookings as $taxi_booking):
+                                        ?>
+                                            
+                                            <div class="row"><?php echo $taxi_booking->driver_name ?></div>
+                                        <?php
+                                            endforeach;
+                                        ?>
+                                            <button class="plan-item-add-another-button" type="button">Add another Guide</button>
+                                        <?php
+                                } else {
+                                    ?>
+                                    <button class="plan-item-add-button" type="button">Add a Guide</button>
+                                    <?php
+                                }
+                            ?>
+                        </div>
+                        <div class="column">
+                            <div class="header">Guides</div>
+                            <?php
+                                $guide_bookings=$data['guide_bookings'];
+                                if (!empty($guide_bookings)) {
+                                    
+                                    foreach($guide_bookings as $guide_booking):
+                                        
+                                        ?>
+                                            <div class="row"><?php echo $guide_booking->guide_name ?></div>
+                                        <?php
+                                            endforeach;
+                                        ?>
+                                            <button class="plan-item-add-another-button" type="button">Add another Guide</button>
+                                        <?php
+                                } else {
+                                    ?>
+                                    <button class="plan-item-add-button" type="button">Add a Guide</button>
+                                    <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
                 </div>
         </div>
     

@@ -352,6 +352,112 @@ ul{
    margin-top: 5%;
 }
 
+
+.sub-description .sub-sub .acc-view-btn{
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   /* margin-top: 4%; */
+   background-color: #00C895;
+   
+}
+
+.sub-description .sub-sub .acc-view-btn:hover{
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   border: 3px solid #00C895;
+   /* margin-top: 4%; */
+   background-color: white;
+   
+}
+
+
+.sub-description .sub-sub .verify-btn{
+   width: 100px;
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   margin-left: 30%;
+   background-color: #007D5C;
+   
+}
+
+.sub-description .sub-sub .verify-btn:hover{
+   width: 100px;
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   border: 3px solid #007D5C;
+   margin-left: 30%;
+   background-color: white;
+   
+}
+
+.verify-btn{
+   width: 100px;
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   margin-left: 5%;
+   background-color: #007D5C;
+   
+}
+
+.verify-btn:hover{
+   width: 100px;
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   margin-left: 5%;
+   border: 3px solid #007D5C;
+   background-color: white;
+   
+}
+
+.acc-view-btn{
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   /* margin-top: 4%; */
+   background-color: #00C895;
+   
+}
+
+.acc-view-btn:hover{
+   height: 40px;
+   text-align: center;
+   border-radius: 10px;
+   color: black;
+   padding: 10px;
+   cursor: pointer;
+   border: 3px solid #00C895;
+   /* margin-top: 4%; */
+   background-color: white;
+   
+}
+
 .hotel-profile-modified{
    width: 100%;
    display: flex;
@@ -369,3 +475,4 @@ ul{
    grid-template-columns: repeat(2, 1fr);
    grid-column-gap: 2px;
 }
+

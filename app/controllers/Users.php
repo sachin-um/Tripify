@@ -235,11 +235,7 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
-                    } 
-                    elseif ($log_user=='ServiceNotValidate') {
-                        flash('reg_flash', 'Please Wait for review of your account');
-                        redirect('Users/login');
-                    }        
+                    }         
                     //logging user
                     else{
                         $this->createUserSession($log_user);
@@ -385,7 +381,7 @@
 
                 $data=[
                     'reset_code'=>trim($_POST['reset_code']),
-                    'email'=>$_SESSION['email'],
+                    'email'=>$_SESSION['v_email'],
                     'password'=>trim($_POST['password']),
                     'confirm-password'=>trim($_POST['confirm-password']),
                     
@@ -443,7 +439,6 @@
                 }
                 else {
                     $this->view('users/v_reset_password',$data);
-                    echo "HI";
                 }
 
 
@@ -474,6 +469,7 @@
             $_SESSION['user_profile_image']=$user->profileimg;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
+            $_SESSION['admin_type']='';
             
             
             // $this->view('v_home',$data);
@@ -502,14 +498,26 @@
 
 
         public function logout(){
-            unset($_SESSION['user_id']);
-            unset($_SESSION['user_email']);
-            unset($_SESSION['user_profile_image']);
+            if ($this->userModel->logout()) {
+                unset($_SESSION['user_id']);
+                unset($_SESSION['user_email']);
+                unset($_SESSION['user_profile_image']);
+                unset( $_SESSION['user_email']);
+                if ($_SESSION['user_type']=='Admin') {
+                    unset($_SESSION['admin_type']);
+                }
+                unset($_SESSION['user_type']);
 
 
-            session_destroy();
+                session_destroy();
 
-            redirect('Pages/index');
+                redirect('Pages/index');
+            }
+            //error
+            else{
+                die('Something went wrong');
+            }
+            
         }
 
 

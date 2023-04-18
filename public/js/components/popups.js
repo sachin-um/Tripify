@@ -18,7 +18,7 @@
                 $('#popup-content').append('<p>Selecet your Trip</p>');
   
                 $.each(data, function(index, item) {
-                    $('#popup-content').append('<a href="'+baseurl+'/Trips/addToTripPlan/'+row.cells[0].textContent+'/'+type+'/'+item.TourPlanID+'"><button class="add-to-plan-btn" type="button">'+item.trip_name+'</button></a>');
+                    $('#popup-content').append('<a href="'+baseurl+'/Trips/addToTripPlan/'+row.cells[0].textContent+'/'+type+'/'+item.TourPlanID+'"><button class="add-to-plan-btn" type="button">'+item.trip_name+'<br>From '+item.start_date+' To '+item.end_date+'</button></a>');
                 });
               
               // display the popup
@@ -32,6 +32,23 @@
         });
 
         document.addEventListener('click', function(event) {
+        // check if the click event target is outside of the popup window
+        if (!popupContent.contains(event.target)) {
+            // remove the popup window from the DOM
+            popup.style.display = "none";
+            $('#popup-content').empty();
+        }
+        },2000);
+    }
+
+    function showChat() {
+      const popup = document.getElementById("popup");
+      const popupContent = document.getElementById("chat-content");
+
+      popup.style.display = "block";
+
+
+      document.addEventListener('click', function(event) {
         // check if the click event target is outside of the popup window
         if (!popupContent.contains(event.target)) {
             // remove the popup window from the DOM

@@ -19,40 +19,57 @@
         }
 
 
-        public function profile()
+        public function profile($id=null,$type=null)
         {
-            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
-            if ($_SESSION['user_type']=='Traveler') {
-                $travelerDetails=$this->userModel->getTravelerDetails($_SESSION['user_id']);
-                $data->travelerDetails=$travelerDetails;
-                $this->view('traveler/v_traveler_dashboard',$data);
+            if (empty($_SESSION['user_id'])) {
+                flash('reg_flash', 'You need to have logged in first...');
+                redirect('Users/login');
             }
-            else if ($_SESSION['user_type']=='Taxi'){
-                $taxidetails=$this->userModel->getTaxiById($_SESSION['user_id']);
-                $data->details=$taxidetails;
-                $this->view('taxi/v_taxi_dashboard',$data);
-            }
-            else if ($_SESSION['user_type']=='Guide') {
-                $guide=$this->guideModel->getGuideById($_SESSION['user_id']);
-                $languages=$this->guideModel->getGuideLanguageById($_SESSION['user_id']);
-                $data->guideDetails=$guide;
-                $data->guideLanguages=$languages;
-                $this->view('guide/v_dash_profile',$data);
-            }
-            else if ($_SESSION['user_type']=='Hotel') {
-                $hotelvar=$this->hotelModel->findUserDetails();
-                $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
-                $data=[
-                    'hoteldetails'=>$hotelvar,
-                    'hotelaccountdetails' => $hotelaccountvar
-                ];
-                $this->view('hotels/v_dash_profile',$data);
-            }
-            else if ($_SESSION['user_type']=='Admin') {
-                $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
-                $data->details=$admindetails;
-                $_SESSION['admin_type']=$data->details->AssignedArea;
-                $this->view('admin/v_admin_dashboard',$data);
+            else {
+                $user_id='';
+                $user_type='';
+                if ($id!=null) {
+                    $user_id=$id;
+                    $_SESSION['service_id']=$id;
+                } else {
+                    $user_id=$_SESSION['user_id'];
+                    
+                }
+                if ($type!=null) {
+                    $user_type=$type;
+                } else {
+                    $user_type=$_SESSION['user_type'];
+                }
+                
+                $data=$this->userModel->getUserDetails($user_id);
+                if ($user_type=='Traveler') {
+                    $travelerDetails=$this->userModel->getTravelerDetails($user_id);
+                    $data->travelerDetails=$travelerDetails;
+                    $this->view('traveler/v_traveler_dashboard',$data);
+                }
+                else if ($user_type=='Taxi') {
+                    $taxidetails=$this->userModel->getTaxiById($user_id);
+                    $data->details=$taxidetails;
+                    $this->view('taxi/v_taxi_dashboard',$data);
+                }
+                else if ($user_type=='Guide') {
+                    $guide=$this->guideModel->getGuideById($user_id);
+                    $languages=$this->guideModel->getGuideLanguageById($user_id);
+                    $data->guideDetails=$guide;
+                    $data->guideLanguages=$languages;
+                    $this->view('guide/v_dash_profile',$data);
+                }
+                else if ($user_type=='Hotel') {
+                    $hotelvar=$this->hotelModel->findUserDetails();
+                    $data->hoteldetails=$hotelvar;
+                    $this->view('hotels/v_dash_profile',$data);
+                }
+                else if ($user_type=='Admin') {
+                    $admindetails=$this->userModel->getAdminDetails($user_id);
+                    $data->details=$admindetails;
+                    $_SESSION['admin_type']=$data->details->AssignedArea;
+                    $this->view('admin/v_admin_dashboard',$data);
+                }
             }
         }
 

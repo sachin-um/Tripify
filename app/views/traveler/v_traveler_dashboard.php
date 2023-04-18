@@ -49,7 +49,7 @@ else {
                 <br>
                 <div class="drag-area">
                     <div class="icon">
-                        <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $_SESSION['user_profile_image']; ?>" alt="picture">
+                        <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $data->profileimg ?>" alt="picture">
                     </div>
                 </div>
                 <br>
@@ -404,14 +404,32 @@ else {
                         
                 </div>
                 <br>
-                <div style="display: flex; justify-content: space-around;">
-                    <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
-                    <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
-                    <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>
-                        
-                </div>
+                <?php 
+                    if ($data->UserID== $_SESSION['user_id']) {
+                        ?>
+                            <div style="display: flex; justify-content: space-around;">
+                                <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                                <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
+                                <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>       
+                            </div>
+                        <?php
+                    }
+                    else {
+                        ?>
+                            <div style="display: flex; justify-content: space-around;">
+                                <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                            </div>
+                        <?php
+                    }
+                ?>   
             </div>
             </form>
+            <?php 
+                    if ($data->UserID!= $_SESSION['user_id']) {
+                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                    }  
+                ?>
+            
         </div>
         <?php flash('img_flash'); ?>
     </main>
@@ -419,7 +437,8 @@ else {
  </div>
  
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
-
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
+ 
 
  <script>
     var editbtn=document.getElementById("edit-btn");

@@ -7,8 +7,23 @@
 
         }
 
+        public function getdriver($driverid)
+        {
+            
+            $driver=$this->taxi_driverModel->getDriverByID($driverid);
+
+            header('Content-Type: application/json');
+            echo json_encode($driver);
+        }
+
         public function viewdrivers(){
-            $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
+            $user_id='';
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                $user_id=$_SESSION['service_id'];
+            } else {
+                $user_id=$_SESSION['user_id'];
+            }
+            $alldrivers=$this->taxi_driverModel->viewall($user_id);
             // $ve=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'drivers'=> $alldrivers
@@ -146,6 +161,25 @@
             }
             
             
+        }
+
+        public function viewDriversByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $drivers=$this->taxi_driverModel->viewall($id);
+                $data=[
+                    'drivers'=> $drivers
+                ];
+                $this->view('admin/v_admin_taxi_drivers',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+
+        public function getDriverById($driverid)
+        {
+            $driver=$this->taxi_driverModel->getDriverByID($driverid);
         }
 
         

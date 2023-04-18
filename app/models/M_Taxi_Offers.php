@@ -42,9 +42,10 @@
             $offers=$this->db->resultSet();
             foreach($offers as $offer){
                 $vehicle=$this->getVehicleById($offer->VehicleID);
+                $driver=$this->getDriverDetails($vehicle->driverID);
                 $owner=$this->getUserDetails($offer->OwnerID);
                 $offer->vehicle=$vehicle;
-                // $driver=$this->getDriverDetails($offer->vehicle->);
+                $offer->driver=$driver;
                 $offer->owner=$owner;
             }
             return $offers;
@@ -59,13 +60,13 @@
             return $row;
         }
 
-        // public function getDriverDetails($userID)
-        // {
-        //     $this->db->query('SELECT * FROM taxi_drivers WHERE TaxiDriverID= :userid');
-        //     $this->db->bind(':userid',$userID);
-        //     $row=$this->db->single();
-        //     return $row;
-        // }
+        public function getDriverDetails($userID)
+        {
+            $this->db->query('SELECT * FROM taxi_drivers WHERE TaxiDriverID= :userid');
+            $this->db->bind(':userid',$userID);
+            $row=$this->db->single();
+            return $row;
+        }
 
 
         public function getVehicleById($id){

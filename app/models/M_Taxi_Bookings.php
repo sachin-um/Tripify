@@ -26,10 +26,7 @@
             $filteredbookings=filterBookings($bookings,$usertype,$userid);
             foreach ($filteredbookings as $booking) {
                 $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
-                $number=$vehicle->vehicle_number;
-                $name=$vehicle->driver_name;
-                $booking->driver_name=$name;
-                $booking->vehicle_number=$number;
+                $booking->vehicle=$vehicle;
             }
             return $filteredbookings;
         }
@@ -63,7 +60,7 @@
 
 
         public function getVehicleById($id){
-            $this->db->query('SELECT * FROM vehicles WHERE VehicleID=:id');
+            $this->db->query('SELECT vehicles.*,taxi_drivers.Name FROM vehicles JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID WHERE vehicles.VehicleID=:id');
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
@@ -76,7 +73,11 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $vehicle=$this->getVehicleById($row->Vehicles_VehicleID);
+            $number=$vehicle->vehicle_number;
+            $name=$vehicle->driver_name;
+            $row->driver_name=$name;
+            $row->vehicle_number=$number;
             return $row;
         }
 

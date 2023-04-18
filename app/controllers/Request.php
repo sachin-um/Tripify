@@ -72,7 +72,7 @@
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->addguiderequest($data)) {
-                        flash('reg_flash', 'Guide Request is Succusefully added..!');
+                        flash('guide_request_flash', 'Guide Request is Succusefully added..!');
                         redirect('Request/GuideRequest');
                     }
                     else{
@@ -156,7 +156,7 @@
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->editguiderequest($data)) {
-                        flash('request_flash', 'Guide Request is Succusefully Updated..!');
+                        flash('guide_request_flash', 'Guide Request is Succusefully Updated..!');
                         redirect('Request/GuideRequest');
                     }
                     else{
@@ -210,7 +210,7 @@
             }
             else {
                 if ($this->guiderequestModel->deleteguiderequest($request_id)) {
-                    flash('request_flash', 'Guide Request is Succusefully Deleted');
+                    flash('guide_request_flash', 'Guide Request is Succusefully Deleted');
                     redirect('Request/TaxiRequest');
                 }
                 else {
@@ -302,7 +302,7 @@
                     
                     //Add a Taxi Request
                     if ($this->taxirequestModel->addtaxirequest($data)) {
-                        flash('reg_flash', 'Taxi Request is Succusefully added..!');
+                        flash('taxi_request_flash', 'Taxi Request is Succusefully added..!');
                         redirect('Request/TaxiRequest');
                     }
                     else{
@@ -420,7 +420,7 @@
                     
                     //Add a Taxi Request
                     if ($this->taxirequestModel->edittaxirequest($data)) {
-                        flash('request_flash', 'Taxi Request is Succusefully Updated..!');
+                        flash('taxi_request_flash', 'Taxi Request is Succusefully Updated..!');
                         redirect('Request/TaxiRequest');
                     }
                     else{
@@ -480,7 +480,7 @@
             }
             else {
                 if ($this->taxirequestModel->deletetaxirequest($request_id)) {
-                    flash('request_flash', 'Taxi Request is Succusefully Deleted');
+                    flash('taxi_request_flash', 'Taxi Request is Succusefully Deleted');
                     redirect('Request/TaxiRequest');
                 }
                 else {

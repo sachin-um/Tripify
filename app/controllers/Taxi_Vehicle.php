@@ -12,15 +12,44 @@
 
         }
 
+        public function getvehicle($vehicleid)
+        {
+            $vehicle=$this->taxi_vehicleModel->getVehicleByID($vehicleid);
+
+            header('Content-Type: application/json');
+            echo json_encode($vehicle);
+        }
+
 
         public function viewvehicles(){
            
-            $allvehicles=$this->taxi_vehicleModel->viewall($_SESSION['user_id']);
+            $user_id='';
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                $user_id=$_SESSION['service_id'];
+            } else {
+                $user_id=$_SESSION['user_id'];
+            }
+            
+            $allvehicles=$this->taxi_vehicleModel->viewall($user_id);
 
             $data=[
                 'vehicles'=> $allvehicles
             ];
             $this->view('taxi/v_taxi_vehicles',$data);
+        }
+
+        public function viewVehicleByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $vehicles=$this->taxi_vehicleModel->viewall($id);
+                $data=[
+                    'vehicles'=> $vehicles
+                ];
+                $this->view('admin/v_admin_taxi_vehicles',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
         }
 
         public function addavehicle(){

@@ -42,3 +42,28 @@
     margin: auto;
     padding-left: 10px;
 }
+
+.profile-popup-content .acc-view-btn{
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    /* margin-top: 4%; */
+    background-color: #00C895;
+    
+}
+
+.profile-popup-content .acc-view-btn:hover{
+    height: 40px;
+    text-align: center;
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    border: 3px solid #00C895;
+    /* margin-top: 4%; */
+    background-color: white;
+    
+}
