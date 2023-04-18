@@ -13,8 +13,20 @@
 
             <div class="addtaxiownerregform">
 
-                <form action="<?php echo URLROOT; ?>/Taxies/register" class="addtaxiownerregform" method="POST">
+                <form action="<?php echo URLROOT; ?>/Taxies/register" class="addtaxiownerregform" method="POST" enctype="multipart/form-data">
+                    <div class="drag-area">
+                        <div class="taxi-pic-cont">
+                            <img src="<?php echo URLROOT; ?>/img/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" id="profile-img-placehoder"  alt="Driver image" >
+                        </div>
 
+                        <div class="taxi_DriverPro_imgbox"> 
+                            <div class="img-description">Upload Taxi Owner Photo</div>
+                            <div class="img-upload" style="text-align: center;">
+                                <input type="file" id="profile-imgupload" name="profileImg" placeholder="" required accept="image/*" style="display:none;" >
+                                Browse
+                            </div>  
+                        </div>
+                    </div>
                     <input type="text" id="taxicomname" name="ownername" placeholder="Owner Name" required><br>
                     <input type="text" id="taxicomname" name="ownernic" placeholder="NIC Number" required><br>
                     <input type="text" id="taxicomname" name="taxicomname" placeholder="Company Name If Exist" ><br>
@@ -33,7 +45,7 @@
                     <input type="text" id="com_add_dis"  name="com_add_dis" value="Company Address" disabled>
                     <input type="text" id="taxiownsadd" name="taxiownsadd" placeholder="Street Address" required><br>
 
-                    <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" required><br>
+                    <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" ><br>
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
                     <input type="submit" id="taxi-register-but" name="taxiowncreate_but" value="Register">
@@ -54,6 +66,7 @@
     </div>  
 </div>   
 
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 

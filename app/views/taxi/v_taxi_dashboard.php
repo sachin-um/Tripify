@@ -42,28 +42,28 @@ else{
         </div> 
         <br>
         <div class="taxi-first-container">
-            <div class="profile-image" style="width: 450px; text-align: center;">
+            <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
                 <br>
-                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                
+                <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+               
                 <br>
-                <br>
-                <!-- <button class="profile-btn">Edit</button> -->
-            </div>
-    
-            <div class="profile-description">
-                 <br>
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Name : </h3>
-                    </div>
+                <div class="taxi-own-name">
                     
                     <div class="sub-sub">
-                        <h3><?php echo $data->details->owner_name;  ?></h3>
+                        <h1 ><?php echo $data->details->owner_name;  ?></h1>
                     </div>
                             
                 </div>
 
                 <br>
+                <br>
+                
+            </div>
+    
+            <div class="profile-description">
+                 <br>
+                
 
 
                 <div class="sub-description" id="taxi-hide-cont">

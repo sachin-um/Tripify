@@ -24,9 +24,10 @@ class M_Taxi{
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO taxiowner(OwnerID,NoOfVehicles,owner_name,nic_no,company_name,contact_number,address) VALUES(:owner_id,:noOfVehicle,:owner_name,:NIC_no,:company_name,:contact_number,:address)');
+        $this->db->query('INSERT INTO taxiowner(OwnerID,profileImg,NoOfVehicles,owner_name,nic_no,company_name,contact_number,address) VALUES(:owner_id,:profileImg,:noOfVehicle,:owner_name,:NIC_no,:company_name,:contact_number,:address)');
         $this->db->bind(':owner_name',$data['owner_name']);
         $this->db->bind(':NIC_no',$data['NIC_no']);
+        $this->db->bind(':profileImg',$data['profile_image_name']);
         $this->db->bind(':company_name',$data['company_name']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':address',$data['address']);
@@ -100,9 +101,10 @@ class M_Taxi{
     }
 
     public function editOwnerInfo($data){
-        $this->db->query('UPDATE taxiowner SET owner_name=:owner_name, company_name=:company_name, contact_number=:contact_number, address=:address WHERE OwnerID=:OwnerID');
+        $this->db->query('UPDATE taxiowner SET owner_name=:owner_name,profileImg=:profileImg, company_name=:company_name, contact_number=:contact_number, address=:address WHERE OwnerID=:OwnerID');
         $this->db->bind(':owner_name',$data['name']);
         // $this->db->bind('nic_no',$data['nic']);
+        $this->db->bind(':profileImg',$data['profile_image_name']);
         $this->db->bind(':company_name',$data['company_name']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':address',$data['address']);

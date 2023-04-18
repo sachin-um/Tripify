@@ -73,8 +73,15 @@ class M_Taxi_Vehicle{
         }
 
         public function editTaxiVehicle($data){
+            // $vehicle_image_names = $data['vehicle_image_names'];
+
+            // // convert the array of image names to a comma-separated string
+            // $Vehicle_Images_str = implode(",", $vehicle_image_names);
+        
+
             $this->db->query('UPDATE vehicles SET driverID=:driverID, area=:area,no_of_seats=:no_of_seats,price_per_km=:price_per_km WHERE VehicleID=:VehicleID');
             $this->db->bind(':driverID',$data['driverID']);
+            // $this->db->bind(':Vehicle_Images',$Vehicle_Images_str);
             $this->db->bind(':area',$data['area']);
             $this->db->bind(':no_of_seats',$data['no_of_seats']);
             $this->db->bind(':price_per_km',$data['price_per_km']);

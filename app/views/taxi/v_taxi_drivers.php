@@ -38,9 +38,10 @@
                     foreach($alldrivers as $driver):
                 ?>
                     <div class="taxi_view_v_dash">
-            
-                    <img src="<?php echo URLROOT; ?>/img/Group_profile.png" id="taxi_dri_pro_pic"  alt="Driver image" style="width: 250px;">
-            
+                        <div class="taxi-view-driver-img">
+                            <img src="<?php echo URLROOT; ?>/img/driver_profileImgs/<?php echo $driver->profileImg?>" id="profile-img-placehoder"  alt="Driver image" >
+                        </div>
+                    
                     <article class="taxi_view_v_art" >
                         <div class="tax_dri_art">
                             <p id="taxi_view_d_p">Name :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->Name  ?></p>

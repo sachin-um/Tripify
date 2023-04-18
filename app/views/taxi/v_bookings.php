@@ -103,18 +103,19 @@
                     ?>
                         <p class="home-title-2" >Book Now</p>
                         <hr>
-                        <form action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
+                        <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
                             <div class="hotel-reg-form">
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="booking-date" name="s_date" required>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date"  required>
+                                        <span id="avail"></span>
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Time<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="time" id="name"  name="s_time" required>
+                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" required>
                                     </div>
 
                                    
@@ -123,21 +124,33 @@
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="pickupL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
                                     </div>
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Destination Location <sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="line1" name="dropL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
                                     </div>
                                 </div>
+                                <span id="availTime"></span>
+                            
                             </div><br>
 
                             <div class="hotel-reg-form-div-2">
-                                    <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Get Price Details</button>
+                                    <button id="taxi-get-price-but" class="all-purpose-btn" type="submit">Get Price Details</button>
                             </div>
                         </form>
                         <br>
+                        <script type="text/JavaScript">
+                            // var bookingTime;
+                            var URLROOT="<?php echo URLROOT;?>";
+                            // document.getElementById("bookingTime").addEventListener("change", function() {
+                            //     bookingTime = this.value;
+                            // });
+                            
+                        </script>
+                       
+                        
                     <?php
                         }
                     ?>
@@ -190,7 +203,7 @@
 
 
                             <div class="hotel-reg-form-div-2">
-                                <button id="confirm-booking-btn" class="all-purpose-btn" type="submit">Book Now</button>
+                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="all-purpose-btn" type="submit"  >Book Now</button>
                             </div>
                             <br>
                             <div class="hotel-reg-form-div-2">
@@ -243,4 +256,10 @@
     slides[slidePosition-1].style.display = "block";
     circles[slidePosition-1].className += " enable";
     } 
+
+
+    const vehicleID = <?php echo json_encode($data['details']->VehicleID); ?>;
+
 </script>
+
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/datevalidation.js"></script>

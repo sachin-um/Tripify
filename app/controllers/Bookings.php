@@ -1,4 +1,6 @@
 <?php
+    
+
     class Bookings extends Controller{
         
         public function __construct(){
@@ -184,11 +186,11 @@
         public function CalculatePrice($pickupL,$dropL){
            
             // Set the origin and destination addresses
-            // $origin = $pickupL;
-            // $destination =$dropL;
+            $origin = $pickupL;
+            $destination =$dropL;
 
-            $origin = 'kandy,Srilanka';
-            $destination ='Colombo,Srilanka';
+            // $origin = 'kandy,Srilanka';
+            // $destination ='Colombo,Srilanka';
 
             // Create the URL for the Google Maps Distance Matrix API
             $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
@@ -204,10 +206,61 @@
 
         }
 
+        public function CalculateExtimateTime($pickupL,$dropL){
+           
+      
 
+            $origin = $pickupL;
+            $destination =$dropL;
+            
+            $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $response = curl_exec($ch);
+            curl_close($ch);
+            
+            $data = json_decode($response);
+            $duration = $data->rows[0]->elements[0]->duration->text;
+            
+            return $duration;
+            
+
+        }
+
+        public function checkTimeAvailability(){
+            $bookingDate = $_POST['bookingDate'];
+            $bookingTime = $_POST['bookingTime'];
+            $pickL = $_POST['pickL'];
+            $dropL = $_POST['dropL'];
+            $vehicleID = $_POST['vehicleID'];
+            
+            $est = $this->CalculateExtimateTime($pickL,$dropL);
+            $driverAvailable = $this->taxiBookingModel->checkDriverAvailable($vehicleID,$bookingDate,$bookingTime,$est);
+            echo json_encode($driverAvailable);
+           
+
+
+        }
+
+        public function check(){
+            $bookingDate = $_POST['bookingDate'];
+            $bookingTime = $_POST['bookingTime'];
+            $vehicleID = $_POST['vehicleID'];
+            $pickL = $_POST['pickL'];
+            $dropL = $_POST['dropL'];
+            
+
+            $est = $this->CalculateExtimateTime($pickL,$dropL);
+            $bookingAvailable = $this->taxiBookingModel->checkBookingDate($vehicleID,$bookingDate,$bookingTime,$est);
+            
+            echo json_encode($bookingAvailable);
+            
+        }
 
         public function TaxiBookingPage($vehicleID,$ownerID){
-
+         
             $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
             $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
@@ -224,31 +277,31 @@
                 $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $pickupL =trim($_POST['pickupL']);
                 $dropL =  trim($_POST['dropL']);
+                $bookingDate = $_POST['s_date'];
+                $bookingTime = $_POST['s_time'];
+                $exTime=$this->CalculateExtimateTime($pickupL,$dropL); //extimate time
 
-                $origin = $pickupL;
-                $destination =$dropL;
-
-                // $distance=CalculatePrice( $origin, $destination);
-
-                // Create the URL for the Google Maps Distance Matrix API
-                $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
-
-                // Make a GET request to the API and decode the JSON response
-                $response = json_decode(file_get_contents($url), true);
-
-                // Get the distance in kilometers from the response
-                $distance = $response['rows'][0]['elements'][0]['distance']['value'] / 1000;
+                $distance=$this->CalculatePrice( $pickupL, $dropL);
 
                 $cost = $distance*$details->price_per_km;
                 $tax = ($cost*3)/100;
                 $total = $cost+$tax;
 
+                $bookingdatetime = date('Y-m-d H:i:s', strtotime("$bookingDate $bookingTime"));
+        
+                $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$exTime"));
+                $end_date = date('Y-m-d', strtotime($est_datetime));
+                $end_time = date('H:i:s', strtotime($est_datetime));
+
                 $data=[
                     's_date'=>trim($_POST['s_date']),
                     's_time'=>trim($_POST['s_time']),
+                    'e_date'=>$end_date,
+                    'e_time'=>$end_time,
                     'pickupL'=>$pickupL,
                     'dropL'=>$dropL,
                     'details'=>$details,
+                    'extime'=>$exTime,
                     'com_name'=>$com_name,
                     'owner'=>$owner,
                     'distance'=>$distance,
@@ -257,6 +310,8 @@
                     'total' => $total     
                     ];
                     
+                    $_SESSION['booking_data'] = $data;
+
                     $this->view('taxi/v_bookings',$data);
 
             }else{
@@ -278,8 +333,36 @@
 
         }
 
-        
-       
+        public function TaxiBookingdetails($vehicleID,$userId){
+
+            $duration = $_SESSION['booking_data']['extime'];
+            $datetime = new DateTime('0000-01-01 ' . $duration);
+            $formattedTime = $datetime->format('H:i:s');
+
+
+            $data=[
+                's_date'=>$_SESSION['booking_data']['s_date'],
+                's_time'=>$_SESSION['booking_data']['s_time'],
+                'e_date'=>$_SESSION['booking_data']['e_date'],
+                'e_time'=>$_SESSION['booking_data']['e_time'],
+                'pickupL'=>$_SESSION['booking_data']['pickupL'],
+                'dropL'=>$_SESSION['booking_data']['dropL'],
+                'extime'=> $formattedTime ,
+                'distance'=>$_SESSION['booking_data']['distance'],
+                'travelerID'=>$userId,
+                'vehicleID'=>$vehicleID,
+                'total' =>$_SESSION['booking_data']['total'],
+                ];
+
+                if ($this->taxiBookingModel->insertTaxiBooking($data)) {
+                    flash('request_flash', 'Your Vehicle Booked Sucessfully..!');
+                    redirect('Bookings/TaxiBookings');
+                }
+                else{
+                    die('Something went wrong');
+                }
+                unset($_SESSION['booking_data']);
+        }
 
         
 

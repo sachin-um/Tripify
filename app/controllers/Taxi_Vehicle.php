@@ -196,22 +196,47 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
+                $uploaded_files = $_FILES['vehicleImgs'];
+                var_dump($_FILES['vehicleImgs']);
+                // $num_files = count($uploaded_files['name']);
             
-                $data=[
-                    'driverID'=>trim($_POST['driver']),
-                    'area'=>trim($_POST['area']),
-                    'no_of_seats'=>trim($_POST['noOfSeats']),
-                    'price_per_km'=>trim($_POST['price_per_km']),      
-                    'VehicleID'=>$vehicle_id
-                    ];
+                // $vehicle_image_names = array();
+                // // $vehicle_old_image_names = array();
+            
+                // for ($i=0; $i<$num_files; $i++) {
+                //     $name = time().'_'.$uploaded_files['name'][$i];
+                //     $vehicle_image_names[] = $name;
+                //     echo $name;
+                // }
 
-                    if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
-                        flash('request_flash', 'Vehicle is Succusefully Updated..!');
-                        redirect('Taxi_Vehicle/viewvehicles');
-                    }
-                    else{
-                        die('Something went wrong');
-                    }
+                // $data=[
+                //     'driverID'=>trim($_POST['driver']),
+                //     // 'vehicle_image_names'=>$vehicle_image_names,
+                //     'area'=>trim($_POST['area']),
+                //     'no_of_seats'=>trim($_POST['noOfSeats']),
+                //     'price_per_km'=>trim($_POST['price_per_km']),      
+                //     'VehicleID'=>$vehicle_id,
+
+                //     'vehicle_imgs_err'=>''
+                //     ];
+
+                // if(uploadImageGallary($vehicle_image_names, $uploaded_files['name'], '/img/vehicle_images/')) {
+                        
+                // }else{
+                //     $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
+                //     // handle error and return
+                // }
+
+            
+                
+
+                //     if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                //         flash('request_flash', 'Vehicle is Succusefully Updated..!');
+                //         redirect('Taxi_Vehicle/viewvehicles');
+                //     }
+                //     else{
+                //         die('Something went wrong');
+                //     }
                 
 
 
@@ -251,12 +276,15 @@
             
             $allvehicles=$this->taxi_vehicleModel->getVehicleByOwnerID($id);
 
-            $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
+            $taxiOwner=$this->taxiModel->getOwnerByID($id);
 
-            if(isset($taxiOwner->company_name)){
-                $com_name = $taxiOwner->company_name;
-            }else{
-                $com_name = $taxiOwner->owner_name.'CABS';
+            //  var_dump($taxiOwner);
+
+             if ($taxiOwner) {
+                // Check if the 'company_name' property exists before accessing it
+                $com_name = isset($taxiOwner->company_name) ? $taxiOwner->company_name : $taxiOwner->owner_name.'CABS';
+            } else {
+                $com_name = '';
             }
 
             $data=[
