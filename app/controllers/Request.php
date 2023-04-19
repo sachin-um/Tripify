@@ -490,6 +490,13 @@
 
         }
 
+        public function getTaxiRequest($request_id)
+        {
+            $request=$this->taxirequestModel->getTaxiRequestById($request_id);
+            header('Content-Type: application/json');
+            echo json_encode($request);
+        }
+
         
         
     }

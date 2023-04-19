@@ -428,7 +428,7 @@ else {
                     if ($data->UserID!= $_SESSION['user_id']) {
                          require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                     }  
-                ?>
+            ?>
             
         </div>
         <?php flash('img_flash'); ?>

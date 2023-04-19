@@ -57,4 +57,73 @@
         }
         },2000);
     }
+
+
+    function showRequest(id,baseurl) {
+      // get the table row
+            
+            const requestid = id;
+            
+            
+            // popupContent.innerHTML = content;
+            const popup = document.getElementById("popup");
+            const requestcontent = document.getElementById("request-content");
+            $.ajax({
+                url: baseurl+"/Request/getTaxiRequest/"+requestid,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                      $('#request-content').append('<p>Taxi Request</p>');
+                      $('#request-content').append(`
+                      <form>
+                        <label class="abc">Vehicle Type</label><br>
+                        <input type="text" id="vehicle_type" name="vehicle_type" placeholder="`+data.vehicle_type+`" disabled>
+                        <label class="abc">From</label><br>
+                        <input type="text" id="pickuplocation" name="pickuplocation" placeholder="`+data.pickup_location+`" disabled>
+                        <input type="hidden" name="p-latitude" id="p-latitude" value="">
+                        <input type="hidden" name="p-longitude" id="p-longitude" value="">
+                        <label class="abc">To</label><br>
+                        <input type="text" id="destination" name="destination" placeholder="`+data.destination+`"  disabled>
+                        <input type="hidden" name="d-latitude" id="d-latitude" value="">
+                        <input type="hidden" name="d-longitude" id="d-longitude" value="">
+                        <div id="map-container">
+                            <div id="map"></div>
+                        </div>
+                        <label class="abc">Request Date</label><br>
+                        <input type="text" id="date" name="date" placeholder="`+data.date+`" disabled>
+                        <label class="abc">Request Time</label><br>
+                        <input type="text" id="time" name="time" placeholder="`+data.time+`"  disabled>
+                        <label class="abc">No: of Passengers</label><br>
+                        <input type="text" id="passengers" name="passengers" placeholder="`+data.passengers+`" disabled>
+                        <label class="abc">Additional Details</label><br>
+                        <textarea name="description" id="description" cols="52" rows="10" placeholder="`+data.additional_details+`" disabled></textarea>
+                        <input type="hidden" name="travelerid" id="travelerid" value="<?php echo $_SESSION['user_id'];?>">
+                    </form>                      
+              </div>
+              <br>
+              <button id="sign-up-btn-1" type="submit" style="margin:auto;" onclick="document.getElementById('popup').style.display = 'none';">Close</button> 
+              `);  
+                  // display the popup
+                  
+                  popup.style.display = "block";
+                  initMap(data);
+                  
+                },
+                error: function() {
+                  alert("Error fetching data from server.");
+                }
+                
+            });
+    
+            document.addEventListener('click', function(event) {
+            // check if the click event target is outside of the popup window
+            if (!requestcontent.contains(event.target)) {
+                // remove the popup window from the DOM
+                popup.style.display = "none";
+                $('#request-content').empty();
+            }
+            },2000);
+  
+            
+  }
         
