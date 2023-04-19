@@ -13,8 +13,9 @@
         //add taxi request
 
         public function addtaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,Caption) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:caption)');
-            $this->db->bind(':caption',$data['caption']);
+            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,passengers,vehicle_type) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:passengers,:vehicle_type)');
+            $this->db->bind(':vehicle_type',$data['vehicle_type']);
+            $this->db->bind(':passengers',$data['passengers']);
             $this->db->bind(':date',$data['date']);
             $this->db->bind(':time',$data['time']);
             $this->db->bind(':description',$data['description']);
