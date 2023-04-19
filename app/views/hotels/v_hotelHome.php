@@ -6,29 +6,31 @@
         <p class="home-title-2" >Find Accomodation Anywhere in Sri Lanka!</p>
         
 
-        <form action="" method="post">
+        <form action="<?php echo URLROOT?>/Hotels/searchForHotels" method="post">
             <div class="nav-main">
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Where are you going?</p>
-                    <input class="hotel-labels-1" type="text" id="place" name="place" placeholder="Your Destination"
-                    value='<?php echo $data['destination']; ?>'>
+                    <input class="hotel-labels-1" type="text" name="place" placeholder="Your Destination">
                 </div>
-
+                &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
-                    <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
+                    <input class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date">
                 </div>
-
+                &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
-                    <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
+                    <input class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date">
+                </div>
+                &nbsp;
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">No of People</p> 
+                    <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
                 </div>
             </div>
 
             <div class="home-div-3">
-                <a href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn" type="submit">Go</button></a> 
+                <button class="all-purpose-btn" type="submit">Go</button>
             </div>
             
         </form>

@@ -19,7 +19,7 @@ else {
 
 <main class="right-side-content">
     <br>
-    <p class="home-title-2">The Rooms You Add To Your Hotel Can Be Viewed Here</p>    
+    <p class="home-title-2">The Rooms You Add To Your Property Can Be Viewed Here</p>    
 
     <div class="nav-grid" style="margin-top: 3%;">
                 
@@ -39,8 +39,8 @@ else {
                 <div class="hotel-ad-card-desc">
                     <label id="room-type" for="hotel-name"><h2><?php echo $roomType->RoomTypeName; ?></h2></label>
                     
-                    <label id="display-hotel-address" for="hotel-address"><?php echo $roomType->RoomSize." "; ?>Square Feet</label><br>
-                    <label id="display-hotel-address" for="hotel-address"><?php echo $roomType->NoofBeds." "; ?>Beds</label><br>
+                    <label id="display-hotel-address"><?php echo $roomType->RoomSize." "; ?>Square Feet</label><br>
+                    <label id="display-hotel-address"><?php echo $roomType->NoofGuests." "; ?>People</label><br>
                     <label id="room-price" for="hotel-address"><b><?php echo $roomType->PricePerNight." "; ?>LKR per night</b></label><br>
                     <label id="room-remain" for="hotel-address"><?php echo $roomType->no_of_rooms." "; ?>Bedrooms left</label>
                 </div>
@@ -56,7 +56,7 @@ else {
     </div>
 
     <div class="hotel-room-button-part" style="margin-top: 3%; margin-bottom: 5%; text-align: center;">
-        <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add More Rooms</button>
+        <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Rooms</button>
     </div>
         
     

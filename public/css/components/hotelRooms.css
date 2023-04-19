@@ -25,5 +25,33 @@
     background-color: lightgray;
     color: #03002E;
 }
+
+#add-room-enclosed{
+    width: 80%;
+    background-color: rgba(163,44,196,.2);
+    margin: auto;
+    text-align: center;
+    margin-bottom: 3%;
+}
   
+.add-room-form{
+    display: flex;
+}
+
+.add-room-part-1{
+    width: 40%;
+}
+
+.add-room-part-2{
+    width: 60%;
+}
+
+#room-form-font{
+    font-size: 1.1rem;
+}
+
+.room-form-input{
+    border: none;
+    background-color: white;
+}
   

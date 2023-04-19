@@ -19,380 +19,182 @@ else {
 
 <main class="right-side-content">
     <br>
-    <p class="home-title-2">Account Details</p>
-        
-        <div class="hotel-profile-modified">
-            
+    <div class="hotel-profile-completing-notice">
+        <br>
+        <p><b>Thank you for registering your property with Tripify. 
+        Please upload two or more photographs to complete your profile
+        and get verified.</b>
+        </p>
+        <br>
+    </div>
 
-            <div class="sub-profile-div">
-            <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/date.png" alt="picture">
-            </div>
-
-            <div class="sub-profile-div">
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Property ID : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->HotelID; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Property Name : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Property Catagory : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Email : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Verification Status : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Account Status :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Address : 
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Contact :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Check In :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Check Out :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Cancelation Period :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-
-                <div class="profile-grid">
-                    <div class="profile-left">
-                        Cancelation Fee :
-                    </div>
-                    <div class="profile-right">
-                        <?php echo $data['hoteldetails']->Name; ?>
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="hotel-profile-top-containers">
-                <div id="hotel-profile-photos" class="slideshow-container fade">
-
-                    <div class="Containers">
-                        <div class="MessageInfo">1 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
-                        <div class="H-Room-Info">First caption</div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">2 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/Galadari2.jpg" style="width:100%">
-                        <div class="H-Room-Info">Second Caption</div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">3 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
-                        <div class="H-Room-Info">Third Caption</div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">4 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
-                        <div class="H-Room-Info">Fourth Caption</div>
-                    </div>
-
-                    <!-- Back and forward buttons -->
-                    <!-- <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                </div> -->
-
-                <!-- The circles/beads -->
-                <!-- <div style="text-align:center">
-                    <span class="beads" onclick="currentSlide(1)"></span>
-                    <span class="beads" onclick="currentSlide(2)"></span>
-                    <span class="beads" onclick="currentSlide(3)"></span>
-                    <span class="beads" onclick="currentSlide(4)"></span>
-                </div>
-                <br>
-                <div class="home-div-3">
-                    <a href=""></a> <button id="hotel-add-pics" class="all-purpose-btn">Add More Pics</button>
-                </div>
-            </div>
-
-            <div id="hotel-profile-top-right" class="hotel-profile-top-containers">
-                <ul id="hotel-profile-info-ul">
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Property Name</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Name;  ?></p>
-                            <!-- <p class="home-title-4"><?php echo $data->Name;  ?></p> -->
-                        <!-- </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Email</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <!-- <p class="home-title-4"><?php echo $data->Email;  ?></p> -->
-                            <!-- <p class="home-title-4"><?php echo $data->hotelaccountdetails->Email;  ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Verification Status</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">
-                                <?php 
-                                if($data->hotelaccountdetails->verification_status==1){
-                                    echo "Verified";
-                                }else{
-                                    echo "Not verified";
-                                };  ?>
-                            </p>
-                        </div>
-                    </div></li>
-                    
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Account Status</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">
-                                <?php echo $data->hotelaccountdetails->acc_status; ?>
-                            </p>
-                        </div>
-                    </div></li>
-                    <br>
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Property ID</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->HotelID;  ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Address</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <?php 
-                                $address = $data->hoteldetails->Line1.", ".$data->hoteldetails->Line2.", ".$data->hoteldetails->District;
-                            ?>
-                            <p class="home-title-4"><?php echo $address; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Contact</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->contact_number; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Property Catagory</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Category; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Check In</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Check_in; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Check Out</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Check_out; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Free Cancellation Period</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Cancel_period; ?></p>
-                        </div>
-                    </div></li>
-
-                    <li>
-                    <div id="hotel-profile-sub-div" class="hotel-reg-form-div-2">
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">Cancellation Fee</p>
-                        </div>
-
-                        <div id="hotel-middle-colon" class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4">:</p>
-                        </div>
-
-                        <div class="hotel-profile-sub-div-elements">
-                            <p class="home-title-4"><?php echo $data->hoteldetails->Cancel_fee; ?></p>
-                        </div>
-                    </div></li>
+    <div class="hotel-profile-account-details">
+        <p id="hotel-profile-title-1">Account Details</p>
+        <div class="hotel-profile-1">
+            <div class="hotel-profile-accdet">
+                <ul>
+                    <li><b>User ID : </b></li>
+                    <li><b>Email :</b></li>
+                    <li><b>Contact No :</b></li>
+                    <li><b>Account Status :</b></li>
                 </ul>
+            </div>
 
-                <div class="home-div-3">
-                    <a href=""></a> <button id="hotel-edit-info" class="all-purpose-btn">Edit Info</button>
-                </div>
-            </div> --> 
-             
-            <br>
+            <div class="hotel-profile-accdet-1">
+                <ul>
+                    <li><?php echo $data['hotelaccountdetails']->UserID?></li>
+                    <li><?php echo $data['hotelaccountdetails']->Email?></li>
+                    <li><?php echo $data['hotelaccountdetails']->ContactNo?></li>
+                    <li><?php echo $data['hotelaccountdetails']->acc_status?></li>
+                </ul>
+            </div>
+
+            <div class="hotel-profile-accdet">
+                <ul>
+                    <li><b>User Name : </b></li>
+                    <li><b>Password : </b></li>
+                    <li><b>Usertype : </b></li>
+                </ul>
+            </div>            
+
+            <div class="hotel-profile-accdet-1">
+                <ul>
+                    <li><?php echo $data['hotelaccountdetails']->Name?></li>
+                    <li><?php echo $data['hotelaccountdetails']->Password?></li>
+                    <li><?php echo $data['hotelaccountdetails']->UserType?></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <button class="all-purpose-btn" id="account-details-edit">Edit Account Details</button>
+        <br>&nbsp;
+    </div>
+    
+        
+    <div class="hotel-profile-account-details">
+        <p id="hotel-profile-title-1">Property Details</p>
+        <div class="hotel-profile-1">
+            <div class="hotel-profile-accdet">
+                <ul>
+                    <li><b>Property Name : </b></li>
+                    <li><b>Address :</b></li>
+                    <li><b>Rating :</b></li>
+                    <li><b>Contact No :</b></li>
+                    <li><b>Check In :</b></li>                    
+                    <li><b>SLTDA Reg No :</b></li> 
+                    <li><b>&nbsp;</b></li>                    
+                </ul>
+            </div>
+
+            <div class="hotel-profile-accdet-1">
+                <ul>
+                    <li><?php echo $data['hoteldetails']->Name?></li>
+                    <li><?php echo $data['hoteldetails']->Line1?>,
+                    <?php echo $data['hoteldetails']->Line2?>, 
+                    <?php echo $data['hoteldetails']->District?>
+                    </li>
+                    <li><?php 
+                    if($data['hoteldetails']->Rating==0){
+                        echo "0.0";
+                    }else{
+                        echo $data['hoteldetails']->Rating;
+                    }
+                    ?></li>
+                    <li><?php echo $data['hoteldetails']->contact_number?></li>
+                    <li><?php echo $data['hoteldetails']->Check_in?></li>
+                    <li><?php echo $data['hoteldetails']->reg_number?></li>
+                    <li>&nbsp;</li>
+                </ul>
+            </div>
+
+            <div class="hotel-profile-accdet">
+                <ul>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li><b>Category : </b></li>
+                    <li><b>Pets :</b></li>
+                    <li><b>Check_out :</b></li>
+                </ul>
+            </div>            
+
+            <div class="hotel-profile-accdet-1">
+                <ul>
+                    <li>&nbsp;</li>
+                    <li>&nbsp;</li>
+                    <li><?php echo $data['hoteldetails']->Category?></li>
+                    <li><?php 
+                    if($data['hoteldetails']->Category!=0){
+                        echo "Allowed";
+                    }                        
+                    else{
+                        echo "Not Allowed";
+                    }                        
+                    ?></li>
+                    <li><?php echo $data['hoteldetails']->Check_out?></li>
+                </ul>
+            </div>                
             
         </div>
+        
+        <div class="hotel-profile-1" id="extra-2">
+            <div class="hotel-profile-accdet-1" id="extra-1">
+                <ul>
+                    <li><b>Description :</b></li>
+                </ul>                
+            </div>
+
+            <div class="hotel-profile-accdet-1" id="extra">  
+                <ul>
+                    <li><?php echo $data['hoteldetails']->Description?></li>
+                </ul>             
+            </div>
+        </div>       
+        
+        <br>
+        <button class="all-purpose-btn" id="account-details-edit">Edit Property Details</button>
+        <br>&nbsp;
+    </div>
+
+    <div class="hotel-profile-account-details">
+        <p id="hotel-profile-title-1">Additional Information</p>               
+        <p style="text-align: center; font-size: 1.5rem;">Hotel Facilities</p>
+        <hr>
+        <br>
+        <?php
+            if(empty($data['facilities'])){
+        ?>
+        <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
+        <?php
+            }else{
+        ?>
+            <div class="facilities-grid">
+                <?php
+                        foreach($data['facilities'] as $facility){
+                            echo "hey";
+                        }
+                    }
+                ?>
+                <p>yes</p>
+            </div>
+        <br>
+        <button class="all-purpose-btn" id="account-details-edit" 
+        onclick="location.href='<?php echo URLROOT?>/Hotels/addFacilities'">Add Facilities</button>
+        <br>&nbsp;
+                
+    </div>
+
+    <div class="hotel-profile-account-details-1">
+        <div class="upload-section">
+
+        </div>
+        <p id="hotel-profile-title-1">Property Images</p>
+        <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadPhotos" enctype="multipart/form-data">
+            <input type="file" name="images[]" multiple>
+            <button type="submit" name="upload">Upload</button>
+        </form>
+    </div>
 
 </div>
-
-<!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
 
 <?php
 }
