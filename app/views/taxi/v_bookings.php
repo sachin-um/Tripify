@@ -125,14 +125,30 @@
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
                                         <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
+                                        
+                                        <input type="hidden" name="p-latitude" id="p-latitude" value="">
+                                        <input type="hidden" name="p-longitude" id="p-longitude" value="">
                                     </div>
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Destination Location <sup> *</sup> :</p>
                                         <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
+
+                                        <!-- <span style="color:black;">Select the destination on Map(Optional)</span>
+                                        <div id="map-container">
+                                            <div id="map-d"></div>
+                                        </div> -->
+                                        <input type="hidden" name="d-latitude" id="d-latitude" value="">
+                                        <input type="hidden" name="d-longitude" id="d-longitude" value="">
                                     </div>
+
+                                    
                                 </div>
                                 <span id="availTime"></span>
+                                <span style="color:black;">Select the pickup location on Map(Optional)</span>
+                                    <div id="map-container">
+                                        <div id="map"></div>
+                                    </div>
                             
                             </div><br>
 
@@ -263,3 +279,153 @@
 </script>
 
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/datevalidation.js"></script>
+<script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
+
+<script>
+    let map;
+    var marker;
+    var marker_d;
+    var directionsService;
+    var directionsRendere;
+
+    let srilanka={lat: 7.8731 ,lng: 80.7718};
+    function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+        center: srilanka,
+        zoom: 8,
+    });
+
+        var input = document.getElementById("taxi-PL");
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        marker = new google.maps.Marker({
+        map: map,
+        draggable:true,
+        title:"Pickup location"
+        });
+        autocomplete.bindTo("bounds", map);
+        autocomplete.setFields(['address_components','geometry','name'])
+        autocomplete.addListener('place_changed', function () {
+            // marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+        });
+        google.maps.event.addListener(marker,'position_changed',
+            function () {
+                document.getElementById('p-latitude').value=marker.position.lat();
+                document.getElementById('p-longitude').value=marker.position.lng();
+            }
+        )
+
+
+        // destination map
+        // map_d = new google.maps.Map(document.getElementById("map-d"), {
+        // center: srilanka,
+        // zoom: 8,
+        // });
+
+        marker_d = new google.maps.Marker({
+            map: map,
+            draggable:true,
+            title:"Destination"
+        });
+        var input_des = document.getElementById("taxi-DL");
+        var autocomplete_des = new google.maps.places.Autocomplete(input_des);
+        marker_d = new google.maps.Marker({
+        map: map,
+        draggable:true,
+        title:"Destination"
+        });
+        autocomplete_des.bindTo("bounds", map);
+        autocomplete_des.setFields(['address_components','geometry','name'])
+        autocomplete_des.addListener('place_changed', function () {
+            // marker.setVisible(false);
+            var place_d = autocomplete_des.getPlace();
+            if (!place_d.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("No details available for input: '" + place_d.name + "'");
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place_d.geometry.viewport) {
+                map.fitBounds(place_d.geometry.viewport);
+            } else {
+                map.setCenter(place_d.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+            marker_d.setPosition(place_d.geometry.location);
+            marker_d.setVisible(true);
+        });
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+        var start = new google.maps.LatLng(marker.position.lat(),marker.position.lng());
+        var destination=new google.maps.LatLng(marker_d.position.lat(),marker_d.position.lng());
+                    map = new google.maps.Map(document.getElementById('map'), {
+                      center: start, 
+                      zoom: 11
+                    });
+        google.maps.event.addListener(marker,'position_changed',
+            function () {
+                console.log('Error');
+                document.getElementById('d-latitude').value=marker_d.position.lat();
+                document.getElementById('d-longitude').value=marker_d.position.lng();
+             
+            var request = {
+                      origin: {lat:marker.position.lat(),lng:marker.position.lng()}, 
+                      destination: {lat:marker_d.position.lat(),lng:marker_d.position.lng()},  
+                      travelMode: 'DRIVING' 
+                    };
+                    
+                    directionsService.route(request, function(result, status) {
+                      if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                      }
+                      else{
+                        console.log('Error');
+                      }
+                    });
+            }
+        )
+
+        
+
+
+        
+                  
+                    
+        
+        
+        
+                    
+    
+    }
+    
+    
+    function initialize() {
+        initMap();
+    }
+
+    
+    
+
+</script>
+ 
+
+
