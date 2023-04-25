@@ -286,7 +286,7 @@
     var marker;
     var marker_d;
     var directionsService;
-    var directionsRendere;
+    var directionsRenderer;
 
     let srilanka={lat: 7.8731 ,lng: 80.7718};
     function initMap() {
@@ -326,17 +326,12 @@
         });
         google.maps.event.addListener(marker,'position_changed',
             function () {
+                console.log('HI');
                 document.getElementById('p-latitude').value=marker.position.lat();
                 document.getElementById('p-longitude').value=marker.position.lng();
             }
-        )
+        );
 
-
-        // destination map
-        // map_d = new google.maps.Map(document.getElementById("map-d"), {
-        // center: srilanka,
-        // zoom: 8,
-        // });
 
         marker_d = new google.maps.Marker({
             map: map,
@@ -372,50 +367,71 @@
             marker_d.setPosition(place_d.geometry.location);
             marker_d.setVisible(true);
         });
-        directionsService = new google.maps.DirectionsService();
-        directionsRenderer = new google.maps.DirectionsRenderer();
-        directionsRenderer.setMap(map);
-        var start = new google.maps.LatLng(marker.position.lat(),marker.position.lng());
-        var destination=new google.maps.LatLng(marker_d.position.lat(),marker_d.position.lng());
-                    map = new google.maps.Map(document.getElementById('map'), {
-                      center: start, 
-                      zoom: 11
-                    });
-        google.maps.event.addListener(marker,'position_changed',
+
+        
+        // directionsService = new google.maps.DirectionsService();
+        // directionsRenderer = new google.maps.DirectionsRenderer();
+        // directionsRenderer.setMap(map);
+        // var start = new google.maps.LatLng(marker.position.lat(),marker.position.lng());
+        // var destination=new google.maps.LatLng(marker_d.position.lat(),marker_d.position.lng());
+        //             map = new google.maps.Map(document.getElementById('map'), {
+        //               center: start, 
+        //               zoom: 11
+        //             });
+        // // google.maps.event.addListener(marker_d,'position_changed',
+        // //     function () {
+        // console.log('HIII');
+                
+            // }
+        // )
+
+
+        google.maps.event.addListener(marker_d,'position_changed',
             function () {
-                console.log('Error');
-                document.getElementById('d-latitude').value=marker_d.position.lat();
-                document.getElementById('d-longitude').value=marker_d.position.lng();
-             
-            var request = {
-                      origin: {lat:marker.position.lat(),lng:marker.position.lng()}, 
-                      destination: {lat:marker_d.position.lat(),lng:marker_d.position.lng()},  
-                      travelMode: 'DRIVING' 
-                    };
-                    
-                    directionsService.route(request, function(result, status) {
-                      if (status === 'OK') {
-                        directionsRenderer.setDirections(result);
-                      }
-                      else{
-                        console.log('Error');
-                      }
-                    });
+                document.getElementById('p-latitude').value=marker.position.lat();
+                document.getElementById('p-longitude').value=marker.position.lng();
+                calculateAndDisplayRoute();
             }
-        )
-
-        
-
-
-        
-                  
-                    
-        
-        
-        
-                    
-    
+        );
     }
+
+    function calculateAndDisplayRoute() {
+        // Create a directions service object
+        var directionsService = new google.maps.DirectionsService();
+
+        // Create a directions renderer object
+        directionsDisplay = new google.maps.DirectionsRenderer();
+
+        // Set the map for the directions renderer
+        directionsDisplay.setMap(map);
+
+        // Define the origin, destination, and travel mode for the route
+        var request = {
+            origin: marker.getPosition(),
+            destination: marker_d.getPosition(),
+            travelMode: 'DRIVING'
+        };
+
+        // Call the directions service to calculate the route
+        directionsService.route(request, function(result, status) {
+            if (status === 'OK') {
+            // Display the route on the map
+            directionsDisplay.setDirections(result);
+            var distance = result.routes[0].legs[0].distance.text;
+            console.log('Shortest road distance: ' + distance);
+            } else {
+            console.error('Error calculating route:', status);
+            }
+        });
+}
+
+
+
+
+
+
+
+
     
     
     function initialize() {
