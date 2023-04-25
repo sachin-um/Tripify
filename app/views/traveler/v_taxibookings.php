@@ -130,10 +130,43 @@ else {
             </div>
             
         </div>
+        <div id="popup" class="request-popup">
+                <div id="request-content" class="request-popup-content">
+                </div>
+        </div>
     </main>
  </div>
 
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
+ <script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
+ <script>
+    var map;
+                  function initMap(data) {
+                    var start = new google.maps.LatLng(data.p_latitude,data.p_longitude);
+                    var destination=new google.maps.LatLng(data.d_latitude,data.d_longitude);
+                    map = new google.maps.Map(document.getElementById('map'), {
+                      center: start, 
+                      zoom: 11
+                    });
+                  
+                    
+                    var directionsService = new google.maps.DirectionsService();
+                    var directionsRenderer = new google.maps.DirectionsRenderer();
+                    directionsRenderer.setMap(map);
+                    
+                    var request = {
+                      origin: start, 
+                      destination: destination, 
+                      travelMode: 'DRIVING' 
+                    };
+                    
+                    directionsService.route(request, function(result, status) {
+                      if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                      }
+                    });
+                  }
+ </script>
  <?php
 }
 ?>
