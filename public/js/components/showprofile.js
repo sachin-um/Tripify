@@ -14,7 +14,6 @@ function showProfile(id,type,baseurl) {
               success: function(data) {
                 console.log(data.languages);
                 if (type=="Guide") {
-                    console.log(data.bio);
                     let languages='';
                     $.each(data.languages, function(index, item) {
                         languages+=item.language
@@ -150,7 +149,9 @@ function showProfile(id,type,baseurl) {
                             <br>
                             <label class="abc"> NO OF VEHICLES </label><br>
                             <input type="text" id="nic" name="nic" placeholder="" value="`+data.NoOfVehicles+`" disabled>
-                            
+                            <div>
+                                <img id="profile-img-placehoder" src="`+baseurl+`/img/profileImgs/`+data.profileImg+`" alt="picture">
+                            </div>
                           </form> 
                     </div>
             </div>
