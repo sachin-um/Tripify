@@ -3,6 +3,7 @@
         public function __construct(){
             $this->guideModel=$this->model('M_Guides');
             $this->userModel=$this->model('M_Users');
+            $this->guidebookingModel=$this->model('M_Guide_Bookings');
         }
         public function index(){
 
@@ -217,10 +218,19 @@
 
         public function loadGuideProfile($id){
             $guideDetails=$this->guideModel->getGuideById($id);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($id);
+
 
             $data=[
+                //'guidename'=>$guideDetails->Name,
+               // 'guidearea'=>$guideDetails->Area,
+                
+                'guidelanguages'=>$guidelanguages,
+
                 'guideDetails'=> $guideDetails
             ];
+           
+            
             $this->view('guide/v_guide_details',$data);
         }
 
@@ -240,8 +250,30 @@
         public function loadBooking(){
             $this->view('guide/v_guide_booking_form');
         }
+        public function guideAvailability(){
+            if(isset($_POST["guide-book-btn"])){
+                $data=[
+                    'start_Date' => trim($_POST['sdate']),
+                    'end_Date' =>trim($_POST['edate']),
+                    'place' => trim($_POST['place'])
+                    
+        
+                ];
+                $booking_records=$this->guidebookingModel->searchAvailableSlots($data);
+                if($booking_records==NULL){
+                    $this->view('guide/v_guide_booking_form');
+
+                }
+                else{
+                    
+                }
+
+            }
+
+        }
 
     }
+
 
     
 

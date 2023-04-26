@@ -81,6 +81,19 @@
 
             return $row;
         }
+        public function searchAvailableSlots($data){
+            $date1 = new DateTime($data['start_Date']);
+            $date2 = new DateTime($data['end_Date']);
+            $duration = $date1->diff($date2);
+            $this->db->query('SELECT * FROM guide_bookings WHERE ReservedDate=:startdate AND Duration=:duration');
+            $this->db->bind(':startdate',$data['start_Date']);
+            $this->db->bind(':duration',$duration);
+            $result=$this->db->resultSet();
+
+            return $result;
+            
+
+        }
 
 
         

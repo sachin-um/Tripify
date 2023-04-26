@@ -58,6 +58,7 @@ class M_Guides{
 
         return $row;
     }
+    
 
     public function getGuideLanguageById($id){
         $this->db->query('SELECT language FROM guide_languages WHERE guide_id=:id');
