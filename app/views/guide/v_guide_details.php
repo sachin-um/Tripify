@@ -47,9 +47,7 @@
                 </div>
 
 
-                <div class="review-btns-div" style="margin-left: 30%; margin-top:10%">
-                    <a href="<?php echo URLROOT?>/Guides/loadBooking"><button id="guide-book-btn" class="all-purpose-btn" >Book Now</button></a> 
-                </div>
+                
                 <div id="review-btns-div" class="hotel-disc-3" style="margin-top:5%">
                     <div class="hotel-disc-1">
                         <button id="review-btn" class="all-purpose-btn">Review </button>
@@ -61,6 +59,20 @@
                     
                 </div>
                 <br>
+                <form action="<?php echo URLROOT; ?>/Guides/guideAvailability" method="post">
+                    <label for="fname">Where you Want to visit:</label><br>
+                    <input type="text" id="fname" name="place"><br>
+                    <label for="lname">Start Date:</label><br>
+                    <input type="date" id="lname" name="sdate">
+                    <label for="lname">End Date:</label><br>
+                    <input type="date" id="lname" name="edate">
+                    <!-- <input type="hidden" id="lname" name="duration"> -->
+                    <div class="review-btns-div" style="margin-left: 30%; margin-top:10%">
+                    <a href="<?php echo URLROOT?>/Guides/loadBooking"><button name="guide-book-btn" class="all-purpose-btn" >check Availability</button></a> 
+                </div>
+                </form>
+
+                
               
                 
                         
