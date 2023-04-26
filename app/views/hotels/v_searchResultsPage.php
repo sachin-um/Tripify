@@ -7,22 +7,26 @@
             <div class="nav-main">
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Where are you going?</p>
-                    <input class="hotel-labels-1" type="text" id="place" name="place" placeholder="Your Destination">
+                    <input class="hotel-labels-1" type="text" id="place" name="place" placeholder="Your Destination" 
+                    value="<?php echo $data['destination']?>">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
+                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date"
+                    value="<?php echo $data['check-in']?>">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
+                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date"
+                    value="<?php echo $data['check-out']?>">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">No of People</p> 
-                    <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
+                    <input class="hotel-labels-1" type="number" name="noofadults" max="100"
+                    value="<?php echo $data['noofadults']?>">
                 </div>
             </div>
 
@@ -31,10 +35,20 @@
             </div>
             
         </form>
-        <br><br>
+        <br>
+
+        <?php
+        $_SESSION['checkin'] = $data['check-in'];
+        $_SESSION['checkout'] = $data['check-out'];
+
+        ?>
+        <p class="home-title-2" >Results for Your Search</p>
+        <br>
         <div class="nav-grid">
                 
-            <?php            
+            <?php   
+            
+            
             foreach($data['hotelSearch'] as $search):
             ?>                
 

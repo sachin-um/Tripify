@@ -101,7 +101,6 @@
             $this->view('hotels/v_dash_hotelviewroom',$data);
         }
 
-        
     }
 
 ?>

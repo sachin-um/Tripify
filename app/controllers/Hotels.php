@@ -4,6 +4,7 @@
             $this->hotelModel=$this->model('M_Hotels');
             $this->userModel=$this->model('M_Users');
             $this->roomModel=$this->model('M_Hotel_Rooms');
+            $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
         }
         public function index(){
 
@@ -329,6 +330,10 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
                 $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+                $destination = trim($_POST['place']);
+                $checkin = trim($_POST['date-1']);
+                $checkout = trim($_POST['date-2']);
+                $noofadults =trim($_POST['noofadults']);
                 
                 $data = [
                     'destination' => trim($_POST['place'])
@@ -337,7 +342,12 @@
                 $hotelSearch = $this->hotelModel->searchForHotels($data);
 
                 $data = [
-                    'hotelSearch' => $hotelSearch
+                    'hotelSearch' => $hotelSearch,
+                    'destination' => $destination,
+                    'check-in' => trim($_POST['date-1']),
+                    'check-out' => trim($_POST['date-2']),
+                    'noofadults' => trim($_POST['noofadults'])
+                    
                 ];
                 $this->view('hotels/v_searchResultsPage',$data);
             }else{
@@ -345,7 +355,7 @@
                     'destination' => ''
                 ];
 
-                $this->view('hotels/v_hotelHome');
+                $this->view('hotels/v_searchResultsPage',$data);
             }
         }
 
@@ -363,16 +373,47 @@
         }
 
         public function hotelProfile($hotelID){
-            // echo $hotelID;
 
             $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
             $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
             echo $profileDetails->Name;
+
+            //get bookings from that hotel that overlap with checkin and checkout dates
+            $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
+
+            //get all room types and their total number
+            $allrooms = array();
+            foreach($allroomtypes as $roomtype){
+                $allrooms[] = $roomtype->RoomTypeID;
+                $allrooms[] = $roomtype->no_of_rooms;
+            }
+            print_r($allrooms)."<br>";
+
+           //get bookedrecords' room types and no of them
+            foreach($bookedrecords as $records){
+                $roomIDs = $records->roomIDs;
+                $bookedrooms = explode(',', $roomIDs);
+            }
+           print_r($bookedrooms); 
+
+           for($i=0;$i<count($allrooms);$i=$i+2){
+            for($j=0;$j<count($bookedrooms);$j=$j+2){
+                if($allrooms[$i]==$bookedrooms[$j]){
+                    $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                }
+            }
+           }
+
+           print_r($allrooms); 
+
             $data=[
+                'profileDetails'=>$profileDetails,
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
                 'allroomtypes'=> $allroomtypes,
-                'description'=>$profileDetails->Description
+                'description'=>$profileDetails->Description,
+                'availablerooms'=>$allrooms
+                // 'noofadults' => $data['noofadults']
                 // 'profileName'=> $profileDetails->Name,
                 // 'profileName'=> $profileDetails->Name
 

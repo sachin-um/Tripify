@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
 <br>
 <div class="wrapper"> 
     <div class="content">
@@ -22,29 +22,26 @@
         <p class="home-title-2">Facilities</p>
         </div>
 
-        <p class="home-title-2">Availability</p>
+        <p class="home-title-2">Check Available Rooms</p>
 
         <form action="" method="post">
-            <div class="nav-main">
-                <div class="nav-parts-1">
-                    <p class="hotel-labels-1">Where are you going?</p>
-                    <input class="hotel-labels-1" type="text" id="place" name="place" placeholder="Your Destination">
-                    <!-- value='<?php echo $data['destination']; ?>' -->
-                </div>
-                &nbsp;
-                <div class="nav-parts-1">
+            <div class="nav-main-hotel-room">
+                
+                <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
+                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date"
+                    value="<?php echo $_SESSION['checkin']?>">
                     <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                 </div>
                 &nbsp;
-                <div class="nav-parts-1">
+                <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
+                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date"
+                    value="<?php echo $_SESSION['checkout']?>">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
                 &nbsp;
-                <div class="nav-parts-1">
+                <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">No of People</p> 
                     <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
@@ -57,39 +54,57 @@
             
         </form>
         
-        <?php
-            foreach($data['allroomtypes'] as $room):
-        ?>
-        <div class="room-block">
-            <div class="sub-block">
-                <br>
-                <p style="font-size: 1.5rem;"><b><?php echo $room->RoomTypeName?></b></p>
-                Room Size (Square meters) : <?php echo $room->RoomSize?>
+
+        <!-- Hotel Booking Function -->
+        <form action="<?php echo URLROOT?>/HotelBookings/test" method="post">
+
+            <input type="hidden" name="hotelID" value="<?php echo $data['profileDetails']->HotelID?>">
+            <!-- <input type="hidden" name="roomtypes" value="<?php echo $data['allroomtypes']?>"> -->
+            
+            <?php
+                foreach($data['allroomtypes'] as $room):
+            ?>
+            <div class="room-block">
+                <div class="sub-block">
+                    <br>
+                    <p style="font-size: 1.5rem;"><b><?php echo $room->RoomTypeName?></b></p>
+                    <input type="hidden" name="<?php echo $room->RoomTypeName?>" 
+                    value="<?php echo $room->RoomTypeName?>">
+                    Room Size (Square meters) : <?php echo $room->RoomSize?>
+                </div>
+
+                <div class="sub-block">
+                    <br>
+                    No of People : <?php echo $room->NoofGuests?><br>
+                    Price per night : <?php echo $room->PricePerNight?><br>
+                    <input type="hidden" name="<?php echo $room->RoomTypeID.""."price"?>" value="<?php echo $room->PricePerNight?>">
+                    <?php
+                        $arraycheck = $data['availablerooms'];
+                        for($i=0;$i<count($arraycheck);$i=$i+2){
+                            if($arraycheck[$i]==$room->RoomTypeID){
+                                $room->no_of_rooms=$arraycheck[$i+1];
+                            }
+                        }
+                    ?>
+                    No of Available Rooms : <?php echo $room->no_of_rooms?>
+                </div>
+
+                <div class="sub-block">
+                    <br>
+                    Select No of Rooms :<br>
+                    <input class="room-form-input" type="number" name="<?php echo $room->RoomTypeID?>" max="<?php echo $room->no_of_rooms?>" value="0">
+                    
+                </div>
             </div>
 
-            <div class="sub-block">
-                <br>
-                No of People : <?php echo $room->NoofGuests?><br>
-                Price per night : <?php echo $room->PricePerNight?><br>
-                No of Available Rooms : <?php echo $room->no_of_rooms?>
+            <?php
+                endforeach;
+            ?>
+
+            <div id="btn-block" >
+                <button class="all-purpose-btn" id="booking-btn" type="submit">Book Now</button>
             </div>
-
-            <div class="sub-block">
-                <br>
-                Select No of Rooms :<br>
-                <input class="room-form-input" type="number">
-                
-            </div>
-        </div>
-
-        <?php
-            endforeach;
-        ?>
-
-        <div id="btn-block" >
-            <button class="all-purpose-btn" id="booking-btn">Book Now</button>
-        </div>
-        
+        </form>
 
         <!-- <div class="slideshow-container fade">
 
@@ -130,9 +145,9 @@
                 <span class="beads" onclick="currentSlide(3)"></span>
                 <span class="beads" onclick="currentSlide(4)"></span>
             </div> 
-        </div>  -->
+        </div>  --> 
 
-        <div class="hotel-home-top-picks">
+        <!-- <div class="hotel-home-top-picks">
 
             <p class="home-title-2" >Our Rooms</p><br>
             <hr><br>
@@ -148,7 +163,7 @@
                 <div class="hotel-ad-card">
                     
                     <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
-                    <div id="hotel-img" class="hotel-room-card-pic">
+                    <!--<div id="hotel-img" class="hotel-room-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
                     </div>                    
 
@@ -172,7 +187,7 @@
 
                 
             </div>  
-        </div>
+        </div> -->
 
         <div class="hotel-desc-page-div">
             <div class="hotel-disc-2">

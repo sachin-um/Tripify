@@ -26,6 +26,23 @@
     justify-content: space-between;
 }   
 
+.nav-main-hotel-room{
+    height: 12.5%;
+    width: 80%;
+    padding: 8px 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-parts-hotel-room{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 .nav-logo-container{
     flex: 1;
     text-align: center;

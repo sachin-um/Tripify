@@ -112,9 +112,14 @@
             return $row;
         }
 
-        public function RoomAvailabilityRecords($roomTypeID){
-            $this->db->query("SELECT * FROM hotel_bookings WHERE RoomTypeID=:roomTypeID");
-            $this->db->bind(':roomTypeID',$roomTypeID);
+        public function RoomAvailabilityRecords($hotelID){
+            $this->db->query("SELECT * FROM hotel_bookings WHERE hotel_id = :hotelID
+            AND (checkin_date BETWEEN :checkin AND :checkout
+                 OR checkout_date BETWEEN :checkin AND :checkout)");
+
+            $this->db->bind(':hotelID',$hotelID);
+            $this->db->bind(':checkin',$_SESSION['checkin']);
+            $this->db->bind(':checkout',$_SESSION['checkout']);
 
             $availability=$this->db->resultSet();
             

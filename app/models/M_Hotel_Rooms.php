@@ -8,7 +8,7 @@ class M_Hotel_Rooms{
     }
 
        
-
+    //Add a hotel room type, their room IDs and their bed types under a hotel
     public function addaroom($data){
         $this->db->query('INSERT INTO hotel_rooms(RoomTypeID,HotelID,RoomTypeName,NoofGuests,NoofBeds,RoomSize,PricePerNight,no_of_rooms)
          VALUES(:RoomtypeID,:HotelID,:RoomTypeName,:NoofGuests,:NoofBeds,:RoomSize,:PricePerNight,:NoOfRooms)');
@@ -91,6 +91,7 @@ class M_Hotel_Rooms{
         }
     }
 
+    //Get all hotel room types in a specific hotel
     public function viewAllRooms($hotelID){
         $this->db->query('SELECT * FROM hotel_rooms WHERE HotelID=:id');
         $this->db->bind(':id',$hotelID);
@@ -98,6 +99,17 @@ class M_Hotel_Rooms{
         $roomset=$this->db->resultSet();
 
         return $roomset;
+    }
+
+    
+
+    //Get all room IDs for a room type
+    public function getRoomIDs($roomTypeID){
+        $this->db->query('SELECT * FROM hotel_roomIDs WHERE roomTypeID=:roomTypeID');
+        $this->db->bind(':roomTypeID',$roomTypeID);
+        $roomIDset = $this->db->resultSet();
+
+        return $roomIDset;
     }
 
     public function viewAllBedsInThisRoom($roomID){
