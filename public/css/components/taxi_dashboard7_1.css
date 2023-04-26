@@ -43,3 +43,11 @@
     margin-top: 1em;
    
 }
+
+.taxi-booking-table-container{
+    display: flex;
+    flex: auto;
+    column-gap: 3em;
+    justify-items: center;
+    justify-content: center;
+}

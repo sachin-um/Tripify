@@ -117,6 +117,61 @@ class M_Taxi{
         }
     }
 
+
+    public function viewbookings(){
+        $this->db->query('SELECT * FROM taxi_reservation');
+        $bookings=$this->db->resultSet();
+        return $bookings;
+    }
+
+    public function getVehicleAndDriversbyID($id){
+        $this->db->query('SELECT vehicles.vehicle_number, taxi_drivers.Name
+            FROM vehicles
+            JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID
+            WHERE vehicles.VehicleID=:VehicleID');
+        $this->db->bind(':VehicleID',$id);
+        $row = $this->db->single();
+        return $row;
+    }
+
+
+    public function viewBookingsByID($id){
+        $this->db->query('SELECT * FROM taxi_reservation WHERE ReservationID=:ReservationID');
+        $this->db->bind(':ReservationID',$id);
+        $bookings=$this->db->single();
+        return $bookings;
+    }
+
+    public function confrimBooking($id)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET status="Confirmed" WHERE ReservationID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        public function cancelBooking($id)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
     
 }
 
