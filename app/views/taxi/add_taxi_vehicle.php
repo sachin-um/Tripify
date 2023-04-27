@@ -12,11 +12,11 @@ if (empty($_SESSION['user_id'])) {
     redirect('Users/login');
 }
 elseif ($_SESSION['user_type']!='Taxi') {
-    flash('reg_flash', 'Only the Taxi Owner can add Taxi Request..');
+    flash('reg_flash', 'Only the Taxi Owner can add Taxi Vehicles..');
     redirect('Users/login');
 }
 else {
-    ?>
+?>
     <div class="content">
     <div class="form-login">
     <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">

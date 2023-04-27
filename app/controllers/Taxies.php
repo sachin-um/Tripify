@@ -3,6 +3,7 @@
         public function __construct(){
             $this->taxiModel=$this->model('M_Taxi');
             $this->userModel=$this->model('M_Users');
+            // $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
         }
         public function index(){
 
@@ -232,16 +233,70 @@
         
 
         public function bookings(){
-            $data=[];
-            $this->view('taxi/v_taxi_bookings',$data);
-           
+            $usertype= $_SESSION['user_type'];
+        
+            if ($usertype == 'Taxi') {
+                $taxibookings = $this->taxiModel->viewBookings();
+            
+                // Add driver name to each booking
+                foreach ($taxibookings as &$booking) {
+                    $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($booking->Vehicles_VehicleID);
+                    $booking->DriverName = $vehicleDetails->Name;
+                    $booking->VehicleNumber = $vehicleDetails->vehicle_number;
+                }
+        
+                $data = [
+                    'taxibookings' => $taxibookings
+                ];
+        
+                $this->view('taxi/v_taxi_bookings', $data);
+            }
         }
+            
 
-        public function bookingsview(){
-            $data=[];
+        public function bookingsview($ReservationID){
+            $usertype= $_SESSION['user_type'];
+        
+            if ($usertype == 'Taxi') {
+                $taxibookings = $this->taxiModel->viewBookingsByID($ReservationID);
+                // var_dump($taxibookings);
+                // Add driver name to each booking
+                    $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
+                    $taxibookings->DriverName = $vehicleDetails->Name;
+                    $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
+        
+                $data = [
+                    'taxibookings' => $taxibookings
+                ];
+
+            
             $this->view('taxi/v_taxi_dashboard7_1',$data);
            
         }
+
+    }
+
+
+    public function ConfirmBooking($ReservationID){
+        if($this->taxiModel->confrimBooking($ReservationID)){
+            flash('booking_flash', 'Confrimed Success');
+            redirect('Taxies/bookings/'); 
+        }else{
+            flash('booking_flash', 'Somthing went wrong try again');
+            redirect('Taxies/bookings/');  
+        }
+    }
+
+    public function cancelBooking($ReservationID){
+        if($this->taxiModel->cancelBooking($ReservationID)){
+            flash('booking_flash', 'Cancelation Success');
+            redirect('Taxies/bookings/'); 
+        }else{
+            flash('booking_flash', 'Somthing went wrong try again');
+            redirect('Taxies/bookings/');  
+        }
+    }
+
 
         public function payments(){
             $data=[];
