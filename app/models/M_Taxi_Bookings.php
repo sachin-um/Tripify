@@ -192,6 +192,32 @@
                 return false;
             }
         }
+
+        public function acceptTaxiOffer($data)
+        {
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`)
+                                                         VALUES(:TravelerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime)');
+            $this->db->bind(':TravelerID',$data['request']->travelerid);
+            $this->db->bind(':Vehicles_VehicleID',$data['offer']->VehicleID);
+            $this->db->bind(':Price',$data['price']);
+            $this->db->bind(':booking_date',$data['request']->date);
+            $this->db->bind(':booking_time',$data['request']->time);
+            $this->db->bind(':est_end_date',$data['e_date']);
+            $this->db->bind(':est_end_time',$data['e_time']);
+            $this->db->bind(':pickup_location',$data['request']->pickup_location);
+            $this->db->bind(':destination',$data['request']->destination);
+            $this->db->bind(':distance',$data['request']->distance);
+            $this->db->bind(':estTime',$data['request']->duration);
+
+    
+            if ($this->db->execute()) {
+                
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
         
 
 

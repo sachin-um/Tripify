@@ -159,11 +159,23 @@
                 redirect('Users/login');
             }
             else {
+                $ppk=$offer->PricePerKm;
+                $total=$ppk*$request->distance;
+                
+
+                $bookingdatetime = date('Y-m-d H:i:s', strtotime("$request->date $request->time"));
+        
+                $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$request->duration"));
+                $end_date = date('Y-m-d', strtotime($est_datetime));
+                $end_time = date('H:i:s', strtotime($est_datetime));
                 $data=[
+                    'e_date'=>$end_date,
+                    'e_time'=>$end_time,
+                    'price'=>$total,
                     'request'=>$request,
                     'offer'=>$offer
                 ];
-                if ($this->taxiBookingModel->addtaxiBooking($data)) {
+                if ($this->taxiBookingModel->acceptTaxiOffer($data)) {
                     if ($this->taxiofferModel->acceptTaxiOffer($offerid)) {
                         flash('taxi_booking_flash', 'Offer succesfully accepted placed your booking');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   

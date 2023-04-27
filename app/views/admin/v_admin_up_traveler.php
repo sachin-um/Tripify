@@ -40,9 +40,12 @@ else {
         <h2>Traveler Profiles</h2>
         <hr>
         <br>
+        <div class="profile-search-area">
+            <input type="text" placeholder="Search accounts..." id="searchInput">
+        </div>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -80,6 +83,7 @@ else {
         </div>
     </main>
  </div>
+<script src="<?php echo URLROOT;?>/js/components/search/search.js"></script>
 
  <?php
 }
