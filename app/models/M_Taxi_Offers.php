@@ -44,9 +44,11 @@
                 $vehicle=$this->getVehicleById($offer->VehicleID);
                 $driver=$this->getDriverDetails($vehicle->driverID);
                 $owner=$this->getUserDetails($offer->OwnerID);
+                $request=$this->getTaxiRequestById($offer->request_id);
                 $offer->vehicle=$vehicle;
                 $offer->driver=$driver;
                 $offer->owner=$owner;
+                $offer->request=$request;
             }
             return $offers;
         }
@@ -78,14 +80,6 @@
             return $row;
         }
 
-        // public function getVehicleByNumber($number){
-        //     $this->db->query('SELECT * FROM vehicles WHERE vehicleNumber=:number');
-        //     $this->db->bind(':vehicleNumber',$number);
-
-        //     $row=$this->db->single();
-
-        //     return $row;
-        // }
 
 
         public function makeTaxiOffer($data){
@@ -109,6 +103,15 @@
             else {
                 return false;
             }
+        }
+
+        public function getTaxiRequestById($id){
+            $this->db->query('SELECT * FROM v_taxi_request WHERE request_id=:request_id');
+            $this->db->bind(':request_id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
         }
 
 

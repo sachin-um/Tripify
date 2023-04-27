@@ -98,6 +98,10 @@
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
+                        <input type="hidden" id="bookingDate" name="bookingDate" value="<?php echo $taxioffer->request->Date ?>">
+                        <input type="hidden" id="bookingTime" name="bookingTime" value="<?php echo $taxioffer->request->Time ?>">
+                        <input type="hidden" id="taxi-PL" name="taxi-PL" value="<?php echo $taxioffer->request->PickupLocation ?>">
+                        <input type="hidden" id="taxi-DL" name="taxi-DL" value="<?php echo $taxioffer->request->Destination ?>">
                         <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
                         <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
@@ -111,3 +115,4 @@
         </div>
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/taxioffervalidation.js"></script>

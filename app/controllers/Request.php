@@ -253,6 +253,8 @@
                         'p-longitude'=>trim($_POST['p-longitude']),
                         'd-latitude'=>trim($_POST['d-latitude']),
                         'd-longitude'=>trim($_POST['d-longitude']),
+                        'distance'=>trim($_POST['distance']),
+                        'duration'=>trim($_POST['duration']),
 
 
                         'vehicle_type_err'=>'',

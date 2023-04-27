@@ -13,7 +13,7 @@
         //add taxi request
 
         public function addtaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,passengers,vehicle_type) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:passengers,:vehicle_type)');
+            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,passengers,vehicle_type,distance,duration) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:passengers,:vehicle_type,:distance,:duration)');
             $this->db->bind(':vehicle_type',$data['vehicle_type']);
             $this->db->bind(':passengers',$data['passengers']);
             $this->db->bind(':date',$data['date']);
@@ -26,6 +26,8 @@
             $this->db->bind(':p_longitude',$data['p-longitude']);
             $this->db->bind(':d_latitude',$data['d-latitude']);
             $this->db->bind(':d_longitude',$data['d-longitude']);
+            $this->db->bind(':distance',$data['distance']);
+            $this->db->bind(':duration',$data['duration']);
 
             
 
@@ -51,7 +53,10 @@
             $this->db->bind(':p_latitude',$data['p-latitude']);
             $this->db->bind(':p_longitude',$data['p-longitude']);
             $this->db->bind(':d_latitude',$data['d-latitude']);
+            $this->db->bind(':distance',$data['distance']);
+            $this->db->bind(':duration',$data['duration']);
             $this->db->bind(':d_longitude',$data['d-longitude']);
+            
             $this->db->bind(':request_id',$data['request_id']);
 
 

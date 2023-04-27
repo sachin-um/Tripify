@@ -325,3 +325,14 @@
     background-color: white;
     
 }
+
+
+.profile-search-area{
+    display: flex;
+    justify-content: center;
+}
+
+.profile-search-area input{
+    width: 40%;
+    margin: 0px 40px;
+}
