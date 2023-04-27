@@ -6,11 +6,12 @@
     <div class="content">
 
         <div class="hotel-room-top-picks">
-            <div class="booking-header">
+            <!-- <div class="booking-header">
                 <b>The rooms you requested are available for booking.</b>
-            </div>
+            </div> -->
 
-            <div class="main-details">
+        <form action="">
+        <div class="main-details">
                 <div class="price-details">
                     <h2 style="color: green;">Price Details</h2>
                     <div class="sub-items-pricing">
@@ -18,7 +19,7 @@
                             <b>Check In Date : </b>
                         </div>
                         <div class="sub-sub-items-pricing">
-                            <?php echo $data['check_in']?>
+                            <?php echo $_SESSION['checkin']?>
                         </div>
                     </div>
 
@@ -27,16 +28,22 @@
                             <b>Check Out Date : </b>
                         </div>
                         <div class="sub-sub-items-pricing">
-                            <?php echo $data['check_out']?>
+                            <?php echo $_SESSION['checkout']?>
                         </div>
                     </div>
 
                     <div class="sub-items-pricing">
                         <div class="sub-sub-items-pricing">
-                            <b>Room Type : </b>
+                            <b>Requested Rooms : </b>
                         </div>
                         <div class="sub-sub-items-pricing">
-                            <?php echo $data['wantedRoom']->RoomTypeName?>
+                            <?php 
+                                $roomnames = $data['bookedRoomNames'];
+                                $noofroomsfromeach = $data['noofbookedrooms'];
+                                for($a=0;$a<count($roomnames);$a++){
+                                    echo $roomnames[$a]." - ".$noofroomsfromeach[$a]."<br>";
+                                }
+                            ?>
                         </div>
                     </div>
 
@@ -45,7 +52,7 @@
                             <b>No of rooms : </b>
                         </div>
                         <div class="sub-sub-items-pricing">
-                            <?php echo $data['noofrooms']?>
+                            <!-- <?php echo $data['noofrooms']?> -->
                         </div>
                     </div>
 
@@ -54,8 +61,8 @@
                             <b>No of nights : </b>
                         </div>
                         <?php 
-                            $date1 = new DateTime($data['check_in']);
-                            $date2 = new DateTime($data['check_out']);
+                            $date1 = new DateTime($_SESSION['checkin']);
+                            $date2 = new DateTime($_SESSION['checkout']);
                             $nights = $date1->diff($date2);
                         ?>
                         <div class="sub-sub-items-pricing">
@@ -67,16 +74,13 @@
                         <div class="sub-sub-items-pricing">
                             <b>Total Price : </b>
                         </div>
-                        <?php
-                            $fullPrice = $nights->days*(double)$data['wantedRoom']->PricePerNight*(int)$data['noofrooms'];
-                        ?>
                         <div class="sub-sub-items-pricing">
-                            <?php echo $fullPrice.".00 "?>LKR
+                            <?php echo $data['payment'].".00 "?>LKR
                         </div>
                     </div>
                 </div>
 
-                <div class="price-details">
+                <!-- <div class="price-details">
                     <h2 style="color: green;">Billing Information</h2>
                     <div class="sub-items-pricing">
                         <div class="sub-sub-items-pricing">
@@ -113,11 +117,16 @@
                             <input type="text">
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <br>
+            <div class="hotel-reg-form-div-2">
+                <button class="all-purpose-btn" type="submit" style="margin: auto;">Book Now</button>
+            </div> 
+        </form>
+            
 
-            <form action="<?php echo URLROOT ?>/HotelBookings/bookaroom" method="post">
+            <!-- <form action="<?php echo URLROOT ?>/HotelBookings/bookaroom" method="post">
                 
                 <input type="hidden" name="hotel_id" value="<?php echo $data['wantedRoom']->HotelID?>">
                 <input type="hidden" name="travelerID" value="<?php echo $_SESSION['user_id']?>">
@@ -136,7 +145,7 @@
                 </div> 
                 
                 
-            </form>
+            </form> -->
             
         </div>
         

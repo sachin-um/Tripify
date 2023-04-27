@@ -26,6 +26,23 @@
     justify-content: space-between;
 }   
 
+.nav-main-hotel-room{
+    height: 12.5%;
+    width: 80%;
+    padding: 8px 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-parts-hotel-room{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 .nav-logo-container{
     flex: 1;
     text-align: center;
@@ -36,8 +53,9 @@
 .nav-parts{
     display: flex;
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    padding: 40px 0;
     /* line-height: 100%; */
     /* transform: translate(-50%, -50%); */
     color: white;
@@ -79,7 +97,7 @@
 
 .nav-btns{
     width: 80%;
-    height: 100%;
+    height: 120%;
     background: #03002E;
     color: white;
     border: 2px solid #e8b122;

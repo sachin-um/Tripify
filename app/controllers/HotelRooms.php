@@ -25,13 +25,19 @@
             
                 $data=[
                         'RoomTypeID'=>rand(100000,999999),
-                        'NoofBeds'=>trim($_POST['no-of-beds']),
-                        'RoomType'=>trim($_POST['roomtype']),
-                        'NoofGuests'=>trim($_POST['no-of-guests']),
-                        'RoomSize'=>trim($_POST['roomsize']),
-                        'PricePerNight'=>trim($_POST['pricepernight']),
-                        'NoOfRooms'=>trim($_POST['no-of-rooms']),
                         'hotelid'=>$_SESSION['user_id'],
+                        'RoomName'=>trim($_POST['roomName']),
+                        'RoomSize'=>trim($_POST['roomSize']),
+                        'NoofGuests'=>trim($_POST['noofpeople']),
+                        'NoofBeds'=>trim($_POST['total-beds']),                      
+                        'PricePerNight'=>trim($_POST['pricepernight']),
+                        'NoOfRooms'=>trim($_POST['noofrooms']),
+                        'TwinBed'=>trim($_POST['bed1']),
+                        'DoubleBed'=>trim($_POST['bed2']),
+                        'QueenBed'=>trim($_POST['bed3']),
+                        'KingBed'=>trim($_POST['bed4']),
+                        'BunkBed'=>trim($_POST['bed5']),
+                        
 
                         'NoofBeds_err'=>'',
                         'RoomType_err'=>'',
@@ -40,15 +46,10 @@
                         'description_err'=>'',
                         'PricePerNight_err'=>''
     
-                    ];
+                    ];               
 
-
-                
-
-               
-                    //Add a Taxi Request
                     if ($this->roomModel->addaroom($data)) {
-                        flash('reg_flash', 'Room is successfully added..!');
+                        flash('reg_flash', 'Room is successfully added!');
                         redirect('HotelRooms/rooms');
                     }
                     else{
@@ -60,22 +61,27 @@
             }
             else {
                 $data=[
-                    'pickuplocation'=>'',
-                    'destination'=>'',
-                    'date'=>'',
-                    'time'=>'',
-                    'description'=>'',
-                    'travelerid'=>'',
+                    'RoomName'=>'',
+                    'RoomSize'=>'',
+                    'NoofGuests'=>'',
+                    'NoofBeds'=>'',                      
+                    'PricePerNight'=>'',
+                    'NoOfRooms'=>'',
+                    'TwinBed'=>'',
+                    'DoubleBed'=>'',
+                    'QueenBed'=>'',
+                    'KingBed'=>'',
+                    
 
-                    'pickuplocation_err'=>'',
-                    'destination_err'=>'',
-                    'date_err'=>'',
-                    'time_err'=>'',
+                    'NoofBeds_err'=>'',
+                    'RoomType_err'=>'',
+                    'NoofGuests_err'=>'',
+                    'RoomSize_err'=>'',
                     'description_err'=>'',
-                    'travelerid_err'=>''
+                    'PricePerNight_err'=>''
 
                 ];
-                $this->view('hotels/v_hotelRooms',$data);
+                $this->view('hotels/v_dash_hotelRooms',$data);
             }
             
         
@@ -83,13 +89,18 @@
 
         public function rooms(){            
             $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+            for($x=0;$x<count($allroomtypes);$x++){
+                $current = $allroomtypes[$x]->RoomTypeID;
+                
+            }
+        
             $data=[
-                'allroomtypes'=>$allroomtypes
+                'allroomtypes'=>$allroomtypes,
+    
             ];
-            $this->view('hotels/v_hotelviewroom',$data);
+            $this->view('hotels/v_dash_hotelviewroom',$data);
         }
 
-        
     }
 
 ?>

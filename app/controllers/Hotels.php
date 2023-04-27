@@ -4,6 +4,7 @@
             $this->hotelModel=$this->model('M_Hotels');
             $this->userModel=$this->model('M_Users');
             $this->roomModel=$this->model('M_Hotel_Rooms');
+            $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
         }
         public function index(){
 
@@ -13,16 +14,15 @@
         public function register()
         {
             // echo "register0";
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // echo "register1";
-
             //Data validation
             $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
             
 
             $data = [
                 'hotel_id' => $_SESSION['user_id'],
-                'name' => trim($_POST['name']),
+                'name' => trim($_POST['name']),                
                 'line1' => trim($_POST['line1']),
                 'line2' => trim($_POST['line2']),
                 'district' => trim($_POST['district']),
@@ -31,76 +31,69 @@
                 'contact_number' => trim($_POST['contact']),
                 'pets' => ($_POST['pets']),
                 'children' => ($_POST['children']),
-                'cancel_period' => trim($_POST['cancel_period']),
-                'cancel_fee' => trim($_POST['fee']),
                 'check_in' => trim($_POST['check_in']),
                 'check_out' => trim($_POST['check_out']),
-                
+                'description' => trim($_POST['description']),
 
                 'name_err' => '',
                 'hotel_reg_number_err' => '',
+                'line1_err' => '',
+                'line2_err' => '',
+                'district_err' => '',
                 'property_address_err' => '',
                 'property_category_err' => '',
                 'contact_number_err' => '',
-                'pets_err' => '',
-                'children_err' => '',
-                'cancel_period_err' => '',
-                'cancel_fee_err' => '',
-                'hotel_id_err' => '',
+                'checkin_err' => '',
+                'checkout_err' => '',
+                'hotel_id_err' => ''
             ];
 
-            
-
             if (empty($data['name'])) {
-                echo "test";
                 $data['name_err'] = 'This field is required';
-            } else if (!preg_match("/^[a-zA-Z]+$/", $data['name'])) {
+            } else if (!preg_match("/^[a-zA-Z ]+$/", $data['name'])) {
                 $data['name_err'] = 'Invalid Property Name';
             }
 
             if (empty($data['hotel_reg_number'])) {
                 $data['hotel_reg_number_err'] = 'This field is required';
+            } else if (!preg_match('/^R\d{6}$/', $data['hotel_reg_number'])) {
+                $data['hotel_reg_number_err'] = 'Should start with R followed by six digits';
             }else{
                 if($this->hotelModel->findHotelNumber($data['hotel_reg_number'])){
                     $data['hotel_reg_number_err'] = 'This property is already registered';
                 }
             }
 
-            // if (empty($ad1) || empty($ad2) || empty($ad3)) {
-            //     $data['property_address_err'] = 'All address fields need to be filled';
-            // }
+            if (empty($data['line1'])) {
+                $data['line1_err'] = 'This field is required';
+            }
 
-            if(empty($data['property_category'])){
+            if ($data['district']=='--'){
+                $data['district_err'] = 'Please specify the district';
+            }
+
+            if($data['property_category']=='--'){
                 $data['property_category_err'] = 'Please specify the property category';
             }
 
-            // if (empty($data['contact_number'])) {
-            //     $data['contact_number_err'] = 'This field is required';
-            // } else if (!preg_match('/^[0-9]{10}+$/', $data['contact_number'])) {
-            //     $data['contact_number_err'] = 'Invalid Contact Number';
-            // } 
+            if (empty($data['contact_number'])) {
+                $data['contact_number_err'] = 'This field is required';
+            } else if (!preg_match('/^[0-9]{10}+$/', $data['contact_number'])) {
+                $data['contact_number_err'] = 'Invalid Contact Number';
+            } 
 
-            if(empty($data['cancel_period'])){
-                $data['cancel_period_err'] = 'This field is required';
+            if (empty($data['check_in'])) {
+                $data['checkin_err'] = 'This field is required';
             }
 
-            if(empty($data['cancel_fee'])){
-                $data['cancel_fee_err'] = 'This field is required';
+            if (empty($data['check_out'])) {
+                $data['checkout_err'] = 'This field is required';
             }
-        
-
-            if (empty($data['reg_number'])) {
-                $data['reg_number_err'] = 'This field is required';
-            }
-
-            // empty($data['contact_number_err']) &&
-            // empty($data['property_address_err']) && 
 
             if (
-                empty($data['property_name_err']) && empty($data['hotel_reg_number_err']) && empty($data['property_category_err']) &&
-                empty($data['cancel_period_err']) && empty($data['cancel_fee_err'])
+                empty($data['name_err']) && empty($data['hotel_reg_number_err']) && empty($data['line1_err']) && empty($data['district_err']) && empty($data['property_category_err']) &&
+                empty($data['contact_number_err']) && empty($data['checkin_err']) && empty($data['checkout_err'])
             ) {
-                echo "register2";
                 //Register Hotel
                 if ($this->hotelModel->register($data)) {
                     flash('reg_flash', 'You are Successfully registered');
@@ -110,13 +103,12 @@
                 }
 
             } else {
-                echo "reg23";
                 $this->view('hotels/v_hotelReg', $data);
             }
 
 
 
-        } else {
+            } else {
 
             $data = [
                 'name' => '',
@@ -133,23 +125,23 @@
                 'check_in' => '',
                 'check_out' => '',
                 'hotel_id' => $_SESSION['user_id'],
+                'description' => '',
 
 
                 'name_err' => '',
                 'hotel_reg_number_err' => '',
+                'line1_err' => '',
+                'line2_err' => '',
+                'district_err' => '',
                 'property_address_err' => '',
                 'property_category_err' => '',
                 'contact_number_err' => '',
-                'pets_err' => '',
-                'children_err' => '',
-                'cancel_period_err' => '',
-                'cancel_fee_err' => '',
-                'hotel_id_err' => '',
-
+                'checkin_err' => '',
+                'checkout_err' => '',
+                'hotel_id_err' => ''
             ];
             $this->view('hotels/v_hotelReg', $data);
-        }
-        // $this->view('hotels/v_register');
+            }
         }
 
         //login
@@ -249,7 +241,7 @@
 
         public function addroom(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
-                //Data validation
+                
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
             
@@ -338,36 +330,90 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
                 $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+                $destination = trim($_POST['place']);
+                $checkin = trim($_POST['date-1']);
+                $checkout = trim($_POST['date-2']);
+                $noofadults =trim($_POST['noofadults']);
                 
                 $data = [
                     'destination' => trim($_POST['place'])
                 ];
 
-                if ($this->hotelModel->searchForHotels($data)) {
-                    redirect('Hotels/showHotels');
-                } else {
-                    redirect('Hotels/hotels');
-                }
+                $hotelSearch = $this->hotelModel->searchForHotels($data);
+
+                $data = [
+                    'hotelSearch' => $hotelSearch,
+                    'destination' => $destination,
+                    'check-in' => trim($_POST['date-1']),
+                    'check-out' => trim($_POST['date-2']),
+                    'noofadults' => trim($_POST['noofadults'])
+                    
+                ];
+                $this->view('hotels/v_searchResultsPage',$data);
+            }else{
+                $data = [
+                    'destination' => ''
+                ];
+
+                $this->view('hotels/v_searchResultsPage',$data);
             }
         }
 
         
 
 
-        public function showHotels(){        
-            $this->view('hotels/v_hotel_list');
+        public function showHotels(){ 
+
+            $allhotels=$this->hotelModel->viewAllHotels();
+            // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
+            $data=[
+                'allhotels'=> $allhotels
+            ];
+            $this->view('hotels/v_hotelHome',$data);
         }
 
         public function hotelProfile($hotelID){
-            echo $hotelID;
 
             $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
             $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
             echo $profileDetails->Name;
+
+            //get bookings from that hotel that overlap with checkin and checkout dates
+            $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
+
+            //get all room types and their total number
+            $allrooms = array();
+            foreach($allroomtypes as $roomtype){
+                $allrooms[] = $roomtype->RoomTypeID;
+                $allrooms[] = $roomtype->no_of_rooms;
+            }
+            print_r($allrooms)."<br>";
+
+           //get bookedrecords' room types and no of them
+            foreach($bookedrecords as $records){
+                $roomIDs = $records->roomIDs;
+                $bookedrooms = explode(',', $roomIDs);
+            }
+           print_r($bookedrooms); 
+
+           for($i=0;$i<count($allrooms);$i=$i+2){
+            for($j=0;$j<count($bookedrooms);$j=$j+2){
+                if($allrooms[$i]==$bookedrooms[$j]){
+                    $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                }
+            }
+           }
+
+           print_r($allrooms); 
+
             $data=[
+                'profileDetails'=>$profileDetails,
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
-                'allroomtypes'=> $allroomtypes
+                'allroomtypes'=> $allroomtypes,
+                'description'=>$profileDetails->Description,
+                'availablerooms'=>$allrooms
+                // 'noofadults' => $data['noofadults']
                 // 'profileName'=> $profileDetails->Name,
                 // 'profileName'=> $profileDetails->Name
 
@@ -392,6 +438,73 @@
                 'hotelaccountdetails' => $hotelaccountvar
             ];
             $this->view('hotels/v_dash_profile',$data);
+        }
+
+        public function loadFacilities(){
+            $facilities=$this->hotelModel->lookupfacilities($hotelID);
+            $data=[
+                'facilities'=>$facilities
+            ];
+            $this->view('hotels/v_dash_profile',$data);
+        }
+
+        public function addFacilities(){
+            $facilityDetails=$this->hotelModel->facilityDetails();
+            $data=[
+                'facilityDetails'=>$facilityDetails
+            ];
+            $this->view('hotels/v_dashAddFacilities', $data);
+        }
+
+        public function uploadPhotos(){
+            if(isset($_POST['upload'])){
+
+                $images = $_FILES['images'];
+
+                #number of images
+                $num_of_imgs = count($images['name']);
+
+                for($i=0; $i < $num_of_imgs; $i++){
+                    #get the img info and store them in var
+                    $image_name = $images['name'][$i];
+                    $tmp_name = $images['tmp_name'][$i];
+                    $error = $images['error'][$i];
+
+                    #if there is not error occured while uploading
+                    if($error === 0){
+                        #get image extension store it in var
+                        $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);
+                        $img_ex_lc = strtolower($img_ex);
+
+                        $allowed_exs = array('jpg', 'jpeg', 'png');
+
+                        if(in_array($img_ex_lc, $allowed_exs)){
+                            $new_img_name = uniqid('IMG-', true).'.'.$img_ex_lc;
+                            $img_upload_path = 'app/public/img/hotel-uploads'.$new_img_name;
+
+                            #inserting img name into database
+                            $this->hotelModel->insertingImages($_SESSION('user_id'), $new_img_name);
+                            move_uploaded_file($tmp_name, $img_upload_path);
+
+                            header("Location: echo URLROOT/hotels/v_dash_profile");
+
+                        }else{
+                            #error message
+                            $em = "You can't upload files of this type";
+
+                            header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
+                        }
+
+                    }else{
+                        #error message
+                        $em = "Unknown Error Occured While Uploading";
+
+                        header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
+                    }
+                }
+                // echo "<pre>";
+                // print_r($_FILES['images']['name'][0]);
+            }
         }
 
         public function loadBooking(){

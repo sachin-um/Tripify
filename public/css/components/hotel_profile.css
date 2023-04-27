@@ -1,0 +1,68 @@
+.hotel-profile-completing-notice{
+    background-color: rgba(163,44,196,.2);
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+}
+
+#hotel-profile-title-1{
+    margin-top: 3%;
+    margin-bottom: 2%;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.hotel-profile-account-details{
+    width: 80%;
+    background-color: rgba(0,98,204,.2);   
+    margin: auto;
+}
+
+.hotel-profile-account-details-1{
+    margin-left: 17%;         
+}
+
+.upload-section{
+    width: 80%;
+    background-color: rgba(0,98,204,.2);
+}
+
+.hotel-profile-1{
+    display: flex;
+    margin-top: 2%;
+}
+
+.hotel-profile-accdet{
+    width: 20%;
+}
+
+.hotel-profile-accdet-1{
+    width: 30%;
+}
+
+#account-details-edit{
+    width: 30%;
+    margin:auto;
+}
+
+#extra-1{
+    width: 20%;
+    margin: auto;
+}
+
+#extra{
+    width: 80%;
+    margin: auto;
+}
+
+#extra-2{
+    margin-top: 0;
+}
+
+.facilities-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 10px; /* space between columns, change as needed */
+    grid-row-gap: 10px;
+}
