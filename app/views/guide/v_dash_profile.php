@@ -7,11 +7,7 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Guide') {
-    flash('reg_flash', 'Only the Guides can have access...');
-    redirect('Pages/home');
-}
-else {
+elseif($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
     ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
@@ -84,10 +80,20 @@ else {
                 </div>
                     
                 <div class="sub-sub">
-                <?php if ($data->verification_status ==1) {
+                <?php if ($data->verification_status ==3) {
                         ?><h3>Verified </h3><?php
                     }else {
-                        ?><h3>Not Verified </h3><?php
+                        if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                            ?>
+                            <button class="acc-view-btn" type="button" onclick="showProfile('<?php echo $data->UserID; ?>','Guide','<?php echo URLROOT; ?>')">Verification Details</button>
+                            <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                                    <button class="verify-btn" type="button">Verify</button>
+                            </a>
+                            <?php
+                        }
+                        else {
+                            ?><h3>Not Verified</h3><?php
+                        }
                     } ?>
                 </div>
                     
@@ -183,8 +189,12 @@ else {
     </div>
         <br><br>
     </div>
+    <div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+    </div>
 
 <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 <script>
     var editbtn=document.getElementById("edit-btn");
@@ -222,6 +232,10 @@ else {
 
    
 <?php
+}
+else{
+    flash('reg_flash', 'Access Denied');
+    redirect('Pages/home');
 }
 ?>
 

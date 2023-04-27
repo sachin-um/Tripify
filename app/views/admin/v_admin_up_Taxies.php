@@ -92,14 +92,12 @@ else {
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="showProfile(this,'Taxi','<?php echo URLROOT; ?>')">View </button></td>
+                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
                                     <td data-lable="Email">
                                         <?php
                                             if ($taxi->verification_status==2) {
                                                 ?>
-                                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $taxi->UserID ?>/Taxi">
-                                                    <button class="verify-btn" type="button">Verify</button>
-                                                </a>
+                                                <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">
                                                 <?php
                                             }
                                             elseif($taxi->verification_status==3)

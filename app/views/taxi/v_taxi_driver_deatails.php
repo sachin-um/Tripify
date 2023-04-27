@@ -36,19 +36,20 @@
             <div class="tax_vech_view_cont">
 
                 <div class="tax-vec-sp-cont">
-                    <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $data['ID']?>"  method="POST">
+                    <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $data['ID']?>"  method="POST" enctype="multipart/form-data">
                         <div class="taxi_veh_grid_edit_cont">
-                            <div class="taxi_dash_edit_veh">
-                                <div>
-                                    <img src="<?php echo URLROOT; ?>/img/Group_profile.png" id="tax-dash-view-veh-img"  alt="Driver image">
-                                </div>
-                                
-
-                                <div class="taxi_add_v_imgbox"> 
-                                    <label>Change Driver Profile Picture</label>   
-                                    <input type="file" name="tax_img" id="taxi_add_v_img"  placeholder="taxi_add_v_imgbox" accept="image/*">
+                            <div class="drag-area">
+                                <div class="taxi-pic-cont">
+                                    <img src="<?php echo URLROOT; ?>/img/driver_profileImgs/<?php echo $data['profileImg']?>" id="profile-img-placehoder"  alt="Driver image" >
                                 </div>
 
+                                <div class="taxi_DriverPro_imgbox"> 
+                                    <div class="img-description">Upload Driver Photo</div>
+                                    <div class="img-upload" style="text-align: center;">
+                                        <input type="file" id="profile-imgupload" name="profileImg" placeholder="" required accept="image/*" style="display:none;" >
+                                        Browse
+                                    </div>  
+                                </div>
                             </div>
                         
                             <div>
@@ -102,4 +103,6 @@
         </div>    
     </main>
  </div>
+
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 

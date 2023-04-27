@@ -69,7 +69,7 @@ else {
                         ?>
                         <tr>
                             <td data-lable="ID"><?php echo $booking->BookingID ?></td>
-                            <td data-lable="Name"><?php echo $booking->guide_name ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
                             <td data-lable="Message"><?php echo $booking->ReservedDate ?></td>
                             <td data-lable="Message"><?php echo $booking->StartingTime ?></td>

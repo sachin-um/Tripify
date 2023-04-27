@@ -7,12 +7,8 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Hotel') {
-    flash('reg_flash', 'Access Denied');
-    redirect('Pages/home');
-}
-else {
-    ?> 
+elseif ($_SESSION['user_type']!='Hotel' || $_SESSION['user_type']!='Admin') {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
@@ -39,7 +35,6 @@ else {
                     <li><b>Account Status :</b></li>
                 </ul>
             </div>
-
             <div class="hotel-profile-accdet-1">
                 <ul>
                     <li><?php echo $data['hotelaccountdetails']->UserID?></li>
@@ -47,6 +42,7 @@ else {
                     <li><?php echo $data['hotelaccountdetails']->ContactNo?></li>
                     <li><?php echo $data['hotelaccountdetails']->acc_status?></li>
                 </ul>
+
             </div>
 
             <div class="hotel-profile-accdet">
@@ -196,7 +192,17 @@ else {
 
 </div>
 
+<div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+</div>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
+<!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
+
 <?php
+}
+else {
+    flash('reg_flash', 'Access Denied');
+    redirect('Pages/home');
 }
 ?>
 

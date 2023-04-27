@@ -168,7 +168,10 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $this->db->query('SELECT * FROM guide_languages WHERE guide_id=:id');
+            $this->db->bind(':id',$row->GuideID);
+            $languages=$this->db->resultSet();
+            $row->languages=$languages;
             return $row;
         }
 
@@ -177,7 +180,8 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $details=$this->getUserDetails($id);
+            $row->moreDetails=$details;
             return $row;
         }
 
@@ -202,7 +206,7 @@
         public function verifyaccount($id)
         {
             $this->db->query('UPDATE users set verification_status=3 WHERE UserID=:id');
-            $this->db->bind(':id',$data['id']);
+            $this->db->bind(':id',$id);
 
             if ($this->db->execute()) {
                 return true;
@@ -227,11 +231,15 @@
             if ($row->verification_status==0) {
                 return 'NotValidate';
             }
-            elseif ($row->verification_status==2) {
-                return 'ServiceNotValidate';
-            }
             else if (password_verify($data['password'], $hashed_password)) {
-                return $row;
+                $this->db->query('UPDATE users set active_status="Active" WHERE Email= :email');
+                $this->db->bind(':email',$data['email']);
+                if ($this->db->execute()) {
+                    return $row;
+                } else {
+                    return false;
+                }
+                
             }
             else {
                 return false;
@@ -324,6 +332,17 @@
                 echo 'HI';
                 return false;
             }
+        }
+
+        public function logout()
+        {
+                $this->db->query('UPDATE users set active_status="Offline" WHERE UserID=:id');
+                $this->db->bind(':id',$_SESSION['user_id']);
+                if ($this->db->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
         }
     }
 

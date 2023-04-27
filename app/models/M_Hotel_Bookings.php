@@ -45,8 +45,7 @@
             $filteredbookings=filterBookings($bookings,$usertype,$userid);
             foreach ($filteredbookings as $booking) {
                 $hotel=$this->getHotelById($booking->hotel_id);
-                $hotel_name=$hotel->Name;
-                $booking->hotel_id=$hotel_name;
+                $booking->hotel=$hotel;
             }
             return $filteredbookings;
         }
@@ -108,7 +107,9 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
-
+            $hotel=$this->getHotelById($row->hotel_id);
+            $hotel_name=$hotel->Name;
+            $row->hotel_id=$hotel_name;
             return $row;
         }
 

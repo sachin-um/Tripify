@@ -4,16 +4,33 @@
             $this->taxi_vehicleModel=$this->model('M_Taxi_Vehicle');
 
             $this->taxi_driverModel=$this->model('M_Taxi_Driver');
+
+            $this->taxiModel=$this->model('M_Taxi');
         
         }
         public function index(){
 
         }
 
+        public function getvehicle($vehicleid)
+        {
+            $vehicle=$this->taxi_vehicleModel->getVehicleByID($vehicleid);
+
+            header('Content-Type: application/json');
+            echo json_encode($vehicle);
+        }
+
 
         public function viewvehicles(){
            
-            $allvehicles=$this->taxi_vehicleModel->viewall();
+            $user_id='';
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                $user_id=$_SESSION['service_id'];
+            } else {
+                $user_id=$_SESSION['user_id'];
+            }
+            
+            $allvehicles=$this->taxi_vehicleModel->viewall($user_id);
 
             $data=[
                 'vehicles'=> $allvehicles
@@ -21,9 +38,23 @@
             $this->view('taxi/v_taxi_vehicles',$data);
         }
 
+        public function viewVehicleByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $vehicles=$this->taxi_vehicleModel->viewall($id);
+                $data=[
+                    'vehicles'=> $vehicles
+                ];
+                $this->view('admin/v_admin_taxi_vehicles',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+
         public function addavehicle(){
             
-            $alldrivers=$this->taxi_driverModel->viewall();
+            $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
 
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -165,22 +196,47 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
+                $uploaded_files = $_FILES['vehicleImgs'];
+                var_dump($_FILES['vehicleImgs']);
+                // $num_files = count($uploaded_files['name']);
             
-                $data=[
-                    'driver'=>trim($_POST['driver']),
-                    'area'=>trim($_POST['area']),
-                    'no_of_seats'=>trim($_POST['noOfSeats']),
-                    'price_per_km'=>trim($_POST['price_per_km']),      
-                    'VehicleID'=>$vehicle_id
-                    ];
+                // $vehicle_image_names = array();
+                // // $vehicle_old_image_names = array();
+            
+                // for ($i=0; $i<$num_files; $i++) {
+                //     $name = time().'_'.$uploaded_files['name'][$i];
+                //     $vehicle_image_names[] = $name;
+                //     echo $name;
+                // }
 
-                    if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
-                        flash('request_flash', 'Vehicle is Succusefully Updated..!');
-                        redirect('Taxi_Vehicle/viewvehicles');
-                    }
-                    else{
-                        die('Something went wrong');
-                    }
+                // $data=[
+                //     'driverID'=>trim($_POST['driver']),
+                //     // 'vehicle_image_names'=>$vehicle_image_names,
+                //     'area'=>trim($_POST['area']),
+                //     'no_of_seats'=>trim($_POST['noOfSeats']),
+                //     'price_per_km'=>trim($_POST['price_per_km']),      
+                //     'VehicleID'=>$vehicle_id,
+
+                //     'vehicle_imgs_err'=>''
+                //     ];
+
+                // if(uploadImageGallary($vehicle_image_names, $uploaded_files['name'], '/img/vehicle_images/')) {
+                        
+                // }else{
+                //     $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
+                //     // handle error and return
+                // }
+
+            
+                
+
+                //     if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                //         flash('request_flash', 'Vehicle is Succusefully Updated..!');
+                //         redirect('Taxi_Vehicle/viewvehicles');
+                //     }
+                //     else{
+                //         die('Something went wrong');
+                //     }
                 
 
 
@@ -188,7 +244,7 @@
             }
             else {
 
-                $alldrivers=$this->taxi_driverModel->viewall();
+                $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
 
                 $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
                 
@@ -198,7 +254,7 @@
                 }
                 $data=[
                         'drivers'=> $alldrivers, // user want to change to driver also editing purpose
-                        'driver'=>$taxiVehicle->driver_name,
+                        'driver'=>$taxiVehicle->Name,
                         'ID' => $taxiVehicle->VehicleID,
                         'vehicleType'=>$taxiVehicle->VehicleType,
                         'model'=>$taxiVehicle->Model,
@@ -216,10 +272,25 @@
         }
 
 
-        public function taxideatails(){
-            $allvehicles=$this->taxi_vehicleModel->viewall();
+        public function taxideatails($id){
+            
+            $allvehicles=$this->taxi_vehicleModel->getVehicleByOwnerID($id);
+
+            $taxiOwner=$this->taxiModel->getOwnerByID($id);
+
+            //  var_dump($taxiOwner);
+
+             if ($taxiOwner) {
+                // Check if the 'company_name' property exists before accessing it
+                $com_name = isset($taxiOwner->company_name) ? $taxiOwner->company_name : $taxiOwner->owner_name.'CABS';
+            } else {
+                $com_name = '';
+            }
+
             $data=[
-                'vehicles'=> $allvehicles
+                'vehicles'=> $allvehicles,
+                'com_name'=>$com_name,
+                'owner'=> $taxiOwner
             ];
             $this->view('taxi/v_taxi_details_page',$data);
         }

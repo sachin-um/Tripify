@@ -1,0 +1,57 @@
+.taxi-disc-1{
+    display: grid;
+    justify-items: center;
+
+}
+
+.taxi-disc-2{
+
+    display: grid;
+    align-content: center;
+}
+
+.taxi-disc-3{
+    display: flex;
+
+
+}
+
+.taxi_book_ul
+{
+    font-size: large;
+}
+
+#taxi_book_subhead{
+    font-size: x-large;
+    margin: auto;
+}
+
+.taxi_all-purpose-btn{
+    height: 45px;
+    width: 15%;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: #3d0e03;
+    border-radius: 100px;
+}
+
+.taxi_all-purpose-btn:hover{
+    background-color: #3d0e03;
+}
+
+#taxi-get-price-but{
+    width: 30%;
+    margin: auto;
+}
+
+#avail,#availTime{
+    color: #3d0e03;
+   
+}
+
+.taxi-check-cont{
+    display: flex;
+
+}
+ 
