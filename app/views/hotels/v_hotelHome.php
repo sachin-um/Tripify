@@ -54,7 +54,7 @@
         $_SESSION['checkin'] = $current_date;
         $_SESSION['checkout'] = $tomorrow;
 
-        echo $_SESSION['checkin'];
+        // echo $_SESSION['checkin'];
         ?>
 
         <div class="hotel-home-top-picks">
