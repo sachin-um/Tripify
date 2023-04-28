@@ -24,7 +24,7 @@ class M_Taxi{
     //register
 
     public function register($data){
-        $this->db->query('INSERT INTO taxiowner(OwnerID,profileImg,NoOfVehicles,owner_name,nic_no,company_name,contact_number,address) VALUES(:owner_id,:profileImg,:noOfVehicle,:owner_name,:NIC_no,:company_name,:contact_number,:address)');
+        $this->db->query('INSERT INTO taxiowner(OwnerID,profileImg,NoOfVehicles,owner_name,nic_no,company_name,contact_number,address,services) VALUES(:owner_id,:profileImg,:noOfVehicle,:owner_name,:NIC_no,:company_name,:contact_number,:address,:services)');
         $this->db->bind(':owner_name',$data['owner_name']);
         $this->db->bind(':NIC_no',$data['NIC_no']);
         $this->db->bind(':profileImg',$data['profile_image_name']);
@@ -32,6 +32,7 @@ class M_Taxi{
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':address',$data['address']);
         $this->db->bind(':noOfVehicle',$data['noOfVehicle']);
+        $this->db->bind(':services',$data['services']);
         $this->db->bind(':owner_id',$data['owner_id']);
 
         if ($this->db->execute()) {
@@ -101,13 +102,14 @@ class M_Taxi{
     }
 
     public function editOwnerInfo($data){
-        $this->db->query('UPDATE taxiowner SET owner_name=:owner_name,profileImg=:profileImg, company_name=:company_name, contact_number=:contact_number, address=:address WHERE OwnerID=:OwnerID');
+        $this->db->query('UPDATE taxiowner SET owner_name=:owner_name,profileImg=:profileImg, company_name=:company_name, contact_number=:contact_number, address=:address, services=:services  WHERE OwnerID=:OwnerID');
         $this->db->bind(':owner_name',$data['name']);
         // $this->db->bind('nic_no',$data['nic']);
         $this->db->bind(':profileImg',$data['profile_image_name']);
         $this->db->bind(':company_name',$data['company_name']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':address',$data['address']);
+        $this->db->bind(':services',$data['services']);
         $this->db->bind(':OwnerID',$data['OwnerID']);
         // die($data['OwnerID']);
         if($this->db->execute()){
@@ -118,58 +120,58 @@ class M_Taxi{
     }
 
 
-    public function viewbookings(){
-        $this->db->query('SELECT * FROM taxi_reservation');
-        $bookings=$this->db->resultSet();
-        return $bookings;
-    }
+    // public function viewbookings(){
+    //     $this->db->query('SELECT * FROM taxi_reservation');
+    //     $bookings=$this->db->resultSet();
+    //     return $bookings;
+    // }
 
-    public function getVehicleAndDriversbyID($id){
-        $this->db->query('SELECT vehicles.vehicle_number, taxi_drivers.Name
-            FROM vehicles
-            JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID
-            WHERE vehicles.VehicleID=:VehicleID');
-        $this->db->bind(':VehicleID',$id);
-        $row = $this->db->single();
-        return $row;
-    }
+    // public function getVehicleAndDriversbyID($id){
+    //     $this->db->query('SELECT vehicles.vehicle_number, taxi_drivers.Name
+    //         FROM vehicles
+    //         JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID
+    //         WHERE vehicles.VehicleID=:VehicleID');
+    //     $this->db->bind(':VehicleID',$id);
+    //     $row = $this->db->single();
+    //     return $row;
+    // }
 
 
-    public function viewBookingsByID($id){
-        $this->db->query('SELECT * FROM taxi_reservation WHERE ReservationID=:ReservationID');
-        $this->db->bind(':ReservationID',$id);
-        $bookings=$this->db->single();
-        return $bookings;
-    }
+    // public function viewBookingsByID($id){
+    //     $this->db->query('SELECT * FROM taxi_reservation WHERE ReservationID=:ReservationID');
+    //     $this->db->bind(':ReservationID',$id);
+    //     $bookings=$this->db->single();
+    //     return $bookings;
+    // }
 
-    public function confrimBooking($id)
-        {
-            $this->db->query('UPDATE `taxi_reservation` SET status="Confirmed" WHERE ReservationID=:booking_id');
-            $this->db->bind(':booking_id',$id);
+    // public function confrimBooking($id)
+    //     {
+    //         $this->db->query('UPDATE `taxi_reservation` SET status="Confirmed" WHERE ReservationID=:booking_id');
+    //         $this->db->bind(':booking_id',$id);
 
             
 
-            if ($this->db->execute()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+    //         if ($this->db->execute()) {
+    //             return true;
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
 
 
-        public function cancelBooking($id)
-        {
-            $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
-            $this->db->bind(':booking_id',$id);
+    //     public function cancelBooking($id)
+    //     {
+    //         $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
+    //         $this->db->bind(':booking_id',$id);
 
-            if ($this->db->execute()) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+    //         if ($this->db->execute()) {
+    //             return true;
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
 
 
     

@@ -47,7 +47,7 @@
                 $this->view('admin/v_admin_taxi_vehicles',$data);
             }
             else {
-                flash('reg_flash', 'Access Denied');
+                flash('vehicle_flash', 'Access Denied');
                 redirect('Users/login');
             }
         }
@@ -69,11 +69,18 @@
                         'vehicleNumber'=>trim($_POST['number']),
                         'area'=>trim($_POST['area']),
                         'noOfSeats'=>trim($_POST['max']),
-                        'price_per_km'=>trim($_POST['flag']),      
+                        'price_per_km'=>trim($_POST['flag']),
+                        'AC'=>trim($_POST['ac']),
+                        'media'=>trim($_POST['media']),
+                        'wifi'=>trim($_POST['wifi']),      
                         'owner'=>$_SESSION['user_id']                 
 
     
                     ];
+
+                    
+
+                    
 
 
                 // //validate driver
@@ -152,6 +159,9 @@
                     'vehicleNumber_err'=>'',
                     'area_err'=>'',
                     'noOfSeats_err'=>'',
+                    'AC'=>"",
+                    'media'=>"",
+                    'wifi'=>"",
                     'price_per_km_err'=>'',
 
 
@@ -196,8 +206,8 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
-                $uploaded_files = $_FILES['vehicleImgs'];
-                var_dump($_FILES['vehicleImgs']);
+                // $uploaded_files = $_FILES['vehicleImgs'];
+                // var_dump($_FILES['vehicleImgs']);
                 // $num_files = count($uploaded_files['name']);
             
                 // $vehicle_image_names = array();
@@ -209,16 +219,23 @@
                 //     echo $name;
                 // }
 
-                // $data=[
-                //     'driverID'=>trim($_POST['driver']),
-                //     // 'vehicle_image_names'=>$vehicle_image_names,
-                //     'area'=>trim($_POST['area']),
-                //     'no_of_seats'=>trim($_POST['noOfSeats']),
-                //     'price_per_km'=>trim($_POST['price_per_km']),      
-                //     'VehicleID'=>$vehicle_id,
+                $data=[
+                    'driverID'=>trim($_POST['driverID']),
+                    // 'vehicle_image_names'=>$vehicle_image_names,
+                    'area'=>trim($_POST['area']),
+                    'color'=>trim($_POST['color']),
+                    'no_of_seats'=>trim($_POST['noOfSeats']),
+                    'AC'=>trim($_POST['ac']),
+                    'media'=>trim($_POST['media']),
+                    'wifi'=>trim($_POST['wifi']),
+                    'services'=>trim($_POST['services']),
+                    'price_per_km'=>trim($_POST['price_per_km']),      
+                    'VehicleID'=>$vehicle_id,
 
-                //     'vehicle_imgs_err'=>''
-                //     ];
+                    'vehicle_imgs_err'=>''
+                    ];
+
+                    var_dump($data);
 
                 // if(uploadImageGallary($vehicle_image_names, $uploaded_files['name'], '/img/vehicle_images/')) {
                         
@@ -230,13 +247,13 @@
             
                 
 
-                //     if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
-                //         flash('request_flash', 'Vehicle is Succusefully Updated..!');
-                //         redirect('Taxi_Vehicle/viewvehicles');
-                //     }
-                //     else{
-                //         die('Something went wrong');
-                //     }
+                    if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                        flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
+                        redirect('Taxi_Vehicle/viewvehicles');
+                    }
+                    else{
+                        die('Something went wrong');
+                    }
                 
 
 
@@ -249,20 +266,25 @@
                 $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
                 
                 if ($taxiVehicle->OwnerID !=$_SESSION['user_id']) {
-                    flash('reg_flash', 'You need to have logged in first...');
+                    flash('vehicle_flash', 'You need to have logged in first...');
                     redirect('Users/login');
                 }
                 $data=[
                         'drivers'=> $alldrivers, // user want to change to driver also editing purpose
+                        'driverID'=>$taxiVehicle->driverID,
                         'driver'=>$taxiVehicle->Name,
                         'ID' => $taxiVehicle->VehicleID,
                         'vehicleType'=>$taxiVehicle->VehicleType,
                         'model'=>$taxiVehicle->Model,
+                        'color'=>$taxiVehicle->color,
                         'yearofProduction'=>$taxiVehicle->YearOfProduction,
                         'vehicleNumber'=>$taxiVehicle->vehicle_number,
                         'area'=>$taxiVehicle->area,
                         'noOfSeats'=>$taxiVehicle->no_of_seats,
-                        'price_per_km'=>$taxiVehicle->price_per_km,      
+                        'price_per_km'=>$taxiVehicle->price_per_km,
+                        'AC'=>$taxiVehicle->AC,
+                        'media'=>$taxiVehicle->media,
+                        'wifi'=>$taxiVehicle->wifi,     
                         'owner'=>$_SESSION['user_id'] 
 
                 ];

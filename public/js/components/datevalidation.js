@@ -35,26 +35,34 @@ function validation(){
 
   $('#bookingTime').on('change', function() {
     $('#avail').html('');
-    validationDateTime();
+    if (timeInput.value) {
+      validationDateTime();
+    }
     
   });
 
-  $('#bookingDate').on('change', function() {
+  $('#bookingDate').on('click', function() {
     $('#avail').html('');
-    validationDateTime();
+    if (dateInput.value) {
+      validationDateTime();
+    }
     
   });
 
   $('#taxi-PL').on('click', function() {
     $('#availTime').html('');
-    validationDateTime();
+    if (dateInput.value && dateInput.value) {
+      validationDateTime();
+    }
     
     
   });
 
   $('#taxi-DL').on('click', function() {
     $('#availTime').html('');
-    validationDateTime();
+    if (dateInput.value && dateInput.value) {
+      validationDateTime();
+    }
     
     
   });
@@ -99,20 +107,15 @@ function validation(){
 function driverAvailable(){     // A driver can only drive 14 hours per day 
   const bookingDate = $('#bookingDate').val();
   const bookingTime = $('#bookingTime').val();
-  const pickupLocationInput = document.querySelector('#taxi-PL');
-  const pickupLocationValue = pickupLocationInput.value;
+  const est = $('#duration').val();
 
-  const dropupLocationInput = document.querySelector('#taxi-DL');
-  const dropLocationValue = dropupLocationInput.value;
 
   $.ajax({
     url: URLROOT+'/Bookings/checkTimeAvailability',
     method: 'POST',
     data: {
       bookingDate: bookingDate,
-      bookingTime: bookingTime,
-      pickL: pickupLocationValue,
-      dropL:dropLocationValue,
+      est:est,
       vehicleID:vehicleID
     },
     dataType: 'json',
@@ -142,23 +145,19 @@ function availableTime(){   // Checking Time slot is Available
 
   var bookingDate = $('#bookingDate').val();
   const bookingTime = $('#bookingTime').val();
+  const est = $('#duration').val();
   const pickupLocationInput = document.querySelector('#taxi-PL');
   const pickupLocationValue = pickupLocationInput.value;
 
-  const dropupLocationInput = document.querySelector('#taxi-DL');
-  const dropLocationValue = dropupLocationInput.value;
-
-
-
     $.ajax({
-      url: URLROOT+'/Bookings/check',
+      url: URLROOT+'/Bookings/checkTimeSlot',
       method: 'POST',
       data: {
         bookingDate: bookingDate,
         bookingTime: bookingTime,
+        est: est,
         vehicleID:vehicleID,
-        pickL: pickupLocationValue,
-        dropL:dropLocationValue
+       
       },
       dataType: 'json',
       success: function(result) {
@@ -247,12 +246,12 @@ function inputOrder(){
   }
   });
   
-  pickL.addEventListener('click', function() {
-    if (!dateInput.value || !timeInput.value ) {
-        timeInput.value = '';
-        alert('Please select a date & time before selecting a Location.');
-    }
-    });
+  // pickL.addEventListener('click', function() {
+  //   if (!dateInput.value || !timeInput.value ) {
+  //       timeInput.value = '';
+  //       alert('Please select a date & time before selecting a Location.');
+  //   }
+  //   });
 
     dropL.addEventListener('click', function() {
       if (!pickL.value) {

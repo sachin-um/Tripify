@@ -49,6 +49,10 @@
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
                     <input type="submit" id="taxi-register-but" name="taxiowncreate_but" value="Register">
+
+
+                    <p>Selected services: <span id="service-list"></span></p>
+                    <input type="text" name="services" placeholder="Enter up to 4 services separated by commas" onkeyup="showServices()">
                 </form>
 
                 <div class="taxicreatecom">
@@ -68,6 +72,22 @@
 
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+<script>
+function showServices() {
+  var servicesInput = document.getElementById("services");
+  var servicesList = document.getElementById("service-list");
+  var services = servicesInput.value.split(",");
+
+  if (services.length <= 3) {
+    servicesList.innerHTML = services.join(", ");
+  } else {
+    servicesInput.value = services.slice(0, 3).join(",");
+    servicesList.innerHTML = services.slice(0, 3).join(", ");
+  }
+}
+
+</script>
 
 
 

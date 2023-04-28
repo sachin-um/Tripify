@@ -126,29 +126,95 @@
                     'taxibookings'=> $taxibookings
                 ];
                 $this->view('traveler/v_taxibookings',$data);
+            }else if ($usertype == 'Taxi') {
+                $taxibookings = $this->taxiBookingModel->viewbookings($usertype,$userid);
+
+                $data = [
+                    'taxibookings' => $taxibookings
+                ];
+        
+                $this->view('taxi/v_taxi_bookings', $data);
             }
         }
 
+
+        public function TaxiBookingsDetails($ReservationID){
+            $usertype= $_SESSION['user_type'];
+        
+            if ($usertype == 'Taxi') {
+                $taxibookings = $this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
+                
+                    $vehicleDetails = $this->taxiBookingModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
+                    $taxibookings->Name = $vehicleDetails->Name;
+                    $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
+        
+                $data = [
+                    'taxibookings' => $taxibookings
+                ];
+
+            
+            $this->view('taxi/v_taxi_dashboard7_1',$data);
+           
+        }
+
+    }
+
         public function CancelTaxiBooking($bookingid){
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($bookingid);
-            if ($booking->TravelerID!=$_SERVER['user_id']) {
+            if($_SESSION['user_type']=='Traveler'){
+                if ($booking->TravelerID!=$_SERVER['user_id']) {
+                    flash('reg_flash', 'Access Denied...');
+                    redirect('Users/login');
+                }
+                elseif ($booking->status!='Yet To Confirm') {
+                    flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+                    redirect('Bookings/TaxiBookings');
+                }
+                else {
+                    if($this->taxiBookingModel->cancelBooking($bookingid)){
+                        flash('booking_flash', 'Taxi Booking is Canceled');
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    }
+                    else {
+                        flash('guide_offer_flash', 'Something went wrong..!');
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    }
+                }
+            }else if($_SESSION['user_type']=='Taxi'){
+                 
+                if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+                    if($this->taxiBookingModel->cancelBooking($bookingid)){
+                        flash('booking_flash', 'Taxi Booking is Canceled');
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    }else{
+                        flash('booking_flash', 'Somthing went wrong try again');
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                    }
+                }else{
+                    flash('reg_flash', 'Access Denied...');
+                    redirect('Users/login');
+                }
+            }
+            
+        }
+
+        public function ConfirmTaxiBooking($ReservationID){
+            
+            $booking=$this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
+
+            if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+                if($this->taxiBookingModel->confrimBooking($ReservationID)){
+                    flash('booking_flash', 'Confrimed Success');
+                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
+                }else{
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                }
+            }else{
                 flash('reg_flash', 'Access Denied...');
                 redirect('Users/login');
             }
-            elseif ($booking->status!='Yet To Confirm') {
-                flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-                redirect('Bookings/TaxiBookings');
-            }
-            else {
-                if($this->taxiBookingModel->cancelBooking($bookingid)){
-                    flash('booking_flash', 'Taxi Booking is Canceled');
-                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
-                }
-                else {
-                    flash('guide_offer_flash', 'Something went wrong..!');
-                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
-                }
-            }
+            
         }
 
         public function acceptTaxiOffer($offerid,$requestid){
@@ -195,76 +261,70 @@
 
 
 
-        public function CalculatePrice($pickupL,$dropL){
+        // public function CalculatePrice($pickupL,$dropL){
            
-            // Set the origin and destination addresses
-            $origin = $pickupL;
-            $destination =$dropL;
+        //     // Set the origin and destination addresses
+        //     $origin = $pickupL;
+        //     $destination =$dropL;
 
-            // $origin = 'kandy,Srilanka';
-            // $destination ='Colombo,Srilanka';
+        //     // $origin = 'kandy,Srilanka';
+        //     // $destination ='Colombo,Srilanka';
 
-            // Create the URL for the Google Maps Distance Matrix API
-            $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
+        //     // Create the URL for the Google Maps Distance Matrix API
+        //     $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
 
-            // Make a GET request to the API and decode the JSON response
-            $response = json_decode(file_get_contents($url), true);
+        //     // Make a GET request to the API and decode the JSON response
+        //     $response = json_decode(file_get_contents($url), true);
 
-            // Get the distance in kilometers from the response
-            $distance = $response['rows'][0]['elements'][0]['distance']['value'] / 1000;
+        //     // Get the distance in kilometers from the response
+        //     $distance = $response['rows'][0]['elements'][0]['distance']['value'] / 1000;
 
-            // return the result
-            return $distance; 
+        //     // return the result
+        //     return $distance; 
 
-        }
+        // }
 
-        public function CalculateExtimateTime($pickupL,$dropL){
+        // public function CalculateExtimateTime($pickupL,$dropL){
            
       
 
-            $origin = $pickupL;
-            $destination =$dropL;
+        //     $origin = $pickupL;
+        //     $destination =$dropL;
             
-            $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
+        //     $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $response = curl_exec($ch);
-            curl_close($ch);
+        //     $ch = curl_init();
+        //     curl_setopt($ch, CURLOPT_URL, $url);
+        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //     $response = curl_exec($ch);
+        //     curl_close($ch);
             
-            $data = json_decode($response);
-            $duration = $data->rows[0]->elements[0]->duration->text;
+        //     $data = json_decode($response);
+        //     $duration = $data->rows[0]->elements[0]->duration->text;
             
-            return $duration;
+        //     return $duration;
             
 
-        }
+        // }
 
         public function checkTimeAvailability(){
             $bookingDate = $_POST['bookingDate'];
-            $bookingTime = $_POST['bookingTime'];
-            $pickL = $_POST['pickL'];
-            $dropL = $_POST['dropL'];
             $vehicleID = $_POST['vehicleID'];
-            
-            $est = $this->CalculateExtimateTime($pickL,$dropL);
-            $driverAvailable = $this->taxiBookingModel->checkDriverAvailable($vehicleID,$bookingDate,$bookingTime,$est);
-            echo json_encode($driverAvailable);
-           
+            $est = $_POST['est'];
 
+            $driverAvailable = $this->taxiBookingModel->checkDriverAvailable($vehicleID,$bookingDate,$est);
+            echo json_encode($driverAvailable);
+        
 
         }
 
-        public function check(){
+        public function checkTimeSlot(){
             $bookingDate = $_POST['bookingDate'];
             $bookingTime = $_POST['bookingTime'];
             $vehicleID = $_POST['vehicleID'];
-            $pickL = $_POST['pickL'];
-            $dropL = $_POST['dropL'];
-            
+            $est = $_POST['est'];
 
-            $est = $this->CalculateExtimateTime($pickL,$dropL);
+
             $bookingAvailable = $this->taxiBookingModel->checkBookingDate($vehicleID,$bookingDate,$bookingTime,$est);
             
             echo json_encode($bookingAvailable);
@@ -274,6 +334,7 @@
         public function TaxiBookingPage($vehicleID,$ownerID){
          
             $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
+            // var_dump($details);
             $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
             if(isset($owner->company_name)){
@@ -287,27 +348,38 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
                 $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $pickupL =trim($_POST['pickupL']);
+                $pickupL = trim($_POST['pickupL']);
                 $dropL =  trim($_POST['dropL']);
                 $bookingDate = $_POST['s_date'];
                 $bookingTime = $_POST['s_time'];
-                $exTime=$this->CalculateExtimateTime($pickupL,$dropL); //extimate time
+                $exTime=$_POST['duration']; //extimate time
 
-                $distance=$this->CalculatePrice( $pickupL, $dropL);
+                $distance=$_POST['distance'];
+                
+                $total = (float)$distance * (float)$details->price_per_km;
 
-                $cost = $distance*$details->price_per_km;
-                $tax = ($cost*3)/100;
-                $total = $cost+$tax;
+                
+                $bookingdatetime = new DateTime("$bookingDate $bookingTime");
+               
+                $exHours = (int)substr($exTime, 0, 2);
+                $exMinutes = (int)substr($exTime, 3, 2);
+                $exSeconds = (int)substr($exTime, 6, 2);
 
-                $bookingdatetime = date('Y-m-d H:i:s', strtotime("$bookingDate $bookingTime"));
-        
-                $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$exTime"));
+                $bookingdatetime->add(new DateInterval("PT{$exHours}H{$exMinutes}M{$exSeconds}S"));
+                $est_datetime = $bookingdatetime->format("Y-m-d H:i:s");
+
                 $end_date = date('Y-m-d', strtotime($est_datetime));
                 $end_time = date('H:i:s', strtotime($est_datetime));
+  
+
 
                 $data=[
                     's_date'=>trim($_POST['s_date']),
                     's_time'=>trim($_POST['s_time']),
+                    'p_latitude'=>trim($_POST['p-latitude']),
+                    'p_longitude'=>trim($_POST['p-longitude']),
+                    'd_latitude'=>trim($_POST['d-latitude']),
+                    'd_longitude'=>trim($_POST['d-longitude']),
                     'e_date'=>$end_date,
                     'e_time'=>$end_time,
                     'pickupL'=>$pickupL,
@@ -316,9 +388,8 @@
                     'extime'=>$exTime,
                     'com_name'=>$com_name,
                     'owner'=>$owner,
+                    'TaxiOwnerID'=>$owner->OwnerID,
                     'distance'=>$distance,
-                    'cost' =>$cost,
-                    'tax' =>$tax,
                     'total' => $total     
                     ];
                     
@@ -359,21 +430,29 @@
                 'e_time'=>$_SESSION['booking_data']['e_time'],
                 'pickupL'=>$_SESSION['booking_data']['pickupL'],
                 'dropL'=>$_SESSION['booking_data']['dropL'],
+                'p_latitude'=>$_SESSION['booking_data']['p_latitude'],
+                'p_longitude'=>$_SESSION['booking_data']['p_longitude'],
+                'd_latitude'=>$_SESSION['booking_data']['d_latitude'],
+                'd_longitude'=>$_SESSION['booking_data']['d_longitude'],
                 'extime'=> $formattedTime ,
                 'distance'=>$_SESSION['booking_data']['distance'],
                 'travelerID'=>$userId,
+                'TaxiOwnerID'=>$_SESSION['booking_data']['TaxiOwnerID'],
                 'vehicleID'=>$vehicleID,
                 'total' =>$_SESSION['booking_data']['total'],
                 ];
 
+                var_dump($data);
+
                 if ($this->taxiBookingModel->insertTaxiBooking($data)) {
                     flash('request_flash', 'Your Vehicle Booked Sucessfully..!');
-                    redirect('Bookings/TaxiBookings');
+                    unset($_SESSION['booking_data']);
+                    redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }
                 else{
                     die('Something went wrong');
                 }
-                unset($_SESSION['booking_data']);
+                // unset($_SESSION['booking_data']);
         }
 
         

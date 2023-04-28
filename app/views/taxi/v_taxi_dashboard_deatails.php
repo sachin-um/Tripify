@@ -24,7 +24,7 @@
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -46,7 +46,7 @@
                                 <div class="taxi_DriverPro_imgbox"> 
                                     <div class="img-description">Change Profile Picture</div>
                                         <div class="img-upload" style="text-align: center;">
-                                            <input type="file" id="profile-imgupload" name="profileImg" placeholder="" required accept="image/*" style="display:none;" >
+                                            <input type="file" id="profile-imgupload" name="profileImg" placeholder=""  accept="image/*" style="display:none;" >
                                             Browse
                                         </div>  
                                     </div>
@@ -86,8 +86,14 @@
                                     <tr>
                                         <td>Address:</td>
                                         <td><input name='address'type="text" value="<?php echo $data['address']?>">
-</td>
+                                        </td>
                                         <!-- <td><textarea name="address" id="" cols="20" rows="5" value=""><?php echo $data['address']?></textarea></td> -->
+                                    </tr>
+
+                                    <tr>
+                                        <td><p>Selected services:<br><span id="service-list" ></span></p></td>
+                                        <td><input type="text" id="services" name="services" placeholder="Enter up to 4 services separated by commas" value="<?php echo $data['services']?>" onkeyup="showServices()">
+                                        </td>
                                     </tr>
 
                                     
@@ -114,4 +120,23 @@
  </div>
 
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
+
+ 
+<script>
+function showServices() {
+  var servicesInput = document.getElementById("services");
+  var servicesList = document.getElementById("service-list");
+  var services = servicesInput.value.split(",");
+
+  if (services.length <= 3) {
+    servicesList.innerHTML = services.join(", ");
+  } else {
+    servicesInput.value = services.slice(0, 3).join(",");
+    servicesList.innerHTML = services.slice(0, 3).join(", ");
+  }
+}
+
+
+
+</script>
 
