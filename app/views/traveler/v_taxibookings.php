@@ -76,27 +76,29 @@ else {
                             <td data-lable="Message"><?php echo $booking->destination ?></td>
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
                             <td data-lable="Message"><?php echo $booking->status ?></td>
+                            <td data-lable="Name">
+                            <button class="acc-view-btn" type="button" onclick="showTaxiBooking('<?php echo $booking->ReservationID; ?>','<?php echo URLROOT; ?>')">View </button>
                             <?php
                                 if ($booking->status=='Yet To Confirm') {
                                     ?>
                                     
-                                    <td data-lable="Name">
+                                    
                                         <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">Edit</button></a>
                                         <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button">Cancel</button></a>
                                         
-                                    </td>
+                                    
                                     <?php
                                 }
                                 elseif ($booking->status=='Confirmed') {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
-                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button></td>
+                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button>
                                             <?php
                                         }
                                         else {
                                             ?>
-                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><span class="pay-on-site">Pay On Site</span></td>
+                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><span class="pay-on-site">Pay On Site</span>
                                             <?php
                                         }
                                     }
@@ -108,19 +110,19 @@ else {
                                 }
                                 elseif ($booking->status=='Finished') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                    <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                     <br>
                                     <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
-                                    </td>
+                                    
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td>
+                                    <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled
                                     <?php
                                 }
                             ?>
-                            
+                            </td>
                         </tr>
                         <?php
                             endforeach;
