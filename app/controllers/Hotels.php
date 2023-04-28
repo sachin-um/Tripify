@@ -394,19 +394,23 @@
                 $roomIDs = $records->roomIDs;
                 $bookedrooms = explode(',', $roomIDs);
             }
-           print_r($bookedrooms); 
+        //    print_r($bookedrooms); 
 
            for($i=0;$i<count($allrooms);$i=$i+2){
-            for($j=0;$j<count($bookedrooms);$j=$j+2){
-                if($allrooms[$i]==$bookedrooms[$j]){
-                    $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+            if(!empty($bookedrooms)){
+                for($j=0;$j<count($bookedrooms);$j=$j+2){
+                    if($allrooms[$i]==$bookedrooms[$j]){
+                        $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                    }
                 }
             }
+            
            }
 
            print_r($allrooms); 
 
             $data=[
+                'hotelID'=>$hotelID,
                 'profileDetails'=>$profileDetails,
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   

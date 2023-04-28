@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
 
 <div class="wrapper">
 
@@ -16,9 +16,11 @@
                     <h2 style="color: green;">Price Details</h2>
                     <div class="sub-items-pricing">
                         <div class="sub-sub-items-pricing">
+                            <b>Booking ID : </b><br>
                             <b>Check In Date : </b>
                         </div>
                         <div class="sub-sub-items-pricing">
+                            <?php echo (string)$data['bookingID']?><br>
                             <?php echo $_SESSION['checkin']?>
                         </div>
                     </div>
@@ -79,73 +81,15 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="price-details">
-                    <h2 style="color: green;">Billing Information</h2>
-                    <div class="sub-items-pricing">
-                        <div class="sub-sub-items-pricing">
-                            <b>Name on card<b> 
-                        </div>
-                        <div class="sub-sub-items-pricing">
-                            <input type="text">
-                        </div>
-                    </div>
-
-                    <div class="sub-items-pricing">
-                        <div class="sub-sub-items-pricing">
-                            <b>Credit/Debit Card No<b> 
-                        </div>
-                        <div class="sub-sub-items-pricing">
-                            <input type="text">
-                        </div>
-                    </div>
-
-                    <div class="sub-items-pricing">
-                        <div class="sub-sub-items-pricing">
-                            <b>Exp Date<b> 
-                        </div>
-                        <div class="sub-sub-items-pricing">
-                            <input type="text">
-                        </div>
-                    </div>
-
-                    <div class="sub-items-pricing">
-                        <div class="sub-sub-items-pricing">
-                            <b>Security Code<b> 
-                        </div>
-                        <div class="sub-sub-items-pricing">
-                            <input type="text">
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <br>
+
+            
             <div class="hotel-reg-form-div-2">
-                <button class="all-purpose-btn" type="submit" style="margin: auto;">Book Now</button>
+                <button class="all-purpose-btn" type="button" style="margin: auto;" onclick="paymentGateway()">Book Now</button>
             </div> 
         </form>
             
-
-            <!-- <form action="<?php echo URLROOT ?>/HotelBookings/bookaroom" method="post">
-                
-                <input type="hidden" name="hotel_id" value="<?php echo $data['wantedRoom']->HotelID?>">
-                <input type="hidden" name="travelerID" value="<?php echo $_SESSION['user_id']?>">
-                <?php
-                $serializedArray = serialize($data['availableRoomIDs']);
-                ?>
-                <input type="hidden" name="roomID" value="<?php echo htmlspecialchars($serializedArray)?>">
-                <input type="hidden" name="roomTypeID" value="<?php echo $data['wantedRoom']->RoomTypeID?>">
-                <input type="hidden" name="paymentDue" value="<?php echo $fullPrice ?>">
-                <input type="hidden" name="checkin" value="<?php echo $data['check_in']?>">
-                <input type="hidden" name="checkout" value="<?php echo $data['check_out']?>">
-                <input type="hidden" name="neededRoomCount" value="<?php echo $data['noofrooms']?>">
-
-                <div class="hotel-reg-form-div-2">
-                    <button class="all-purpose-btn" type="submit" style="margin: auto;">Book Now</button>
-                </div> 
-                
-                
-            </form> -->
             
         </div>
         
@@ -154,3 +98,92 @@
 </div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+<script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
+
+<script>    
+    function paymentGateway(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = ()=>{
+            if(xhttp.readyState == 4){ 
+                
+                let obj=JSON.parse(xhttp.responseText);
+                // Payment completed. It can be a successful failure.
+                payhere.onCompleted = function onCompleted(orderId) {
+                    // console.log("Payment completed. OrderID:" + orderId);
+                    saveBooking(<?php echo $data['hotelID']?>,<?php echo $data['roomIDstring']?>,<?php echo $data['payment']?>);
+                    // Note: validate the payment and show success or failure page to the customer
+                };
+
+                // Payment window closed
+                payhere.onDismissed = function onDismissed() {
+                    // Note: Prompt user to pay again or show an error page
+                    console.log("Payment dismissed");
+                };
+
+                // Error occurred
+                payhere.onError = function onError(error) {
+                    // Note: show an error page
+                    console.log("Error:"  + error);
+                };
+
+                // Put the payment variables here
+                var payment = {
+                    "sandbox": true,
+                    "merchant_id": "1223006",    // Replace your Merchant ID
+                    "return_url": "<?php echo URLROOT?>/Hotels/showHotels",     // Important
+                    "cancel_url": "<?php echo URLROOT?>/Hotels/showHotels",     // Important
+                    "notify_url": "http://sample.com/notify",
+                    "order_id": obj["order_id"],
+                    "items": "Door bell wireles",
+                    "amount": obj["amount"],
+                    "currency": obj["currency"],
+                    "hash": obj["hash"], // *Replace with generated hash retrieved from backend
+                    "first_name": obj["first_names"],
+                    "last_name": obj["last_name"],
+                    "email": obj["email"],
+                    "phone": obj["phone"],
+                    "address": obj["address"],
+                    "city": obj["city"],
+                    "country": "Sri Lanka",
+                    "delivery_address": "No. 46, Galle road, Kalutara South",
+                    "delivery_city": "Kalutara",
+                    "delivery_country": "Sri Lanka",
+                    "custom_1": "",
+                    "custom_2": ""
+                };
+
+                payhere.startPayment(payment);
+            }
+        };
+        xhttp.open("GET","<?=URLROOT?>/payhere/paymentDetails/"+<?php echo $data['payment']?>,true);
+        xhttp.send();
+    }
+
+    function saveBooking(hotelID,roomIDstring,payment){
+        // ajax request liyala back end controller ekata data yawanna
+        $.ajax({
+                    type: "GET",
+                    url: "<?= URLROOT ?>/HotelBookings/booking",
+                    data: {
+                        hotelID: hotelID,
+                        roomIDstring: roomIDstring,
+                        payment: payment
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
+
+                        if(response){
+                            //traveler's booking dashboard
+                            window.location = '<?= URLROOT ?>/Pages/home';
+                        }
+                        
+                        
+                    }
+                });
+
+    }
+</script>
+
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>

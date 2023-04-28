@@ -473,7 +473,11 @@
             $_SESSION['user_profile_image']=$user->profileimg;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
-            
+            $current_date = date("M-d-y");
+            $tomorrow = date('M-d-y', strtotime('+1 day'));
+            $_SESSION['checkin'] = $current_date;
+            $_SESSION['checkout'] = $tomorrow;
+
             
             // $this->view('v_home',$data);
 

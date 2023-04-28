@@ -48,6 +48,15 @@
 
         <p class="home-title-2" >Top Picks From Around The Island</p>
 
+        <?php
+        $current_date = date("m-d-Y");
+        $tomorrow = date('m-d-Y', strtotime('+1 day'));
+        $_SESSION['checkin'] = $current_date;
+        $_SESSION['checkout'] = $tomorrow;
+
+        echo $_SESSION['checkin'];
+        ?>
+
         <div class="hotel-home-top-picks">
             <div class="nav-grid">
                 
