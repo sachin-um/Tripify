@@ -29,6 +29,7 @@
                     'contact_number'=>trim($_POST['taxiownmobile']),
                     'noOfVehicle'=>trim($_POST['taxiownnov']),
                     'address'=>$address,
+                    'services'=>trim($_POST['services']),
                     'owner_id'=>$_SESSION['user_id'],
 
                     'profileImg_err'=>''
@@ -184,6 +185,7 @@
                     'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                     'company_name'=>trim($_POST['company_name']),
                     'contact_number'=>trim($_POST['contact_number']),
+                    'services'=>trim($_POST['services']),
                     'address'=>trim($_POST['address']),
                     'OwnerID'=>$_SESSION['user_id']
                 ];
@@ -213,6 +215,7 @@
                     'company_name'=>$taxiOwner->company_name,
                     'contact_number'=>$taxiOwner->contact_number,
                     'address'=> $taxiOwner->address,
+                    'services'=>$taxiOwner->services,
                     'ownerID'=>$taxiOwner->OwnerID
                 ];
                 $this->view('taxi/v_taxi_dashboard_deatails',$data);
@@ -232,88 +235,88 @@
 
         
 
-        public function bookings(){
-            $usertype= $_SESSION['user_type'];
+        // public function bookings(){
+        //     $usertype= $_SESSION['user_type'];
         
-            if ($usertype == 'Taxi') {
-                $taxibookings = $this->taxiModel->viewBookings();
+        //     if ($usertype == 'Taxi') {
+        //         $taxibookings = $this->taxiModel->viewBookings();
             
-                // Add driver name to each booking
-                foreach ($taxibookings as &$booking) {
-                    $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($booking->Vehicles_VehicleID);
-                    $booking->DriverName = $vehicleDetails->Name;
-                    $booking->VehicleNumber = $vehicleDetails->vehicle_number;
-                }
+        //         // Add driver name to each booking
+        //         foreach ($taxibookings as &$booking) {
+        //             $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($booking->Vehicles_VehicleID);
+        //             $booking->DriverName = $vehicleDetails->Name;
+        //             $booking->VehicleNumber = $vehicleDetails->vehicle_number;
+        //         }
         
-                $data = [
-                    'taxibookings' => $taxibookings
-                ];
+        //         $data = [
+        //             'taxibookings' => $taxibookings
+        //         ];
         
-                $this->view('taxi/v_taxi_bookings', $data);
-            }
-        }
+        //         $this->view('taxi/v_taxi_bookings', $data);
+        //     }
+        // }
             
 
-        public function bookingsview($ReservationID){
-            $usertype= $_SESSION['user_type'];
+    //     public function TaxiBookingsDetails($ReservationID){
+    //         $usertype= $_SESSION['user_type'];
         
-            if ($usertype == 'Taxi') {
-                $taxibookings = $this->taxiModel->viewBookingsByID($ReservationID);
-                // var_dump($taxibookings);
-                // Add driver name to each booking
-                    $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
-                    $taxibookings->DriverName = $vehicleDetails->Name;
-                    $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
+    //         if ($usertype == 'Taxi') {
+    //             $taxibookings = $this->taxiModel->viewBookingsByID($ReservationID);
+    //             // var_dump($taxibookings);
+    //             // Add driver name to each booking
+    //                 $vehicleDetails = $this->taxiModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
+    //                 $taxibookings->DriverName = $vehicleDetails->Name;
+    //                 $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
         
-                $data = [
-                    'taxibookings' => $taxibookings
-                ];
+    //             $data = [
+    //                 'taxibookings' => $taxibookings
+    //             ];
 
             
-            $this->view('taxi/v_taxi_dashboard7_1',$data);
+    //         $this->view('taxi/v_taxi_dashboard7_1',$data);
            
-        }
+    //     }
 
-    }
-
-
-    public function ConfirmBooking($ReservationID){
-        if($this->taxiModel->confrimBooking($ReservationID)){
-            flash('booking_flash', 'Confrimed Success');
-            redirect('Taxies/bookings/'); 
-        }else{
-            flash('booking_flash', 'Somthing went wrong try again');
-            redirect('Taxies/bookings/');  
-        }
-    }
-
-    public function cancelBooking($ReservationID){
-        if($this->taxiModel->cancelBooking($ReservationID)){
-            flash('booking_flash', 'Cancelation Success');
-            redirect('Taxies/bookings/'); 
-        }else{
-            flash('booking_flash', 'Somthing went wrong try again');
-            redirect('Taxies/bookings/');  
-        }
-    }
+    // }
 
 
-        public function payments(){
-            $data=[];
-            $this->view('taxi/v_taxi_payments',$data);
-        }
+    // public function ConfirmBooking($ReservationID){
+    //     if($this->taxiModel->confrimBooking($ReservationID)){
+    //         flash('booking_flash', 'Confrimed Success');
+    //         redirect('Taxies/bookings/'); 
+    //     }else{
+    //         flash('booking_flash', 'Somthing went wrong try again');
+    //         redirect('Taxies/bookings/');  
+    //     }
+    // }
+
+    // public function cancelBooking($ReservationID){
+    //     if($this->taxiModel->cancelBooking($ReservationID)){
+    //         flash('booking_flash', 'Cancelation Success');
+    //         redirect('Taxies/bookings/'); 
+    //     }else{
+    //         flash('booking_flash', 'Somthing went wrong try again');
+    //         redirect('Taxies/bookings/');  
+    //     }
+    // }
+
+
+        // public function payments(){
+        //     $data=[];
+        //     $this->view('taxi/v_taxi_payments',$data);
+        // }
 
         
-        public function trip(){
-            $data=[];
-            $this->view('taxi/v_taxi_dashboard8',$data);
-        }
+        // public function trip(){
+        //     $data=[];
+        //     $this->view('taxi/v_taxi_dashboard8',$data);
+        // }
 
 
-        public function tripview(){
-            $data=[];
-            $this->view('taxi/v_taxi_dashboard8_1',$data);
-        }
+        // public function tripview(){
+        //     $data=[];
+        //     $this->view('taxi/v_taxi_dashboard8_1',$data);
+        // }
 
         
         

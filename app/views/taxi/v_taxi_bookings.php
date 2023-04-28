@@ -33,7 +33,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item is-active">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item is-active">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -70,8 +70,8 @@ else {
                         ?>
                         <tr>
                             <td data-lable="ID"><?php echo  $booking->ReservationID ?></td>
-                            <td data-lable="Name"><?php echo $booking->VehicleNumber ?></a></td>
-                            <td data-lable="Email"><?php echo $booking->DriverName ?></td>
+                            <td data-lable="Name"><?php echo $booking->vehicle->vehicle_number ?></a></td>
+                            <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
@@ -80,7 +80,7 @@ else {
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
                             <td data-lable="Message"><?php echo $booking->status ?></td>
                             <td data-lable="Name">
-                                <a href="<?php echo URLROOT; ?>/Taxies/bookingsview/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">View</button></a>
+                            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookingsDetails/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">View</button></a>
                             </td>
                             <!-- <?php
                                 if ($booking->status=='Yet To Confirm') {

@@ -8,16 +8,20 @@ class M_Taxi_Vehicle{
         }
 
         public function addtaxivehicle($data){
-            $this->db->query('INSERT INTO vehicles(OwnerID,Model,VehicleType,YearOfProduction,driverID,vehicle_number,area,no_of_seats,price_per_km) VALUES(:OwnerID,:Model,:VehicleType,:YearOfProduction,:driverID,:vehicle_number,:area,:no_of_seats,:price_per_km)');
+            $this->db->query('INSERT INTO vehicles(OwnerID,Model,VehicleType,color,YearOfProduction,driverID,vehicle_number,area,no_of_seats,price_per_km,AC,media,wifi) VALUES(:OwnerID,:Model,:VehicleType,:color,:YearOfProduction,:driverID,:vehicle_number,:area,:no_of_seats,:price_per_km,:AC,:media,:wifi)');
             $this->db->bind(':OwnerID',$data['owner']);
             $this->db->bind(':Model',$data['model']);
             $this->db->bind(':VehicleType',$data['vehicleType']);
+            $this->db->bind(':color',$data['color']);
             $this->db->bind(':YearOfProduction',$data['yearofProduction']);
             $this->db->bind(':driverID',$data['driver']);
             $this->db->bind(':vehicle_number',$data['vehicleNumber']);
             $this->db->bind(':area',$data['area']);
             $this->db->bind(':no_of_seats',$data['noOfSeats']);
             $this->db->bind(':price_per_km',$data['price_per_km']);
+            $this->db->bind(':AC',$data['AC']);
+            $this->db->bind(':media',$data['media']);
+            $this->db->bind(':wifi',$data['wifi']);
             
     
             if ($this->db->execute()) {
@@ -79,13 +83,18 @@ class M_Taxi_Vehicle{
             // $Vehicle_Images_str = implode(",", $vehicle_image_names);
         
 
-            $this->db->query('UPDATE vehicles SET driverID=:driverID, area=:area,no_of_seats=:no_of_seats,price_per_km=:price_per_km WHERE VehicleID=:VehicleID');
+            $this->db->query('UPDATE vehicles SET driverID=:driverID,color=:color, area=:area,no_of_seats=:no_of_seats,price_per_km=:price_per_km,AC=:AC,media=:media,wifi=:wifi WHERE VehicleID=:VehicleID');
             $this->db->bind(':driverID',$data['driverID']);
             // $this->db->bind(':Vehicle_Images',$Vehicle_Images_str);
             $this->db->bind(':area',$data['area']);
+            $this->db->bind(':color',$data['color']);
             $this->db->bind(':no_of_seats',$data['no_of_seats']);
             $this->db->bind(':price_per_km',$data['price_per_km']);
             $this->db->bind(':VehicleID',$data['VehicleID']);
+            $this->db->bind(':AC',$data['AC']);
+            $this->db->bind(':media',$data['media']);
+            $this->db->bind(':wifi',$data['wifi']);
+            
 
 
             if ($this->db->execute()) {

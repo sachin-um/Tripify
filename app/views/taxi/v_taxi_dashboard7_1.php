@@ -33,7 +33,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item is-active">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item is-active">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -105,7 +105,7 @@ else {
 
                         <tr>
                             <th>Driver Name</th>
-                            <td data-lable="Email"><?php echo $data['taxibookings']->DriverName ?></td>
+                            <td data-lable="Email"><?php echo $data['taxibookings']->Name ?></td>
                         </tr>
 
                         
@@ -144,29 +144,33 @@ else {
             </div>
             
          </div>
-        
+        <input type="hidden" name="p-latitude" id="p-latitude" value="<?php echo $data['taxibookings']->p_latitude?>">
+        <input type="hidden" name="p-longitude" id="p-longitude" value="<?php echo $data['taxibookings']->p_longitude?>">
+                                    
+        <input type="hidden" name="d-latitude" id="d-latitude" value="<?php echo $data['taxibookings']->d_latitude?>">
+        <input type="hidden" name="d-longitude" id="d-longitude" value="<?php echo $data['taxibookings']->d_longitude?>">
         <div class="taxi-booking-table-container">
             <?php
                 if ($data['taxibookings']->status=='Yet To Confirm') {
             ?>
-                <a href="<?php echo URLROOT; ?>/Taxies/ConfirmBooking/<?php echo $data['taxibookings']->ReservationID ?>"><button id="taxi_veh_view" type="button">Confirm</button></a>
+                <a href="<?php echo URLROOT; ?>/Bookings/ConfirmTaxiBooking/<?php echo $data['taxibookings']->ReservationID ?>"><button id="taxi_veh_view" type="button">Confirm</button></a>
             
-                <a href="<?php echo URLROOT; ?>/Taxies/cancelBooking/<?php echo $data['taxibookings']->ReservationID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+                <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $data['taxibookings']->ReservationID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
                 
             <?php
                 }
                 elseif ($data['taxibookings']->status=='Finished') {
-                                            // ?>
-                                            // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                            ?>
+                                            <!-- // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                             // <br>
                                             // <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
-                                            // </td>
-                                            // <?php
+                                            // </td> -->
+                                            <?php
                 }
                 elseif ($data['taxibookings']->status=='Canceled') {
-                                            // ?>
-                                            // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td>
-                                            // <?php
+                                            ?>
+                                            <!-- // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td> -->
+                                            <?php
                 }
             ?>
         </div>
@@ -203,25 +207,27 @@ else {
         directionsRenderer.setMap(map);
 
         // Convert pickup location address to coordinates and create marker
-        geocodeAddress('<?php echo $data['taxibookings']->pickup_location ?>', function(results) {
+        // geocodeAddress('<?php echo $data['taxibookings']->pickup_location ?>', function(results) {
+            var myLatLng = new google.maps.LatLng($('#p-latitude').val(), $('#p-longitude').val());
             marker_pickup = new google.maps.Marker({
-                position: results[0].geometry.location,
+                position: myLatLng,
                 map: map,
                 title: 'Pickup Location'
             });
-            map.setCenter(results[0].geometry.location);
+            // map.setCenter(results[0].geometry.location);
             calculateAndDisplayRoute();
-        });
+        // });
 
         // Convert dropoff location address to coordinates and create marker
-        geocodeAddress('<?php echo $data['taxibookings']->destination ?>', function(results) {
+        // geocodeAddress('<?php echo $data['taxibookings']->destination ?>', function(results) {
+            var myLatLng_d = new google.maps.LatLng($('#d-latitude').val(), $('#d-longitude').val());
             marker_dropoff = new google.maps.Marker({
-                position: results[0].geometry.location,
+                position: myLatLng_d,
                 map: map,
                 title: 'Dropoff Location'
             });
             calculateAndDisplayRoute();
-        });
+        // });
     }
 
     function calculateAndDisplayRoute() {
@@ -251,16 +257,16 @@ else {
         }
     }
 
-    function geocodeAddress(address, callback) {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'address': address }, function(results, status) {
-            if (status === 'OK') {
-                callback(results);
-            } else {
-                console.error('Geocode was not successful for the following reason:', status);
-            }
-        });
-    }
+    // function geocodeAddress(address, callback) {
+    //     var geocoder = new google.maps.Geocoder();
+    //     geocoder.geocode({ 'address': address }, function(results, status) {
+    //         if (status === 'OK') {
+    //             callback(results);
+    //         } else {
+    //             console.error('Geocode was not successful for the following reason:', status);
+    //         }
+    //     });
+    // }
 
     function initialize() {
         initMap();
