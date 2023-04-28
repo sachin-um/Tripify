@@ -121,9 +121,10 @@ else {
         });
         google.maps.event.addListener(marker,'position_changed',
             function () {
-                console.log('HI');
+                // console.log('HI');
                 document.getElementById('p-latitude').value=marker.position.lat();
                 document.getElementById('p-longitude').value=marker.position.lng();
+                // console.log(marker.position.lat()+'  '+marker.position.lng()+'--->')
             }
         );
 
@@ -166,8 +167,9 @@ else {
 
         google.maps.event.addListener(marker_d,'position_changed',
             function () {
-                document.getElementById('p-latitude').value=marker.position.lat();
-                document.getElementById('p-longitude').value=marker.position.lng();
+                document.getElementById('d-latitude').value=marker_d.position.lat();
+                document.getElementById('d-longitude').value=marker_d.position.lng();
+                // console.log(marker_d.position.lat()+'  '+marker_d.position.lng())
                 calculateAndDisplayRoute();
             }
         );
@@ -207,7 +209,7 @@ else {
                      seconds.toString().padStart(2, '0');
             document.getElementById('distance').value=distance;
             document.getElementById('duration').value=duration;
-            console.log('Shortest road distance: ' + duration);
+            // console.log('Shortest road duration: ' + duration+'   distance= '+distance);
             } else {
             console.error('Error calculating route:', status);
             }

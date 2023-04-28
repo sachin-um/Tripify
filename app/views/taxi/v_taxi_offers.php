@@ -87,27 +87,40 @@
                             <div class="post-by">Offered at: <?php echo $taxioffer->post_at ?> </div>
                         </div>
                         
+
                 </div>
                 <div class="request-footer">
                     <?php
                     if ($_SESSION['user_type']=='Taxi') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxioffer->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
                             <button id="request-delete-btn" type="submit">Delete</button>
                         <?php
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
-                        <input type="hidden" id="bookingDate" name="bookingDate" value="<?php echo $taxioffer->request->Date ?>">
-                        <input type="hidden" id="bookingTime" name="bookingTime" value="<?php echo $taxioffer->request->Time ?>">
-                        <input type="hidden" id="taxi-PL" name="taxi-PL" value="<?php echo $taxioffer->request->PickupLocation ?>">
-                        <input type="hidden" id="taxi-DL" name="taxi-DL" value="<?php echo $taxioffer->request->Destination ?>">
-                        <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
-                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
+                        
+                        <input type="hidden" id="bookingDate" name="bookingDate" value="<?php echo $taxioffer->request->date ?>">
+                        <input type="hidden" id="bookingTime" name="bookingTime" value="<?php echo $taxioffer->request->time ?>">
+                        
+                        <input type="hidden"  id="est" value="<?php echo $taxioffer->duration?>">
+
+                        <input type="hidden"  id="vehicleID" value="<?php echo $taxioffer->VehicleID?>">
+
+                        <input type="hidden" name="est" id="duration" value="<?php echo $taxioffer->request->duration?>">
+                        <input type="hidden" name="distance" id="distance" value="<?php echo $taxioffer->request->distance?>">
+
+                        <!-- onclick="validation($taxioffer->OfferID)" -->
+                        <!-- <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"> -->
+                        <button id="request-offer-btn"  type="submit">Accept offer</button>
+                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
                     }
                     ?>
                 </div>
+                <span id="avail"></span><br>
+                <span id="availTime"></span><br>
+                <span id="checkdate"></span><br>
             </div>
             <?php
             endforeach;
@@ -115,4 +128,19 @@
         </div>
     </main>
  </div>
- <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/taxioffervalidation.js"></script>
+
+
+ <script type="text/JavaScript">
+                           
+    var URLROOT="<?php echo URLROOT;?>";
+</script>
+
+ <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/taxioffervalidation.js"></script>
+
+
+
+
+
+

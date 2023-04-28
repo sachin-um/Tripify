@@ -86,11 +86,11 @@
 
            // $vehicle = getVehicleByNumber($data['vehicleNumber']);
            
-            $this->db->query('INSERT INTO taxi_offers(OwnerID,VehicleID,PaymentMethod,PricePerKm,RequestID,additional_details) VALUES(:OwnerID,:VehicleID,:PaymentMethod,:PricePerKm,:RequestID,:additional_details)');
+            $this->db->query('INSERT INTO taxi_offers(OwnerID,VehicleID,PaymentMethod,PricePerKm,request_id,additional_details) VALUES(:OwnerID,:VehicleID,:PaymentMethod,:PricePerKm,:requestID,:additional_details)');
            $this->db->bind(':VehicleID',$data['VehicleID']);
             $this->db->bind(':PaymentMethod',$data['PaymentMethod']);
             $this->db->bind(':PricePerKm',$data['PricePerKm']);
-            $this->db->bind(':RequestID',$data['request_id']);
+            $this->db->bind(':requestID',$data['request_id']);
             $this->db->bind(':OwnerID',$data['OwnerID']);
             $this->db->bind(':additional_details',$data['additional_details']);
             
