@@ -27,9 +27,26 @@
                             </label><br>          
 
                             <ul class="taxi_book_ul" style="list-style: circle;">
-                                <li><label>Yellow Colour</label></li>
+                                <li><label><?php echo $data['details']->color?> Colour</label></li>
                                 <li><label><?php echo $data['details']->no_of_seats?> Seats</label></li>
-                                <li><label>Air Conditioning</label></li>   
+                            
+                                <?php 
+                                    if($data['details']->AC){
+                                ?>
+                                <li><label><?php echo $data['details']->AC?></label></li>
+                                <?php
+                                    }else if($data['details']->media){
+                                ?>
+                                <li><label><?php echo $data['details']->media?></label></li>
+                                <?php
+                                    }else if($data['details']->wifi){
+                                ?>
+                                <li><label><?php echo $data['details']->wifi?></label></li>
+                                <?php
+                                    }
+                                
+                                ?>
+                                   
                             </ul>
                             
                         </div>
@@ -140,17 +157,22 @@
                                         </div> -->
                                         <input type="hidden" name="d-latitude" id="d-latitude" value="">
                                         <input type="hidden" name="d-longitude" id="d-longitude" value="">
+
+                                        <input type="hidden" name="duration" id="duration" value="">
+                                        <input type="hidden" name="distance" id="distance" value="">
+                                        
                                     </div>
 
                                     
                                 </div>
-                                <span id="availTime"></span>
+                                <span id="availTime"></span><br>
                                 <span style="color:black;">Select the pickup location on Map(Optional)</span>
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
                             
                             </div><br>
+                            
 
                             <div class="hotel-reg-form-div-2">
                                     <button id="taxi-get-price-but" class="all-purpose-btn" type="submit">Get Price Details</button>
@@ -201,13 +223,10 @@
                                     <label id="No-of-rooms"><?php echo $data['distance']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
-                                    <label id="Priceofroom"><b><?php echo $data['cost']?></b></label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
 
-                                <div class="hotel-price-details">
-                                    <label id="hotel-taxes">Taxes(3%)</label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['tax']?></b></label>
-                                </div>
+                                
 
                                 <hr id="prices-hr">
                                 
@@ -326,7 +345,7 @@
         });
         google.maps.event.addListener(marker,'position_changed',
             function () {
-                console.log('HI');
+                // console.log('HI');
                 document.getElementById('p-latitude').value=marker.position.lat();
                 document.getElementById('p-longitude').value=marker.position.lng();
             }
@@ -388,8 +407,8 @@
 
         google.maps.event.addListener(marker_d,'position_changed',
             function () {
-                document.getElementById('p-latitude').value=marker.position.lat();
-                document.getElementById('p-longitude').value=marker.position.lng();
+                document.getElementById('d-latitude').value=marker_d.position.lat();
+                document.getElementById('d-longitude').value=marker_d.position.lng();
                 calculateAndDisplayRoute();
             }
         );
@@ -418,28 +437,29 @@
             // Display the route on the map
             directionsDisplay.setDirections(result);
             var distance = result.routes[0].legs[0].distance.text;
-            console.log('Shortest road distance: ' + distance);
+            // console.log('Shortest road distance: ' + distance);
+            var durationInSeconds = result.routes[0].legs[0].duration.value;
+            var hours = Math.floor(durationInSeconds / 3600);
+            var minutes = Math.floor((durationInSeconds % 3600) / 60);
+            var seconds = durationInSeconds % 60;
+
+            // Format the duration as hh:mm:ss
+            var duration = hours.toString().padStart(2, '0') + ':' +
+                     minutes.toString().padStart(2, '0') + ':' +
+                     seconds.toString().padStart(2, '0');
+            
+            // console.log('Shortest road duration: ' + duration);
+            document.getElementById('distance').value=distance;
+            document.getElementById('duration').value=duration;
             } else {
             console.error('Error calculating route:', status);
             }
         });
-}
-
-
-
-
-
-
-
-
-    
+    }
     
     function initialize() {
         initMap();
     }
-
-    
-    
 
 </script>
  

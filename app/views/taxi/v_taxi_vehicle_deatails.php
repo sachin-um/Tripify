@@ -27,7 +27,7 @@
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -46,19 +46,6 @@
                             <div class="taxi_dash_edit_veh">
                                 
                             
-                                <!-- <div class="drag-area">
-                                    <div class="taxi-vehicle-gallary">
-                                        <img src="<?php echo URLROOT; ?>/img/taxi-galary-3.jpg?>" id="profile-img-placehoder"  alt="Driver image" >
-                                    </div>
-
-                                    <div class="taxi_DriverPro_imgbox"> 
-                                        <div class="img-description">Change Vehicle Photos</div>
-                                        <div class="img-upload" style="text-align: center;">
-                                            <input type="file" id="profile-imgupload" name="profileImg" placeholder="" required accept="image/*" multiple style="display:none;" >
-                                            Browse
-                                        </div>  
-                                    </div>
-                                </div> -->
                                 <div class="drag-area">
                                     <div class="taxi-veh-pic-cont">
                                         <div id="image-gallery"></div>
@@ -67,7 +54,7 @@
                                     <div class="taxi_DriverPro_imgbox"> 
                                         <div class="img-description">Change Vehicle Photos</div>
                                         <div class="img-upload" style="text-align: center;">
-                                            <input type="file" id="profile-imgupload" name="vehicleImgs" placeholder="" required accept="image/*" multiple style="display:none;" >
+                                            <input type="file" id="profile-imgupload" name="vehicleImgs" placeholder=""  accept="image/*" multiple style="display:none;" >
                                             Browse
                                         </div>  
                                     </div>
@@ -96,17 +83,19 @@
                                         <td><?php echo $data['vehicleNumber']?></td>
                                     </tr>
 
+
+
                                     <tr>
                                         <td>Driver:</td>
                                         <td>
-                                            <select name="driver"  id="taxi_add_v_type" id="cars" required>
-                                            <option value="<?php echo $data['driver']?>" selected  hidden><?php echo $data['driver']?></option>
+                                            <select name="driverID"  id="taxi_add_v_type" id="cars" required>
+                                            <option value="<?php echo $data['driverID']?>" selected  hidden><?php echo $data['driver']?></option>
                                                 <?php
                                                     $alldrivers=$data['drivers'];
                                                     foreach($alldrivers as $driver):
                                                 ?>
                                                     
-                                                    <?php echo "<option value='" . $driver->driverID. "'>" . $driver->Name. "</option>"?>
+                                                    <?php echo "<option value='".$driver->TaxiDriverID."'>".$driver->Name."</option>" ?>
 
                                                     
                                                 <?php
@@ -117,7 +106,12 @@
 
                                         </td>
                                     </tr>
-                                    
+
+                                    <tr>
+                                        <td>No of Passengers:</td>
+                                        <td><input type="text" id="taxi_add_v_year" name="color" placeholder="Vehicle's Colour"  value="<?php echo $data['color']?>"required ></td>
+                                    </tr>
+  
 
                                     <tr>
                                         <td>No of Passengers:</td>
@@ -146,6 +140,26 @@
                                     </tr>
 
                                     
+
+                                    <tr>
+                                        <td><label > Air Condition</label></td>
+                                        <td><input type="checkbox"  id="taxi_ac" name="ac" value="Air Condition" <?php if ($data['AC']): ?>checked<?php endif; ?>></td>
+                                        
+                                    </tr>
+
+                                    <tr>
+                                        <td><label > Media</label><br></td>
+                                        <td><input type="checkbox"  id="taxi_ac" name="media" value="Media" <?php if ($data['media']): ?>checked<?php endif; ?>></td>
+                                        
+                                    </tr>
+                                    
+                                    <div class="taxi-checkBox">
+                                        <td><label > Free Wifi</label></td>
+                                        <td><input type="checkbox" id="taxi_ac" name="wifi" value="Free Wifi" <?php if ($data['wifi']): ?>checked<?php endif; ?>></td>
+                                        
+                                    </div>
+
+                                    
                                 
                                 </table>
                             </div>
@@ -171,3 +185,4 @@
 
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageuploadGallary.js"></script>
 <!-- <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script> -->
+

@@ -72,7 +72,7 @@ function filterBookings($items,$usertype,$userid){
     switch ($usertype) {
         case 'Taxi':
             return array_filter($items,function ($item) use($userid){
-                return ($item->traveler_id == $userid);
+                return ($item->TaxiOwnerID == $userid);
             });
             break;
         case 'Guide':
