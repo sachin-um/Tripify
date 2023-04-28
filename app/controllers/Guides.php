@@ -254,11 +254,9 @@
             if(isset($_POST["guide-book-btn"])){
                 $data=[
                     'start_Date' => trim($_POST['sdate']),
-                    'end_Date' =>trim($_POST['edate']),
-                    'place' => trim($_POST['place'])
-                    
-        
+                    'end_Date' =>trim($_POST['edate'])
                 ];
+                
                 $booking_records=$this->guidebookingModel->searchAvailableSlots($data);
                 if($booking_records==NULL){
                     $this->view('guide/v_guide_booking_form');

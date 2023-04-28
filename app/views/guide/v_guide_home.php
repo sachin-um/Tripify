@@ -57,7 +57,7 @@
                 foreach($data['allguides'] as $guide):
                     
                 ?>
-                <a href="<?php echo URLROOT?>/Guides/loadGuideProfile/<?php echo $guide->GuideID?>">
+                <a href="<?php echo URLROOT?>/Bookings/Placeguidebookings/<?php echo $guide->GuideID?>">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Guides/showGuides'">
                     <div class="hotel-ad-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">

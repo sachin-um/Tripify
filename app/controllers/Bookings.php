@@ -11,7 +11,7 @@
             $this->guideofferModel=$this->model('M_Guide_Offers');
             $this->taxirequestModel=$this->model('M_Taxi_Request');
             $this->guiderequestModel=$this->model('M_Guide_Request');
-            
+            $this->guideModel=$this->model('M_Guides');
             
             
         }
@@ -331,6 +331,98 @@
             }
             
 
+        }
+
+        public function Placeguidebookings($GuideID){
+        
+            $guideDetails=$this->guideModel->getGuideById($GuideID);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID); 
+
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                $pickupL =trim($_POST['pickupL']);
+                $dropL =  trim($_POST['dropL']);
+                $bookingDate = $_POST['s_date'];
+                $bookingTime = $_POST['s_time'];
+                $exTime=$this->CalculateExtimateTime($pickupL,$dropL); //extimate time
+
+                $distance=$this->CalculatePrice( $pickupL, $dropL);
+
+                $cost = $distance*$details->price_per_km;
+                $tax = ($cost*3)/100;
+                $total = $cost+$tax;
+
+                $bookingdatetime = date('Y-m-d H:i:s', strtotime("$bookingDate $bookingTime"));
+        
+                $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$exTime"));
+                $end_date = date('Y-m-d', strtotime($est_datetime));
+                $end_time = date('H:i:s', strtotime($est_datetime));
+
+                $data=[
+                    's_date'=>trim($_POST['s_date']),
+                    's_time'=>trim($_POST['s_time']),
+                    'e_date'=>$end_date,
+                    'e_time'=>$end_time,
+                    'pickupL'=>$pickupL,
+                    'dropL'=>$dropL,
+                    'details'=>$details,
+                    'extime'=>$exTime,
+                    'com_name'=>$com_name,
+                    'owner'=>$owner,
+                    'distance'=>$distance,
+                    'cost' =>$cost,
+                    'tax' =>$tax,
+                    'total' => $total     
+                    ];
+                    
+                    $_SESSION['booking_data'] = $data;
+
+                    $this->view('taxi/v_bookings',$data);
+
+            }else{
+                
+
+                $data=[
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages'=>$guidelanguages
+                   
+                ];
+                
+                
+                // echo var_dump($data);
+                $this->view('guide/v_check_availability',$data);
+                
+            }
+            
+
+        }
+
+        public function checkGuideAvailability($GuideID){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'startdate' =>trim($_POST['sdate']),
+                    'enddate' =>trim($_POST['endDate']),
+                    'guideName' => $_POST['gname'],
+                    'guideReg' => $_POST['greg'],
+                    'guideRate' => $_POST['grate']
+                    // 'guideLanguages' => $_POST['data']
+                ];
+                
+
+                $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
+                if(empty($bookingAvailable)){
+                    $this->view('guide/v_guide_booking',$data);
+                }else{
+                    echo json_encode("Not available for the given dates");
+                    $this->view('guide/v_check_availability',$data);
+                }
+
+            }
         }
 
         public function TaxiBookingdetails($vehicleID,$userId){
