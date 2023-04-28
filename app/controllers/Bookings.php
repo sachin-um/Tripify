@@ -15,6 +15,10 @@
             
             
         }
+
+        public function index(){
+
+        }
         public function HotelBookings($usertype,$userid)
         {
             
@@ -375,6 +379,14 @@
                 }
                 unset($_SESSION['booking_data']);
         }
+
+        public function getTaxiBooking($id)
+        {
+            $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
+            header('Content-Type: application/json');
+            echo json_encode($booking);
+        }
+
 
         
 

@@ -42,6 +42,11 @@ else {
         <br>
         <div class="profile-search-area">
             <input type="text" placeholder="Search accounts..." id="searchInput">
+            <select name="account-type" id="account-type">
+                <option value="" disabled selected>Account Type</option>
+                <option value="suspened">Suspended</option>
+                <option value="active">Active</option>
+            </select>
         </div>
         <div class="first-container">
             <div class="admin-table-container">
