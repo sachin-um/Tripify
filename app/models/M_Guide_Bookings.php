@@ -17,8 +17,7 @@
             if ($usertype='Traveler') {
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
-                    $guide_name=$guide->Name;
-                    $booking->guide_name=$guide_name;
+                    $booking->guide=$guide;
                 }
             }
             elseif ($usertype='Guide') {
@@ -76,8 +75,24 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
+            $guide=$this->getGuideById($row->Guides_GuideID);
+            $guide_name=$guide->Name;
+            $row->guide_name=$guide_name;
 
             return $row;
+        }
+        public function searchAvailableSlots($data){
+            $date1 = new DateTime($data['start_Date']);
+            $date2 = new DateTime($data['end_Date']);
+            $duration = $date1->diff($date2);
+            $this->db->query('SELECT * FROM guide_bookings WHERE ReservedDate=:startdate AND Duration=:duration');
+            $this->db->bind(':startdate',$data['start_Date']);
+            $this->db->bind(':duration',$duration);
+            $result=$this->db->resultSet();
+
+            return $result;
+            
+
         }
 
 

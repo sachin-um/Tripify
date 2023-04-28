@@ -68,8 +68,8 @@ else {
                         ?>
                         <tr>
                             <td data-lable="ID"><?php echo  $booking->ReservationID ?></td>
-                            <td data-lable="Name"><?php echo $booking->vehicle_number ?></td>
-                            <td data-lable="Email"><?php echo $booking->driver_name ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>"><?php echo $booking->vehicle->vehicle_number ?></a></td>
+                            <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
@@ -130,10 +130,43 @@ else {
             </div>
             
         </div>
+        <div id="popup" class="request-popup">
+                <div id="request-content" class="request-popup-content">
+                </div>
+        </div>
     </main>
  </div>
 
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
+ <script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
+ <script>
+    var map;
+                  function initMap(data) {
+                    var start = new google.maps.LatLng(data.p_latitude,data.p_longitude);
+                    var destination=new google.maps.LatLng(data.d_latitude,data.d_longitude);
+                    map = new google.maps.Map(document.getElementById('map'), {
+                      center: start, 
+                      zoom: 11
+                    });
+                  
+                    
+                    var directionsService = new google.maps.DirectionsService();
+                    var directionsRenderer = new google.maps.DirectionsRenderer();
+                    directionsRenderer.setMap(map);
+                    
+                    var request = {
+                      origin: start, 
+                      destination: destination, 
+                      travelMode: 'DRIVING' 
+                    };
+                    
+                    directionsService.route(request, function(result, status) {
+                      if (status === 'OK') {
+                        directionsRenderer.setDirections(result);
+                      }
+                    });
+                  }
+ </script>
  <?php
 }
 ?>

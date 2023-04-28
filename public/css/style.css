@@ -34,6 +34,7 @@
 @import url('components/taxi_dashboard8_1.css');
 @import url('components/v_add_taxi_offer.css');
 @import url('components/taxi_dashboard3_1.css');
+@import url('components/taxi_v_bookings.css');
 @import url('components/contactus.css');
 @import url('components/admin.css');
 @import url('components/trip.css');
@@ -41,6 +42,8 @@
 @import url('components/travelerDashboad.css');
 @import url('components/popups.css');
 @import url('components/hotel_profile.css');
+
+@import url('components/chat.css');
 
 
 

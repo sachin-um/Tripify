@@ -50,14 +50,41 @@ class M_Trips{
         }
     }
 
+    public function removeFromTripPlan($tripid,$bookingid,$type)
+    {
+        $this->db->query('DELETE FROM trip_'.$type.'_bookings WHERE trip_id:trip_id AND booking_id=:booking_id');
+        $this->db->bind(':trip_id',$tripid);
+        $this->db->bind(':booking_id',$bookingid);
+
+        if ($this->db->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
     public function viewTripPlan($id)
     {
         $this->db->query('SELECT * FROM tour_plans WHERE TourPlanID=:tripid');
         $this->db->bind(':tripid',$id);
-
         $row=$this->db->single();
+        
+        $this->db->query('SELECT * FROM trip_guide_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        $row->trip_guide_bookings=$trips;
 
+        $this->db->query('SELECT * FROM trip_hotel_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        $row->trip_hotel_bookings=$trips;
+
+        $this->db->query('SELECT * FROM trip_taxi_bookings WHERE trip_id=:tripid');
+        $this->db->bind(':tripid',$row->TourPlanID);
+        $trips=$this->db->resultSet();
+        $row->trip_taxi_bookings=$trips;
         return $row;
     }
 }

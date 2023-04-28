@@ -158,3 +158,29 @@
     display: grid;
     /* flex-direction: column; */
 }
+
+
+
+/* ......................v_taxi_dashboard.php.......................... */
+
+
+#taxi-owner-profile-img {
+    
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+      
+      
+}
+
+.taxi-own-name{
+    display: flex;
+    justify-content: center;
+}
+
+.taxi-own-profile-image img
+{
+    border-radius: 50%;
+    border: 6px double black;
+}

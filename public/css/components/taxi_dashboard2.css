@@ -25,3 +25,12 @@
 #taxi_v_c_pic{
     width: 15em;
 }
+
+.taxi-view-driver-img{
+    text-align: center;
+}
+
+.taxi-view-driver-img img{
+    border-radius: 50%;
+    
+}

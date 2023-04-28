@@ -7,8 +7,23 @@
 
         }
 
+        public function getdriver($driverid)
+        {
+            
+            $driver=$this->taxi_driverModel->getDriverByID($driverid);
+
+            header('Content-Type: application/json');
+            echo json_encode($driver);
+        }
+
         public function viewdrivers(){
-            $alldrivers=$this->taxi_driverModel->viewall();
+            $user_id='';
+            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                $user_id=$_SESSION['service_id'];
+            } else {
+                $user_id=$_SESSION['user_id'];
+            }
+            $alldrivers=$this->taxi_driverModel->viewall($user_id);
             // $ve=filteritems($alltaxirequests,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'drivers'=> $alldrivers
@@ -24,11 +39,21 @@
             
                 $data=[
                         'name'=>trim($_POST['name']),
+                        'profileImg'=>$_FILES['profileImg'],
+                        'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                         'age'=>trim($_POST['age']),
                         'contact_number'=>trim($_POST['contact_number']),
                         'licenseno'=>trim($_POST['licenseno']),
-                        'owner'=>$_SESSION['user_id']                 
+                        'owner'=>$_SESSION['user_id'],
+                        
+                        'profileImg_err'=>''
                     ];
+
+                    if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+
+                    }else{
+                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    }
 
 
                     if ($this->taxi_driverModel->addtaxidriver($data)) {
@@ -91,16 +116,26 @@
         }
 
         public function editdrivers($driverID){
-
+            $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
             if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data=[
                     'name'=>trim($_POST['name']),
+                    'profileImg'=>$_FILES['profileImg'],
+                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
                     'age'=>trim($_POST['age']),
                     'contact_number'=>trim($_POST['contact_number']),
                     'LicenseNo'=>trim($_POST['LicenseNo']),      
-                    'TaxiDriverID'=>$driverID
+                    'TaxiDriverID'=>$driverID,
+
+                    'profileImg_err'=>''
                     ];
+
+                    if(updateImage($taxiDriver->profileImg,$data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
+
+                    }else{
+                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    }
 
                     if ($this->taxi_driverModel->editTaxiDriver($data)) {
                         flash('request_flash', 'Driver Deatails was Succusefully Updated..!');
@@ -112,19 +147,39 @@
             }
             
             else{
-                
-                $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
                 $data=[
                     'name'=>$taxiDriver->Name,
+                    'profileImg'=>$taxiDriver->profileImg,
                     'age'=>$taxiDriver->Age,
                     'contact_number'=>$taxiDriver->contact_number,
                     'licenseno'=>$taxiDriver->LicenseNo,
                     'ID'=>$taxiDriver->TaxiDriverID
                 ];
+
+            
                 $this->view('taxi/v_taxi_driver_deatails',$data);
             }
             
             
+        }
+
+        public function viewDriversByOwner($id){
+            if ($_SESSION['user_type']=='Admin' || $_SESSION['user_id']==$id) {
+                $drivers=$this->taxi_driverModel->viewall($id);
+                $data=[
+                    'drivers'=> $drivers
+                ];
+                $this->view('admin/v_admin_taxi_drivers',$data);
+            }
+            else {
+                flash('reg_flash', 'Access Denied');
+                redirect('Users/login');
+            }
+        }
+
+        public function getDriverById($driverid)
+        {
+            $driver=$this->taxi_driverModel->getDriverByID($driverid);
         }
 
         

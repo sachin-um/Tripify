@@ -7,11 +7,8 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Taxi') {
-    flash('reg_flash', 'Only the Taxi Owners can have access...');
-    redirect('Pages/home');
-}
-else {
+
+else{
     ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
@@ -45,28 +42,28 @@ else {
         </div> 
         <br>
         <div class="taxi-first-container">
-            <div class="profile-image" style="width: 450px; text-align: center;">
+            <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
                 <br>
-                <img id="pro-picture-2" src="<?php echo URLROOT; ?>/img/Group_profile.png" alt="picture">
+                
+                <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+               
                 <br>
-                <br>
-                <!-- <button class="profile-btn">Edit</button> -->
-            </div>
-    
-            <div class="profile-description">
-                 <br>
-                <div class="sub-description">
-                    <div class="sub-sub">
-                        <h3>Name : </h3>
-                    </div>
+                <div class="taxi-own-name">
                     
                     <div class="sub-sub">
-                        <h3><?php echo $data->details->owner_name;  ?></h3>
+                        <h1 ><?php echo $data->details->owner_name;  ?></h1>
                     </div>
                             
                 </div>
 
                 <br>
+                <br>
+                
+            </div>
+    
+            <div class="profile-description">
+                 <br>
+                
 
 
                 <div class="sub-description" id="taxi-hide-cont">
@@ -181,9 +178,44 @@ else {
                         
                 </div>
                 <br>
-
+                <div class="sub-description">
+                    <div class="sub-sub">
+                        <h3>verificaion Status: </h3>
+                    </div>
+                        
+                    <div class="sub-sub">
+                        <?php if ($data->verification_status ==2) {
+                            ?><h3>Verified</h3><?php
+                        }else {
+                            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                ?>
+                                <button class="acc-view-btn" type="button" onclick="showProfile('<?php echo $data->UserID; ?>','Taxi','<?php echo URLROOT; ?>')">Verification Details</button>
+                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                                    <button class="verify-btn" type="button">Verify</button>
+                                                </a>
+                                <?php
+                            }
+                            else {
+                                ?><h3>Not Verified</h3><?php
+                            }
+                        } ?>
+                    </div>
+                        
+                </div>
                 <div style="text-align: center;">
-                    <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                    <?php
+                    if ($_SESSION['user_id']== $data->UserID) {
+                        ?>
+                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                        <?php
+                    } else {
+                        ?>
+                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Contact </button>
+                        <?php
+                    }
+                    ?>
+                        
+                    
                         
                 </div>
             </div>
@@ -196,7 +228,10 @@ else {
 
     </main>
  </div>
-
+ <div id="popup" class="trip-popup">
+                <div id="popup-content" class="profile-popup-content"></div>
+</div>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
 <?php
 }
 ?>

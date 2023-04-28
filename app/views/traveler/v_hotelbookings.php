@@ -67,8 +67,8 @@ else {
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
                             <td data-lable="Name"><?php echo $booking->booking_id ?></td>
-                            <td data-lable="Name"><?php echo $booking->hotel_id ?></td>
-                            <td data-lable="Name"><?php echo $booking->hotel_id ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hotel->HotelID; ?>"><?php echo $booking->hotel->Name ?></a> </td>
+                            <td data-lable="Name"><?php echo $booking->hotel->Name?></td>
                             <td data-lable="Name"><?php echo $booking->booking_start_date ?></td>
                             <td data-lable="Name"><?php echo $booking->booking_end_date ?></td>
                             <td data-lable="Name"><?php echo $booking->payment ?></td>
