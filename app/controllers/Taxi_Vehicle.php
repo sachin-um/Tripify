@@ -68,6 +68,7 @@
                         'yearofProduction'=>trim($_POST['year']),
                         'vehicleNumber'=>trim($_POST['number']),
                         'area'=>trim($_POST['area']),
+                        'color'=>trim($_POST['color']),
                         'noOfSeats'=>trim($_POST['max']),
                         'price_per_km'=>trim($_POST['flag']),
                         'AC'=>trim($_POST['ac']),

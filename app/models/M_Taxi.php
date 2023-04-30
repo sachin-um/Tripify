@@ -40,7 +40,7 @@ class M_Taxi{
             $this->db->bind(':travelerid',$data['owner_id']);
             $updatetraveler=$this->db->execute();
 
-            $this->db->query('UPDATE users SET UserType="Taxi" WHERE UserID=:taxiid');
+            $this->db->query('UPDATE users SET UserType="Taxi",verification_status=2 WHERE UserID=:taxiid');
             $this->db->bind(':taxiid',$data['owner_id']);
             $userupdate=$this->db->execute();
             if ($updatetraveler && $userupdate) {

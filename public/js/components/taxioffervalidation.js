@@ -1,131 +1,91 @@
 let olddateError =false;
-let driverAvailableError =false;
 let timeslotError= false;
 
 
-$(document).ready(function() {
-  validation();
-});
-
-
-
-
-function validation(){
-  
-  $('#request-offer-btn').on('click', function() {
-      event.preventDefault();
-      validationDateTime();
-      availableTime();
-      driverAvailable();
-
-  
-  });
+function validation(vID,bd,bt,est,offerID,request_id){
+   
+  event.preventDefault(); 
+  availableTime(vID,bd,bt,est,offerID,request_id);
 
 }
 
+function sentCont(offerID,request_id){
+
+  const submitButton = document.getElementById('request-offer-btn-'+offerID);
+
+  if(olddateError && timeslotError){           // validation 
+    submitButton.style.backgroundColor = '#0F6C13';
+    submitButton.style.color = 'white';
+    window.location.href = URLROOT+'/Bookings/acceptTaxiOffer/' + offerID + '/' +request_id;
+  }else{
+    submitButton.style.backgroundColor = '#931111';
+    submitButton.style.color = 'white';
+  }
+  
+}
 
 
-
-function driverAvailable(){     // A driver can only drive 14 hours per day 
-  const bookingDate = $('#bookingDate').val();
-  var vehicleID = $('#vehicleID').val();
-  var est = $('#duration').val();
+function availableTime(vID,bd,bt,est,offerID,request_id){  // checking can traveler place the booking in that time slot
 
   $.ajax({
-    url: URLROOT+'/Bookings/checkTimeAvailability',
+    url: URLROOT+'/Bookings/checkTimeSlot',
     method: 'POST',
     data: {
-      bookingDate: bookingDate,
-      est:est,
-      vehicleID:vehicleID
+      bookingDate: bd,
+      bookingTime: bt,
+      est: est,
+      vehicleID:vID,
+     
     },
     dataType: 'json',
     success: function(result) {
       
       if (result) {
-        $('#avail').html('* This vehicle reach the Limit. Please chose another vehicle');
-        driverAvailableError=false;
-
+        timeslotError=false;
+        $('#availTime-'+offerID).html('* Time Slot Not Available or Enough!');
+        $('#availTime-' + offerID).css('display', 'inline');
+        
       } else {
-        driverAvailableError=true;
-        $('#avail').html('');
+        timeslotError=true;
+        $('#availTime-'+offerID).html('');
+        $('#availTime-' + offerID).css('display', 'none');
+
         
       }
+
+      dateExpire(bd,bt,offerID,request_id);
+      
     },
     error: function(xhr, status, error) {
       console.log("AJAX error:", status, error);
       alert('data not received');
     }
   });
-}
-
-
-function availableTime(){   // Checking Time slot is Available
-  
-
-  
-  var bookingDate = $('#bookingDate').val();
-  const bookingTime = $('#bookingTime').val();
-  const est = $('#duration').val();
-  var vehicleID = $('#vehicleID').val();
-
-
-    $.ajax({
-      url: URLROOT+'/Bookings/checkTimeSlot',
-      method: 'POST',
-      data: {
-        bookingDate: bookingDate,
-        bookingTime: bookingTime,
-        est: est,
-        vehicleID:vehicleID,
-       
-      },
-      dataType: 'json',
-      success: function(result) {
-        
-        if (result) {
-          $('#availTime').html('* Time Slot Not Available or Enough!');
-          timeslotError=false;
-        } else {
-          $('#availTime').html('');
-          timeslotError=true;
-        }
-     
-      },
-      error: function(xhr, status, error) {
-        console.log("AJAX error:", status, error);
-        alert('data not received');
-      }
-    });
-
 
 }
 
 
 
 
-
-function validationDateTime(){
+function dateExpire(bd,bt,offerID,request_id){
   
-  var bookingDate = $('#bookingDate').val(); 
   currentDate = getTodayDate();  // function is below
   currentTime = getTodayTime();
-  var submitButton = document.getElementById('request-offer-btn');
+  
 
-  var bookingTime = $('#bookingTime').val();
-  var userInputDateTime = new Date(`${bookingDate}T${bookingTime}`);
+  var userInputDateTime = new Date(`${bd}T${bt}`);
   var now = new Date(`${currentDate}T${currentTime}`);
 
   if (userInputDateTime < now ) {
-    $('#checkdate').html('* Booking Date is Expired!');
-    submitButton.style.backgroundColor = '#D55B40';
-    submitButton.disabled = true;
     olddateError = false; 
-
+    $('#checkdate-'+offerID).html('* Booking Date is Expired!');
+    $('#checkdate-' + offerID).css('display', 'inline');
+    
   }else{
     olddateError = true; 
+    $('#checkdate-' + offerID).css('display', 'none');
   }
-  
+  sentCont(offerID,request_id);
 
 }
 
@@ -150,7 +110,6 @@ function getTodayTime(){
   return currentTime;
 
 }
-
 
 
 

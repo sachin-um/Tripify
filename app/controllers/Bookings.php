@@ -316,9 +316,9 @@
             $vehicleID = $_POST['vehicleID'];
             $est = $_POST['est'];
 
-            // echo  $bookingDate.'  '.$vehicleID.' '.$est;
-
             $driverAvailable = $this->taxiBookingModel->checkDriverAvailable($vehicleID,$bookingDate,$est);
+           
+            
             echo json_encode($driverAvailable);
         
 

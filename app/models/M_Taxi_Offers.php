@@ -125,6 +125,16 @@
             return $row;
         }
 
+        public function getOfferByOfferId($id)
+        {
+            $this->db->query('SELECT * FROM taxi_offers WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+        }
+
 
         
     }
