@@ -22,10 +22,10 @@
             $this->db->bind(':travelerid',$data['travelerid']);
             $this->db->bind(':pickuplocation',$data['pickuplocation']);
             $this->db->bind(':destination',$data['destination']);
-            $this->db->bind(':p_latitude',$data['p-latitude']);
-            $this->db->bind(':p_longitude',$data['p-longitude']);
-            $this->db->bind(':d_latitude',$data['d-latitude']);
-            $this->db->bind(':d_longitude',$data['d-longitude']);
+            $this->db->bind(':p_latitude', $data['p-latitude']);
+            $this->db->bind(':p_longitude', $data['p-longitude']);
+            $this->db->bind(':d_latitude', $data['d-latitude']);
+            $this->db->bind(':d_longitude', $data['d-longitude']);
             $this->db->bind(':distance',$data['distance']);
             $this->db->bind(':duration',$data['duration']);
 

@@ -121,17 +121,28 @@
         }
 
         public function taxioffers($request_id=NULL){
-            $alloffers=$this->taxiofferModel->viewall();
+            $alloffers=$this->taxiofferModel->viewall();            
             // foreach($alloffers as $key => $value)
             // {
             //     echo $key." has the value". $value;
             // }
             $offers=filteroffers($alloffers,$_SESSION['user_type'],$request_id);
             $data=[
-                'taxioffers'=> $offers
+                'taxioffers'=> $offers,
             ];
             
-                $this->view('taxi/v_taxi_offers',$data);
+
+            // $offerse=$data['taxioffers'];
+            
+            // foreach($offerse as $taxioffer){
+            //     var_dump($taxioffer->request->duration);
+            // }
+
+
+
+            // var_dump($offers);
+
+            $this->view('taxi/v_taxi_offers',$data);
             
         }
 
