@@ -70,6 +70,7 @@
             return $row;
         }
 
+
         public function getGudieBookingbyId($id){
             $this->db->query('SELECT * FROM guide_bookings WHERE BookingID=:id');
             $this->db->bind(':id',$id);
@@ -81,17 +82,15 @@
 
             return $row;
         }
+
         public function searchAvailableSlots($data){
-            $date1 = new DateTime($data['start_Date']);
-            $date2 = new DateTime($data['end_Date']);
-            $duration = $date1->diff($date2);
-            $this->db->query('SELECT * FROM guide_bookings WHERE ReservedDate=:startdate AND Duration=:duration');
-            $this->db->bind(':startdate',$data['start_Date']);
-            $this->db->bind(':duration',$duration);
+            $this->db->query('SELECT * FROM guide_bookings WHERE 
+            StartDate=:startdate AND EndDate=:enddate');
+            $this->db->bind(':startdate',$data['startdate']);
+            $this->db->bind(':enddate',$data['enddate']);
             $result=$this->db->resultSet();
 
             return $result;
-            
 
         }
 
