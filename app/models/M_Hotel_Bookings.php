@@ -10,30 +10,25 @@
         
 
         //Add hotel booking
-        public function addHotelBooking($data){
-            $array = unserialize($data['roomIDs']);
-
-            print_r($array);
-            echo $data['noofrooms'];
-            for($i=0; $i<$data['noofrooms']; $i++){               
+        public function addHotelBooking($data){             
                 
-                $thisroom = array_shift($array); // Get the first value and remove it from the array
-                $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomID,roomTypeID,
-                paymentDue,check_in,check_out)
-                VALUES(:hotelID,:travelerID,:roomID,:roomTypeID,:paymentDue,:check_in,:check_out)' );
+            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomIDs,payment,payment_status,checkin_date,checkout_date)
+                VALUES(:hotelID,:travelerID,:roomIDs,:payment,:payment_status,:check_in,:check_out)' );
 
                 $this->db->bind(':hotelID',$data['hotelID']);
                 $this->db->bind(':travelerID',$data['travelerID']);
-                $this->db->bind(':roomID',$thisroom);
-                $this->db->bind(':roomTypeID',$data['roomTypeID']);
-                $this->db->bind(':paymentDue',$data['paymentDue']);
-                $this->db->bind(':check_in',$data['check_in']);
-                $this->db->bind(':check_out',$data['check_out']);
+                $this->db->bind(':roomIDs',$data['roomIDs']);
+                $this->db->bind(':payment',$data['payment']);
+                $this->db->bind(':payment_status',"Paid");
+                //paymentmethod
+                //roomIDs table ain kranna
+                //paymentDate ain kranna
+                $this->db->bind(':check_in',$data['checkin']);
+                $this->db->bind(':check_out',$data['checkout']);
 
-                $this->db->execute();                
+                $status=$this->db->execute();              
 
-            }
-            return true;
+            return $status;
             
         }
 
@@ -125,10 +120,6 @@
             $availability=$this->db->resultSet();
             
             return $availability;
-        }
-
-        public function bookingTheRoom(){
-
         }
         
     }
