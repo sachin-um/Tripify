@@ -12,15 +12,17 @@
         //Add hotel booking
         public function addHotelBooking($data){             
                 
-            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomIDs,payment,
-                paymentmethod,checkin_date,checkout_date)
-                VALUES(:hotelID,:travelerID,:roomIDs,:payment,:paymentmethod,:check_in,:check_out)' );
+            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomIDs,payment,payment_status,checkin_date,checkout_date)
+                VALUES(:hotelID,:travelerID,:roomIDs,:payment,:payment_status,:check_in,:check_out)' );
 
                 $this->db->bind(':hotelID',$data['hotelID']);
                 $this->db->bind(':travelerID',$data['travelerID']);
                 $this->db->bind(':roomIDs',$data['roomIDs']);
                 $this->db->bind(':payment',$data['payment']);
-                $this->db->bind(':paymentmethod',"Online");
+                $this->db->bind(':payment_status',"Paid");
+                //paymentmethod
+                //roomIDs table ain kranna
+                //paymentDate ain kranna
                 $this->db->bind(':check_in',$data['checkin']);
                 $this->db->bind(':check_out',$data['checkout']);
 

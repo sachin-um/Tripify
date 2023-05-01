@@ -86,7 +86,8 @@
 
             
             <div class="hotel-reg-form-div-2">
-                <button class="all-purpose-btn" type="button" style="margin: auto;" onclick="paymentGateway()">Book Now</button>
+                pass type
+                <button class="all-purpose-btn" type="button" style="margin: auto;" onclick="paymentGateway('Hotel')">Book Now</button>
             </div> 
         </form>
             
@@ -100,32 +101,17 @@
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
-
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <script>    
-    function paymentGateway(){
+    function paymentGateway(type){
+        var bookingType = type;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = ()=>{
             if(xhttp.readyState == 4){ 
                 
                 let obj=JSON.parse(xhttp.responseText);
                 // Payment completed. It can be a successful failure.
-                payhere.onCompleted = function onCompleted(orderId) {
-                    // console.log("Payment completed. OrderID:" + orderId);
-                    saveBooking(<?php echo $data['hotelID']?>,<?php echo $data['roomIDstring']?>,<?php echo $data['payment']?>);
-                    // Note: validate the payment and show success or failure page to the customer
-                };
-
-                // Payment window closed
-                payhere.onDismissed = function onDismissed() {
-                    // Note: Prompt user to pay again or show an error page
-                    console.log("Payment dismissed");
-                };
-
-                // Error occurred
-                payhere.onError = function onError(error) {
-                    // Note: show an error page
-                    console.log("Error:"  + error);
-                };
+                
 
                 // Put the payment variables here
                 var payment = {
@@ -135,7 +121,7 @@
                     "cancel_url": "<?php echo URLROOT?>/Hotels/showHotels",     // Important
                     "notify_url": "http://sample.com/notify",
                     "order_id": obj["order_id"],
-                    "items": "Door bell wireles",
+                    "items": "Payment to <?php echo $data['hotelID']?>",
                     "amount": obj["amount"],
                     "currency": obj["currency"],
                     "hash": obj["hash"], // *Replace with generated hash retrieved from backend
@@ -150,20 +136,40 @@
                     "delivery_city": "Kalutara",
                     "delivery_country": "Sri Lanka",
                     "custom_1": "",
-                    "custom_2": ""
+                    "custom_2": type
                 };
 
                 payhere.startPayment(payment);
             }
         };
-        xhttp.open("GET","<?=URLROOT?>/payhere/paymentDetails/"+<?php echo $data['payment']?>,true);
+        xhttp.open("GET","<?=URLROOT?>/payhere/paymentDetails/"+<?php echo $data['payment']?>+
+        "/"+<?php echo $data['bookingID']?>+"/"+type,true);
         xhttp.send();
     }
+
+    payhere.onCompleted = function onCompleted(orderId) {
+        console.log("Payment completed. OrderID:" + orderId);
+        
+        saveBooking(<?php echo $data['hotelID']?>,<?php echo $data['roomIDstring']?>,<?php echo $data['payment']?>);
+        // Note: validate the payment and show success or failure page to the customer
+    };
+
+    // Payment window closed
+    payhere.onDismissed = function onDismissed() {
+        // Note: Prompt user to pay again or show an error page
+        console.log("Payment dismissed");
+    };
+
+    // Error occurred
+    payhere.onError = function onError(error) {
+        // Note: show an error page
+        console.log("Error:"  + error);
+    };
 
     function saveBooking(hotelID,roomIDstring,payment){
         // ajax request liyala back end controller ekata data yawanna
         $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "<?= URLROOT ?>/HotelBookings/booking",
                     data: {
                         hotelID: hotelID,
@@ -186,4 +192,3 @@
     }
 </script>
 
-<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>

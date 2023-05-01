@@ -84,7 +84,8 @@
                     'bookedRoomIDs' => $bookedRoomIDs,
                     'bookedRoomNames' => $bookedRoomNames,
                     'bookingID' => $bookingID,
-                    'roomIDstring' => $roomIDstring
+                    'roomIDstring' => $roomIDstring,
+                    'bookingType' => "hotel"
                 ];               
                 
 
@@ -97,10 +98,10 @@
 
         public function booking(){
             $data=[
-                'hotelID' => $_GET['hotelID'],
+                'hotelID' => $_POST['hotelID'],
                 'travelerID' => $_SESSION['user_id'],
-                'roomIDs' => $_GET['roomIDstring'],
-                'payment' => $_GET['payment'],
+                'roomIDs' => $_POST['roomIDstring'],
+                'payment' => $_POST['payment'],
                 'checkin' => $_SESSION['checkin'],
                 'checkout' => $_SESSION['checkout']
             ];
@@ -108,13 +109,14 @@
             if ($this->hotelBookingModel->addHotelBooking($data)) {
                 flash('reg_flash', 'You booking was successful');
                 // redirect('Pages/home');
-                $status = true;
+                redirect('Bookings/HotelBookings/Traveler/'+$_SESSION['user_id']);
+                
             } else {
-                $status = false;
-                // die('Something went wrong');
+                
+                //die('Something went wrong');
             }
 
-            echo json_encode($status) ;
+            
         }
 
         public function checkRoomAvailability(){

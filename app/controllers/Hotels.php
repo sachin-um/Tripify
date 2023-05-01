@@ -511,8 +511,50 @@
             }
         }
 
-        public function loadBooking(){
-            $this->view('hotels/v_dash_bookings');
+        public function editUserDetails(){
+            // if ($_SERVER['REQUEST_METHOD']=='POST') {
+                
+            //     $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            
+            //     $data=[
+            //             'NoofBeds'=>trim($_POST['no-of-beds'])
+    
+            //         ];
+
+            //     //Add a Taxi Request
+            //     if ($this->taxirequestModel->addtaxirequest($data)) {
+            //         flash('reg_flash', 'Profile is successfully updated!');
+            //         // redirect('Pages/home');
+            //     }
+            //     else{
+            //         die('Something went wrong');
+            //     }               
+
+            // }
+            // else {
+            //     $data=[
+            //         'pickuplocation'=>'',
+            //         'destination'=>'',
+            //         'date'=>'',
+            //         'time'=>'',
+            //         'description'=>'',
+            //         'travelerid'=>'',
+
+            //         'pickuplocation_err'=>'',
+            //         'destination_err'=>'',
+            //         'date_err'=>'',
+            //         'time_err'=>'',
+            //         'description_err'=>'',
+            //         'travelerid_err'=>''
+
+            //     ];
+                $this->view('hotels/v_dash_profile_edit',$data);
+            // }
+        }
+
+        public function editProfileDetails(){
+
         }
 
         public function loadPayments(){
