@@ -7,7 +7,7 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']=='Hotel') {
+elseif ($_SESSION['user_type']!='Hotel' || $_SESSION['user_type']!='Admin') {
     ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
@@ -39,7 +39,7 @@ elseif ($_SESSION['user_type']=='Hotel') {
                 <ul>
                     <li><?php echo $data['hotelaccountdetails']->UserID?></li>
                     <li><?php echo $data['hotelaccountdetails']->Email?></li>
-                    <li><?php echo $data['hotelaccountdetails']->ContactNo?></li>
+                    <li><input type="text" name="email" value="<?php echo $data['hotelaccountdetails']->ContactNo?>"></li>
                     <li><?php echo $data['hotelaccountdetails']->acc_status?></li>
                 </ul>
 
@@ -55,16 +55,17 @@ elseif ($_SESSION['user_type']=='Hotel') {
 
             <div class="hotel-profile-accdet-1">
                 <ul>
-                    <li><?php echo $data['hotelaccountdetails']->Name?></li>
-                    <li>*****</li>
+                    <li><input type="text" name="username" value="<?php echo $data['hotelaccountdetails']->Name?>"></li>
+                    <li><?php echo $data['hotelaccountdetails']->Password?></li>
                     <li><?php echo $data['hotelaccountdetails']->UserType?></li>
                 </ul>
             </div>
         </div>
         <br>
-        <button class="profile-btn" id="account-details-edit" onclick="<?php echo URLROOT?>/Hotels/editUserDetails">Edit Account Details</button>
+        <button class="all-purpose-btn" id="account-details-edit">Edit Account Details</button>
         <br>&nbsp;
-    </div>    
+    </div>
+    
         
     <div class="hotel-profile-account-details">
         <p id="hotel-profile-title-1">Property Details</p>
@@ -146,7 +147,7 @@ elseif ($_SESSION['user_type']=='Hotel') {
         </div>       
         
         <br>
-        <button class="profile-btn" onclick="<?php echo URLROOT?>/Hotels/editProfileDetails">Edit Property Details</button>
+        <button class="all-purpose-btn" id="account-details-edit">Edit Property Details</button>
         <br>&nbsp;
     </div>
 
@@ -169,6 +170,7 @@ elseif ($_SESSION['user_type']=='Hotel') {
                         }
                     }
                 ?>
+                <p>yes</p>
             </div>
         <br>
         <button class="all-purpose-btn" id="account-details-edit" 
