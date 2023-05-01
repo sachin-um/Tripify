@@ -120,7 +120,22 @@
 
         public function addToTripPlan($bookingid,$type,$tripid)
         {
-            if ($this->tripModel->addToTripPlan($bookingid,$type,$tripid)) {
+            
+            if ($this->tripModel->addToTripPlan($bookingid,$type,$tripid)==="duplicate"){
+                flash('booking_flash', 'Booking was already added');
+                switch ($type) {
+                    case 'guide':
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                        break;
+                    case 'taxi':
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                        break;
+                    case 'hotel':
+                        redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                        break;
+                }
+            }
+            elseif ($this->tripModel->addToTripPlan($bookingid,$type,$tripid)) {
                 flash('booking_flash', 'Booking was added to Trip plan');
                 switch ($type) {
                     case 'guide':
@@ -133,7 +148,8 @@
                         redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                         break;
                 }
-            } else {
+            } 
+            else {
                 flash('booking_flash', 'Somthing went wrong try again');
                 switch ($type) {
                     case 'guide':
