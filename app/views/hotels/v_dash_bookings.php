@@ -35,7 +35,26 @@ else {
                 <th>View Details</th>
             </tr>
 
-            
+            <tr>
+                <td>B1024</td>
+                <td>Sarath Gunapala</td>
+                <td>2022.02.12</td>
+                <td>12000.00</td>
+                <td>R1024</td>
+                <td>Paid</td>
+                <td><button>View</button></td>
+            </tr>
+
+            <tr>
+                <td>B1035</td>
+                <td>Nimal Siripala</td>
+                <td>2023.01.10</td>
+                <td>10000.00</td>
+                <td>R2024</td>
+                <td>Unpaid</td>
+                <td><button>View</button></td>
+            </tr>
+
             <tr>
                 <td>B1045</td>
                 <td>Danapala Gunasekara</td>
