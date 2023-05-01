@@ -41,11 +41,6 @@
     width: 30%;
 }
 
-#account-details-edit{
-    width: 30%;
-    margin:auto;
-}
-
 #extra-1{
     width: 20%;
     margin: auto;
@@ -65,4 +60,16 @@
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px; /* space between columns, change as needed */
     grid-row-gap: 10px;
+}
+
+.profile-btn{
+    margin: 0 auto;
+    display: table;
+    height: 45px;
+    width: 30%;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: #03002E;
+    border-radius: 100px;
 }

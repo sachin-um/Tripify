@@ -468,8 +468,12 @@
             $_SESSION['user_profile_image']=$user->profileimg;
             $_SESSION['user_email']=$user->Email;
             $_SESSION['user_type']=$user->UserType;
+            $current_date = date("m-d-Y");
+            $tomorrow = date('m-d-Y', strtotime('+1 day'));
+            $_SESSION['checkin'] = $current_date;
+            $_SESSION['checkout'] = $tomorrow;
             $_SESSION['admin_type']='';
-            
+
             
             // $this->view('v_home',$data);
 
