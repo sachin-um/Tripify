@@ -48,11 +48,14 @@
                     <input type="text" id="taxiownsl2" name="taxiownsl2" placeholder="Address Line 2" ><br>
         
                     <input type="text" id="taxiowncity" name="taxiowncity" placeholder="City" required ><br>
+                    
+                    <p>Selected services: <span id="service-list"></span></p>
+                    <input type="text" name="services" placeholder="Enter up to 4 services separated by commas" onkeyup="showServices()"><br>
+
                     <input type="submit" id="taxi-register-but" name="taxiowncreate_but" value="Register">
 
 
-                    <p>Selected services: <span id="service-list"></span></p>
-                    <input type="text" name="services" placeholder="Enter up to 4 services separated by commas" onkeyup="showServices()">
+                   
                 </form>
 
                 <div class="taxicreatecom">
