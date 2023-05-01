@@ -64,16 +64,18 @@ else {
                             <th>Company Name</th>
                             <th>No of Vehicles</th>
                             <th>status</th>
+                            <th style="display: none;">Verification status</th>
+                            <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <th>View </th>
                                     <th>Verify</th>
                                     
                                     <th>Suspend</th>
                                     <?php
-                                } elseif ($_SESSION['admin_type']=='management') {
+                                }
+                                if ($_SESSION['admin_type']=='management' ||  $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     <th>Suspend</th>
                                     <?php
@@ -98,11 +100,13 @@ else {
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->company_name ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
+                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
+                                    
                                     <td data-lable="Email">
                                         <?php
                                             if ($taxi->verification_status==2) {

@@ -112,8 +112,6 @@ else {
                                     ?>
                                     <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                     <br>
-                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
-                                    
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
