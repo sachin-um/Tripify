@@ -101,6 +101,7 @@
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
+
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <script>    
     function paymentGateway(type){
