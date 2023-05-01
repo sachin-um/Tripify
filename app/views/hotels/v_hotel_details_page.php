@@ -24,20 +24,19 @@
 
         <p class="home-title-2">Check Available Rooms</p>
 
-        <form action="<?php echo URLROOT?>/HotelBookings/checkRoomAvailability" method="post">
-            <input type="hidden" name="hotelID" value="<?php echo $data['hotelID']?>">;
+        <form action="" method="post">
             <div class="nav-main-hotel-room">
                 
                 <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date"
+                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date"
                     value="<?php echo $_SESSION['checkin']?>">
                     <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                 </div>
                 &nbsp;
                 <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date"
+                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date"
                     value="<?php echo $_SESSION['checkout']?>">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
@@ -57,7 +56,7 @@
         
 
         <!-- Hotel Booking Function -->
-        <form action="<?php echo URLROOT?>/HotelBookings/test/<?php echo $data['hotelID']?>" method="post">
+        <form action="<?php echo URLROOT?>/HotelBookings/test" method="post">
 
             <input type="hidden" name="hotelID" value="<?php echo $data['profileDetails']->HotelID?>">
             <!-- <input type="hidden" name="roomtypes" value="<?php echo $data['allroomtypes']?>"> -->
