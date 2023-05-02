@@ -122,6 +122,19 @@
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
                             <div class="hotel-reg-form">
+
+                                <br>
+                                <div class="hotel-reg-form-div-2">
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1" style="width:8em" required>
+                                        <span id="availSeats"></span>
+                                    </div>
+                                    
+
+                                    
+                                   
+                                </div>
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>

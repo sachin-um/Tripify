@@ -1,5 +1,5 @@
 let olddateError =false;
-let driverAvailableError =false;
+let passengersError =false;
 let timeslotError= false;
 
 
@@ -16,7 +16,7 @@ function finalValidation(){
   const form = document.getElementById('taxi-booking-form');
   const submitButton = document.getElementById('taxi-get-price-but');
 
-  if(olddateError && driverAvailableError && timeslotError){           // validation 
+  if(olddateError && passengersError && timeslotError){           // validation 
     submitButton.style.backgroundColor = '#0F6C13';
     form.submit();
   }else{
@@ -72,7 +72,8 @@ function validation(){
     if(pickL.value && dropL.value && dateInput.value && timeInput.value){
       event.preventDefault();
       availableTime();
-      driverAvailable();
+      passengersValidation();
+      // driverAvailable();
       finalValidation();
 
     }else{
@@ -92,6 +93,10 @@ function validation(){
   $('#taxi-DL').on('change', function() {
     $('#availTime').html('');
     
+  });
+
+  $('#passengers').on('change', function() {
+    $('#availSeats').html('');
     
   });
 
@@ -104,40 +109,40 @@ function validation(){
 
 
 
-function driverAvailable(){     // A driver can only drive 14 hours per day 
-  const bookingDate = $('#bookingDate').val();
-  const bookingTime = $('#bookingTime').val();
-  const est = $('#duration').val();
+// function driverAvailable(){     // A driver can only drive 14 hours per day 
+//   const bookingDate = $('#bookingDate').val();
+//   const bookingTime = $('#bookingTime').val();
+//   const est = $('#duration').val();
 
 
-  $.ajax({
-    url: URLROOT+'/Bookings/checkTimeAvailability',
-    method: 'POST',
-    data: {
-      bookingDate: bookingDate,
-      est:est,
-      vehicleID:vehicleID
-    },
-    dataType: 'json',
-    success: function(result) {
+//   $.ajax({
+//     url: URLROOT+'/Bookings/checkTimeAvailability',
+//     method: 'POST',
+//     data: {
+//       bookingDate: bookingDate,
+//       est:est,
+//       vehicleID:vehicleID
+//     },
+//     dataType: 'json',
+//     success: function(result) {
       
-      if (result) {
-        $('#availTime').html('This vehicle reach the Limit. Please chose another vehicle');
-        driverAvailableError=false;
+//       if (result) {
+//         $('#availTime').html('This vehicle reach the Limit. Please chose another vehicle');
+//         driverAvailableError=false;
 
-      } else {
-        driverAvailableError=true;
-        $('#availTime').html('');
-        finalValidation();
+//       } else {
+//         driverAvailableError=true;
+//         $('#availTime').html('');
+//         finalValidation();
         
-      }
-    },
-    error: function(xhr, status, error) {
-      console.log("AJAX error:", status, error);
-      alert('data not received');
-    }
-  });
-}
+//       }
+//     },
+//     error: function(xhr, status, error) {
+//       console.log("AJAX error:", status, error);
+//       alert('data not received');
+//     }
+//   });
+// }
 
 
 function availableTime(){   // Checking Time slot is Available
@@ -205,6 +210,50 @@ function validationDateTime(){
   
 
 }
+
+
+function passengersValidation(){
+ 
+    var value = $('#passengers').val(); 
+    if (value.trim() !== "" && isNaN(value)) {
+      $('#availSeats').html('Please enter a valid number');
+      passengersError=false;
+    } else if (value < 1) {
+      $('#availSeats').html('Please enter a number greater than or equal to 1');
+      passengersError=false;
+    } else {
+      $.ajax({
+        url: URLROOT+'/Bookings/checkSeats',
+        method: 'POST',
+        data: {
+          passengers: value,
+          vehicleID:vehicleID,
+         
+        },
+        dataType: 'json',
+        success: function(result) {
+          
+          if (result) {
+            $('#availSeats').html('Seats Not Enough in this Vehicle');
+            passengersError=false;
+          } else {
+            $('#availSeats').html('');
+            passengersError=true;
+          }
+       
+        },
+        error: function(xhr, status, error) {
+          console.log("AJAX error:", status, error);
+          alert('data not received');
+        }
+      });
+      
+    }
+  
+}
+
+
+
 
 
 function getTodayDate(){

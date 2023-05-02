@@ -103,13 +103,13 @@
                     
                         <!-- onclick="validation($taxioffer->OfferID)" -->
                         <!-- <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"> -->
-                        <button class="request-offer-btn-cls" id="request-offer-btn-<?php echo $taxioffer->OfferID?>"  type="submit" onclick="validation('<?php echo $taxioffer->VehicleID?>','<?php echo $taxioffer->request->date ?>','<?php echo $taxioffer->request->time ?>','<?php echo $taxioffer->request->duration?>','<?php echo $taxioffer->OfferID?>','<?php echo $taxioffer->request_id ?>')" >Accept offer</button>
+                        <button class="request-offer-btn-cls" id="request-offer-btn-<?php echo $taxioffer->OfferID?>"  type="submit" onclick="validation('<?php echo $taxioffer->VehicleID?>','<?php echo $taxioffer->request->date ?>','<?php echo $taxioffer->request->time ?>','<?php echo $taxioffer->request->duration?>','<?php echo $taxioffer->OfferID?>','<?php echo $taxioffer->request_id ?>','<?php echo $taxioffer->request->passengers ?>','<?php echo $taxioffer->vehicle->no_of_seats?>')" >Accept offer</button>
                         <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
                         <?php
                     }
                     ?>
                 </div>
-                <!-- <span id="avail-<?php echo $taxioffer->OfferID?>" style="display:none"></span><br> -->
+                <span id="availSeats-<?php echo $taxioffer->OfferID?>" ></span><br>
                 <span id="availTime-<?php echo $taxioffer->OfferID?>" style="display:none"></span><br>
                 <span id="checkdate-<?php echo $taxioffer->OfferID?>" style="display:none"></span><br>
             </div>
