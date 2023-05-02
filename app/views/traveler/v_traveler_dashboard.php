@@ -419,7 +419,7 @@ else {
                                 <button style="margin-right: 10px" class="profile-btn-save" id="save-btn" type="submit">
                                     <i class="fa-solid fa-check" style="margin-right: 10px;"></i>
                                     Save Changes
-                                </button>       
+                                </button>      
                             </div>
                         <?php
                     }
@@ -434,7 +434,7 @@ else {
             </div>
             </form>
             <?php 
-                    if ($data->UserID!= $_SESSION['user_id']) {
+                    if ($data->UserID== $_SESSION['user_id']) {
                          require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                     }  
             ?>

@@ -178,7 +178,7 @@ else {
                             Delete
                         </button>
                     </a>
-                    <a href="<?php echo URLROOT; ?>/Offers/taxioffers/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
+                    <a href="<?php echo URLROOT; ?>/Offers/taxioffers/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit"><i class="fa-brands fa-buffer" style="margin-right: 10px;"></i>View Offers</button></a>
                 <?php
             }
             elseif ($_SESSION['user_type']=='Taxi') {
