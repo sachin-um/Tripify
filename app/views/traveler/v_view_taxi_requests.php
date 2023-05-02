@@ -74,36 +74,110 @@ else {
 
         <div class="request">
             <div class="post-header">Request ID : <?php echo $taxirequest->request_id; ?></div>
+            <i class="fa-sharp fa-solid fa-timer"></i>
             <div class="post-body">
                 <div class="req-slot1">
-                    <div class="post-tag post-date"><img src="<?php echo URLROOT; ?>/img/date.png" alt="date" ><span class="request-data">:<?php echo $taxirequest->date; ?></span></div>
-                    <div class="post-tag post-time"><img src="<?php echo URLROOT; ?>/img/time.png" alt="time" ><span class="request-data">:<?php echo $taxirequest->time; ?></span></div>
-                
+                    <div class="detail-container" style="margin-right: 20px;">
+                        <div class="header-container">
+                            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">Date</div>
+                        </div>
+                        <div class="post-tag post-date description" style="margin-left: 33px">
+                            <?php echo $taxirequest->date; ?></span>
+                        </div>
+                    </div>
+                    <div class="detail-container">
+                        <div class="header-container">
+                            <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">Time</div>
+                        </div>
+                        <div class="post-tag post-date description" style="margin-left: 33px">
+                            <?php echo $taxirequest->time; ?></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="req-slot2">
-                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/start.png" alt="start" style="width: 50px; height: 50px;"><span class="request-data">:<?php echo $taxirequest->pickup_location; ?></span></div>
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/finish.png" alt="finish" style="width: 50px; height: 50px;"><span class="request-data">: <?php echo $taxirequest->destination; ?></span></div>
+                    <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">From</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->pickup_location; ?></span>
+                            </div>
+                        </div>
+                        <div class="detail-container">
+                            <div class="header-container">
+                                <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">To</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->destination; ?></span>
+                            </div>
+                        </div>
                 </div>
                 <div class="req-slot2">
-                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/passengers.png" alt="area" ><span class="request-data">: <?php echo $taxirequest->passengers; ?></span></div>
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/vtype.png" alt="language" ><span class="request-data">: <?php echo $taxirequest->vehicle_type; ?></span></div>
+                        <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-person fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Passengers</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->passengers; ?>
+                            </div>
+                        </div>
+                        <div class="detail-container">
+                            <div class="header-container">
+                                <i class="fa-solid fa-car fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Vehicle Type</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->vehicle_type; ?>
+                            </div>
+                        </div>
                 </div>
                 <div class="req-slot3">
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $taxirequest->additional_details; ?></span></div>
+                        <div class="detail-container" style="margin-right: 20px; width: 97%;">
+                            <div class="header-container">
+                                    <i class="fa-solid fa-person fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Additional Details</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->additional_details; ?>
+                            </div>
+                        </div>
                 </div>
                 <div class="post-by-content">
-                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->name; ?></span></div>
-                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->contact_no; ?></span></div>
-                    <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($taxirequest->post_at); ?></span></div>
+                <?php
+                    if ($_SESSION['user_type']=='Taxi') {
+                        ?>
+                                <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->name; ?></span></div>
+                                <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->contact_no; ?></span></div>
+                                <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($taxirequest->post_at); ?></span></div>
+                            
+                        <?php
+                    }
+                ?>
                 </div>
             </div>
             <div class="request-footer">
-            <button id="request-offer-btn" type="button" onclick="showRequest('<?php echo $taxirequest->request_id; ?>','<?php echo URLROOT; ?>')">More Details</button>
+            <button id="request-offer-btn" type="button" onclick="showRequest('<?php echo $taxirequest->request_id; ?>','<?php echo URLROOT; ?>')">
+                <i class="fa-solid fa-circle-info" style="margin-right: 10px;"></i>
+                More Details
+            </button>
             <?php
             if ($_SESSION['user_type']=='Traveler') {
                 ?>
-                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
-                    <a href="<?php echo URLROOT; ?>/Request/deleteTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-delete-btn" type="submit">Delete</button></a>
+                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-edit-btn" type="submit">
+                        <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                        Edit
+                    </button></a>
+                    <a href="<?php echo URLROOT; ?>/Request/deleteTaxiRequest/<?php echo $taxirequest->request_id ?>">
+                        <button id="request-delete-btn" type="submit">
+                            <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>
+                            Delete
+                        </button>
+                    </a>
                     <a href="<?php echo URLROOT; ?>/Offers/taxioffers/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
                 <?php
             }
