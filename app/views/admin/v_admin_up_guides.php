@@ -42,6 +42,13 @@ else {
         <br>
         <div class="profile-search-area">
             <input type="text" placeholder="Search accounts..." id="searchInput">
+            <select name="account-type" id="account-type">
+                <option value="" disabled selected>Account Type</option>
+                <option value="suspened">Suspended</option>
+                <option value="active">Active</option>
+                <option value="verified">Verified</option>
+                <option value="not-verified">Not Verified</option>
+            </select>
         </div>
         <div class="first-container">
             <div class="admin-table-container">
@@ -56,11 +63,12 @@ else {
                             <th>Area</th>
                             <th>Rate</th>
                             <th>Account status</th>
+                            <th style="display: none;">Verification status</th>
+                            <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <th>View </th>
                                     <th>Verify</th>
                                     
                                     <th>Suspend</th>
@@ -90,12 +98,13 @@ else {
                             <td data-lable="Status"><?php echo $guide->moreDetails->Area ?></td>
                             <td data-lable="Status"><?php echo $guide->moreDetails->Rate ?></td>
                             <td data-lable="Status"><?php echo $guide->acc_status ?></td>
-                            
+                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $hotel->UserID ?>/Hotel'">View </button></td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $guide->UserID ?>/Guide'">View </button></td>
+                                    
                                     <td data-lable="Email">
                                         <?php
                                             if ($guide->verification_status==2) {

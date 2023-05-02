@@ -394,19 +394,23 @@
                 $roomIDs = $records->roomIDs;
                 $bookedrooms = explode(',', $roomIDs);
             }
-           print_r($bookedrooms); 
+        //    print_r($bookedrooms); 
 
            for($i=0;$i<count($allrooms);$i=$i+2){
-            for($j=0;$j<count($bookedrooms);$j=$j+2){
-                if($allrooms[$i]==$bookedrooms[$j]){
-                    $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+            if(!empty($bookedrooms)){
+                for($j=0;$j<count($bookedrooms);$j=$j+2){
+                    if($allrooms[$i]==$bookedrooms[$j]){
+                        $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                    }
                 }
             }
+            
            }
 
            print_r($allrooms); 
 
             $data=[
+                'hotelID'=>$hotelID,
                 'profileDetails'=>$profileDetails,
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
@@ -507,8 +511,50 @@
             }
         }
 
-        public function loadBooking(){
-            $this->view('hotels/v_dash_bookings');
+        public function editUserDetails(){
+            // if ($_SERVER['REQUEST_METHOD']=='POST') {
+                
+            //     $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            
+            //     $data=[
+            //             'NoofBeds'=>trim($_POST['no-of-beds'])
+    
+            //         ];
+
+            //     //Add a Taxi Request
+            //     if ($this->taxirequestModel->addtaxirequest($data)) {
+            //         flash('reg_flash', 'Profile is successfully updated!');
+            //         // redirect('Pages/home');
+            //     }
+            //     else{
+            //         die('Something went wrong');
+            //     }               
+
+            // }
+            // else {
+            //     $data=[
+            //         'pickuplocation'=>'',
+            //         'destination'=>'',
+            //         'date'=>'',
+            //         'time'=>'',
+            //         'description'=>'',
+            //         'travelerid'=>'',
+
+            //         'pickuplocation_err'=>'',
+            //         'destination_err'=>'',
+            //         'date_err'=>'',
+            //         'time_err'=>'',
+            //         'description_err'=>'',
+            //         'travelerid_err'=>''
+
+            //     ];
+                $this->view('hotels/v_dash_profile_edit',$data);
+            // }
+        }
+
+        public function editProfileDetails(){
+
         }
 
         public function loadPayments(){

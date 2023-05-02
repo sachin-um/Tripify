@@ -54,8 +54,10 @@ else {
                             <th>Check In</th>
                             <th>Check Out</th>
                             <th>Payment</th>
+                            <th>Payment Method</th>
+                            <th>Payment Status</th>
                             <th>booking Status</th>
-                            <th>Cancel</th>
+                            <th>Action</th>
                             
                         </tr>
                     </thead>
@@ -69,49 +71,38 @@ else {
                             <td data-lable="Name"><?php echo $booking->booking_id ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hotel->HotelID; ?>"><?php echo $booking->hotel->Name ?></a> </td>
                             <td data-lable="Name"><?php echo $booking->hotel->Name?></td>
-                            <td data-lable="Name"><?php echo $booking->booking_start_date ?></td>
-                            <td data-lable="Name"><?php echo $booking->booking_end_date ?></td>
+                            <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
+                            <td data-lable="Name"><?php echo $booking->checkout_date ?></td>
                             <td data-lable="Name"><?php echo $booking->payment ?></td>
+                            <td data-lable="Name"><?php echo $booking->paymentmethod ?></td>
+                            <td data-lable="Name"><?php echo $booking->payment_status ?></td>
                             <td data-lable="Name"><?php echo $booking->status ?></td>
                             <?php
-                                if ($booking->status=='Yet To Confirm') {
-                                    ?>
-                                    
-                                    <td data-lable="Name">
-                                        
-                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button class="btn" type="button">Cancel</button></a>
-                                        
-                                    </td>
-                                    
-                                    <?php
-                                }
-                                elseif ($booking->status=='Confirmed') {
-                                    if ($booking->PaymentStatus!='Paid') {
-                                        if ($booking->PaymentMethod=='Online') {
+                                if ($booking->status=='In progress') {
+                                    if ($booking->payment_status!='Paid') {
+                                        if ($booking->paymentmethod=='Online') {
                                             ?>
                                                 <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button></td>
                                             <?php
                                         }
                                         else {
                                             ?>
-                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site</span></td>
+                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site <br><button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button></span></td>
                                             <?php
                                         }
                                     }
                                     else {
                                         ?>
-                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button>
+                                            <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><br><button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button></td>
                                             
                                         <?php
                                     }
                                     
                                 }
-                                elseif ($booking->status=='Finished') {
+                                elseif ($booking->status=='Completed') {
                                     ?>
                                     <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                     <br>
-                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->booking_id ?>/Hotel"><button class="review-btn" type="button">Add a Review</button></a>
-                                    </td>
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {

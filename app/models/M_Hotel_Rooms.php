@@ -101,7 +101,14 @@ class M_Hotel_Rooms{
         return $roomset;
     }
 
-    
+    public function getBookingID(){
+        $this->db->query('SELECT booking_id FROM 
+        hotel_bookings ORDER BY booking_id DESC LIMIT 1');
+
+        $bookingID=$this->db->single();
+
+        return $bookingID;
+    }
 
     //Get all room IDs for a room type
     public function getRoomIDs($roomTypeID){

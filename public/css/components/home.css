@@ -68,6 +68,11 @@
   cursor: pointer;
 }
 
+#book-now-btn{
+  display: table;
+  margin: 0 auto;
+}
+
 .home-carousal-body{
     /* display: flex;
     align-items: center;
