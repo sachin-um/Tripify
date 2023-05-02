@@ -119,13 +119,12 @@ else {
                                 }
                                 elseif ($booking->status=='Completed') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
-                                    <br>
+                                    <td data-lable="Name"><i class="fa-solid fa-check"style="margin-right: 10px"></i>Completed
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">Canceled</td>
+                                    <td data-lable="Name"><i class="fa-solid fa-xmark"></i>Canceled</td>
                                     <?php
                                 }
                             ?>

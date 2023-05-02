@@ -72,31 +72,91 @@ else {
             <div class="post-header">Request ID : <?php echo $guiderequest->request_id; ?></div>
             <div class="post-body">
                 <div class="req-slot1">
-                    <div class="post-tag post-date"><img src="<?php echo URLROOT; ?>/img/date.png" alt="date" ><span class="request-data">:<?php echo $guiderequest->date; ?></span></div>
-                    <div class="post-tag post-time"><img src="<?php echo URLROOT; ?>/img/time.png" alt="time" ><span class="request-data">:<?php echo $guiderequest->time; ?></span></div>
+                    <div class="detail-container" style="margin-right: 20px;">
+                        <div class="header-container">
+                            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">Date</div>
+                        </div>
+                        <div class="post-tag post-date description" style="margin-left: 33px">
+                            <?php echo $guiderequest->date; ?></span>
+                        </div>
+                    </div>
+                    <div class="detail-container">
+                        <div class="header-container">
+                            <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">Time</div>
+                        </div>
+                        <div class="post-tag post-date description" style="margin-left: 33px">
+                            <?php echo $guiderequest->time; ?></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="req-slot2">
-                    <div class="post-tag post-location"><img src="<?php echo URLROOT; ?>/img/area.png" alt="area" ><span class="request-data">: <?php echo $guiderequest->p_location; ?></span></div>
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/language.png" alt="language" ><span class="request-data">: <?php echo $guiderequest->p_language; ?></span></div>
+                        <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Pickup Location</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $guiderequest->p_location; ?></span>
+                            </div>
+                        </div>
+                        <div class="detail-container">
+                            <div class="header-container">
+                                <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Prefer Languages</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo  $guiderequest->p_language; ?></span>
+                            </div>
+                        </div>
+                    
                 </div>
                 <div class="req-slot3">
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $guiderequest->description; ?></span></div>
+                        <div class="detail-container" style="margin-right: 20px; width: 97%;">
+                            <div class="header-container">
+                                    <i class="fa-solid fa-circle-info fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Additional Details</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $guiderequest->description; ?>
+                            </div>
+                        </div>
+                    
                 </div>
                 
                 
                 <div class="post-by-content">
+                <?php
+                    if ($_SESSION['user_type']=='Taxi') {
+                        ?>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <?php echo $guiderequest->name; ?></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guiderequest->contact_no; ?></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guiderequest->post_at); ?></span></div>
+                    <?php
+                    }
+                ?>
                 </div>
             </div>
             <div class="request-footer">
                 <?php
                     if ($_SESSION['user_type']=='Traveler') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
-                            <a href="<?php echo URLROOT; ?>/Request/deleteGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-delete-btn" type="submit">Delete</button></a>
-                            <a href="<?php echo URLROOT; ?>/Offers/guideoffers/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">View Offers</button></a>
+                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-edit-btn" type="submit">
+                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Edit
+                                </button>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/Request/deleteGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-delete-btn" type="submit">
+                                <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>
+                                Delete
+                                </button>
+                            </a>
+                            <a href="<?php echo URLROOT; ?>/Offers/guideoffers/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">
+                                <i class="fa-brands fa-buffer" style="margin-right: 10px;"></i>
+                                View Offers
+                                </button>
+                            </a>
                         <?php
                     }
                     elseif ($_SESSION['user_type']=='Guide') {
