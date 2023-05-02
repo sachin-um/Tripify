@@ -223,7 +223,9 @@
 
         public function acceptTaxiOffer($offerid,$requestid){
             $request=$this->taxirequestModel->getTaxiRequestById($requestid); 
-            $offer=$this->taxiofferModel->getOfferById($offerid);
+            $offer=$this->taxiofferModel->getOfferByOfferId($offerid);
+            var_dump($request);
+            var_dump($offer);
             if ($request->traveler_id!=$_SESSION['user_id']) {
                 flash('reg_flash', 'Access denied..');
                 redirect('Users/login');
@@ -358,6 +360,9 @@
                 $dropL =  trim($_POST['dropL']);
                 $bookingDate = $_POST['s_date'];
                 $bookingTime = $_POST['s_time'];
+                $passengers = $_POST['passengers'];
+                $payment_option = $_POST['payment_option'];
+                
                 $exTime=$_POST['duration']; //extimate time
 
                 $distance=$_POST['distance'];
@@ -386,6 +391,8 @@
                     'p_longitude'=>trim($_POST['p-longitude']),
                     'd_latitude'=>trim($_POST['d-latitude']),
                     'd_longitude'=>trim($_POST['d-longitude']),
+                    'payment_option'=>$payment_option,
+                    'passengers'=>$passengers,
                     'e_date'=>$end_date,
                     'e_time'=>$end_time,
                     'pickupL'=>$pickupL,
@@ -528,6 +535,8 @@
                 'e_time'=>$_SESSION['booking_data']['e_time'],
                 'pickupL'=>$_SESSION['booking_data']['pickupL'],
                 'dropL'=>$_SESSION['booking_data']['dropL'],
+                'payment_option'=>$_SESSION['booking_data']['payment_option'],
+                'passengers'=>$_SESSION['booking_data']['passengers'],
                 'p_latitude'=>$_SESSION['booking_data']['p_latitude'],
                 'p_longitude'=>$_SESSION['booking_data']['p_longitude'],
                 'd_latitude'=>$_SESSION['booking_data']['d_latitude'],
@@ -550,7 +559,7 @@
                 else{
                     die('Something went wrong');
                 }
-                // unset($_SESSION['booking_data']);
+                unset($_SESSION['booking_data']);
         }
 
         public function getTaxiBooking($id)
