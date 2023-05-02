@@ -82,19 +82,37 @@ else {
                                     if ($booking->payment_status!='Paid') {
                                         if ($booking->paymentmethod=='Online') {
                                             ?>
-                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button></td>
+                                                <td style="display: flex; align-items: center;" data-lable="Name">
+                                                    <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> 
+                                                    <button class="pay-btn" type="button">
+                                                        <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
+                                                        Pay Now
+                                                    </button>
+                                                </td>
                                             <?php
                                         }
                                         else {
                                             ?>
-                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site <br><button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button></span></td>
+                                            <td style="display: flex; align-items: center;" data-lable="Name">
+                                                    <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
+                                                    <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">
+                                                        <i class="fa-solid fa-plane" style="margin-right: 10px"></i>
+                                                        Add to Trip Plan
+                                                    </button>
+                                                
+                                            </td>
                                             <?php
                                         }
                                     }
                                     else {
                                         ?>
-                                            <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><br><button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">Add to Trip Plan</button></td>
-                                            
+                                            <td style="display: flex; align-items: center;" data-lable="Name">
+                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>
+                                                    Add to Trip Plan
+                                            </button>
+                                            </td>
                                         <?php
                                     }
                                     

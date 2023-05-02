@@ -153,7 +153,33 @@
                                     foreach($guide_bookings as $guide_booking):
                                         
                                         ?>
-                                            <div class="row"><?php echo $guide_booking->guide_name ?></div>
+                                            <div class="main-container">
+                                                <i class="fa-solid fa-person-walking fa-2xl" style="display: flex; align-items: center"></i>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="heading">Guide</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $guide_booking->guide_name ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="heading">Time</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $guide_booking->StartingTime ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="heading">Date</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $guide_booking->StartDate ?>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php
                                             endforeach;
                                         ?>
