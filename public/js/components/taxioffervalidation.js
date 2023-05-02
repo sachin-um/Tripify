@@ -1,10 +1,12 @@
 let olddateError =false;
 let timeslotError= false;
+let passengersError =false;
 
 
-function validation(vID,bd,bt,est,offerID,request_id){
+function validation(vID,bd,bt,est,offerID,request_id,passengers,seats){
    
   event.preventDefault(); 
+  passengersValidation(passengers,seats,offerID);
   availableTime(vID,bd,bt,est,offerID,request_id);
 
 }
@@ -13,7 +15,7 @@ function sentCont(offerID,request_id){
 
   const submitButton = document.getElementById('request-offer-btn-'+offerID);
 
-  if(olddateError && timeslotError){           // validation 
+  if(olddateError && timeslotError && passengersError){           // validation 
     submitButton.style.backgroundColor = '#0F6C13';
     submitButton.style.color = 'white';
     window.location.href = URLROOT+'/Bookings/acceptTaxiOffer/' + offerID + '/' +request_id;
@@ -88,6 +90,23 @@ function dateExpire(bd,bt,offerID,request_id){
   sentCont(offerID,request_id);
 
 }
+
+function passengersValidation(passengers,seats,offerID){
+
+  
+      console.log(passengers+' '+seats+' '+offerID);
+      console.log(passengers>seats);
+        if (passengers>seats) {
+          passengersError=false;
+          $('#availSeats-'+offerID).html('* Seats Not Enough in this Vehicle');
+        } else {
+          passengersError=true;
+          $('#availSeats-'+offerID).html('');
+          
+        }
+     
+
+} 
 
 
 function getTodayDate(){

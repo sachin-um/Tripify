@@ -212,8 +212,8 @@
 
         public function acceptTaxiOffer($data)
         {
-            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`)
-                                                        VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod)');
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
+                                                        VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
             $this->db->bind(':TravelerID',$data['request']->TravelerID);
             $this->db->bind(':Vehicles_VehicleID',$data['offer']->VehicleID);
             $this->db->bind(':Price',$data['price']);
@@ -228,7 +228,8 @@
 
             $this->db->bind(':TaxiOwnerID',$data['offer']->OwnerID);	
             $this->db->bind(':PaymentMethod',$data['offer']->PaymentMethod);
-
+            $this->db->bind(':passengers',$data['request']->passengers);
+            
 
             $this->db->bind(':p_latitude',$data['request']->p_latitude);
             $this->db->bind(':p_longitude',$data['request']->p_longitude);
