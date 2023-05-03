@@ -24,16 +24,17 @@ class Payments extends Controller
         echo $hash;
      }
 
-     public function paymentDetails($payment,$bookingID,$bookingType){
+     public function paymentDetails(){
 
       //Set bookingID according to type
-      if($bookingType == "hotel"){
-          $bookingID = "H".$bookingID;
-      }else if($bookingType=="Taxi"){
-         $bookingID="T".$bookingID;
+      $bookingID='';
+      if($_POST['bookingtype'] == "hotel"){
+          $bookingID = "H".$_POST['order_id'];
+      }elseif($_POST['bookingtype']=="Taxi"){
+         $bookingID="T".$_POST['order_id'];
       }
 
-      $amount = $payment;
+      $amount = $_POST['amount'];
       // $hotelid=$hotelid;
       $merchant_id = "1223006";
       $order_id = $bookingID;
@@ -57,14 +58,16 @@ class Payments extends Controller
       $array["phone"] = "0777123456";
       $array["address"] = "No.1, Galle Road";
       $array["city"] = "Colombo";
-
+      $array["userid"]=$_SESSION['user_id'];
       $array["amount"] = $amount;
       $array["merchant_id"] = $merchant_id;
       $array["order_id"] = $bookingID;
       $array["currency"] = $currency;
       $array["hash"] = $hash;
 
-      $jsonObj = json_encode($array); 
+      $jsonObj = json_encode($array);
+      // printr($jsonObj);
+      // var_dump($jsonObj)
       echo $jsonObj;
 
   }

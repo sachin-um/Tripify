@@ -151,7 +151,7 @@
                     $vehicleDetails = $this->taxiBookingModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
                     $taxibookings->Name = $vehicleDetails->Name;
                     $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
-        
+                    $taxibookings->vdetails=$vehicleDetails;
                 $data = [
                     'taxibookings' => $taxibookings
                 ];
@@ -186,7 +186,7 @@
                 }
             }else if($_SESSION['user_type']=='Taxi'){
                  
-                if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+                if($booking->TaxiOwnerID == $_SERVER['user_id']){
                     if($this->taxiBookingModel->cancelBooking($bookingid)){
                         flash('booking_flash', 'Taxi Booking is Canceled');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -206,7 +206,7 @@
             
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
 
-            if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+            if($booking->TaxiOwnerID == $_SERVER['user_id']){
                 if($this->taxiBookingModel->confrimBooking($ReservationID)){
                     flash('booking_flash', 'Confrimed Success');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 

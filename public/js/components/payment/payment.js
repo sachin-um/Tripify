@@ -1,4 +1,4 @@
-function paymentGateway(type,payment,bookingID,serviceProviderID){
+function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID){
     var bookingType = type;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = ()=>{
@@ -8,7 +8,7 @@ function paymentGateway(type,payment,bookingID,serviceProviderID){
             // Payment completed. It can be a successful failure.
             
             if(type=="Taxi"){
-                var cancel_url=URLROOT+"/Bookings/TaxiBookings/"+type+"/"+userID;     // Important
+                var cancel_url=urlroot+"/Bookings/TaxiBookings/"+type+"/"+obj["userid"];     // Important
             }else{
                 // saveBooking(serviceProviderID,<?php echo $data['roomIDstring']?>,payment);
             }
@@ -17,7 +17,7 @@ function paymentGateway(type,payment,bookingID,serviceProviderID){
             var payment = {
                 "sandbox": true,
                 "merchant_id": "1223006",    // Replace your Merchant ID
-                "return_url": URLROOT+"/Pages/Home",     // Important
+                "return_url": urlroot+"/Pages/Home",     // Important
                 "cancel_url":cancel_url,     // Important
                 "notify_url": "http://sample.com/notify",
                 "order_id": obj["order_id"],
@@ -42,9 +42,9 @@ function paymentGateway(type,payment,bookingID,serviceProviderID){
             payhere.startPayment(payment);
         }
     };
-    xhttp.open("GET",URLROOT+"/Payments/paymentDetails/"+payment+
-    "/"+bookingID+"/"+type,true);
-    xhttp.send();
+    xhttp.open("POST",urlroot+"/Payments/paymentDetails",true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("order_id="+bookingID+"&amount="+payment+"&bookingtype="+type);
 }
 
 payhere.onCompleted = function onCompleted(orderId) {
@@ -75,7 +75,7 @@ function saveBooking(hotelID,roomIDstring,payment){
     // ajax request liyala back end controller ekata data yawanna
     $.ajax({
                 type: "POST",
-                url: "<?= URLROOT ?>/HotelBookings/booking",
+                url: urlroot+"/HotelBookings/booking",
                 data: {
                     hotelID: hotelID,
                     roomIDstring: roomIDstring,
@@ -83,11 +83,11 @@ function saveBooking(hotelID,roomIDstring,payment){
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
+                    // alert('<?= urlrrot ?> / CustomerLocker / viewLockerArticle / ' + response);
 
                     if(response){
                         //traveler's booking dashboard
-                        window.location = '<?= URLROOT ?>/Pages/home';
+                        window.location = urlrrot +"/Pages/home";
                     }
                     
                     
