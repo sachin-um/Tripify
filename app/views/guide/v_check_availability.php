@@ -96,6 +96,7 @@ print_r($guidedetails);
                                         $guidedetails = $data['guidedetails'];
                                         ?>
                                         <input type="hidden" name="gname" value="<?php echo $data['guidedetails']->Name?>">
+                                        <input type="hidden" name="gid" value="<?php echo $data['guidedetails']->GuideID?>">
                                         <input type="hidden" name="greg" value="<?php echo $data['guidedetails']->guideRegNo?>">
                                         <input type="hidden" name="grate" value="<?php echo $data['guidedetails']->Rate?>">
                                         <p class="home-title-4">Start Date<sup> *</sup> :</p>

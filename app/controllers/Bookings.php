@@ -379,7 +379,7 @@
                     
                     $_SESSION['booking_data'] = $data;
 
-                    $this->view('taxi/v_bookings',$data);
+                    //$this->view('taxi/v_bookings',$data);
 
             }else{
                 
@@ -400,6 +400,10 @@
         }
 
         public function checkGuideAvailability($GuideID){
+            $guideDetails=$this->guideModel->getGuideById($_POST['gid']);
+            // echo "id123:".$_POST['gid'];
+            $guideLangs=$this->guideBookingModel->getGuideLangs($_POST['gid']);
+            
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
                 $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -409,9 +413,13 @@
                     'enddate' =>trim($_POST['endDate']),
                     'guideName' => $_POST['gname'],
                     'guideReg' => $_POST['greg'],
-                    'guideRate' => $_POST['grate']
-                    // 'guideLanguages' => $_POST['data']
+                    'guideRate' => $_POST['grate'],
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages' => $guideLangs
+
                 ];
+
+                // var_dump($data);
                 
 
                 $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
