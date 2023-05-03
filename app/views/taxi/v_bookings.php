@@ -1,5 +1,20 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<?php
+$_SESSION['user_id'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    // flash('reg_flash', 'Only the Taxi Owner can add Taxi Vehicles..');
+    redirect('Users/login');
+}
+else {
+?>
+
 
 <div class="wrapper">
     <div class="content">
@@ -121,20 +136,9 @@
                         <p class="home-title-2" >Book Now</p>
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
-                            <div class="hotel-reg-form">
-
+                                
                                 <br>
-                                <div class="hotel-reg-form-div-2">
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1" style="width:8em" required>
-                                        <span id="availSeats"></span>
-                                    </div>
-                                    
-
-                                    
-                                   
-                                </div>
+                                
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
@@ -151,6 +155,9 @@
                                    
                                 </div>
 
+                               
+                                <br>
+                                
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
@@ -173,11 +180,38 @@
 
                                         <input type="hidden" name="duration" id="duration" value="">
                                         <input type="hidden" name="distance" id="distance" value="">
+                                         
                                         
                                     </div>
 
                                     
                                 </div>
+
+
+
+                                <br>
+                                
+                                <div class="hotel-reg-form-div-2">
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  required>
+                                        <span id="availSeats"></span>
+                                    </div>
+
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Payment option<sup> *</sup> :</p>
+                                        <select class="search" id="payment-option" name="payment_option" style="background: white;">
+                                            <option value="" disabled selected hidden>Payment Option</option>
+                                            <option value="Onsite">Onsite</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Both Option">Both Option</option>
+                                        </select>
+                                    </div>
+
+                                    
+                                   
+                                </div>
+
                                 <span id="availTime"></span><br>
                                 <span style="color:black;">Select the pickup location on Map(Optional)</span>
                                     <div id="map-container">
@@ -192,13 +226,13 @@
                             </div>
                         </form>
                         <br>
+
                         <script type="text/JavaScript">
-                            // var bookingTime;
+
                             var URLROOT="<?php echo URLROOT;?>";
-                            // document.getElementById("bookingTime").addEventListener("change", function() {
-                            //     bookingTime = this.value;
-                            // });
-                            
+                            var userID="<?php echo $_SESSION['user_id']?>";
+                            const seats = <?php echo $data['details']->no_of_seats?>;
+                        
                         </script>
                        
                         
@@ -272,6 +306,9 @@
         
     </div>
 </div>
+
+
+<?php }?>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 

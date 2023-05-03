@@ -72,17 +72,12 @@ function validation(){
     if(pickL.value && dropL.value && dateInput.value && timeInput.value){
       event.preventDefault();
       availableTime();
-      passengersValidation();
-      // driverAvailable();
       finalValidation();
-
     }else{
       $('#availTime').html('Please Completly Fill The Form to Get Price details!');
       event.preventDefault();
-      
     }
 
-  
   });
 
   $('#taxi-PL').on('change', function() {
@@ -97,6 +92,7 @@ function validation(){
 
   $('#passengers').on('change', function() {
     $('#availSeats').html('');
+    passengersValidation();
     
   });
 
@@ -151,8 +147,8 @@ function availableTime(){   // Checking Time slot is Available
   var bookingDate = $('#bookingDate').val();
   const bookingTime = $('#bookingTime').val();
   const est = $('#duration').val();
-  const pickupLocationInput = document.querySelector('#taxi-PL');
-  const pickupLocationValue = pickupLocationInput.value;
+  // const pickupLocationInput = document.querySelector('#taxi-PL');
+  // const pickupLocationValue = pickupLocationInput.value;
 
     $.ajax({
       url: URLROOT+'/Bookings/checkTimeSlot',
@@ -182,6 +178,7 @@ function availableTime(){   // Checking Time slot is Available
       }
     });
 
+    
 
 
 }
@@ -214,39 +211,21 @@ function validationDateTime(){
 
 function passengersValidation(){
  
-    var value = $('#passengers').val(); 
-    if (value.trim() !== "" && isNaN(value)) {
-      $('#availSeats').html('Please enter a valid number');
-      passengersError=false;
-    } else if (value < 1) {
+    var passengers = $('#passengers').val(); 
+    
+    
+    if (passengers < 1) {
       $('#availSeats').html('Please enter a number greater than or equal to 1');
       passengersError=false;
     } else {
-      $.ajax({
-        url: URLROOT+'/Bookings/checkSeats',
-        method: 'POST',
-        data: {
-          passengers: value,
-          vehicleID:vehicleID,
-         
-        },
-        dataType: 'json',
-        success: function(result) {
-          
-          if (result) {
-            $('#availSeats').html('Seats Not Enough in this Vehicle');
-            passengersError=false;
-          } else {
-            $('#availSeats').html('');
-            passengersError=true;
-          }
-       
-        },
-        error: function(xhr, status, error) {
-          console.log("AJAX error:", status, error);
-          alert('data not received');
-        }
-      });
+      if (passengers>seats) {
+        passengersError=false;
+        $('#availSeats').html('* Seats Not Enough in this Vehicle');
+      } else {
+        $('#availSeats').html('');
+        passengersError=true;
+        
+      }
       
     }
   

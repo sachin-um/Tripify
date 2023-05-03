@@ -143,7 +143,7 @@
 
                                     <tr>
                                         <td><label > Air Condition</label></td>
-                                        <td><input type="checkbox"  id="taxi_ac" name="ac" value="Air Condition" <?php if ($data['AC']): ?>checked<?php endif; ?>></td>
+                                        <td><input type="checkbox"  id="taxi_ac" name="TaxiAC" value="Air Condition" <?php if ($data['AC']): ?>checked<?php endif; ?>></td>
                                         
                                     </tr>
 

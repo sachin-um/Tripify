@@ -178,8 +178,8 @@
 
 
         public function insertTaxiBooking($data){
-            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`)
-                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude)');
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
+                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
             $this->db->bind(':TravelerID',$data['travelerID']);
             $this->db->bind(':TaxiOwnerID',$data['TaxiOwnerID']);
             $this->db->bind(':Vehicles_VehicleID',$data['vehicleID']);
@@ -191,7 +191,10 @@
             $this->db->bind(':pickup_location',$data['pickupL']);
             $this->db->bind(':destination',$data['dropL']);
 
+            $this->db->bind(':PaymentMethod',$data['payment_option']);
+            $this->db->bind(':passengers',$data['passengers']);
 
+            
             $this->db->bind(':p_latitude',$data['p_latitude']);
             $this->db->bind(':p_longitude',$data['p_longitude']);
             $this->db->bind(':d_latitude',$data['d_latitude']);
@@ -206,6 +209,7 @@
                 return true;
             }
             else {
+
                 return false;
             }
         }
@@ -214,7 +218,7 @@
         {
             $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
-            $this->db->bind(':TravelerID',$data['request']->TravelerID);
+            $this->db->bind(':TravelerID',$data['request']->traveler_id);
             $this->db->bind(':Vehicles_VehicleID',$data['offer']->VehicleID);
             $this->db->bind(':Price',$data['price']);
             $this->db->bind(':booking_date',$data['request']->date);
@@ -238,19 +242,19 @@
 
     
             if ($this->db->execute()) {
-                $this->db->query('UPDATE taxi_offers SET status="Accepted" WHERE OfferID=:OfferID');
-                $this->db->bind(':OfferID',$data['offer']->OfferID);
-                $offerUpdate = $this->db->execute();
-                if($offerUpdate){
-                    return true;
-                }else{
+                // $this->db->query('UPDATE taxi_offers SET status="Accepted" WHERE OfferID=:OfferID');
+                // $this->db->bind(':OfferID',$data['offer']->OfferID);
+                // $offerUpdate = $this->db->execute();
+                // if($offerUpdate){
+                return true;
+            }else{
                     return false;
-                }
+            }
                 
-            }
-            else {
-                return false;
-            }
+            // }
+            // else {
+            //     return false;
+            // }
         }
         
         

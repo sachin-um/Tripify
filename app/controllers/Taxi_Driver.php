@@ -49,7 +49,7 @@
                         'profileImg_err'=>''
                     ];
 
-                    if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+                    if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
 
                     }else{
                         $data['profileImg_err']='Profile Picture Uploading Unsucess!';

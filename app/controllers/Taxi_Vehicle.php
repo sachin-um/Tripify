@@ -71,9 +71,9 @@
                         'color'=>trim($_POST['color']),
                         'noOfSeats'=>trim($_POST['max']),
                         'price_per_km'=>trim($_POST['flag']),
-                        'AC'=>trim($_POST['ac']),
-                        'media'=>trim($_POST['media']),
-                        'wifi'=>trim($_POST['wifi']),      
+                        'AC'=>trim($_POST['ac']) ?? '',
+                        'media'=>trim($_POST['media'] ?? ''),
+                        'wifi'=>trim($_POST['wifi'] ?? ''),      
                         'owner'=>$_SESSION['user_id']                 
 
     
@@ -207,8 +207,8 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
-                // $uploaded_files = $_FILES['vehicleImgs'];
-                // var_dump($_FILES['vehicleImgs']);
+                $uploaded_files = $_FILES['vehicleImgs'];
+                var_dump($_FILES['vehicleImgs']);
                 // $num_files = count($uploaded_files['name']);
             
                 // $vehicle_image_names = array();
@@ -226,10 +226,9 @@
                     'area'=>trim($_POST['area']),
                     'color'=>trim($_POST['color']),
                     'no_of_seats'=>trim($_POST['noOfSeats']),
-                    'AC'=>trim($_POST['ac']),
-                    'media'=>trim($_POST['media']),
-                    'wifi'=>trim($_POST['wifi']),
-                    'services'=>trim($_POST['services']),
+                    'AC'=>trim($_POST['TaxiAC'] ?? ''),
+                    'media'=>trim($_POST['media'] ?? ''),
+                    'wifi'=>trim($_POST['wifi'] ?? '') ,
                     'price_per_km'=>trim($_POST['price_per_km']),      
                     'VehicleID'=>$vehicle_id,
 
@@ -248,13 +247,13 @@
             
                 
 
-                    if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
-                        flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
-                        redirect('Taxi_Vehicle/viewvehicles');
-                    }
-                    else{
-                        die('Something went wrong');
-                    }
+                    // if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                    //     flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
+                    //     redirect('Taxi_Vehicle/viewvehicles');
+                    // }
+                    // else{
+                    //     die('Something went wrong');
+                    // }
                 
 
 
