@@ -133,13 +133,13 @@ else {
                                 }
                                 elseif ($booking->status=='Finished') {
                                     ?>
-                                    <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                    
                                     <br>
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">Canceled
+                                    
                                     <?php
                                 }
                             ?>
@@ -151,12 +151,11 @@ else {
                     </tbody>
                 </table>
             </div>
-            
+            <div id="popup" class="trip-popup">
+                <div id="popup-content" class="trip-popup-content"></div>
+            </div>
         </div>
-        <div id="popup" class="request-popup">
-                <div id="request-content" class="request-popup-content">
-                </div>
-        </div>
+        
     </main>
  </div>
 
