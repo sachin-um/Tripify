@@ -107,7 +107,7 @@ else {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
                                             
-                                                <button class="pay-btn" type="button" style="margin-top:10px">
+                                                <button class="pay-btn" type="button" style="margin-top:10px" onclick="paymentGateway('Taxi',<?php echo $booking->Price ?>,<?php echo  $booking->ReservationID ?>,<?php echo  $booking->vehicle->OwnerID ?>,'<?php echo URLROOT; ?>')">
                                                     <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
                                                     Pay Now
                                                 </button>
@@ -160,6 +160,8 @@ else {
  </div>
 
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
+ <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/payment/payment.js"></script>
  <script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
  <script>
     var map;
