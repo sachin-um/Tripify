@@ -410,7 +410,10 @@ else {
                     if ($data->UserID== $_SESSION['user_id']) {
                         ?>
                             <div style="display: flex; justify-content: center; padding: 20px">
-                                <button style="margin-right: 10px" class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                                <button style="margin-right: 10px" class="profile-btn-edit" id="edit-btn">
+                                    <i class="fa-solid fa-pen-to-square" style="margin-right: 10px;"></i>
+                                    Edit Info
+                                </button>
                                   
                                 <button style="margin-right: 10px" class="profile-btn-cancel" id="cancel-btn">
                                     <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>
