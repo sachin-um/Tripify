@@ -57,6 +57,7 @@ else {
                             <th>Pickup Location</th>
                             <th>Destination</th>
                             <th>Payment</th>
+                            <th>Payment Method</th>
                             <th>Booking Status</th>
                             <th>Action</th>
                         </tr>
@@ -75,16 +76,28 @@ else {
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
                             <td data-lable="Message"><?php echo $booking->destination ?></td>
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
+                            <td data-lable="Message"><?php echo $booking->PaymentMethod ?></td>
                             <td data-lable="Message"><?php echo $booking->status ?></td>
                             <td data-lable="Name">
-                            <button class="acc-view-btn" type="button" onclick="showTaxiBooking('<?php echo $booking->ReservationID; ?>','<?php echo URLROOT; ?>')">View </button>
+                            <button class="acc-view-btn" type="button" onclick="showTaxiBooking('<?php echo $booking->ReservationID; ?>','<?php echo URLROOT; ?>')">
+                                <i class="fa-solid fa-eye" style="margin-right: 10px"></i>
+                                View 
+                            </button>
                             <?php
                                 if ($booking->status=='Yet To Confirm') {
                                     ?>
                                     
                                     
-                                        <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">Edit</button></a>
-                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button">Cancel</button></a>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button" style="margin-top:10px">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                Edit
+                                            </button>
+                                        </a>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button" style="margin-top:10px">
+                                            <i class="fa-solid fa-xmark"></i>
+                                            Cancel
+                                            </button>
+                                        </a>
                                         
                                     
                                     <?php
@@ -93,18 +106,28 @@ else {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
-                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button>
+                                            
+                                                <button class="pay-btn" type="button" style="margin-top:10px">
+                                                    <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
+                                                    Pay Now
+                                                </button>
                                             <?php
                                         }
                                         else {
                                             ?>
-                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i><span class="pay-on-site">Pay On Site</span>
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
                                             <?php
                                         }
                                     }
                                     else {
                                         ?>
-                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">Add to Trip Plan</button>
+                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
+                                                <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                Add to Trip Plan
+                                            </button>
                                         <?php
                                     }
                                 }
@@ -116,7 +139,7 @@ else {
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled
+                                    <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">Canceled
                                     <?php
                                 }
                             ?>

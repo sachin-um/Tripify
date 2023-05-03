@@ -45,12 +45,15 @@ else {
         <br>
         <div class="first-container">
             <div class="profile-image" >
-            <form action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
+            
+            <form style="margin-top: 58px" action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
                 <br>
+                
                 <div class="drag-area">
                     <div class="icon">
                         <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $data->profileimg ?>" alt="picture">
                     </div>
+                    <div><?php echo $data->Name;  ?></div>
                 </div>
                 <br>
                 <div class="sub-sub-edit" style="margin-left: 25%;">
@@ -103,7 +106,7 @@ else {
                 <br> 
                 <div class="sub-description">
                     <div class="sub-sub">
-                        <h3>verificaion Status: </h3>
+                        <h3>Verificaion Status: </h3>
                     </div>
                         
                     <div class="sub-sub">
@@ -403,14 +406,20 @@ else {
                     </div>
                         
                 </div>
-                <br>
                 <?php 
                     if ($data->UserID== $_SESSION['user_id']) {
                         ?>
-                            <div style="display: flex; justify-content: space-around;">
-                                <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
-                                <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
-                                <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>       
+                            <div style="display: flex; justify-content: center; padding: 20px">
+                                <button style="margin-right: 10px" class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                                  
+                                <button style="margin-right: 10px" class="profile-btn-cancel" id="cancel-btn">
+                                    <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>
+                                    Discard
+                                </button>
+                                <button style="margin-right: 10px" class="profile-btn-save" id="save-btn" type="submit">
+                                    <i class="fa-solid fa-check" style="margin-right: 10px;"></i>
+                                    Save Changes
+                                </button>      
                             </div>
                         <?php
                     }
@@ -425,7 +434,7 @@ else {
             </div>
             </form>
             <?php 
-                    if ($data->UserID!= $_SESSION['user_id']) {
+                    if ($data->UserID== $_SESSION['user_id']) {
                          require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                     }  
             ?>

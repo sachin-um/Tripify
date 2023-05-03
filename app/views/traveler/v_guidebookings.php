@@ -71,7 +71,7 @@ else {
                             <td data-lable="ID"><?php echo $booking->BookingID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
-                            <td data-lable="Message"><?php echo $booking->ReservedDate ?></td>
+                            <td data-lable="Message"><?php echo $booking->StartDate ?></td>
                             <td data-lable="Message"><?php echo $booking->StartingTime ?></td>
                             <td data-lable="Message"><?php echo $booking->Duration ?></td>
                             <td data-lable="Message"><?php echo $booking->payment ?></td>
@@ -82,9 +82,18 @@ else {
                                     ?>
                                     
                                     <td data-lable="Name">
-                                        <!-- <a href="<?php echo URLROOT; ?>/Bookings/EditlGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">Edit</button></a>
-                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button class="btn" type="button">Cancel</button></a> -->
-                                        <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">Add to Trip Plan</button>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/EditlGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            Edit
+                                            </button>
+                                        </a>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>">
+                                            <button class="btn" type="button">
+                                                <i class="fa-solid fa-xmark"></i>
+                                                Cancel
+                                            </button>
+                                        </a>
+                                        <!-- <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">Add to Trip Plan</button> -->
                                             <!-- <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>/Guide"></a> -->
                                             
                                     </td>
@@ -95,19 +104,29 @@ else {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
-                                                <td data-lable="Name"><i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> <button class="pay-btn" type="button">Pay Now</button></td>
+                                                <td data-lable="Name">
+                                                <button class="pay-btn" type="button">
+                                                    <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
+                                                    Pay Now
+                                                </button>
+                                                </td>
                                             <?php
                                         }
                                         else {
                                             ?>
-                                            <td data-lable="Name"><span class="pay-on-site">Pay On Site</span></td>
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
                                             <?php
                                         }
                                     }
                                     else {
                                         ?>
-                                            <button class="add-to-plan-btn" type="button" onclick="showTrips()">Add to Trip Plan</button>
-                                            <!-- <a href="<?php echo URLROOT; ?>/Trips/addToTripPlan/<?php echo $booking->ReservationID ?>/Guide"></a> -->
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
                                             
                                         <?php
                                     }
@@ -117,7 +136,7 @@ else {
                                     ?>
                                     <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
                                     <br>
-                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
+                                    
                                     </td>
                                     <?php
                                 }

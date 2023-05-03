@@ -72,7 +72,7 @@
 
 
 body{
-    background-color: #F2ECFF;
+    background-color: #F8F9F9 !important;
 }
 .wrapper{
     display: flex;
@@ -109,6 +109,15 @@ input[type="radio"]{
     display: flex;
     align-items: center;
   
+}
+
+.auth-banner {
+    margin-right: 50px;
+    float: right;
+    text-align: center;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
 }
 
 .logout-btns{

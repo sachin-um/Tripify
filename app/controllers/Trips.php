@@ -106,7 +106,6 @@
                     $trip_booking=$this->hotelBookingModel->getHotelBookingbyId($booking->trip_id);
                     array_push($data['hotel_bookings'],$trip_booking);
                 }
-                print_r($data);
                 $this->view('traveler/v_trip_plan',$data);
             } else {
                 flash('reg_flash', 'Access Denied');

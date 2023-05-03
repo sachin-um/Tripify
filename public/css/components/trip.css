@@ -130,7 +130,7 @@
 .plan-container .column .header{
     font-weight: bold;
     color: #F2ECFF;
-    background-color: #00839E;
+    background-color: #03002E;
     height: 10%;
     display: flex;
     align-items: center;
@@ -239,3 +239,28 @@
     border: 2px solid #005782;
 }
 
+.main-container {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2%;
+    padding: 30px;
+    width: 85%;
+    background-color: #fff;
+    border-radius: 14px;
+    float: left;
+    height: fit-content;
+    border: 1px solid #03002E;
+    margin-top: 20px;
+    color: #03002E;
+}
+
+.description {
+    font-weight: 400;
+}
+
+.booking-type-color-code {
+    background-color: #ff1046;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
