@@ -91,6 +91,7 @@
             return $row;
         }
 
+
         public function searchAvailableSlots($data){
             $this->db->query('SELECT * FROM guide_bookings WHERE 
             StartDate=:startdate AND EndDate=:enddate');

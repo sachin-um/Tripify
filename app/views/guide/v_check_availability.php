@@ -87,8 +87,9 @@ print_r($guidedetails);
                 <div id="hotel-booking-form" class="hotel-room-top-picks">
                     
                         <p class="home-title-2" >Check Availability</p>
+                        <!-- <?php echo URLROOT; ?>/Bookings/checkGuideAvailability/<?php echo $data['guidedetails']->GuideID?> -->
                         <hr>
-                        <form action="<?php echo URLROOT; ?>/Bookings/checkGuideAvailability/<?php echo $data['guidedetails']->GuideID?>" method="POST">
+                        <form action="" method="POST">
                             <div class="hotel-reg-form">
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
@@ -107,8 +108,10 @@ print_r($guidedetails);
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">End Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingTime"  name="endDate" required>
+                                        <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" required>
                                     </div>
+                                    <span id="avail"></span>
+                                    <span id="availSeats"></span>
 
                                    
                                 </div>
@@ -134,21 +137,20 @@ print_r($guidedetails);
                             </div><br>
 
                             <div class="hotel-reg-form-div-2">
-                                    <button id="book-now-btn" class="all-purpose-btn" type="submit">Book Now</button>
+                                    <button id="book-now-btn" class="all-purpose-btn" onclick="validationDateTime()" type="button">Book Now</button>
                             </div>
                         </form>
                         <br>
                         <script type="text/JavaScript">
                             // var bookingTime;
                             var URLROOT="<?php echo URLROOT;?>";
-                            // document.getElementById("bookingTime").addEventListener("change", function() {
-                            //     bookingTime = this.value;
-                            // });
+                            var GuideID=<?php echo json_encode($data['GuideID'])?>;
+                            // alert(GuideID);
                             
                         </script>
                        
                         
-                   
+                       
 
 
                     
@@ -196,9 +198,10 @@ print_r($guidedetails);
     } 
 
 
-    const vehicleID = <?php echo json_encode($data['details']->VehicleID); ?>;
 
 </script>
+<script type="text/JavaScript" src="<?php echo URLROOT; ?>/js/components/guidedateValidation.js"></script>
+
 
 
 
