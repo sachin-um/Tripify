@@ -1,7 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
  <!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
 <?php $guidedetails= $data['guidedetails']; 
-print_r($guidedetails);
+// print_r($guidedetails);
 ?>
 <?php $guidelanguages= $data['guideLanguages'] ?>
 
@@ -20,7 +20,7 @@ print_r($guidedetails);
                     <br>
                     <div class="taxi-disc-3">
 
-                        <label><b>Name :</b> <?php echo $date['guideName'] ?></label><br>
+                        <label><b>Name :</b> <?php echo $data['guideName'] ?></label><br>
                         <label><b>Reg No :</b> <?php echo $guidedetails-> guideRegNo ?></label><br>   
                         <label><b>Area :</b> <?php echo $guidedetails->Area ?></label><br>
                         <label><b>Phone No :</b> <?php echo $guidedetails->phone_number ?></label><br>

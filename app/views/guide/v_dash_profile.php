@@ -178,13 +178,27 @@ elseif($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
              
             </div>
             <br> 
-            <br>
-            <div style="display: flex; justify-content: space-around;">
-                    <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
-                    <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
-                    <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>
-                        
-            </div>
+            <br> 
+            
+            <?php 
+                    if ($data->UserID== $_SESSION['user_id']) {
+                        ?>
+                            <div style="display: flex; justify-content: space-around;">
+                                <button class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                                <button class="profile-btn-cancel" id="cancel-btn" >Discard</button>
+                                <button class="profile-btn-save" id="save-btn" type="submit">Save Changes</button>       
+                            </div>
+                        <?php
+                    }
+                    else {
+                        ?>
+                            <div style="display: flex; justify-content: space-around;">
+                                <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                            </div>
+                        <?php
+                    }
+                ?> 
+            
         </div>
     </div>
         <br><br>
