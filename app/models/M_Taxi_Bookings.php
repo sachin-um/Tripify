@@ -31,12 +31,40 @@
             return $filteredbookings;
         }
 
+        public function confrimBooking($id)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET status="Confirmed" WHERE ReservationID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public function cancelBooking($id)
         {
             $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
             $this->db->bind(':booking_id',$id);
 
             
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public function TaxiBookingPaymentUpdate($data)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET PaymentStatus="Paid" WHERE ReservationID=:bookingid');
+            $this->db->bind(':bookingid',$data['bookingid']);
 
             if ($this->db->execute()) {
                 return true;
@@ -74,10 +102,7 @@
 
             $row=$this->db->single();
             $vehicle=$this->getVehicleById($row->Vehicles_VehicleID);
-            $number=$vehicle->vehicle_number;
-            $name=$vehicle->driver_name;
-            $row->driver_name=$name;
-            $row->vehicle_number=$number;
+            $row->vehicle=$vehicle;
             return $row;
         }
 
@@ -140,38 +165,36 @@
         }
 
       
-        
-        
-        
+        // public function checkDriverAvailable($vehicleID,$bookingDate,$est){
+        //     $this->db->query('SELECT SUM(TIME_TO_SEC(estTime)) AS total_work_hours FROM taxi_reservation WHERE booking_date=:bookingDate AND Vehicles_VehicleID=:Vehicles_VehicleID ');
+        //     $this->db->bind(':bookingDate', $bookingDate);
+        //     $this->db->bind(':Vehicles_VehicleID', $vehicleID);
 
-        public function checkDriverAvailable($vehicleID,$bookingDate,$bookingTime,$est){
-            $this->db->query('SELECT SUM(SEC_TO_TIME(estTime)) AS total_work_hours FROM taxi_reservation WHERE booking_date=:bookingDate AND Vehicles_VehicleID=:Vehicles_VehicleID' );
-            $this->db->bind(':bookingDate', $bookingDate);
-            $this->db->bind(':Vehicles_VehicleID', $vehicleID);
+        //     $result = $this->db->single();
 
-            $result = $this->db->single();
-            $total_work_hours = $result->total_work_hours/36000;
-            // echo $est.'-->';
-            
-            preg_match('/((\d+) hours )?((\d+) mins)?/', $est, $matches);
-            $hours = intval($matches[2] ?? 0);
-            $mins = intval($matches[4] ?? 0);
-            $total_est = $hours + $mins / 60;
-            // echo $total_work_hours + $total_est;
-            if (($total_work_hours + $total_est) > 9) {
-                return true;
-            }else{
-                return false;
-            }
+        //     $total_work_hours = $result->total_work_hours/3600;
 
-        
-        }
+
+        //     $time_str = $est;
+        //     $datetime = new DateTime($time_str, new DateTimeZone('Asia/Colombo'));
+        //     $seconds = $datetime->format('U') - strtotime('today');
+        //     $total_est =$seconds/3600;
+
+
+        //     if (($total_work_hours + $total_est) > 14) {
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+
+        // }
 
 
         public function insertTaxiBooking($data){
-            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`)
-                                                         VALUES(:TravelerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime)');
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
+                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
             $this->db->bind(':TravelerID',$data['travelerID']);
+            $this->db->bind(':TaxiOwnerID',$data['TaxiOwnerID']);
             $this->db->bind(':Vehicles_VehicleID',$data['vehicleID']);
             $this->db->bind(':Price',$data['total']);
             $this->db->bind(':booking_date',$data['s_date']);
@@ -180,6 +203,16 @@
             $this->db->bind(':est_end_time',$data['e_time']);
             $this->db->bind(':pickup_location',$data['pickupL']);
             $this->db->bind(':destination',$data['dropL']);
+
+            $this->db->bind(':PaymentMethod',$data['payment_option']);
+            $this->db->bind(':passengers',$data['passengers']);
+
+            
+            $this->db->bind(':p_latitude',$data['p_latitude']);
+            $this->db->bind(':p_longitude',$data['p_longitude']);
+            $this->db->bind(':d_latitude',$data['d_latitude']);
+            $this->db->bind(':d_longitude',$data['d_longitude']);
+
             $this->db->bind(':distance',$data['distance']);
             $this->db->bind(':estTime',$data['extime']);
 
@@ -189,13 +222,54 @@
                 return true;
             }
             else {
+
                 return false;
             }
         }
+
+        public function acceptTaxiOffer($data)
+        {
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
+                                                        VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
+            $this->db->bind(':TravelerID',$data['request']->traveler_id);
+            $this->db->bind(':Vehicles_VehicleID',$data['offer']->VehicleID);
+            $this->db->bind(':Price',$data['price']);
+            $this->db->bind(':booking_date',$data['request']->date);
+            $this->db->bind(':booking_time',$data['request']->time);
+            $this->db->bind(':est_end_date',$data['e_date']);
+            $this->db->bind(':est_end_time',$data['e_time']);
+            $this->db->bind(':pickup_location',$data['request']->pickup_location);
+            $this->db->bind(':destination',$data['request']->destination);
+            $this->db->bind(':distance',$data['request']->distance);
+            $this->db->bind(':estTime',$data['request']->duration);
+
+            $this->db->bind(':TaxiOwnerID',$data['offer']->OwnerID);	
+            $this->db->bind(':PaymentMethod',$data['offer']->PaymentMethod);
+            $this->db->bind(':passengers',$data['request']->passengers);
+            
+
+            $this->db->bind(':p_latitude',$data['request']->p_latitude);
+            $this->db->bind(':p_longitude',$data['request']->p_longitude);
+            $this->db->bind(':d_latitude',$data['request']->d_latitude);
+            $this->db->bind(':d_longitude',$data['request']->d_longitude);
+
+    
+            if ($this->db->execute()) {
+                // $this->db->query('UPDATE taxi_offers SET status="Accepted" WHERE OfferID=:OfferID');
+                // $this->db->bind(':OfferID',$data['offer']->OfferID);
+                // $offerUpdate = $this->db->execute();
+                // if($offerUpdate){
+                return true;
+            }else{
+                    return false;
+            }
+                
+            // }
+            // else {
+            //     return false;
+            // }
+        }
         
-
-
-
         
     }
 

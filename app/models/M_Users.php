@@ -200,6 +200,7 @@
             $this->db->bind(':id',$id);
 
             $row=$this->db->single();
+            $row->address=$row->Line1.", ".$row->Line2.", ".$row->District;
 
             return $row;
         }

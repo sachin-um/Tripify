@@ -39,7 +39,7 @@
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item is-active">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
         <?php
@@ -65,49 +65,131 @@
             ?>
             <div class="request">
                 <div class="post-header">Request ID : <?php echo $taxioffer->request_id; ?></div>
-                    <div class="post-body">
+                    <div class="post-body" style="padding: 40px 50px;">
 
-                        <h5 style="text-align:center;">Offer Details</h5>
+                        <h5 style="text-align:center;">Offer Details - <?php echo $taxioffer->OfferID ?></h5>
                         <div class="req-slot1" style="margin-top:10px">
-                            <div class="post-tag "><img src="<?php echo URLROOT; ?>/img/vehicle_number.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->VehicleID; ?></span></div>
-                            <div class="post-tag "><img src="<?php echo URLROOT; ?>/img/vtype.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->vehicle->VehicleType; ?></span></div>
+                            <div class="detail-container" style="margin-right: 20px;">
+                                <div class="header-container">
+                                    <i class="fa-solid fa-car fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Vehicle Number</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->vehicle->VehicleID; ?></span>
+                                </div>
+                            </div>
+                            <div class="detail-container">
+                                <div class="header-container">
+                                    <i class="fa-solid fa-truck-plane fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Vehicle Type</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->vehicle->VehicleType;; ?></span>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="req-slot2">
-                            <div class="post-date"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->PricePerKm ?></span></div>
-                            <div class="post-time"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->PaymentMethod ?></span></div>
+                            <div class="detail-container" style="margin-right: 20px;">
+                                <div class="header-container">
+                                    <i class="fa-solid fa-coins fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Price Per KM</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->PricePerKm; ?></span>
+                                </div>
+                            </div>
+                            <div class="detail-container">
+                                <div class="header-container">
+                                    <i class="fa-solid fa-money-check-dollar fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Payment methods</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->PaymentMethod; ?></span>
+                                </div>
+                            </div>
+                            
                         </div>
                         <div class="req-slot2">
-                            <div class="post-details"><img src="<?php echo URLROOT; ?>/img/driver.png" alt="date" ><span class="request-data">:<?php echo $taxioffer->driver->Name?></span></div>
+                            <div class="detail-container" style="width: 46%;">
+                                <div class="header-container">
+                                    <i class="fa-solid fa-user-large fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Driver</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->driver->Name; ?></span>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="post-details">Additional Details: <?php echo $taxioffer->additional_details ?> </div>
+                        <div class="req-slot3">
+                            <div class="detail-container" style="margin-right: 20px; width: 97%;">
+                                <div class="header-container">
+                                        <i class="fa-solid fa-circle-info fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                        <div class="heading">Additional Details</div>
+                                </div>
+                                <div class="post-tag post-date description" style="margin-left: 33px">
+                                    <?php echo $taxioffer->additional_details; ?>
+                                </div>
+                            </div>
+                    
+                        </div>
+                    
                         <div class="post-by-content">
                             <div class="post-by">Offered By: <a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxioffer->OwnerID; ?>"><?php echo $taxioffer->owner->owner_name ?></a></div>
                             <div class="post-by">Contact number: <?php echo $taxioffer->owner->contact_number ?> </div>
                             <div class="post-by">Offered at: <?php echo $taxioffer->post_at ?> </div>
                         </div>
                         
+
                 </div>
                 <div class="request-footer">
                     <?php
                     if ($_SESSION['user_type']=='Taxi') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxioffer->request_id ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
                             <button id="request-delete-btn" type="submit">Delete</button>
                         <?php
                     }
                     elseif ($_SESSION['user_type']=='Traveler') {
                         ?>
-                        <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-offer-btn" type="submit">Accept offer</button></a>
-                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?=$taxioffer->OfferID ?>/<?=$taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">Reject Offer</button></a>
+                        
+                    
+                        <!-- onclick="validation($taxioffer->OfferID)" -->
+                        <!-- <a href="<?php echo URLROOT; ?>/Bookings/acceptTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"> -->
+                        <button class="request-offer-btn-cls" id="request-offer-btn-<?php echo $taxioffer->OfferID?>"  type="submit" onclick="validation('<?php echo $taxioffer->VehicleID?>','<?php echo $taxioffer->request->date ?>','<?php echo $taxioffer->request->time ?>','<?php echo $taxioffer->request->duration?>','<?php echo $taxioffer->OfferID?>','<?php echo $taxioffer->request_id ?>','<?php echo $taxioffer->request->passengers ?>','<?php echo $taxioffer->vehicle->no_of_seats?>')" >
+                            <i class="fa-solid fa-check" style="margin-right: 10px;"></i>
+                            Accept offer
+                        </button>
+                        <a href="<?php echo URLROOT; ?>/Offers/rejectTaxiOffer/<?php echo $taxioffer->OfferID ?>/<?php echo $taxioffer->request_id ?>"><button id="request-delete-btn" type="submit">
+                            <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>
+                            Reject Offer
+                            </button>
+                        </a>
                         <?php
                     }
                     ?>
                 </div>
             </div>
+            
             <?php
             endforeach;
             ?>   
         </div>
     </main>
  </div>
+
+
+ <script type="text/JavaScript">
+                           
+    var URLROOT="<?php echo URLROOT;?>";
+</script>
+
+ <?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/taxioffervalidation.js"></script>
+
+
+
+
+
+

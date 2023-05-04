@@ -111,4 +111,41 @@
     background-color:black ;
 }
 
+
+.taxi-checkBox{
+    display: flex;
+
+}
+
+#taxi_ac{
+    all: unset;
+}
+
+/* Hide the default checkbox */
+#taxi_ac {
+    appearance: none;
+  }
+  
+  /* Style the custom checkbox */
+#taxi_ac::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-color: white;
+  }
+  
+  /* Style the checked state of the custom checkbox */
+#taxi_ac:checked::before {
+    content: "\2713"; /* Unicode character for checkmark */
+    color: #007aff;
+    text-align: center;
+    line-height: 16px;
+    font-size: 14px;
+  }
+  
     

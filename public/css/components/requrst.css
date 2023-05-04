@@ -7,13 +7,14 @@
     
 }
 .request{
-    border-bottom: 1px solid;
-    border-top: 1px solid white;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    padding-bottom: 20px;
+    min-width: 880px;
+    background-color: #fff;
+    border-radius: 14px;
+    float: left;
+    text-align: center;
+    height: fit-content;
+    box-shadow: 0 0.4px 10px rgb(0 0 0 / 0.2);
     margin-bottom: 20px;
-    border-radius: 2%;
-    background-color: white;
 }
 .request-white-space{
     margin-left: 40%;
@@ -28,7 +29,7 @@
     text-align: center;
     background-color: #03002E;
     color: white;
-    border-radius: 2%;
+    border-radius: 14px 14px 0 0;
 
 }
 
@@ -69,7 +70,7 @@
     text-align: center;
     display: flex;
     justify-content: space-around;
-    
+    padding-bottom: 35px;
 }
 
 .post-tag{
@@ -93,15 +94,33 @@
 .request-list .post-body .req-slot1{
     display: flex;
     justify-content: space-between;
-    color: #00839E;
+    color: #03002E;
     padding-bottom: 10px;
-    margin-bottom: 30px;
 }
 .request-list .post-body .req-slot2{
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
-    color: #00839E;
+    color: #03002E;
+}
+.detail-container {
+    border: 1px solid #03002E;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    width: 100%;
+}
+.heading {
+    font-weight: 600;
+    font-size: 24px;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+}
+.description {
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 .request-list .post-body .req-slot3{
@@ -111,73 +130,69 @@
     
 
 #request-delete-btn{
-    box-sizing: border-box;
-
-    width: 185px;
-    height: 50px;
-    background-color: white;
-    color: black;
-    font-weight: 700;
-    border: 3px solid red;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 100px;
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    height: 60px;
 }
 #request-delete-btn:hover{
-    box-sizing: border-box;
-
-    width: 185px;
-    height: 50px;
-    background-color: #03002E;
-    color: white;
-    font-weight: 700;
-    border: 3px solid red;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 100px;
-    cursor: pointer;
+    background-color: #e74c3c;
+    color: #03002E;
 }
 
 #request-edit-btn{
-    box-sizing: border-box;
-    width: 185px;
-    height: 50px;
-    font-weight: 700;
-    background: white;
-    color: black;
-    border: 3px solid #F9AE55;
-    border-radius: 100px;
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    height: 60px;
+    text-decoration: none;
 }
 #request-edit-btn:hover{
-    box-sizing: border-box;
-    width: 185px;
-    height: 50px;
-    font-weight: 700;
-    background: #03002E;
-    color: white;
-    border: 3px solid #F9AE55;
-    border-radius: 100px;
-    cursor: pointer;
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 #request-offer-btn{
-    box-sizing: border-box;
-    width: 185px;
-    height: 50px;
-    background: white;
-    color: black;
-    border: 2px solid green;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 100px;
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    height: 60px;
 }
 #request-offer-btn:hover{
-    box-sizing: border-box;
-    width: 185px;
-    height: 50px;
-    background: #03002E;
-    color: white;
-    border: 2px solid green;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 100px;
+    background-color: #e8b122;
+    color: #03002E;
 }
+
+.request-offer-btn-cls{
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    height: 60px;
+}
+.request-offer-btn-cls:hover{
+    background-color: #e8b122;
+    border: none;
+    color: #03002E;
+}
+
 
 #request-data span{
     vertical-align: middle;

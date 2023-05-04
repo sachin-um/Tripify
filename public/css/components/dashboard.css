@@ -7,7 +7,7 @@
     position: fixed;
     width: 14%;
     height: 100%;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     background-image: linear-gradient(#03002E, black);
     margin-top: 5%;
  }
@@ -42,10 +42,10 @@
  }
 
  .sidebar .menu .menu-item:hover,
- .sidebar .menu .menu-item.is-active{
+  .menu .menu-item.is-active{
     color: #03002E;
     background-color: white;
-    border-right: 5px solid #35BCBF;
+    border-right: 5px solid #e8b122;
  }
 
  .right-side-content{
@@ -60,21 +60,23 @@
     margin-left: 5%;
  }
 
- .profile-image{
-   width:450px;
-   background-color: #D3F1F1;
+ .profile-image {
+   width: 450px;
+   height: 435px !important;
+   background-color: #fff;
+   border-radius: 14px;
    float: left;
-   margin-left: 8%;
    text-align: center;
    height: fit-content;
+   box-shadow: 0 0.4px 10px rgb(0 0 0 / 0.2);
 }
 
 
 .right-side-content hr{
    width: 100%;
    margin-top: 15px;
-   height: 5px;
-   background:#35BCBF;
+   height: 1px;
+   background:#e8b122;
    border: none;
 }
 
@@ -97,12 +99,20 @@
    display: flex;
  }
 
- .profile-description{
-   width: 50%;
+ .profile-description {
+   margin-left: 35px;
+   background-color: #fff;
+   border-radius: 14px;
+   float: left;
+   text-align: center;
+   height: fit-content;
+   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+   width: 70%;
    height: 40%;
  }
 
  .sub-description{
+   margin-top: 15px;
    display: flex;
  }
 
@@ -110,7 +120,7 @@
    width: 50%;
  }
 
- .info{
+ .info {
    width: 50%;
    display: block;
  }
@@ -148,41 +158,76 @@
 }
 
 .profile-btn-edit{
-   width: 30%;
-   height: 50px;
    background-color: #03002E;
-   color: white;
-   border-radius: 50px;
+   color: #FFFFFF;
+   border-radius: 12px;
+   font-weight: 600;
+   padding: 15px;
+   display: block;
+   font-size: 20px;
+   cursor: pointer;
+   height: 60px;
+
 }
 
 .profile-btn-edit:hover{
-   background-color: #35BCBF;
+   background-color: #e8b122;
    color: #03002E;
 }
 
+.chat-btn {
+   background-color: #03002E;
+   color: #FFFFFF;
+   border-radius: 12px;
+   font-weight: 600;
+   padding: 15px;
+   display: block;
+   font-size: 20px;
+   cursor: pointer;
+   height: 60px;
+}
+
+.chat-btn:hover{
+   background-color: #e8b122;
+   color: #03002E;
+}
+
+.fa-comment:hover {
+   color: #03002E !important;
+}
+
 .profile-btn-cancel{
-   width: 30%;
-   height: 50px;
-   background-color: maroon;
-   color: white;
-   border-radius: 50px;
+
+   background-color: #03002E;
+   color: #FFFFFF;
+   border-radius: 12px;
+   font-weight: 600;
+   padding: 15px;
+   font-size: 20px;
+   cursor: pointer;
+   height: 60px;
    display: none;
 }
 
 .profile-btn-cancel:hover{
+   background-color: #e74c3c;
    color: #03002E;
 }
 
 .profile-btn-save{
-   width: 30%;
-   height: 50px;
-   background-color: green;
-   color: white;
-   border-radius: 50px;
+   background-color: #03002E;
+   color: #FFFFFF;
+   border-radius: 12px;
+   font-weight: 600;
+   padding: 15px;
+   font-size: 20px;
+   cursor: pointer;
+   height: 60px;
    display: none;
 }
 
 .profile-btn-save:hover{
+   background-color: #1ABC9C;
    color: #03002E;
 }
 
@@ -253,8 +298,8 @@
    height: 200px;
 }
 #profile-img-placehoder{
-   height: 200px;
-   width: 200px;
+   height: 140px;
+   width: 140px;
 }
 
 #profile-imgupload{
