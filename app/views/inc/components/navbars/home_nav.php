@@ -36,7 +36,7 @@
         ?>
             <div class="welcome-banner" style="padding:10px 0">
                 
-                    <h2 class="greeting">Hi, <?php echo $_SESSION['user_name'];  ?>..! </h2>
+                    <h4 class="greeting">Hi, <?php echo $_SESSION['user_name'];  ?>..! </h4>
                     <!-- <button class="logout-btns" type="button" onclick="location.href='<?php echo URLROOT?>/Users/logout'">Log Out</button> -->
                     <img src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $_SESSION['user_profile_image']; ?>" alt="" class="profile-img" onclick="toggleMenu()">
                     <div class="profile-menu-wrap" id="sub-menu">

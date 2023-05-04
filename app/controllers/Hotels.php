@@ -357,9 +357,7 @@
 
                 $this->view('hotels/v_searchResultsPage',$data);
             }
-        }
-
-        
+        }      
 
 
         public function showHotels(){ 
@@ -370,6 +368,20 @@
                 'allhotels'=> $allhotels
             ];
             $this->view('hotels/v_hotelHome',$data);
+        }
+
+        public function hotelProfilewithoutrooms($hotelID){
+            $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+
+            $data=[
+                'hotelID'=>$hotelID,
+                'profileDetails'=>$profileDetails,
+                'profileName'=> $profileDetails->Name,
+                'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,
+                'description'=>$profileDetails->Description
+
+            ];
+            $this->view('hotels/v_hotel_profile_details',$data);
         }
 
         public function hotelProfile($hotelID){
@@ -394,7 +406,8 @@
                 $roomIDs = $records->roomIDs;
                 $bookedrooms = explode(',', $roomIDs);
             }
-        //    print_r($bookedrooms); 
+
+            //print_r($bookedrooms); 
 
            for($i=0;$i<count($allrooms);$i=$i+2){
             if(!empty($bookedrooms)){
@@ -452,15 +465,37 @@
             $this->view('hotels/v_dash_profile',$data);
         }
 
+
+
         public function addFacilities(){
-            $facilityDetails=$this->hotelModel->facilityDetails();
-            $data=[
-                'facilityDetails'=>$facilityDetails
-            ];
-            $this->view('hotels/v_dashAddFacilities', $data);
+            if (isset($_POST['submit'])) {
+                $farray = implode(",",$_POST['facilities']);
+                $data=[
+                    'facilities'=>$farray,
+                    'hotelID' => $_SESSION['user_id']
+                ];
+                
+                if ($this->hotelModel->addFacilities($data)) {
+                    // $this->view('hotels/v_dash_profile');
+                    flash('reg_flash', 'Successfully updated!');
+                    redirect('Hotels/load');
+                    
+                    //         redirect('Request/TaxiRequest');
+                    //     }
+                    //     else{
+                    //         die('Something went wrong');
+                }else{
+                    flash('reg_flash', 'Something went wrong.');
+                    redirect('Hotels/load');
+                }
+
+            }else{
+                $this->view('hotels/v_dashAddFacilities');
+            }
         }
 
         public function uploadPhotos(){
+
             if(isset($_POST['upload'])){
 
                 $images = $_FILES['images'];
@@ -511,58 +546,16 @@
             }
         }
 
-        public function editUserDetails(){
-            // if ($_SERVER['REQUEST_METHOD']=='POST') {
-                
-            //     $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+        // public function editProfileDetails(){
 
-            
-            //     $data=[
-            //             'NoofBeds'=>trim($_POST['no-of-beds'])
-    
-            //         ];
+        // }
 
-            //     //Add a Taxi Request
-            //     if ($this->taxirequestModel->addtaxirequest($data)) {
-            //         flash('reg_flash', 'Profile is successfully updated!');
-            //         // redirect('Pages/home');
-            //     }
-            //     else{
-            //         die('Something went wrong');
-            //     }               
-
-            // }
-            // else {
-            //     $data=[
-            //         'pickuplocation'=>'',
-            //         'destination'=>'',
-            //         'date'=>'',
-            //         'time'=>'',
-            //         'description'=>'',
-            //         'travelerid'=>'',
-
-            //         'pickuplocation_err'=>'',
-            //         'destination_err'=>'',
-            //         'date_err'=>'',
-            //         'time_err'=>'',
-            //         'description_err'=>'',
-            //         'travelerid_err'=>''
-
-            //     ];
-                $this->view('hotels/v_dash_profile_edit',$data);
-            // }
-        }
-
-        public function editProfileDetails(){
-
-        }
+        public function loadBooking(){
+            $this->view('hotels/v_dash_bookings');
+        }        
 
         public function loadPayments(){
             $this->view('hotels/v_dash_payments');
-        }
-
-        public function loadMessages(){
-            $this->view('hotels/v_dash_messages');
         }
 
         public function loadReviews(){
@@ -571,10 +564,6 @@
 
         public function hotelSupport(){
             $this->view('hotels/v_dash_support');
-        }
-
-        public function test(){
-            $this->view('hotels/v_hotelviewroom');
         }
 
     }

@@ -104,7 +104,6 @@
 
  .sub-description{
    display: flex;
-
  }
 
  .sub-sub{
@@ -117,6 +116,16 @@
  }
 
  .sub-sub-edit{
+   width: 50%;
+   display: none;
+ }
+
+ .info1{
+   width: 50%;
+   display: block;
+ }
+
+ .sub-sub-edit-1{
    width: 50%;
    display: none;
  }
@@ -144,7 +153,6 @@
    background-color: #03002E;
    color: white;
    border-radius: 50px;
-   display: block;
 }
 
 .profile-btn-edit:hover{
@@ -155,7 +163,7 @@
 .profile-btn-cancel{
    width: 30%;
    height: 50px;
-   background-color: red;
+   background-color: maroon;
    color: white;
    border-radius: 50px;
    display: none;

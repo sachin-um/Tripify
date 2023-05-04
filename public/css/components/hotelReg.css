@@ -117,8 +117,17 @@ h4{
 }
 
 .hotel-amenities{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+}
+
+.part-all{
+    display: flex;
+    width: 100%;
+}
+
+.sub-part{
+    width: 33%;
 }
 
 /* .reg-grid-item{

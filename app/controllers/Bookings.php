@@ -6,7 +6,9 @@
         public function __construct(){
             $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
             $this->guideBookingModel=$this->model('M_Guide_Bookings');
+            $this->hotelModel=$this->model('M_Hotels');
             $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
+            $this->roomBookingModel=$this->model('M_Hotel_Rooms');
             $this->taxiofferModel=$this->model('M_Taxi_Offers');
             $this->guideofferModel=$this->model('M_Guide_Offers');
             $this->taxirequestModel=$this->model('M_Taxi_Request');
@@ -206,10 +208,8 @@
 
         }
 
-        public function CalculateExtimateTime($pickupL,$dropL){
-           
+        public function CalculateExtimateTime($pickupL,$dropL){      
       
-
             $origin = $pickupL;
             $destination =$dropL;
             
@@ -364,9 +364,211 @@
                 unset($_SESSION['booking_data']);
         }
 
-        
+        public function checkRoomAvailability(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+                $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+                $checkin = $_POST['date-1'];
+                $hotelID = trim($_POST['hotelID']);
+                $_SESSION['checkin'] = $checkin;
+                $checkout = $_POST['date-2'];
+                $_SESSION['checkout'] = $checkout;
+                $noofadults =trim($_POST['noofadults']);
 
+                $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+                $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
+                
+                $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
 
+                //get all room types and their total number
+                $allrooms = array();
+                foreach($allroomtypes as $roomtype){
+                    $allrooms[] = $roomtype->RoomTypeID;
+                    $allrooms[] = $roomtype->no_of_rooms;
+                }
+
+                // print_r($bookedrecords)."<br>";
+
+                //get bookedrecords' room types and no of them
+                $bookedrooms = array();
+                foreach($bookedrecords as $record){
+                    $bookedrooms[] = $record->roomTypeID;
+                    $bookedrooms[] = $record->noofrooms;
+                }
+                //print_r($bookedrooms); 
+
+                for($i=0;$i<count($allrooms);$i=$i+2){
+                    if(!empty($bookedrooms)){
+                        for($j=0;$j<count($bookedrooms);$j=$j+2){
+                            if($allrooms[$i]==$bookedrooms[$j]){
+                                $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                            }
+                        }
+                    }
+                    
+                }
+
+                $data=[
+                    'hotelID'=>$hotelID,
+                    'profileDetails'=>$profileDetails,
+                    'profileName'=> $profileDetails->Name,
+                    'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
+                    'allroomtypes'=> $allroomtypes,
+                    'description'=>$profileDetails->Description,
+                    'availablerooms'=>$allrooms
+                    // 'noofadults' => $data['noofadults']
+                    // 'profileName'=> $profileDetails->Name,
+                    // 'profileName'=> $profileDetails->Name
+    
+                ];
+                $this->view('hotels/v_hotel_details_page',$data);
+            }
+    
+        }
+
+        public function placeBooking($hotelID){
+            $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
+            $lastBooking=$this->roomBookingModel->getBookingID();
+            $bookingID = (int)$lastBooking->booking_id+1;
+
+            //get the roomTypes and their respective numbers
+
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                
+                $total = 0;
+                $temp = 0; 
+                $newarray = array();
+
+                //Get the total price for the booked rooms
+                foreach($_POST as $value){
+                    $newarray[] = $value;
+                }
+                
+                // print_r($newarray);
+                for($i=2;$i<count($newarray);$i=$i+3){
+                    $temp = floatval($newarray[$i])*intval($newarray[$i+1]);
+                    $total = $total+$temp;
+                }
+
+                //Get no of booked rooms from each type
+                $noofeachbookedrooms = array();
+                for($i=3;$i<count($newarray);$i=$i+3){
+                    if($newarray[$i]!=0){
+                        $noofeachbookedrooms[] = $newarray[$i];
+                    }
+                    
+                }
+
+                //Get booked room names
+                $bookedRoomNames = array();
+                for($i=1;$i<count($newarray);$i=$i+3){
+                    if($newarray[$i+2]!=0){
+                        $bookedRoomNames[] = $newarray[$i];
+                    }                    
+                }
+
+                //Get booked room IDs
+                $a = 0;
+                $bookedRoomIDs = array();
+                foreach ($_POST as $index => $value) {
+                    if ($a!=0 && $a%3 == 0) {
+                        $bookedRoomIDs[] = $index;
+                        $bookedRoomIDs[] = $value;
+                    }
+                    $a = $a + 1;
+                }
+
+                $b = 0;
+                foreach($bookedRoomIDs as $ID) {
+                    if ($ID == 0) {
+                        unset($bookedRoomIDs[$b]);
+                        unset($bookedRoomIDs[$b-1]);
+                    }
+                    $b = $b+1;
+                }
+                
+                // print_r($bookedRoomIDs)."<br>";
+                // echo gettype($bookedRoomIDs);
+
+                // Convert the array to a string with a comma separator
+                $roomIDstring = implode(",", $bookedRoomIDs);
+
+                $_SESSION['roomIDs'] = $bookedRoomIDs;
+                $data=[
+                    'hotelID'=>trim($_POST['hotelID']),
+                    'TravelerID'=>$_SESSION['user_id'],
+                    'payment' =>$total,
+                    'postedValues' => $_POST,
+                    'noofbookedrooms' => $noofeachbookedrooms,
+                    'bookedRoomIDs' => $bookedRoomIDs,
+                    'bookedRoomNames' => $bookedRoomNames,
+                    'bookingID' => $bookingID,
+                    'roomIDstring' => $roomIDstring,
+                    'bookingType' => "hotel"
+                ];               
+                
+
+                $this->view('hotels/v_confirmBooking', $data);
+            }
+            
+        }
+
+        public function booking(){
+           
+            $hotelID = $_POST['hotelID'];
+            $payment = $_POST['payment'];
+            $paymentM = $_POST['paymentMethod'];
+
+            // $lastBooking=$this->roomBookingModel->getBookingID();
+            // $bookingID = (int)$lastBooking->booking_id+1;
+
+            $paymentMethod = "Not known";
+            if($paymentM==1){
+                $paymentMethod = "Online";
+            }else{
+                $paymentMethod = "On Site";
+            }
+
+            $d=strtotime($_SESSION['checkin']);
+            $a=strtotime($_SESSION['checkout']);
+
+            $data=[
+                'hotelID' => intval($hotelID),
+                'travelerID' => $_SESSION['user_id'],
+                'payment' => intval($payment),
+                'paymentMethod' => $paymentMethod,
+                'checkin' => $_SESSION['checkin'],
+                'checkout' => $_SESSION['checkout'],
+                'roomIDs' => $_SESSION['roomIDs'],
+                'bookingID' => ''
+            ];
+
+            // print_r($_POST['roomIDs']);
+            // if ($this->hotelBookingModel->addHotelBooking($data)) {
+                $a = gettype($_SESSION['roomIDs']);
+                echo json_encode($_SESSION['roomIDs']);
+            // }else{
+            //     echo json_encode("Fail");
+            // }
+            //     flash('reg_flash', 'You booking was successful');
+                
+            //     // redirect('Bookings/HotelBookings/Traveler/'+$_SESSION['user_id']);
+                
+            // } else {
+            //     echo json_encode(0);
+            //     //die('Something went wrong');
+            // }
+
+            
+            
+        }
+
+        public function showAllHotelBookings(){
+            $this->roomBookingModel->getBookingID();
+            
+        }
 
     }
 ?>

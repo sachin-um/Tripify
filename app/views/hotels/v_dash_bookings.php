@@ -16,12 +16,28 @@ else {
 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
+<aside class="sidebar">
+
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="<?php echo URLROOT; ?>/Hotels/load" class="menu-item">Account</a>
+            <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item">Rooms</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item is-active">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadPayments" class="menu-item">Payments</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
+        </nav>
+    </aside>
 
 
 <main class="right-side-content">
     <br><br>
-    <p class="home-title-2">Bookings</p>
+    <p class="home-title-2">Your Bookings</p>
     <div class="hotel-bookings-main-div">
         <table>
     
@@ -35,7 +51,9 @@ else {
                 <th>View Details</th>
             </tr>
 
-            
+            <?php
+            // foreach():
+            ?>
             <tr>
                 <td>B1045</td>
                 <td>Danapala Gunasekara</td>
@@ -45,6 +63,9 @@ else {
                 <td>Unpaid</td>
                 <td><button>View</button></td>
             </tr>
+            <?php
+            // endforeach;
+            ?>
 
         </table>
     </div>

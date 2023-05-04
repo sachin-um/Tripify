@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <br>
 <div class="wrapper"> 
     <div class="content">
@@ -24,7 +24,7 @@
 
         <p class="home-title-2">Check Available Rooms</p>
 
-        <form action="<?php echo URLROOT?>/HotelBookings/checkRoomAvailability" method="post">
+        <form action="<?php echo URLROOT?>/Bookings/checkRoomAvailability" method="post">
             <input type="hidden" name="hotelID" value="<?php echo $data['hotelID']?>">;
             <div class="nav-main-hotel-room">
                 
@@ -57,7 +57,7 @@
         
 
         <!-- Hotel Booking Function -->
-        <form action="<?php echo URLROOT?>/HotelBookings/test/<?php echo $data['hotelID']?>" method="post">
+        <form action="<?php echo URLROOT?>/Bookings/placeBooking/<?php echo $data['hotelID']?>" method="post">
 
             <input type="hidden" name="hotelID" value="<?php echo $data['profileDetails']->HotelID?>">
             <!-- <input type="hidden" name="roomtypes" value="<?php echo $data['allroomtypes']?>"> -->
