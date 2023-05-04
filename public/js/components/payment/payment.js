@@ -1,5 +1,8 @@
+var bookingType;
+var booking_id;
 function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID){
-    var bookingType = type;
+    bookingType = type;
+    booking_id=bookingID;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = ()=>{
         if(xhttp.readyState == 4){ 
@@ -48,13 +51,22 @@ function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID)
 }
 
 payhere.onCompleted = function onCompleted(orderId) {
-    console.log("Payment completed. OrderID:" + orderId);
     
     
-    if(type=="Taxi"){
-        saveTaxiBooking(bookingID,payment);
+    if(bookingType=="Taxi"){
+        // console.log("Payment completed. OrderID:" + orderId + booking_id);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = ()=>{
+            if(xhttp.readyState == 4){ 
+                let obj=JSON.parse(xhttp.responseText);
+                console.log(obj);
+            }
+        };
+        xhttp.open("POST","http://localhost/Tripify/Bookings/TaxiBookingPaymentUpdate",true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("booking_id="+booking_id);
     }else{
-        // saveBooking(serviceProviderID,<?php echo $data['roomIDstring']?>,payment);
+    //     // saveBooking(serviceProviderID,<?php echo $data['roomIDstring']?>,payment);
     }
     // Note: validate the payment and show success or failure page to the customer
 };
@@ -96,26 +108,36 @@ function saveBooking(hotelID,roomIDstring,payment){
 
 }
 
-function saveTaxiBooking(bookingID,payment){
-    // ajax request liyala back end controller ekata data yawanna
-    $.ajax({
-                type: "POST",
-                url: URLROOT +"/Bookings/TaxiBookingdetails/"+VID+"/"+serviceProviderID,
-                data: {
-                    bookingID: bookingID,
-                    payment: payment
-                },
-                dataType: "JSON",
-                success: function(response) {
-                    // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
+// function saveTaxiBooking(bookingID){
+//     // ajax request liyala back end controller ekata data yawanna
+//     // $.ajax({
+//     //             type: "POST",
+//     //             url: URLROOT +"/Bookings/TaxiBookingdetails/"+VID+"/"+serviceProviderID,
+//     //             data: {
+//     //                 bookingID: bookingID,
+//     //                 payment: payment
+//     //             },
+//     //             dataType: "JSON",
+//     //             success: function(response) {
+//     //                 // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
 
-                    if(response){
-                        //traveler's booking dashboard
-                        window.location =  URLROOT+'/Pages/home';
-                    }
+//     //                 if(response){
+//     //                     //traveler's booking dashboard
+//     //                     window.location =  URLROOT+'/Pages/home';
+//     //                 }
                     
                     
-                }
-            });
+//     //             }
+//     //         });
+//     console.log("Payment completed. OrderID:" + bookingID);
+//     var xhttp = new XMLHttpRequest();
+//     xhttp.onreadystatechange = ()=>{
+//         if(xhttp.readyState == 4){ 
+            
+//         }
+//     };
+//     xhttp.open("POST","http://localhost/Tripify/Bookings/TaxiBookingPaymentUpdate",true);
+//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhttp.send("booking_id="+bookingID);
 
-}
+// }

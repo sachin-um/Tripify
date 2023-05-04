@@ -562,6 +562,25 @@
                 unset($_SESSION['booking_data']);
         }
 
+        public function TaxiBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+                // flash('booking_flash', 'Your Payment is recieved  Thank You..!');\
+                // redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
         public function getTaxiBooking($id)
         {
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
