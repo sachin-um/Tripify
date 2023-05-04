@@ -384,59 +384,59 @@
             $this->view('hotels/v_hotel_profile_details',$data);
         }
 
-        public function hotelProfile($hotelID){
+        // public function hotelProfile($hotelID){
 
-            $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
-            $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
-            echo $profileDetails->Name;
+        //     $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+        //     $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
+        //     echo $profileDetails->Name;
 
-            //get bookings from that hotel that overlap with checkin and checkout dates
-            $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
+        //     //get bookings from that hotel that overlap with checkin and checkout dates
+        //     $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
 
-            //get all room types and their total number
-            $allrooms = array();
-            foreach($allroomtypes as $roomtype){
-                $allrooms[] = $roomtype->RoomTypeID;
-                $allrooms[] = $roomtype->no_of_rooms;
-            }
-            print_r($allrooms)."<br>";
+        //     //get all room types and their total number
+        //     $allrooms = array();
+        //     foreach($allroomtypes as $roomtype){
+        //         $allrooms[] = $roomtype->RoomTypeID;
+        //         $allrooms[] = $roomtype->no_of_rooms;
+        //     }
+        //     // print_r($allrooms)."<br>";
 
-           //get bookedrecords' room types and no of them
-            foreach($bookedrecords as $records){
-                $roomIDs = $records->roomIDs;
-                $bookedrooms = explode(',', $roomIDs);
-            }
+        //    //get bookedrecords' room types and no of them
+        //     foreach($bookedrecords as $records){
+        //         $roomIDs = $records->roomIDs;
+        //         $bookedrooms = explode(',', $roomIDs);
+        //     }
 
-            //print_r($bookedrooms); 
+        //     //print_r($bookedrooms); 
 
-           for($i=0;$i<count($allrooms);$i=$i+2){
-            if(!empty($bookedrooms)){
-                for($j=0;$j<count($bookedrooms);$j=$j+2){
-                    if($allrooms[$i]==$bookedrooms[$j]){
-                        $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
-                    }
-                }
-            }
+        //    for($i=0;$i<count($allrooms);$i=$i+2){
+        //     if(!empty($bookedrooms)){
+        //         for($j=0;$j<count($bookedrooms);$j=$j+2){
+        //             if($allrooms[$i]==$bookedrooms[$j]){
+        //                 $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+        //             }
+        //         }
+        //     }
             
-           }
+        //    }
 
-           print_r($allrooms); 
+        //    print_r($allrooms); 
 
-            $data=[
-                'hotelID'=>$hotelID,
-                'profileDetails'=>$profileDetails,
-                'profileName'=> $profileDetails->Name,
-                'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
-                'allroomtypes'=> $allroomtypes,
-                'description'=>$profileDetails->Description,
-                'availablerooms'=>$allrooms
-                // 'noofadults' => $data['noofadults']
-                // 'profileName'=> $profileDetails->Name,
-                // 'profileName'=> $profileDetails->Name
+        //     $data=[
+        //         'hotelID'=>$hotelID,
+        //         'profileDetails'=>$profileDetails,
+        //         'profileName'=> $profileDetails->Name,
+        //         'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
+        //         'allroomtypes'=> $allroomtypes,
+        //         'description'=>$profileDetails->Description,
+        //         'availablerooms'=>$allrooms
+        //         // 'noofadults' => $data['noofadults']
+        //         // 'profileName'=> $profileDetails->Name,
+        //         // 'profileName'=> $profileDetails->Name
 
-            ];
-            $this->view('hotels/v_hotel_details_page',$data);
-        }
+        //     ];
+        //     $this->view('hotels/v_hotel_details_page',$data);
+        // }
 
         public function rooms($hotelID){
             $allrooms=$this->roomModel->viewRooms($hotelID);
@@ -551,7 +551,11 @@
         // }
 
         public function loadBooking(){
-            $this->view('hotels/v_dash_bookings');
+            $hotelbookings=$this->hotelBookingModel->viewbookings();
+            $data=[
+                'bookings'=>$hotelbookings
+            ];
+            $this->view('hotels/v_dash_bookings',$data);
         }        
 
         public function loadPayments(){
