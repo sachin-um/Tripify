@@ -61,7 +61,11 @@
                 }
                 else if ($user_type=='Hotel') {
                     $hotelvar=$this->hotelModel->findUserDetails();
-                    $data->hoteldetails=$hotelvar;
+                    $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
+                    $data=[
+                        'hoteldetails'=>$hotelvar,
+                        'hotelaccountdetails' => $hotelaccountvar
+                    ];
                     $this->view('hotels/v_dash_profile',$data);
                 }
                 else if ($user_type=='Admin') {

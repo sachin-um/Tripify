@@ -160,18 +160,30 @@ class M_Hotels{
         }
     }
 
-    public function lookupfacilities($hotelID){
-        $this->db->query('SELECT * FROM hotel_facilitiesTable where hotelID= :hotelID');
-        $this->db->bind(':hotelID',$hotelID);
-        $allfacilities=$this->db->resultSet();
+    public function addFacilities($data){
+        $this->db->query('UPDATE hotels set Facilities=:facilities where HotelID=:hotelID');
+        $this->db->bind(':facilities',$data['facilities']);
+        $this->db->bind(':hotelID',$data['hotelID']);
+        $result = $this->db->execute();
 
-        return $allfacilities;
+        return $result;
     }
+
+    public function getFacilities($data){
+        $this->db->query('SELECT Facilities from hotels where HotelID=:hotelID');
+        $this->db->bind(':hotelID',$data['hotelID']);
+
+        $result = $this->db->single();
+        return $result;
+    }
+
+
 
     public function facilityDetails(){
         $this->db->query('SELECT * FROM hotel_facilities');
         $allfacilities=$this->db->resultSet();
 
+        header("Content-Type: image/png");
         return $allfacilities;
     }
 

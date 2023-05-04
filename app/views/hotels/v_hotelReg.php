@@ -90,7 +90,6 @@ else {
                             <p class="home-title-4">Property Category<sup> *</sup> :</p>
                             <select name="category" id="hotel-reg-select" name="category" value="<?php echo $data['property_category']; ?>">
                                 <option selected>--</option>
-                                <option>Chain Hotel</option>
                                     <option>Resort</option>
                                     <option>Villa</option>
                                     <option>Hostel</option>
@@ -140,11 +139,9 @@ else {
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Check-In :</p>
                         <select id="hotel-reg-select" name="check_in" type="text" value="<?php echo $data['check_in']; ?>">
-                            <option value="9.00 AM" selected>9.00 AM</option>
-                            <option value="10.00 AM">10.00 AM</option>
-                            <option value="11.00 AM">11.00 AM</option>
-                            <option value="12.00 PM">12.00 PM</option>
-                            <option value="01.00 PM">01.00 PM</option>
+                            <option value="2.00 PM" selected>02.00 PM</option>
+                            <option value="3.00 AM">03.00 PM</option>
+                            <option value="4.00 AM">04.00 PM</option>
                         </select>
                         <span id="reg-form-span"><?php echo $data['checkin_err']; ?></span>
                     </div>
@@ -152,11 +149,11 @@ else {
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Check-Out :</p>
                         <select id="hotel-reg-select" name="check_out" type="text" value="<?php echo $data['check_out']; ?>">
-                            <option value="2.00 PM" selected>02.00 PM</option>
-                            <option value="3.00 AM">03.00 PM</option>
-                            <option value="4.00 AM">04.00 PM</option>
-                            <option value="5.00 AM">05.00 PM</option>
-                            <option value="6.00 AM">06.00 PM</option>
+                            <option value="9.00 AM" selected>9.00 AM</option>
+                            <option value="10.00 AM">10.00 AM</option>
+                            <option value="11.00 AM">11.00 AM</option>
+                            <option value="12.00 PM">12.00 PM</option>
+                            <option value="01.00 PM">01.00 PM</option>
                         </select>
                         <span id="reg-form-span"><?php echo $data['checkout_err']; ?></span>
                     </div>

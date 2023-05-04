@@ -86,7 +86,6 @@
 
             
             <div class="hotel-reg-form-div-2">
-                pass type
                 <button class="all-purpose-btn" type="button" style="margin: auto;" onclick="paymentGateway('Hotel')">Book Now</button>
             </div> 
         </form>
@@ -101,6 +100,7 @@
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
+
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 <script>    
     function paymentGateway(type){

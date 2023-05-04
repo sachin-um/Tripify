@@ -82,6 +82,47 @@
             }
         }
 
+        public function editHotelAccountDetails($data){
+
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+            $this->db->bind(':name',$data['name']);
+            $this->db->bind(':profile_img',$data['profile-img_name']);
+            $this->db->bind(':contactno',$data['contactno']);
+            $this->db->bind(':id',$data['id']);
+
+            $s2=$this->db->execute();
+
+            if ($s2) {
+                $_SESSION['user_name']=$data['name'];
+                return true;
+            }
+        }
+
+        public function editHotelDetails($data){
+            $this->db->query('UPDATE hotels set Name=:name,Description=:description,Line1=:line1, Line2=:line2,
+            District=:district, Rating=:rating, Category=:category, Pets=:pets, Check_in=:checkin, Check_out=:checkout, 
+            contact_number=:contact, reg_number=:regNo WHERE HotelID=:id');
+
+            $this->db->bind(':name',$data['name']);
+            $this->db->bind(':description',$data['description']);
+            $this->db->bind(':line1',$data['line1']);
+            $this->db->bind(':line2',$data['line2']);
+            $this->db->bind(':district',$data['district']);
+            $this->db->bind(':rating',$data['rating']);
+            $this->db->bind(':category',$data['category']);
+            $this->db->bind(':pets',$data['pets']);
+            $this->db->bind(':checkin',$data['checkin']);
+            $this->db->bind(':checkout',$data['checkout']);
+            $this->db->bind(':regNo',$data['regNo']);
+            $this->db->bind(':contact',$data['contact']);
+            $this->db->bind(':id',$data['id']);
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
         
         public function getUserDetails($userID)
@@ -245,17 +286,6 @@
             else {
                 return false;
             }
-            
-            // $this->db->bind(':password',$data['password']);
-
-            // $row=$this->db->single();
-
-            // if ($this->db->rowCount()==1) {
-            //     return true;
-            // }
-            // else {
-            //     return false;
-            // }
         }
 
         //email verification

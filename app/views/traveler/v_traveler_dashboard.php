@@ -477,6 +477,7 @@ else {
         savebtn.style.display="block";
         event.preventDefault();
     }
+    
     function toggeleReload() {
         window.location.reload();; 
         event.preventDefault();

@@ -16,7 +16,23 @@ else {
 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
+<aside class="sidebar">
+
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="<?php echo URLROOT; ?>/Hotels/load" class="menu-item">Account</a>
+            <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item">Rooms</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadPayments" class="menu-item is-active">Payments</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
+        </nav>
+    </aside>
 
 
 <main class="right-side-content">
