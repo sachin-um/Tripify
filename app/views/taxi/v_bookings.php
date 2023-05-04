@@ -1,5 +1,20 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<?php
+$_SESSION['user_id'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    // flash('reg_flash', 'Only the Taxi Owner can add Taxi Vehicles..');
+    redirect('Users/login');
+}
+else {
+?>
+
 
 <div class="wrapper">
     <div class="content">
@@ -27,9 +42,26 @@
                             </label><br>          
 
                             <ul class="taxi_book_ul" style="list-style: circle;">
-                                <li><label>Yellow Colour</label></li>
+                                <li><label><?php echo $data['details']->color?> Colour</label></li>
                                 <li><label><?php echo $data['details']->no_of_seats?> Seats</label></li>
-                                <li><label>Air Conditioning</label></li>   
+                            
+                                <?php 
+                                    if($data['details']->AC){
+                                ?>
+                                <li><label><?php echo $data['details']->AC?></label></li>
+                                <?php
+                                    }else if($data['details']->media){
+                                ?>
+                                <li><label><?php echo $data['details']->media?></label></li>
+                                <?php
+                                    }else if($data['details']->wifi){
+                                ?>
+                                <li><label><?php echo $data['details']->wifi?></label></li>
+                                <?php
+                                    }
+                                
+                                ?>
+                                   
                             </ul>
                             
                         </div>
@@ -104,7 +136,9 @@
                         <p class="home-title-2" >Book Now</p>
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
-                            <div class="hotel-reg-form">
+                                
+                                <br>
+                                
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
@@ -121,6 +155,9 @@
                                    
                                 </div>
 
+                               
+                                <br>
+                                
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
@@ -140,30 +177,62 @@
                                         </div> -->
                                         <input type="hidden" name="d-latitude" id="d-latitude" value="">
                                         <input type="hidden" name="d-longitude" id="d-longitude" value="">
+
+                                        <input type="hidden" name="duration" id="duration" value="">
+                                        <input type="hidden" name="distance" id="distance" value="">
+                                         
+                                        
                                     </div>
 
                                     
                                 </div>
-                                <span id="availTime"></span>
+
+
+
+                                <br>
+                                
+                                <div class="hotel-reg-form-div-2">
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  required>
+                                        <span id="availSeats"></span>
+                                    </div>
+
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Payment option<sup> *</sup> :</p>
+                                        <select class="search" id="payment-option" name="payment_option" style="background: white;">
+                                            <option value="" disabled selected hidden>Payment Option</option>
+                                            <option value="Onsite">Onsite</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Both Option">Both Option</option>
+                                        </select>
+                                    </div>
+
+                                    
+                                   
+                                </div>
+
+                                <span id="availTime"></span><br>
                                 <span style="color:black;">Select the pickup location on Map(Optional)</span>
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
                             
                             </div><br>
+                            
 
                             <div class="hotel-reg-form-div-2">
                                     <button id="taxi-get-price-but" class="all-purpose-btn" type="submit">Get Price Details</button>
                             </div>
                         </form>
                         <br>
+
                         <script type="text/JavaScript">
-                            // var bookingTime;
+
                             var URLROOT="<?php echo URLROOT;?>";
-                            // document.getElementById("bookingTime").addEventListener("change", function() {
-                            //     bookingTime = this.value;
-                            // });
-                            
+                            var userID="<?php echo $_SESSION['user_id']?>";
+                            const seats = <?php echo $data['details']->no_of_seats?>;
+                        
                         </script>
                        
                         
@@ -201,13 +270,10 @@
                                     <label id="No-of-rooms"><?php echo $data['distance']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
-                                    <label id="Priceofroom"><b><?php echo $data['cost']?></b></label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
 
-                                <div class="hotel-price-details">
-                                    <label id="hotel-taxes">Taxes(3%)</label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['tax']?></b></label>
-                                </div>
+                                
 
                                 <hr id="prices-hr">
                                 
@@ -240,6 +306,9 @@
         
     </div>
 </div>
+
+
+<?php }?>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
@@ -326,7 +395,7 @@
         });
         google.maps.event.addListener(marker,'position_changed',
             function () {
-                console.log('HI');
+                // console.log('HI');
                 document.getElementById('p-latitude').value=marker.position.lat();
                 document.getElementById('p-longitude').value=marker.position.lng();
             }
@@ -368,28 +437,12 @@
             marker_d.setVisible(true);
         });
 
-        
-        // directionsService = new google.maps.DirectionsService();
-        // directionsRenderer = new google.maps.DirectionsRenderer();
-        // directionsRenderer.setMap(map);
-        // var start = new google.maps.LatLng(marker.position.lat(),marker.position.lng());
-        // var destination=new google.maps.LatLng(marker_d.position.lat(),marker_d.position.lng());
-        //             map = new google.maps.Map(document.getElementById('map'), {
-        //               center: start, 
-        //               zoom: 11
-        //             });
-        // // google.maps.event.addListener(marker_d,'position_changed',
-        // //     function () {
-        // console.log('HIII');
-                
-            // }
-        // )
 
 
         google.maps.event.addListener(marker_d,'position_changed',
             function () {
-                document.getElementById('p-latitude').value=marker.position.lat();
-                document.getElementById('p-longitude').value=marker.position.lng();
+                document.getElementById('d-latitude').value=marker_d.position.lat();
+                document.getElementById('d-longitude').value=marker_d.position.lng();
                 calculateAndDisplayRoute();
             }
         );
@@ -418,28 +471,29 @@
             // Display the route on the map
             directionsDisplay.setDirections(result);
             var distance = result.routes[0].legs[0].distance.text;
-            console.log('Shortest road distance: ' + distance);
+            // console.log('Shortest road distance: ' + distance);
+            var durationInSeconds = result.routes[0].legs[0].duration.value;
+            var hours = Math.floor(durationInSeconds / 3600);
+            var minutes = Math.floor((durationInSeconds % 3600) / 60);
+            var seconds = durationInSeconds % 60;
+
+            // Format the duration as hh:mm:ss
+            var duration = hours.toString().padStart(2, '0') + ':' +
+                     minutes.toString().padStart(2, '0') + ':' +
+                     seconds.toString().padStart(2, '0');
+            
+            // console.log('Shortest road duration: ' + duration);
+            document.getElementById('distance').value=distance;
+            document.getElementById('duration').value=duration;
             } else {
             console.error('Error calculating route:', status);
             }
         });
-}
-
-
-
-
-
-
-
-
-    
+    }
     
     function initialize() {
         initMap();
     }
-
-    
-    
 
 </script>
  

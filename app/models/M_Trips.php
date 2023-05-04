@@ -42,7 +42,11 @@ class M_Trips{
         $this->db->bind(':trip_id',$tripid);
         $this->db->bind(':booking_id',$bookingid);
 
-        if ($this->db->execute()) {
+        
+        if($this->db->execute()==="duplicate") {
+            return "duplicate";
+        }
+        elseif ($this->db->execute()) {
             return true;
         }
         else {

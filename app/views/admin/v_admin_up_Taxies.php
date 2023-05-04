@@ -40,9 +40,20 @@ else {
         <h2>Taxies Profiles</h1>
         <hr>
         <br>
+        <div class="profile-search-area">
+            <input type="text" placeholder="Search accounts..." id="searchInput">
+            <select name="account-type" id="account-type">
+                <option value="" disabled selected>Account Type</option>
+                <option value="all account">All Account</option>
+                <option value="suspened">Suspended</option>
+                <option value="active">Active</option>
+                <option value="verified">Verified</option>
+                <option value="not-verified">Not Verified</option>
+            </select>
+        </div>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -54,16 +65,18 @@ else {
                             <th>Company Name</th>
                             <th>No of Vehicles</th>
                             <th>status</th>
+                            <th style="display: none;">Verification status</th>
+                            <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <th>View </th>
                                     <th>Verify</th>
                                     
                                     <th>Suspend</th>
                                     <?php
-                                } elseif ($_SESSION['admin_type']=='management') {
+                                }
+                                if ($_SESSION['admin_type']=='management' ||  $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     <th>Suspend</th>
                                     <?php
@@ -88,11 +101,13 @@ else {
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->company_name ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
+                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
+                                    
                                     <td data-lable="Email">
                                         <?php
                                             if ($taxi->verification_status==2) {
@@ -134,6 +149,7 @@ else {
         </div>
     </main>
  </div>
+ <script src="<?php echo URLROOT;?>/js/components/search/search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
  <?php
 }

@@ -40,9 +40,20 @@ else {
         <h2 >Hotels Profiles</h1>
         <hr>
         <br>
+        <div class="profile-search-area">
+            <input type="text" placeholder="Search accounts..." id="searchInput">
+            <select name="account-type" id="account-type">
+                <option value="" disabled selected>Account Type</option>
+                <option value="all account">All Account</option>
+                <option value="suspened">Suspended</option>
+                <option value="active">Active</option>
+                <option value="verified">Verified</option>
+                <option value="not-verified">Not Verified</option>
+            </select>
+        </div>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -53,11 +64,13 @@ else {
                             <th>Address</th>
                             <th>Registration Number</th>
                             <th>Account status</th>
+                            <th style="display: none;">Verification status</th>
+                            <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <th>View </th>
+                                    
                                     <th>Verify</th>
                                     
                                     <th>Suspend</th>
@@ -83,14 +96,16 @@ else {
                             <td data-lable="Contact Number"><?php echo $hotel->moreDetails->contact_number ?></td>
                             <td data-lable="Owner Name"><?php echo $hotel->Name ?></td>
                             <td data-lable="Email"><?php echo $hotel->Email ?></td>
-                            <td data-lable="Address"><?php echo $hotel->moreDetails->Address ?></td>
+                            <td data-lable="Address"><?php echo $hotel->moreDetails->address ?></td>
                             <td data-lable="Status"><?php echo $hotel->moreDetails->reg_number ?></td>
                             <td data-lable="Status"><?php echo $hotel->acc_status ?></td>
+                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $hotel->UserID ?>/Hotel'">View </button></td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $hotel->UserID ?>/Hotel'">View </button></td>
+                                    
                                     <td data-lable="Email">
                                         <?php
                                             if ($hotel->verification_status==2) {
@@ -132,6 +147,7 @@ else {
         </div>
     </main>
  </div>
+ <script src="<?php echo URLROOT;?>/js/components/search/search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
  <?php
 }

@@ -53,7 +53,18 @@
         }
 
         public function execute(){
-            return $this->statement->execute();
+            try {
+                $this->statement->execute();
+                return true;
+            } catch (PDOException $e) {
+                if ($e->getCode() == 23000) {
+                    return "duplicate";
+                }
+                 else {
+                    return false;
+                    
+                }
+            }
         }
 
         public function resultSet(){

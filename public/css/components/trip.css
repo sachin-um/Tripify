@@ -130,7 +130,7 @@
 .plan-container .column .header{
     font-weight: bold;
     color: #F2ECFF;
-    background-color: #00839E;
+    background-color: #03002E;
     height: 10%;
     display: flex;
     align-items: center;
@@ -193,27 +193,38 @@
 }
 
 .plan-item-add-button{
-    width: 60%;
-    height: 60px;
-    text-align: center;
-    border-radius: 10px;
-    color: white;
     background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    display: block;
+    font-size: 20px;
     cursor: pointer;
+    height: 60px;
     margin-top: 50%;
-    margin-left: 25%;
+    margin-left: 40%;
+}
+.plan-item-add-button:hover{
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 .plan-item-add-another-button{
-    width: 60%;
-    height: 60px;
-    text-align: center;
-    border-radius: 10px;
-    color: white;
     background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 15px;
+    font-size: 20px;
     cursor: pointer;
     margin-top: 4%;  
     margin-left: 25%;  
+}
+
+.plan-item-add-another-button:hover{
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 .create-plan-btn{
@@ -238,4 +249,44 @@
     margin-top: 2%;
     border: 2px solid #005782;
 }
+
+.main-container {
+    min-height: 82px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2%;
+    padding: 30px;
+    width: 85%;
+    background-color: #fff;
+    border-radius: 14px;
+    float: left;
+    height: fit-content;
+    border: 1px solid #03002E;
+    margin-top: 20px;
+    color: #03002E;
+}
+
+.description {
+    font-weight: 400;
+    max-width: 94px;
+    font-size: 15px;
+}
+
+.booking-type-color-code {
+    background-color: #ff1046;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.edit-trip{
+    display: none;
+}
+
+.trip-heading{
+    max-width: 80px;
+    font-weight: 600;
+    font-size: 17px;
+}
+
 

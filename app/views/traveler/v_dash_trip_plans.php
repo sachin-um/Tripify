@@ -55,7 +55,7 @@
                             <td data-lable="Name"><?php echo $trip->location ?></td>
                             <td data-lable="Name"><?php echo $trip->start_date ?></td>
                             <td data-lable="Name"><?php echo $trip->end_date ?></td>
-                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Trips/viewTripPlan/<?php echo $trip->TourPlanID?>"><button class="acc-view-btn" type="button">View </button></a></td>
+                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Trips/viewTripPlan/<?php echo $trip->TourPlanID?>"><button class="acc-view-btn" type="button"> <i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></a></td>
                         </tr>
                         <?php
                             endforeach;

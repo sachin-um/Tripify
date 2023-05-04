@@ -28,7 +28,7 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
-            <a href="<?php echo URLROOT; ?>/Taxies/bookings" class="menu-item">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
