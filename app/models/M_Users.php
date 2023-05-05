@@ -41,7 +41,7 @@
     
                 $row=$this->db->single();
 
-                $this->db->query('INSERT INTO traveler(TravelerID,contact_number,country) VALUES(:travelerid,:contactno,:country)');
+                $this->db->query('INSERT INTO traveler(TravelerID,country) VALUES(:travelerid,:country)');
                 $this->db->bind(':country',$data['country']);
                 $this->db->bind(':travelerid',$row->UserID);
                 
@@ -145,8 +145,7 @@
         }
 
         public function getAllUserDetails($usertype,$action=NULL)
-        {
-            
+        {          
             
             
             if ($action=='verify') {

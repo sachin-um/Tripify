@@ -37,37 +37,46 @@ else {
 
 <main class="right-side-content">
     <br><br>
-    <p class="home-title-2">Your Bookings</p>
-    <div class="hotel-bookings-main-div">
+    <p class="home-title-2">Your Bookings</p><br>
+
+    <div class="booking-btns">
+        <button class="view-booking-btns is-active">Current Bookings</button>
+        <button class="view-booking-btns">Past Bookings</button>
+        <button class="view-booking-btns">Canceled Bookings</button>
+    </div>
+    <hr id="booking-header-hr">
+    <div class="hotel-bookings-main-div" style="margin-left: 6%;">
+        
         <table>
     
             <tr>
                 <th>BookingID</th>
-                <th>Customer Name</th>
+                <th>CustomerID</th>
                 <th>Date Added</th>
+                <th>Check In</th>
+                <th>Check Out</th>
                 <th>Payment Amount</th>
-                <th>Room ID</th>
-                <th>Payment Status</th>
-                <th>View Details</th>
+                <th>View</th>
             </tr>
 
             <?php
-            // foreach():
+            foreach($data['bookings'] as $booking):
             ?>
             <tr>
-                <td>B1045</td>
-                <td>Danapala Gunasekara</td>
-                <td>2023.02.10</td>
-                <td>17850.00</td>
-                <td>R2424</td>
-                <td>Unpaid</td>
+                <td><?php echo $booking->booking_id;?></td>
+                <td><?php echo $booking->TravelerID;?></td>
+                <td><?php echo $booking->date_added; ?></td>
+                <td><?php echo $booking->checkin_date; ?></td>
+                <td><?php echo $booking->checkout_date; ?></td>
+                <td><?php echo $booking->payment; ?></td>
                 <td><button>View</button></td>
             </tr>
             <?php
-            // endforeach;
+            endforeach;
             ?>
 
         </table>
+        <br><br>
     </div>
     
 </main>

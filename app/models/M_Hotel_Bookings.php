@@ -10,53 +10,58 @@
         
 
         //Add hotel booking
-        public function addHotelBooking($data){     
+        public function addHotelBooking($data){   
+            $roomTypes = implode(",",$_SESSION['roomIDs']);
 
-            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,payment,paymentmethod,payment_status,
+            $this->db->query('INSERT INTO hotel_bookings(hotel_id,TravelerID,roomTypes,payment,paymentmethod,payment_status,
             checkin_date,checkout_date)
-            VALUES(:hotelID,:travelerID,:payment,:paymentmethod,:payment_status,:check_in,:check_out)' );
+            VALUES(:hotelID,:travelerID,:roomTypes,:payment,:paymentmethod,:payment_status,:check_in,:check_out)' );
 
             $this->db->bind(':hotelID',$data['hotelID']);
             $this->db->bind(':travelerID',$data['travelerID']);
+            $this->db->bind(':roomTypes',$roomTypes);
             $this->db->bind(':payment',$data['payment']);
             $this->db->bind(':paymentmethod',$data['paymentMethod']);
-            $this->db->bind(':payment_status',"Yet to pay");
+
+            if($data['paymentMethod']=="Online"){
+                $this->db->bind(':payment_status',"Paid");
+            }else{
+                $this->db->bind(':payment_status',"Yet to pay");
+            }            
             $this->db->bind(':check_in', $data['checkin']);
             $this->db->bind(':check_out', $data['checkout']);
-            $result = $this->db->execute();
-
             
 
             $roomIDs = $_SESSION['roomIDs'];    
             
             if($this->db->execute()){
-                $this->db->query('SELECT booking_id from hotel_bookings where TravelerID=:travelerID 
-                and hotel_id=:hotelID and checkin_date=:check_in and checkout_date=:check_out');
+                // $this->db->query('SELECT booking_id from hotel_bookings where TravelerID=:travelerID 
+                // and hotel_id=:hotelID and checkin_date=:check_in and checkout_date=:check_out');
 
-                $this->db->bind(':hotelID',$data['hotelID']);
-                $this->db->bind(':travelerID',$data['travelerID']);
-                $this->db->bind(':check_in', $data['checkin']);
-                $this->db->bind(':check_out', $data['checkout']);
+                // $this->db->bind(':hotelID',$data['hotelID']);
+                // $this->db->bind(':travelerID',$data['travelerID']);
+                // $this->db->bind(':check_in', $data['checkin']);
+                // $this->db->bind(':check_out', $data['checkout']);
 
-                $bookingID = $this->db->single();
+                // $bookingID = $this->db->single();
 
-                //[125450,1,12345,2]
-                for($i=0;$i<=2;$i=$i+2){
-                    $this->db->query('INSERT INTO hotel_roomIDs(bookingID,roomTypeID,noofrooms)
-                    VALUES(:bookingID,:roomTypeID,:noofrooms)');
+                // //[125450,1,12345,2]
+                // for($i=0;$i<=2;$i=$i+2){
+                //     $this->db->query('INSERT INTO hotel_roomIDs(bookingID,roomTypeID,noofrooms)
+                //     VALUES(:bookingID,:roomTypeID,:noofrooms)');
 
-                    $this->db->bind(':bookingID',$bookingID);
-                    $this->db->bind(':roomTypeID',$bookingID+1);
-                    $this->db->bind(':noofrooms',2);                  
+                //     $this->db->bind(':bookingID',$bookingID);
+                //     $this->db->bind(':roomTypeID',$bookingID+1);
+                //     $this->db->bind(':noofrooms',2);                  
 
-                    // $this->db->bind(':roomTypeID',$roomIDs[$i]);
-                    // $this->db->bind(':noofrooms',intval($roomIDs[$i+1]));                  
+                //     // $this->db->bind(':roomTypeID',$roomIDs[$i]);
+                //     // $this->db->bind(':noofrooms',intval($roomIDs[$i+1]));                  
     
-                    $status = $this->db->execute();
-                    if(!$status){
-                        return false;
-                    }
-                }
+                //     $status = $this->db->execute();
+                //     if(!$status){
+                //         return false;
+                //     }
+                // }
                 return true;
             }else{
                 return false;
@@ -84,9 +89,12 @@
 
 
         //view bookings with filter
-        public function viewbookings($usertype,$userid){
-            $this->db->query('SELECT * FROM hotel_bookings');
+        public function viewbookings($userid){
+            $this->db->query('SELECT * FROM hotel_bookings where TravelerID=:userID');
+            $this->db->bind(':userID',$userid);
+
             $bookings=$this->db->resultSet();
+
             // $filteredbookings=filterBookings($bookings,$usertype,$userid);
             // foreach ($filteredbookings as $booking) {
             //     $hotel=$this->getHotelById($booking->hotel_id);
@@ -109,6 +117,14 @@
         //     }
         }
 
+        public function getHotelIDandName($id){
+            $this->db->query('SELECT HotelID,Name FROM hotels WHERE HotelID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+            return $row;
+
+        }
 
         public function getHotelById($id){
             $this->db->query('SELECT * FROM hotels WHERE HotelID=:id');
@@ -159,7 +175,8 @@
         }
 
         public function RoomAvailabilityRecords($hotelID){
-            $this->db->query("SELECT * FROM v_booked_rooms WHERE hotel_id = :hotelID
+
+            $this->db->query("SELECT roomTypes FROM hotel_bookings WHERE hotel_id = :hotelID
             AND (checkin_date BETWEEN :checkin AND :checkout
                  OR checkout_date BETWEEN :checkin AND :checkout)");
 

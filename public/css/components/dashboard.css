@@ -97,6 +97,8 @@
 
  .first-container{
    display: flex;
+   width: 95%;
+   margin: auto;
  }
 
  .profile-description {

@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
 
 <div class="wrapper">
     <div class="content" id="confirm-booking-content">
@@ -206,10 +206,10 @@
         console.log("Error:"  + error);
     };
 
-    function save(hotelID,payment,paymentMethod){
+    function save(hotelID,payment,mode){
         console.log(hotelID);
         console.log(payment);
-        console.log(paymentMethod);
+        console.log(mode);
                 
         $.ajax({
             type: "POST",
@@ -217,17 +217,22 @@
             data: {
                 hotelID: hotelID,
                 payment: payment,
-                paymentMethod: paymentMethod
+                paymentMethod: mode
             },
             dataType: "JSON",
             success: function(response) {
-                response.array.forEach(element => {
-                    console.log(element);
-                });
-                // alert(response);
-                // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
+                
+                // response.array.forEach(element => {
+                //     console.log(element);
+                // });
+                if(response){
+                    window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
 
-                // window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
+                }else{
+                    alert("Failed");
+                }
+                
+
             },
             error:function () {
                 alert("Error"); 
