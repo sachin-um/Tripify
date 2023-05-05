@@ -12,11 +12,7 @@
             $this->taxiofferModel=$this->model('M_Taxi_Offers');
             $this->guideofferModel=$this->model('M_Guide_Offers');
             $this->taxirequestModel=$this->model('M_Taxi_Request');
-<<<<<<< HEAD
-            $this->guiderequestModel=$this->model('M_Guide_Request');         
-            
-=======
-            $this->guiderequestModel=$this->model('M_Guide_Request');
+            $this->guiderequestModel=$this->model('M_Guide_Request'); 
             $this->guideModel=$this->model('M_Guides');
             
             
@@ -24,7 +20,7 @@
 
         public function index(){
 
->>>>>>> cc55cc528871ac0185838c7e11f87f3129124d1d
+
         }
 
         public function HotelBookings($usertype,$userid){
