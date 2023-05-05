@@ -64,7 +64,7 @@
             }
             else if ($usertype=='Guide') {
                 $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
-                print_r($guidebookings);
+                // print_r($guidebookings);
                 $data=[
                     'guidebookings'=> $guidebookings
                 ];
@@ -73,26 +73,52 @@
         }
 
         public function CancelGuideBooking($bookingid){
-            $booking=$this->GuideBookingModel->getGuideBookingbyId($bookingid);
-            if ($booking->TravelerID!=$_SERVER['user_id']) {
-                flash('reg_flash', 'Access Denied...');
-                redirect('Users/login');
-            }
-            elseif ($booking->status!='Yet To Confirm') {
-                flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-                redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            }
-            else {
-                if($this->GuideBookingModel->cancelBooking($bookingid)){
-                    flash('booking_flash', 'Guide Booking is Canceled');
-                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-                }
-                else {
-                    flash('booking_flash', 'Somthing went wrong try again');
-                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-                }
-            }
+            echo $bookingid."///";
+            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingid);
+            var_dump($booking);
+            // if ($booking->TravelerID==$_SERVER['user_id']) {
+
+            //     if ($booking->status!='Yet To Confirm') {
+            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //     }
+            //     else {
+            //         if($this->GuideBookingModel->cancelBooking($bookingid)){
+            //             flash('booking_flash', 'Guide Booking is Canceled');
+            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //         }else {
+            //             flash('booking_flash', 'Somthing went wrong try again');
+            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //         }
+            //     }
+
+            // }else if($_SESSION['user_type']=='Guide'){
+            //     if ($booking->status!='Yet To Confirm') {
+            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //     }
+            //     else {
+            //         if ($booking->status=='Yet To Confirm') {
+            //             if($this->GuideBookingModel->cancelBooking($bookingid)){
+            //                 flash('booking_flash', 'Guide Booking is Canceled');
+            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //             }else {
+            //                 flash('booking_flash', 'Somthing went wrong try again');
+            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //             }
+            //         }
+            //     }
+
+            // }
+            // else{
+            //     flash('reg_flash', 'Access Denied...');
+            //     redirect('Users/login');
+            // }
         }
+            
+        
+    
+
 
         public function acceptGuideOffer($offerid,$requestid){
             $request=$this->guiderequestModel->getGuideRequestById($requestid); 
@@ -486,12 +512,13 @@
 
                 $data=[
                     'guidedetails'=>$guideDetails,
-                    'guideLanguages'=>$guidelanguages
+                    'guideLanguages'=>$guidelanguages,
+                    'GuideID'=>$guideDetails->GuideID
                    
                 ];
                 
                 
-                // echo var_dump($data);
+                echo var_dump($data);
                 $this->view('guide/v_check_availability',$data);
                 
             }
