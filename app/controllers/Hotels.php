@@ -372,14 +372,21 @@
 
         public function hotelProfilewithoutrooms($hotelID){
             $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+            $images = $this->hotelModel->getImages($hotelID);
 
+            if(empty($images)){
+                print_r($images);
+                echo $hotelID;
+                echo "Its empty bitch";
+            }
+            
             $data=[
                 'hotelID'=>$hotelID,
                 'profileDetails'=>$profileDetails,
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,
-                'description'=>$profileDetails->Description
-
+                'description'=>$profileDetails->Description,
+                'images'=>$images
             ];
             $this->view('hotels/v_hotel_profile_details',$data);
         }
@@ -476,14 +483,8 @@
                 ];
                 
                 if ($this->hotelModel->addFacilities($data)) {
-                    // $this->view('hotels/v_dash_profile');
                     flash('reg_flash', 'Successfully updated!');
                     redirect('Hotels/load');
-                    
-                    //         redirect('Request/TaxiRequest');
-                    //     }
-                    //     else{
-                    //         die('Something went wrong');
                 }else{
                     flash('reg_flash', 'Something went wrong.');
                     redirect('Hotels/load');
@@ -494,56 +495,78 @@
             }
         }
 
-        public function uploadPhotos(){
+        public function uploadPhotos($hotelID){
 
-            if(isset($_POST['upload'])){
+            if(isset($_POST['submit'])){
+                // print_r($_FILES);
+                $imageCount = count($_FILES['image']['name']);
+                // echo $imageCount;
 
-                $images = $_FILES['images'];
-
-                #number of images
-                $num_of_imgs = count($images['name']);
-
-                for($i=0; $i < $num_of_imgs; $i++){
-                    #get the img info and store them in var
-                    $image_name = $images['name'][$i];
-                    $tmp_name = $images['tmp_name'][$i];
-                    $error = $images['error'][$i];
-
-                    #if there is not error occured while uploading
-                    if($error === 0){
-                        #get image extension store it in var
-                        $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);
-                        $img_ex_lc = strtolower($img_ex);
-
-                        $allowed_exs = array('jpg', 'jpeg', 'png');
-
-                        if(in_array($img_ex_lc, $allowed_exs)){
-                            $new_img_name = uniqid('IMG-', true).'.'.$img_ex_lc;
-                            $img_upload_path = 'app/public/img/hotel-uploads'.$new_img_name;
-
-                            #inserting img name into database
-                            $this->hotelModel->insertingImages($_SESSION('user_id'), $new_img_name);
-                            move_uploaded_file($tmp_name, $img_upload_path);
-
-                            header("Location: echo URLROOT/hotels/v_dash_profile");
-
-                        }else{
-                            #error message
-                            $em = "You can't upload files of this type";
-
-                            header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
-                        }
-
-                    }else{
-                        #error message
-                        $em = "Unknown Error Occured While Uploading";
-
-                        header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
+                for($i=0;$i<$imageCount;$i++){
+                    $imageName = $_FILES['image']['name'][$i];
+                    $imageTempName = $_FILES['image']['tmp_name'][$i];
+                    $targetPath = "C:/xampp/htdocs/Tripify/public/img/hotel-uploads/".$imageName;
+                    if(move_uploaded_file($imageTempName, $targetPath)){
+                        $this->hotelModel->insertingImages($hotelID,$imageName);                            
                     }
                 }
-                // echo "<pre>";
-                // print_r($_FILES['images']['name'][0]);
+             
             }
+
+            redirect('Pages/profile');            
+            // if(isset($_POST['upload'])){
+
+            //     $images = $_FILES['images'];
+
+            //     #number of images
+            //     $num_of_imgs = count($images['name']);
+
+            //     for($i=0; $i < $num_of_imgs; $i++){
+            //         #get the img info and store them in var
+            //         $image_name = $images['name'][$i];
+            //         $tmp_name = $images['tmp_name'][$i];
+            //         $error = $images['error'][$i];
+
+            //         #if there is not error occured while uploading
+            //         if($error === 0){
+            //             #get image extension store it in var
+            //             $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);
+            //             $img_ex_lc = strtolower($img_ex);
+
+            //             $allowed_exs = array('jpg', 'jpeg', 'png');
+
+            //             if(in_array($img_ex_lc, $allowed_exs)){
+            //                 $new_img_name = uniqid('IMG-', true).'.'.$img_ex_lc;
+            //                 $img_upload_path = 'app/public/img/hotel-uploads'.$new_img_name;
+
+            //                 #inserting img name into database
+            //                 $this->hotelModel->insertingImages($_SESSION('user_id'), $new_img_name);
+            //                 move_uploaded_file($tmp_name, $img_upload_path);
+
+            //                 header("Location: echo URLROOT/hotels/v_dash_profile");
+
+            //             }else{
+            //                 #error message
+            //                 $em = "You can't upload files of this type";
+
+            //                 header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
+            //             }
+
+            //         }else{
+            //             #error message
+            //             $em = "Unknown Error Occured While Uploading";
+
+            //             header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
+            //         }
+            //     }
+            // }
+        }
+
+        public function getImages($hotelID){
+               
+
+
+            
         }
 
         // public function editProfileDetails(){

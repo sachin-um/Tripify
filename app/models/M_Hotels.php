@@ -187,13 +187,31 @@ class M_Hotels{
         return $allfacilities;
     }
 
-    public function insertingImages($hotelID, $new_img_name){
-        $this->db->query('INSERT INTO hotel_photos(hotelID, imgName) values (:hotelID, :new_img_name)');
+    public function insertingImages($hotelID, $imagename){
+        $this->db->query('INSERT INTO hotel_photos(hotelID, imgName) values (:hotelID, :imagename)');
         $this->db->bind(':hotelID',$hotelID);
-        $this->db->bind(':new_img_name',$new_img_name);
-        $this->db->execute();
+        $this->db->bind(':imagename',$imagename);
+        $result = $this->db->execute();
+        return $result;
     }
 
+    public function getImages($hotelID){
+        $this->db->query('SELECT imgName FROM hotel_photos where hotelID=:hotelID');
+        $this->db->bind(':hotelID',$hotelID);
+
+        $images=$this->db->resultSet();
+        
+        // $imgNameArray = array();
+        // if(mysqli_num_rows($images)>0){
+        //     while($fetch = mysqli_fetch_assoc($images)){
+        //         $imgNameArray[] = $fetch['imgName'];
+                
+        //     }
+
+        return $images;
+        
+
+    }
 }
 
 ?>

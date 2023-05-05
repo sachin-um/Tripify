@@ -367,7 +367,7 @@ elseif ($_SESSION['user_type']!='Hotel') {
                 <br>
                 <div style="display: flex; justify-content: center; padding: 20px">
                     <button style="margin-right: 10px" class="profile-btn-edit" id="edit-hotel-btn">Edit Info</button>
-                    
+                    <!-- class="all-purpose-btn" id="account-details-edit" -->
                     <button style="margin-right: 10px" class="profile-btn-cancel" id="cancel-hotel-btn">
                         Discard
                     </button>
@@ -413,21 +413,43 @@ elseif ($_SESSION['user_type']!='Hotel') {
 
             
             <br>
-        </div>
+        </div><br><br>
 
         <!-- Upload photos -->
-        <div class="hotel-profile-account-details-1">
+        <div class="hotel-profile-account-details">
             <p id="hotel-profile-title-1">Property Images</p>
             
-            <div class="upload-section">
+            <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadPhotos/<?php echo $data['hoteldetails']->HotelID?>" enctype="multipart/form-data">                
+                <input type="file" name="image[]" multiple>
+                <div style="display: flex; justify-content: center;">
+                    <button class="all-purpose-btn" type="submit" name="submit">Upload</button>
+                </div>
+            </form>
+            <br><br>
+            <div class="nav-grid-1">
+            <?php
+            if(!empty($data['images'])){
+                foreach($data['images'] as $imgName):
+                    // echo gettype($imgName)."<br>" ;
+                    // print_r($imgName);
+                ?>
+                <img class="hotel-images" src="<?php echo URLROOT?>/public/img/hotel-uploads/<?php echo $imgName->imgName; ?>" >
 
+
+                <?php
+                
+            
+                endforeach;
+            }
+            ?>
             </div>
             
-            <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadPhotos" enctype="multipart/form-data">
-                <input type="file" name="images[]" multiple>
-                <button type="submit" name="upload">Upload</button>
-            </form>
-        </div>
+            <!-- <button class="all-purpose-btn" id="account-details-edit"
+                onclick="location.href='<?php echo URLROOT?>/Hotels/addFacilities'">Edit>Refresh</button> -->
+
+            <!-- <img src="C:/xampp/htdocs/Tripify/public/img/hotel-uploads/echo $fetch['imgName'];" width="100px" height="100px"> -->
+   
+        </div><br><br>
 
         </div>
 

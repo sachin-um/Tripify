@@ -661,6 +661,7 @@
                 }
 
                 // print_r($allrooms); 
+                $images = $this->hotelModel->getImages($hotelID);
 
                 $data=[
                     'hotelID'=>$hotelID,
@@ -669,7 +670,8 @@
                     'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
                     'allroomtypes'=> $allroomtypes,
                     'description'=>$profileDetails->Description,
-                    'availablerooms'=>$allrooms
+                    'availablerooms'=>$allrooms,
+                    'images'=>$images
                     // 'noofadults' => $data['noofadults']
                     // 'profileName'=> $profileDetails->Name,
                     // 'profileName'=> $profileDetails->Name
@@ -715,34 +717,7 @@
                     
                 }
 
-        public function TaxiBookingPaymentUpdate()
-        {
-            $data=[
-                'bookingid'=>$_POST['booking_id'],
                 
-            ];
-            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
-                // flash('booking_flash', 'Your Payment is recieved  Thank You..!');\
-                // redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
-                $jsonObj = json_encode($data);
-                // printr($jsonObj);
-                // var_dump($jsonObj)
-                 echo $jsonObj;
-            }
-            else{
-                die('Something went wrong');
-            }
-        }
-
-        public function getTaxiBooking($id)
-        {
-            $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
-            header('Content-Type: application/json');
-            echo json_encode($booking);
-        }
-
-
-        
 
 
                 //Get booked room names
@@ -799,6 +774,35 @@
             }
             
         }
+
+        public function TaxiBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+                // flash('booking_flash', 'Your Payment is recieved  Thank You..!');\
+                // redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function getTaxiBooking($id)
+        {
+            $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
+            header('Content-Type: application/json');
+            echo json_encode($booking);
+        }
+
+
+        
 
         public function booking(){
            
