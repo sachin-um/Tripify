@@ -70,7 +70,7 @@ else {
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
                             <td data-lable="Name"><?php echo $booking->booking_id ?></td>
-                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hotel->HotelID; ?>"><?php echo $booking->hotel->Name ?></a> </td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hotel->HotelID; ?>/Hotel"><?php echo $booking->hotel->Name ?></a> </td>
                             <td data-lable="Name"><?php echo $booking->hotel->Name?></td>
                             <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
                             <td data-lable="Name"><?php echo $booking->checkout_date ?></td>
@@ -83,7 +83,7 @@ else {
                                     if ($booking->payment_status!='Paid') {
                                         if ($booking->paymentmethod=='Online') {
                                             ?>
-                                                <td style="display: flex; align-items: center;" data-lable="Name">
+                                                <td style="display: inline-grid;" data-lable="Name">
                                                     <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i> 
                                                     <button class="pay-btn" type="button">
                                                         <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
@@ -94,9 +94,42 @@ else {
                                         }
                                         else {
                                             ?>
-                                            <td style="display: flex; align-items: center;" data-lable="Name">
-                                                    <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
-                                                    <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">
+                                            <td style="display: inline-grid;" data-lable="Name">
+                                            <?php
+                                            // Assuming your date variable is stored in $checkin_date
+                                            $checkin_date = $booking->checkin_date;
+
+                                            // Get the current date
+                                            $current_date = date('Y-m-d');
+
+                                            // Calculate the date 2 days before the stored date variable
+                                            $two_days_before = date('Y-m-d', strtotime('-2 days', strtotime($checkin_date)));
+
+                                            // Check if the current date is 2 days before the stored date variable
+                                            if ($current_date <= $two_days_before) {
+                                               ?>
+                                                    <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button" style="margin-top:10px">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                            Edit
+                                                        </button>
+                                                    </a>
+                                                    <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button" style="margin-top:10px">
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                        Cancel
+                                                        </button>
+                                                    </a>
+
+                                               <?php
+                                            }
+                                            else {
+                                                ?>
+                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
+                                                <?php
+                                            }
+                                            ?>
+                                            
+                                                    
+                                                    <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')" style="margin-top: 10px;">
                                                         <i class="fa-solid fa-plane" style="margin-right: 10px"></i>
                                                         Add to Trip Plan
                                                     </button>
@@ -107,9 +140,30 @@ else {
                                     }
                                     else {
                                         ?>
-                                            <td style="display: flex; align-items: center;" data-lable="Name">
-                                                <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
-                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')">
+                                            <td style="display: inline-grid;" data-lable="Name">
+                                                <?php
+                                                if ($current_date <= $two_days_before) {
+                                                ?>
+                                                        <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button" style="margin-top:10px">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                                Edit
+                                                            </button>
+                                                        </a>
+                                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button" style="margin-top:10px">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                            Cancel
+                                                            </button>
+                                                        </a>
+                                                        <br>
+                                                <?php
+                                                }
+                                                else {
+                                                    ?>
+                                                    <i class="fa fa-info-circle" style="font-size:24px; vertical-align: inherit; margin-right: 10px;" title="If You Want to Cancel The Booking Please Contact the Service Provider"></i>
+                                                    <?php
+                                                }
+                                                ?>    
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'hotel','<?php echo URLROOT; ?>')" style="margin-top: 10px;">
                                                     <i class="fa-solid fa-plane" style="margin-right: 10px"></i>
                                                     Add to Trip Plan
                                             </button>

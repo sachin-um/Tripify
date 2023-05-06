@@ -29,6 +29,7 @@
         <h2 style="text-align: left;">Your Trips</h1>
         <hr>
         <br>
+        <?php flash('trip_list_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
                 <table class="message-table">
@@ -40,6 +41,7 @@
                             <th>Starting Date</th>
                             <th>End Date</th>
                             <th>View</th>
+                            <th>Remove</th>
                             
                         </tr>
                     </thead>
@@ -56,6 +58,7 @@
                             <td data-lable="Name"><?php echo $trip->start_date ?></td>
                             <td data-lable="Name"><?php echo $trip->end_date ?></td>
                             <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Trips/viewTripPlan/<?php echo $trip->TourPlanID?>"><button class="acc-view-btn" type="button"> <i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></a></td>
+                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Trips/removeTripPlan/<?php echo $trip->TourPlanID?>"><button class="btn" type="button"> <i class="fa-solid fa-xmark" style="margin-right: 10px;"></i>Remove</button></a></td>
                         </tr>
                         <?php
                             endforeach;

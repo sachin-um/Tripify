@@ -36,7 +36,7 @@ const filterselect=document.getElementById("account-type");
     filterselect.addEventListener('change',()=>{
         const searchTerm = filterselect.value.toLowerCase();
 
-        if (searchTerm=="All") {
+        if (searchTerm=="all account") {
             for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 row.style.display = '';

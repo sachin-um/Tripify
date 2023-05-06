@@ -170,7 +170,9 @@
             $row=$this->db->single();
             $hotel=$this->getHotelById($row->hotel_id);
             $hotel_name=$hotel->Name;
+            $row->hotelID=$row->hotel_id;
             $row->hotel_id=$hotel_name;
+            
             return $row;
         }
 
