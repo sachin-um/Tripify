@@ -68,7 +68,7 @@ else {
             foreach($offers as $guideoffer):
         ?>
         <div class="request">
-            <div class="post-header">Offer ID : <?php echo $guideoffer->offer_id; ?></div>
+            <div class="post-header">Offer ID : GO<?php echo $guideoffer->offer_id; ?></div>
             <div class="post-body">
 
                 <h5 style="text-align:center;">Offer Details</h5>

@@ -69,30 +69,40 @@ else {
             foreach($requests as $guiderequest):
         ?>
         <div class="request">
-            <div class="post-header">Request ID : <?php echo $guiderequest->request_id; ?></div>
+            <div class="post-header">Request ID : GR<?php echo $guiderequest->request_id; ?></div>
             <div class="post-body">
                 <div class="req-slot1">
                     <div class="detail-container" style="margin-right: 20px;">
                         <div class="header-container">
                             <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
-                            <div class="heading">Date</div>
+                            <div class="heading">Start Date</div>
                         </div>
                         <div class="post-tag post-date description" style="margin-left: 33px">
-                            <?php echo $guiderequest->date; ?></span>
+                            <?php echo $guiderequest->start_date; ?></span>
                         </div>
                     </div>
-                    <div class="detail-container">
+                    <div class="detail-container" >
                         <div class="header-container">
-                            <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
-                            <div class="heading">Time</div>
+                            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">End Date</div>
                         </div>
                         <div class="post-tag post-date description" style="margin-left: 33px">
-                            <?php echo $guiderequest->time; ?></span>
+                            <?php echo $guiderequest->end_date; ?></span>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="req-slot2">
                         <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Time</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $guiderequest->time; ?></span>
+                            </div>
+                        </div>
+                        <div class="detail-container" >
                             <div class="header-container">
                                 <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
                                 <div class="heading">Pickup Location</div>
@@ -101,6 +111,10 @@ else {
                                 <?php echo $guiderequest->p_location; ?></span>
                             </div>
                         </div>
+                        
+                    
+                </div>
+                <div class="req-slot2">
                         <div class="detail-container">
                             <div class="header-container">
                                 <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
@@ -110,7 +124,6 @@ else {
                                 <?php echo  $guiderequest->p_language; ?></span>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="req-slot3">
                         <div class="detail-container" style="margin-right: 20px; width: 97%;">
