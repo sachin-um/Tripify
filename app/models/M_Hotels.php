@@ -160,6 +160,15 @@ class M_Hotels{
         }
     }
 
+    public function getHotelById($id){
+        $this->db->query('SELECT * FROM hotels WHERE HotelID=:id');
+        $this->db->bind(':id',$id);
+
+        $row=$this->db->single();
+
+        return $row;
+    }
+
     public function addFacilities($data){
         $this->db->query('UPDATE hotels set Facilities=:facilities where HotelID=:hotelID');
         $this->db->bind(':facilities',$data['facilities']);

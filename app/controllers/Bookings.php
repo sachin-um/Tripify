@@ -27,16 +27,13 @@
             
             if ($usertype=='Traveler') {
                 $hotelbookings=$this->hotelBookingModel->viewBookings($userid);
-                $hotelinfo = array();
                 foreach($hotelbookings as $booking){
-                    $hinfo=$this->hotelBookingModel->getHotelIDandName($booking->hotel_id);
-                    $hotelinfo[]=$hinfo->HotelID;
-                    $hotelinfo[]=$hinfo->Name;
+                    $hoteldetails=$this->hotelModel->getHotelById($booking->hotel_id);
+                    $booking->hoteldetails=$hoteldetails;
                 }
                 
                 $data=[
-                    'hotelbookings'=> $hotelbookings,
-                    'IDandName' => $hotelinfo
+                    'hotelbookings'=> $hotelbookings
                 ];
 
                 $this->view('traveler/v_hotelbookings',$data);
@@ -299,7 +296,7 @@
                     'offer'=>$offer
                 ];
                 if ($this->taxiBookingModel->acceptTaxiOffer($data)) {
-                    if ($this->taxiofferModel->acceptTaxiOffer($offerid)) {
+                    if ($this->taxiofferModel->acceptTaxiOffer($offerid,$requestid)) {
                         flash('taxi_booking_flash', 'Offer succesfully accepted placed your booking');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                     }

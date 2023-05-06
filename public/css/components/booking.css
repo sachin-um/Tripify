@@ -117,3 +117,19 @@
     grid-template-columns: repeat(2, 1fr);
     font-size: 1.2rem;
 }
+
+
+.booking-filter-area{
+    display: flex;
+    justify-content: center;
+}
+
+.booking-filter-area input{
+    width: 40%;
+    margin: 0px 40px;
+}
+
+.booking-filter-area select{
+    margin: 0;
+    width: 10%;
+}

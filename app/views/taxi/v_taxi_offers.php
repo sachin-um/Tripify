@@ -64,10 +64,10 @@
                 // echo $taxioffer->RequestID;
             ?>
             <div class="request">
-                <div class="post-header">Request ID : <?php echo $taxioffer->request_id; ?></div>
+                <div class="post-header">Request ID : TR<?php echo $taxioffer->request_id; ?></div>
                     <div class="post-body" style="padding: 40px 50px;">
 
-                        <h5 style="text-align:center;">Offer Details - <?php echo $taxioffer->OfferID ?></h5>
+                        <h5 style="text-align:center;">Offer ID - TO<?php echo $taxioffer->OfferID ?></h5>
                         <div class="req-slot1" style="margin-top:10px">
                             <div class="detail-container" style="margin-right: 20px;">
                                 <div class="header-container">

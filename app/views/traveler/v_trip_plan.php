@@ -49,7 +49,7 @@
             </div>
                     <div class="flex-2">
                         <div class="trip-name">
-                            <h3>Trip ID : <?php echo$data['trip_id'] ?>
+                            <h3>Trip ID : TP<?php echo$data['trip_id'] ?>
                             </h3>
                         </div>
                         <div class="trip-location">

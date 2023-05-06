@@ -73,7 +73,7 @@ else {
         ?>
 
         <div class="request">
-            <div class="post-header">Request ID : <?php echo $taxirequest->request_id; ?></div>
+            <div class="post-header">Request ID : TR<?php echo $taxirequest->request_id; ?></div>
             <i class="fa-sharp fa-solid fa-timer"></i>
             <div class="post-body">
                 <div class="req-slot1">
@@ -155,6 +155,11 @@ else {
                                 <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $taxirequest->contact_no; ?></span></div>
                                 <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($taxirequest->post_at); ?></span></div>
                             
+                        <?php
+                    }
+                    elseif ($_SESSION['user_type']=='Traveler') {
+                        ?>
+                        <div class="post-by" style="margin:auto"><span class="post-by-data">Status: <?php echo $taxirequest->status; ?></span></div>
                         <?php
                     }
                 ?>

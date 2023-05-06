@@ -52,7 +52,7 @@
                         ?>
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
-                            <td data-lable="Name"><?php echo $trip->TourPlanID ?></td>
+                            <td data-lable="Name">TP<?php echo $trip->TourPlanID ?></td>
                             <td data-lable="Name"><?php echo $trip->trip_name ?></td>
                             <td data-lable="Name"><?php echo $trip->location ?></td>
                             <td data-lable="Name"><?php echo $trip->start_date ?></td>
