@@ -222,8 +222,13 @@ else{
                     
                         
                 </div>
+                <?php 
+                    if ($data->UserID!= $_SESSION['user_id']) {
+                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                    }  
+                ?>
             </div>
-
+            
 
             
         </div>
