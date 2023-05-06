@@ -42,7 +42,7 @@
         </div>
         <div class="trip-details-view" id="trip-details-view">
             <div class="white-space">
-                <p class="home-title-2"><?php echo $data['trip_name'] ?></p>
+                <p class="home-title-2"><span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_name'] ?></p></span><input type="text"  name="trip-name" placeholder="<?php echo $data['trip_name'] ?>" value="<?php echo $data['trip_name'] ?>"  class="edit-trip" id="edit-trip" style="width:30%; text-align:center;">
                 <br>
                 <br>
             </div>
@@ -50,23 +50,34 @@
             
                     <div class="flex-2">
                         <div class="trip-name">
-                            <h3>Trip ID : <?php echo$data['trip_id'] ?></h3>
+                            <h3>Trip ID : <?php echo$data['trip_id'] ?>
+                            </h3>
                         </div>
                         <div class="trip-location">
-                            <h3>Area : <?php echo $data['trip_location'] ?></h3>
+                            <h3>Area : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_location'] ?></span><input type="text"  placeholder="<?php echo $data['trip_location'] ?>" value="<?php echo $data['trip_location'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
 
                         <div class="trip-startdate">
-                            <h3>Starting Date : <?php echo $data['start_date'] ?></h3>
+                            <h3>Starting Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['start_date'] ?></span></h3><input type="text"  placeholder="<?php echo $data['start_date'] ?>" value="<?php echo $data['start_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         
                         <div class="trip_enddate">
-                            <h3>End Date : <?php echo $data['end_date'] ?></h3>
+                            <h3>End Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['end_date'] ?></span></h3><input type="text" placeholder="<?php echo $data['end_date'] ?>" value="<?php echo $data['end_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         <div class="trip_edit_button">
-                            <button class="trip-edit-btn" type="submit">Edit</button>    
+                            <button class="profile-btn-edit" style="width: 70%;" id="editbtn">
+                                <i class="fa-solid fa-pen-to-square" style="margin-right: 10px;"></i>
+                                Edit
+                            </button> 
+                            <button class="profile-btn-edit" type="submit" style="width: 70%; display:none;" id="edit-trip-save" >
+                                <i class="fa-solid fa-pen-to-square" style="margin-right: 10px;"></i>
+                                Save
+                            </button>
+                            <button class="profile-btn-edit" style="width: 70%; display:none;" id="edit-trip-cancel" >
+                                <i class="fa-solid fa-pen-to-square" style="margin-right: 10px;"></i>
+                                Cancel
+                            </button>   
                         </div>
-                        
                     </div>
                 </form>
                 <?php flash('trip_flash'); ?>
@@ -105,17 +116,50 @@
                             <?php
                                 $hotel_bookings=$data['hotel_bookings'];
                                 if (!empty($hotel_bookings)) {
-                                    foreach($hotel_booking as $hotel_bookings):
+                                    foreach($hotel_bookings as $hotel_booking):
                                         ?>
-                                            <div class="row"><?php echo $hotel_booking->hotel_id ?></div>
+                                            
+                                            <div class="main-container">
+                                                <i class="fa-solid fa-hotel fa-2xl" style="display: flex; align-items: center"></i>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Stays</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $hotel_booking->hotel_id ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Checking Date</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $hotel_booking->checkin_date ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Checkout Date</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $hotel_booking->checkout_date ?>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">Add another Hotel</button>
+                                            <button class="plan-item-add-another-button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Add another Hotel
+                                            </button>
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">Add a Hotel</button>
+                                    <button class="plan-item-add-button" type="button">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Add a Hotel
+                                    </button>
                                     <?php
                                 }
                             ?>
@@ -131,15 +175,45 @@
                                     foreach($taxi_bookings as $taxi_booking):
                                         ?>
                                             
-                                            <div class="row"><?php echo $taxi_booking->driver_name ?></div>
+                                            <div class="main-container">
+                                                <i class="fa-solid fa-car fa-2xl" style="display: flex; align-items: center"></i>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Taxi</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $taxi_booking->vehicle->vehicle_number ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Booking Date</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $taxi_booking->booking_date ?>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <div class="header-container">
+                                                        <div class="trip-heading">Booking Time</div>
+                                                    </div>
+                                                    <div class="post-tag post-date description">
+                                                        <?php echo $taxi_booking->booking_time ?>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">Add another Guide</button>
+                                            <button class="plan-item-add-another-button" type="button">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Add another Taxi</button>
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">Add a Guide</button>
+                                    <button class="plan-item-add-button" type="button">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Add a Taxi</button>
                                     <?php
                                 }
                             ?>
@@ -157,7 +231,7 @@
                                                 <i class="fa-solid fa-person-walking fa-2xl" style="display: flex; align-items: center"></i>
                                                 <div style="margin-right: 20px;">
                                                     <div class="header-container">
-                                                        <div class="heading">Guide</div>
+                                                        <div class="trip-heading">Guide</div>
                                                     </div>
                                                     <div class="post-tag post-date description">
                                                         <?php echo $guide_booking->guide_name ?>
@@ -165,7 +239,7 @@
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <div class="header-container">
-                                                        <div class="heading">Time</div>
+                                                        <div class="trip-heading">Time</div>
                                                     </div>
                                                     <div class="post-tag post-date description">
                                                         <?php echo $guide_booking->StartingTime ?>
@@ -173,7 +247,7 @@
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <div class="header-container">
-                                                        <div class="heading">Date</div>
+                                                        <div class="trip-heading">Date</div>
                                                     </div>
                                                     <div class="post-tag post-date description">
                                                         <?php echo $guide_booking->StartDate ?>
@@ -183,11 +257,15 @@
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">Add another Guide</button>
+                                            <button class="plan-item-add-another-button" type="button">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Add another Guide</button>
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">Add a Guide</button>
+                                    <button class="plan-item-add-button" type="button">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Add a Guide</button>
                                     <?php
                                 }
                             ?>
@@ -204,10 +282,58 @@
             const add=document.getElementById("trip-details");
             const view=document.getElementById("trip-details-view");
             const plan=document.getElementById("plan-div");
+            const editbtn=document.getElementById('editbtn');
+            const savebtn=document.getElementById('edit-trip-save');
+            const cancelbtn=document.getElementById('edit-trip-cancel');
             if (<?php echo $data['view'] ?>==1) {
                 add.style.display="none";
                 view.style.display="block";
                 plan.style.display="block";
             }
+
+            function toggeleEdit() {
+                event.preventDefault();
+                const elements = document.getElementsByClassName('edit-trip');
+                const elementinfo = document.getElementsByClassName('edit-trip-visible');
+                    Array.from(elements).forEach(function(element) {
+                        // console.log(element);
+                        if (element.style.display === "block") {
+                            
+                            element.style.display = "none";
+                        } else {
+                            console.log(element);
+                            element.style.display = "block";
+                        }
+                });
+                    Array.from(elementinfo).forEach(function(element) {
+                        if (element.style.display === "none") {
+                            element.style.display = "block";
+                        } else {
+                            element.style.display = "none";
+                        }
+                });
+
+                    if (editbtn.style.display === "none") {
+                        editbtn.style.display = "block";
+                    } else {
+                        editbtn.style.display = "none";
+                    }
+
+                    if (savebtn.style.display === "none") {
+                        savebtn.style.display = "block";
+                    } else {
+                        savebtn.style.display = "none";
+                    }
+
+                    if (cancelbtn.style.display === "none") {
+                        cancelbtn.style.display = "block";
+                    } else {
+                        cancelbtn.style.display = "none";
+                    }
+                    
+            }
+            
+            editbtn.addEventListener('click',toggeleEdit);
+            cancelbtn.addEventListener('click',toggeleEdit);
         </script> 
 </div>   

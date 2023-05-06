@@ -76,6 +76,19 @@
             }
         }
 
+        public function TaxiBookingPaymentUpdate($data)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET PaymentStatus="Paid" WHERE ReservationID=:bookingid');
+            $this->db->bind(':bookingid',$data['bookingid']);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
 
         
 

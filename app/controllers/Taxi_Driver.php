@@ -58,7 +58,7 @@
                         'LicenseImgBack_err'=>'',
                         'LicenseImgFront_err'=>''
                     ];
-                    
+
                     if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
 
                     }else{

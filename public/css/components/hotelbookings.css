@@ -38,6 +38,37 @@ tr:nth-child(even){
     background-color: #eeeeee;
 }
 
+#booking-header-hr{
+    width: 80%; 
+    background-color: #03002E; 
+    margin: auto;
+}
+
+.booking-btns{
+    margin: auto;
+    width: 80%;
+}
+
+.view-booking-btns{
+    height: 3.1rem;
+    font-size: 1.1rem;
+    padding: 10px;
+    box-shadow: none;
+}
+
+.view-booking-btns:hover{
+    color: black;
+    border-color: #35BCBF;
+    background-color: #35BCBF;
+    cursor: pointer;
+}
+
+.view-booking-btns.is-active{
+    color: white;
+    border-color: #03002E;
+    background-color: #03002E;
+}
+
 #hotel-support-form{
     margin: auto;
     margin-top: 3%;

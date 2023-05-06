@@ -35,9 +35,10 @@
                     <th>Duration</th>
                     <th>Location</th>
                     <th>Payment</th>
-                    <th>Payment Status</th>
-                    <th>Accept Booking</th>
-                    <th>Ignore Booking</th>
+                    <th>payment Status</th>
+                    <th>booking Status</th>
+                    <th>Action</th>
+                    
                 </tr>
                 <?php
                     //print_r($data);
@@ -47,14 +48,28 @@
                 <tr>
                     <td><?php echo $booking->DateAdded?></td>
                     <td><?php ?> </td>
-                    <td><?php echo $booking->ReservedDate?> </td>
+                    <td><?php echo $booking->StartDate?> </td>
                     <td><?php echo $booking->StartingTime?> </td>
                     <td><?php echo $booking->Duration?> </td>
                     <td><?php echo $booking->Location?> </td>
                     <td><?php echo $booking->payment?> </td>
                     <td><?php echo $booking->PaymentStatus?> </td>
-                    <td><button id="guide_booking">Accept</button></td>
-                    <td><button id="guide_booking">Ignore</button></td>
+                    <td><?php echo $booking->status?> </td>
+
+                    <?php
+                                if ($booking->status=='Yet To Confirm') {
+                                    ?>
+                                    
+                                    <td data-lable="Name">
+                                        <a href="<?php echo URLROOT; ?>/Bookings/acceptGuideOffer/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">Confirm</button></a>
+                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+                                    </td>
+                                    <?php
+                                }
+                               
+                               
+                            ?>
+
                 </tr>
                 <?php
                     endforeach;

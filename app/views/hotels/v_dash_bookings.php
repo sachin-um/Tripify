@@ -16,37 +16,67 @@ else {
 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<?php require APPROOT.'/views/inc/components/sidebars/hotel_sidebar.php'; ?>
+<aside class="sidebar">
+
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="<?php echo URLROOT; ?>/Hotels/load" class="menu-item">Account</a>
+            <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item">Rooms</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item is-active">Bookings</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadPayments" class="menu-item">Payments</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
+            <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
+        </nav>
+    </aside>
 
 
 <main class="right-side-content">
     <br><br>
-    <p class="home-title-2">Bookings</p>
-    <div class="hotel-bookings-main-div">
+    <p class="home-title-2">Your Bookings</p><br>
+
+    <div class="booking-btns">
+        <button class="view-booking-btns is-active">Current Bookings</button>
+        <button class="view-booking-btns">Past Bookings</button>
+        <button class="view-booking-btns">Canceled Bookings</button>
+    </div>
+    <hr id="booking-header-hr">
+    <div class="hotel-bookings-main-div" style="margin-left: 6%;">
+        
         <table>
     
             <tr>
                 <th>BookingID</th>
-                <th>Customer Name</th>
+                <th>CustomerID</th>
                 <th>Date Added</th>
+                <th>Check In</th>
+                <th>Check Out</th>
                 <th>Payment Amount</th>
-                <th>Room ID</th>
-                <th>Payment Status</th>
-                <th>View Details</th>
+                <th>View</th>
             </tr>
 
-            
+            <?php
+            foreach($data['bookings'] as $booking):
+            ?>
             <tr>
-                <td>B1045</td>
-                <td>Danapala Gunasekara</td>
-                <td>2023.02.10</td>
-                <td>17850.00</td>
-                <td>R2424</td>
-                <td>Unpaid</td>
+                <td><?php echo $booking->booking_id;?></td>
+                <td><?php echo $booking->TravelerID;?></td>
+                <td><?php echo $booking->date_added; ?></td>
+                <td><?php echo $booking->checkin_date; ?></td>
+                <td><?php echo $booking->checkout_date; ?></td>
+                <td><?php echo $booking->payment; ?></td>
                 <td><button>View</button></td>
             </tr>
+            <?php
+            endforeach;
+            ?>
 
         </table>
+        <br><br>
     </div>
     
 </main>

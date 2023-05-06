@@ -42,6 +42,7 @@ else {
         <br>
         <h2 style="text-align: left;">Hotel Bookings</h1>
         <hr>
+        <?php flash('booking_flash'); ?>
         <br>
         <div class="first-container">
             <div class="admin-table-container">
@@ -135,11 +136,13 @@ else {
                     </tbody>
                 </table>
             </div>
-            
+            <div id="popup" class="trip-popup">
+                <div id="popup-content" class="trip-popup-content"></div>
+            </div>
         </div>
     </main>
  </div>
-
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
  <?php
 }
 ?>

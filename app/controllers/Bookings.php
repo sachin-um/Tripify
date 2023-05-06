@@ -6,11 +6,13 @@
         public function __construct(){
             $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
             $this->guideBookingModel=$this->model('M_Guide_Bookings');
+            $this->hotelModel=$this->model('M_Hotels');
             $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
+            $this->roomBookingModel=$this->model('M_Hotel_Rooms');
             $this->taxiofferModel=$this->model('M_Taxi_Offers');
             $this->guideofferModel=$this->model('M_Guide_Offers');
             $this->taxirequestModel=$this->model('M_Taxi_Request');
-            $this->guiderequestModel=$this->model('M_Guide_Request');
+            $this->guiderequestModel=$this->model('M_Guide_Request'); 
             $this->guideModel=$this->model('M_Guides');
             
             
@@ -18,15 +20,25 @@
 
         public function index(){
 
+
         }
-        public function HotelBookings($usertype,$userid)
-        {
+
+        public function HotelBookings($usertype,$userid){
             
             if ($usertype=='Traveler') {
-                $hotelbookings=$this->hotelBookingModel->viewBookings($usertype,$userid);
+                $hotelbookings=$this->hotelBookingModel->viewBookings($userid);
+                $hotelinfo = array();
+                foreach($hotelbookings as $booking){
+                    $hinfo=$this->hotelBookingModel->getHotelIDandName($booking->hotel_id);
+                    $hotelinfo[]=$hinfo->HotelID;
+                    $hotelinfo[]=$hinfo->Name;
+                }
+                
                 $data=[
-                    'hotelbookings'=> $hotelbookings
+                    'hotelbookings'=> $hotelbookings,
+                    'IDandName' => $hotelinfo
                 ];
+
                 $this->view('traveler/v_hotelbookings',$data);
             }
         }
@@ -47,9 +59,7 @@
                     redirect('Bookings/HotelBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                 }
             }
-        }
-
-        
+        }        
 
         public function GuideBookings($usertype,$userid)
         {
@@ -62,7 +72,7 @@
             }
             else if ($usertype=='Guide') {
                 $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
-                print_r($guidebookings);
+                // print_r($guidebookings);
                 $data=[
                     'guidebookings'=> $guidebookings
                 ];
@@ -71,26 +81,52 @@
         }
 
         public function CancelGuideBooking($bookingid){
-            $booking=$this->GuideBookingModel->getGuideBookingbyId($bookingid);
-            if ($booking->TravelerID!=$_SERVER['user_id']) {
-                flash('reg_flash', 'Access Denied...');
-                redirect('Users/login');
-            }
-            elseif ($booking->status!='Yet To Confirm') {
-                flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-                redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            }
-            else {
-                if($this->GuideBookingModel->cancelBooking($bookingid)){
-                    flash('booking_flash', 'Guide Booking is Canceled');
-                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-                }
-                else {
-                    flash('booking_flash', 'Somthing went wrong try again');
-                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-                }
-            }
+            echo $bookingid."///";
+            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingid);
+            var_dump($booking);
+            // if ($booking->TravelerID==$_SERVER['user_id']) {
+
+            //     if ($booking->status!='Yet To Confirm') {
+            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //     }
+            //     else {
+            //         if($this->GuideBookingModel->cancelBooking($bookingid)){
+            //             flash('booking_flash', 'Guide Booking is Canceled');
+            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //         }else {
+            //             flash('booking_flash', 'Somthing went wrong try again');
+            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //         }
+            //     }
+
+            // }else if($_SESSION['user_type']=='Guide'){
+            //     if ($booking->status!='Yet To Confirm') {
+            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //     }
+            //     else {
+            //         if ($booking->status=='Yet To Confirm') {
+            //             if($this->GuideBookingModel->cancelBooking($bookingid)){
+            //                 flash('booking_flash', 'Guide Booking is Canceled');
+            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //             }else {
+            //                 flash('booking_flash', 'Somthing went wrong try again');
+            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+            //             }
+            //         }
+            //     }
+
+            // }
+            // else{
+            //     flash('reg_flash', 'Access Denied...');
+            //     redirect('Users/login');
+            // }
         }
+            
+        
+    
+
 
         public function acceptGuideOffer($offerid,$requestid){
             $request=$this->guiderequestModel->getGuideRequestById($requestid); 
@@ -151,7 +187,7 @@
                     $vehicleDetails = $this->taxiBookingModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
                     $taxibookings->Name = $vehicleDetails->Name;
                     $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
-        
+                    $taxibookings->vdetails=$vehicleDetails;
                 $data = [
                     'taxibookings' => $taxibookings
                 ];
@@ -186,7 +222,7 @@
                 }
             }else if($_SESSION['user_type']=='Taxi'){
                  
-                if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+                if($booking->TaxiOwnerID == $_SERVER['user_id']){
                     if($this->taxiBookingModel->cancelBooking($bookingid)){
                         flash('booking_flash', 'Taxi Booking is Canceled');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -206,7 +242,7 @@
             
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
 
-            if($bookings->TaxiOwnerID == $_SERVER['user_id']){
+            if($booking->TaxiOwnerID == $_SERVER['user_id']){
                 if($this->taxiBookingModel->confrimBooking($ReservationID)){
                     flash('booking_flash', 'Confrimed Success');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
@@ -305,12 +341,14 @@
 
         // }
 
+
         // public function CalculateExtimateTime($pickupL,$dropL){
            
       
 
         //     $origin = $pickupL;
         //     $destination =$dropL;
+
             
         //     $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' . urlencode($origin) . '&destinations=' . urlencode($destination) . '&mode=driving&units=metric&key=AIzaSyCo0cnVa0-HmEMm2M5wGXP_DQ37Z2L0teo';
 
@@ -490,19 +528,20 @@
                     
                     $_SESSION['booking_data'] = $data;
 
-                    $this->view('taxi/v_bookings',$data);
+                    //$this->view('taxi/v_bookings',$data);
 
             }else{
                 
 
                 $data=[
                     'guidedetails'=>$guideDetails,
-                    'guideLanguages'=>$guidelanguages
+                    'guideLanguages'=>$guidelanguages,
+                    'GuideID'=>$guideDetails->GuideID
                    
                 ];
                 
                 
-                // echo var_dump($data);
+                echo var_dump($data);
                 $this->view('guide/v_check_availability',$data);
                 
             }
@@ -511,6 +550,10 @@
         }
 
         public function checkGuideAvailability($GuideID){
+            $guideDetails=$this->guideModel->getGuideById($_POST['gid']);
+            // echo "id123:".$_POST['gid'];
+            $guideLangs=$this->guideBookingModel->getGuideLangs($_POST['gid']);
+            
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
                 $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -520,9 +563,13 @@
                     'enddate' =>trim($_POST['endDate']),
                     'guideName' => $_POST['gname'],
                     'guideReg' => $_POST['greg'],
-                    'guideRate' => $_POST['grate']
-                    // 'guideLanguages' => $_POST['data']
+                    'guideRate' => $_POST['grate'],
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages' => $guideLangs
+
                 ];
+
+                // var_dump($data);
                 
 
                 $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
@@ -575,6 +622,132 @@
                     die('Something went wrong');
                 }
                 unset($_SESSION['booking_data']);
+
+        }
+
+
+        public function checkRoomAvailability(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+                $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+                $checkin = $_POST['date-1'];
+                $hotelID = trim($_POST['hotelID']);
+                $_SESSION['checkin'] = $checkin;
+                $checkout = $_POST['date-2'];
+                $_SESSION['checkout'] = $checkout;
+                $noofadults =trim($_POST['noofadults']);
+
+                $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+                $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
+                
+                $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
+
+                //The array with booked records
+                // echo "This is the bookedrecords thingy"."<br>";
+                // print_r($bookedrecords)."<br>";
+
+                //get all room types and their total number
+                $allrooms = array();
+                foreach($allroomtypes as $roomtype){
+                    $allrooms[] = $roomtype->RoomTypeID;
+                    $allrooms[] = $roomtype->no_of_rooms;
+                }
+
+                
+
+                // get bookedrecords' room types and no of them
+                $bookedrooms = array();
+                foreach($bookedrecords as $record){
+                    $bookedrecordsarray = explode(",",$record->roomTypes);
+                    // print_r($bookedrecordsarray)."<br>";
+                    foreach($bookedrecordsarray as $a){
+                        $bookedrooms[] = $a;
+                    }
+                }
+                
+
+                for($i=0;$i<count($allrooms);$i=$i+2){
+                    if(!empty($bookedrooms)){
+                        for($j=0;$j<count($bookedrooms);$j=$j+2){
+                            if($allrooms[$i]==$bookedrooms[$j]){
+                                $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                            }
+                        }
+                    }                    
+                }
+
+                // print_r($allrooms); 
+
+                $data=[
+                    'hotelID'=>$hotelID,
+                    'profileDetails'=>$profileDetails,
+                    'profileName'=> $profileDetails->Name,
+                    'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
+                    'allroomtypes'=> $allroomtypes,
+                    'description'=>$profileDetails->Description,
+                    'availablerooms'=>$allrooms
+                    // 'noofadults' => $data['noofadults']
+                    // 'profileName'=> $profileDetails->Name,
+                    // 'profileName'=> $profileDetails->Name
+    
+                ];
+                $this->view('hotels/v_hotel_details_page',$data);
+            }
+    
+        }
+
+        public function placeBooking($hotelID){
+            $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
+            $lastBooking=$this->roomBookingModel->getBookingID();
+            $bookingID = (int)$lastBooking->booking_id+1;
+
+            //get the roomTypes and their respective numbers
+
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                
+                $total = 0;
+                $temp = 0; 
+                $newarray = array();
+
+                //Get the total price for the booked rooms
+                foreach($_POST as $value){
+                    $newarray[] = $value;
+                }
+                
+                // print_r($newarray);
+                for($i=2;$i<count($newarray);$i=$i+3){
+                    $temp = floatval($newarray[$i])*intval($newarray[$i+1]);
+                    $total = $total+$temp;
+                }
+
+                //Get no of booked rooms from each type
+                $noofeachbookedrooms = array();
+                for($i=3;$i<count($newarray);$i=$i+3){
+                    if($newarray[$i]!=0){
+                        $noofeachbookedrooms[] = $newarray[$i];
+                    }
+                    
+                }
+
+        public function TaxiBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+                // flash('booking_flash', 'Your Payment is recieved  Thank You..!');\
+                // redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
         }
 
         public function getTaxiBooking($id)
@@ -588,6 +761,113 @@
         
 
 
+                //Get booked room names
+                $bookedRoomNames = array();
+                for($i=1;$i<count($newarray);$i=$i+3){
+                    if($newarray[$i+2]!=0){
+                        $bookedRoomNames[] = $newarray[$i];
+                    }                    
+                }
+
+                //Get booked room IDs
+                $a = 0;
+                $bookedRoomIDs = array();
+                foreach ($_POST as $index => $value) {
+                    if ($a!=0 && $a%3 == 0) {
+                        $bookedRoomIDs[] = $index;
+                        $bookedRoomIDs[] = $value;
+                    }
+                    $a = $a + 1;
+                }
+
+                $b = 0;
+                foreach($bookedRoomIDs as $ID) {
+                    if ($ID == 0) {
+                        unset($bookedRoomIDs[$b]);
+                        unset($bookedRoomIDs[$b-1]);
+                    }
+                    $b = $b+1;
+                }
+                
+                // print_r($bookedRoomIDs)."<br>";
+                // echo gettype($bookedRoomIDs);
+
+                // Convert the array to a string with a comma separator
+                $roomIDstring = implode(",", $bookedRoomIDs);
+
+                $_SESSION['roomIDs'] = $bookedRoomIDs;
+                 
+                $data=[
+                    'hotelID'=>trim($_POST['hotelID']),
+                    'TravelerID'=>$_SESSION['user_id'],
+                    'payment' =>$total,
+                    'postedValues' => $_POST,
+                    'noofbookedrooms' => $noofeachbookedrooms,
+                    'bookedRoomIDs' => $bookedRoomIDs,
+                    'bookedRoomNames' => $bookedRoomNames,
+                    'bookingID' => $bookingID,
+                    'roomIDstring' => $roomIDstring,
+                    'bookingType' => "hotel"
+                ];               
+                
+
+                $this->view('hotels/v_confirmBooking', $data);
+            }
+            
+        }
+
+        public function booking(){
+           
+            $hotelID = $_POST['hotelID'];
+            $payment = $_POST['payment'];
+            $paymentM = $_POST['paymentMethod'];
+
+            // $lastBooking=$this->roomBookingModel->getBookingID();
+            // $bookingID = (int)$lastBooking->booking_id+1;
+
+            $paymentMethod = "Not known";
+            if($paymentM==1){
+                $paymentMethod = "Online";
+            }else{
+                $paymentMethod = "On Site";
+            }
+
+            $data=[
+                'hotelID' => intval($hotelID),
+                'travelerID' => $_SESSION['user_id'],
+                'payment' => intval($payment),
+                'paymentMethod' => $paymentMethod,
+                'checkin' => $_SESSION['checkin'],
+                'checkout' => $_SESSION['checkout'],
+                'bookingID' => ''
+            ];
+
+
+            // print_r($_POST['roomIDs']);
+            if ($this->hotelBookingModel->addHotelBooking($data)) {
+                flash('reg_flash', 'You booking was successful');
+
+                echo json_encode(true);
+                
+            }else{
+                echo json_encode(false);
+            }
+                
+                //     // redirect('Bookings/HotelBookings/Traveler/'+$_SESSION['user_id']);
+                
+            // } else {
+            //     echo json_encode(0);
+            //     //die('Something went wrong');
+            // }
+
+            
+            
+        }
+
+        public function showAllHotelBookings(){
+            $this->roomBookingModel->getBookingID();
+            
+        }
 
     }
 ?>

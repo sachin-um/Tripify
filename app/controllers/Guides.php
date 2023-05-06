@@ -243,8 +243,11 @@
         }
 
         public function viewGuideBookings(){
+
+            $data=[]; 
             
-            $this->view('guide/v_guide_bookings');
+            $this->view('guide/v_guide_bookings',$data);
+
         }
 
         public function loadBooking(){

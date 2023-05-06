@@ -187,6 +187,88 @@
             }
         }
 
+        //edit hotel user details
+        public function editHotelDetails($hotelID){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($hotelID==$_SESSION['user_id']) {
+                    $data=[
+                        'profile-img'=>$_FILES['profile-imgupload'],
+                        'profile-img_name'=>time().'_'.$_FILES['profile-imgupload']['name'],
+                        'name'=>trim($_POST['name']),
+                        'contactno'=>trim($_POST['contact-number']),
+                        'id'=>$hotelID
+                    ];
+
+                    if (uploadImage($data['profile-img']['tmp_name'],$data['profile-img_name'],'/img/profileImgs/')) {
+                        if ($this->userModel->editHotelDetails($data)) {
+                            unset($_SESSION['user_profile_image']);
+                            $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                            $_SESSION['user_profile_image']=$user->profileimg;
+
+                            redirect('Pages/profile');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                    }
+                    else {
+                        
+                        flash('img_flash', 'Image Upload Failed'.$data['profile-img_name']);
+                        redirect('Pages/profile');
+                    }
+    
+                    
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+                
+            }
+        }
+
+        //edit hotel profile details
+        public function editHotelProfileDetails($hotelID){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($hotelID==$_SESSION['user_id']) {
+                    $data=[
+                        'id'=>$hotelID,
+                        'name'=>trim($_POST['name']),
+                        'line1'=>trim($_POST['line1']),
+                        'line2'=>trim($_POST['line2']),
+                        'district'=>trim($_POST['district']),
+                        'rating'=>trim($_POST['rating']),
+                        'category'=>$_POST['category'],
+                        'pets'=>$_POST['pets'],
+                        'checkin'=>$_POST['checkin'],
+                        'checkout'=>$_POST['checkout'],
+                        'regNo'=>$_POST['regNo'],                       
+                        'description'=>$_POST['description'],                      
+                        'contact'=>trim($_POST['contact'])                      
+                    ];
+
+                    if ($this->userModel->editHotelDetails($data)) {
+                            flash('reg_flash', 'Successfully Updated');
+                            redirect('Hotels/load');
+                        }
+                        else{
+                            flash('reg_flash', 'Could not update profile. Try again later.');
+                            redirect('Hotels/load');
+                        }   
+                    
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+                
+            }
+        }
+
         //login
         public function login($usertype=NULL){
             if ($_SERVER['REQUEST_METHOD']=='POST') {

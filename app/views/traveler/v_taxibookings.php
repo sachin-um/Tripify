@@ -107,7 +107,7 @@ else {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
                                             
-                                                <button class="pay-btn" type="button" style="margin-top:10px">
+                                                <button class="pay-btn" type="button" style="margin-top:10px" onclick="paymentGateway('Taxi',<?php echo $booking->Price ?>,<?php echo  $booking->ReservationID ?>,<?php echo  $booking->vehicle->OwnerID ?>,'<?php echo URLROOT; ?>')">
                                                     <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
                                                     Pay Now
                                                 </button>
@@ -133,13 +133,13 @@ else {
                                 }
                                 elseif ($booking->status=='Finished') {
                                     ?>
-                                    <img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                    
                                     <br>
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
-                                    <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">Canceled
+                                    
                                     <?php
                                 }
                             ?>
@@ -151,16 +151,17 @@ else {
                     </tbody>
                 </table>
             </div>
-            
+            <div id="popup" class="trip-popup">
+                <div id="popup-content" class="trip-popup-content"></div>
+            </div>
         </div>
-        <div id="popup" class="request-popup">
-                <div id="request-content" class="request-popup-content">
-                </div>
-        </div>
+        
     </main>
  </div>
 
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
+ <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/payment/payment.js"></script>
  <script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
  <script>
     var map;

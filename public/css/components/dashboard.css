@@ -97,6 +97,8 @@
 
  .first-container{
    display: flex;
+   width: 95%;
+   margin: auto;
  }
 
  .profile-description {
@@ -114,7 +116,6 @@
  .sub-description{
    margin-top: 15px;
    display: flex;
-
  }
 
  .sub-sub{
@@ -127,6 +128,16 @@
  }
 
  .sub-sub-edit{
+   width: 50%;
+   display: none;
+ }
+
+ .info1{
+   width: 50%;
+   display: block;
+ }
+
+ .sub-sub-edit-1{
    width: 50%;
    display: none;
  }
@@ -158,6 +169,7 @@
    font-size: 20px;
    cursor: pointer;
    height: 60px;
+
 }
 
 .profile-btn-edit:hover{
@@ -187,6 +199,7 @@
 }
 
 .profile-btn-cancel{
+
    background-color: #03002E;
    color: #FFFFFF;
    border-radius: 12px;

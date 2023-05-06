@@ -101,11 +101,13 @@
                         'AC'=>trim($_POST['ac']) ?? '',
                         'media'=>trim($_POST['media'] ?? ''),
                         'wifi'=>trim($_POST['wifi'] ?? ''),      
+
                         'owner'=>$_SESSION['user_id'],
                         
                         'vehicle_imgs_err'=>'',
                         'price_per_km_err'=>'',
                         'noOfSeats_err'=>'',
+
 
     
                     ];
@@ -279,6 +281,7 @@
                 $uploaded_files = $_FILES['vehicleImgs'];
 
                 $num_files = count($uploaded_files['name']);
+
             
                 $vehicle_image_names = array();
 
@@ -313,6 +316,7 @@
                 }
 
 
+
                 if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
                     flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
                     redirect('Taxi_Vehicle/viewvehicles');
@@ -321,6 +325,7 @@
                     flash('vehicle_flash', 'Vehicle update is Unsuccusefull..!');
                     redirect('Taxi_Vehicle/viewvehicles');
                 }    
+
 
 
 
