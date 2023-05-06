@@ -57,8 +57,8 @@ else {
                             <th>Booking Time</th>
                             <th>Pickup Location</th>
                             <th>Destination</th>
-                            <th>Distance</th>
                             <th>Payment</th>
+                            <th>Payment Status</th>
                             <th>Booking Status</th>
                             <th>Action</th>
                         </tr>
@@ -76,8 +76,9 @@ else {
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
                             <td data-lable="Message"><?php echo $booking->destination ?></td>
-                            <td data-lable="Message"><?php echo $booking->distance ?></td>
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
+                            <td data-lable="Message"><?php echo $booking->PaymentStatus ?></td>
+                    
                             <td data-lable="Message"><?php echo $booking->status ?></td>
                             <td data-lable="Name">
                             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookingsDetails/<?php echo $booking->ReservationID ?>"><button class="edit-btn" type="button">View</button></a>

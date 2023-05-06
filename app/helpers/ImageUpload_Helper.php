@@ -33,7 +33,7 @@
         }
     
         for ($i = 0; $i < $num_images; $i++) {
-            $name = time() . '_' . $image_names[$i];
+            $name = $image_names[$i];
             $uploaded_image_names[] = $name;
             if (!move_uploaded_file($new_images['tmp_name'][$i], PUBROOT . $location . $name)) {
                 // handle error and return
@@ -52,7 +52,7 @@
         $flag=true;
     
         for ($i = 0; $i < $num_images; $i++) {
-            $name = time() . '_' . $image_names[$i];
+            $name =  $image_names[$i];
             $uploaded_image_names[] = $name;
             if (!move_uploaded_file($new_images['tmp_name'][$i], PUBROOT . $location . $name)) {
                 // handle error and return

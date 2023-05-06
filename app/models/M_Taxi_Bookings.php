@@ -46,6 +46,21 @@
             }
         }
 
+        public function CompleteTaxiBooking($id)
+        {
+            $this->db->query('UPDATE `taxi_reservation` SET status="Completed" WHERE ReservationID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public function cancelBooking($id)
         {
             $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');

@@ -49,8 +49,15 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
                     foreach($allvehicles as $vehicle):
                 ?>
                     <div class="taxi_view_v_dash">
+                        
+
+                
+                        <div id="slideshow-container-<?php echo $vehicle->VehicleID?>">
+                            <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
+                                <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:15em;max-height: 10em; object-fit: contain;">
+                            <?php } ?>
+                        </div>
                     
-                    <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch" style="width: 250px;">
                     <h3><?php echo $vehicle->vehicle_number?></h3>
                     <article class="taxi_view_v_art" >
             
@@ -126,3 +133,48 @@ else {
     redirect('Pages/home');
 }
 ?>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+<script>
+let slideIndex = 0;
+
+function slideshow(images) {
+    let i;
+    
+    for (i = 0; i < images.length; i++) {
+        images[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > images.length) { slideIndex = 1 }
+    images[slideIndex - 1].style.display = "block";
+    const newImage=[];
+    for (i = 0; i < images.length; i++) {
+        if (i == 0) {
+            newImage[images.length - 1] = images[i];
+        }
+        newImage[i] = images[(i + 1) % images.length];
+    }
+
+    setTimeout(function() {
+        slideshow(newImage);
+    }, 2000); // Change image every 2 seconds
+}
+
+function showSlideShow(vid) {
+    const container = document.getElementById("slideshow-container-" + vid);
+    const images = container.getElementsByClassName("slideshow-image-" + vid);
+    console.log(images);
+    
+    slideshow(images);
+}
+
+// Call the showSlideShow function for each slideshow container
+const containers = document.querySelectorAll("[id^='slideshow-container-']");
+for (let i = 0; i < containers.length; i++) {
+    const vid = containers[i].id.split("-")[2];
+    
+    showSlideShow(vid);
+}
+</script>
+
+

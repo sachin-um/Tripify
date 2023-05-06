@@ -8,19 +8,17 @@ class M_Taxi_Driver{
         }
 
         public function addtaxidriver($data){
-            $this->db->query('INSERT INTO taxi_drivers(OwnerID,profileImg,Age,Name,contact_number,LicenseNo) VALUES(:OwnerID,:profileImg,:Age,:Name,:contact_number,:LicenseNo)');
+            $this->db->query('INSERT INTO taxi_drivers(OwnerID,profileImg,Age,Name,contact_number,LicenseNo,LicenseImgFront,LicenseImgBack) VALUES(:OwnerID,:profileImg,:Age,:Name,:contact_number,:LicenseNo,:LicenseImgFront,:LicenseImgBack)');
             $this->db->bind(':OwnerID',$data['owner']);
             $this->db->bind(':profileImg',$data['profile_image_name']);
+            $this->db->bind(':LicenseImgFront',$data['LicenseImgFront_name']);
+            $this->db->bind(':LicenseImgBack',$data['LicenseImgBack_name']);
             $this->db->bind(':Age',$data['age']);
             $this->db->bind(':Name',$data['name']);
             $this->db->bind(':contact_number',$data['contact_number']);
             $this->db->bind(':LicenseNo',$data['licenseno']);
 
 
-
-            
-            
-    
             if ($this->db->execute()) {
                 
                 return true;

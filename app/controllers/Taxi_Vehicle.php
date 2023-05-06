@@ -32,9 +32,21 @@
             
             $allvehicles=$this->taxi_vehicleModel->viewall($user_id);
 
+            foreach($allvehicles as $vehicle){
+                $vehicle_images_str = $vehicle->Vehicle_Images; // Example string from the database
+                $vehicle_images_array = explode(",", $vehicle_images_str);
+                $vehicle->vehicle_images_arr=$vehicle_images_array;
+
+            }
+
+             
+           
+            
+
             $data=[
                 'vehicles'=> $allvehicles
             ];
+            // var_dump($data);
             $this->view('taxi/v_taxi_vehicles',$data);
         }
 
@@ -60,9 +72,24 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
+                $uploaded_files = $_FILES['vehicleImgs'];
+
+                $num_files = count($uploaded_files['name']);
+            
+                $vehicle_image_names = array();
+
+            
+                for ($i=0; $i<$num_files; $i++) {
+                    $name = time().'_'.$uploaded_files['name'][$i];
+                    $vehicle_image_names[] = $name;
+
+                }
+
             
                 $data=[ 
+                        'drivers'=> $alldrivers,
                         'driver'=>trim($_POST['driver']),
+                        'vehicle_image_names'=>$vehicle_image_names,
                         'vehicleType'=>trim($_POST['type']),
                         'model'=>trim($_POST['model']),
                         'yearofProduction'=>trim($_POST['year']),
@@ -74,14 +101,15 @@
                         'AC'=>trim($_POST['ac']) ?? '',
                         'media'=>trim($_POST['media'] ?? ''),
                         'wifi'=>trim($_POST['wifi'] ?? ''),      
-                        'owner'=>$_SESSION['user_id']                 
+                        'owner'=>$_SESSION['user_id'],
+                        
+                        'vehicle_imgs_err'=>'',
+                        'price_per_km_err'=>'',
+                        'noOfSeats_err'=>'',
 
     
                     ];
 
-                    
-
-                    
 
 
                 // //validate driver
@@ -116,13 +144,47 @@
                 // if (empty($data['noOfSeats'])) {
                 //     $data['noOfSeats_err']='please enter No of seats in your vehicle';
                 // }
-                
-                
+                $current_year = date('Y');
+                echo $current_year;
+                if($current_year<$data['yearofProduction']){
+                    $data['yearofProduction_err']="Please enter valid year";
+                }
 
 
-                // if (empty($data['driver_err']) &&  empty($data['vehicleType_err']) && empty($data['model_err']) && empty($data['yearofProduction_err']) && empty($data['vehicleNumber_err']) && empty($data['price_per_km_err']) && empty($data['noOfSeats_err'])) {
+                if($data['vehicleType'] == "Bus"){
+                    if($data['noOfSeats']>70){
+                        $data['noOfSeats_err']='Number of seats out of range';
+                    }
+                }else if($data['vehicleType'] == "Tuk Tuk"){
+                    if($data['noOfSeats']>3){
+                        $data['noOfSeats_err']='Number of seats out of range';
+                    }
+                }else if($data['vehicleType'] == "Van"){
+                    if($data['noOfSeats']>15){
+                        $data['noOfSeats_err']='Number of seats out of range';
+                    }
+                }else if($data['vehicleType'] == "Car"){
+                    if($data['noOfSeats']>7){
+                        $data['noOfSeats_err']='Number of seats out of range';
+                    }
+                }
+
+                if($data['price_per_km']>1000){
+                    $data['price_per_km_err']='Price Per KM out of range';
+                }
+
+
+                if(!uploadImageGallary($vehicle_image_names, $uploaded_files, '/img/vehicle_images/')) {
+                    $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
                     
-                    //Add a Taxi Request
+                }
+                
+                
+
+
+                if (empty($data['vehicle_imgs_err']) && empty($data['noOfSeats_err']) && empty($data['price_per_km_err']) && empty($data['yearofProduction_err']) ) {
+                    
+                   
                     if ($this->taxi_vehicleModel->addtaxivehicle($data)) {
                         flash('vehicle_flash', 'Your Vehicle is Succusefully added..!');
                         redirect('Taxi_Vehicle/viewvehicles');
@@ -130,10 +192,10 @@
                     else{
                         die('Something went wrong');
                     }
-                // }
-                // else {
-                //     $this->view('taxies/add_vehicle',$data);
-                // }
+                }
+                else {
+                    $this->view('taxi/add_taxi_vehicle',$data);
+                }
 
 
 
@@ -144,8 +206,10 @@
                     'drivers'=> $alldrivers,
 
                     'driver'=>'',
+                    'vehicle_image_names'=>'',
                     'vehicleType'=>'',
                     'model'=>'',
+                    'color'=>'',
                     'yearofProduction'=>'',
                     'vehicleNumber'=>'',
                     'area'=>'',
@@ -164,6 +228,7 @@
                     'media'=>"",
                     'wifi'=>"",
                     'price_per_km_err'=>'',
+                    'vehicle_imgs_err'=>'',
 
 
                 ];
@@ -204,25 +269,29 @@
           
             if ($_SERVER['REQUEST_METHOD']=='POST') {
 
-                //Data validation
+ 
+
+
+
+                // Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
                 $uploaded_files = $_FILES['vehicleImgs'];
-                var_dump($_FILES['vehicleImgs']);
-                // $num_files = count($uploaded_files['name']);
+
+                $num_files = count($uploaded_files['name']);
             
-                // $vehicle_image_names = array();
-                // // $vehicle_old_image_names = array();
+                $vehicle_image_names = array();
+
             
-                // for ($i=0; $i<$num_files; $i++) {
-                //     $name = time().'_'.$uploaded_files['name'][$i];
-                //     $vehicle_image_names[] = $name;
-                //     echo $name;
-                // }
+                for ($i=0; $i<$num_files; $i++) {
+                    $name = time().'_'.$uploaded_files['name'][$i];
+                    $vehicle_image_names[] = $name;
+
+                }
 
                 $data=[
                     'driverID'=>trim($_POST['driverID']),
-                    // 'vehicle_image_names'=>$vehicle_image_names,
+                    'vehicle_image_names'=>$vehicle_image_names,
                     'area'=>trim($_POST['area']),
                     'color'=>trim($_POST['color']),
                     'no_of_seats'=>trim($_POST['noOfSeats']),
@@ -237,24 +306,21 @@
 
                     var_dump($data);
 
-                // if(uploadImageGallary($vehicle_image_names, $uploaded_files['name'], '/img/vehicle_images/')) {
-                        
-                // }else{
-                //     $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
-                //     // handle error and return
-                // }
+                if(!uploadImageGallary($vehicle_image_names, $uploaded_files, '/img/vehicle_images/')) {
+                    $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
+                    flash('vehicle_flash', 'Vehicle Image Uploading is Unsuccusefull..!');
+                    redirect('Taxi_Vehicle/viewvehicles');
+                }
 
-            
-                
 
-                    // if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
-                    //     flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
-                    //     redirect('Taxi_Vehicle/viewvehicles');
-                    // }
-                    // else{
-                    //     die('Something went wrong');
-                    // }
-                
+                if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {
+                    flash('vehicle_flash', 'Vehicle is Succusefully Updated..!');
+                    redirect('Taxi_Vehicle/viewvehicles');
+                }
+                else{
+                    flash('vehicle_flash', 'Vehicle update is Unsuccusefull..!');
+                    redirect('Taxi_Vehicle/viewvehicles');
+                }    
 
 
 
@@ -264,6 +330,11 @@
                 $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
 
                 $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
+
+                
+                $vehicle_images_str = $taxiVehicle->Vehicle_Images; // Example string from the database
+                $vehicle_images_arr = explode(",", $vehicle_images_str);
+
                 
                 if ($taxiVehicle->OwnerID !=$_SESSION['user_id']) {
                     flash('vehicle_flash', 'You need to have logged in first...');
@@ -284,7 +355,8 @@
                         'price_per_km'=>$taxiVehicle->price_per_km,
                         'AC'=>$taxiVehicle->AC,
                         'media'=>$taxiVehicle->media,
-                        'wifi'=>$taxiVehicle->wifi,     
+                        'wifi'=>$taxiVehicle->wifi,
+                        'vehicle_images_arr'=>$vehicle_images_arr,     
                         'owner'=>$_SESSION['user_id'] 
 
                 ];

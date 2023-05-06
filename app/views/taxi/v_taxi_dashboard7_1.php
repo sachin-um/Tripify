@@ -41,6 +41,7 @@ else {
     <main class="right-side-content">
     <div class="taxi_off_cont">
         <div>
+        <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>?>"><button id="tax_book_backBut">Back</button></a><br>
             <h2 class="title" >Bookings</h2>
             <hr>
             <?php flash('booking_flash'); ?>
@@ -79,10 +80,7 @@ else {
                             <td data-lable="Message"><?php echo $data['taxibookings']->distance ?></td>
                         </tr>
 
-                        <tr>
-                            <th>Payment</th>
-                            <td data-lable="Message"><?php echo $data['taxibookings']->Price ?></td>
-                        </tr>
+                        
 
                         <tr>
                             <th>Payment Satus</th>
@@ -159,17 +157,16 @@ else {
                 
             <?php
                 }
-                elseif ($data['taxibookings']->status=='Finished') {
+                elseif ($data['taxibookings']->status=='Confirmed') {
                                             ?>
-                                            <!-- // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
-                                            // <br>
-                                            // <a href="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="review-btn" type="button">Add a Review</button></a>
-                                            // </td> -->
+                                          
+                                            <a href="<?php echo URLROOT; ?>/Bookings/CompleteTaxiBooking/<?php echo $data['taxibookings']->ReservationID."/".$data['taxibookings']->TaxiOwnerID?>"><button class="review-btn" id="taxi_veh_view" type="button">Completed</button></a>
+                        
                                             <?php
                 }
                 elseif ($data['taxibookings']->status=='Canceled') {
                                             ?>
-                                            <!-- // <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td> -->
+                                             <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"><br>Canceled</td>
                                             <?php
                 }
             ?>

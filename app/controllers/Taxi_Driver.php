@@ -39,20 +39,38 @@
             
                 $data=[
                         'name'=>trim($_POST['name']),
+
                         'profileImg'=>$_FILES['profileImg'],
                         'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
+
+                        'LicenseImgFront'=>$_FILES['lisence_front'],
+                        'LicenseImgFront_name'=>time().'_'.$_FILES['lisence_front']['name'],
+
+                        'LicenseImgBack'=>$_FILES['lisence_back'],
+                        'LicenseImgBack_name'=>time().'_'.$_FILES['lisence_back']['name'],
+
                         'age'=>trim($_POST['age']),
                         'contact_number'=>trim($_POST['contact_number']),
                         'licenseno'=>trim($_POST['licenseno']),
                         'owner'=>$_SESSION['user_id'],
                         
-                        'profileImg_err'=>''
+                        'profileImg_err'=>'',
+                        'LicenseImgBack_err'=>'',
+                        'LicenseImgFront_err'=>''
                     ];
-
+                    
                     if(uploadImage($data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
 
                     }else{
                         $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    }
+
+                    if(!uploadImage($data['LicenseImgFront']['tmp_name'],$data['LicenseImgFront_name'],'/img/license_images/')){
+                        $data['LicenseImgFront_err']='License Front Image Uploading Unsucess!';
+                    }
+
+                    if(!uploadImage($data['LicenseImgBack']['tmp_name'],$data['LicenseImgBack_name'],'/img/license_images/')){
+                        $data['LicenseImgBack_err']='License Back Image Uploading Unsucess!';
                     }
 
 
@@ -87,7 +105,9 @@
                     'area_err'=>'',
                     'noOfSeats_err'=>'',
                     'price_per_km_err'=>'',
-
+                    'profileImg_err'=>'',
+                    'LicenseImgBack_err'=>'',
+                    'LicenseImgFront_err'=>''
 
                 ];
                 $this->view('taxi/v_taxi_add_driver',$data);
