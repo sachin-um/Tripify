@@ -731,35 +731,6 @@
                     
                 }
 
-        public function TaxiBookingPaymentUpdate()
-        {
-            $data=[
-                'bookingid'=>$_POST['booking_id'],
-                
-            ];
-            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
-                flash('booking_flash', 'Your Payment is recieved  Thank You..!');
-                
-                $jsonObj = json_encode($data);
-                // printr($jsonObj);
-                // var_dump($jsonObj)
-                 echo $jsonObj;
-            }
-            else{
-                die('Something went wrong');
-            }
-        }
-
-        public function getTaxiBooking($id)
-        {
-            $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
-            header('Content-Type: application/json');
-            echo json_encode($booking);
-        }
-
-
-        
-
 
                 //Get booked room names
                 $bookedRoomNames = array();
@@ -814,6 +785,32 @@
                 $this->view('hotels/v_confirmBooking', $data);
             }
             
+        }
+
+        public function TaxiBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+                flash('booking_flash', 'Your Payment is recieved  Thank You..!');
+                
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function getTaxiBooking($id)
+        {
+            $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);
+            header('Content-Type: application/json');
+            echo json_encode($booking);
         }
 
         public function booking(){
