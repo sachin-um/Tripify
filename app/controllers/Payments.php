@@ -24,6 +24,7 @@ class Payments extends Controller
         echo $hash;
      }
 
+
      public function paymentDetails(){
 
       //Set bookingID according to type
@@ -58,12 +59,14 @@ class Payments extends Controller
       $array["phone"] = "0777123456";
       $array["address"] = "No.1, Galle Road";
       $array["city"] = "Colombo";
+
       $array["userid"]=$_SESSION['user_id'];
       $array["amount"] = $amount;
       $array["merchant_id"] = $merchant_id;
       $array["order_id"] = $bookingID;
       $array["currency"] = $currency;
       $array["hash"] = $hash;
+
 
       $jsonObj = json_encode($array);
       // printr($jsonObj);

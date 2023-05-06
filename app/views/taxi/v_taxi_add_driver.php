@@ -36,6 +36,19 @@
                 <div class="taxi_add_v_form">
                     <input name="licenseno" type="text" id="taxi_add_v_number" placeholder="License Number" required ><br>
                 </div>
+
+                <br>
+               <div class="taxi_DriverPro_imgbox">
+                    <div class="img-description">Upload Driver License Front Image</div>
+                    <input type="file" name="lisence_front" id="taxi-licenseImg" accept="image/*" required>
+               </div>
+                
+               
+               <br>
+               <div class="taxi_DriverPro_imgbox">
+                    <div class="img-description">Upload Driver License Back Image</div>
+                    <input type="file" name="lisence_back" id="taxi-licenseImg" accept="image/*" required>
+               </div>
                 
                 <!-- <div class="taxi_dri_mob_div">
                     <input id="taxidricode" type="text" value="+94" disabled >
