@@ -82,6 +82,13 @@ body{
 
 input{
     text-align: justify;
+    background-color: #F4F6F7;
+    height: 50px;
+}
+select{
+  text-align: justify;
+  background-color: #F4F6F7;
+  height: 50px;
 }
 
 input[type="radio"]{

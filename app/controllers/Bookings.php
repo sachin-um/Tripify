@@ -569,8 +569,8 @@
                 
             ];
             if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
-                // flash('booking_flash', 'Your Payment is recieved  Thank You..!');\
-                // redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                flash('booking_flash', 'Your Payment is recieved  Thank You..!');
+                
                 $jsonObj = json_encode($data);
                 // printr($jsonObj);
                 // var_dump($jsonObj)

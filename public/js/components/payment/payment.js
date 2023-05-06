@@ -1,15 +1,18 @@
 var bookingType;
 var booking_id;
+var userid;
 function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID){
     bookingType = type;
     booking_id=bookingID;
+    
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = ()=>{
         if(xhttp.readyState == 4){ 
             
             let obj=JSON.parse(xhttp.responseText);
             // Payment completed. It can be a successful failure.
-            
+            userid=obj["user_id"];
+            console.log(userid);
             if(type=="Taxi"){
                 var cancel_url=urlroot+"/Bookings/TaxiBookings/"+type+"/"+obj["userid"];     // Important
             }else{
@@ -58,8 +61,9 @@ payhere.onCompleted = function onCompleted(orderId) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = ()=>{
             if(xhttp.readyState == 4){ 
-                let obj=JSON.parse(xhttp.responseText);
-                console.log(obj);
+                // let obj=JSON.parse(xhttp.responseText);
+                // console.log(obj);
+                window.location.href='http://localhost/Tripify/Bookings/TaxiBookings/Traveler/'+userid;
             }
         };
         xhttp.open("POST","http://localhost/Tripify/Bookings/TaxiBookingPaymentUpdate",true);

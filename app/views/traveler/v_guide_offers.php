@@ -72,12 +72,37 @@ else {
             <div class="post-body">
 
                 <h5 style="text-align:center;">Offer Details</h5>
-                <div class="req-slot3">
-                    <div class="post-tag post-date" style="margin-bottom: 40px;"><img src="<?php echo URLROOT; ?>/img/rate.png" alt="date" ><span class="request-data">  Rs:<?php echo $guideoffer->hourlyrate; ?> /per hour.</span></div>
-                    <div class="post-tag post-time" style="margin-bottom: 30px;"><img src="<?php echo URLROOT; ?>/img/payment-option.png" alt="time" ><span class="request-data">:<?php echo $guideoffer->paymentmethod; ?></span></div>
+                <div class="req-slot1" style="margin-top:10px">
+                    <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                    <i class="fa-solid fa-coins fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Rate</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                Rs:<?php echo $guideoffer->hourlyrate; ?></span>
+                            </div>
+                    </div>
+                    <div class="detail-container">
+                            <div class="header-container">
+                                    <i class="fa-solid fa-money-check-dollar fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                    <div class="heading">Payment methods</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                Rs:<?php echo $guideoffer->paymentmethod;; ?></span>
+                            </div>
+                    </div>
                 </div>
                 <div class="req-slot3">
-                    <div class="post-tag post-details"><img src="<?php echo URLROOT; ?>/img/details.png" alt="details" ><span class="request-data additional-data">: <?php echo $guideoffer->additionaldetails; ?></span></div>
+                    <div class="detail-container" style="margin-right: 20px; width: 97%;">
+                        <div class="header-container">
+                            <i class="fa-solid fa-circle-info fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">Additional Details</div>
+                        </div>
+                        <div class="post-tag post-date description" style="margin-left: 33px">
+                            <?php echo $guideoffer->additionaldetails; ?>
+                        </div>
+                    </div>    
+                
                 </div>
                 <div class="post-by-content">
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $guideoffer->guide_id; ?>"><?php echo $guideoffer->guidename; ?></a></span></div>

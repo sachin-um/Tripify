@@ -73,6 +73,52 @@
             
         }
 
+        public function editTripPlan($id)
+        {
+            $trip=$this->tripModel->viewTripPlan($id);
+            if ($trip->TravelerID==$_SESSION['user_id']) {
+                if ($_SERVER['REQUEST_METHOD']=='POST') {
+                    $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                    $data=[
+                        'trip_name'=>trim($_POST['trip_name']),
+                        'trip_location'=>trim($_POST['trip_location']),
+                        'start_date'=>trim($_POST['trip_startdate']),
+                        'end_date'=>trim($_POST['trip_enddate']),
+                        'traveler_id'=>$_SESSION['user_id'],
+                        'trip_id'=>$id,
+    
+                        'trip_err'=>''
+                    ];
+    
+                    if (empty($data['trip_name']) || empty($data['trip_location']) || empty($data['start_date']) || empty($data['end_date'])) {
+                        $data['trip_err']='Please Provide Valid Details About your trip';
+                    }
+    
+                    if (empty($data['trip_err'])) {
+                        if ($this->tripModel->editTripPlan($data)) {
+                            flash('trip_flash', 'Trip Changes Saved');
+                            redirect('Trips/viewTripPlan/'.$id);
+                        }
+                        else {
+                            
+                            flash('trip_flash', 'Somthing went Wrong please try again');
+                            redirect('Trips/viewTripPlan/'.$id);
+                        }
+                    }
+                    else {
+                        flash('trip_flash', 'Please Provide Valid Details About your trip');
+                        redirect('Trips/viewTripPlan/'.$id);
+                        
+                    }
+    
+                }
+            } else {
+            flash('reg_flash', 'Access Denied');
+            redirect('Users/login');
+            }
+
+        }
+
         public function viewTripPlan($tripid)
         {
             
@@ -95,15 +141,15 @@
                     'trip_err'=>'',
                 ];
                 foreach ($trip->trip_guide_bookings as $booking) {
-                    $trip_booking=$this->guideBookingModel->getGudieBookingbyId($booking->trip_id);
+                    $trip_booking=$this->guideBookingModel->getGudieBookingbyId($booking->booking_id);
                     array_push($data['guide_bookings'],$trip_booking);
                 }
                 foreach ($trip->trip_taxi_bookings as $booking) {
-                    $trip_booking=$this->taxiBookingModel->getTaxiBookingbyId($booking->trip_id);
+                    $trip_booking=$this->taxiBookingModel->getTaxiBookingbyId($booking->booking_id);
                     array_push($data['taxi_bookings'],$trip_booking);
                 }
                 foreach ($trip->trip_hotel_bookings as $booking) {
-                    $trip_booking=$this->hotelBookingModel->getHotelBookingbyId($booking->trip_id);
+                    $trip_booking=$this->hotelBookingModel->getHotelBookingbyId($booking->booking_id);
                     array_push($data['hotel_bookings'],$trip_booking);
                 }
                 $this->view('traveler/v_trip_plan',$data);
@@ -114,6 +160,18 @@
             
             
             
+        }
+
+        public function removeTripPlan($tripid)
+        {
+            if ($this->tripModel->removeTripPlan($tripid)) {
+                flash('trip_list_flash', 'Trip is Successfully Removed');
+                redirect('Trips/yourtrips/'.$_SESSION['user_id'] );
+            }
+            else {
+                flash('trip_list_flash', 'Something Went Wrong');
+                redirect('Trips/yourtrips/'.$_SESSION['user_id'] );
+            }
         }
 
 

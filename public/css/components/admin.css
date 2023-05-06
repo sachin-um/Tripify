@@ -24,12 +24,18 @@
 .add-admin-btn{
     height: 60px;
     text-align: center;
-    border-radius: 10px;
-    color: white;
     background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 20px;
     cursor: pointer;
     margin-top: 5%;
-    padding: 20px;
+    padding: 0 20px;
+}
+.add-admin-btn:hover{
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 .message-table thead{
@@ -140,56 +146,44 @@
 }
 
 .message-table tbody tr td .sus-btn{
-    width: 100px;
-    height: 40px;
     text-align: center;
-    border-radius: 10px;
-    color: black;
-    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 18px;
+    padding:7px 17px;
     cursor: pointer;
-    /* margin-top: 4%; */
-    background-color: #ffcc00;
+    background-color: #03002E;
+    color: #FFFFFF;
+    width: 150px;
+    height: 45px;
     
 }
 
 .message-table tbody tr td .sus-btn:hover{
-    width: 100px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
-    border: 3px solid #ffcc00;
-    /* margin-top: 4%; */
-    background-color: white;
+    background-color: #e8b122;
+    border: none;
+    color: #03002E;
     
 }
 
 .message-table tbody tr td .active-btn{
-    width: 100px;
-    height: 40px;
     text-align: center;
-    border-radius: 10px;
-    color: white;
-    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 18px;
+    padding:7px 17px;
     cursor: pointer;
-    /* margin-top: 4%; */
-    background-color: #005643;
+    background-color: #03002E;
+    color: #FFFFFF;
+    width: 150px;
+    height: 45px;
     
 }
 
 .message-table tbody tr td .active-btn:hover{
-    width: 100px;
-    height: 40px;
-    text-align: center;
-    border-radius: 10px;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
-    border: 3px solid #005643;
-    /* margin-top: 4%; */
-    background-color: white;
+    background-color: #e8b122;
+    border: none;
+    color: #03002E;
     
 }
 

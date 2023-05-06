@@ -41,7 +41,7 @@
     
                 $row=$this->db->single();
 
-                $this->db->query('INSERT INTO traveler(TravelerID,contact_number,country) VALUES(:travelerid,:contactno,:country)');
+                $this->db->query('INSERT INTO traveler(TravelerID,country) VALUES(:travelerid,:country)');
                 $this->db->bind(':country',$data['country']);
                 $this->db->bind(':travelerid',$row->UserID);
                 
@@ -112,7 +112,7 @@
                 $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND verification_status=2' );
                 $this->db->bind(':usertype',$usertype);
             } else {
-                $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND (verification_status=3 OR verification_status=1)');
+                $this->db->query('SELECT * FROM users WHERE UserType= :usertype');
                 $this->db->bind(':usertype',$usertype);
             }
             $users=$this->db->resultSet();

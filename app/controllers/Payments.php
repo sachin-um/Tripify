@@ -52,6 +52,7 @@ class Payments extends Controller
       );
 
       $array = [];
+      $array["user_id"]=$_SESSION['user_id'];
       $array["first_name"] = $_SESSION['user_name'];
       $array["last_name"] = "Kumara";
       $array["email"] = $_SESSION['user_email'];
