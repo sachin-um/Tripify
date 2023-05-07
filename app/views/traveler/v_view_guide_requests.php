@@ -61,8 +61,18 @@ else {
             <h2 class="title" >Guide Requests</h2>
             <hr>
         </div>
+        <br>
+        <div class="request-filter-area">
+            <input type="text" placeholder="Search Request..." id="searchInput">
+            <select name="request-type" id="request-type">
+                <option value="" disabled selected>Request Type</option>
+                <option value="all">All</option>
+                <option value="In progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
         <?php flash('guide_request_flash'); ?>
-        <div class="request-list">
+        <div class="request-list" id="request-list">
 
         <?php
             $requests=$data['guiderequests'];
@@ -148,6 +158,11 @@ else {
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guiderequest->post_at); ?></span></div>
                     <?php
                     }
+                    elseif ($_SESSION['user_type']=='Traveler') {
+                        ?>
+                        <div class="post-by" style="margin:auto"><span class="post-by-data">Status: <?php echo $guiderequest->status; ?></span></div>
+                        <?php
+                    }
                 ?>
                 </div>
             </div>
@@ -194,6 +209,7 @@ else {
 
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/request_search.js"></script>
 <?php
 }
 ?>

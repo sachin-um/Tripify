@@ -1,5 +1,5 @@
 .request-list{
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
@@ -218,4 +218,19 @@
 
 .spandiv{
     display: flex;
+}
+
+.request-filter-area{
+    display: flex;
+    justify-content: center;
+}
+
+.request-filter-area input{
+    width: 35%;
+    margin: 0px 40px 0px 0px;
+}
+
+.request-filter-area select{
+    margin: 0;
+    width: 12%;
 }
