@@ -26,8 +26,10 @@ else {
                 
                 <input type="text" id="area" name="area" placeholder="Area you want to travel" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
-                <input type="text" id="date" name="date" placeholder="Date you want travel" onfocus="(this.type='date')" value="<?php echo $data['date']; ?>">
-                <span class="invalid"><?php echo $data['date_err']; ?></span>
+                <input type="text" id="start_date" name="start_date" placeholder="Starting Date" onfocus="(this.type='date')" value="<?php echo $data['start_date']; ?>">
+                <span class="invalid"><?php echo $data['start_date_err']; ?></span>
+                <input type="text" id="end_date" name="end_date" placeholder="Finishing Date" onfocus="(this.type='date')" value="<?php echo $data['end_date']; ?>">
+                <span class="invalid"><?php echo $data['end_date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Time (Optional)" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>" min="<?php echo date('Y-m-d'); ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
                 <select class="search" id="language" name="language">

@@ -125,15 +125,15 @@
           
           // popupContent.innerHTML = content;
           const popup = document.getElementById("popup");
-          const requestcontent = document.getElementById("request-content");
+          const requestcontent = document.getElementById("popup-content");
           $.ajax({
               url: baseurl+"/Bookings/getTaxiBooking/"+bookingid,
               method: 'GET',
               dataType: 'json',
               success: function(data) {
                 console.log(data);
-                    $('#request-content').append('<p>Taxi Booking</p>');
-                    $('#request-content').append(`
+                    $('#popup-content').append('<p>Taxi Booking</p>');
+                    $('#popup-content').append(`
                     <form>
                       <label class="abc">Vehicle Type</label><br>
                       <input type="text" id="vehicle_type" name="vehicle_type" placeholder="`+data.vehicle.VehicleType+`" disabled>
@@ -181,7 +181,7 @@
           if (!requestcontent.contains(event.target)) {
               // remove the popup window from the DOM
               popup.style.display = "none";
-              $('#request-content').empty();
+              $('#popup-content').empty();
           }
           },2000);
 

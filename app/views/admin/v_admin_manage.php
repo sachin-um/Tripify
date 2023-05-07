@@ -38,7 +38,7 @@ else {
         <hr>
         <br>
         <div class="btn-div">
-        <a href="<?php echo URLROOT; ?>/Admins/register"><button  class="add-admin-btn">Add New Admin</button></a>
+        <a href="<?php echo URLROOT; ?>/Admins/register"><button  class="add-admin-btn"><i class="fa-solid fa-plus" style="margin-right:10px"></i>Add New Admin</button></a>
         <!-- <a ><button class="add-admin-btn" type="button">Add New Admin </button></a> -->
         </div>
         <br>
@@ -72,8 +72,8 @@ else {
                             <td data-lable="Email"><?php echo $admin->nic ?></td>
                             <td data-lable="Email"><?php echo $admin->AssignedArea ?></td>
                             <td data-lable="Email"><?php echo $admin->details->acc_status ?></td>
-                            <td data-lable="Email"><button class="sus-btn" type="button">Suspend</button></td>
-                            <td data-lable="Email"><button class="btn" type="button">Remove</button></td>
+                            <td data-lable="Email"><button class="sus-btn" type="button"><i class="fa-solid fa-circle-exclamation" style="margin-right:10px"></i>Suspend</button></td>
+                            <td data-lable="Email"><button class="btn" type="button"><i class="fa-solid fa-xmark" style="margin-right:10px; color:red"></i>Remove</button></td>
                         </tr>
                         <?php
                             endforeach;

@@ -1,7 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
- <!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
+ <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <?php $guidedetails= $data['guidedetails']; 
-print_r($guidedetails);
+//print_r($guidedetails);
 ?>
 <?php $guidelanguages= $data['guideLanguages'] ?>
 

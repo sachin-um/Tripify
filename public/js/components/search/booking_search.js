@@ -1,7 +1,7 @@
 // Select the input field and the table
 const searchInput = document.getElementById("searchInput");
 const table = document.getElementById("message-table");
-const filterselect=document.getElementById("account-type");
+const filterselect=document.getElementById("booking-type");
 
 
     searchInput.addEventListener('input', () => {
@@ -36,7 +36,7 @@ const filterselect=document.getElementById("account-type");
     filterselect.addEventListener('change',()=>{
         const searchTerm = filterselect.value.toLowerCase();
 
-        if (searchTerm=="all account") {
+        if (searchTerm=="all") {
             for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
                 row.style.display = '';

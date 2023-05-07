@@ -152,7 +152,7 @@
                 $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND verification_status=2' );
                 $this->db->bind(':usertype',$usertype);
             } else {
-                $this->db->query('SELECT * FROM users WHERE UserType= :usertype AND (verification_status=3 OR verification_status=1)');
+                $this->db->query('SELECT * FROM users WHERE UserType= :usertype');
                 $this->db->bind(':usertype',$usertype);
             }
             $users=$this->db->resultSet();

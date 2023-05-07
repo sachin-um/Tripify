@@ -44,7 +44,7 @@ else {
             <input type="text" placeholder="Search accounts..." id="searchInput">
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
-                <option value="all account">All Account</option>
+                <option value="all">All Account</option>
                 <option value="suspened">Suspended</option>
                 <option value="active">Active</option>
             </select>
@@ -76,7 +76,23 @@ else {
                             <td data-lable="Email"><?php echo $traveler->Email ?></td>
                             <td data-lable="Email"><?php echo  $traveler->verification_status==1 ? 'Verified' : 'Not Verified'  ?></td>
                             <td data-lable="Email"><?php echo $traveler->acc_status ?></td>
-                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $traveler->UserID ?>/Traveler/<?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $traveler->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button"><?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a></td>
+                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $traveler->UserID ?>/Traveler/<?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $traveler->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                                <?php 
+                                    if ($traveler->acc_status=='Suspended') {
+                                        ?>
+                                        <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
+                                        
+                                        <?php
+                                    }
+                                    else {
+                                        ?>
+                                        <i class="fa-solid fa-circle-exclamation" style="margin-right:10px"></i>
+                                        <?php
+                                    }
+                                
+                                ?>
+                                <?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                            </td>
                             
                         </tr>
                         <?php

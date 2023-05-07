@@ -1,5 +1,5 @@
 .request-list{
-    margin-top: 4%;
+    margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
@@ -218,4 +218,44 @@
 
 .spandiv{
     display: flex;
+}
+
+.request-filter-area{
+    display: flex;
+    justify-content: center;
+}
+
+.request-filter-area input{
+    width: 35%;
+    margin: 0px 40px 0px 0px;
+}
+
+.request-filter-area select{
+    margin: 0;
+    width: 12%;
+}
+
+.offer-filter-area{
+    margin-top: 20px;
+    display: grid;
+    justify-content: center;
+}
+
+.offer-filter-area .offer-radio{
+    display: flex;
+}
+
+.offer-filter-area .offer-radio .offer-radio-container{
+    display: flex;
+}
+
+.offer-filter-area input[type=radio]{
+    display: block;
+    transform: scale(0.6);
+    /* width: 40%;
+    margin: 0px 40px; */
+}
+
+.offer-filter-area label{
+    width: 170px;
 }

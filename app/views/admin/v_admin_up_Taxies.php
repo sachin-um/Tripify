@@ -76,7 +76,7 @@ else {
                                     <th>Suspend</th>
                                     <?php
                                 }
-                                if ($_SESSION['admin_type']=='management' ||  $_SESSION['admin_type']=='Super Admin') {
+                                elseif ($_SESSION['admin_type']=='management' ||  $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     <th>Suspend</th>
                                     <?php
@@ -101,7 +101,7 @@ else {
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->company_name ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
-                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'">View </button></td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
                             <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -131,7 +131,23 @@ else {
                                 ?>
                                 
                                 
-                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $taxi->UserID ?>/Taxi/<?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $taxi->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button"><?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a></td>
+                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $taxi->UserID ?>/Guide/<?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $taxi->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                                        <?php 
+                                            if ($taxi->acc_status=='Suspended') {
+                                                ?>
+                                                <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
+                                                
+                                                <?php
+                                            }
+                                            else {
+                                                ?>
+                                                <i class="fa-solid fa-circle-exclamation" style="margin-right:10px"></i>
+                                                <?php
+                                            }
+                                        
+                                        ?>
+                                        <?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                                    </td>
                                 
                                 <?php
                             }

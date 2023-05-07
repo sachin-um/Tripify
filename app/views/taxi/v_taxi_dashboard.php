@@ -204,6 +204,8 @@ else{
                         
                 </div>
                 <div style="text-align: center;">
+
+                
                     <?php
                     if ($_SESSION['user_id']== $data->UserID) {
                         ?>
@@ -211,7 +213,8 @@ else{
                         <?php
                     } else {
                         ?>
-                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Contact </button>
+                        <div style="display: flex; justify-content: space-around;">
+                        <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>
                         <?php
                     }
                     ?>
@@ -219,8 +222,13 @@ else{
                     
                         
                 </div>
+                <?php 
+                    if ($data->UserID!= $_SESSION['user_id']) {
+                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                    }  
+                ?>
             </div>
-
+            
 
             
         </div>
@@ -233,6 +241,7 @@ else{
                 <div id="popup-content" class="profile-popup-content"></div>
 </div>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
 <?php
 }
 ?>

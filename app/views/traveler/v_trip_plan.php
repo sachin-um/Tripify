@@ -38,31 +38,30 @@
                         <button class="create-plan-btn" type="submit">Create Your Trip</button>
                     </div>
                 </form>
-                <?php flash('trip_flash'); ?>
         </div>
         <div class="trip-details-view" id="trip-details-view">
+            
+            <form class="form-div" action="<?php echo URLROOT; ?>/Trips/editTripPlan/<?php echo$data['trip_id'] ?>" method="post">   
             <div class="white-space">
-                <p class="home-title-2"><span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_name'] ?></p></span><input type="text"  name="trip-name" placeholder="<?php echo $data['trip_name'] ?>" value="<?php echo $data['trip_name'] ?>"  class="edit-trip" id="edit-trip" style="width:30%; text-align:center;">
+                <p class="home-title-2"><span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_name'] ?></p></span><input type="text"  name="trip_name" placeholder="<?php echo $data['trip_name'] ?>" value="<?php echo $data['trip_name'] ?>"  class="edit-trip" id="edit-trip" style="width:30%; text-align:center;">
                 <br>
                 <br>
             </div>
-            <form class="form-div" action="<?php echo URLROOT; ?>/Trips/tripplan" method="post">   
-            
                     <div class="flex-2">
                         <div class="trip-name">
-                            <h3>Trip ID : <?php echo$data['trip_id'] ?>
+                            <h3>Trip ID : TP<?php echo$data['trip_id'] ?>
                             </h3>
                         </div>
                         <div class="trip-location">
-                            <h3>Area : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_location'] ?></span><input type="text"  placeholder="<?php echo $data['trip_location'] ?>" value="<?php echo $data['trip_location'] ?>"  class="edit-trip" id="edit-trip">
+                            <h3>Area : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['trip_location'] ?></span><input type="text" name="trip_location" placeholder="<?php echo $data['trip_location'] ?>" value="<?php echo $data['trip_location'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
 
                         <div class="trip-startdate">
-                            <h3>Starting Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['start_date'] ?></span></h3><input type="text"  placeholder="<?php echo $data['start_date'] ?>" value="<?php echo $data['start_date'] ?>"  class="edit-trip" id="edit-trip">
+                            <h3>Starting Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['start_date'] ?></span></h3><input type="text" name="trip_startdate"  placeholder="<?php echo $data['start_date'] ?>" value="<?php echo $data['start_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         
                         <div class="trip_enddate">
-                            <h3>End Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['end_date'] ?></span></h3><input type="text" placeholder="<?php echo $data['end_date'] ?>" value="<?php echo $data['end_date'] ?>"  class="edit-trip" id="edit-trip">
+                            <h3>End Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['end_date'] ?></span></h3><input type="text" name="trip_enddate" placeholder="<?php echo $data['end_date'] ?>" value="<?php echo $data['end_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         <div class="trip_edit_button">
                             <button class="profile-btn-edit" style="width: 70%;" id="editbtn">
@@ -79,10 +78,10 @@
                             </button>   
                         </div>
                     </div>
-                </form>
-                <?php flash('trip_flash'); ?>
+                </form>  
         </div>
         <br>
+        <?php flash('trip_flash'); ?>
         <div class="plan-div" id="plan-div">
                 <div class="plan-table-container">
                     <!-- <table class="plan-table">
@@ -125,7 +124,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Stays</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $hotel_booking->hotel_id ?>
                                                     </div>
                                                 </div>
@@ -133,7 +132,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Checking Date</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $hotel_booking->checkin_date ?>
                                                     </div>
                                                 </div>
@@ -141,10 +140,11 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Checkout Date</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $hotel_booking->checkout_date ?>
                                                     </div>
                                                 </div>
+                                                <a href="<?php echo URLROOT; ?>/Trips/removeFromTripPlan/<?php echo $data['trip_id'] ?>/<?php echo $hotel_booking->booking_id ?>/hotel" style="display: flex; align-items: center; color:red; text-decoration:none"><i class="fa-solid fa-xmark fa-xl" style="display: flex; align-items: center; color:red" title="Remove"></i></a>
                                             </div>
                                         <?php
                                             endforeach;
@@ -181,7 +181,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Taxi</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $taxi_booking->vehicle->vehicle_number ?>
                                                     </div>
                                                 </div>
@@ -189,7 +189,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Booking Date</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $taxi_booking->booking_date ?>
                                                     </div>
                                                 </div>
@@ -197,10 +197,11 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Booking Time</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $taxi_booking->booking_time ?>
                                                     </div>
                                                 </div>
+                                                <a href="<?php echo URLROOT; ?>/Trips/removeFromTripPlan/<?php echo $data['trip_id'] ?>/<?php echo $taxi_booking->ReservationID ?>/taxi" style="display: flex; align-items: center; color:red; text-decoration:none"><i class="fa-solid fa-xmark fa-xl" style="display: flex; align-items: center; color:red" title="Remove"></i></a>
                                             </div>
                                         <?php
                                             endforeach;
@@ -233,7 +234,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Guide</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $guide_booking->guide_name ?>
                                                     </div>
                                                 </div>
@@ -241,7 +242,7 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Time</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $guide_booking->StartingTime ?>
                                                     </div>
                                                 </div>
@@ -249,10 +250,11 @@
                                                     <div class="header-container">
                                                         <div class="trip-heading">Date</div>
                                                     </div>
-                                                    <div class="post-tag post-date description">
+                                                    <div class="post-tag post-date trip-description">
                                                         <?php echo $guide_booking->StartDate ?>
                                                     </div>
                                                 </div>
+                                                <a href="<?php echo URLROOT; ?>/Trips/removeFromTripPlan/<?php echo $data['trip_id'] ?>/<?php echo $guide_booking->BookingID ?>/guide" style="display: flex; align-items: center; color:red; text-decoration:none"><i class="fa-solid fa-xmark fa-xl" style="display: flex; align-items: center; color:red" title="Remove"></i></a>
                                             </div>
                                         <?php
                                             endforeach;

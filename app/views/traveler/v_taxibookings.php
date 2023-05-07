@@ -42,11 +42,23 @@ else {
         <br>
         <h2 style="text-align: left;">Taxi Bookings</h2>
         <hr>
+        <br>
+        <div class="booking-filter-area">
+            <input type="text" placeholder="Search bookings..." id="searchInput">
+            <select name="booking-type" id="booking-type">
+                <option value="" disabled selected>Booking Type</option>
+                <option value="all">All</option>
+                <option value="Yet To Confirm">Yet To Confirm</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="canceled">Canceled</option>
+            </select>
+        </div>
         <?php flash('booking_flash'); ?>
         <br>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>Booking ID</th>
@@ -68,8 +80,8 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID"><?php echo  $booking->ReservationID ?></td>
-                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>"><?php echo $booking->vehicle->vehicle_number ?></a></td>
+                            <td data-lable="ID">T<?php echo  $booking->ReservationID ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>/Taxi"><?php echo $booking->vehicle->vehicle_number ?></a></td>
                             <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
@@ -103,6 +115,14 @@ else {
                                     <?php
                                 }
                                 elseif ($booking->status=='Confirmed') {
+                                            ?>
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
+                                            <?php
+                                }
+                                elseif ($booking->status=='Finished') {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
@@ -115,27 +135,11 @@ else {
                                         }
                                         else {
                                             ?>
-                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
-                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                    Add to Trip Plan
-                                                </button>
+                                                <br>Payment is due <br>
                                             <?php
                                         }
                                     }
-                                    else {
-                                        ?>
-                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
-                                                <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                Add to Trip Plan
-                                            </button>
-                                        <?php
-                                    }
-                                }
-                                elseif ($booking->status=='Finished') {
-                                    ?>
                                     
-                                    <br>
-                                    <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
@@ -158,7 +162,7 @@ else {
         
     </main>
  </div>
-
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/booking_search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
  <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/payment/payment.js"></script>

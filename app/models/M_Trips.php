@@ -26,6 +26,35 @@ class M_Trips{
         }
     }
 
+    public function editTripPlan($data)
+    {
+        $this->db->query('UPDATE tour_plans SET trip_name=:trip_name,start_date=:start_date,end_date=:end_date,location=:location WHERE TourPlanID=:trip_id');
+        $this->db->bind(':trip_name',$data['trip_name']);
+        $this->db->bind(':start_date',$data['start_date']);
+        $this->db->bind(':end_date',$data['end_date']);
+        $this->db->bind(':location',$data['trip_location']);
+        $this->db->bind(':trip_id',$data['trip_id']);
+        if ($this->db->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function removeTripPlan($tripid)
+    {
+        $this->db->query('DELETE FROM tour_plans WHERE TourPlanID=:trip_id');
+        $this->db->bind(':trip_id',$tripid);
+
+        if ($this->db->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function yourtrips()
     {
         $this->db->query('SELECT * FROM tour_plans WHERE TravelerID=:travelerid');
@@ -56,10 +85,9 @@ class M_Trips{
 
     public function removeFromTripPlan($tripid,$bookingid,$type)
     {
-        $this->db->query('DELETE FROM trip_'.$type.'_bookings WHERE trip_id:trip_id AND booking_id=:booking_id');
+        $this->db->query('DELETE FROM trip_'.$type.'_bookings WHERE trip_id=:trip_id AND booking_id=:booking_id');
         $this->db->bind(':trip_id',$tripid);
         $this->db->bind(':booking_id',$bookingid);
-
         if ($this->db->execute()) {
             return true;
         }

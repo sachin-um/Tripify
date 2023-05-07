@@ -89,7 +89,8 @@
 
 
         //view bookings with filter
-        public function viewbookings($userid){
+        public function viewbookings($usertype,$userid){
+            if ($usertype=='Traveler') {
             $this->db->query('SELECT * FROM hotel_bookings where TravelerID=:userID');
             $this->db->bind(':userID',$userid);
 
@@ -101,6 +102,8 @@
             //     $booking->hotel=$hotel;
             // }
             return $bookings;
+            }
+            
         }
 
 
@@ -170,7 +173,9 @@
             $row=$this->db->single();
             $hotel=$this->getHotelById($row->hotel_id);
             $hotel_name=$hotel->Name;
+            $row->hotelID=$row->hotel_id;
             $row->hotel_id=$hotel_name;
+            
             return $row;
         }
 

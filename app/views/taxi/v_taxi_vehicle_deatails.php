@@ -43,18 +43,32 @@
                     <form class="tax-vec-sp-cont" action="<?php echo URLROOT; ?>/Taxi_Vehicle/edit/<?php echo $data['ID']?>"  method="POST" enctype="multipart/form-data">
                         
                         <div class="taxi_veh_grid_edit_cont">
+                    
                             <div class="taxi_dash_edit_veh">
+                                <?php
+                                    foreach ($data['vehicle_images_arr'] as $image_name) {
+
+                                ?>
+
+                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" id="profile-img-placehoder"  alt="Driver image" >
+                                                
+                                <?php
+                                    }
+                                ?>
                                 
                             
                                 <div class="drag-area">
                                     <div class="taxi-veh-pic-cont">
-                                        <div id="image-gallery"></div>
+                                        <div id="image-gallery">
+                                        
+                                        
+                                        </div>
                                     </div>
 
                                     <div class="taxi_DriverPro_imgbox"> 
                                         <div class="img-description">Change Vehicle Photos</div>
                                         <div class="img-upload" style="text-align: center;">
-                                            <input type="file" id="profile-imgupload" name="vehicleImgs" placeholder=""  accept="image/*" multiple style="display:none;" >
+                                            <input type="file" id="profile-imgupload" name="vehicleImgs[]" placeholder=""  accept="image/*" multiple style="display:none;" >
                                             Browse
                                         </div>  
                                     </div>

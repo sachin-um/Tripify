@@ -217,6 +217,15 @@ function showDriverDetails(id,baseurl) {
                             <br>
                             <label class="abc"> Contact number</label><br>
                             <input type="text" id="price" name="price" placeholder="" value="`+data.contact_number+`" disabled>
+
+                            <br>
+                            <label class="abc"> License Front </label><br>
+                            <img src="`+baseurl+`/img/license_images/`+data.LicenseImgFront+`" id="profile-img-placehoder"  alt="License image" style="width:200px" >
+
+                            <br>
+                            <label class="abc"> License Back </label><br>
+                            <img src="`+baseurl+`/img/license_images/`+data.LicenseImgBack+`" id=""  alt="License image" style="width:200px" >
+                            
                             
                             <br>    
                           </form>
