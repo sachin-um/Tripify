@@ -61,7 +61,22 @@ else {
             <h2 class="title" >Guide Offers</h2>
             <hr>
         </div>
-        <div class="request-list">
+        <div class="offer-filter-area">
+            <div class="offer-radio">
+                <div class="offer-radio-container" style="margin-right:25px">
+                    <input type="radio" id="asc" name="filter" value="asc">
+                    <label for="acs">Lowerst Price</label>
+                </div>
+
+                <div class="offer-radio-container" style="margin-left:25px">
+                    <input type="radio" id="date" name="filter" value="date">
+                    <label for="date">Newest Offers</label>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="request-list" id="request-list">
         <?php flash('guide_offer_flash'); ?>
         <?php
             $offers=$data['guideoffers'];
@@ -79,6 +94,7 @@ else {
                                     <div class="heading">Rate</div>
                             </div>
                             <div class="post-tag post-date description" style="margin-left: 33px">
+                            <input type="hidden" class="price" value="<?php echo $guideoffer->hourlyrate; ?>">
                                 Rs:<?php echo $guideoffer->hourlyrate; ?></span>
                             </div>
                     </div>
@@ -107,6 +123,7 @@ else {
                 <div class="post-by-content">
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/post-user.png" alt="user" class="post-by-img"><span class="post-by-data">: <a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $guideoffer->guide_id; ?>"><?php echo $guideoffer->guidename; ?></a></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guideoffer->guide_number; ?></span></div>
+                    <input type="hidden" class="date" value="<?php echo $guideoffer->offer_at ?>">
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guideoffer->offer_at); ?></span></div>
                 </div>
                 
@@ -141,6 +158,7 @@ else {
     </div>
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/offer_filter.js"></script>
 <?php
 }
 ?>
