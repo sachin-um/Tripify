@@ -803,6 +803,25 @@
             }
         }
 
+        public function GuideBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->guideBookingModel->GuideBookingPaymentUpdate($data)) {
+                flash('booking_flash', 'Your Payment is recieved  Thank You..!');
+                
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
         public function getTaxiBooking($id)
         {
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($id);

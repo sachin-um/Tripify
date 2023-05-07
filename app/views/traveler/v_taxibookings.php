@@ -115,6 +115,14 @@ else {
                                     <?php
                                 }
                                 elseif ($booking->status=='Confirmed') {
+                                            ?>
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
+                                            <?php
+                                }
+                                elseif ($booking->status=='Finished') {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
@@ -127,27 +135,11 @@ else {
                                         }
                                         else {
                                             ?>
-                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
-                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                    Add to Trip Plan
-                                                </button>
+                                                <br>Payment is due <br>
                                             <?php
                                         }
                                     }
-                                    else {
-                                        ?>
-                                            <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'taxi','<?php echo URLROOT; ?>')">
-                                                <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                Add to Trip Plan
-                                            </button>
-                                        <?php
-                                    }
-                                }
-                                elseif ($booking->status=='Finished') {
-                                    ?>
                                     
-                                    <br>
-                                    <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
                                     ?>
