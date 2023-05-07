@@ -111,11 +111,21 @@ else {
                                     <?php
                                 }
                                 elseif ($booking->status=='Confirmed') {
+                                    ?>
+                                    <td data-lable="Name">
+                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">
+                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
+                                                    Add to Trip Plan
+                                                </button>
+                                                </td>
+                                    <?php
+                                }
+                                elseif ($booking->status=='Completed') {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
                                                 <td data-lable="Name">
-                                                <button class="pay-btn" type="button">
+                                                <button class="pay-btn" type="button" onclick="paymentGateway('Guide',<?php echo $booking->payment ?>,<?php echo  $booking->BookingID ?>,<?php echo  $booking->guide->GuideID ?>,'<?php echo URLROOT; ?>')">
                                                     <i class="fa-solid fa-money-check-dollar" style="margin-right: 10px"></i>
                                                     Pay Now
                                                 </button>
@@ -124,33 +134,23 @@ else {
                                         }
                                         else {
                                             ?>
-                                                <td data-lable="Name">
-                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">
-                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                    Add to Trip Plan
-                                                </button>
+                                                <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Payment is due
+                                                <br>
+                                    
                                                 </td>
                                             <?php
                                         }
                                     }
                                     else {
                                         ?>
-                                                <td data-lable="Name">
-                                                <button class="add-to-plan-btn" type="button" onclick="showPopup(this,'guide','<?php echo URLROOT; ?>')">
-                                                    <i class="fa-solid fa-plane" style="margin-right: 10px"></i>    
-                                                    Add to Trip Plan
-                                                </button>
+                                                <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
+                                                <br>
+                                    
                                                 </td>
                                         <?php
                                     }
-                                    
-                                }
-                                elseif ($booking->status=='Completed') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/done.png" alt="user" class="post-by-img"><br>Completed
-                                    <br>
                                     
-                                    </td>
                                     <?php
                                 }
                                 elseif ($booking->status=='Canceled') {
@@ -174,7 +174,8 @@ else {
  </div>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/booking_search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
-
+ <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/payment/payment.js"></script>
  <?php
 }
 ?>
