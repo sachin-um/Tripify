@@ -43,11 +43,18 @@
         }
 
         //accept offer
-        public function acceptGuideOffer($id){
+        public function acceptGuideOffer($id,$rid){
             $this->db->query('UPDATE guide_offers set status="Accepted" WHERE OfferID=:id');
             $this->db->bind(':id',$id);
             if ($this->db->execute()) {
-                return true;
+                $this->db->query('UPDATE guide_request set status="Completed" WHERE RequestsID=:rid');
+                $this->db->bind(':rid',$rid);
+                if ($this->db->execute()) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
             else {
                 return false;

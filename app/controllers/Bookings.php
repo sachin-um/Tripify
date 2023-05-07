@@ -138,7 +138,7 @@
                     'offer'=>$offer
                 ];
                 if ($this->guideBookingModel->addguideBooking($data)) {
-                    if ($this->guideofferModel->acceptGuideOffer($offerid)) {
+                    if ($this->guideofferModel->acceptGuideOffer($offerid,$requestid)) {
                         flash('guide_booking_flash', 'Offer succesfully accepted placed your booking');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                     }
