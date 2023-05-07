@@ -26,7 +26,7 @@
         public function HotelBookings($usertype,$userid){
             
             if ($usertype=='Traveler') {
-                $hotelbookings=$this->hotelBookingModel->viewBookings($userid);
+                $hotelbookings=$this->hotelBookingModel->viewBookings($usertype,$userid);
                 foreach($hotelbookings as $booking){
                     $hoteldetails=$this->hotelModel->getHotelById($booking->hotel_id);
                     $booking->hoteldetails=$hoteldetails;
