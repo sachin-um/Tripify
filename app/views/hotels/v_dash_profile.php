@@ -7,10 +7,7 @@ if (empty($_SESSION['user_id'])) {
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }
-elseif ($_SESSION['user_type']!='Hotel') {
-    flash('reg_flash', 'Only the Traveler can have access...');
-    redirect('Pages/home');
-}else{
+else{
     ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>

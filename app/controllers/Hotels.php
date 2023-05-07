@@ -376,8 +376,6 @@
 
             if(empty($images)){
                 print_r($images);
-                echo $hotelID;
-                echo "Its empty bitch";
             }
             
             $data=[
@@ -562,10 +560,8 @@
             // }
         }
 
-        public function getImages($hotelID){
-               
-
-
+        public function hotelReviews(){
+            $this->view('hotels/v_hotel_reviews');
             
         }
 
@@ -576,6 +572,7 @@
         public function loadBooking(){
             $hotelbookings=$this->hotelBookingModel->viewbookings();
             $data=[
+                
                 'bookings'=>$hotelbookings
             ];
             $this->view('hotels/v_dash_bookings',$data);

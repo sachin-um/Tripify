@@ -50,8 +50,10 @@
             <?php echo $data['description']?>
         </div>
 
-        <div class="hotel-desc-page-div">
+        <div class="hotel-desc-page-div" id="facilities-reviews-section">
         <p class="home-title-2">Facilities</p>
+        <button class="all-purpose-btn">
+        <a href="<?php echo URLROOT ?>/Hotels/hotelReviews">See Reviews</a></button>
         </div>
 
         <p class="home-title-2">Check Available Rooms</p>
@@ -85,43 +87,39 @@
                 <a href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn" type="submit">Go</button></a> 
             </div>
             
-        </form>
+        </form><br>
 
-        
+
+        <!-- <p class="home-title-2">Reviews</p>
+        <div class="slide-container">
+                
+                <div class="slide-content">
+                    <div class="card-wrapper">
+                        <div class="review-card">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="<?php echo URLROOT?>/public/img/Group_profile.png" alt="Pr" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="review-name">David Silva</h2>
+                                <p class="review-description">Very good place! Excellent food, clean rooms, great room service. 10/10 recommend.</p>
+                            
+                                <button class="review-button">View More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br><br> -->
+
+
+
     </div>
 
 </div>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
-
-
-<script>
-    var slidePosition = 1;
-    SlideShow(slidePosition);
-
-    // forward/Back controls
-    function plusSlides(n) {
-    SlideShow(slidePosition += n);
-    }
-
-    //  images controls
-    function currentSlide(n) {
-    SlideShow(slidePosition = n);
-    }
-
-    function SlideShow(n) {
-    var i;
-    var slides = document.getElementsByClassName("Containers");
-    var circles = document.getElementsByClassName("beads");
-    if (n > slides.length) {slidePosition = 1}
-    if (n < 1) {slidePosition = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < circles.length; i++) {
-        circles[i].className = circles[i].className.replace(" enable", "");
-    }
-    slides[slidePosition-1].style.display = "block";
-    circles[slidePosition-1].className += " enable";
-    } 
-</script>
