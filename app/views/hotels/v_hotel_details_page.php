@@ -10,12 +10,46 @@
         
         <hr>
 
-        <div class="hotel-desc-page-div">
-            <?php echo $data['description']?>
+        <!-- Image Carousal -->
+
+        <div class="slider">
+            <div class="slide-track">
+                <?php
+                if(!empty($data['images'])){
+                    foreach($data['images'] as $imgName):
+                        // echo gettype($imgName)."<br>" ;
+                        // print_r($imgName);
+                    ?>
+                    <div class="slide">
+                        <img id="img-carousal" src="<?php echo URLROOT?>/public/img/hotel-uploads/<?php echo $imgName->imgName; ?>" style="white-space: nowrap;" >
+
+                    </div>
+
+                    <?php                    
+                
+                    endforeach;
+                }
+                
+                if(!empty($data['images'])){
+                    foreach($data['images'] as $imgName):
+                        // echo gettype($imgName)."<br>" ;
+                        // print_r($imgName);
+                    ?>
+                    <div class="slide">
+                        <img id="img-carousal" src="<?php echo URLROOT?>/public/img/hotel-uploads/<?php echo $imgName->imgName; ?>" style="white-space: nowrap;" >
+
+                    </div>
+                    <?php                   
+                
+                    endforeach;
+                }
+                ?>
+            </div>
+        
         </div>
 
         <div class="hotel-desc-page-div">
-        <p class="home-title-2">Photographs</p>
+            <?php echo $data['description']?>
         </div>
 
         <div class="hotel-desc-page-div">

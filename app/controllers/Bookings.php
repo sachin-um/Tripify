@@ -674,6 +674,7 @@
                 }
 
                 // print_r($allrooms); 
+                $images = $this->hotelModel->getImages($hotelID);
 
                 $data=[
                     'hotelID'=>$hotelID,
@@ -682,7 +683,8 @@
                     'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
                     'allroomtypes'=> $allroomtypes,
                     'description'=>$profileDetails->Description,
-                    'availablerooms'=>$allrooms
+                    'availablerooms'=>$allrooms,
+                    'images'=>$images
                     // 'noofadults' => $data['noofadults']
                     // 'profileName'=> $profileDetails->Name,
                     // 'profileName'=> $profileDetails->Name
@@ -727,6 +729,7 @@
                     }
                     
                 }
+
 
 
                 //Get booked room names
@@ -791,6 +794,7 @@
                 
             ];
             if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+
                 flash('booking_flash', 'Your Payment is recieved  Thank You..!');
                 
                 $jsonObj = json_encode($data);
@@ -828,6 +832,7 @@
             header('Content-Type: application/json');
             echo json_encode($booking);
         }
+
 
         public function booking(){
            

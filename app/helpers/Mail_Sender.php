@@ -86,6 +86,46 @@ function sendAdminMail($email,$user){
 
 
 
+function hotelSuspendMail($data){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Reset Password of Your Tripify Account';
+        $mail->Body    = " <h3>Your account is suspended.<br></h3>
+        <p>Dear User,<p><br><br>
+        <p>Please note that your Tripify account registered under $data->Name has been suspended</p>
+        <p>for violating our system guidelines.</p>
+        <br>
+        <p>If you think this is a mistake, please submit an appeal to this email for your
+        account to be reviewed.</p><br><br>
+        <p>With regards,</p><br>
+        <b>Tripify Team</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
 function sendResetPasswordMail($email){
     $mail = new PHPMailer(true);
     $otp=rand(100000,999999);
