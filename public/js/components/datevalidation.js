@@ -6,6 +6,7 @@ let timeslotError= false;
 $(document).ready(function() {
   inputOrder();
   validation();
+  console.log('distance'+$('#distance').val());
 
 });
 
@@ -20,7 +21,7 @@ function finalValidation(){
       form.submit();
     }else{
       $("#hotel-booking-form").hide();
-      calculatePrice();
+      calculatePrice(dist,estimateTime);
     }
     
     
@@ -39,16 +40,16 @@ function editTaxiBooking(){
 }
 
 
-function calculatePrice(){
-
+function calculatePrice(dist,estimateTime) {
   document.getElementById("taxi-booking-cont").style.display = "block";
 
   let bookingDate = $('#bookingDate').val();
-
   let bookingTime = $('#bookingTime').val();
-  let estTime = $('#duration').val();
+  let estTime =estimateTime;
+
 
   var bookingDateTime = new Date(`${bookingDate}T${bookingTime}`);
+  // console.log(bookingDate+' + '+bookingTime+' = '+bookingDateTime);
   var estHours = parseInt(estTime.slice(0, 2));
   var estMinutes = parseInt(estTime.slice(3, 5));
   var estSeconds = parseInt(estTime.slice(6, 8));
@@ -57,12 +58,12 @@ function calculatePrice(){
   bookingDateTime.setMinutes(bookingDateTime.getMinutes() + estMinutes);
   bookingDateTime.setSeconds(bookingDateTime.getSeconds() + estSeconds);
 
-  var estDateTime = bookingDateTime.toISOString().slice(0, 19).replace('T', ' ');
-  var endDate = estDateTime.slice(0, 10);
-  var endTime = estDateTime.slice(11);
-
-  $('#tripEndDate').val(endDate);
-  $('#tripEndTime').val(endTime);
+  var localBookingDateTime = new Date(bookingDateTime.toLocaleString("en-US", {timeZone: "Asia/Colombo"}));
+  var endDate = localBookingDateTime.toISOString().slice(0, 10);
+  var endTime = localBookingDateTime.toLocaleTimeString("en-US", {hour12:false});
+  
+  console.log(bookingDateTime+'  '+endDate+'  '+endTime);
+  
 
   document.getElementById("startDate").innerHTML = bookingDate;
   document.getElementById("startTime").innerHTML = bookingTime;
@@ -70,14 +71,22 @@ function calculatePrice(){
   document.getElementById("endTime").innerHTML = endTime;
   document.getElementById("pickupL").innerHTML = $('#taxi-PL').val();
   document.getElementById("dropL").innerHTML = $('#taxi-DL').val();
-  document.getElementById("dist").innerHTML = $('#distance').val();
-  console.log($('#distance').val()+'distance');
+  document.getElementById("dist").innerHTML = dist;
+  document.getElementById("jurDist").innerHTML = dist;
+  // document.getElementById("timeEst").innerHTML = estTime;
 
-  document.getElementsByClassName("total")[0].innerHTML = $('#distance').val() * $('#rate').val();
+  var rate = parseFloat($('#rate').val());
+  var totalSub = parseFloat(dist) * rate;
+  var total = parseFloat(dist) * rate;
 
+  document.getElementById("totalSub").innerHTML = totalSub.toFixed(2);
+  document.getElementById("total").innerHTML = total.toFixed(2);
 
-  document.getElementsByClassName("total").innerHTML = $('#distance').val()*$('#rate').val();
+  $('#tripEndDate').val(endDate);
+  $('#tripEndTime').val(endTime);
+  $('#amount').val(totalSub.toFixed(2));
 }
+
 
 
 function buttonclicked(){
@@ -197,7 +206,6 @@ function availableTime(){   // Checking Time slot is Available
   let bookingDate = $('#bookingDate').val();
   let bookingTime = $('#bookingTime').val();
   let est = $('#duration').val();
-
   if( $('#checker').val()==0){
     $.ajax({
       url: URLROOT+'/Bookings/checkTimeSlot',

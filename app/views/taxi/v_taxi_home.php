@@ -14,28 +14,66 @@
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Vehicle Type</p>
                     <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
-                        <option value="car">Tuk Tuk</option>
-                        <option value="van">Car</option>
-                        <option value="fiat">Van</option>
-                        <option value="audi">Bus</option>
+                        <option value="Tuk Tuk">Tuk Tuk</option>
+                        <option value="Car">Car</option>
+                        <option value="Van">Van</option>
+                        <option value="Bus">Bus</option>
                     </select>
                 </div>
 
-                <div class="nav-parts">
+
+
+                <!-- <div class="nav-parts">
                     <p class="hotel-labels-1">Trip Date</p> 
                     <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
-                    <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
-                </div>
+                    
+                </div> -->
+
+
 
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Pick up location</p>
-                    <input type="text" class="hotel-labels-1" id="place" name="place" placeholder="Pick up location">
+                    <select class="district-labels-1" id="taxi_add_v_area" name="area">
+                        <!-- <option value="<?php echo $data['area']?>" selected  hidden><?php echo $data['area']?></option> -->
+                                            
+                            <option value="Ampara">Ampara</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Monaragala">Monaragala</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
+
+                        </select>
+
+                                                       
+                                            
                 </div>
 
-                <div class="nav-parts">
+
+
+                <!-- <div class="nav-parts">
                     <p class="hotel-labels-1">Drop off location</p>
                     <input type="text" class="hotel-labels-1" id="destination" name="destination" placeholder="Destination">
-                </div>
+                </div> -->
 
                 
                 
