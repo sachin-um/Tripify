@@ -31,6 +31,18 @@
             return $filteredbookings;
         }
 
+        public function getBookingByID($id){
+            $this->db->query('SELECT * FROM taxi_reservation WHERE 	ReservationID=:id');
+            $this->db->bind(':id',$id);
+
+            $row=$this->db->single();
+
+            return $row;
+            
+        }
+
+        
+
         public function confrimBooking($id)
         {
             $this->db->query('UPDATE `taxi_reservation` SET status="Confirmed" WHERE ReservationID=:booking_id');
@@ -63,7 +75,7 @@
 
         public function cancelBooking($id)
         {
-            $this->db->query('UPDATE `taxi_reservation` SET status="Canceled" WHERE ReservationID=:booking_id');
+            $this->db->query('UPDATE `taxi_reservation` SET status="Cancelled" WHERE ReservationID=:booking_id');
             $this->db->bind(':booking_id',$id);
 
             
@@ -144,32 +156,33 @@
             $date = $bookingDate;
             $time = $bookingTime;
             $bookingdatetime = date('Y-m-d H:i:s', strtotime("$date $time"));
-        
+
             $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$est"));
             $New_end_date = date('Y-m-d', strtotime($est_datetime));
-            
+
 
             $this->db->query('SELECT COUNT(*) AS conflicting_bookings 
                   FROM taxi_reservation 
-                  WHERE Vehicles_VehicleID = :vehicle_id AND (booking_date=:new_start_date OR est_end_date=:new_start_date )
+                  WHERE Vehicles_VehicleID = :vehicle_id AND status <> :status AND (booking_date=:new_start_date OR est_end_date=:new_start_date )
                   AND (
                     ((:new_start <= CONCAT(booking_date, \' \', booking_time) ) AND :new_end<=CONCAT(est_end_date, \' \', est_end_time)  )
                     OR (CONCAT(booking_date, \' \', booking_time) <= :new_start  AND :new_start <CONCAT(est_end_date, \' \', est_end_time) ) 
                     OR (CONCAT(booking_date, \' \', booking_time) < :new_start  AND :new_start <=CONCAT(est_end_date, \' \', est_end_time) )
                     )');
 
-        
+
             $this->db->bind(':vehicle_id', $vehicleID);
             $this->db->bind(':new_start', $bookingdatetime);
             $this->db->bind(':new_end', $est_datetime);
             $this->db->bind(':new_start_date', $bookingDate);
             $this->db->bind(':new_end_date', $New_end_date);
+            $this->db->bind(':status', "Cancelled");
 
             $this->db->execute();
 
             $result = $this->db->single();
             $conflicting_bookings = $result->conflicting_bookings;
-           
+
             if($conflicting_bookings>0){
                 return true;
             }else{
@@ -177,6 +190,46 @@
             }
 
 
+        }
+
+        public function checkEditBookingDate($vehicleID,$bookingID,$bookingDate,$bookingTime,$est){
+            $date = $bookingDate;
+            $time = $bookingTime;
+            $bookingdatetime = date('Y-m-d H:i:s', strtotime("$date $time"));
+
+            $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$est"));
+            $New_end_date = date('Y-m-d', strtotime($est_datetime));
+
+
+            $this->db->query('SELECT COUNT(*) AS conflicting_bookings 
+                  FROM taxi_reservation 
+                  WHERE Vehicles_VehicleID = :vehicle_id AND status <> :status AND (booking_date=:new_start_date OR est_end_date=:new_start_date )
+                  AND (
+                    ((:new_start <= CONCAT(booking_date, \' \', booking_time) ) AND :new_end<=CONCAT(est_end_date, \' \', est_end_time)  )
+                    OR (CONCAT(booking_date, \' \', booking_time) <= :new_start  AND :new_start <CONCAT(est_end_date, \' \', est_end_time) ) 
+                    OR (CONCAT(booking_date, \' \', booking_time) < :new_start  AND :new_start <=CONCAT(est_end_date, \' \', est_end_time) )
+                    ) AND ReservationID <> :bookingID
+                    ');
+
+
+            $this->db->bind(':vehicle_id', $vehicleID);
+            $this->db->bind(':new_start', $bookingdatetime);
+            $this->db->bind(':new_end', $est_datetime);
+            $this->db->bind(':new_start_date', $bookingDate);
+            $this->db->bind(':new_end_date', $New_end_date);
+            $this->db->bind(':status', "Cancelled");
+            $this->db->bind(':bookingID', $bookingID);
+
+            $this->db->execute();
+
+            $result = $this->db->single();
+            $conflicting_bookings = $result->conflicting_bookings;
+
+            if($conflicting_bookings>0){
+                return true;
+            }else{
+                return false;
+            }
         }
 
       

@@ -72,7 +72,6 @@
             }
             else if ($usertype=='Guide') {
                 $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
-                // print_r($guidebookings);
                 $data=[
                     'guidebookings'=> $guidebookings
                 ];
@@ -80,50 +79,125 @@
             }
         }
 
-        public function CancelGuideBooking($bookingid){
-            echo $bookingid."///";
-            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingid);
-            var_dump($booking);
-            // if ($booking->TravelerID==$_SERVER['user_id']) {
-
-            //     if ($booking->status!='Yet To Confirm') {
-            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //     }
-            //     else {
-            //         if($this->GuideBookingModel->cancelBooking($bookingid)){
-            //             flash('booking_flash', 'Guide Booking is Canceled');
-            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //         }else {
-            //             flash('booking_flash', 'Somthing went wrong try again');
-            //             redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //         }
-            //     }
-
-            // }else if($_SESSION['user_type']=='Guide'){
-            //     if ($booking->status!='Yet To Confirm') {
-            //         flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
-            //         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //     }
-            //     else {
-            //         if ($booking->status=='Yet To Confirm') {
-            //             if($this->GuideBookingModel->cancelBooking($bookingid)){
-            //                 flash('booking_flash', 'Guide Booking is Canceled');
-            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //             }else {
-            //                 flash('booking_flash', 'Somthing went wrong try again');
-            //                 redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
-            //             }
-            //         }
-            //     }
-
-            // }
-            // else{
-            //     flash('reg_flash', 'Access Denied...');
-            //     redirect('Users/login');
-            // }
-        }
+        public function ConfirmGuideBooking($ReservationID){
             
+            $booking=$this->guideBookingModel->getGudieBookingbyId($ReservationID);
+
+            if($booking->Guides_GuideID == $_SESSION['user_id']){
+                if($this->guideBookingModel->confrimBooking($ReservationID)){
+                    flash('booking_flash', 'Confrimed Success');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                }else{
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                }
+            }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+            
+        }
+
+        public function CancelGuideBooking($bookingid){
+            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingid);
+            if ($booking->TravelerID==$_SESSION['user_id']) {
+
+                if ($booking->status!='Yet To Confirm') {
+                    flash('booking_flash', 'Cannot Cancel Your Booking, Please contact your Service Provider..');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                }
+                else {
+                    if($this->guideBookingModel->cancelBooking($bookingid)){
+                        flash('booking_flash', 'Guide Booking is Canceled');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                    }else {
+                        flash('booking_flash', 'Somthing went wrong try again');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                    }
+                }
+
+            }else if($_SESSION['user_type']=='Guide'){
+                
+                
+                    if($this->guideBookingModel->cancelBooking($bookingid)){
+                        flash('booking_flash', 'Guide Booking is Canceled');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                    }else {
+                        flash('booking_flash', 'Somthing went wrong try again');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
+                    }
+    
+                }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+        }
+
+        
+         public function CompletedGuideBooking($ReservationID){
+            
+            $booking=$this->guideBookingModel->getGudieBookingbyId($ReservationID);
+
+            if($booking->Guides_GuideID == $_SESSION['user_id']){
+                if($this->guideBookingModel->CompletedGuideBooking($ReservationID)){
+                    flash('booking_flash', 'Status Updated');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                }else{
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                }
+            }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
+            
+        }
+        
+        public function GuideDateValidation(){
+            $bookingDate = $_POST['bookingDate'];
+            $bookingEndDate = $_POST['bookingEndDate'];
+            $GuideID = $_POST['GuideID'];
+            
+            $guideAvailable = $this->guideBookingModel->checkGuideAvailable($GuideID,$bookingDate,$bookingEndDate);
+            
+            echo json_encode($guideAvailable);
+        
+
+        }
+
+
+        public function GuideBooking($GuideID){
+            $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $data=[
+                    'GuideID' =>$GuideID,
+                    'StartDate'=>$_POST['sdate'],
+                    'EndDate'=>$_POST['endDate'],
+                    'PaymentMethod'=>$_POST['payment_option'],
+                    'payment'=>$_POST['total'],
+                    'TravelerID'=>$_SESSION['user_id'],
+                    'Location'=>$_POST['G_book_location']
+                ];
+
+                if($_SESSION['user_type']){
+                    if($this->guideBookingModel->insertGuideBooking($data)){
+                        flash('booking_flash', 'Guide Booked Sucessfully');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    }else{
+                        flash('booking_flash', 'Somthing went wrong try again');
+                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                    }
+                }else{
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+                }
+
+                
+
+                
+            }
+        }
         
     
 
@@ -202,7 +276,7 @@
         public function CancelTaxiBooking($bookingid){
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($bookingid);
             if($_SESSION['user_type']=='Traveler'){
-                if ($booking->TravelerID!=$_SERVER['user_id']) {
+                if ($booking->TravelerID!=$_SESSION['user_id']) {
                     flash('reg_flash', 'Access Denied...');
                     redirect('Users/login');
                 }
@@ -392,94 +466,151 @@
             
         }
 
+        public function EditcheckTimeSlot(){
+            $bookingDate = $_POST['bookingDate'];
+            $bookingTime = $_POST['bookingTime'];
+            $vehicleID = $_POST['vehicleID'];
+            $est = $_POST['est'];
+            $bookingID = $_POST['bookingID'];
+
+
+            $bookingAvailable = $this->taxiBookingModel->checkEditBookingDate($vehicleID,$bookingID,$bookingDate,$bookingTime,$est);
+            
+            echo json_encode($bookingAvailable);
+            
+        }
+
         public function TaxiBookingPage($vehicleID,$ownerID){
-         
-            $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
+          
+        
+            if ($_SESSION['user_type'] == 'Traveler') {
+                $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
             // var_dump($details);
-            $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
+                $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
-            if(isset($owner->company_name)){
-                $com_name = $owner->company_name;
-            }else{
-                $com_name = $owner->owner_name;
-            }
-            
-            
-
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
-                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $pickupL = trim($_POST['pickupL']);
-                $dropL =  trim($_POST['dropL']);
-                $bookingDate = $_POST['s_date'];
-                $bookingTime = $_POST['s_time'];
-                $passengers = $_POST['passengers'];
-                $payment_option = $_POST['payment_option'];
+                if(isset($owner->company_name)){
+                    $com_name = $owner->company_name;
+                }else{
+                    $com_name = $owner->owner_name;
+                }
                 
-                $exTime=$_POST['duration']; //extimate time
-
-                $distance=$_POST['distance'];
                 
-                $total = (float)$distance * (float)$details->price_per_km;
 
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
-                $bookingdatetime = new DateTime("$bookingDate $bookingTime");
-               
-                $exHours = (int)substr($exTime, 0, 2);
-                $exMinutes = (int)substr($exTime, 3, 2);
-                $exSeconds = (int)substr($exTime, 6, 2);
+                    $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                    $pickupL = trim($_POST['pickupL']);
+                    $dropL =  trim($_POST['dropL']);
+                    $bookingDate = $_POST['s_date'];
+                    $bookingTime = $_POST['s_time'];
+                    $passengers = $_POST['passengers'];
+                    $payment_option = $_POST['payment_option'];
+                    
+                    $exTime=$_POST['duration']; //extimate time
 
-                $bookingdatetime->add(new DateInterval("PT{$exHours}H{$exMinutes}M{$exSeconds}S"));
-                $est_datetime = $bookingdatetime->format("Y-m-d H:i:s");
+                    $distance=$_POST['distance'];
+                    
+                    $total = (float)$distance * (float)$details->price_per_km;
 
-                $end_date = date('Y-m-d', strtotime($est_datetime));
-                $end_time = date('H:i:s', strtotime($est_datetime));
-  
+                    
+                    $bookingdatetime = new DateTime("$bookingDate $bookingTime");
+                
+                    $exHours = (int)substr($exTime, 0, 2);
+                    $exMinutes = (int)substr($exTime, 3, 2);
+                    $exSeconds = (int)substr($exTime, 6, 2);
+
+                    $bookingdatetime->add(new DateInterval("PT{$exHours}H{$exMinutes}M{$exSeconds}S"));
+                    $est_datetime = $bookingdatetime->format("Y-m-d H:i:s");
+
+                    $end_date = date('Y-m-d', strtotime($est_datetime));
+                    $end_time = date('H:i:s', strtotime($est_datetime));
+    
 
 
-                $data=[
-                    's_date'=>trim($_POST['s_date']),
-                    's_time'=>trim($_POST['s_time']),
-                    'p_latitude'=>trim($_POST['p-latitude']),
-                    'p_longitude'=>trim($_POST['p-longitude']),
-                    'd_latitude'=>trim($_POST['d-latitude']),
-                    'd_longitude'=>trim($_POST['d-longitude']),
-                    'payment_option'=>$payment_option,
-                    'passengers'=>$passengers,
-                    'e_date'=>$end_date,
-                    'e_time'=>$end_time,
-                    'pickupL'=>$pickupL,
-                    'dropL'=>$dropL,
-                    'details'=>$details,
-                    'extime'=>$exTime,
-                    'com_name'=>$com_name,
-                    'owner'=>$owner,
-                    'TaxiOwnerID'=>$owner->OwnerID,
-                    'distance'=>$distance,
-                    'total' => $total     
+                    $data=[
+                        's_date'=>trim($_POST['s_date']),
+                        's_time'=>trim($_POST['s_time']),
+                        'p_latitude'=>trim($_POST['p-latitude']),
+                        'p_longitude'=>trim($_POST['p-longitude']),
+                        'd_latitude'=>trim($_POST['d-latitude']),
+                        'd_longitude'=>trim($_POST['d-longitude']),
+                        'payment_option'=>$payment_option,
+                        'passengers'=>$passengers,
+                        'e_date'=>$end_date,
+                        'e_time'=>$end_time,
+                        'pickupL'=>$pickupL,
+                        'dropL'=>$dropL,
+                        'details'=>$details,
+                        'extime'=>$exTime,
+                        'com_name'=>$com_name,
+                        'owner'=>$owner,
+                        'TaxiOwnerID'=>$owner->OwnerID,
+                        'distance'=>$distance,
+                        'total' => $total     
+                        ];
+                        
+                        $_SESSION['booking_data'] = $data;
+
+                        $this->view('taxi/v_bookings',$data);
+
+                }else{
+                    
+
+                    $data=[
+                        'details'=>$details,
+                        'com_name'=>$com_name,
+                        'owner'=>$owner,
+                        'hide'=>'false'
                     ];
                     
-                    $_SESSION['booking_data'] = $data;
-
+                    
+                    // echo var_dump($data);
                     $this->view('taxi/v_bookings',$data);
-
+                    
+                }
             }else{
-                
-
-                $data=[
-                    'details'=>$details,
-                    'com_name'=>$com_name,
-                    'owner'=>$owner,
-                    'hide'=>'false'
-                ];
-                
-                
-                // echo var_dump($data);
-                $this->view('taxi/v_bookings',$data);
-                
+                flash('reg_flash', 'Only Traveler Can Place Booking...');
+                redirect('Users/login');
             }
             
+            
 
+        }
+
+        public function EditTaxiBooking($id){
+
+            if ($_SESSION['user_type'] == 'Traveler') {
+
+
+                $booking=$this->taxiBookingModel->getBookingByID($id);
+                $details = $this->taxiBookingModel->getVehicleAndDriversbyID($booking->Vehicles_VehicleID);
+                $owner = $this->taxiBookingModel->getTaxiOwnerbyID($booking->TaxiOwnerID);
+                var_dump($booking);
+
+                if(isset($owner->company_name)){
+                    $com_name = $owner->company_name;
+                }else{
+                    $com_name = $owner->owner_name;
+                }
+                
+                
+                
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                
+                }else{
+                    $data=[
+                        'details'=>$details,
+                        'com_name'=>$com_name,
+                        'owner'=>$owner,
+                        'booking'=>$booking,
+                        'hide'=>'false'
+                    ];
+
+                    $this->view('taxi/v_edit_bookings',$data);
+                }
+
+            }
+            
         }
 
         public function Placeguidebookings($GuideID){
@@ -541,47 +672,47 @@
                 ];
                 
                 
-                echo var_dump($data);
-                $this->view('guide/v_check_availability',$data);
+                // echo var_dump($data);
+                $this->view('guide/v_guide_booking',$data);
                 
             }
             
 
         }
 
-        public function checkGuideAvailability($GuideID){
-            $guideDetails=$this->guideModel->getGuideById($_POST['gid']);
-            // echo "id123:".$_POST['gid'];
-            $guideLangs=$this->guideBookingModel->getGuideLangs($_POST['gid']);
+        // public function checkGuideAvailability($GuideID){
+        //     $guideDetails=$this->guideModel->getGuideById($_POST['gid']);
+        //     // echo "id123:".$_POST['gid'];
+        //     $guideLangs=$this->guideBookingModel->getGuideLangs($_POST['gid']);
             
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //     if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
-                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+        //         $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
-                $data=[
-                    'startdate' =>trim($_POST['sdate']),
-                    'enddate' =>trim($_POST['endDate']),
-                    'guideName' => $_POST['gname'],
-                    'guideReg' => $_POST['greg'],
-                    'guideRate' => $_POST['grate'],
-                    'guidedetails'=>$guideDetails,
-                    'guideLanguages' => $guideLangs
+        //         $data=[
+        //             'startdate' =>trim($_POST['sdate']),
+        //             'enddate' =>trim($_POST['endDate']),
+        //             'guideName' => $_POST['gname'],
+        //             'guideReg' => $_POST['greg'],
+        //             'guideRate' => $_POST['grate'],
+        //             'guidedetails'=>$guideDetails,
+        //             'guideLanguages' => $guideLangs
 
-                ];
+        //         ];
 
-                // var_dump($data);
+        //         // var_dump($data);
                 
 
-                $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
-                if(empty($bookingAvailable)){
-                    $this->view('guide/v_guide_booking',$data);
-                }else{
-                    echo json_encode("Not available for the given dates");
-                    $this->view('guide/v_check_availability',$data);
-                }
+        //         $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
+        //         if(empty($bookingAvailable)){
+        //             $this->view('guide/v_guide_booking',$data);
+        //         }else{
+        //             echo json_encode("Not available for the given dates");
+        //             $this->view('guide/v_check_availability',$data);
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
         public function TaxiBookingdetails($vehicleID,$userId){
 

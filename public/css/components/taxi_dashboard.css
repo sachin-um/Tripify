@@ -100,7 +100,7 @@
 
 
 
-#taxi_veh_view,#taxi_veh_delete{
+#taxi_veh_view,#taxi_veh_delete,#taxi-complete-btn{
     margin-top: 1.5em;
     height: 3em;
     width:8em;
@@ -110,6 +110,16 @@
     
     border-color: #35BCBF;
 }
+
+#taxi-complete-btn{
+    background-color: #03002E;
+}
+
+#taxi-complete-btn:hover{
+    background-color: #e8b122;
+    color: black;
+}
+
 
 
 #taxi_veh_view{

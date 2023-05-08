@@ -51,9 +51,9 @@ else {
                     <label class="abc">Payment option </label><br>
                     <select class="search" id="payment-option" name="payment_option">
                         <option value="" disabled selected hidden>Payment Option</option>
-                        <option value="Onsite">Onsite</option>
+                        <option value="Cash">Cash</option>
                         <option value="Online">Online</option>
-                        <option value="Both Option">Both Option</option>
+                        <option value="Cash or Online">Cash or Online</option>
                     </select>
                     <span class="invalid"></span>
                     
