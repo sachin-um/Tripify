@@ -33,7 +33,8 @@
             
                 $data=[
                         'area'=>trim($_POST['area']),
-                        'date'=>trim($_POST['date']),
+                        'start_date'=>trim($_POST['start_date']),
+                        'end_date'=>trim($_POST['end_date']),
                         'time'=>trim($_POST['time']),
                         'language'=>trim($_POST['language']),
                         'additional-details'=>trim($_POST['additional-details']),
@@ -41,7 +42,8 @@
 
 
                         'area_err'=>'',
-                        'date_err'=>'',
+                        'start_date_err'=>'',
+                        'end_date_err'=>'',
                         'time_err'=>'',
                         'language_err'=>'',
                         'additional-details_err'=>'',
@@ -55,8 +57,11 @@
                     $data['area_err']='Please enter the area you want travel';
                 }
                 //validate email
-                if (empty($data['date'])) {
-                    $data['date_err']='please enter the date';
+                if (empty($data['start_date'])) {
+                    $data['start_date_err']='please enter startingthe date';
+                }
+                if (empty($data['end_date'])) {
+                    $data['end_date_err']='please enter the ending date';
                 }
                 if (empty($data['language'])) {
                     $data['language_err']='please enter the language y';
@@ -68,7 +73,7 @@
                 
 
 
-                if (empty($data['area_err']) &&  empty($data['date_err']) && empty($data['language_err']) && empty($data['travelerid_err'])) {
+                if (empty($data['area_err']) &&  empty($data['start_date_err']) && empty($data['end_date_err']) && empty($data['language_err']) && empty($data['travelerid_err'])) {
                     
                     //Add a Taxi Request
                     if ($this->guiderequestModel->addguiderequest($data)) {
@@ -89,14 +94,16 @@
             else {
                 $data=[
                     'area'=>'',
-                    'date'=>'',
+                    'start_date'=>'',
+                    'end_date'=>'',
                     'time'=>'',
                     'language'=>'',
                     'additional-details'=>'',
                     'travelerid'=>'',
 
                     'area_err'=>'',
-                    'date_err'=>'',
+                    'start_date_err'=>'',
+                    'end_date_err'=>'',
                     'time_err'=>'',
                     'language_err'=>'',
                     'additional-details_err'=>'',

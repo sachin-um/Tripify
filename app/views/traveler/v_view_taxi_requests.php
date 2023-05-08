@@ -64,8 +64,18 @@ else {
             <h2 class="title" >Taxi Requests</h2>
             <hr>
         </div>  
+        <br>
+        <div class="request-filter-area">
+            <input type="text" placeholder="Search Request..." id="searchInput">
+            <select name="request-type" id="request-type">
+                <option value="" disabled selected>Request Type</option>
+                <option value="all">All</option>
+                <option value="In progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
         <?php flash('taxi_request_flash'); ?>  
-        <div class="request-list">
+        <div class="request-list" id="request-list">
 
         <?php
             $requests=$data['taxirequests'];
@@ -73,7 +83,7 @@ else {
         ?>
 
         <div class="request">
-            <div class="post-header">Request ID : <?php echo $taxirequest->request_id; ?></div>
+            <div class="post-header">Request ID : TR<?php echo $taxirequest->request_id; ?></div>
             <i class="fa-sharp fa-solid fa-timer"></i>
             <div class="post-body">
                 <div class="req-slot1">
@@ -157,6 +167,11 @@ else {
                             
                         <?php
                     }
+                    elseif ($_SESSION['user_type']=='Traveler') {
+                        ?>
+                        <div class="post-by" style="margin:auto"><span class="post-by-data">Status: <?php echo $taxirequest->status; ?></span></div>
+                        <?php
+                    }
                 ?>
                 </div>
             </div>
@@ -201,6 +216,7 @@ else {
     </div>
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/request_search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
  <script type="text/javascript" src="<?php echo AUTO_MAP_URL ?>" defer></script>
  <script>

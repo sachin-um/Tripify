@@ -61,38 +61,58 @@ else {
             <h2 class="title" >Guide Requests</h2>
             <hr>
         </div>
+        <br>
+        <div class="request-filter-area">
+            <input type="text" placeholder="Search Request..." id="searchInput">
+            <select name="request-type" id="request-type">
+                <option value="" disabled selected>Request Type</option>
+                <option value="all">All</option>
+                <option value="In progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
         <?php flash('guide_request_flash'); ?>
-        <div class="request-list">
+        <div class="request-list" id="request-list">
 
         <?php
             $requests=$data['guiderequests'];
             foreach($requests as $guiderequest):
         ?>
         <div class="request">
-            <div class="post-header">Request ID : <?php echo $guiderequest->request_id; ?></div>
+            <div class="post-header">Request ID : GR<?php echo $guiderequest->request_id; ?></div>
             <div class="post-body">
                 <div class="req-slot1">
                     <div class="detail-container" style="margin-right: 20px;">
                         <div class="header-container">
                             <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
-                            <div class="heading">Date</div>
+                            <div class="heading">Start Date</div>
                         </div>
                         <div class="post-tag post-date description" style="margin-left: 33px">
-                            <?php echo $guiderequest->date; ?></span>
+                            <?php echo $guiderequest->start_date; ?></span>
                         </div>
                     </div>
-                    <div class="detail-container">
+                    <div class="detail-container" >
                         <div class="header-container">
-                            <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
-                            <div class="heading">Time</div>
+                            <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                            <div class="heading">End Date</div>
                         </div>
                         <div class="post-tag post-date description" style="margin-left: 33px">
-                            <?php echo $guiderequest->time; ?></span>
+                            <?php echo $guiderequest->end_date; ?></span>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="req-slot2">
                         <div class="detail-container" style="margin-right: 20px;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-clock fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">Time</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $guiderequest->time; ?></span>
+                            </div>
+                        </div>
+                        <div class="detail-container" >
                             <div class="header-container">
                                 <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
                                 <div class="heading">Pickup Location</div>
@@ -101,6 +121,10 @@ else {
                                 <?php echo $guiderequest->p_location; ?></span>
                             </div>
                         </div>
+                        
+                    
+                </div>
+                <div class="req-slot2">
                         <div class="detail-container">
                             <div class="header-container">
                                 <i class="fa-solid fa-location-pin fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
@@ -110,7 +134,6 @@ else {
                                 <?php echo  $guiderequest->p_language; ?></span>
                             </div>
                         </div>
-                    
                 </div>
                 <div class="req-slot3">
                         <div class="detail-container" style="margin-right: 20px; width: 97%;">
@@ -134,6 +157,11 @@ else {
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/phone.png" alt="phone" class="post-by-img"><span class="post-by-data">: <?php echo $guiderequest->contact_no; ?></span></div>
                     <div class="post-by"><img src="<?php echo URLROOT; ?>/img/timer.png" alt="timer" class="post-by-img"><span class="post-by-data">: <?php echo convertTime($guiderequest->post_at); ?></span></div>
                     <?php
+                    }
+                    elseif ($_SESSION['user_type']=='Traveler') {
+                        ?>
+                        <div class="post-by" style="margin:auto"><span class="post-by-data">Status: <?php echo $guiderequest->status; ?></span></div>
+                        <?php
                     }
                 ?>
                 </div>
@@ -181,6 +209,7 @@ else {
 
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/request_search.js"></script>
 <?php
 }
 ?>

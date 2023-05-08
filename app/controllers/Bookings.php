@@ -26,17 +26,14 @@
         public function HotelBookings($usertype,$userid){
             
             if ($usertype=='Traveler') {
-                $hotelbookings=$this->hotelBookingModel->viewBookings($userid);
-                $hotelinfo = array();
+                $hotelbookings=$this->hotelBookingModel->viewBookings($usertype,$userid);
                 foreach($hotelbookings as $booking){
-                    $hinfo=$this->hotelBookingModel->getHotelIDandName($booking->hotel_id);
-                    $hotelinfo[]=$hinfo->HotelID;
-                    $hotelinfo[]=$hinfo->Name;
+                    $hoteldetails=$this->hotelModel->getHotelById($booking->hotel_id);
+                    $booking->hoteldetails=$hoteldetails;
                 }
                 
                 $data=[
-                    'hotelbookings'=> $hotelbookings,
-                    'IDandName' => $hotelinfo
+                    'hotelbookings'=> $hotelbookings
                 ];
 
                 $this->view('traveler/v_hotelbookings',$data);
@@ -215,7 +212,7 @@
                     'offer'=>$offer
                 ];
                 if ($this->guideBookingModel->addguideBooking($data)) {
-                    if ($this->guideofferModel->acceptGuideOffer($offerid)) {
+                    if ($this->guideofferModel->acceptGuideOffer($offerid,$requestid)) {
                         flash('guide_booking_flash', 'Offer succesfully accepted placed your booking');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                     }
@@ -373,7 +370,7 @@
                     'offer'=>$offer
                 ];
                 if ($this->taxiBookingModel->acceptTaxiOffer($data)) {
-                    if ($this->taxiofferModel->acceptTaxiOffer($offerid)) {
+                    if ($this->taxiofferModel->acceptTaxiOffer($offerid,$requestid)) {
                         flash('taxi_booking_flash', 'Offer succesfully accepted placed your booking');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);   
                     }
@@ -808,6 +805,7 @@
                 }
 
                 // print_r($allrooms); 
+                $images = $this->hotelModel->getImages($hotelID);
 
                 $data=[
                     'hotelID'=>$hotelID,
@@ -816,7 +814,8 @@
                     'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
                     'allroomtypes'=> $allroomtypes,
                     'description'=>$profileDetails->Description,
-                    'availablerooms'=>$allrooms
+                    'availablerooms'=>$allrooms,
+                    'images'=>$images
                     // 'noofadults' => $data['noofadults']
                     // 'profileName'=> $profileDetails->Name,
                     // 'profileName'=> $profileDetails->Name
@@ -861,6 +860,7 @@
                     }
                     
                 }
+
 
 
                 //Get booked room names
@@ -925,6 +925,26 @@
                 
             ];
             if ($this->taxiBookingModel->TaxiBookingPaymentUpdate($data)) {
+
+                flash('booking_flash', 'Your Payment is recieved  Thank You..!');
+                
+                $jsonObj = json_encode($data);
+                // printr($jsonObj);
+                // var_dump($jsonObj)
+                 echo $jsonObj;
+            }
+            else{
+                die('Something went wrong');
+            }
+        }
+
+        public function GuideBookingPaymentUpdate()
+        {
+            $data=[
+                'bookingid'=>$_POST['booking_id'],
+                
+            ];
+            if ($this->guideBookingModel->GuideBookingPaymentUpdate($data)) {
                 flash('booking_flash', 'Your Payment is recieved  Thank You..!');
                 
                 $jsonObj = json_encode($data);
@@ -943,6 +963,7 @@
             header('Content-Type: application/json');
             echo json_encode($booking);
         }
+
 
         public function booking(){
            

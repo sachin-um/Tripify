@@ -42,11 +42,23 @@ else {
         <br>
         <h2 style="text-align: left;">Hotel Bookings</h1>
         <hr>
-        <?php flash('booking_flash'); ?>
         <br>
+        <div class="booking-filter-area">
+            <input type="text" placeholder="Search bookings..." id="searchInput">
+            <select name="booking-type" id="booking-type">
+                <option value="" disabled selected>Booking Type</option>
+                <option value="all">All</option>
+                <option value="in progress">In progress</option>
+                <option value="completed">Completed</option>
+                <option value="canceled">Canceled</option>
+                <option value="paid">Paid</option>
+                <option value="yet to pay">Yet to pay</option>
+            </select>
+        </div>
+        <?php flash('booking_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>Booking ID</th>
@@ -69,9 +81,9 @@ else {
                         ?>
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
-                            <td data-lable="Name"><?php echo $booking->booking_id ?></td>
-                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hotel->HotelID; ?>/Hotel"><?php echo $booking->hotel->Name ?></a> </td>
-                            <td data-lable="Name"><?php echo $booking->hotel->Name?></td>
+                            <td data-lable="Name">H<?php echo $booking->booking_id ?></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hoteldetails->HotelID; ?>/Hotel"><?php echo $booking->hoteldetails->Name ?></a> </td>
+                            <td data-lable="Name"><?php echo $booking->hoteldetails->Name?></td>
                             <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
                             <td data-lable="Name"><?php echo $booking->checkout_date ?></td>
                             <td data-lable="Name"><?php echo $booking->payment ?></td>
@@ -196,6 +208,7 @@ else {
         </div>
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/booking_search.js"></script>
  <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
  <?php
 }

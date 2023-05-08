@@ -95,6 +95,20 @@
             }
         }
 
+        public function GuideBookingPaymentUpdate($data)
+        {
+            $this->db->query('UPDATE guide_bookings SET PaymentStatus="Paid" WHERE BookingID=:bookingid');
+            $this->db->bind(':bookingid',$data['bookingid']);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
         
 
         public function CompletedGuideBooking($id)
