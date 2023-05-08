@@ -1,7 +1,7 @@
 var bookingType;
 var booking_id;
 var userid;
-function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID){
+function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot){
     bookingType = type;
     booking_id=bookingID;
     
@@ -13,10 +13,11 @@ function paymentGateway(type,payment,bookingID,serviceProviderID,urlroot,userID)
             // Payment completed. It can be a successful failure.
             userid=obj["user_id"];
             console.log(userid);
+            var cancel_url;
             if(type=="Taxi"){
-                var cancel_url=urlroot+"/Bookings/TaxiBookings/"+type+"/"+obj["userid"];     // Important
-            }else{
-                // saveBooking(serviceProviderID,<?php echo $data['roomIDstring']?>,payment);
+                cancel_url=urlroot+"/Bookings/TaxiBookings/"+type+"/"+obj["userid"];
+            }else if (type=="Guide") {
+                cancel_url=urlroot+"/Bookings/GuideBookings/"+type+"/"+obj["userid"];
             }
             
             // Put the payment variables here
@@ -69,10 +70,21 @@ payhere.onCompleted = function onCompleted(orderId) {
         xhttp.open("POST","http://localhost/Tripify/Bookings/TaxiBookingPaymentUpdate",true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("booking_id="+booking_id);
-    }else{
-    //     // saveBooking(serviceProviderID,<?php echo $data['roomIDstring']?>,payment);
+    }else if (bookingType=="Guide") {
+        // console.log("Payment completed. OrderID:" + orderId + booking_id);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = ()=>{
+            if(xhttp.readyState == 4){ 
+                // let obj=JSON.parse(xhttp.responseText);
+                // console.log(obj);
+                window.location.href='http://localhost/Tripify/Bookings/GuideBookings/Traveler/'+userid;
+            }
+        };
+        xhttp.open("POST","http://localhost/Tripify/Bookings/GuideBookingPaymentUpdate",true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("booking_id="+booking_id);
     }
-    // Note: validate the payment and show success or failure page to the customer
+    
 };
 
 // Payment window closed
@@ -86,62 +98,3 @@ payhere.onError = function onError(error) {
     // Note: show an error page
     console.log("Error:"  + error);
 };
-
-function saveBooking(hotelID,roomIDstring,payment){
-    // ajax request liyala back end controller ekata data yawanna
-    $.ajax({
-                type: "POST",
-                url: urlroot+"/HotelBookings/booking",
-                data: {
-                    hotelID: hotelID,
-                    roomIDstring: roomIDstring,
-                    payment: payment
-                },
-                dataType: "JSON",
-                success: function(response) {
-                    // alert('<?= urlrrot ?> / CustomerLocker / viewLockerArticle / ' + response);
-
-                    if(response){
-                        //traveler's booking dashboard
-                        window.location = urlrrot +"/Pages/home";
-                    }
-                    
-                    
-                }
-            });
-
-}
-
-// function saveTaxiBooking(bookingID){
-//     // ajax request liyala back end controller ekata data yawanna
-//     // $.ajax({
-//     //             type: "POST",
-//     //             url: URLROOT +"/Bookings/TaxiBookingdetails/"+VID+"/"+serviceProviderID,
-//     //             data: {
-//     //                 bookingID: bookingID,
-//     //                 payment: payment
-//     //             },
-//     //             dataType: "JSON",
-//     //             success: function(response) {
-//     //                 // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
-
-//     //                 if(response){
-//     //                     //traveler's booking dashboard
-//     //                     window.location =  URLROOT+'/Pages/home';
-//     //                 }
-                    
-                    
-//     //             }
-//     //         });
-//     console.log("Payment completed. OrderID:" + bookingID);
-//     var xhttp = new XMLHttpRequest();
-//     xhttp.onreadystatechange = ()=>{
-//         if(xhttp.readyState == 4){ 
-            
-//         }
-//     };
-//     xhttp.open("POST","http://localhost/Tripify/Bookings/TaxiBookingPaymentUpdate",true);
-//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//     xhttp.send("booking_id="+bookingID);
-
-// }

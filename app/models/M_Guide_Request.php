@@ -13,10 +13,11 @@
         //add guide request
 
         public function addguiderequest($data){
-            $this->db->query('INSERT INTO guide_request(language,Location,Date,Time,Description,TravelerID) VALUES(:language,:Location,:Date,:Time,:Description,:travelerid)');
+            $this->db->query('INSERT INTO guide_request(language,Location,Start_Date,End_Date,Time,Description,TravelerID) VALUES(:language,:Location,:Start_Date,:End_Date,:Time,:Description,:travelerid)');
             $this->db->bind(':language',$data['language']);
             $this->db->bind(':Location',$data['area']);
-            $this->db->bind(':Date',$data['date']);
+            $this->db->bind(':Start_Date',$data['start_date']);
+            $this->db->bind(':End_Date',$data['end_date']);
             $this->db->bind(':travelerid',$data['travelerid']);
             $this->db->bind(':Time',$data['time']);
             $this->db->bind(':Description',$data['additional-details']);

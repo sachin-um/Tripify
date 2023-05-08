@@ -8,6 +8,191 @@
     grid-row-gap: 20px; /* space between rows, change as needed */
 }
 
+.nav-grid-1{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px; /* space between columns, change as needed */
+    grid-row-gap: 20px; /* space between rows, change as needed */
+    padding: 1%;
+}
+
+/* carousal starts here */
+.slider{
+    height: 10%;
+    margin: auto;
+    position: relative;
+    width: 90%;
+    display: grid;
+    place-items: center;
+}
+
+.slide-track{
+    display: flex;
+    width: calc(250px * 20);
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-250px * 7));
+    }
+}
+
+.slide{
+    height: 250px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+}
+
+#img-carousal{
+    width: 100%;
+    transition: transform 1s;
+}
+
+#img-carousal:hover{
+    transform: translateZ(20px);
+}
+
+.slider::before,
+.slider::after{
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%
+    rgba(255,255,255,0) 100%);
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+}
+
+.slider::before{
+    left: 0;
+    top: 0;
+}
+
+.slider::after{
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+/* review css starts here */
+.slider-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-container{
+    height: 450px;
+    min-width: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efefef;
+}
+
+.review-card{
+    width: 600px;
+    border-radius: 25px;
+    background-color: #fff;
+}
+
+.image-content,
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0;
+}
+
+.slide-content{
+    margin: 0 40px;
+}
+
+.image-content{
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #03002E;
+    border-radius: 25px 25px 0 25px;
+}
+
+.overlay::before,
+.overlay::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: #03002E;
+}
+
+.overlay::after{
+    border-radius: 0 25px 0 0;
+    background-color: #fff;
+}
+
+.card-image{
+    position: relative;
+    height: 150px;
+    width: 50px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 3px;
+}
+.card-image .card-img{
+    height: 100%; 
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #e8b122;
+}
+
+.review-name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.review-description{
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+
+.review-button{
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #03002E;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.review-button:hover{
+    background: #e8b122;
+    color: #03002E;
+}
+
+
+
 .hotel-labels-1{
     border: none;
     text-align: center;
@@ -165,6 +350,11 @@ hr{
     width: 80%;
     padding: 3%;
     background: rgba(232,177,34,0.2);
+}
+
+#facilities-reviews-section{
+    display: flex;
+    flex-direction: column;
 }
 
 

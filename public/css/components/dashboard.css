@@ -233,6 +233,12 @@
    color: #03002E;
 }
 
+.hotel-images{
+   width: 100%;
+   height: 100%;
+   margin: auto;
+}
+
 .drag-area{
    transition: 300ms ease-in;
 }

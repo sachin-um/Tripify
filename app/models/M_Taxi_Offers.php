@@ -27,11 +27,18 @@
         }
 
         //accept offer
-        public function acceptTaxiOffer($id){
+        public function acceptTaxiOffer($id,$rid){
             $this->db->query('UPDATE taxi_offers set status="Accepted" WHERE OfferID=:id');
             $this->db->bind(':id',$id);
             if ($this->db->execute()) {
-                return true;
+                $this->db->query('UPDATE taxi_request set status="Completed" WHERE RequestID=:rid');
+                $this->db->bind(':rid',$rid);
+                if ($this->db->execute()) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
             else {
                 return false;
