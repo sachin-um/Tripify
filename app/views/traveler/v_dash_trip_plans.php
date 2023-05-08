@@ -18,7 +18,7 @@
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
             <a href="<?php echo URLROOT; ?>/Trips/yourtrips/<?php echo $_SESSION['user_id'] ?>" class="menu-item is-active">Your Trips</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item ">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Users/contactust" class="menu-item">Contact Admin</a>
             <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -29,10 +29,13 @@
         <h2 style="text-align: left;">Your Trips</h1>
         <hr>
         <br>
+        <div class="booking-filter-area">
+            <input type="text" placeholder="Search trips..." id="searchInput">
+        </div>
         <?php flash('trip_list_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
-                <table class="message-table">
+                <table class="message-table" id="message-table">
                     <thead>
                         <tr>
                             <th>Trip ID</th>
@@ -70,3 +73,4 @@
         </div>
     </main>
  </div>
+ <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/search/booking_search.js"></script>
