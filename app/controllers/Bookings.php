@@ -585,7 +585,7 @@
                 $booking=$this->taxiBookingModel->getBookingByID($id);
                 $details = $this->taxiBookingModel->getVehicleAndDriversbyID($booking->Vehicles_VehicleID);
                 $owner = $this->taxiBookingModel->getTaxiOwnerbyID($booking->TaxiOwnerID);
-                var_dump($booking);
+                // var_dump($booking);
 
                 if(isset($owner->company_name)){
                     $com_name = $owner->company_name;
@@ -596,6 +596,45 @@
                 
                 
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                    if ($booking->status == "Yet To Confirm"){
+                        $data=[
+                            's_date'=>trim($_POST['s_date']),
+                            's_time'=>trim($_POST['s_time']),
+                            'p_latitude'=>trim($_POST['p-latitude']),
+                            'p_longitude'=>trim($_POST['p-longitude']),
+                            'd_latitude'=>trim($_POST['d-latitude']),
+                            'd_longitude'=>trim($_POST['d-longitude']),
+                            'payment_option'=>trim($_POST['payment_option']),
+                            'passengers'=>trim($_POST['passengers']),
+                            'e_date'=>trim($_POST['tripEndDate']),
+                            'e_time'=>trim($_POST['tripEndTime']),
+                            'pickupL'=>trim($_POST['pickupL']),
+                            'dropL'=>trim($_POST['dropL']),
+                            'extime'=>trim($_POST['duration']),
+                            'distance'=>trim($_POST['distance']),
+                            'total' => trim($_POST['total']),
+                            'TaxiOwnerID'=>$booking->TaxiOwnerID,
+                            'travelerID'=>$booking->TravelerID, 
+                            'vehicleID'=>  $booking->Vehicles_VehicleID  
+                            ];
+
+                        
+                        if ($this->taxiBookingModel->EditTaxiBooking($data,$id)) {
+                            flash('booking_flash', 'Your Booking Update Sucessfully..!');
+                            redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                        }
+                        else{
+                            flash('booking_flash', 'Something Went to Wrong!');
+                            redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                        }
+                    }else{
+                        flash('booking_flash', 'Contact Taxi Owner to Edit Booking!');
+                        redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+
+                    }
+                    
+                
                 
                 }else{
                     $data=[
@@ -609,6 +648,9 @@
                     $this->view('taxi/v_edit_bookings',$data);
                 }
 
+            }else{
+                flash('booking_flash', 'Only Traveler Can Edit Booking...');
+                redirect('Users/login');
             }
             
         }
@@ -742,7 +784,7 @@
                 'total' =>$_SESSION['booking_data']['total'],
                 ];
 
-                var_dump($data);
+                
 
                 if ($this->taxiBookingModel->insertTaxiBooking($data)) {
                     flash('request_flash', 'Your Vehicle Booked Sucessfully..!');

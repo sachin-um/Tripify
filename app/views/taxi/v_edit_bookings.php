@@ -133,9 +133,9 @@ else {
                     <?php 
                         if(isset($data['hide'])){
                     ?>
-                        <p class="home-title-2" >Book Now</p>
+                        <p class="home-title-2" >Edit Your Booking</p>
                         <hr>
-                        <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
+                        <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/EditTaxiBooking/<?php echo $data['booking']->ReservationID ?>" method="POST">
                                 
                                 <br>
                                 
@@ -166,8 +166,6 @@ else {
                                         <!-- <?php echo $data['booking']->pickup_location ?> -->
                                         <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" value="" required>
                                         
-                                        <input type="hidden" name="p-latitude" id="p-latitude" value="" >
-                                        <input type="hidden" name="p-longitude" id="p-longitude" value="">
                                     </div>
 
                                     <div class="hotel-reg-elements">
@@ -179,6 +177,9 @@ else {
                                         <div id="map-container">
                                             <div id="map-d"></div>
                                         </div> -->
+                                        <input type="hidden" name="p-latitude" id="p-latitude" value="" >
+                                        <input type="hidden" name="p-longitude" id="p-longitude" value="">
+
                                         <input type="hidden" name="d-latitude" id="d-latitude" value="">
                                         <input type="hidden" name="d-longitude" id="d-longitude" value="">
 
@@ -187,8 +188,11 @@ else {
 
                                         <input type="hidden" name="tripEndDate" id="tripEndDate" value="">
                                         <input type="hidden" name="tripEndTime" id="tripEndTime" value="">
+                                        <input type="hidden" name="total" id="amount" value="">
 
-                                        <input type="hidden" name="duration" id="rate" value="<?php echo $data['details']->price_per_km?>">
+
+
+                                        <input type="hidden" name="rate" id="rate" value="<?php echo $data['details']->price_per_km?>">
                                         
                                     </div>
 
@@ -256,6 +260,9 @@ else {
 
 
                 <div id="taxi-booking-cont" style="display:none;">
+
+                                      
+
                             <p class="home-title-3"><u>Price Details</u></p>
                             <br>
                             <div class="price-details-1">
@@ -267,24 +274,27 @@ else {
                                 <div class="hotel-price-check">
                                     <label><b>Trip End :</b></label><br>
                                     <label><b><p id="endDate"></p></b></label><br>
-                                    <label><b><p id="endTime"></b></label>
+                                    <label><b><p id="endTime"></p></b></label>
                                 </div>
                                 <div class="hotel-price-check">
                                     <label><b><p id="pickupL"></p></b></label><br>
                                     <label><p><b>To</b></p></label>
-                                    <label><b><p id="dropL"></b></label>
+                                    <label><b><p id="dropL"></p></b></label>
                                 </div>
                                 <div id="hotel-nights-days" class="hotel-price-check">
-                                    <label><p class="dist"></label>
-                                </div>
+                                    <label><p id="dist"></p></label>
+                                </div><br>
+                                <!-- <div id="hotel-nights-days" class="hotel-price-check">
+                                    <label><p id="timeEst"></p></label>
+                                </div> -->
                             </div>
                             <br>
                             <div class="price-details-2">
                                 <div class="hotel-price-details">
-                                    <label id="No-of-rooms"><p class="dist"></p></label>
+                                    <label id="No-of-rooms"><p id="jurDist"></p></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
-                                    <label id="hotel-taxes-1"><b><p class="total"></p></b></label>
+                                    <label id="hotel-taxes-1"><b><p id="totalSub"></p></b></label>
                                 </div>
 
                                 
@@ -293,13 +303,13 @@ else {
                                 
                                 <div class="hotel-price-details">
                                     <label id="hotel-taxes">Total</label>
-                                    <label id="hotel-taxes-1"><b><p class="total"></p></b></label>
+                                    <label id="hotel-taxes-1"><b><p id="total"></p></b></label>
                                 </div>
                             </div>
 
 
                             <div class="hotel-reg-form-div-2">
-                                <button  onclick="editTaxiBooking()" id="confirm-booking-btn" class="all-purpose-btn" type="button"  >Book Now</button>
+                                <button  onclick="editTaxiBooking()" id="confirm-booking-btn" class="all-purpose-btn" type="button"  >Update</button>
                             </div>
                             <br>
                             <div class="hotel-reg-form-div-2">
@@ -498,6 +508,16 @@ else {
             // console.log('Shortest road duration: ' + duration);
             document.getElementById('distance').value=distance;
             document.getElementById('duration').value=duration;
+
+
+
+
+            dist = distance;
+            estimateTime = duration; //after the divsion hide cant get details
+            
+
+
+            
             } else {
             console.error('Error calculating route:', status);
             }

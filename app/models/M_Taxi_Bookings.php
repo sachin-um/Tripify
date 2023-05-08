@@ -260,7 +260,7 @@
 
         public function insertTaxiBooking($data){
             $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
-                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');
+                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');                                            
             $this->db->bind(':TravelerID',$data['travelerID']);
             $this->db->bind(':TaxiOwnerID',$data['TaxiOwnerID']);
             $this->db->bind(':Vehicles_VehicleID',$data['vehicleID']);
@@ -283,6 +283,45 @@
 
             $this->db->bind(':distance',$data['distance']);
             $this->db->bind(':estTime',$data['extime']);
+            $this->db->bind(':id',$id);
+
+    
+            if ($this->db->execute()) {
+                
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
+        public function EditTaxiBooking($data,$id){
+            $this->db->query('UPDATE taxi_reservation SET TravelerID=:TravelerID,TaxiOwnerID=:TaxiOwnerID, Vehicles_VehicleID=:Vehicles_VehicleID, Price=:Price,  booking_date=:booking_date, booking_time=:booking_time, est_end_date=:est_end_date, est_end_time=:est_end_time, pickup_location=:pickup_location, destination=:destination, distance=:distance , estTime=:estTime,p_latitude=:p_latitude,p_longitude=:p_longitude,d_latitude=:d_latitude,d_longitude=:d_longitude,PaymentMethod=:PaymentMethod,passengers=:passengers WHERE ReservationID=:id');
+    
+            $this->db->bind(':TravelerID',$data['travelerID']);
+            $this->db->bind(':TaxiOwnerID',$data['TaxiOwnerID']);
+            $this->db->bind(':Vehicles_VehicleID',$data['vehicleID']);
+            $this->db->bind(':Price',$data['total']);
+            $this->db->bind(':booking_date',$data['s_date']);
+            $this->db->bind(':booking_time',$data['s_time']);
+            $this->db->bind(':est_end_date',$data['e_date']);
+            $this->db->bind(':est_end_time',$data['e_time']);
+            $this->db->bind(':pickup_location',$data['pickupL']);
+            $this->db->bind(':destination',$data['dropL']);
+
+            $this->db->bind(':PaymentMethod',$data['payment_option']);
+            $this->db->bind(':passengers',$data['passengers']);
+
+            
+            $this->db->bind(':p_latitude',$data['p_latitude']);
+            $this->db->bind(':p_longitude',$data['p_longitude']);
+            $this->db->bind(':d_latitude',$data['d_latitude']);
+            $this->db->bind(':d_longitude',$data['d_longitude']);
+
+            $this->db->bind(':distance',$data['distance']);
+            $this->db->bind(':estTime',$data['extime']);
+            $this->db->bind(':id',$id);
 
     
             if ($this->db->execute()) {
