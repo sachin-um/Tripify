@@ -17,6 +17,9 @@
             if ($usertype='Traveler') {
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
+                    $traveler=$this->getUserDetails($booking->TravelerID);
+                    $traveler_name=$traveler->Name;
+                    $booking->traveler_name=$traveler_name;
                     $booking->guide=$guide;
                 }
             }
@@ -25,16 +28,61 @@
                     $traveler=$this->getUserDetails($booking->TravelerID);
                     $traveler_name=$traveler->Name;
                     $booking->traveler_name=$traveler_name;
-                    echo $traveler->Name;
+                    // echo $traveler->Name;
                     
                 }
             }
             return $filteredbookings;
         }
 
+        public function getTravelerbyID($id){
+            $this->db->query('SELECT * FROM users WHERE UserID=:id');
+            $this->db->bind(':id',$id);
+
+            $bookings=$this->db->resultSet();
+            return $bookings;
+        }
+
         public function cancelBooking($id)
         {
-            $this->db->query('UPDATE `guide_bookings` SET status="Canceled" WHERE BoookingID=:booking_id');
+            $this->db->query('UPDATE `guide_bookings` SET status="Cancelled" WHERE BookingID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        public function insertGuideBooking($data){
+            $this->db->query('INSERT INTO `guide_bookings`(`TravelerID`, `Guides_GuideID`,  `StartDate`, `EndDate`, `Location`, `payment`, `PaymentMethod`) 
+                                                    VALUES (:TravelerID,:GuideID,:StartDate,:EndDate,:Location,:payment,:PaymentMethod)');
+            $this->db->bind(':TravelerID',$data['TravelerID']);
+            $this->db->bind(':GuideID',$data['GuideID']);
+            $this->db->bind(':StartDate',$data['StartDate']);
+            $this->db->bind(':EndDate',$data['EndDate']);
+            $this->db->bind(':PaymentMethod',$data['PaymentMethod']);
+            $this->db->bind(':Location',$data['Location']);
+            $this->db->bind(':payment',$data['payment']);
+            
+
+            if ($this->db->execute()) {
+                
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
+        public function confrimBooking($id)
+        {
+            $this->db->query('UPDATE `guide_bookings` SET status="Confrimed" WHERE BookingID=:booking_id');
             $this->db->bind(':booking_id',$id);
 
             
@@ -60,6 +108,21 @@
             }
         }
 
+
+        
+
+        public function CompletedGuideBooking($id)
+        {
+            $this->db->query('UPDATE `guide_bookings` SET status="Completed" WHERE BookingID=:booking_id');
+            $this->db->bind(':booking_id',$id);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
 
         
 
@@ -106,52 +169,33 @@
         }
 
 
-        public function searchAvailableSlots($data){
-            $this->db->query('SELECT * FROM guide_bookings WHERE 
-            StartDate=:startdate AND EndDate=:enddate');
-            $this->db->bind(':startdate',$data['startdate']);
-            $this->db->bind(':enddate',$data['enddate']);
-            $result=$this->db->resultSet();
-            $date = $bookingDate;
-            $time = $bookingTime;
-            $bookingdatetime = date('Y-m-d H:i:s', strtotime("$date $time"));
-        
-            $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$est"));
-            $New_end_date = date('Y-m-d', strtotime($est_datetime));
-            
-
+        public function checkGuideAvailable($GuideID,$bookingDate,$bookingEndDate) {
             $this->db->query('SELECT COUNT(*) AS conflicting_bookings 
-                  FROM guide_bookings
-                  WHERE Guides_GuideID = :vehicle_id AND (booking_date=:new_start_date OR est_end_date=:new_start_date )
+                  FROM guide_bookings 
+                  WHERE Guides_GuideID = :GuideID 
+                  AND status <> :status
                   AND (
-                    ((:new_start <= CONCAT(booking_date, \' \', booking_time) ) AND :new_end<=CONCAT(est_end_date, \' \', est_end_time)  )
-                    OR (CONCAT(booking_date, \' \', booking_time) <= :new_start  AND :new_start <CONCAT(est_end_date, \' \', est_end_time) ) 
-                    OR (CONCAT(booking_date, \' \', booking_time) < :new_start  AND :new_start <=CONCAT(est_end_date, \' \', est_end_time) )
+                    (StartDate<=:new_end AND :new_end<=EndDate)
+                    OR (StartDate <= :new_start  AND :new_start <= EndDate )
                     )');
 
-
-                        
-            $this->db->bind(':vehicle_id', $vehicleID);
-            $this->db->bind(':new_start', $bookingdatetime);
-            $this->db->bind(':new_end', $est_datetime);
-            $this->db->bind(':new_start_date', $bookingDate);
-            $this->db->bind(':new_end_date', $New_end_date);
+        
+            $this->db->bind(':GuideID', $GuideID);
+            $this->db->bind(':new_start', $bookingDate);
+            $this->db->bind(':new_end', $bookingEndDate);
+            $this->db->bind(':status', "Cancelled");
+            
 
             $this->db->execute();
 
             $result = $this->db->single();
             $conflicting_bookings = $result->conflicting_bookings;
-
+           
             if($conflicting_bookings>0){
                 return true;
             }else{
                 return false;
             }
-
-
-            return $result;
-
-
 
 
         }

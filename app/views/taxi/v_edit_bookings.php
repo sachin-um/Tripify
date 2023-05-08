@@ -142,14 +142,14 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date"  required>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" value="<?php echo $data['booking']->booking_date ?>"  required>
                                         <span id="avail"></span>
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Time<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" required>
+                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time"  value="<?php echo $data['booking']->booking_time ?>" required>
                                     </div>
 
                                    
@@ -157,19 +157,23 @@ else {
 
                                
                                 <br>
+
+                                <input type="hidden" name="" id="checker" value='1'>
                                 
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
+                                        <!-- <?php echo $data['booking']->pickup_location ?> -->
+                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" value="" required>
                                         
-                                        <input type="hidden" name="p-latitude" id="p-latitude" value="">
+                                        <input type="hidden" name="p-latitude" id="p-latitude" value="" >
                                         <input type="hidden" name="p-longitude" id="p-longitude" value="">
                                     </div>
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Destination Location <sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
+                                        <!-- <?php echo $data['booking']->destination ?> -->
+                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" value="" required>
 
                                         <!-- <span style="color:black;">Select the destination on Map(Optional)</span>
                                         <div id="map-container">
@@ -180,7 +184,11 @@ else {
 
                                         <input type="hidden" name="duration" id="duration" value="">
                                         <input type="hidden" name="distance" id="distance" value="">
-                                         
+
+                                        <input type="hidden" name="tripEndDate" id="tripEndDate" value="">
+                                        <input type="hidden" name="tripEndTime" id="tripEndTime" value="">
+
+                                        <input type="hidden" name="duration" id="rate" value="<?php echo $data['details']->price_per_km?>">
                                         
                                     </div>
 
@@ -194,17 +202,17 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  required>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1" value="<?php echo $data['booking']->passengers ?>"  required>
                                         <span id="availSeats"></span>
                                     </div>
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Payment option<sup> *</sup> :</p>
-                                        <select class="search" id="payment-option" name="payment_option" style="background: white;">
-                                            <option value="" disabled selected hidden>Payment Option</option>
-                                            <option value="Onsite">Onsite</option>
+                                        <select class="search" id="payment-option" name="payment_option"  style="background: white;">
+                                            <option value="<?php echo $data['booking']->PaymentMethod ?>"  selected hidden><?php echo $data['booking']->PaymentMethod ?></option>
+                                            <option value="Cash">Cash</option>
                                             <option value="Online">Online</option>
-                                            <option value="Both Option">Both Option</option>
+                                            <option value="Cash or Online">Cash or Online</option>
                                         </select>
                                     </div>
 
@@ -217,60 +225,66 @@ else {
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
-                            
-                            </div><br>
-                            
+                                <span id="errorBut" ></span><br>
 
-                            <div class="hotel-reg-form-div-2">
-                                    <button id="taxi-get-price-but" class="all-purpose-btn" type="submit">Get Price Details</button>
-                            </div>
+                                <div class="hotel-reg-form-div-2">                
+                                    <button id="taxi-get-price-but" class="all-purpose-btn" onclick="buttonclicked()" type="button">Get Price Details</button>
+                                </div>
+
+                        
+                            
+                            
+                           
+                            
                         </form>
-                        <br>
+                    
+                    </div><br>
+                    <?php
+                        }
+                    ?>
 
                         <script type="text/JavaScript">
 
                             var URLROOT="<?php echo URLROOT;?>";
                             var userID="<?php echo $_SESSION['user_id']?>";
-                            const seats = <?php echo $data['details']->no_of_seats?>;
+                            let seats = <?php echo $data['details']->no_of_seats?>;
+                            let bookingID = <?php echo $data['booking']->ReservationID ?>
+                            
                         
                         </script>
                        
-                        
-                    <?php
-                        }
-                    ?>
 
 
-                    <?php 
-                        if(isset($data['distance'])){
-                    ?>
-
-                    
-                        <div>
+                <div id="taxi-booking-cont" style="display:none;">
                             <p class="home-title-3"><u>Price Details</u></p>
                             <br>
                             <div class="price-details-1">
                                 <div class="hotel-price-check">
                                     <label><b>Trip Start :</b></label><br>
-                                    <label><b><?php echo $data['s_date']?></b></label>
-                                    <label><b><?php echo $data['s_time']?></b></label>
+                                    <label><b><p id="startDate"></p></b></label><br>
+                                    <label><b><p id="startTime"></p></b></label>
                                 </div>
                                 <div class="hotel-price-check">
-                                    <label><b><?php echo $data['pickupL']?></b></label><br>
+                                    <label><b>Trip End :</b></label><br>
+                                    <label><b><p id="endDate"></p></b></label><br>
+                                    <label><b><p id="endTime"></b></label>
+                                </div>
+                                <div class="hotel-price-check">
+                                    <label><b><p id="pickupL"></p></b></label><br>
                                     <label><p><b>To</b></p></label>
-                                    <label><b><?php echo $data['dropL']?></b></label>
+                                    <label><b><p id="dropL"></b></label>
                                 </div>
                                 <div id="hotel-nights-days" class="hotel-price-check">
-                                    <label><?php echo $data['distance']?>KM</label>
+                                    <label><p class="dist"></label>
                                 </div>
                             </div>
                             <br>
                             <div class="price-details-2">
                                 <div class="hotel-price-details">
-                                    <label id="No-of-rooms"><?php echo $data['distance']?></label>
+                                    <label id="No-of-rooms"><p class="dist"></p></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                    <label id="hotel-taxes-1"><b><p class="total"></p></b></label>
                                 </div>
 
                                 
@@ -279,13 +293,13 @@ else {
                                 
                                 <div class="hotel-price-details">
                                     <label id="hotel-taxes">Total</label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                    <label id="hotel-taxes-1"><b><p class="total"></p></b></label>
                                 </div>
                             </div>
 
 
                             <div class="hotel-reg-form-div-2">
-                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="all-purpose-btn" type="submit"  >Book Now</button>
+                                <button  onclick="editTaxiBooking()" id="confirm-booking-btn" class="all-purpose-btn" type="button"  >Book Now</button>
                             </div>
                             <br>
                             <div class="hotel-reg-form-div-2">
@@ -293,10 +307,6 @@ else {
                             </div>
                             
                         </div>
-                    <?php
-                        }
-                    ?>
-                </div>
             </div>
 
             
@@ -358,11 +368,13 @@ else {
     var directionsRenderer;
 
     let srilanka={lat: 7.8731 ,lng: 80.7718};
+
+
     function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
         center: srilanka,
         zoom: 8,
-    });
+        });
 
         var input = document.getElementById("taxi-PL");
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -416,6 +428,7 @@ else {
         });
         autocomplete_des.bindTo("bounds", map);
         autocomplete_des.setFields(['address_components','geometry','name'])
+        
         autocomplete_des.addListener('place_changed', function () {
             // marker.setVisible(false);
             var place_d = autocomplete_des.getPlace();

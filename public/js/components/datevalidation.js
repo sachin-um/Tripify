@@ -6,21 +6,104 @@ let timeslotError= false;
 $(document).ready(function() {
   inputOrder();
   validation();
-  finalValidation();
-
-
 
 });
 
 function finalValidation(){
+  validationDateTime();
   const form = document.getElementById('taxi-booking-form');
   const submitButton = document.getElementById('taxi-get-price-but');
 
-  if(olddateError && passengersError && timeslotError){           // validation 
-    submitButton.style.backgroundColor = '#0F6C13';
-    form.submit();
+  if(olddateError && passengersError && timeslotError){           // validation
+    submitButton.style.backgroundColor = '#0F6C13'; 
+    if( $('#checker').val()==0){
+      form.submit();
+    }else{
+      $("#hotel-booking-form").hide();
+      calculatePrice();
+    }
+    
+    
   }else{
+    $('#errorBut').html('There is an Error! Please Check Your Details');
     submitButton.style.backgroundColor = '#03002E';
+  }
+}
+
+
+function editTaxiBooking(){
+  const form = document.getElementById('taxi-booking-form');
+  
+
+  form.submit(); 
+}
+
+
+function calculatePrice(){
+
+  document.getElementById("taxi-booking-cont").style.display = "block";
+
+  let bookingDate = $('#bookingDate').val();
+
+  let bookingTime = $('#bookingTime').val();
+  let estTime = $('#duration').val();
+
+  var bookingDateTime = new Date(`${bookingDate}T${bookingTime}`);
+  var estHours = parseInt(estTime.slice(0, 2));
+  var estMinutes = parseInt(estTime.slice(3, 5));
+  var estSeconds = parseInt(estTime.slice(6, 8));
+
+  bookingDateTime.setHours(bookingDateTime.getHours() + estHours);
+  bookingDateTime.setMinutes(bookingDateTime.getMinutes() + estMinutes);
+  bookingDateTime.setSeconds(bookingDateTime.getSeconds() + estSeconds);
+
+  var estDateTime = bookingDateTime.toISOString().slice(0, 19).replace('T', ' ');
+  var endDate = estDateTime.slice(0, 10);
+  var endTime = estDateTime.slice(11);
+
+  $('#tripEndDate').val(endDate);
+  $('#tripEndTime').val(endTime);
+
+  document.getElementById("startDate").innerHTML = bookingDate;
+  document.getElementById("startTime").innerHTML = bookingTime;
+  document.getElementById("endDate").innerHTML = endDate;
+  document.getElementById("endTime").innerHTML = endTime;
+  document.getElementById("pickupL").innerHTML = $('#taxi-PL').val();
+  document.getElementById("dropL").innerHTML = $('#taxi-DL').val();
+  document.getElementById("dist").innerHTML = $('#distance').val();
+  console.log($('#distance').val()+'distance');
+
+  document.getElementsByClassName("total")[0].innerHTML = $('#distance').val() * $('#rate').val();
+
+
+  document.getElementsByClassName("total").innerHTML = $('#distance').val()*$('#rate').val();
+}
+
+
+function buttonclicked(){
+  event.preventDefault();
+  $('#avail').html('');
+  $('#availTime').html('');
+  $('#availSeats').html('');
+  $('#errorBut').html('');
+  
+  const dateInput = document.getElementById('bookingDate');
+  const timeInput = document.getElementById('bookingTime');
+  const pickL = document.getElementById('taxi-PL');
+  const dropL = document.getElementById('taxi-DL');
+  const passenger = document.getElementById('passengers');
+  const payment = document.getElementById('payment-option');
+  if(pickL.value && dropL.value && dateInput.value && timeInput.value && passenger.value && payment.value){
+   
+    availableTime();
+    passengersValidation();
+    validationDateTime();
+    
+    
+    
+  }else{
+    $('#availTime').html('Please Completly Fill The Form to Get Price details!');
+    
   }
 }
 
@@ -28,10 +111,8 @@ function finalValidation(){
 
 function validation(){
   
-  const dateInput = document.getElementById('bookingDate');
-  const timeInput = document.getElementById('bookingTime');
-  const pickL = document.getElementById('taxi-PL');
-  const dropL = document.getElementById('taxi-DL');
+  let dateInput = document.getElementById('bookingDate');
+  let timeInput = document.getElementById('bookingTime');
 
   $('#bookingTime').on('change', function() {
     $('#avail').html('');
@@ -49,55 +130,24 @@ function validation(){
     
   });
 
-  $('#taxi-PL').on('click', function() {
-    $('#availTime').html('');
-    if (dateInput.value && dateInput.value) {
-      validationDateTime();
-    }
+  // $('#taxi-PL').on('click', function() {
+  //   $('#availTime').html('');
+  //   if (dateInput.value && dateInput.value) {
+  //     validationDateTime();
+  //   }
     
     
-  });
+  // });
 
-  $('#taxi-DL').on('click', function() {
-    $('#availTime').html('');
-    if (dateInput.value && dateInput.value) {
-      validationDateTime();
-    }
+  // $('#taxi-DL').on('click', function() {
+  //   $('#availTime').html('');
+  //   if (dateInput.value && dateInput.value) {
+  //     validationDateTime();
+  //   }
     
     
-  });
+  // });
 
-  $('#taxi-get-price-but').on('click', function() {
-
-    if(pickL.value && dropL.value && dateInput.value && timeInput.value){
-      event.preventDefault();
-      availableTime();
-      finalValidation();
-    }else{
-      $('#availTime').html('Please Completly Fill The Form to Get Price details!');
-      event.preventDefault();
-    }
-
-  });
-
-  $('#taxi-PL').on('change', function() {
-    $('#availTime').html('');
-    
-  });
-
-  $('#taxi-DL').on('change', function() {
-    $('#availTime').html('');
-    
-  });
-
-  $('#passengers').on('change', function() {
-    $('#availSeats').html('');
-    passengersValidation();
-    
-  });
-
-
-  
 
 
 }
@@ -144,12 +194,11 @@ function validation(){
 function availableTime(){   // Checking Time slot is Available
   
 
-  var bookingDate = $('#bookingDate').val();
-  const bookingTime = $('#bookingTime').val();
-  const est = $('#duration').val();
-  // const pickupLocationInput = document.querySelector('#taxi-PL');
-  // const pickupLocationValue = pickupLocationInput.value;
+  let bookingDate = $('#bookingDate').val();
+  let bookingTime = $('#bookingTime').val();
+  let est = $('#duration').val();
 
+  if( $('#checker').val()==0){
     $.ajax({
       url: URLROOT+'/Bookings/checkTimeSlot',
       method: 'POST',
@@ -170,6 +219,7 @@ function availableTime(){   // Checking Time slot is Available
           $('#avail').html('');
           timeslotError=true;
         }
+        finalValidation();
      
       },
       error: function(xhr, status, error) {
@@ -177,8 +227,38 @@ function availableTime(){   // Checking Time slot is Available
         alert('data not received');
       }
     });
-
-    
+  }else{
+    $.ajax({
+      url: URLROOT+'/Bookings/EditcheckTimeSlot',
+      method: 'POST',
+      data: {
+        bookingDate: bookingDate,
+        bookingTime: bookingTime,
+        bookingID:bookingID,
+        est: est,
+        vehicleID:vehicleID,
+       
+      },
+      dataType: 'json',
+      success: function(result) {
+        
+        if (result) {
+          $('#avail').html('Time Slot Not Available or Enough!');
+          timeslotError=false;
+        } else {
+          $('#avail').html('');
+          timeslotError=true;
+        }
+        finalValidation();
+     
+      },
+      error: function(xhr, status, error) {
+        console.log("AJAX error:", status, error);
+        alert('data not received');
+      }
+    });
+  }
+   
 
 
 }
@@ -192,9 +272,9 @@ function validationDateTime(){
   currentDate = getTodayDate();  // function is below
   currentTime = getTodayTime();
 
-  const bookingTime = $('#bookingTime').val();
-  const userInputDateTime = new Date(`${bookingDate}T${bookingTime}`);
-  const now = new Date(`${currentDate}T${currentTime}`);
+  var bookingTime = $('#bookingTime').val();
+  var userInputDateTime = new Date(`${bookingDate}T${bookingTime}`);
+  var now = new Date(`${currentDate}T${currentTime}`);
 
 
   if (userInputDateTime < now ) {
@@ -204,6 +284,8 @@ function validationDateTime(){
   }else{
     olddateError = true; 
   }
+
+  
   
 
 }

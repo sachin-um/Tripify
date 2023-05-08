@@ -1,5 +1,7 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+<?php $_SESSION['user_id'];
+?>
 <div class="app">
     <aside class="sidebar">
 
@@ -31,8 +33,7 @@
                     <th>Booking Date</th>
                     <th>Traveler Name </th>
                     <th>Reservation Date</th>
-                    <th>Starting Time</th>
-                    <th>Duration</th>
+                    <th>Trip End Date</th>
                     <th>Location</th>
                     <th>Payment</th>
                     <th>payment Status</th>
@@ -47,28 +48,35 @@
                 ?>
                 <tr>
                     <td><?php echo $booking->DateAdded?></td>
-                    <td><?php ?> </td>
+                    <td><?php echo $booking->traveler_name?> </td>
                     <td><?php echo $booking->StartDate?> </td>
-                    <td><?php echo $booking->StartingTime?> </td>
-                    <td><?php echo $booking->Duration?> </td>
+                    <td><?php echo $booking->EndDate?> </td>
                     <td><?php echo $booking->Location?> </td>
                     <td><?php echo $booking->payment?> </td>
                     <td><?php echo $booking->PaymentStatus?> </td>
                     <td><?php echo $booking->status?> </td>
 
                     <?php
-                                if ($booking->status=='Yet To Confirm') {
-                                    ?>
+                        if ($booking->status=='Yet To Confirm') {
+                    ?>
                                     
-                                    <td data-lable="Name">
-                                        <a href="<?php echo URLROOT; ?>/Bookings/acceptGuideOffer/<?php echo $booking->BookingID ?>"><button class="edit-btn" type="button">Confirm</button></a>
-                                        <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
-                                    </td>
-                                    <?php
-                                }
+                        <td data-lable="Name">
+                            <a href="<?php echo URLROOT; ?>/Bookings/ConfirmGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" id="taxi_veh_view" type="button">Confirm</button></a>
+                            <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+                        </td>
+                        
+                    <?php
+                        }else if ($booking->status=='Confrimed') {
+                    ?>
+               
+                        <td data-lable="Name">
+                            <a href="<?php echo URLROOT; ?>/Bookings/CompletedGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" id="taxi-complete-btn" type="button">Finished</button></a>
+                            <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+                        </td>
                                
-                               
-                            ?>
+                    <?php
+                        }  
+                    ?>
 
                 </tr>
                 <?php
