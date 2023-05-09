@@ -40,7 +40,14 @@ if (empty($_SESSION['user_id'])) {
         <div class="search-payments">
             <input class="input-payments" type="date" name="start-date">
             <input class="input-payments" type="date" name="end-date">
-            <button class="input-payments-btn">Get Report</button>
+
+            <!-- <button type="button" class="all-purpose-btn" style="width: 50%;"
+            >
+            View Room</button> -->
+
+            <button class="input-payments-btn"
+            onclick="window.location.href='<?php echo URLROOT?>/HotelRooms/viewhotelroom/Traveler/<?php echo $room->RoomTypeID;?>'">
+            Get Report</button>
         </div><br><br>
 
         <div class="booking-btns">
@@ -89,6 +96,8 @@ if (empty($_SESSION['user_id'])) {
         </div>
 
     </main>
+
+    
 
 <?php
 }
