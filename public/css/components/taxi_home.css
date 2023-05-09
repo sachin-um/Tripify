@@ -130,7 +130,7 @@
 .tax-home-content{
     overflow: auto;
     flex: 1;
-    min-height: 750px;
+    /* min-height: 750px; */
     margin-top: 5%;
 
 }
@@ -183,4 +183,30 @@
 {
     border-radius: 50%;
     border: 6px double black;
+}
+
+.taxi-ad-card{
+    text-align: center;
+    background-color: #03002E ;
+    color: white;
+}
+
+
+.taxi-ad-card:hover{
+    background-color: #e8b122 ;
+    color: black;
+}
+
+
+.taxi-nav-main{
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-gap: 1.5em;
+    grid-template-columns: repeat(3,1fr);
+
+}
+
+.taxi_home_cont{
+    padding: 10em;
 }
