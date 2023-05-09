@@ -203,6 +203,106 @@
             }
         }
 
+        public function editGuideDetails($guideid)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
+
+            if ($guideid == $_SESSION['user_id']) {
+
+                $data = [
+                    'profile-img' => $_FILES['profile-imgupload'],
+                    'profile-img_name' => time() . '_' . $_FILES['profile-imgupload']['name'],
+                    'name' => trim($_POST['name']),
+                    'area' => trim($_POST['area']),
+                    'contactno' => trim($_POST['contact-number']),
+                    //'language' => trim($_POST['language']),
+                    'rate' => trim($_POST['rate']),
+                    'id' => $guideid
+                ];
+
+                if (uploadImage($data['profile-img']['tmp_name'], $data['profile-img_name'], '/img/profileImgs/')) {
+                    if ($this->guideModel->editGuideDetails($data)) {
+                        unset($_SESSION['user_profile_image']);
+                        $user = $this->userModel->getUserDetails($_SESSION['user_id']);
+                        $_SESSION['user_profile_image'] = $user->profileimg;
+
+                        redirect('Pages/profile');
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+
+                    flash('img_flash', 'Image Upload Failed' . $data['profile-img_name']);
+                    redirect('Pages/profile');
+
+        //edit travler details
+        public function editTravelerDetails($travlerid){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                if ($travlerid==$_SESSION['user_id']) {
+                    $data=[
+                        'name'=>trim($_POST['name']),
+                        'contactno'=>trim($_POST['contact-number']),
+                        'country'=>trim($_POST['country']),
+                        'id'=>$travlerid
+                    ];
+
+                    if ($_FILES['profile-imgupload']['error']!=4){
+                        $data['profile_img']=$_FILES['profile-imgupload'];
+                        $data['profile_img_name']=time().'_'.$_FILES['profile-imgupload']['name'];
+                        
+                        if (uploadImage($data['profile_img']['tmp_name'],$data['profile_img_name'],'/img/profileImgs/')) {
+                            if ($this->userModel->editTravelerDetails($data)) {
+                                unset($_SESSION['user_profile_image']);
+                                $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                                $_SESSION['user_profile_image']=$user->profileimg;
+    
+                                redirect('Pages/profile');
+                            }
+                            else{
+                                die('Something went wrong');
+                            }
+                        }
+                        else {
+                            
+                            flash('img_flash', 'Image Upload Failed'.$data['profile-img_name']);
+                            redirect('Pages/profile');
+                        }
+                    }
+                    else if($_FILES['profile-imgupload']['error']==4) {
+                        $data->profile_img_name='';
+                        if ($this->userModel->editTravelerDetails($data)) {
+                            $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+
+                            redirect('Pages/profile');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                        // print_r($_FILES['profile-imgupload']['error']);
+                    }
+                    
+    
+                    
+                }
+                else {
+                    flash('reg_flash', 'Access denied..');
+                    redirect('Users/login');
+
+                }
+
+
+            } else {
+                flash('reg_flash', 'Access denied..');
+                redirect('Users/login');
+            }
+
+        }
+    }
+
+
         //edit hotel user details
         public function editHotelDetails($hotelID){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -641,6 +741,7 @@
 
         //action on account
 
+
         //suspend
         public function suspendaccount($id,$usertype,$action)
         {
@@ -663,8 +764,7 @@
                 flash('reg_flash', 'Access denied..');
                 redirect('Users/login');
             }
-            
-        }
+    
 
         //veriify
         public function verifyaccount($id,$usertype)

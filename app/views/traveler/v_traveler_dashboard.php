@@ -42,18 +42,17 @@ else {
         <div class="first-container">
             <div class="profile-image" >
             
-            <form style="margin-top: 58px" action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
-                <br>
+                <form style="margin-top: 58px" action="<?php echo URLROOT; ?>/Users/editTravelerDetails/<?php echo $data->UserID ?>" method="POST" enctype="multipart/form-data">
+                    <br>
                 
-                <div class="drag-area">
-                    <div class="icon">
-                        <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $data->profileimg ?>" alt="picture">
-                    </div>
-                    <div><?php echo $data->Name;  ?></div>
-                </div>
-                <br>
-                <div class="sub-sub-edit" style="margin-left: 25%;">
-                    <div class="img-description">Drag & Drop to upload File</div>
+                    <div class="drag-area">
+                        <div class="icon">
+                            <img id="profile-img-placehoder" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo  $data->profileimg ?>" alt="picture">
+                        </div>
+                        <div><?php echo $data->Name;  ?></div>
+                    </div><br>
+                    <div class="sub-sub-edit" style="margin-left: 25%;">
+                        <div class="img-description">Drag & Drop to upload File</div>
                     <div class="img-upload">
                         <input type="file" name="profile-imgupload" id="profile-imgupload" style="display:none;">Browse File
                     </div>
@@ -61,7 +60,7 @@ else {
                         <img src="<?php echo URLROOT; ?>/img/tick.png" alt="tick" width="25px" height="20px">
                         <span style="vertical-align:top;" class="img-select">Select a Profile picture</span>
                     </div>    
-                </div>
+                    </div>
                 
             </div>
             
