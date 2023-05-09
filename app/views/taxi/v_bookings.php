@@ -157,6 +157,7 @@ else {
 
                                
                                 <br>
+                                <input type="hidden" name="" id="checker" value='0'>
                                 
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
@@ -202,9 +203,9 @@ else {
                                         <p class="home-title-4">Payment option<sup> *</sup> :</p>
                                         <select class="search" id="payment-option" name="payment_option" style="background: white;">
                                             <option value="" disabled selected hidden>Payment Option</option>
-                                            <option value="Onsite">Onsite</option>
+                                            <option value="Cash">Cash</option>
                                             <option value="Online">Online</option>
-                                            <option value="Both Option">Both Option</option>
+                                            <option value="Cash or Online">Cash or Online</option>
                                         </select>
                                     </div>
 
@@ -217,12 +218,12 @@ else {
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
-                            
+                                <span id="errorBut" ></span><br>
                             </div><br>
                             
 
                             <div class="hotel-reg-form-div-2">
-                                    <button id="taxi-get-price-but" class="all-purpose-btn" type="submit">Get Price Details</button>
+                                    <button id="taxi-get-price-but" class="all-purpose-btn" onclick="buttonclicked()" type="submit">Get Price Details</button>
                             </div>
                         </form>
                         <br>
@@ -252,8 +253,13 @@ else {
                             <div class="price-details-1">
                                 <div class="hotel-price-check">
                                     <label><b>Trip Start :</b></label><br>
-                                    <label><b><?php echo $data['s_date']?></b></label>
-                                    <label><b><?php echo $data['s_time']?></b></label>
+                                    <label><b><?php echo $data['s_date']?></b></label><br>
+                                    <label><b><?php echo $data['s_time'].":00"?></b></label>
+                                </div>
+                                <div class="hotel-price-check">
+                                    <label><b>Trip End :</b></label><br>
+                                    <label><b><?php echo $data['e_date']?></b></label><br>
+                                    <label><b><?php echo $data['e_time']?></b></label>
                                 </div>
                                 <div class="hotel-price-check">
                                     <label><b><?php echo $data['pickupL']?></b></label><br>
@@ -261,7 +267,7 @@ else {
                                     <label><b><?php echo $data['dropL']?></b></label>
                                 </div>
                                 <div id="hotel-nights-days" class="hotel-price-check">
-                                    <label><?php echo $data['distance']?>KM</label>
+                                    <label><?php echo $data['distance']?></label>
                                 </div>
                             </div>
                             <br>
@@ -471,7 +477,7 @@ else {
             // Display the route on the map
             directionsDisplay.setDirections(result);
             var distance = result.routes[0].legs[0].distance.text;
-            // console.log('Shortest road distance: ' + distance);
+            console.log('Shortest road distance: ' + distance);
             var durationInSeconds = result.routes[0].legs[0].duration.value;
             var hours = Math.floor(durationInSeconds / 3600);
             var minutes = Math.floor((durationInSeconds % 3600) / 60);
@@ -482,7 +488,7 @@ else {
                      minutes.toString().padStart(2, '0') + ':' +
                      seconds.toString().padStart(2, '0');
             
-            // console.log('Shortest road duration: ' + duration);
+            console.log('Shortest road duration: ' + duration);
             document.getElementById('distance').value=distance;
             document.getElementById('duration').value=duration;
             } else {

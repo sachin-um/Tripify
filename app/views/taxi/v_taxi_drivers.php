@@ -38,61 +38,64 @@
                     foreach($alldrivers as $driver):
                 ?>
                     <div class="taxi_view_v_dash">
-                        <div class="taxi-view-driver-img">
-                            <img src="<?php echo URLROOT; ?>/img/driver_profileImgs/<?php echo $driver->profileImg?>" id="profile-img-placehoder"  alt="Driver image" >
-                        </div>
-                    
-                    <article class="taxi_view_v_art" >
-                        <div class="tax_dri_art">
-                            <p id="taxi_view_d_p">Name :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->Name  ?></p>
-                        </div>
+                        <div class="taxi_veh_det_cont">
+                            <div class="taxi-view-driver-img">
+                                <img src="<?php echo URLROOT; ?>/img/driver_profileImgs/<?php echo $driver->profileImg?>" id="profile-img-placehoder"  alt="Driver image" style="width:15em;max-height: 10em; object-fit: contain;" >
+                            </div>
                         
-                        <br>
+                            <article class="taxi_view_v_art" >
+                                <div class="tax_dri_art">
+                                    <p id="taxi_view_d_p">Name :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->Name  ?></p>
+                                </div>
+                                
+                                <br>
 
-                        <div class="tax_dri_art">
-                            <p id="taxi_view_d_p">Age :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->Age  ?></p>
+                                <div class="tax_dri_art">
+                                    <p id="taxi_view_d_p">Age :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->Age  ?></p>
+                                </div>
+
+                                <br>
+
+                            <div class="tax_dri_art">
+                                    <p id="taxi_view_d_p">License Number :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->LicenseNo  ?></p>
+                            </div>
+
+                            <br>
+
+                            <div class="tax_dri_art">
+                                    <p id="taxi_view_d_p">Contact Number :&ensp;+94</p><p id="taxi_view_d_p"><?php echo $driver->contact_number  ?></p>
+                            </div>
+                        
+                            
+                            </article>
+
+
+                            <div>
+                                <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
+                                <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>   
+                            </div>
+                            <div class="admin-action">
+                            <?php if ($driver->verification_status ==1) {
+                                ?><h3>Verified </h3><?php
+                            }else {
+                                if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+                                    ?>
+                                    
+                                            <hr style="margin-bottom:10px;">
+                                            <button class="acc-view-btn" type="button" onclick="showDriverDetails('<?php echo $driver->TaxiDriverID; ?>','<?php echo URLROOT; ?>')">Verification Details</button>
+                                            <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                                                    <button class="verify-btn" type="button">Verify</button>
+                                            </a>
+                                    
+                            <?php
+                                }
+                                else {
+                                    ?><h3>Not Verified</h3><?php
+                                }
+                            } ?>
+                            </div>
                         </div>
-
-                        <br>
-
-                       <div class="tax_dri_art">
-                            <p id="taxi_view_d_p">License Number :&ensp; </p><p id="taxi_view_d_p"><?php echo $driver->LicenseNo  ?></p>
-                       </div>
-
-                       <br>
-
-                       <div class="tax_dri_art">
-                            <p id="taxi_view_d_p">Contact Number :&ensp;+94</p><p id="taxi_view_d_p"><?php echo $driver->contact_number  ?></p>
-                       </div>
-                
-                       
-                    </article>
-
-
-                    <div>
-                        <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
-                        <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>   
-                    </div>
-                    <div class="admin-action">
-                    <?php if ($driver->verification_status ==1) {
-                        ?><h3>Verified </h3><?php
-                    }else {
-                        if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
-                            ?>
-                            
-                                    <hr style="margin-bottom:10px;">
-                                    <button class="acc-view-btn" type="button" onclick="showDriverDetails('<?php echo $driver->TaxiDriverID; ?>','<?php echo URLROOT; ?>')">Verification Details</button>
-                                    <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
-                                                            <button class="verify-btn" type="button">Verify</button>
-                                    </a>
-                            
-                    <?php
-                        }
-                        else {
-                            ?><h3>Not Verified</h3><?php
-                        }
-                    } ?>
-                    </div>
+                          
                 </div>
 
                 <?php

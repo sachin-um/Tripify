@@ -51,6 +51,7 @@ else {
                 <option value="not-verified">Not Verified</option>
             </select>
         </div>
+        <?php flash('admin_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">
@@ -100,7 +101,7 @@ else {
                             <td data-lable="Status"><?php echo $guide->moreDetails->Rate ?></td>
                             <td data-lable="Status"><?php echo $guide->acc_status ?></td>
                             <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
-                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $hotel->UserID ?>/Hotel'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $guide->UserID ?>/Guide'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>

@@ -34,10 +34,15 @@
 .taxi_view_v_dash{
 
     width: fit-content;
-    padding: 1em;
+    padding: 0.25em;
     margin-top: 2em;
     /* margin-left: 2em; */
-    background-color: #D9D9D9;
+    background-color: #03002E;
+}
+
+
+.taxi_view_v_dash:hover{
+    background-color: #e8b122;
 }
 
 
@@ -100,7 +105,7 @@
 
 
 
-#taxi_veh_view,#taxi_veh_delete{
+#taxi_veh_view,#taxi_veh_delete,#taxi-complete-btn{
     margin-top: 1.5em;
     height: 3em;
     width:8em;
@@ -110,6 +115,16 @@
     
     border-color: #35BCBF;
 }
+
+#taxi-complete-btn{
+    background-color: #03002E;
+}
+
+#taxi-complete-btn:hover{
+    background-color: #e8b122;
+    color: black;
+}
+
 
 
 #taxi_veh_view{
@@ -146,4 +161,9 @@
     /* padding: 2em; */
     font-weight: bold;
     
+}
+
+.taxi_veh_det_cont{
+    background-color: white;
+    padding: 1em;
 }

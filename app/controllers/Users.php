@@ -629,7 +629,7 @@
         public function suspendaccount($id,$usertype,$action)
         {
             if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
-                if ($this->messageModel->suspendaccount($id,$action)) {
+                if ($this->userModel->suspendaccount($id,$action)) {
                     if ($usertype=='Traveler') {
                         redirect('Admins/profiles/'.$usertype);
                     }
