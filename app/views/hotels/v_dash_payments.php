@@ -30,7 +30,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Hotels/loadPayments" class="menu-item is-active">Payments</a>
             <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
+            <a href="<?php echo URLROOT; ?>/Users/contactus" class="menu-item">Support</a>
         </nav>
     </aside>
 
@@ -39,43 +39,38 @@ else {
     <br><br>
     <p class="home-title-2">Payments</p>
     <div class="hotel-bookings-main-div">
+        <?php
+        if (empty($data['payments'])) {
+    ?>
+        <p style="font-size: 1.2rem; margin: auto;">No Payments</p>
+    <?php        
+    } else {
+        ?>
         <table>
     
             <tr>
-                <th>ReservationID</th>
+                <th>Booking ID</th>
                 <th>CustomerID</th>
                 <th>Payment Amount</th>
                 <th>Payment Date</th>
                 <th>Payment Method</th>
-                <th>View Details</th>
             </tr>
 
-            <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Visa</td>
-                <td><button>View</button></td>
-            </tr>
+            <?php
+                
+                    foreach ($data['payments'] as $payment) : ?>
 
-            <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>Master Card</td>
-                <td><button>View</button></td>
-            </tr>
-
-            <tr>
-                <td>B1024</td>
-                <td>C12547</td>
-                <td>12000.00</td>
-                <td>2022.02.12</td>
-                <td>On Site</td>
-                <td><button>View</button></td>
-            </tr>
+                        <tr>
+                            <td><?php echo $payment->booking_id; ?></td>
+                            <td><?php echo $payment->TravelerID; ?></td>
+                            <td><?php echo $payment->payment; ?></td>
+                            <td><?php echo $payment->date_added; ?></td>
+                            <td><?php echo $payment->paymentmethod; ?></td>
+                        </tr>
+                <?php
+                    endforeach;
+                }
+            ?>
 
         </table>
     </div>

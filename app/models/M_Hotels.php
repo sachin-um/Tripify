@@ -221,6 +221,15 @@ class M_Hotels{
         
 
     }
+
+    public function findReviews($hotelID){
+        $this->db->query('SELECT * FROM hotel_reviews where HotelID=:hotelID');
+        $this->db->bind(':hotelID',$hotelID);
+
+        $reviews=$this->db->resultSet();
+        return $reviews;
+
+    }
 }
 
 ?>
