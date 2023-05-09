@@ -37,6 +37,12 @@ if (empty($_SESSION['user_id'])) {
         <br><br>
         <p class="home-title-2">Your Bookings</p><br>
 
+        <div class="search-payments">
+            <input class="input-payments" type="date" name="start-date">
+            <input class="input-payments" type="date" name="end-date">
+            <button class="input-payments-btn">Get Report</button>
+        </div><br><br>
+
         <div class="booking-btns">
             <button class="view-booking-btns is-active">Current Bookings</button>
             <button class="view-booking-btns">Past Bookings</button>

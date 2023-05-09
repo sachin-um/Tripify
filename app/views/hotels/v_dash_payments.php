@@ -37,7 +37,14 @@ else {
 
 <main class="right-side-content">
     <br><br>
-    <p class="home-title-2">Payments</p>
+    <p class="home-title-2">Payments</p><br>
+
+    <div class="search-payments">
+        <input class="input-payments" type="date" name="start-date">
+        <input class="input-payments" type="date" name="end-date">
+        <button class="input-payments-btn">Get Report</button>
+    </div>
+
     <div class="hotel-bookings-main-div">
         <?php
         if (empty($data['payments'])) {

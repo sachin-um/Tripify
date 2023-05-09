@@ -60,15 +60,6 @@
 
         </div>
 
-
-        <div class="hotel-home-join-network">
-            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
-            <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register Taxi Owner</button>
-            </div>
-        </div>
-
-
         <p class="home-title-2" >Top Taxi Companies Around The Island</p>
 
         <div class="hotel-home-top-picks">

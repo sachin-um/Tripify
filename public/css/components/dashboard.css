@@ -537,3 +537,31 @@ ul{
    grid-column-gap: 2px;
 }
 
+.search-payments{
+   width: 60%;
+   height: fit-content;
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 15px;
+   background-color: rgba(211, 211, 211, 0.3);
+   border-radius: 10px;
+}
+
+.input-payments{
+   width: 35%;
+   height: 50px;
+   margin-bottom: 0;
+}
+
+.input-payments-btn{
+   width: 20%;
+   height: 50px;
+   font-size: 1rem;
+   border: none;
+   color: white;
+   background-color: #03002E;
+   border-radius: 100px;
+}
+
