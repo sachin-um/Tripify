@@ -123,6 +123,13 @@
                 return false;
             }
         }
+        public function getPaymentDetails(){
+            $this->db->query("SELECT `TravelerID`,'BookingID','payment','PaymentStatus' FROM guide_bookings WHERE Guides_GuideID=:id AND PaymentStatus ='Paid'");
+            $this->db->bind(':id',$_SESSION['user_id']);
+
+            $bookings=$this->db->resultSet();
+            return $bookings;
+        }
 
         
 
