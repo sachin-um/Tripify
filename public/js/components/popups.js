@@ -13,7 +13,7 @@
                 $('#popup-content').append('<p>Selecet your Trip</p>');
   
                 $.each(data, function(index, item) {
-                    $('#popup-content').append('<a href="'+baseurl+'/Trips/addToTripPlan/'+row.cells[0].textContent+'/'+type+'/'+item.TourPlanID+'"><button class="add-to-plan-btn" type="button">'+item.trip_name+'<br>From '+item.start_date+' To '+item.end_date+'</button></a>');
+                    $('#popup-content').append('<a href="'+baseurl+'/Trips/addToTripPlan/'+row.cells[0].getAttribute('data')+'/'+type+'/'+item.TourPlanID+'"><button class="add-to-plan-btn" type="button">'+item.trip_name+'<br>From '+item.start_date+' To '+item.end_date+'</button></a>');
                 });
               
               

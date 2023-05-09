@@ -80,7 +80,7 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID">T<?php echo  $booking->ReservationID ?></td>
+                            <td data-lable="ID" data="<?php echo  $booking->ReservationID ?>">T<?php echo  $booking->ReservationID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>/Taxi"><?php echo $booking->vehicle->vehicle_number ?></a></td>
                             <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
