@@ -19,7 +19,7 @@
                 'guideoffers'=> $offers
             ];
             if ($_SESSION['user_type']=='Guide') {
-                $this->view('guide/v_guide_offers',$data);
+                $this->view('traveler/v_guide_offers',$data);
             }
             else {
                 $this->view('traveler/v_guide_offers',$data);

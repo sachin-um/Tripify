@@ -3,7 +3,8 @@ class Payments extends Controller
 {
     public function __construct()
     {
-        
+        $this->guideBookingModel=$this->model('M_Guide_Bookings');
+
     }
 
     public function getHashForPayment(){
@@ -23,6 +24,16 @@ class Payments extends Controller
         );
         echo $hash;
      }
+
+     public function GuidePayments(){
+        $guidebookings=$this->guideBookingModel->getPaymentDetails();
+
+        $data=[
+            'guidebookings'=> $guidebookings
+        ];
+
+        $this->view('guide/v_guide_dash_payment',$data);
+    }
 
 
      public function paymentDetails(){
