@@ -65,7 +65,7 @@ function sendAdminMail($email,$user){
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Admin Ragistration Confirmation';
-        $mail->Body    = "<p> Dear $user,</p> Congratulations for being singned up as an adminstrator of the Tripfy team.<br>
+        $mail->Body    = "<p> Dear $user,</p> Congratulations for being signed up as an adminstrator of the Tripfy team.<br>
         <p> Your username : $email</p>
         <br>
         
@@ -86,7 +86,7 @@ function sendAdminMail($email,$user){
 
 
 
-function hotelSuspendMail($data){
+function accountSuspendMail($data){
     $mail = new PHPMailer(true);
     $otp=rand(100000,999999);
 
@@ -107,9 +107,9 @@ function hotelSuspendMail($data){
 
         //Content
         $mail->isHTML(true);                              
-        $mail->Subject = 'Reset Password of Your Tripify Account';
-        $mail->Body    = " <h3>Your account is suspended.<br></h3>
-        <p>Dear User,<p><br><br>
+        $mail->Subject = 'Your account is suspended';
+        $mail->Body    = " <h3>Notice<br></h3>
+        <p>Dear User,<p><br>
         <p>Please note that your Tripify account registered under $data->Name has been suspended</p>
         <p>for violating our system guidelines.</p>
         <br>
@@ -125,6 +125,149 @@ function hotelSuspendMail($data){
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
+function confirmBookingHotel($data){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Confirmation of Booking';
+        $mail->Body    = " <h4>Dear User,<h4><br><br>
+        <p>Thank you for booking your stay with $data->HotelName.<br>
+        We're looking forward to your visit</p>
+
+        <br><br><p>Your booking details are as follows :</p>
+        
+        <br><br><h4>Check in :</h4><p>$data->checkin_date</p>
+        <br><br><h4>Check out :</h4><p>$data->checkout_date</p>
+        <br><br><h4>Room(s) :</h4><p>$data-></p>
+        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
+        <br><br><h4>Total :</h4><p>$data->payment</p>
+        
+        <p>If you have any questions please don't hesitate to contact us.</p><br>
+        <p>We hope you enjoy your stay with us.</p><br><br>
+        <p>Best regards,</p><br>
+        <b>Tripify Team</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+function confirmBookingTaxi($data){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Confirmation of Booking';
+        $mail->Body    = " <h4>Dear User,<h4><br><br>
+        <p>Thank you for booking your ride with $data->TaxiOwnerName.<br>
+        We're looking forward to your trip.</p>
+
+        <br><br><p>Your booking details are as follows :</p>
+        
+        <br><br><h4>Pick up :</h4><p>$data->checkin_date</p>
+        <br><br><h4>Destination :</h4><p>$data->checkout_date</p>
+        <br><br><h4>Booking Date :</h4><p>$data->booking_date</p>
+        <br><br><h4>No of Passengers :</h4><p>$data->passengers</p>
+        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
+        <br><br><h4>Total :</h4><p>$data->payment</p>
+        
+        <p>If you have any questions please don't hesitate to contact us.</p><br>
+        <p>We hope you enjoy your trip with us.</p><br><br>
+        <p>Best regards,</p><br>
+        <b>Tripify Team</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+function confirmBookingGuide($data){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($email);     //Add a recipient
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Confirmation of Booking';
+        $mail->Body    = " <h4>Dear User,<h4><br><br>
+        <p>Thank you for booking your guided tour with $data->GuideName.<br>
+        We're looking forward to your trip.</p>
+
+        <br><br><p>Your booking details are as follows :</p>
+        
+        <br><br><h4>Location :</h4><p>$data->Location</p>
+        <br><br><h4>Start Date :</h4><p>$data->StartDate</p>
+        <br><br><h4>End Date :</h4><p>$data->EndDate</p>
+        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
+        <br><br><h4>Total :</h4><p>$data->payment</p>
+        
+        <p>If you have any questions please don't hesitate to contact us.</p><br>
+        <p>We hope you enjoy your tour with us.</p><br><br>
+        <p>Best regards,</p><br>
+        <b>Tripify Team</b>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
 
 function sendResetPasswordMail($email){
     $mail = new PHPMailer(true);

@@ -13,7 +13,6 @@ elseif ($_SESSION['user_type']!='Hotel') {
 }
 else {
 ?> 
-
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <aside class="sidebar">
@@ -39,11 +38,15 @@ else {
     <br><br>
     <p class="home-title-2">Payments</p><br>
 
-    <div class="search-payments">
-        <input class="input-payments" type="date" name="start-date">
-        <input class="input-payments" type="date" name="end-date">
-        <button class="input-payments-btn">Get Report</button>
-    </div>
+    
+    <form action="<?php echo URLROOT?>/Hotels/generatePDF" method="post">
+        <div class="search-payments">
+            <input class="input-payments" type="date" name="start-date">
+            <input class="input-payments" type="date" name="end-date">
+
+            <button class="input-payments-btn" type="submit">Get Report</button>
+        </div>
+    </form>
 
     <div class="hotel-bookings-main-div">
         <?php
@@ -83,6 +86,11 @@ else {
     </div>
     
 </main>
+
+<?php
+    
+
+?>
 
 <?php
 }

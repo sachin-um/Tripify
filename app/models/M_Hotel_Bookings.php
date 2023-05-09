@@ -233,6 +233,16 @@ class M_Hotel_Bookings
         return $this->db->execute();
 
     }
+
+    public function filterPayments($start,$end){
+        $this->db->query('SELECT * FROM hotel_bookings WHERE payment_status = "Paid" 
+        AND date_added BETWEEN :checkin AND :checkout');
+        $this->db->bind(':checkin', $start);
+        $this->db->bind(':checkout', $end);
+
+        $result = $this->db->resultSet();
+        return $result;
+    }
 }
 
 

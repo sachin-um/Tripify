@@ -1,4 +1,8 @@
 <?php
+require_once APPROOT.'/vendor/autoload.php';
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
     class Hotels extends Controller{
         public function __construct(){
             $this->hotelModel=$this->model('M_Hotels');
@@ -390,60 +394,6 @@
             $this->view('hotels/v_hotel_profile_details',$data);
         }
 
-        // public function hotelProfile($hotelID){
-
-        //     $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
-        //     $allroomtypes=$this->roomModel->viewAllRooms($hotelID);
-        //     echo $profileDetails->Name;
-
-        //     //get bookings from that hotel that overlap with checkin and checkout dates
-        //     $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
-
-        //     //get all room types and their total number
-        //     $allrooms = array();
-        //     foreach($allroomtypes as $roomtype){
-        //         $allrooms[] = $roomtype->RoomTypeID;
-        //         $allrooms[] = $roomtype->no_of_rooms;
-        //     }
-        //     // print_r($allrooms)."<br>";
-
-        //    //get bookedrecords' room types and no of them
-        //     foreach($bookedrecords as $records){
-        //         $roomIDs = $records->roomIDs;
-        //         $bookedrooms = explode(',', $roomIDs);
-        //     }
-
-        //     //print_r($bookedrooms); 
-
-        //    for($i=0;$i<count($allrooms);$i=$i+2){
-        //     if(!empty($bookedrooms)){
-        //         for($j=0;$j<count($bookedrooms);$j=$j+2){
-        //             if($allrooms[$i]==$bookedrooms[$j]){
-        //                 $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
-        //             }
-        //         }
-        //     }
-            
-        //    }
-
-        //    print_r($allrooms); 
-
-        //     $data=[
-        //         'hotelID'=>$hotelID,
-        //         'profileDetails'=>$profileDetails,
-        //         'profileName'=> $profileDetails->Name,
-        //         'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
-        //         'allroomtypes'=> $allroomtypes,
-        //         'description'=>$profileDetails->Description,
-        //         'availablerooms'=>$allrooms
-        //         // 'noofadults' => $data['noofadults']
-        //         // 'profileName'=> $profileDetails->Name,
-        //         // 'profileName'=> $profileDetails->Name
-
-        //     ];
-        //     $this->view('hotels/v_hotel_details_page',$data);
-        // }
-
         public function rooms($hotelID){
             $allrooms=$this->roomModel->viewRooms($hotelID);
             // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
@@ -513,52 +463,6 @@
             }
 
             redirect('Pages/profile');            
-            // if(isset($_POST['upload'])){
-
-            //     $images = $_FILES['images'];
-
-            //     #number of images
-            //     $num_of_imgs = count($images['name']);
-
-            //     for($i=0; $i < $num_of_imgs; $i++){
-            //         #get the img info and store them in var
-            //         $image_name = $images['name'][$i];
-            //         $tmp_name = $images['tmp_name'][$i];
-            //         $error = $images['error'][$i];
-
-            //         #if there is not error occured while uploading
-            //         if($error === 0){
-            //             #get image extension store it in var
-            //             $img_ex = pathinfo($image_name, PATHINFO_EXTENSION);
-            //             $img_ex_lc = strtolower($img_ex);
-
-            //             $allowed_exs = array('jpg', 'jpeg', 'png');
-
-            //             if(in_array($img_ex_lc, $allowed_exs)){
-            //                 $new_img_name = uniqid('IMG-', true).'.'.$img_ex_lc;
-            //                 $img_upload_path = 'app/public/img/hotel-uploads'.$new_img_name;
-
-            //                 #inserting img name into database
-            //                 $this->hotelModel->insertingImages($_SESSION('user_id'), $new_img_name);
-            //                 move_uploaded_file($tmp_name, $img_upload_path);
-
-            //                 header("Location: echo URLROOT/hotels/v_dash_profile");
-
-            //             }else{
-            //                 #error message
-            //                 $em = "You can't upload files of this type";
-
-            //                 header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
-            //             }
-
-            //         }else{
-            //             #error message
-            //             $em = "Unknown Error Occured While Uploading";
-
-            //             header("Location: echo URLROOT/hotels/v_dash_profile?error=$em");
-            //         }
-            //     }
-            // }
         }
 
         public function uploadRoomPhotos($roomID){
@@ -652,9 +556,50 @@
             }
         }
 
-        public function hotelSupport(){
-            $this->view('hotels/v_dash_support');
+        public function generatePDF(){           
+            
+            $startDate = $_POST["start-date"];
+            $endDate = $_POST["end-date"];
+            
+
+            $results = $this->hotelBookingModel->filterPayments($startDate,$endDate);
+        
+            // $html = "<img style='text-align: center;' src='/public/img/logo.png'>";
+            $html = "<h1 style='color: #03002E'>Payments Between $startDate and $endDate</h1><hr>";
+            $html .= "<table><tr><th>Booking ID</th><th>CustomerID</th><th>Payment Amount</th><th>Payment Date</th><th>Payment Method</th></tr>";
+            
+
+            foreach ($results as $payment){
+            $html .= "<tr><td>$payment->booking_id</td>
+                <td>$payment->TravelerID</td>
+                <td>$payment->payment</td>
+                <td>$payment->date_added</td>
+                <td>$payment->paymentmethod</td>
+            </tr>";
+            }
+
+            $html .= "<br><br><hr>";
+            $html .= "<br><p>This is a system generated report by Tripify(pvt)ltd</p>";
+
+            $options = new Options;
+            $options->setChroot(__DIR__);
+
+            $dompdf = new Dompdf($options);
+
+            // $dompdf = new Dompdf([
+            //     "chroot" => __DIR__
+            // ]);
+
+            $dompdf->loadHtml($html);
+
+            // $dompdf->setPaper('A4','landscape');
+
+            $dompdf->render();
+            $dompdf->stream();
+            
         }
+
+
 
     }
 
