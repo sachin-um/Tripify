@@ -133,3 +133,46 @@
     color: #e8b122;
     justify-content: space-around;
 }
+
+/* review page */
+.review-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 10%;
+    margin: auto;
+}
+
+.review-body{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 10%;
+    padding: 10px;
+    background-color: #EEEEEE;
+}
+
+.review-header{
+    flex: 1;
+    margin: auto;
+    width: 40%;
+    height: 10%;
+    background-color: #03002E;
+    display: flex;
+}
+
+.review-header-1{
+    color: #e8b122;
+}
+
+.review-body-1{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.review-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

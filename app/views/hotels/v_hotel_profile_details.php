@@ -51,9 +51,39 @@
         </div>
 
         <div class="hotel-desc-page-div" id="facilities-reviews-section">
-        <p class="home-title-2">Facilities</p>
-        <button class="all-purpose-btn">
-        <a href="<?php echo URLROOT ?>/Hotels/hotelReviews">See Reviews</a></button>
+            <!-- <p class="home-title-2">Facilities</p> -->
+            <div class="facility-all">
+                <div class="facility-1">
+
+                    <?php if (empty($data['profileDetails']->Facilities)) { ?>
+                    <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
+                    <?php } 
+                    else { 
+                    $farray = explode(",",$data['profileDetails']->Facilities);
+                    $indentation = str_repeat("\t", 3);
+                    $i=0;?>
+
+                    <div class="nav-grid">
+                        <?php
+                        foreach($farray as $element){
+                            $i=$i+1;
+                            ?>
+                            <div style="text-align: center;"><?php echo $element."<br>";?></div>
+                        
+                        <?php                            
+                        }
+                        ?>
+                    </div>
+                    <?php } ?>
+                </div>
+
+                <div class="facility-2">
+                    MAP
+                </div>
+            </div>
+                
+            <button class="all-purpose-btn" id="view-review-btn">
+            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>">See Reviews</a></button>
         </div>
 
         <p class="home-title-2">Check Available Rooms</p>
@@ -80,11 +110,13 @@
                     <p class="hotel-labels-1">No of People</p> 
                     <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
-                </div>
+                </div>  
+
+                
             </div>
 
             <div class="home-div-3">
-                <a href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn" type="submit">Go</button></a> 
+                <a id="review-btn-id" href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn" type="submit">Go</button></a> 
             </div>
             
         </form><br>

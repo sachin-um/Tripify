@@ -636,7 +636,8 @@
 
                 $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
                 $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
-                
+                $beds = $this->roomBookingModel->getAllBedsforAllRooms();
+
                 $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
 
                 //The array with booked records
@@ -684,7 +685,8 @@
                     'allroomtypes'=> $allroomtypes,
                     'description'=>$profileDetails->Description,
                     'availablerooms'=>$allrooms,
-                    'images'=>$images
+                    'images'=>$images,
+                    'allBeds'=>$beds
                     // 'noofadults' => $data['noofadults']
                     // 'profileName'=> $profileDetails->Name,
                     // 'profileName'=> $profileDetails->Name

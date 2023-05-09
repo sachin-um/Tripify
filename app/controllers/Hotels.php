@@ -385,6 +385,7 @@
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,
                 'description'=>$profileDetails->Description,
                 'images'=>$images
+                // 'facilities'=>$facilities
             ];
             $this->view('hotels/v_hotel_profile_details',$data);
         }
@@ -560,8 +561,48 @@
             // }
         }
 
-        public function hotelReviews(){
-            $this->view('hotels/v_hotel_reviews');
+        public function uploadRoomPhotos($roomID){
+            if(isset($_POST['submit'])){
+                // print_r($_FILES);
+                $imageCount = count($_FILES['image']['name']);
+                // echo $imageCount;
+
+                for($i=0;$i<$imageCount;$i++){
+                    $imageName = $_FILES['image']['name'][$i];
+                    $imageTempName = $_FILES['image']['tmp_name'][$i];
+                    $targetPath = "C:/xampp/htdocs/Tripify/public/img/hotel-room-uploads/".$imageName;
+                    if(move_uploaded_file($imageTempName, $targetPath)){
+                        $this->roomModel->insertingImages($roomID,$imageName);                            
+                    }
+                }
+            }
+
+            redirect('Pages/profile');  
+        }
+
+        public function hotelReviews($hotelID){
+            //Get the reviews
+            $hotelreviews=$this->hotelModel->findReviews($hotelID);
+
+            //Get each review's travelerIDs to an array
+            $rarray = array();
+            foreach($hotelreviews as $review){
+                $rarray[] = $review->TravelerID;
+            }
+
+            //Get each user's details
+            $travelerInfo = array();
+            foreach($rarray as $element){
+                $travelerInfo[] = $this->userModel->getUserDetails($element);
+            }
+
+            $data=[
+                'hotelID' => $hotelID,
+                'reviewSet' => $hotelreviews,
+                'travelerInfo' => $travelerInfo
+            ];
+
+            $this->view('hotels/v_hotel_reviews',$data);
             
         }
 
@@ -570,20 +611,45 @@
         // }
 
         public function loadBooking(){
-            $hotelbookings=$this->hotelBookingModel->viewbookings();
-            $data=[
-                
+            $hotelbookings=$this->hotelBookingModel->viewbookings('Hotel',$_SESSION['user_id']);
+            // echo gettype($hotelbookings);
+            // if(empty($hotelbookings)){
+            //     "its empty";
+            // }else{
+            //     "its not empty";
+            // }
+            $data=[                
                 'bookings'=>$hotelbookings
             ];
             $this->view('hotels/v_dash_bookings',$data);
         }        
 
         public function loadPayments(){
-            $this->view('hotels/v_dash_payments');
+            $payments=$this->hotelBookingModel->getPayments();
+            $data=[                
+                'payments'=>$payments
+            ];
+
+            $this->view('hotels/v_dash_payments',$data);
         }
 
+
         public function loadReviews(){
-            $this->view('hotels/v_dash_reviews');
+            $reviews=$this->hotelBookingModel->getReviews();
+            $data=[                
+                'reviews'=>$reviews
+            ];
+            $this->view('hotels/v_dash_reviews',$data);
+        }
+
+        public function deleteReviews($travelerID){
+            if($this->hotelBookingModel->deleteReviews($travelerID)){
+                flash('review_flash', 'Review Deleted');
+                redirect('Hotels/loadReviews');
+            }else{
+                flash('reg_flash', 'Something went wrong');
+                redirect('Hotels/loadReviews');
+            }
         }
 
         public function hotelSupport(){

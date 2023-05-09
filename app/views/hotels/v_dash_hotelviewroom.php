@@ -15,24 +15,23 @@ else {
     ?> 
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
 <aside class="sidebar">
-
-        <div class="menu-toggle">
-            <div class="hamburger">
-                <span></span>
-            </div>
+    <div class="menu-toggle">
+        <div class="hamburger">
+            <span></span>
         </div>
+    </div>
 
-        <nav class="menu">
-            <a href="<?php echo URLROOT; ?>/Hotels/load" class="menu-item">Account</a>
-            <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item is-active">Rooms</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item">Bookings</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/loadPayments" class="menu-item">Payments</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/loadMessages" class="menu-item">Messages</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
-            <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
-        </nav>
-    </aside>
+    <nav class="menu">
+        <a href="<?php echo URLROOT; ?>/Hotels/load" class="menu-item">Account</a>
+        <a href="<?php echo URLROOT; ?>/HotelRooms/rooms" class="menu-item is-active">Rooms</a>
+        <a href="<?php echo URLROOT; ?>/Hotels/loadBooking" class="menu-item">Bookings</a>
+        <a href="<?php echo URLROOT; ?>/Hotels/loadMessages" class="menu-item">Messages</a>
+        <a href="<?php echo URLROOT; ?>/Hotels/loadReviews" class="menu-item">Reviews</a>
+        <a href="<?php echo URLROOT; ?>/Hotels/hotelSupport" class="menu-item">Support</a>
+    </nav>
+</aside>
 
 <main class="right-side-content">
     <br>
@@ -63,7 +62,8 @@ else {
                 </div>
 
                     
-                <button class="reserve-room" for="hotel-price"><b>View and Edit</b></button>
+                <button class="reserve-room" for="hotel-price">
+                    <a href="<?php echo URLROOT?>/HotelRooms/viewhotelroom/Hotel/<?php echo $roomType->RoomTypeID?>">View and Edit</a></button>
                     
             </div>
             <!-- </a> -->
