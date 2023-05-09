@@ -32,7 +32,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
             <a href="<?php echo URLROOT; ?>/Trips/yourtrips/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Your Trips</a>
-            <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Complains</a>
+            <a href="<?php echo URLROOT; ?>/Users/contactus" class="menu-item">Contact Admin</a>
             <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -79,7 +79,7 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID">G<?php echo $booking->BookingID ?></td>
+                            <td data-lable="ID" data="<?php echo  $booking->BookingID ?>">G<?php echo $booking->BookingID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>/Guide"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
                             <td data-lable="Message"><?php echo $booking->StartDate ?></td>

@@ -268,6 +268,7 @@
 
 
         public function edit($vehicle_id){
+            $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
           
             if ($_SERVER['REQUEST_METHOD']=='POST') {
 
@@ -278,23 +279,34 @@
                 // Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
 
-                $uploaded_files = $_FILES['vehicleImgs'];
+                if (!$_FILES['vehicleImgs']['error'][0] == 4) {
 
-                $num_files = count($uploaded_files['name']);
+                    // var_dump($_FILES['vehicleImgs']);
+                    $uploaded_files = $_FILES['vehicleImgs'];
 
-            
-                $vehicle_image_names = array();
+                    $num_files = count($uploaded_files['name']);
+                    // echo $num_files;
 
-            
-                for ($i=0; $i<$num_files; $i++) {
-                    $name = time().'_'.$uploaded_files['name'][$i];
-                    $vehicle_image_names[] = $name;
+                
+                    $vehicle_image_names = array();
 
+                
+                    for ($i=0; $i<$num_files; $i++) {
+                        $name = time().'_'.$uploaded_files['name'][$i];
+                        $vehicle_image_names[] = $name;
+
+                    }
+                    $Vehicle_Images_str = implode(",", $vehicle_image_names);
+                    // echo $num_files;
+                }else{
+                    $Vehicle_Images_str = $taxiVehicle->Vehicle_Images;
                 }
+
+                
 
                 $data=[
                     'driverID'=>trim($_POST['driverID']),
-                    'vehicle_image_names'=>$vehicle_image_names,
+                    'vehicle_image_names'=>$Vehicle_Images_str,
                     'area'=>trim($_POST['area']),
                     'color'=>trim($_POST['color']),
                     'no_of_seats'=>trim($_POST['noOfSeats']),
@@ -307,14 +319,18 @@
                     'vehicle_imgs_err'=>''
                     ];
 
-                    var_dump($data);
+                    // var_dump($data);
 
-                if(!uploadImageGallary($vehicle_image_names, $uploaded_files, '/img/vehicle_images/')) {
-                    $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
-                    flash('vehicle_flash', 'Vehicle Image Uploading is Unsuccusefull..!');
-                    redirect('Taxi_Vehicle/viewvehicles');
-                }
+                    if (!$_FILES['vehicleImgs']['error'][0] == 4) {
+                        if(!uploadImageGallary($vehicle_image_names, $uploaded_files, '/img/vehicle_images/')) {
+                            $data['vehicle_imgs_err'] = 'Profile Picture Uploading Unsuccessful!';
+                            flash('vehicle_flash', 'Vehicle Image Uploading is Unsuccusefull..!');
+                            redirect('Taxi_Vehicle/viewvehicles');
+                        }
+        
+                    }
 
+                
 
 
                 if ($this->taxi_vehicleModel->editTaxiVehicle($data)) {

@@ -52,8 +52,41 @@
             <?php echo $data['description']?>
         </div>
 
-        <div class="hotel-desc-page-div">
-        <p class="home-title-2">Facilities</p>
+        <!-- facilities/map and reviews section -->
+        <div class="hotel-desc-page-div" id="facilities-reviews-section">
+            <!-- <p class="home-title-2">Facilities</p> -->
+            <div class="facility-all">
+                <div class="facility-1">
+
+                    <?php if (empty($data['profileDetails']->Facilities)) { ?>
+                    <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
+                    <?php } 
+                    else { 
+                    $farray = explode(",",$data['profileDetails']->Facilities);
+                    $indentation = str_repeat("\t", 3);
+                    $i=0;?>
+
+                    <div class="nav-grid">
+                        <?php
+                        foreach($farray as $element){
+                            $i=$i+1;
+                            ?>
+                            <div style="text-align: center;"><?php echo $element."<br>";?></div>
+                        
+                        <?php                            
+                        }
+                        ?>
+                    </div>
+                    <?php } ?>
+                </div>
+
+                <div class="facility-2">
+                    MAP
+                </div>
+            </div>
+                
+            <br><button class="all-purpose-btn" id="view-review-btn">
+            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>">See Reviews</a></button>
         </div>
 
         <p class="home-title-2">Check Available Rooms</p>
@@ -98,6 +131,15 @@
             
             <?php
                 foreach($data['allroomtypes'] as $room):
+                    $arraycheck = $data['availablerooms'];
+                    for($i=0;$i<count($arraycheck);$i=$i+2){
+                        if($arraycheck[$i]==$room->RoomTypeID){
+                            $room->no_of_rooms=$arraycheck[$i+1];
+                        }
+                    }
+                    if($room->no_of_rooms==0 || $room->no_of_rooms<0){
+                        continue;
+                    }else{
             ?>
             <div class="room-block">
                 <div class="sub-block">
@@ -105,7 +147,12 @@
                     <p style="font-size: 1.5rem;"><b><?php echo $room->RoomTypeName?></b></p>
                     <input type="hidden" name="<?php echo $room->RoomTypeName?>" 
                     value="<?php echo $room->RoomTypeName?>">
-                    Room Size (Square meters) : <?php echo $room->RoomSize?>
+                    Room Size (Square meters) : <?php echo $room->RoomSize?><br>&nbsp;
+                    <br><button type="button" class="all-purpose-btn" style="width: 50%;"
+                    onclick="window.location.href='<?php echo URLROOT?>/HotelRooms/viewhotelroom/Traveler/<?php echo $room->RoomTypeID;?>'">
+                    View Room</button>  
+
+                    <br>&nbsp;
                 </div>
 
                 <div class="sub-block">
@@ -114,14 +161,14 @@
                     Price per night : <?php echo $room->PricePerNight?><br>
                     <input type="hidden" name="<?php echo $room->RoomTypeID.""."price"?>" value="<?php echo $room->PricePerNight?>">
                     <?php
-                        $arraycheck = $data['availablerooms'];
-                        for($i=0;$i<count($arraycheck);$i=$i+2){
-                            if($arraycheck[$i]==$room->RoomTypeID){
-                                $room->no_of_rooms=$arraycheck[$i+1];
+                        foreach($data['allBeds'] as $beds){
+                            if($beds->roomID == $room->RoomTypeID){
+                                echo $beds->bedType."\t\t".$beds->noofbeds;
                             }
                         }
+
                     ?>
-                    No of Available Rooms : <?php echo $room->no_of_rooms?>
+                    <br>No of Available Rooms : <?php echo $room->no_of_rooms?>
                 </div>
 
                 <div class="sub-block">
@@ -133,6 +180,7 @@
             </div>
 
             <?php
+                    }
                 endforeach;
             ?>
 
@@ -146,7 +194,8 @@
                 <div class="Containers">
                     <div class="MessageInfo">1 / 4</div>
                     <img src="<?php echo URLROOT?>/img/Galadari1.jpg" style="width:100%">
-                    <div class="H-Room-Info">First caption</div>
+                    <div class="H-Room-Info">First caption</div>[
+                        ]
                 </div>
 
                 <div class="Containers">
