@@ -146,6 +146,18 @@ else {
                             </div>
                         </div>
                 </div>
+                <div class="req-slot2">
+                        <div class="detail-container" style="margin-right: 20px; width: 46%;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">No of Days</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->no_of_days==0 ? 'Normal Ride' : $taxirequest->no_of_days ?>
+                            </div>
+                        </div>
+                        
+                </div>
                 <div class="req-slot3">
                         <div class="detail-container" style="margin-right: 20px; width: 97%;">
                             <div class="header-container">
