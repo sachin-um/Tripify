@@ -79,20 +79,7 @@
                 endforeach;
                 ?>
             </div>
-        </div>  
-
-        <div class="hotel-home-join-network">
-
-            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
-            <div class="home-div-3">
-                
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'">Register Hotel</button>               
-                
-            </div>
-        </div>
-
-
-              
+        </div>               
         
     </div>
 
