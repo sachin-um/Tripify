@@ -149,17 +149,21 @@
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">
-                                                <i class="fa-solid fa-plus"></i>
-                                                Add another Hotel
-                                            </button>
+                                            <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                                <button class="plan-item-add-another-button" type="button">
+                                                    <i class="fa-solid fa-plus"></i>
+                                                    Add another Hotel
+                                                </button>
+                                            </a>
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">
-                                        <i class="fa-solid fa-plus"></i>
-                                        Add a Hotel
-                                    </button>
+                                    <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                        <button class="plan-item-add-button" type="button">
+                                            <i class="fa-solid fa-plus"></i>
+                                            Add a Hotel
+                                        </button>
+                                    </a>
                                     <?php
                                 }
                             ?>
@@ -206,15 +210,19 @@
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            Add another Taxi</button>
+                                            <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                                <button class="plan-item-add-another-button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Add another Taxi</button>
+                                            </a>
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">
-                                    <i class="fa-solid fa-plus"></i>
-                                    Add a Taxi</button>
+                                    <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                        <button class="plan-item-add-button" type="button">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Add a Taxi</button>
+                                    </a>
                                     <?php
                                 }
                             ?>
@@ -259,15 +267,19 @@
                                         <?php
                                             endforeach;
                                         ?>
-                                            <button class="plan-item-add-another-button" type="button">
-                                            <i class="fa-solid fa-plus"></i>
-                                            Add another Guide</button>
+                                            <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                                <button class="plan-item-add-another-button" type="button">
+                                                <i class="fa-solid fa-plus"></i>
+                                                Add another Guide</button>
+                                            </a>    
                                         <?php
                                 } else {
                                     ?>
-                                    <button class="plan-item-add-button" type="button">
-                                    <i class="fa-solid fa-plus"></i>
-                                    Add a Guide</button>
+                                    <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" style="text-decoration:none">
+                                        <button class="plan-item-add-button" type="button">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Add a Guide</button>
+                                    </a>    
                                     <?php
                                 }
                             ?>
