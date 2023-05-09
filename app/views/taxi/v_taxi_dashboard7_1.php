@@ -161,7 +161,8 @@ else {
                                             ?>
                                           
                                             <a href="<?php echo URLROOT; ?>/Bookings/CompleteTaxiBooking/<?php echo $data['taxibookings']->ReservationID."/".$data['taxibookings']->TaxiOwnerID?>"><button class="review-btn" id="taxi_veh_view" type="button">Completed</button></a>
-                        
+                                            <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $data['taxibookings']->ReservationID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+                
                                             <?php
                 }
                 elseif ($data['taxibookings']->status=='Canceled') {

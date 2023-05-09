@@ -1,9 +1,12 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
- <!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
-<?php $guidedetails= $data['guidedetails']; 
-// print_r($guidedetails);
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
+
+
+<?php 
+$guidedetails= $data['guidedetails'];
+$guidelanguages= $data['guideLanguages'] 
 ?>
-<?php $guidelanguages= $data['guideLanguages'] ?>
+
 
 <div class="wrapper">
     <div class="content">
@@ -20,7 +23,7 @@
                     <br>
                     <div class="taxi-disc-3">
 
-                        <label><b>Name :</b> <?php echo $data['guideName'] ?></label><br>
+                        <label><b>Name :</b> <?php echo $guidedetails-> Name ?></label><br>
                         <label><b>Reg No :</b> <?php echo $guidedetails-> guideRegNo ?></label><br>   
                         <label><b>Area :</b> <?php echo $guidedetails->Area ?></label><br>
                         <label><b>Phone No :</b> <?php echo $guidedetails->phone_number ?></label><br>
@@ -88,55 +91,57 @@
                     
                         <p class="home-title-2" >Check Availability</p>
                         <hr>
-                        <form action="<?php echo URLROOT; ?>/Bookings/checkGuideAvailability/<?php echo $data['guidedetails']->GuideID?>" method="POST">
+                        <br><br>
+                        <form id="gide-booking-form" action="<?php echo URLROOT; ?>/Bookings/GuideBooking/<?php echo $data['guidedetails']->GuideID?>" method="POST">
                             <div class="hotel-reg-form">
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Start Date<sup> *</sup> :</p>
                                         <input class="hotel-labels-2" type="date" id="bookingDate" name="sdate"  required>
-                                        <span id="avail"></span>
+                                        <span id="start_validate"></span>
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">End Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingTime"  name="endDate" required>
+                                        <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" required>
+                                        <span id="end_validate"></span>
                                     </div>
 
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Payment option<sup> *</sup> :</p>
+                                        <select class="search" id="payment-option" name="payment_option" style="background: white;">
+                                            <option value="" disabled selected hidden>Payment Option</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Online">Online</option>
+                                            <option value="Cash or Online">Cash or Online</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="hotel-reg-elements">
+                                        <p class="home-title-4">Location<sup> *</sup> :</p>
+                                        <input class="hotel-labels-2" type="text" id="G_book_loc"  name="G_book_location" required>
+                                        <span id="end_validate"></span>
+                                    </div>
+
+                                    <input class="hotel-labels-2" type="hidden" id="guide_payment" name="total" >
                                    
                                 </div>
 
-                                <!-- <div class="hotel-reg-form-div-2">
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
-                                        
-                                    </div>
-
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Where you Want to Visit <sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
-
-                                         
-                                    </div>
-
-                                    
-                                </div> -->
-                                
-                            
+                               
                             </div><br>
-
+                            <span id="older"></span><br>
+                            <span id="avail"></span><br>
                             <div class="hotel-reg-form-div-2">
-                                    <button id="book-now-btn" class="all-purpose-btn" type="submit">Book Now</button>
+                                <button id="book-now-btn" class="all-purpose-btn" onclick="validate()" type="submit">Book Now</button>
                             </div>
                         </form>
                         <br>
                         <script type="text/JavaScript">
-                            // var bookingTime;
+
                             var URLROOT="<?php echo URLROOT;?>";
-                            // document.getElementById("bookingTime").addEventListener("change", function() {
-                            //     bookingTime = this.value;
-                            // });
+                            var GuideID =  '<?php echo $data['guidedetails']->GuideID?>';
+                            var guideRate = '<?php echo $data['guidedetails']->Rate?>';
                             
                         </script>
                        
@@ -145,6 +150,65 @@
 
 
                     
+                </div>
+
+
+                <div id="guide-booking-cont" style="display:none;">
+            
+                            <p class="home-title-3"><u>Price Details</u></p>
+                            <br>
+                            <div class="price-details-1">
+                                <div class="hotel-price-check">
+                                    <label><b>Trip Start :</b></label><br>
+                                    <label ><b>  <p id="startDate"></p>  </b></label>
+                                    
+                                </div>
+                                <div class="hotel-price-check">
+                                    <label><p><b>Trip End</b></p></label>
+                                    <label><b> <p id="endDate"></p>  </b></label>
+                                </div>
+                                <div class="hotel-price-check">
+                                    <label><b>Location :</b></label><br>
+                                    <label ><b>  <p id="g_location"></p>  </b></label>
+                                    
+                                </div>
+
+                                <div class="hotel-price-check">
+                                    <label><b>Payment Method :</b></label><br>
+                                    <label ><b>  <p id="G_payment_mrthod"></p>  </b></label>
+                                    
+                                </div>
+                               
+                            </div>
+                            <br>
+                            <div class="price-details-2">
+                                <div class="hotel-price-details">
+                                    <label id="No-of-rooms"><p id="days"></p></label>
+                                    <label id="X">X</label>
+                                    <label id="No-of-nights"><?php echo $data['guidedetails']->Rate?></label>
+                                    <label id="hotel-taxes-1"><b><p id="total"></p></b></label>
+                                </div>
+
+                                
+
+                                <hr id="prices-hr">
+                                
+                                <div class="hotel-price-details">
+                                    <label id="hotel-taxes">Total</label>
+                                    <label id="hotel-taxes-1"><b><p id="g_total"></p></b></label>
+                                </div>
+                            </div>
+
+
+                            <div class="hotel-reg-form-div-2">
+                                <button  onclick="sentcontroller()"  id="confirm-booking-btn" class="all-purpose-btn" type="submit"  >Book Now</button>
+                            </div>
+                            <br>
+                            <div class="hotel-reg-form-div-2">
+                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Pages/guides';" id="confirm-booking-btn" class="taxi_all-purpose-btn" type="submit">Cancel</button>
+                            </div>
+                            
+                        
                 </div>
             </div>
 
@@ -189,9 +253,8 @@
     } 
 
 
-    const vehicleID = <?php echo json_encode($data['details']->VehicleID); ?>;
-
 </script>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/guidedateValidation.js"></script>
 
 
 

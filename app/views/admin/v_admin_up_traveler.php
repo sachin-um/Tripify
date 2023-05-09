@@ -44,11 +44,12 @@ else {
             <input type="text" placeholder="Search accounts..." id="searchInput">
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
-                <option value="all">All Account</option>
+                <option value="all account">All Account</option>
                 <option value="suspened">Suspended</option>
                 <option value="active">Active</option>
             </select>
         </div>
+        <?php flash('admin_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">
