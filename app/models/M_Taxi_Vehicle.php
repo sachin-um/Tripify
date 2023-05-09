@@ -39,6 +39,12 @@ class M_Taxi_Vehicle{
             }
         }
 
+        public function viewallVehicles(){
+            $this->db->query('SELECT vehicles.*,taxi_drivers.Name FROM vehicles JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID ');
+            $vehicles=$this->db->resultSet();
+            return $vehicles;
+        }
+
 
         public function viewall($id){
             $this->db->query('SELECT vehicles.*,taxi_drivers.Name FROM vehicles JOIN taxi_drivers ON vehicles.driverID = taxi_drivers.TaxiDriverID  WHERE vehicles.OwnerID=:OwnerID');
@@ -83,15 +89,10 @@ class M_Taxi_Vehicle{
         }
 
         public function editTaxiVehicle($data){
-            $vehicle_image_names = $data['vehicle_image_names'];
-
-            // convert the array of image names to a comma-separated string
-            $Vehicle_Images_str = implode(",", $vehicle_image_names);
-        
 
             $this->db->query('UPDATE vehicles SET driverID=:driverID,color=:color, area=:area,no_of_seats=:no_of_seats,price_per_km=:price_per_km,AC=:AC,media=:media,wifi=:wifi,Vehicle_Images=:Vehicle_Images WHERE VehicleID=:VehicleID');
             $this->db->bind(':driverID',$data['driverID']);
-            $this->db->bind(':Vehicle_Images',$Vehicle_Images_str);
+            $this->db->bind(':Vehicle_Images',$data['vehicle_image_names']);
             $this->db->bind(':area',$data['area']);
             $this->db->bind(':color',$data['color']);
             $this->db->bind(':no_of_seats',$data['no_of_seats']);
