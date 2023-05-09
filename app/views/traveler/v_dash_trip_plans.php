@@ -18,7 +18,7 @@
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Taxi Requests</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Guide Requests</a>
             <a href="<?php echo URLROOT; ?>/Trips/yourtrips/<?php echo $_SESSION['user_id'] ?>" class="menu-item is-active">Your Trips</a>
-            <a href="<?php echo URLROOT; ?>/Users/contactust" class="menu-item">Contact Admin</a>
+            <a href="<?php echo URLROOT; ?>/Users/contactus" class="menu-item">Contact Admin</a>
             <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
