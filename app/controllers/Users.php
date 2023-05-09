@@ -741,10 +741,7 @@
 
         //action on account
 
-<<<<<<< HEAD
-=======
 
->>>>>>> df438e6e551d56f49d6c8a074ae174570039475d
         //suspend
         public function suspendaccount($id,$usertype,$action)
         {
@@ -763,19 +760,11 @@
                         redirect('Admins/profiles/'.$usertype);
                     }
                 }
-<<<<<<< HEAD
             } else {
                 flash('reg_flash', 'Access denied..');
                 redirect('Users/login');
             }
-            
-=======
-            }
-        } else {
-            flash('reg_flash', 'Access denied..');
-            redirect('Users/login');
->>>>>>> df438e6e551d56f49d6c8a074ae174570039475d
-        }
+    
 
         //veriify
         public function verifyaccount($id,$usertype)
