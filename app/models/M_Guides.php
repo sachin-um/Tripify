@@ -49,6 +49,28 @@ class M_Guides{
             return false;
         }
     }
+
+    public function editGuideDetails($data){
+        $this->db->query('UPDATE guides set Name=:name,Rate=:rate,Area=:area,phone_number=:contact_number WHERE GuideID=:id');
+        $this->db->bind(':name',$data['name']);
+        $this->db->bind(':rate',$data['rate']);
+        $this->db->bind(':area',$data['area']);
+        $this->db->bind(':contact_number',$data['contactno']);
+        $this->db->bind(':id',$data['id']);
+
+        $s1=$this->db->execute();
+        $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+        $this->db->bind(':name',$data['name']);
+        $this->db->bind(':profile_img',$data['profile-img_name']);
+        $this->db->bind(':contactno',$data['contactno']);
+        $this->db->bind(':id',$data['id']);
+        $s2=$this->db->execute();
+
+        if ($s1 && $s2) {
+            $_SESSION['user_name']=$data['name'];
+            return true;
+        }
+    }
     
     public function getGuideById($id){
         $this->db->query('SELECT * FROM guides WHERE GuideID=:id');

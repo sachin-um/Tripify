@@ -11,8 +11,8 @@
                 <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">Trip Request</a>
                 <a href="<?php echo URLROOT; ?>/Offers/guideoffers" class="menu-item">Offers</a>
                 <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type']; ?>/<?php echo $_SESSION['user_id']; ?>" class="menu-item">Bookings</a>
-                <a href="<?php echo URLROOT; ?>/Payments/GuidePayments/">Payments</a>
-                <a href="#" class="menu-item">Exit Dashboard</a>
+                <a href="<?php echo URLROOT; ?>/Payments/GuidePayments/" class="menu-item" >Payments</a>
+                <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
             </nav>
 
 		</aside>
