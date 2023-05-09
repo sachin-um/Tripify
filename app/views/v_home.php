@@ -14,41 +14,6 @@
 
         
         <br>
-        <!-- <h2 class="title">Select what you want to search!</h2>
-        <br>        
-        <div class="user-btns" style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-            <button id="btn-1" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/hotels'">
-                <span class="button__icon">
-                    <ion-icon name="bed-outline"></ion-icon>
-                </span>
-                <br>
-                <span class="button__text">Hotels</span>
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            
-            <button id="#2" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/taxies'">
-                <span class="button__icon">
-                    <ion-icon name="car-outline"></ion-icon>
-                </span>
-                <br>
-                <span class="button__text">Taxis</span>
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;        
-            
-            <button id="#3" class="btns" onclick="window.location='<?php echo URLROOT; ?>/Pages/guides'">
-                <span class="button__icon">
-                    <ion-icon name="accessibility-outline"></ion-icon>
-                </span>
-                <br>
-                <span class="button__text">Guides</span>
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            
-            <button id="#4" class="btns">
-                <span class="button__icon">
-                    <ion-icon name="map-outline"></ion-icon>
-                </span>
-                <br>
-                <span class="button__text">Plan a Trip</span>
-            </button>
-        </div> -->
 
         <hr class="divider">
         <br>
@@ -156,7 +121,31 @@
                 </div>
                 <br><br>
             </div>
-        </div>          
+        </div>      
+        
+        <div class="hotel-home-join-network">
+
+            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+            <div class="home-div-3">
+                
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'">Register Hotel</button>               
+                
+            </div>
+        </div>
+
+        <div class="hotel-home-join-network">
+            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+            <div class="home-div-3">
+                <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register Taxi Owner</button>
+            </div>
+        </div>
+
+        <div class="hotel-home-join-network">
+            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+            <div class="home-div-3">
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Register As a Guide</button>
+            </div>
+        </div>
        
         
     </div>

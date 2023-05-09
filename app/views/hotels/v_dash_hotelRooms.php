@@ -152,11 +152,132 @@ else {
                     </div>
                 </div>
 
+                <br>
+                <p class="home-title-2" style="margin-top: 3%;">Select All Facilities</p>
+
+                <div class="part-all">
+                    <div class="sub-part">
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Hair Dryer">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Hair Dryer</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Mini Bar">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Mini Bar</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Television">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Television</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Coffeemaker">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Coffeemaker</p>
+                            </div>                          
+                        </div>
+
+                    </div>
+
+                    <div class="sub-part">
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Refrigerator">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Refrigerator</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Kitchen">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Kitchen</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Towels">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Towels</p>
+                            </div>                          
+                        </div>                        
+                    </div>
+
+
+                    <!-- Third set -->
+                    <div class="sub-part">
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Toiletries">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Toiletries</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Bathrobes">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Bathrobes</p>
+                            </div>                          
+                        </div>
+
+                        <div class="sub-description">
+                            <div class="sub-sub" style="width: 25%;">
+                                <input type="checkbox" style="transform: scale(0.6)" name="facilities[]" value="Free Breakfast">
+                            </div>
+                            
+                            <div class="info" style="width: 75%;">
+                                <p>Free Breakfast</p>
+                            </div>                          
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <!-- Uploading room photographs -->
                 <button class="all-purpose-btn">Submit</button>
                 &nbsp;<br>
             </div>           
     
         </form>
+
 
     </div>       
     &nbsp;<br>

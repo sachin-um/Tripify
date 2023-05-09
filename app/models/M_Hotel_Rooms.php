@@ -10,8 +10,8 @@ class M_Hotel_Rooms{
        
     //Add a hotel room type, their room IDs and their bed types under a hotel
     public function addaroom($data){
-        $this->db->query('INSERT INTO hotel_rooms(RoomTypeID,HotelID,RoomTypeName,NoofGuests,NoofBeds,RoomSize,PricePerNight,no_of_rooms)
-         VALUES(:RoomtypeID,:HotelID,:RoomTypeName,:NoofGuests,:NoofBeds,:RoomSize,:PricePerNight,:NoOfRooms)');
+        $this->db->query('INSERT INTO hotel_rooms(RoomTypeID,HotelID,RoomTypeName,NoofGuests,NoofBeds,RoomSize,PricePerNight,no_of_rooms,facilities)
+         VALUES(:RoomtypeID,:HotelID,:RoomTypeName,:NoofGuests,:NoofBeds,:RoomSize,:PricePerNight,:NoOfRooms,:facilities)');
         $this->db->bind(':RoomtypeID',$data['RoomTypeID']);
         $this->db->bind(':HotelID',$data['hotelid']);
         $this->db->bind(':RoomTypeName',$data['RoomName']);
@@ -20,6 +20,7 @@ class M_Hotel_Rooms{
         $this->db->bind(':RoomSize',$data['RoomSize']);
         $this->db->bind(':PricePerNight',$data['PricePerNight']);
         $this->db->bind(':NoOfRooms',$data['NoOfRooms']);
+        $this->db->bind(':facilities',$data['facilities']);
 
         //Update the room types table
         if ($this->db->execute()) {
@@ -101,6 +102,33 @@ class M_Hotel_Rooms{
         return $roomset;
     }
 
+    public function insertingImages($roomID, $imagename){
+        $this->db->query('INSERT INTO hotel_roomPhotos(roomTypeID,hotelID,imgName) values (:roomID, :hotelID, :imagename)');
+        $this->db->bind(':roomID',$roomID);
+        $this->db->bind(':hotelID',$_SESSION['user_id']);
+        $this->db->bind(':imagename',$imagename);
+        $result = $this->db->execute();
+        return $result;
+    }
+
+    public function getImages($roomID){
+        $this->db->query('SELECT imgName FROM hotel_roomPhotos where roomTypeID=:roomID');
+        $this->db->bind(':roomID',$roomID);
+
+        $images=$this->db->resultSet();
+        
+        // $imgNameArray = array();
+        // if(mysqli_num_rows($images)>0){
+        //     while($fetch = mysqli_fetch_assoc($images)){
+        //         $imgNameArray[] = $fetch['imgName'];
+                
+        //     }
+
+        return $images;
+        
+
+    }
+
     public function getBookingID(){
         $this->db->query('SELECT booking_id FROM 
         hotel_bookings ORDER BY booking_id DESC LIMIT 1');
@@ -127,8 +155,9 @@ class M_Hotel_Rooms{
         return $bedset;
     }
 
+    //View just one room
     public function viewWantedRoom($roomTypeID){
-        $this->db->query('SELECT * FROM hotelroomtypes WHERE RoomTypeID=:id');
+        $this->db->query('SELECT * FROM hotel_rooms WHERE RoomTypeID=:id');
         $this->db->bind(':id',$roomTypeID);
 
         $wantedHotelRoom=$this->db->single();
@@ -136,6 +165,14 @@ class M_Hotel_Rooms{
         return $wantedHotelRoom;
     }
 
+    public function getHotelBeds($roomTypeID){
+        $this->db->query('SELECT * FROM hotel_roomnbed WHERE roomID=:id');
+        $this->db->bind(':id',$roomTypeID);
+
+
+    }
+
+    //View all the rooms
     public function viewAllIndividualRooms($roomTypeID){
         $this->db->query('SELECT * FROM hotelrooms WHERE RoomTypeID=:id');
         $this->db->bind(':id',$roomTypeID);
@@ -143,6 +180,40 @@ class M_Hotel_Rooms{
         $individualRoomSet = $this->db->resultSet();
 
         return $individualRoomSet;
+    }
+
+    public function getBeds($roomTypeID){
+        $this->db->query('SELECT * from hotel_roomnbed where roomID=:roomID');
+        $this->db->bind(':roomID',$roomTypeID);
+
+        $beds = $this->db->resultSet();
+
+        return $beds;
+    }
+
+    public function getAllBedsforAllRooms(){
+        $this->db->query('SELECT * from hotel_roomnbed');
+
+        $beds = $this->db->resultSet();
+
+        return $beds;
+    }
+
+    public function editRoom($data){
+        $this->db->query('UPDATE hotel_rooms set roomSize=:size,Price=:price, 
+        NoofGuests=:noofguests,NoofRooms=:noofrooms WHERE RoomTypeID=:id');
+
+        $this->db->bind(':size',$data['size']);
+        $this->db->bind(':price',$data['price']);
+        $this->db->bind(':noofguests',$data['guests']);
+        $this->db->bind(':noofrooms',$data['noofrooms']);
+        $this->db->bind(':id',$data['id']);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

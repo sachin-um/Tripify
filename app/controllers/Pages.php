@@ -5,6 +5,7 @@
             $this->hotelModel=$this->model('M_Hotels');
             $this->guideModel=$this->model('M_Guides');
             $this->taxiModel=$this->model('M_Taxi');
+            $this->taxi_vehicleModel=$this->model('M_Taxi_Vehicle');
         }
         public function index(){
 
@@ -98,8 +99,16 @@
 
         public function taxies(){
             $allOwners=$this->taxiModel->viewall();
+            $allVehicles = $this->taxi_vehicleModel->viewallVehicles();
+            foreach($allVehicles as $vehicle){
+                $vehicle_images_str = $vehicle->Vehicle_Images; // Example string from the database
+                $vehicle_images_array = explode(",", $vehicle_images_str);
+                $vehicle->vehicle_images_arr=$vehicle_images_array;
+
+            }
             $data=[
-                'owners'=>$allOwners
+                'owners'=>$allOwners,
+                'vehicles'=>$allVehicles
             ];
             $this->view('taxi/v_taxi_home',$data);
         }

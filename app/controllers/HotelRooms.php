@@ -7,21 +7,33 @@
 
         }
 
-        public function viewhotelroom($roomTypeID){
+        //View room details for hotel owner
+        public function viewhotelroom($userType,$roomTypeID){
             $roomdetails=$this->roomModel->viewWantedRoom($roomTypeID);
+            $beds = $this->roomModel->getBeds($roomTypeID);
+            $images = $this->roomModel->getImages($roomTypeID);
+
             // $offers=filteritems($alloffers,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
-                'wantedRoom'=> $roomdetails
+                'wantedRoom'=> $roomdetails,
+                'beds'=> $beds,
+                'images'=> $images
             ];
-            $this->view('hotels/v_booking',$data);
+            if($userType=='Hotel'){
+                $this->view('hotels/v_viewHotelRoom',$data);
+            }else{
+                $this->view('hotels/v_viewHotelRoomforUser',$data);
+            }
+            
         }
+
 
         public function addroom(){
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 // echo 'register1';
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-
+                $farray = implode(",",$_POST['facilities']);
             
                 $data=[
                         'RoomTypeID'=>rand(100000,999999),
@@ -37,6 +49,7 @@
                         'QueenBed'=>trim($_POST['bed3']),
                         'KingBed'=>trim($_POST['bed4']),
                         'BunkBed'=>trim($_POST['bed5']),
+                        'facilities'=>$farray,
                         
 
                         'NoofBeds_err'=>'',
@@ -87,12 +100,13 @@
         
         }
 
+        //View all rooms for hotel owner
         public function rooms(){            
             $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
-            for($x=0;$x<count($allroomtypes);$x++){
-                $current = $allroomtypes[$x]->RoomTypeID;
+            // for($x=0;$x<count($allroomtypes);$x++){
+            //     $current = $allroomtypes[$x]->RoomTypeID;
                 
-            }
+            // }
         
             $data=[
                 'allroomtypes'=>$allroomtypes,
@@ -100,6 +114,50 @@
             ];
             $this->view('hotels/v_dash_hotelviewroom',$data);
         }
+
+        public function editHotelRoomDetails(){
+            if ($_SERVER['REQUEST_METHOD']=='POST') {
+                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+
+                $data=[
+                    'price' => trim($_POST['price']),
+                    'size' => trim($_POST['size']),
+                    'guests' => trim($_POST['guests']),
+                    'noofrooms' => trim($_POST['noofrooms']),
+                    'id' => trim($_POST['id'])
+                ];
+
+                if ($this->roomModel->editRoom($data)) {
+                    flash('reg_flash', 'Room is successfully edited.');
+                    redirect('HotelRooms/viewhotelroom');
+                }
+                else{
+                    die('Something went wrong');
+                }
+            }
+        }
+
+        public function uploadPhotographs(){
+            if(isset($_POST['submit'])){
+                // print_r($_FILES);
+                $imageCount = count($_FILES['image']['name']);
+                // echo $imageCount;
+
+                for($i=0;$i<$imageCount;$i++){
+                    $imageName = $_FILES['image']['name'][$i];
+                    $imageTempName = $_FILES['image']['tmp_name'][$i];
+                    $targetPath = "C:/xampp/htdocs/Tripify/public/img/hotel-uploads/".$imageName;
+                    if(move_uploaded_file($imageTempName, $targetPath)){
+                        $this->hotelModel->insertingImages($hotelID,$imageName);                            
+                    }
+                }
+             
+            }
+
+            redirect('Pages/profile'); 
+        }
+
+
 
     }
 

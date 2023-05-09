@@ -177,7 +177,6 @@
 
         public function addToTripPlan($bookingid,$type,$tripid)
         {
-            
             if ($this->tripModel->addToTripPlan($bookingid,$type,$tripid)==="duplicate"){
                 flash('booking_flash', 'Booking was already added');
                 switch ($type) {

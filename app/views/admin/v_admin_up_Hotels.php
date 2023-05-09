@@ -51,6 +51,7 @@ else {
                 <option value="not-verified">Not Verified</option>
             </select>
         </div>
+        <?php flash('booking_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">

@@ -32,14 +32,14 @@ else{
 
     <main class="right-side-content">
         <br>
-        <div class="hotel-profile-completing-notice">
+        <!-- <div class="hotel-profile-completing-notice">
             <br>
             <p><b>Thank you for registering your property with Tripify. 
             Please upload two or more photographs to complete your profile
             and get verified.</b>
             </p>
             <br><br>
-        </div>
+        </div> -->
 
         <!-- Account details start here - Photo upload doesn't work -->
         <div class="hotel-profile-account-details">
@@ -361,6 +361,10 @@ else{
                         </div>
                 </div>       
                 
+                <?php 
+                if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
+                ?>
+
                 <br>
                 <div style="display: flex; justify-content: center; padding: 20px">
                     <button style="margin-right: 10px" class="profile-btn-edit" id="edit-hotel-btn">Edit Info</button>
@@ -372,6 +376,17 @@ else{
                         Save Changes
                     </button>      
                 </div>
+
+                <?php
+                }
+                else {
+                    ?>
+                        <div style="display: flex; justify-content: space-around;">
+                            <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                        </div>
+                    <?php
+                }
+                ?>  
             </form>
             <!-- <button class="profile-btn" onclick="<?php echo URLROOT?>/Hotels/editProfileDetails">Edit Property Details</button> -->
             <br>&nbsp;
@@ -392,15 +407,24 @@ else{
             else { 
                     $farray = explode(",",$data['hoteldetails']->Facilities);
                     $indentation = str_repeat("\t", 3);
-                    $i=0;
-                    foreach($farray as $element){
-                        $i=$i+1;
-                        echo $element."<br>";
-                    }
-                ?>
+                    $i=0;?>
+                    <div class="nav-grid">
+                        <?php
+                        foreach($farray as $element){
+                            $i=$i+1;
+                            ?>
+                            <div style="text-align: center;"><?php echo $element."<br>";?></div>
+                        
+                        <?php                            
+                        }
+                        ?>
+                    </div>
             <?php } ?>
             <br>
 
+            <?php 
+            if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
+            ?>
             <!-- button -->
             <div style="display: flex; justify-content: center; padding: 20px">
                 <button class="all-purpose-btn" id="account-details-edit"
@@ -408,6 +432,16 @@ else{
                 </button>
             </div>
 
+            <?php
+            }
+            else {
+                ?>
+                    <div style="display: flex; justify-content: space-around;">
+                        <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                    </div>
+                <?php
+            }
+            ?>  
             
             <br>
         </div><br><br>
@@ -415,17 +449,21 @@ else{
         <!-- Upload photos -->
         <div class="hotel-profile-account-details">
             <p id="hotel-profile-title-1">Property Images</p>
+            <?php 
+            if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
+            ?>
             
-            <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadPhotos/<?php echo $data['hoteldetails']->HotelID?>" enctype="multipart/form-data">                
-                <input type="file" name="image[]" multiple>
-                <div style="display: flex; justify-content: center;">
-                    <button class="all-purpose-btn" type="submit" name="submit">Upload</button>
-                </div>
-            </form>
+                <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadPhotos/<?php echo $data['hoteldetails']->HotelID?>" enctype="multipart/form-data">                
+                    <input type="file" name="image[]" multiple>
+                    <div style="display: flex; justify-content: center;">
+                        <button class="all-purpose-btn" type="submit" name="submit">Upload</button>
+                    </div>
+                </form>
             <br><br>
+
             <div class="nav-grid-1">
-            <?php
-            if(!empty($data['images'])){
+                <?php
+                if(!empty($data['images'])){
                 foreach($data['images'] as $imgName):
                     // echo gettype($imgName)."<br>" ;
                     // print_r($imgName);
@@ -437,10 +475,35 @@ else{
                 
             
                 endforeach;
+                }
+                ?>
+            </div>
+
+            <?php
+            }
+            else {
+            ?>
+
+            <div class="nav-grid-1">
+                <?php
+                if(!empty($data['images'])){
+                foreach($data['images'] as $imgName):
+                    // echo gettype($imgName)."<br>" ;
+                    // print_r($imgName);
+                ?>
+                <img class="hotel-images" src="<?php echo URLROOT?>/public/img/hotel-uploads/<?php echo $imgName->imgName; ?>" >
+
+
+                <?php
+                
+            
+                endforeach;
+                }
+                ?>
+            </div>
+            <?php
             }
             ?>
-            </div>
-            
             <!-- <button class="all-purpose-btn" id="account-details-edit"
                 onclick="location.href='<?php echo URLROOT?>/Hotels/addFacilities'">Edit>Refresh</button> -->
 
@@ -461,6 +524,11 @@ else{
 
     </main>
 </div>
+
+<?php
+}
+?>
+
 
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/imageUpload/imageUpload.js"></script>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
@@ -532,9 +600,6 @@ else{
     
 </script>
 
-<?php
-}
-?>
 
     
 <!-- var slidePosition = 1;
