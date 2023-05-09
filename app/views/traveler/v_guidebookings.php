@@ -79,7 +79,7 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID">G<?php echo $booking->BookingID ?></td>
+                            <td data-lable="ID" data="<?php echo  $booking->BookingID ?>">G<?php echo $booking->BookingID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>/Guide"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
                             <td data-lable="Message"><?php echo $booking->StartDate ?></td>
