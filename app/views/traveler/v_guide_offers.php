@@ -76,6 +76,13 @@ else {
 
             
         </div>
+        <?php
+                    if (empty($data['guideoffers'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show.. Wait for Guide Offers....</p>
+                <?php        
+                } else {
+                    ?>
         <div class="request-list" id="request-list">
         <?php flash('guide_offer_flash'); ?>
         <?php
@@ -155,6 +162,9 @@ else {
             endforeach;
         ?>
         </div>
+        <?php
+        }
+        ?>
     </div>
     </main>
  </div>

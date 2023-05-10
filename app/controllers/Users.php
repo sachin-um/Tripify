@@ -747,6 +747,8 @@
         {
             if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
                 if ($this->userModel->suspendaccount($id,$action)) {
+                    $user=$this->userModel->getUserDetails($id);
+                    accountSuspendMail($user);
                     if ($usertype=='Traveler') {
                         redirect('Admins/profiles/'.$usertype);
                     }

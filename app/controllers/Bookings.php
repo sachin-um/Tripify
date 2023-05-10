@@ -267,7 +267,6 @@
             $this->view('taxi/v_taxi_dashboard7_1',$data);
            
         }
-
     }
 
         public function CancelTaxiBooking($bookingid){
@@ -784,6 +783,11 @@
                 
 
                 if ($this->taxiBookingModel->insertTaxiBooking($data)) {
+                    $user=$this->userModel->getUserDetails($data['travelerID']);
+                    $owner=$this->userModel->getUserDetails($data['TaxiOwnerID']);
+                    $data['userdetails']=$user;
+                    $data['taxiowner']=$owner;
+                    confirmBookingTaxi($data);
                     flash('request_flash', 'Your Vehicle Booked Sucessfully..!');
                     unset($_SESSION['booking_data']);
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -1039,7 +1043,14 @@
             // print_r($_POST['roomIDs']);
             if ($this->hotelBookingModel->addHotelBooking($data)) {
                 flash('reg_flash', 'You booking was successful');
-
+                $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                $hotel=$this->hotelModel->getHotelById(intval($hotelID));
+                $mailData=[
+                    'userDetails'=>$user,
+                    'bookingDetails'=>$data,
+                    'hotelName'=>$hotel->Name
+                ];
+                confirmBookingHotel($mailData);
                 echo json_encode(true);
                 
             }else{

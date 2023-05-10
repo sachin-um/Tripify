@@ -57,6 +57,13 @@ else {
         <?php flash('booking_flash'); ?>
         <br>
         <div class="first-container">
+                <?php
+                    if (empty($data['taxibookings'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">
                     <thead>
@@ -155,6 +162,9 @@ else {
                     </tbody>
                 </table>
             </div>
+            <?php
+                }
+            ?>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="trip-popup-content"></div>
             </div>
