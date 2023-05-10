@@ -112,7 +112,8 @@
                         redirect('Users/emailverify');
                     }
                     else{
-                        die('Something went wrong');
+                        flash('reg_flash', 'Somthing went wrong please try again...');
+                        redirect('User/register');
                     }
                 }
                 else {

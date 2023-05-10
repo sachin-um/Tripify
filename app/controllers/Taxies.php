@@ -53,7 +53,8 @@
                         redirect('Taxies/login');
                     }
                     else{
-                        die('Something went wrong');
+                        flash('reg_flash', 'Somthing went wrong please try again...');
+                        redirect('Taxies/register');
                     }
                 
 

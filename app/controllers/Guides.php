@@ -77,7 +77,8 @@
                         redirect('Guides/login');
                     }
                     else{
-                        die('Something went wrong');
+                        flash('reg_flash', 'Somthing went wrong please try again...');
+                        redirect('Guides/register');
                     }
                 }
                 else {

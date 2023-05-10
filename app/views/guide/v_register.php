@@ -65,6 +65,7 @@ else {
                 <button id="sign-up-btn-1" type="submit" >Register as Guide</button>
                 <input type="hidden" id="id" name="id" value="<?php echo $_SESSION['user_id']; ?>">
               </form> 
+              <?php flash('reg_flash'); ?>
         </div>
 </div>
 

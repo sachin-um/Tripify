@@ -284,6 +284,7 @@
                 <button id="sign-up-btn-1" type="submit">Sign Up</button>
 
               </form> 
+              <?php flash('reg_flash'); ?>
         </div>
     </div>
 

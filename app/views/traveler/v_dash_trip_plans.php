@@ -36,7 +36,7 @@
         <div class="first-container">
             <div class="admin-table-container">
                         <?php
-                    if (empty($data['payments'])) {
+                    if (empty($data['trips'])) {
                 ?>
                     <p style="font-size: 1.2rem; margin: auto;">No records to show.. Start to plan a Trip....</p>
                 <?php        
