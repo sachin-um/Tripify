@@ -76,7 +76,7 @@ else {
         </div>
         <?php flash('taxi_request_flash'); ?>  
                 <?php
-                    if (empty($data['guiderequests'])) {
+                    if (empty($data['taxirequests'])) {
                 ?>
                     <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
                 <?php        

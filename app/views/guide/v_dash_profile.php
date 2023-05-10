@@ -25,7 +25,7 @@ if (empty($_SESSION['user_id'])) {
                         <div class="drag-area">
                             <div class="icon">
                                 <img id="profile-img-placehoder"
-                                    src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $_SESSION['user_profile_image']; ?>"
+                                    src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data->profileimg; ?>"
                                     alt="picture">
                             </div>
                         </div>
