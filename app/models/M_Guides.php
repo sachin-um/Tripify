@@ -59,12 +59,25 @@ class M_Guides{
         $this->db->bind(':id',$data['id']);
 
         $s1=$this->db->execute();
-        $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
-        $this->db->bind(':name',$data['name']);
-        $this->db->bind(':profile_img',$data['profile-img_name']);
-        $this->db->bind(':contactno',$data['contactno']);
-        $this->db->bind(':id',$data['id']);
-        $s2=$this->db->execute();
+
+        if ($data['profile_img_name']=="") {
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+            $this->db->bind(':name',$data['name']);
+            $this->db->bind(':contactno',$data['contactno']);
+            $this->db->bind(':id',$data['id']);
+
+            $s2=$this->db->execute();
+        } else {
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+            $this->db->bind(':name',$data['name']);
+            
+            $this->db->bind(':profile_img',$data['profile_img_name']);
+            $this->db->bind(':contactno',$data['contactno']);
+            $this->db->bind(':id',$data['id']);
+
+            $s2=$this->db->execute();
+        }
+        
 
         if ($s1 && $s2) {
             $_SESSION['user_name']=$data['name'];

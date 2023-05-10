@@ -226,6 +226,11 @@ if (empty($_SESSION['user_id'])) {
                         ?>
 
                 </div>
+                <?php 
+                    if ($data->UserID!= $_SESSION['user_id']) {
+                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                    }  
+            ?>
             </div>
             <br><br>
             </div>
@@ -236,6 +241,7 @@ if (empty($_SESSION['user_id'])) {
             <!-- <?php require APPROOT . '/views/inc/components/footer.php'; ?> -->
             <script type="text/JavaScript" src="<?php echo URLROOT; ?>/js/components/showprofile.js"></script>
             <script type="text/JavaScript" src="<?php echo URLROOT; ?>/js/components/imageUpload/imageUpload.js"></script>
+            <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/popups.js"></script>
             <script>
                 var editbtn = document.getElementById("edit-btn");
                 var cancelbtn = document.getElementById("cancel-btn");
