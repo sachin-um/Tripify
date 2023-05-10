@@ -59,7 +59,7 @@ else {
         <div class="first-container">
             <div class="admin-table-container">
                 <?php
-                    if (empty($data['guidebookings'])) {
+                    if (empty($data['hotelbookings'])) {
                 ?>
                     <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
                 <?php        
@@ -191,7 +191,7 @@ else {
                                     }
                                     
                                 }
-                                elseif ($booking->status=='Completed') {
+                                elseif ($booking->status=='completed') {
                                     ?>
                                     <td data-lable="Name"><i class="fa-solid fa-check"style="margin-right: 10px"></i>Completed
                                     <?php
