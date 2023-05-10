@@ -58,6 +58,13 @@ else {
         <br>
         <div class="first-container">
             <div class="admin-table-container">
+                <?php
+                    if (empty($data['guidebookings'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
                 <table class="message-table" id="message-table">
                     <thead>
                         <tr>
@@ -165,6 +172,9 @@ else {
                         ?>
                     </tbody>
                 </table>
+                <?php
+                }
+                ?>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="trip-popup-content"></div>
