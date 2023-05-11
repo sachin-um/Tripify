@@ -152,7 +152,14 @@ else{
                 <?php
             }
             ?>        
-            </form>       
+            </form> 
+            
+            <?php 
+                if ($data['hotelaccountdetails']->UserID!= $_SESSION['user_id']) {
+                        require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                }  
+            ?>
+             
         </div>       
         
         <br><br>
@@ -188,28 +195,6 @@ else{
                                 <input type="text" name="line1" id="line1" placeholder="<?php echo $data['hoteldetails']->Line1; ?>" value="<?php echo $data['hoteldetails']->Line1; ?>">
                                 <input type="text" name="line2" id="line2" placeholder="<?php echo $data['hoteldetails']->Line2; ?>" value="<?php echo $data['hoteldetails']->Line2; ?>">
                                 <input type="text" name="district" id="district" placeholder="<?php echo $data['hoteldetails']->District; ?>" value="<?php echo $data['hoteldetails']->District; ?>">
-                            </div>                            
-                        </div>
-
-                        <div class="sub-description">
-                            <div class="sub-sub">
-                                <h3>Category : </h3>
-                            </div>
-                            
-                            <div class="info1">
-                                <p><?php echo $data['hoteldetails']->Category;  ?></p>
-                            </div>
-
-                            <div class="sub-sub-edit-1">
-                                <select name="category" id="category" name="category" placeholder="<?php echo $data['hoteldetails']->Category; ?>" value="<?php echo $data['hoteldetails']->Category; ?>">
-                                    <option value="Resort">Resort</option>
-                                    <option value="Villa">Villa</option>
-                                    <option value="Hostel">Hostel</option>
-                                    <option value="Inn">Inn</option>
-                                    <option value="Boutique">Boutique</option>
-                                    <option value="Bread and Breakfast">Bread and Breakfast</option>
-                                </select>
-                                <!-- <input type="text" name="category" id="category" placeholder="<?php echo $data['hoteldetails']->Category; ?>" value="<?php echo $data['hoteldetails']->Category; ?>"> -->
                             </div>                            
                         </div>
 
@@ -362,6 +347,7 @@ else{
                 </div>       
                 
                 <?php 
+
                 if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
                 ?>
 
@@ -382,7 +368,7 @@ else{
                 else {
                     ?>
                         <div style="display: flex; justify-content: space-around;">
-                            <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                            <button style="display: none;">Chat</button>    
                         </div>
                     <?php
                 }
@@ -437,7 +423,7 @@ else{
             else {
                 ?>
                     <div style="display: flex; justify-content: space-around;">
-                        <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                        <button style="display: none;">Chat</button>    
                     </div>
                 <?php
             }
@@ -517,10 +503,6 @@ else{
                         <div id="popup-content" class="profile-popup-content"></div>
         </div>
         <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
-        <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
-
-
-
 
     </main>
 </div>

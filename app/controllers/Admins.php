@@ -411,7 +411,36 @@
                 redirect('Users/login');
             }
         }
+
+        public function unverifiedDrivers(){
+            $driverData=$this->userModel->getUnverifiedDrivers();
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+
+            $data = [
+                'driverData'=>$driverData,
+                'details' =>$admindetails,
+                'AssignedArea' =>$_SESSION['admin_type']
+            ];
+            $this->view("admin/v_admin_unverified_drivers",$data);
+        }
+
+        public function unverifiedVehicles(){
+            $vehicleData=$this->userModel->getUnverifiedVehicles();
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+
+            $data=[
+                'vehicleData'=>$vehicleData,
+                'details' =>$admindetails,
+                'AssignedArea' =>$_SESSION['admin_type']
+            ];
+            
+            $this->view("admin/v_admin_unverified_vehicles",$data);
+        }
         
+        public function viewStats(){
+            $this->view("admin/v_admin_statistic");
+
+        }
     }
 
 

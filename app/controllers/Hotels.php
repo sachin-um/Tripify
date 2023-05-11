@@ -31,10 +31,8 @@ use Dompdf\Options;
                 'line2' => trim($_POST['line2']),
                 'district' => trim($_POST['district']),
                 'hotel_reg_number' => trim($_POST['hotel_reg_number']),
-                'property_category' => trim($_POST['category']),
                 'contact_number' => trim($_POST['contact']),
                 'pets' => ($_POST['pets']),
-                'children' => ($_POST['children']),
                 'check_in' => trim($_POST['check_in']),
                 'check_out' => trim($_POST['check_out']),
                 'description' => trim($_POST['description']),
@@ -76,10 +74,6 @@ use Dompdf\Options;
                 $data['district_err'] = 'Please specify the district';
             }
 
-            if($data['property_category']=='--'){
-                $data['property_category_err'] = 'Please specify the property category';
-            }
-
             if (empty($data['contact_number'])) {
                 $data['contact_number_err'] = 'This field is required';
             } else if (!preg_match('/^[0-9]{10}+$/', $data['contact_number'])) {
@@ -95,7 +89,7 @@ use Dompdf\Options;
             }
 
             if (
-                empty($data['name_err']) && empty($data['hotel_reg_number_err']) && empty($data['line1_err']) && empty($data['district_err']) && empty($data['property_category_err']) &&
+                empty($data['name_err']) && empty($data['hotel_reg_number_err']) && empty($data['line1_err']) && empty($data['district_err']) &&
                 empty($data['contact_number_err']) && empty($data['checkin_err']) && empty($data['checkout_err'])
             ) {
                 //Register Hotel
@@ -120,10 +114,8 @@ use Dompdf\Options;
                 'line1' => '',
                 'line2' => '',
                 'district' => '',
-                'property_category' => '',
                 'contact_number' => '',
                 'pets' => '',
-                'children' => '',
                 'cancel_period' => '',
                 'cancel_fee' => '',
                 'check_in' => '',
@@ -406,9 +398,11 @@ use Dompdf\Options;
         public function load(){
             $hotelvar=$this->hotelModel->findUserDetails();
             $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
+            $images = $this->hotelModel->getImages($_SESSION['user_id']);
             $data=[
                 'hoteldetails'=>$hotelvar,
-                'hotelaccountdetails' => $hotelaccountvar
+                'hotelaccountdetails' => $hotelaccountvar,
+                'images'=>$images
             ];
             $this->view('hotels/v_dash_profile',$data);
         }
