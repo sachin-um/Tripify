@@ -51,7 +51,7 @@ else {
                 <option value="Yet To Confirm">Yet To Confirm</option>
                 <option value="Confirmed">Confirmed</option>
                 <option value="Completed">Completed</option>
-                <option value="canceled">Canceled</option>
+                <option value="Cancelled">Cancelled</option>
             </select>
         </div>
         <?php flash('booking_flash'); ?>
@@ -87,7 +87,7 @@ else {
                         ?>
                         <tr>
                             <td data-lable="ID" data="<?php echo  $booking->BookingID ?>">G<?php echo $booking->BookingID ?></td>
-                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>/Guide"><?php echo $booking->guide->Name ?></a></td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>/Guide" style="text-decoration:none;cursor:pointer;"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
                             <td data-lable="Message"><?php echo $booking->StartDate ?></td>
                             <td data-lable="Message"><?php echo $booking->EndDate ?></td>
@@ -160,9 +160,9 @@ else {
                                     
                                     <?php
                                 }
-                                elseif ($booking->status=='Canceled') {
+                                elseif ($booking->status=='Cancelled') {
                                     ?>
-                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">Canceled</td>
+                                    <td data-lable="Name"><img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img"></td>
                                     <?php
                                 }
                             ?>

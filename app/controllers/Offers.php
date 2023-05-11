@@ -37,7 +37,7 @@
                         'charges'=>trim($_POST['charges']),
                         'payment-option'=>trim($_POST['payment-option']),
                         'additional-info'=>trim($_POST['info']),
-                        'guide_id'=>trim($_SESSION['user_id']),
+                        'guide_id'=>$_SESSION['user_id'],
                         'requestid'=>$requestid,
 
 

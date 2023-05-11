@@ -50,9 +50,8 @@ else {
                 <option value="all">All</option>
                 <option value="in progress">In progress</option>
                 <option value="completed">Completed</option>
-                <option value="canceled">Canceled</option>
-                <option value="paid">Paid</option>
-                <option value="yet to pay">Yet to pay</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Paid">Paid</option>
             </select>
         </div>
         <?php flash('booking_flash'); ?>
@@ -89,7 +88,7 @@ else {
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
                             <td data-lable="Name"  data="<?php echo  $booking->booking_id ?>">H<?php echo $booking->booking_id ?></td>
-                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hoteldetails->HotelID; ?>/Hotel"><?php echo $booking->hoteldetails->Name ?></a> </td>
+                            <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hoteldetails->HotelID; ?>/Hotel" style="text-decoration:none;cursor:pointer;"><?php echo $booking->hoteldetails->Name ?></a> </td>
                             <td data-lable="Name"><?php echo $booking->hoteldetails->Name?></td>
                             <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
                             <td data-lable="Name"><?php echo $booking->checkout_date ?></td>
@@ -196,7 +195,7 @@ else {
                                     <td data-lable="Name"><i class="fa-solid fa-check"style="margin-right: 10px"></i>Completed
                                     <?php
                                 }
-                                elseif ($booking->status=='Canceled') {
+                                elseif ($booking->status=='Cancelled') {
                                     ?>
                                     <td data-lable="Name"><i class="fa-solid fa-xmark"></i>Canceled</td>
                                     <?php

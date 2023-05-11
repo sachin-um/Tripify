@@ -1,3 +1,18 @@
+<?php
+$_SESSION['user_id'];
+$_SESSION['user_type'];
+
+
+if (empty($_SESSION['user_id'])) {
+    flash('reg_flash', 'You need to have logged in first...');
+    redirect('Users/login');
+}
+elseif ($_SESSION['user_type']!='Traveler') {
+    flash('reg_flash', 'Only the Traveler can have access...');
+    redirect('Pages/home');
+}
+else {
+    ?>
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <div class="wrapper">
 
@@ -35,7 +50,7 @@
                     </div>
                     
                     <div class="btn-div">
-                        <button class="create-plan-btn" type="submit">Create Your Trip</button>
+                        <button class="create-plan-btn" type="submit"><i class="fa-solid fa-map" style="margin-right:10px"></i>Create Your Trip</button>
                     </div>
                 </form>
         </div>
@@ -57,11 +72,11 @@
                         </div>
 
                         <div class="trip-startdate">
-                            <h3>Starting Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['start_date'] ?></span></h3><input type="text" name="trip_startdate"  placeholder="<?php echo $data['start_date'] ?>" value="<?php echo $data['start_date'] ?>"  class="edit-trip" id="edit-trip">
+                            <h3>Starting Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['start_date'] ?></span></h3><input type="text" name="trip_startdate"  onfocus="(this.type='date')" placeholder="<?php echo $data['start_date'] ?>" value="<?php echo $data['start_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         
                         <div class="trip_enddate">
-                            <h3>End Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['end_date'] ?></span></h3><input type="text" name="trip_enddate" placeholder="<?php echo $data['end_date'] ?>" value="<?php echo $data['end_date'] ?>"  class="edit-trip" id="edit-trip">
+                            <h3>End Date : <span class="edit-trip-visible" id="edit-trip-visible"><?php echo $data['end_date'] ?></span></h3><input type="text" name="trip_enddate" onfocus="(this.type='date')" placeholder="<?php echo $data['end_date'] ?>" value="<?php echo $data['end_date'] ?>"  class="edit-trip" id="edit-trip">
                         </div>
                         <div class="trip_edit_button">
                             <button class="profile-btn-edit" style="width: 70%;" id="editbtn">
@@ -350,4 +365,8 @@
             editbtn.addEventListener('click',toggeleEdit);
             cancelbtn.addEventListener('click',toggeleEdit);
         </script> 
-</div>   
+</div>  
+
+<?php
+}
+?>
