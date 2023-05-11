@@ -137,12 +137,21 @@
 
         public function editdrivers($driverID){
             $taxiDriver= $this->taxi_driverModel->getDriverByID($driverID);
+            // var_dump($_FILES);
+            
             if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                
+                if (!$_FILES['vehicleImgs']['error'][0] == 4) {
+                    $profileImg=$_FILES['profileImg'];
+                    $profile_image_name=time().'_'.$_FILES['profileImg']['name'];
+                }else{
+                    $profile_image_name=$taxiDriver->profileImg;
+                }
+                
                 $data=[
                     'name'=>trim($_POST['name']),
-                    'profileImg'=>$_FILES['profileImg'],
-                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
+                    'profile_image_name'=>$profile_image_name,
                     'age'=>trim($_POST['age']),
                     'contact_number'=>trim($_POST['contact_number']),
                     'LicenseNo'=>trim($_POST['LicenseNo']),      
@@ -151,11 +160,13 @@
                     'profileImg_err'=>''
                     ];
 
-                    if(updateImage($taxiDriver->profileImg,$data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
-
-                    }else{
-                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                    if (!$_FILES['vehicleImgs']['error'][0] == 4) {
+                        if(!updateImage($taxiDriver->profileImg,$profileImg['tmp_name'],$data['profile_image_name'],'/img/driver_profileImgs/')){
+                            $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                            flash('request_flash', 'Profile Picture Uploading Unsucess!');
+                        }
                     }
+                    
 
                     if ($this->taxi_driverModel->editTaxiDriver($data)) {
                         flash('request_flash', 'Driver Deatails was Succusefully Updated..!');

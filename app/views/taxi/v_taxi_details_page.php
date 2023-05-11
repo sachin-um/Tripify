@@ -11,41 +11,56 @@ else {
     ?>
 
 
-
-
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
-<br>
-<div class="wrapper"> 
-    <div class="content">
-        
-        <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']?></b></p>
-        <hr>
-        <div class="hotel-desc-page-div">
-            <div class="hotel-disc-2">
 
-                <div id="hotel-address" class="hotel-disc-3">
-                    <label id="view-address">
-                        <?php echo $data['owner']->address?>
-                    </label>
-                </div>
-                <div class="hotel-disc-3">
+<div class="wrapper"> 
+    <br><br><br>
+    <div class="tax-home-content">
+        <div class="hotel-home-top-picks">
+            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']?></b></p>
+                <hr>
+            <br><br>
+        </div>
+        
+        <div class="hotel-desc-page-div">
+            
+            <div class="hotel-disc-2">
+                <br><br>
+                <div class="hotel-disc-3" style="text-align:center;">
                     <div class="hotel-disc-1">
                         <ul>
-                           <li><i class="fa-solid fa-person-swimming fa-lg"></i><label></label></li>
+                           <!-- <li><i class="fa-solid fa-person-swimming fa-lg"></i><label></label></li> -->
+                           <?php if($data['vehicles'][0]->media){
+                            ?>
                             <li><label>Media</label></li>
+                            <?php
+                           } ?>
+                           <?php if($data['vehicles'][0]->wifi){
+                            ?>
                             <li><label>Free Wifi</label></li>
-                            <li><label>Air Conditioning</label></li>
+                            <?php
+                           } ?>
+                           <?php if($data['vehicles'][0]->AC){
+                            ?>
+                             <li><label>Air Conditioning</label></li>
+                            <?php
+                           } ?>
+                              <!-- Default -->
                             <li><label>24/7 Service</label></li>
                         </ul>
                         
                     </div>
 
                     <div class="hotel-disc-1">
-                        <label>Airport PickUp & Drop</label><br>
-                        <label>Door to Door</label><br>
-                        <label>Wedding Cars</label><br>
-                        <label>Long Trips</label><br>
+                    <?php
+                        $services = $data['owner']->services;
+                        $servicesArray = explode(",", $services);
+
+                        foreach ($servicesArray as $service) {
+                            echo "<label><b>$service</label><br>";
+                        }
+                    ?>
                         
                     </div>
                 </div>
@@ -60,149 +75,144 @@ else {
                     </div>                  
                     
                 </div>
-                
+                <div id="hotel-address" class="hotel-disc-3">
+                    <label id="view-address">
+                        <?php echo $data['owner']->address?>
+                    </label>
+                </div>
             </div>        
 
-            <div class="hotel-disc-2">
-                <img id="hotel-map" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="nine-arch">
-                <!-- <iframe id="hotel-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.0289869750545!2d79.84089513600121!3d6.931715604596578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259251b57a431%3A0x8f44e226d6d20a7e!2sGaladari%20Hotel!5e0!3m2!1sen!2slk!4v1675719620750!5m2!1sen!2slk" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
+                <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
             </div>
+
         </div>
+        
 
-        <div class="slideshow-container fade">
-
-                <div class="Containers">
-                    <div class="MessageInfo">1 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/taxi-galary-1.jpg" style="width:100%">
-                    <div class="H-Room-Info">First caption</div>
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">2 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/taxi-galary-2.jpg" style="width:100%">
-                    <div class="H-Room-Info">Second Caption</div>
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">3 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/taxi-galary-3.jpg" style="width:100%">
-                    <div class="H-Room-Info">Third Caption</div>
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">4 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/taxi-galary-4.jpg" style="width:100%">
-                    <div class="H-Room-Info">F Caption</div>
-                </div>
-
-                <!-- Back and forward buttons -->
-                <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <br>
-
-                <!-- The circles/beads -->
-            <div style="text-align:center">
-                <span class="beads" onclick="currentSlide(1)"></span>
-                <span class="beads" onclick="currentSlide(2)"></span>
-                <span class="beads" onclick="currentSlide(3)"></span>
-                <span class="beads" onclick="currentSlide(4)"></span>
-            </div> 
-        </div>
-
-
+        <br><br><br>
         <div class="hotel-home-top-picks">
 
             <p class="home-title-2" >Our Vehicles</p><br>
-            <hr><br>
-
+            <hr><br><br>
+            <div class="nav-main">
+                
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Vehicle Type</p>
+                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
+                        <option value="all">All Type</option>
+                        <option value="Tuk Tuk">Tuk Tuk</option>
+                        <option value="Car">Car</option>
+                        <option value="Van">Van</option>
+                        <option value="Bus">Bus</option>
+                    </select>
+                </div>
             
 
-            <div class="nav-main">
+
+                <div class="nav-parts">
+                    <p class="hotel-labels-1">Location</p>
+                    <select class="district-labels-1" id="select-district" name="area">
+                        <!-- <option value="<?php echo $data['area']?>" selected  hidden><?php echo $data['area']?></option> -->
+                            <option value="all">All Districts</option>           
+                            <option value="Ampara">Ampara</option>
+                            <option value="Anuradhapura">Anuradhapura</option>
+                            <option value="Badulla">Badulla</option>
+                            <option value="Batticaloa">Batticaloa</option>
+                            <option value="Colombo">Colombo</option>
+                            <option value="Galle">Galle</option>
+                            <option value="Gampaha">Gampaha</option>
+                            <option value="Hambantota">Hambantota</option>
+                            <option value="Jaffna">Jaffna</option>
+                            <option value="Kalutara">Kalutara</option>
+                            <option value="Kandy">Kandy</option>
+                            <option value="Kegalle">Kegalle</option>
+                            <option value="Kilinochchi">Kilinochchi</option>
+                            <option value="Kurunegala">Kurunegala</option>
+                            <option value="Mannar">Mannar</option>
+                            <option value="Matale">Matale</option>
+                            <option value="Matara">Matara</option>
+                            <option value="Monaragala">Monaragala</option>
+                            <option value="Mullaitivu">Mullaitivu</option>
+                            <option value="Nuwara Eliya">Nuwara Eliya</option>
+                            <option value="Polonnaruwa">Polonnaruwa</option>
+                            <option value="Puttalam">Puttalam</option>
+                            <option value="Ratnapura">Ratnapura</option>
+                            <option value="Trincomalee">Trincomalee</option>
+                            <option value="Vavuniya">Vavuniya</option>
+
+                        </select>
+
+                                                       
+                                            
+                </div>                
+                
+                
+            </div>     
+        </div>
+
+        
+    </div>
+
+            
+                
+
+    <div class="taxi_dash_container" id="vehicle-list">
                 <?php
                     $allvehicles=$data['vehicles'];
                     foreach($allvehicles as $vehicle):
                 ?>
-                <div class="hotel-ad-card">
-                    
-                    
-
-                    <div class="room-card-pic">
-                        <img id="tax_home_img" src="<?php echo URLROOT; ?>/img/taxi-com.jpg" alt="Taxi Vehicle Image">
+                    <div class="taxi_view_v_dash">
                         
-                    </div>                    
+                        <div class="taxi_veh_det_cont">
+                            <div id="slideshow-container-<?php echo $vehicle->VehicleID?>">
+                                <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
+                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:15em;max-height: 10em; object-fit: contain;">
+                                <?php } ?>
+                            </div>
+                        
+                            <h3><?php echo $vehicle->vehicle_number?></h3>
+                            <article class="taxi_view_v_art" >
                     
-                    <div class="hotel-ad-card-desc">
-                        <article class="taxi_view_v_art" >
-                            <h3><?php echo $vehicle->VehicleType ?></h3>
-                            <!-- <label id="room-type" for="hotel-name"><b><?php echo $vehicle->VehicleType  ?></b></label> <br> -->
+                                <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><p id="taxi_view_v_vname"><?php echo $vehicle->Model."(".$vehicle->VehicleType.")"  ?></p>
+                        
+                                <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p>
+                        
+                                
 
-                            <img src="<?php echo URLROOT; ?>/img/Display.png" alt=""><b><p id="taxi_view_v_num"><?php echo $vehicle->vehicle_number  ?></p></b>
-                            
-                            <img src="<?php echo URLROOT; ?>/img/Vector.png" alt=""><b><p id="taxi_view_v_vname"><?php echo $vehicle->Model  ?></p></b>
-                            
-                            <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><b><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p></b>
-                    
-                            <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><b><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p></b>
-                            <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM</b></label><br>
+                                <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p>
+                                
+                                <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><p id="taxi_view_v_flag"><?php echo $vehicle->price_per_km  ?> LKR</p>
+                                
+                                <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->Name  ?></p>
+
                             </article>
-                    </div>
+                            <div class="taxi_veh_det_cont" style="text-align: center;">
+                                <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
 
-                    
-                    <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
-                    
-                </div>
+                            </div>
+                            
+                        </div>
                 
+                        
+                    </div>
 
                 <?php
                     endforeach;
                 ?>
 
                
-            </div>  
+            </div>
 
-            
-        
-    
-        </div>
 
-        
-    </div>
-
-</div>
+   
+</div><br><br><br>
 
 <?php
 }
 ?>
 
 <?php require APPROOT.'/views/inc/components/footer.php'; ?>
-<script>
-    var slidePosition = 1;
-    SlideShow(slidePosition);
-
-    // forward/Back controls
-    function plusSlides(n) {
-    SlideShow(slidePosition += n);
-    }
-
-    //  images controls
-    function currentSlide(n) {
-    SlideShow(slidePosition = n);
-    }
-
-    function SlideShow(n) {
-    var i;
-    var slides = document.getElementsByClassName("Containers");
-    var circles = document.getElementsByClassName("beads");
-    if (n > slides.length) {slidePosition = 1}
-    if (n < 1) {slidePosition = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < circles.length; i++) {
-        circles[i].className = circles[i].className.replace(" enable", "");
-    }
-    slides[slidePosition-1].style.display = "block";
-    circles[slidePosition-1].className += " enable";
-    } 
-</script>
+<script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/slideShow/slideshow.js"></script> 
+<!-- <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/slideShow/randomSlideShow.js"></script> -->
+<script src="<?php echo URLROOT;?>/js/components/search/taxiSearch.js"></script>

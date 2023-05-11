@@ -74,12 +74,12 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
                             <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->Name  ?></p>
 
                         </article>
-                        <div>
+                        <div class="taxi-final-but">
                             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/edit/<?php echo $vehicle->VehicleID ?>"><button id="taxi_veh_view">View</button></a>
                             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/deleteTaxiVehicle/<?php echo $vehicle->VehicleID ?>"><button id="taxi_veh_delete">Delete</button></a>
                         </div>
                         
-                        <div class="admin-action">
+                        <div class="admin-action" style="all: unset;">
                             <?php if ($vehicle->verification_status ==1) {
                                 ?><h3>Verified </h3><?php
                             }else {
@@ -110,9 +110,9 @@ elseif ($_SESSION['user_type']!='Taxi' || $_SESSION['user_type']!='Admin') {
 
                
             </div>
-
+            <br>
             <div class="taxi-vec-view-contA">
-            <button class="taxi-dash-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle'">Add Vehicles</button>
+            <button id="taxi_veh_view"  onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/addavehicle'">Add Vehicles</button>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>

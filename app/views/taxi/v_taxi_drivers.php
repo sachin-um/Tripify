@@ -70,10 +70,11 @@
                             </article>
 
 
-                            <div>
+                            <div >
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>   
                             </div>
+                            <br>
                             <div class="admin-action">
                             <?php if ($driver->verification_status ==1) {
                                 ?><h3>Verified </h3><?php
@@ -106,7 +107,7 @@
             </div>
                     
             <div  class="taxi-vec-view-contA">  <!-- // THIS DIV CLASS IS FORMAT IN VIEW VEHICLE CSS('taxi_dashboard.css') -->
-            <button class="taxi-dash-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
+            <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>

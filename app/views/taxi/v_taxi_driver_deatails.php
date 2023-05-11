@@ -31,7 +31,7 @@
 
     <main class="right-side-content">
         <div class="taxi_off_cont">
-            <button id="tax_book_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers'">Back</button>
+            <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers'">Back</button>
 
             <div class="tax_vech_view_cont">
 
@@ -46,7 +46,7 @@
                                 <div class="taxi_DriverPro_imgbox"> 
                                     <div class="img-description">Upload Driver Photo</div>
                                     <div class="img-upload" style="text-align: center;">
-                                        <input type="file" id="profile-imgupload" name="profileImg" placeholder="" required accept="image/*" style="display:none;" >
+                                        <input type="file" id="profile-imgupload" name="profileImg" placeholder=""  accept="image/*" style="display:none;" >
                                         Browse
                                     </div>  
                                 </div>
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="taxi_veh_editBut_cont">
-                            <input type="submit" id="taxi_add_v_but" value="Edit Info">
+                            <input type="submit" id="taxi_veh_view" style="text-align:center;" value="Edit Info">
                         </div>
                     </form>
                 </div>
