@@ -129,15 +129,33 @@
 
 #taxi_veh_view{
     float: left;
-    background-color: #137B4F;
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 5px;
+    display: block;
+    gap:0.5em;
+    /* font-size: 20px; */
+    cursor: pointer;
+    height: 60px;
 }
 #taxi_veh_delete{
     float: right;
-    background-color:#CB2400;
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 5px;
+    display: block;
+    gap:0.5em;
+    /* font-size: 20px; */
+    cursor: pointer;
+    height: 60px;
 }
 
 #taxi_veh_view:hover,#taxi_veh_delete:hover,#taxi_pro_addv:hover{
-    background-color: black;
+    background-color: #e8b122;
 }
 
 .taxi-dash-btn:hover{
@@ -166,4 +184,23 @@
 .taxi_veh_det_cont{
     background-color: white;
     padding: 1em;
+}
+.taxi-profile-image {
+    width: 450px;
+    height: 435px !important;
+    background-color: #fff;
+    border-radius: 14px;
+    float: left;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    height: fit-content;
+    box-shadow: 0 0.4px 10px rgb(0 0 0 / 0.2);
+}
+
+.taxi-final-but{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    gap:0.5em;
 }

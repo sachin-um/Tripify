@@ -161,7 +161,7 @@
                     <label class="home-title-2">Guides</label>
 
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide3.jpg" alt="nine-arch">
                         <span id="home-ad-arrows-left" class="dot">></span>
                         <span id="home-ad-arrows-right" class="dot"><</span>
                     </div>

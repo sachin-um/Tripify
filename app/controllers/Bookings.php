@@ -14,7 +14,7 @@
             $this->taxirequestModel=$this->model('M_Taxi_Request');
             $this->guiderequestModel=$this->model('M_Guide_Request'); 
             $this->guideModel=$this->model('M_Guides');
-            
+            $this->userModel=$this->model('M_Users');
             
         }
 
@@ -179,6 +179,10 @@
 
                 if($_SESSION['user_type']){
                     if($this->guideBookingModel->insertGuideBooking($data)){
+                        $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
+                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
+                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
+                        confirmBookingGuide($data);
                         flash('booking_flash', 'Guide Booked Sucessfully');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                     }else{
@@ -267,7 +271,6 @@
             $this->view('taxi/v_taxi_dashboard7_1',$data);
            
         }
-
     }
 
         public function CancelTaxiBooking($bookingid){
@@ -485,6 +488,12 @@
             // var_dump($details);
                 $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
+               
+               
+                    $vehicle_images_str = $details->Vehicle_Images; // Example string from the database
+                    $vehicle_images_array = explode(",", $vehicle_images_str);
+                    $details->vehicle_images_arr=$vehicle_images_array;
+
                 if(isset($owner->company_name)){
                     $com_name = $owner->company_name;
                 }else{
@@ -652,106 +661,9 @@
             
         }
 
-        public function Placeguidebookings($GuideID){
-        
-            $guideDetails=$this->guideModel->getGuideById($GuideID);
-            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID); 
+       
 
-
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
-                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $pickupL =trim($_POST['pickupL']);
-                $dropL =  trim($_POST['dropL']);
-                $bookingDate = $_POST['s_date'];
-                $bookingTime = $_POST['s_time'];
-                $exTime=$this->CalculateExtimateTime($pickupL,$dropL); //extimate time
-
-                $distance=$this->CalculatePrice( $pickupL, $dropL);
-
-                $cost = $distance*$details->price_per_km;
-                $tax = ($cost*3)/100;
-                $total = $cost+$tax;
-
-                $bookingdatetime = date('Y-m-d H:i:s', strtotime("$bookingDate $bookingTime"));
-        
-                $est_datetime = date('Y-m-d H:i:s', strtotime("$bookingdatetime +$exTime"));
-                $end_date = date('Y-m-d', strtotime($est_datetime));
-                $end_time = date('H:i:s', strtotime($est_datetime));
-
-                $data=[
-                    's_date'=>trim($_POST['s_date']),
-                    's_time'=>trim($_POST['s_time']),
-                    'e_date'=>$end_date,
-                    'e_time'=>$end_time,
-                    'pickupL'=>$pickupL,
-                    'dropL'=>$dropL,
-                    'details'=>$details,
-                    'extime'=>$exTime,
-                    'com_name'=>$com_name,
-                    'owner'=>$owner,
-                    'distance'=>$distance,
-                    'cost' =>$cost,
-                    'tax' =>$tax,
-                    'total' => $total     
-                    ];
-                    
-                    $_SESSION['booking_data'] = $data;
-
-                    //$this->view('taxi/v_bookings',$data);
-
-            }else{
-                
-
-                $data=[
-                    'guidedetails'=>$guideDetails,
-                    'guideLanguages'=>$guidelanguages,
-                    'GuideID'=>$guideDetails->GuideID
-                   
-                ];
-                
-                
-                // echo var_dump($data);
-                $this->view('guide/v_guide_booking',$data);
-                
-            }
-            
-
-        }
-
-        // public function checkGuideAvailability($GuideID){
-        //     $guideDetails=$this->guideModel->getGuideById($_POST['gid']);
-        //     // echo "id123:".$_POST['gid'];
-        //     $guideLangs=$this->guideBookingModel->getGuideLangs($_POST['gid']);
-            
-        //     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            
-        //         $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-
-        //         $data=[
-        //             'startdate' =>trim($_POST['sdate']),
-        //             'enddate' =>trim($_POST['endDate']),
-        //             'guideName' => $_POST['gname'],
-        //             'guideReg' => $_POST['greg'],
-        //             'guideRate' => $_POST['grate'],
-        //             'guidedetails'=>$guideDetails,
-        //             'guideLanguages' => $guideLangs
-
-        //         ];
-
-        //         // var_dump($data);
-                
-
-        //         $bookingAvailable = $this->guideBookingModel->searchAvailableSlots($data);
-        //         if(empty($bookingAvailable)){
-        //             $this->view('guide/v_guide_booking',$data);
-        //         }else{
-        //             echo json_encode("Not available for the given dates");
-        //             $this->view('guide/v_check_availability',$data);
-        //         }
-
-        //     }
-        // }
+       
 
         public function TaxiBookingdetails($vehicleID,$userId){
 
@@ -784,6 +696,11 @@
                 
 
                 if ($this->taxiBookingModel->insertTaxiBooking($data)) {
+                    $user=$this->userModel->getUserDetails($data['travelerID']);
+                    $owner=$this->userModel->getUserDetails($data['TaxiOwnerID']);
+                    $data['userdetails']=$user;
+                    $data['taxiowner']=$owner;
+                    confirmBookingTaxi($data);
                     flash('request_flash', 'Your Vehicle Booked Sucessfully..!');
                     unset($_SESSION['booking_data']);
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -1039,7 +956,14 @@
             // print_r($_POST['roomIDs']);
             if ($this->hotelBookingModel->addHotelBooking($data)) {
                 flash('reg_flash', 'You booking was successful');
-
+                $user=$this->userModel->getUserDetails($_SESSION['user_id']);
+                $hotel=$this->hotelModel->getHotelById(intval($hotelID));
+                $mailData=[
+                    'userDetails'=>$user,
+                    'bookingDetails'=>$data,
+                    'hotelName'=>$hotel->Name
+                ];
+                confirmBookingHotel($mailData);
                 echo json_encode(true);
                 
             }else{

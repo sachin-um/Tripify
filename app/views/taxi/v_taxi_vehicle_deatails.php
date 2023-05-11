@@ -34,7 +34,7 @@
 
     <main class="right-side-content">
         <div class="taxi_off_cont">
-            <button id="tax_book_backBut" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles'">Back</button>
+            <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles'">Back</button>
 
             <div class="tax_vech_view_cont">
 
@@ -211,8 +211,8 @@
                             </div>
                         </div>
 
-                        <div class="taxi_veh_editBut_cont">
-                            <input type="submit" id="taxi_add_v_but" value="Edit Info">
+                        <div class="taxi_veh_editBut_cont" >
+                            <input type="submit" id="taxi_veh_view" style="text-align:center;" value="Edit Info">
                         </div>
 
 

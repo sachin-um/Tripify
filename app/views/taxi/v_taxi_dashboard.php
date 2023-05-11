@@ -26,11 +26,17 @@ else{
             <!-- <a href="#" class="menu-item">Company</a> -->
             <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
+            <?php
+            if ($_SESSION['user_id']== $data->UserID) {
+                        ?>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>Pages/taxies" class="menu-item">Exit Dashboard</a>
+            <?php
+            }
+            ?>
         </nav>
     </aside>
 
@@ -43,22 +49,14 @@ else{
         </div> 
         <br>
         <div class="taxi-first-container">
-            <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
-                <br>
-                
-                <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+            
+            <div class="taxi-profile-image" >
+                <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
+                    <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+                    <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data->details->owner_name;  ?></b></p>
+            </div>
+              
                
-                <br>
-                <div class="taxi-own-name">
-                    
-                    <div class="sub-sub">
-                        <h1 ><?php echo $data->details->owner_name;  ?></h1>
-                    </div>
-                            
-                </div>
-
-                <br>
-                <br>
                 
             </div>
     
@@ -203,30 +201,36 @@ else{
                     </div>
                         
                 </div>
+                <br>
                 <div style="text-align: center;">
 
                 
                     <?php
                     if ($_SESSION['user_id']== $data->UserID) {
                         ?>
-                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                         <div style="display: flex; justify-content: space-around;">
+                            <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                        </div>
+                    </div>
                         <?php
                     } else {
                         ?>
                         <div style="display: flex; justify-content: space-around;">
                         <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>
+                        </div>
                         <?php
                     }
                     ?>
                         
                     
-                        
+                <br><br>
                 </div>
                 <?php 
                     if ($data->UserID!= $_SESSION['user_id']) {
                          require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                     }  
                 ?>
+                <br>
             </div>
             
 

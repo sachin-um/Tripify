@@ -4,7 +4,7 @@
     <div class="contact-form">
         <div >
             <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
-            <p id="tag">Contact Us...</p> 
+            <p id="tag">Contact Admin...</p> 
         </div>
     
         <div >

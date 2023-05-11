@@ -75,6 +75,13 @@ else {
             </select>
         </div>
         <?php flash('taxi_request_flash'); ?>  
+                <?php
+                    if (empty($data['taxirequests'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
         <div class="request-list" id="request-list">
 
         <?php
@@ -146,6 +153,18 @@ else {
                             </div>
                         </div>
                 </div>
+                <div class="req-slot2">
+                        <div class="detail-container" style="margin-right: 20px; width: 46%;">
+                            <div class="header-container">
+                                <i class="fa-solid fa-calendar-days fa-2xl" style="color: #03002E; margin-right: 10px;"></i>
+                                <div class="heading">No of Days</div>
+                            </div>
+                            <div class="post-tag post-date description" style="margin-left: 33px">
+                                <?php echo $taxirequest->no_of_days==0 ? 'Normal Ride' : $taxirequest->no_of_days ?>
+                            </div>
+                        </div>
+                        
+                </div>
                 <div class="req-slot3">
                         <div class="detail-container" style="margin-right: 20px; width: 97%;">
                             <div class="header-container">
@@ -209,6 +228,9 @@ else {
             endforeach;
         ?>
         </div>
+        <?php
+            }
+        ?>
     </div>
     <div id="popup" class="request-popup">
                 <div id="request-content" class="request-popup-content">

@@ -258,9 +258,9 @@ else {
                                 </table>
                             </div>
                         </div>
-
-                        <div class="taxi_veh_editBut_cont">
-                            <input type="submit" id="taxi_add_v_but" value="Add a Vehicle">
+                        <br><br>
+                        <div style="display: flex; justify-content: center; padding: 20px">
+                            <input type="submit" class="profile-btn-edit" id="edit-btn" style="width:9em" value="Add a Vehicle">
                         </div>
 
 

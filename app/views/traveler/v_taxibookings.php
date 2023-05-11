@@ -57,6 +57,13 @@ else {
         <?php flash('booking_flash'); ?>
         <br>
         <div class="first-container">
+                <?php
+                    if (empty($data['taxibookings'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">
                     <thead>
@@ -80,7 +87,7 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID">T<?php echo  $booking->ReservationID ?></td>
+                            <td data-lable="ID" data="<?php echo  $booking->ReservationID ?>">T<?php echo  $booking->ReservationID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->vehicle->OwnerID; ?>/Taxi"><?php echo $booking->vehicle->vehicle_number ?></a></td>
                             <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
@@ -155,6 +162,9 @@ else {
                     </tbody>
                 </table>
             </div>
+            <?php
+                }
+            ?>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="trip-popup-content"></div>
             </div>

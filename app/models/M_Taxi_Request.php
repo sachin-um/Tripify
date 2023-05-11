@@ -13,13 +13,14 @@
         //add taxi request
 
         public function addtaxirequest($data){
-            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,passengers,vehicle_type,distance,duration) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:passengers,:vehicle_type,:distance,:duration)');
+            $this->db->query('INSERT INTO taxi_request(Date,StartingTime,Description,TravelerID,PickupLocation,Destination,p_latitude,p_longitude,d_latitude,d_longitude,passengers,vehicle_type,distance,duration,no_od_days) VALUES(:date,:time,:description,:travelerid,:pickuplocation,:destination,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:passengers,:vehicle_type,:distance,:duration,:nodays)');
             $this->db->bind(':vehicle_type',$data['vehicle_type']);
             $this->db->bind(':passengers',$data['passengers']);
             $this->db->bind(':date',$data['date']);
             $this->db->bind(':time',$data['time']);
             $this->db->bind(':description',$data['description']);
             $this->db->bind(':travelerid',$data['travelerid']);
+            $this->db->bind(':nodays',$data['no_od_days']);
             $this->db->bind(':pickuplocation',$data['pickuplocation']);
             $this->db->bind(':destination',$data['destination']);
             $this->db->bind(':p_latitude', $data['p-latitude']);
