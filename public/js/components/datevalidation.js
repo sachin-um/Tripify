@@ -45,6 +45,7 @@ function calculatePrice(dist,estimateTime) {
 
   let bookingDate = $('#bookingDate').val();
   let bookingTime = $('#bookingTime').val();
+  console.log(estimateTime);
   let estTime =estimateTime;
 
 

@@ -179,9 +179,9 @@
 
                 if($_SESSION['user_type']){
                     if($this->guideBookingModel->insertGuideBooking($data)){
-                        $data->guideDetails=$this->guideModel->getGuideByID($data->GuideID);
-                        $data->userDetails=$this->userModel->getAllUserDetails($data->GuideID);
-                        $data->travelerDetails=$this->userModel->getAllUserDetails($data->TravelerID);
+                        $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
+                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
+                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
                         confirmBookingGuide($data);
                         flash('booking_flash', 'Guide Booked Sucessfully');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
