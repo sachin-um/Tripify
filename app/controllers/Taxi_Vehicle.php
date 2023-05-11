@@ -389,9 +389,18 @@
 
         public function taxideatails($id){
             
-            $allvehicles=$this->taxi_vehicleModel->getVehicleByOwnerID($id);
+            // $allvehicles=$this->taxi_vehicleModel->getVehicleByOwnerID($id);
 
             $taxiOwner=$this->taxiModel->getOwnerByID($id);
+
+            $allvehicles=$this->taxi_vehicleModel->viewall($id);
+
+            foreach($allvehicles as $vehicle){
+                $vehicle_images_str = $vehicle->Vehicle_Images; // Example string from the database
+                $vehicle_images_array = explode(",", $vehicle_images_str);
+                $vehicle->vehicle_images_arr=$vehicle_images_array;
+
+            }
 
             //  var_dump($taxiOwner);
 

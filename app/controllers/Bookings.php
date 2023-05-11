@@ -488,6 +488,12 @@
             // var_dump($details);
                 $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
+               
+               
+                    $vehicle_images_str = $details->Vehicle_Images; // Example string from the database
+                    $vehicle_images_array = explode(",", $vehicle_images_str);
+                    $details->vehicle_images_arr=$vehicle_images_array;
+
                 if(isset($owner->company_name)){
                     $com_name = $owner->company_name;
                 }else{

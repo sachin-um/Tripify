@@ -179,11 +179,16 @@
             $taxiOwner=$this->taxiModel->getOwnerByID($_SESSION['user_id']);
             if($_SERVER['REQUEST_METHOD']=='POST'){
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                if (!$_FILES['profileImg']['error'][0] == 4) {
+                    $profileImg=$_FILES['profileImg'];
+                    $profile_image_name=time().'_'.$_FILES['profileImg']['name'];
+                }else{
+                    $profile_image_name=$taxiOwner->profileImg;
+                }
                 $data = [
                     'name'=>trim($_POST['name']),
                     // 'nic'=>trim($_POST['nic']),
-                    'profileImg'=>$_FILES['profileImg'],
-                    'profile_image_name'=>time().'_'.$_FILES['profileImg']['name'],
+                    'profile_image_name'=>$profile_image_name,
                     'company_name'=>trim($_POST['company_name']),
                     'contact_number'=>trim($_POST['contact_number']),
                     'services'=>trim($_POST['services']),
@@ -191,11 +196,11 @@
                     'OwnerID'=>$_SESSION['user_id']
                 ];
 
-
-                if(updateImage($taxiOwner->profileImg,$data['profileImg']['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
-
-                }else{
-                    $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                if (!$_FILES['profileImg']['error'][0] == 4) {
+                    if(!updateImage($taxiOwner->profileImg,$profileImg['tmp_name'],$data['profile_image_name'],'/img/profileImgs/')){
+                        $data['profileImg_err']='Profile Picture Uploading Unsucess!';
+                        flash('request_flash', 'Profile Picture Uploading Unsucess!');
+                    }
                 }
 
                 if($this->taxiModel->editOwnerInfo($data)){

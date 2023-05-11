@@ -6,19 +6,19 @@ let timeslotError= false;
 $(document).ready(function() {
   inputOrder();
   validation();
-  console.log('distance'+$('#distance').val());
+  // console.log('distance'+$('#distance').val());
 
 });
 
 function finalValidation(){
   validationDateTime();
-  const form = document.getElementById('taxi-booking-form');
+  // const form = document.getElementById('taxi-booking-form');
   const submitButton = document.getElementById('taxi-get-price-but');
 
   if(olddateError && passengersError && timeslotError){           // validation
     submitButton.style.backgroundColor = '#0F6C13'; 
     if( $('#checker').val()==0){
-      form.submit();
+      // form.submit();
     }else{
       $("#hotel-booking-form").hide();
       calculatePrice(dist,estimateTime);
@@ -63,7 +63,7 @@ function calculatePrice(dist,estimateTime) {
   var endDate = localBookingDateTime.toISOString().slice(0, 10);
   var endTime = localBookingDateTime.toLocaleTimeString("en-US", {hour12:false});
   
-  console.log(bookingDateTime+'  '+endDate+'  '+endTime);
+  // console.log(bookingDateTime+'  '+endDate+'  '+endTime);
   
 
   document.getElementById("startDate").innerHTML = bookingDate;
@@ -202,6 +202,8 @@ function validation(){
 
 
 function availableTime(){   // Checking Time slot is Available
+
+
   
 
   let bookingDate = $('#bookingDate').val();
@@ -383,3 +385,28 @@ function inputOrder(){
 
 
 
+
+
+function bookdays(){
+  $("#taxi-day-bookingButs").hide();
+  document.getElementById("hotel-booking-dayform").style.display = "block";
+  document.getElementById("hotel-booking-dayform").style.pointerEvents = "auto";
+
+  
+  
+}
+
+function bookTrip(){
+  $("#taxi-day-bookingButs").hide();
+  document.getElementById("hotel-booking-form").style.display = "block";
+  document.getElementById("hotel-booking-form").style.pointerEvents = "auto";
+
+}
+
+
+
+
+
+
+   
+ 
