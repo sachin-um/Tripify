@@ -283,7 +283,6 @@
 
             $this->db->bind(':distance',$data['distance']);
             $this->db->bind(':estTime',$data['extime']);
-            $this->db->bind(':id',$id);
 
     
             if ($this->db->execute()) {
