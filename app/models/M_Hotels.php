@@ -91,9 +91,9 @@ class M_Hotels{
         // }
         
 
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,Category,contact_number,Pets,Children,
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,Category,contact_number,Pets,
         Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:property_category,:contact_number,:pets,
-        :children,:check_in,:check_out,:reg_number)');
+        :check_in,:check_out,:reg_number)');
         $this->db->bind(':HotelID',$data['hotel_id']);
         $this->db->bind(':name',$data['name']);
         $this->db->bind(':Description',$data['description']);
@@ -103,7 +103,7 @@ class M_Hotels{
         $this->db->bind(':property_category',$data['property_category']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':pets',$data['pets']);
-        $this->db->bind(':children',$data['children']);
+        // $this->db->bind(':children',$data['children']);
         $this->db->bind(':check_in',$data['check_in']);
         $this->db->bind(':check_out',$data['check_out']);
         $this->db->bind(':reg_number',$data['hotel_reg_number']);
