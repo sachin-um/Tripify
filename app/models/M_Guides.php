@@ -61,7 +61,7 @@ class M_Guides{
         $s1=$this->db->execute();
 
         if ($data['profile_img_name']=="") {
-            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno,profileimg=:profile_img WHERE UserID=:id');
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contactno WHERE UserID=:id');
             $this->db->bind(':name',$data['name']);
             $this->db->bind(':contactno',$data['contactno']);
             $this->db->bind(':id',$data['id']);
@@ -82,6 +82,9 @@ class M_Guides{
         if ($s1 && $s2) {
             $_SESSION['user_name']=$data['name'];
             return true;
+        }
+        else {
+            return false;
         }
     }
     
