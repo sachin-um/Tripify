@@ -69,7 +69,7 @@
                 
 
 
-                if (empty($data['name_err']) &&  empty($data['phone_number_err']) && empty($data['area_err']) && empty($data['price_err']) && empty($data['nic_err']) && empty($data['languages_err'])) {
+                if (empty($data['name_err']) &&  empty($data['number_err']) && empty($data['area_err']) && empty($data['price_err']) && empty($data['nic_err']) && empty($data['languages_err'])) {
                     
                     //register guide
                     if ($this->guideModel->register($data)) {

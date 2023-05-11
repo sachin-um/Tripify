@@ -32,7 +32,7 @@ else {
                 <input type="text" id="area" name="area" placeholder="Eg: Anuradhapura" value="<?php echo $data['area']; ?>">
                 <span class="invalid"><?php echo $data['area_err']; ?></span>
                 <br>
-                <label class="abc"> Price per hour</label><br>
+                <label class="abc"> Price per Day</label><br>
                 <input type="text" id="price" name="price" placeholder="Eg: 5000.00" value="<?php echo $data['price_per_hour']; ?>">
                 <span class="invalid"><?php echo $data['price_err']; ?></span>
                 <br>
