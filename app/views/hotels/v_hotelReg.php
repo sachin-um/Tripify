@@ -11,11 +11,11 @@ else {
     ?> 
 
 <?php require APPROOT . '/views/inc/components/header.php'; ?>
-<!-- <?php require APPROOT . '/views/inc/components/navbars/home_nav.php'; ?> -->
+<?php require APPROOT . '/views/inc/components/navbars/home_nav.php'; ?>
 <div class="wrapper">
 
     <div class="container">
-
+        <br><br>
         <div class="hotel-reg-form-div">
             <p class="home-title-2" style="margin-bottom: 10px;">It's Only a Few Clicks Away.</p>
 
@@ -86,33 +86,14 @@ else {
                     </div>
 
                     <div class="hotel-reg-elements">
-                        <div class="hotel-reg-elements">
-                            <p class="home-title-4">Property Category<sup> *</sup> :</p>
-                            <select name="category" id="hotel-reg-select" name="category" value="<?php echo $data['property_category']; ?>">
-                                <option selected>--</option>
-                                    <option>Resort</option>
-                                    <option>Villa</option>
-                                    <option>Hostel</option>
-                                    <option>Inn</option>
-                                    <option>Boutique</option>
-                                <option>Bread and Breakfast</option>
-                            </select>
-                            <span id="reg-form-span"><?php echo $data['property_category_err']; ?></span>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="hotel-reg-form-div-2">
-                    <div class="hotel-reg-elements">
                         <p class="home-title-4">Contact Number<sup> *</sup> :</p>
                         <input class="hotel-labels-2" type="text" id="contact" name="contact" value="<?php echo $data['contact_number']; ?>">
                         <span id="reg-form-span"><?php echo $data['contact_number_err']; ?></span>
                     </div>
-
-                    <div class="hotel-reg-elements">
-
-                    </div>
+            
                 </div>
+                <br>
+                
 
                 <p class="home-title-3">Policies</p>
                 <hr>
@@ -127,11 +108,11 @@ else {
                     </div>
 
                     <div class="hotel-reg-elements">
-                        <p class="home-title-4">Children :</p>
+                        <!-- <p class="home-title-4">Children :</p>
                         <select name="children" id="hotel-reg-select" value="<?php echo $data['children']; ?>">
                             <option value="1" selected>Yes</option>
                             <option value="0">No</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <br>
@@ -167,7 +148,7 @@ else {
                 <br>
                 <div class="hotel-reg-form-div-2">
                     <p style="text-align: center;">Provide a description to introduce your property</p>
-                    <textarea name="description" rows="5" cols="50"></textarea>
+                    <textarea name="description" id="hotel-reg-text" rows="5" cols="50"></textarea>
                 </div>
                 
                 <div class="home-div-3">

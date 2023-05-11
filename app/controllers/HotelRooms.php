@@ -103,14 +103,26 @@
         //View all rooms for hotel owner
         public function rooms(){            
             $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
-            // for($x=0;$x<count($allroomtypes);$x++){
-            //     $current = $allroomtypes[$x]->RoomTypeID;
-                
-            // }
-        
+            // $images = $this->roomModel->getImages($roomTypeID);
+            // print_r($allroomtypes);
+
+            $roomtypeImgs = array();
+            foreach($allroomtypes as $roomType){
+                $roomtypeImgs[] = $this->roomModel->getImages($roomType->RoomTypeID);
+            }
+
+            $imgNames = array();
+            foreach($roomtypeImgs as $one){
+                foreach($one as $type){
+                    $imgNames[] = $type->imgName;
+                    break;
+                }
+                              
+            }
+
             $data=[
                 'allroomtypes'=>$allroomtypes,
-    
+                'images'=>$imgNames
             ];
             $this->view('hotels/v_dash_hotelviewroom',$data);
         }

@@ -9,11 +9,10 @@ body{
 .side-bar{
     width: 40%;
     height: 60%;
-    float: right;
-    margin-right: 10%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 20px;
     text-align: center;
-    background-color: rgb(255,255,255,0.3);
 }
 
 .left-side-bar{
@@ -31,7 +30,7 @@ body{
 }
 
 .start-btn{
-    height: 60px;
+    height: 40px;
     width: 20%;
     background-color: #03002E;
     color: white;
@@ -39,9 +38,7 @@ body{
 }
 
 .start-btn:hover{
-    height: 60px;
-    width: 20%;
-    background-color: #00C895;
-    color: black;
+    background-color: #e8b122;
+    color: #03002E;
     border-radius: 10px;
 }

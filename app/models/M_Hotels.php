@@ -39,6 +39,7 @@ class M_Hotels{
         return  $row; 
     }
 
+
     public function findHotelNumber($reg_number){
         $this->db->query('SELECT * FROM hotels WHERE reg_number= :reg_number');
         $this->db->bind(':reg_number',$reg_number);
@@ -56,7 +57,8 @@ class M_Hotels{
     //register
 
     public function viewAllHotels(){
-        $this->db->query('SELECT * FROM hotels');
+        $this->db->query('SELECT h.* FROM hotels h JOIN users u ON h.HotelID = u.UserID
+        WHERE u.verification_status = 3 AND u.acc_status = "Active";');
         $hotelset=$this->db->resultSet();
 
         return $hotelset;
@@ -91,6 +93,7 @@ class M_Hotels{
         // }
         
 
+
         $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,Category,contact_number,Pets,
         Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:property_category,:contact_number,:pets,
         :check_in,:check_out,:reg_number)');
@@ -100,10 +103,8 @@ class M_Hotels{
         $this->db->bind(':line1',$data['line1']);
         $this->db->bind(':line2',$data['line2']);
         $this->db->bind(':district',$data['district']);
-        $this->db->bind(':property_category',$data['property_category']);
         $this->db->bind(':contact_number',$data['contact_number']);
         $this->db->bind(':pets',$data['pets']);
-        // $this->db->bind(':children',$data['children']);
         $this->db->bind(':check_in',$data['check_in']);
         $this->db->bind(':check_out',$data['check_out']);
         $this->db->bind(':reg_number',$data['hotel_reg_number']);
@@ -113,7 +114,7 @@ class M_Hotels{
             $this->db->bind(':travelerid',$data['hotel_id']);
             $updatetraveler=$this->db->execute();
 
-            $this->db->query('UPDATE users SET UserType="Hotel" WHERE UserID=:hotel_id');
+            $this->db->query('UPDATE users SET UserType="Hotel",verification_status=2 WHERE UserID=:hotel_id');
             $this->db->bind(':hotel_id',$data['hotel_id']);
             $userupdate=$this->db->execute();
             if ($updatetraveler && $userupdate) {
@@ -220,6 +221,13 @@ class M_Hotels{
         return $images;
         
 
+    }
+
+    public function getImagesforHotels(){
+        $this->db->query('SELECT DISTINCT hotelID, imgName FROM hotel_photos GROUP BY hotelID ORDER BY hotelID;');
+
+        $images=$this->db->resultSet();
+        return $images;
     }
 
     public function findReviews($hotelID){
