@@ -3,6 +3,7 @@
         public function __construct(){
             $this->userModel=$this->model('M_Users');
             $this->messageModel=$this->model('M_Messages');
+            $this->guideModel=$this->model('M_Guides');
         }
         public function index(){
 
@@ -225,7 +226,7 @@
                     $data['profile_img_name']=time().'_'.$_FILES['profile-imgupload']['name'];
                     
                     if (uploadImage($data['profile_img']['tmp_name'],$data['profile_img_name'],'/img/profileImgs/')) {
-                        if ($this->userModel->editTravelerDetails($data)) {
+                        if ($this->guideModel->editGuideDetails($data)) {
                             unset($_SESSION['user_profile_image']);
                             $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                             $_SESSION['user_profile_image']=$user->profileimg;
@@ -243,8 +244,8 @@
                     }
                 }
                 else if($_FILES['profile-imgupload']['error']==4) {
-                    $data->profile_img_name='';
-                    if ($this->userModel->editTravelerDetails($data)) {
+                    $data['profile_img_name']='';
+                    if ($this->guideModel->editGuideDetails($data)) {
                         $user=$this->userModel->getUserDetails($_SESSION['user_id']);
 
                         redirect('Pages/profile');

@@ -236,14 +236,14 @@ function confirmBookingGuide($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($email);     //Add a recipient
+        $mail->addAddress($data->userDetails->Email);     //Add a recipient
         
 
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Confirmation of Booking';
         $mail->Body    = " <h4>Dear User,<h4><br><br>
-        <p>Thank you for booking your guided tour with $data->GuideName.<br>
+        <p>Thank you for booking your guided tour with $data->guideDetails->Name.<br>
         We're looking forward to your trip.</p>
 
         <br><br><p>Your booking details are as follows :</p>
@@ -251,7 +251,7 @@ function confirmBookingGuide($data){
         <br><br><h4>Location :</h4><p>$data->Location</p>
         <br><br><h4>Start Date :</h4><p>$data->StartDate</p>
         <br><br><h4>End Date :</h4><p>$data->EndDate</p>
-        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
+        <br><br><h4>Booked By :</h4><p>$data->travelerDetails->Name</p>
         <br><br><h4>Total :</h4><p>$data->payment</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
