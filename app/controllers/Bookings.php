@@ -512,6 +512,8 @@
                     $exTime=$_POST['duration']; //extimate time
 
                     $distance=$_POST['distance'];
+
+                    $days = $_POST['days'];
                     
                     $total = (float)$distance * (float)$details->price_per_km;
 
@@ -547,6 +549,7 @@
                         'extime'=>$exTime,
                         'com_name'=>$com_name,
                         'owner'=>$owner,
+                        'days'=>$days,
                         'TaxiOwnerID'=>$owner->OwnerID,
                         'distance'=>$distance,
                         'total' => $total     
@@ -779,6 +782,7 @@
                 'p_longitude'=>$_SESSION['booking_data']['p_longitude'],
                 'd_latitude'=>$_SESSION['booking_data']['d_latitude'],
                 'd_longitude'=>$_SESSION['booking_data']['d_longitude'],
+                'days'=>$_SESSION['booking_data']['days'],
                 'extime'=> $formattedTime ,
                 'distance'=>$_SESSION['booking_data']['distance'],
                 'travelerID'=>$userId,

@@ -161,12 +161,13 @@
             $New_end_date = date('Y-m-d', strtotime($est_datetime));
 
 
+           
             $this->db->query('SELECT COUNT(*) AS conflicting_bookings 
                   FROM taxi_reservation 
                   WHERE Vehicles_VehicleID = :vehicle_id AND status <> :status AND (booking_date=:new_start_date OR est_end_date=:new_start_date )
                   AND (
                     ((:new_start <= CONCAT(booking_date, \' \', booking_time) ) AND :new_end<=CONCAT(est_end_date, \' \', est_end_time)  )
-                    OR (CONCAT(booking_date, \' \', booking_time) <= :new_start  AND :new_start <CONCAT(est_end_date, \' \', est_end_time) ) 
+                    OR (CONCAT(booking_date, \' \', booking_time) <= :new_start  AND :new_start <=CONCAT(est_end_date, \' \', est_end_time) ) 
                     OR (CONCAT(booking_date, \' \', booking_time) < :new_start  AND :new_start <=CONCAT(est_end_date, \' \', est_end_time) )
                     )');
 
@@ -259,8 +260,8 @@
 
 
         public function insertTaxiBooking($data){
-            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`)
-                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers)');                                            
+            $this->db->query('INSERT INTO `taxi_reservation`(`TravelerID`,`TaxiOwnerID`, `Vehicles_VehicleID`, `Price`,  `booking_date`, `booking_time`, `est_end_date`, `est_end_time`, `pickup_location`, `destination`, `distance`, `estTime`,`p_latitude`,`p_longitude`,`d_latitude`,`d_longitude`,`PaymentMethod`,`passengers`,`Days`)
+                                                         VALUES(:TravelerID,:TaxiOwnerID,:Vehicles_VehicleID,:Price,:booking_date,:booking_time,:est_end_date,:est_end_time,:pickup_location,:destination,:distance,:estTime,:p_latitude,:p_longitude,:d_latitude,:d_longitude,:PaymentMethod,:passengers,:Days)');                                            
             $this->db->bind(':TravelerID',$data['travelerID']);
             $this->db->bind(':TaxiOwnerID',$data['TaxiOwnerID']);
             $this->db->bind(':Vehicles_VehicleID',$data['vehicleID']);
@@ -271,6 +272,7 @@
             $this->db->bind(':est_end_time',$data['e_time']);
             $this->db->bind(':pickup_location',$data['pickupL']);
             $this->db->bind(':destination',$data['dropL']);
+            $this->db->bind(':Days',$data['days']);
 
             $this->db->bind(':PaymentMethod',$data['payment_option']);
             $this->db->bind(':passengers',$data['passengers']);

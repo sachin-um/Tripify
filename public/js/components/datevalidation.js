@@ -12,13 +12,14 @@ $(document).ready(function() {
 
 function finalValidation(){
   validationDateTime();
-  // const form = document.getElementById('taxi-booking-form');
+  const form = document.getElementById('taxi-booking-form');
   const submitButton = document.getElementById('taxi-get-price-but');
+  
 
   if(olddateError && passengersError && timeslotError){           // validation
     submitButton.style.backgroundColor = '#0F6C13'; 
     if( $('#checker').val()==0){
-      // form.submit();
+      form.submit();
     }else{
       $("#hotel-booking-form").hide();
       calculatePrice(dist,estimateTime);
@@ -201,13 +202,30 @@ function validation(){
 
 
 function availableTime(){   // Checking Time slot is Available
+  let est = $('#duration').val();
+  // if(!$('#taxi-days-input').val()==0){
 
+  //   const hours = $('#taxi-days-input').val() * 24;
+  //   const formattedHours = String(hours).padStart(2, '0');
+    
+  //   const minutes = Math.floor((hours - Math.floor(hours)) * 60);
+  //   const formattedMinutes = String(minutes).padStart(2, '0');
 
+  //   const seconds = Math.floor(((hours - Math.floor(hours)) * 60 - Math.floor(minutes)) * 60);
+  //   const formattedSeconds = String(seconds).padStart(2, '0');
+
+    
+  //   est = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  //   console.log(est);
+  // }
+  // else{
+  //   est = $('#duration').val();
+  // }
   
 
   let bookingDate = $('#bookingDate').val();
   let bookingTime = $('#bookingTime').val();
-  let est = $('#duration').val();
+  
   if( $('#checker').val()==0){
     $.ajax({
       url: URLROOT+'/Bookings/checkTimeSlot',
@@ -388,8 +406,10 @@ function inputOrder(){
 
 function bookdays(){
   $("#taxi-day-bookingButs").hide();
-  document.getElementById("hotel-booking-dayform").style.display = "block";
-  document.getElementById("hotel-booking-dayform").style.pointerEvents = "auto";
+  document.getElementById("taxi_days").style.display = "block";
+  document.getElementById("hotel-booking-form").style.display = "block";
+  const taxiDaysInput = document.getElementById('taxi-days-input');
+  taxiDaysInput.value = '';
 
   
   
@@ -397,8 +417,9 @@ function bookdays(){
 
 function bookTrip(){
   $("#taxi-day-bookingButs").hide();
+  $("#taxi_days").hide();
   document.getElementById("hotel-booking-form").style.display = "block";
-  document.getElementById("hotel-booking-form").style.pointerEvents = "auto";
+
 
 }
 
