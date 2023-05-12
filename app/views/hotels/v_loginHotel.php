@@ -1,8 +1,6 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <div class="wrapper">
-
-
-    <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
     <div class="content">
         <br>

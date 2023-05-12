@@ -1045,22 +1045,10 @@
             }else{
                 echo json_encode(false);
             }
-                
-                //     // redirect('Bookings/HotelBookings/Traveler/'+$_SESSION['user_id']);
-                
-            // } else {
-            //     echo json_encode(0);
-            //     //die('Something went wrong');
-            // }
-
-            
             
         }
 
-        public function showAllHotelBookings(){
-            $this->roomBookingModel->getBookingID();
-            
-        }
+
 
     }
 ?>

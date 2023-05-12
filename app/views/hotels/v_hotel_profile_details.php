@@ -3,6 +3,7 @@
 <br>
 <div class="wrapper"> 
     <div class="content">
+        <?php flash('review_flash'); ?>
         
         <p class="home-title-2" ><?php echo $data["profileName"]?>
         <br><label id="view-address" style="font-size: 1.1rem;"><?php echo $data["profileAddress"]?>
@@ -76,7 +77,8 @@
                     </div>
                     <?php } ?><br>
                     <button class="all-purpose-btn" id="view-review-btn">
-                    <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;">See Reviews</a></button>
+                    <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;
+                    color: white;">See Reviews</a></button>
                 </div>
 
                 <div class="facility-2">
@@ -94,22 +96,22 @@
             <div class="nav-main-hotel-room">
                 
                 <div class="nav-parts-hotel-room">
-                    <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date"
+                    <p class="hotel-labels-1"><b>Check-In Date</b></p>
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="date" name="date-1" placeholder="Check-In Date"
                     value="<?php echo $_SESSION['checkin']?>">
                     <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                 </div>
                 &nbsp;
                 <div class="nav-parts-hotel-room">
-                    <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date"
+                    <p class="hotel-labels-1"><b>Check-Out Date</b></p> 
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="date" name="date-2" placeholder="Check-Out Date"
                     value="<?php echo $_SESSION['checkout']?>">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
                 &nbsp;
                 <div class="nav-parts-hotel-room">
-                    <p class="hotel-labels-1">No of People</p> 
-                    <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
+                    <p class="hotel-labels-1"><b>No of People</b></p> 
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="number" name="noofadults" value="1" max="100">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>  
 
