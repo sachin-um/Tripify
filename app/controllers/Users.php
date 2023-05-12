@@ -712,6 +712,7 @@
             if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
                 if ($this->userModel->suspendaccount($id,$action)) {
                     $user=$this->userModel->getUserDetails($id);
+                    flash('admin_flash', 'Account Suspended...');
                     accountSuspendMail($user);
                     if ($usertype=='Traveler') {
                         redirect('Admins/profiles/'.$usertype);
@@ -737,7 +738,7 @@
         public function verifyaccount($id,$usertype)
         {
             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
-                if ($this->messageModel->verifyaccount($id)) {
+                if ($this->userModel->verifyaccount($id)) {
                     if ($usertype=='Hotel') {
                         if ($_SESSION['admin_type']=='Super Admin') {
                             redirect('Admins/profiles/'.$usertype);

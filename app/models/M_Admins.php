@@ -116,6 +116,30 @@ class M_Admins{
         }
     }
 
+    public function verifydriver($id)
+    {
+        $this->db->query('UPDATE taxi_drivers SET verification_status=1 WHERE TaxiDriverID=:TaxiDriverID');
+        $this->db->bind(':TaxiDriverID',$id);
+        if ($this->db->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function verifyvehicle($id)
+    {
+        $this->db->query('UPDATE vehicles SET verification_status=1 WHERE VehicleID=:VehicleID');
+        $this->db->bind(':VehicleID',$id);
+        if ($this->db->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
 
 

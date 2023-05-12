@@ -42,6 +42,7 @@ else {
         <h2>Unverified Vehicles</h1>
         <hr>
         <br>
+        <?php flash('admin_vehicle_verify_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
                 <table class="message-table" id="message-table">
@@ -57,14 +58,6 @@ else {
                             <th>No of Seats</th>
                             <th>Price per km</th>
                             <th>View </th>
-                            <?php
-                                if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
-                                    ?>                                    
-                                    <th>Verify</th>
-                                    <?php
-                                }
-                                
-                            ?>
                             
                         </tr>
                     </thead>
@@ -83,24 +76,7 @@ else {
                                 <td data-lable="No of Vehicles"><?php echo $vehicle->area ?></td>
                                 <td data-lable="No of Vehicles"><?php echo $vehicle->no_of_seats ?></td>
                                 <td data-lable="No of Vehicles"><?php echo $vehicle->price_per_km ?></td>
-                                <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
-                                <?php
-                                if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin'){
-                                    ?>
-                                        <td data-lable="Email">
-                                            <button>Verify</button>
-                                        </td>
-                                        
-                                    <?php
-                                    }else{
-                                        echo "test";
-                                    }
-                                    ?>
-
-
-                                
-                                
-
+                                <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles/<?php echo  $vehicle->OwnerID ?>'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
                                 </tr>
                         <?php
                             endforeach;

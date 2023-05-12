@@ -47,7 +47,7 @@ else {
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
                 <option value="all account">All Account</option>
-                <option value="suspened">Suspended</option>
+                <option value="suspend">Suspend</option>
                 <option value="active">Active</option>
             </select>
         </div>
@@ -63,6 +63,7 @@ else {
                             <th>Email</th>
                             <th>Verification status</th>
                             <th>Account status</th>
+                            <th>View</th>
                             <th>Suspend Account</th>
                             
                         </tr>
@@ -79,9 +80,10 @@ else {
                             <td data-lable="Email"><?php echo $traveler->Email ?></td>
                             <td data-lable="Email"><?php echo  $traveler->verification_status==1 ? 'Verified' : 'Not Verified'  ?></td>
                             <td data-lable="Email"><?php echo $traveler->acc_status ?></td>
-                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $traveler->UserID ?>/Traveler/<?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $traveler->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                            <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $traveler->UserID ?>/Traveler'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
+                            <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $traveler->UserID ?>/Traveler/<?php echo  $traveler->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $traveler->acc_status=='Suspend' ? 'active-btn' : 'sus-btn'  ?> type="button">
                                 <?php 
-                                    if ($traveler->acc_status=='Suspended') {
+                                    if ($traveler->acc_status=='Suspend') {
                                         ?>
                                         <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
                                         
@@ -94,9 +96,10 @@ else {
                                     }
                                 
                                 ?>
-                                <?php echo  $traveler->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                                <?php echo  $traveler->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?></button></a>
                             </td>
-                            
+                            <td data-lable="Email" style="display: none;"><?php echo  $traveler->verification_status==1 ? 'Verified' : 'Not Verified'  ?></td>
+                            <td data-lable="Email" style="display: none;"><?php echo $traveler->acc_status ?></td>
                         </tr>
                         <?php
                             endforeach;

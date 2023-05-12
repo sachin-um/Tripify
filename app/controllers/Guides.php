@@ -73,8 +73,9 @@
                     
                     //register guide
                     if ($this->guideModel->register($data)) {
-                        $this->logout();
-                        redirect('Guides/login');
+                        session_destroy();
+                        flash('reg_flash', 'You are Succusefully registered as Guide, Please wait for verication process is done...');
+                        redirect('Users/login');
                     }
                     else{
                         flash('reg_flash', 'Somthing went wrong please try again...');
