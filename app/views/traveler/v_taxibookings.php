@@ -129,7 +129,7 @@ else {
                                                 </button>
                                             <?php
                                 }
-                                elseif ($booking->status=='Finished') {
+                                elseif ($booking->status=='Completed') {
                                     if ($booking->PaymentStatus!='Paid') {
                                         if ($booking->PaymentMethod=='Online') {
                                             ?>
