@@ -213,7 +213,7 @@
                 
         $.ajax({
             type: "POST",
-            url: "<?= URLROOT ?>/Bookings/booking",
+            url: "<?php echo URLROOT ?>/Bookings/booking",
             data: {
                 hotelID: hotelID,
                 payment: payment,

@@ -99,7 +99,11 @@
 
             $data=[
                 'allhotels'=> $allhotels,
-                'images'=>$images
+                'images'=>$images,
+
+                'place_err' => '',
+                'sdate_err' => '',
+                'edate_err' => ''
             ];
             $this->view('hotels/v_hotelHome',$data);
         }

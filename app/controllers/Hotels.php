@@ -329,28 +329,54 @@ use Dompdf\Options;
             
                 $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
                 $destination = trim($_POST['place']);
-                $checkin = trim($_POST['date-1']);
-                $checkout = trim($_POST['date-2']);
-                $noofadults =trim($_POST['noofadults']);
-                
-                $data = [
-                    'destination' => trim($_POST['place'])
-                ];
 
-                $hotelSearch = $this->hotelModel->searchForHotels($data);
+                $hotelSearch = $this->hotelModel->searchForHotels($destination);
+                $images = $this->hotelModel->getImagesforHotels();
 
                 $data = [
                     'hotelSearch' => $hotelSearch,
-                    'destination' => $destination,
-                    'check-in' => trim($_POST['date-1']),
-                    'check-out' => trim($_POST['date-2']),
-                    'noofadults' => trim($_POST['noofadults'])
-                    
+                    'destination' => $destination,  
+                    'check-in' => $_POST['date-1'],
+                    'check-out' => $_POST['date-2'],
+                    'noofadults' => trim($_POST['noofadults']),
+                    'images'=>$images,
+
+                    'place_err' => '',
+                    'sdate_err' => '',
+                    'edate_err' => ''
                 ];
-                $this->view('hotels/v_searchResultsPage',$data);
+
+                
+                if(strtotime($data['check-in']) > strtotime($data['check-out'])){
+                    $data['edate_err'] = 'Check out date must be later than the check in date';
+                }
+
+                if(strtotime($data['check-in'])<time()){
+                    $data['sdate_err'] = 'Please enter a later date for check in date';
+                }
+                
+                if(empty($data['destination'])){
+                    $data['place_err'] = 'Please enter your destination';
+                }
+                
+                if(empty($data['edate_err']) && empty($data['place_err'])){
+                    $this->view('hotels/v_searchResultsPage',$data);
+                }else{
+                    $this->view('hotels/v_searchResultsPage',$data);
+                }                
             }else{
                 $data = [
-                    'destination' => ''
+                    'hotelSearch' => '',
+                    'destination' => '',  
+                    'check-in' => '',
+                    'check-out' => '',
+                    'noofadults' => '',
+                    'images'=>'',
+                    'destination' => '',
+
+                    'place_err' => '',
+                    'sdate_err' => '',
+                    'edate_err' => ''
                 ];
 
                 $this->view('hotels/v_searchResultsPage',$data);
@@ -371,10 +397,6 @@ use Dompdf\Options;
         public function hotelProfilewithoutrooms($hotelID){
             $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
             $images = $this->hotelModel->getImages($hotelID);
-
-            if(empty($images)){
-                print_r($images);
-            }
             
             $data=[
                 'hotelID'=>$hotelID,
@@ -408,6 +430,7 @@ use Dompdf\Options;
             ];
             $this->view('hotels/v_dash_profile',$data);
         }
+
         public function addFacilities(){
             if (isset($_POST['submit'])) {
                 $farray = implode(",",$_POST['facilities']);
@@ -473,44 +496,78 @@ use Dompdf\Options;
             //Get the reviews
             $hotelreviews=$this->hotelModel->findReviews($hotelID);
 
-            //Get each review's travelerIDs to an array
-            $rarray = array();
-            foreach($hotelreviews as $review){
-                $rarray[] = $review->TravelerID;
-            }
-
-            //Get each user's details
-            $travelerInfo = array();
-            foreach($rarray as $element){
-                $travelerInfo[] = $this->userModel->getUserDetails($element);
-            }
-
             $data=[
                 'hotelID' => $hotelID,
-                'reviewSet' => $hotelreviews,
-                'travelerInfo' => $travelerInfo
+                'reviewSet' => $hotelreviews
             ];
 
             $this->view('hotels/v_hotel_reviews',$data);
             
         }
 
-        // public function editProfileDetails(){
+        public function addHotelReview($hotelID){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);                
+    
+                $data = [
+                    'hotelID'=>$hotelID,
+                    'hotel_rating'=>$_POST['hotel_rating'],
+                    'review'=>trim($_POST['review']),
 
-        // }
+                    'rating_err'=>'',
+                    'review_err'=>''
+                ];
 
-        public function loadBooking(){
-            $hotelbookings=$this->hotelBookingModel->viewbookings('Hotel',$_SESSION['user_id']);
-            // echo gettype($hotelbookings);
-            // if(empty($hotelbookings)){
-            //     "its empty";
-            // }else{
-            //     "its not empty";
-            // }
+                if (empty($data['hotel_rating'])) {
+                    $data['rating_err'] = 'This field is required';
+                }
+                if (empty($data['review'])) {
+                    $data['review_err'] = 'This field is required';
+                }
+
+                if (empty($data['rating_err']) && empty($data['review_err'])) {
+                    
+                    if ($this->hotelModel->addReview($data)) {
+                        flash('review_flash', 'Your review was successfully added');
+                        redirect('Hotels/hotelProfilewithoutrooms/'.$data['hotelID']);
+                    } else {
+                        flash('review_flash', 'Something went wrong.');
+                        redirect('Hotels/hotelProfilewithoutrooms/'.$data['hotelID']);
+                    }
+    
+                } else {
+                    $this->view('hotels/v_addReview', $data);
+                }
+
+
+            }else{
+                $data=[
+                    'hotelID'=>$hotelID,
+                    'hotel_rating'=>'',
+                    'rating_err'=>'',
+                    'review'=>'',
+                    'review_err'=>''
+                ];
+                $this->view('hotels/v_addReview',$data);
+            }
+        }
+
+        public function loadBooking($status=null){
+            if($status==null){
+                $status = "In progress";
+            }
+            $hotelbookings=$this->hotelBookingModel->getHotelBookingbyStatus($status,$_SESSION['user_id']);
+            // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+
+            // print_r($allroomtypes);
+
             $data=[                
-                'bookings'=>$hotelbookings
+                'bookings'=>$hotelbookings,
+                'status'=>$status
+                // 'allroomtypes'=>$allroomtypes
             ];
             $this->view('hotels/v_dash_bookings',$data);
+            
         }        
 
         public function loadPayments(){

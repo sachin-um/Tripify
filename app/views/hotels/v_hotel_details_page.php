@@ -16,9 +16,7 @@
             <div class="slide-track">
                 <?php
                 if(!empty($data['images'])){
-                    foreach($data['images'] as $imgName):
-                        // echo gettype($imgName)."<br>" ;
-                        // print_r($imgName);
+                    foreach($data['images'] as $imgName):   
                     ?>
                     <div class="slide">
                         <img id="img-carousal" src="<?php echo URLROOT?>/public/img/hotel-uploads/<?php echo $imgName->imgName; ?>" style="white-space: nowrap;" >
@@ -163,12 +161,12 @@
                     <?php
                         foreach($data['allBeds'] as $beds){
                             if($beds->roomID == $room->RoomTypeID){
-                                echo $beds->bedType."\t\t".$beds->noofbeds;
+                                echo $beds->bedType."   x   ".$beds->noofbeds."<br>";
                             }
                         }
 
                     ?>
-                    <br>No of Available Rooms : <?php echo $room->no_of_rooms?>
+                    <br><b>No of Available Rooms : <?php echo $room->no_of_rooms?></b>
                 </div>
 
                 <div class="sub-block">

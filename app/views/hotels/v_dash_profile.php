@@ -42,7 +42,7 @@ else{
         </div> -->
 
         <!-- Account details start here - Photo upload doesn't work -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Account Details</p>
             <form action="<?php echo URLROOT; ?>/Users/editHotelDetails/<?php echo $data['hotelaccountdetails']->UserID ?>" method="POST" enctype="multipart/form-data">
             <div style="display: flex; flex-direction: row;">
@@ -163,7 +163,7 @@ else{
         <br><br>
             
         <!-- Edit Hotel Details -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Property Details</p>
             <form action="<?php echo URLROOT; ?>/Users/editHotelProfileDetails/<?php echo $data['hoteldetails']->HotelID ?>" method="POST" enctype="multipart/form-data">
 
@@ -380,7 +380,7 @@ else{
 
 
         <!-- Edit hotel facilities -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Hotel Facilities</p>
             <br>
 
@@ -431,7 +431,7 @@ else{
         </div><br><br>
 
         <!-- Upload photos -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Property Images</p>
             <?php 
             if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {

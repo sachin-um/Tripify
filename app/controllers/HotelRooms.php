@@ -19,6 +19,7 @@
                 'beds'=> $beds,
                 'images'=> $images
             ];
+
             if($userType=='Hotel'){
                 $this->view('hotels/v_viewHotelRoom',$data);
             }else{

@@ -73,9 +73,9 @@ class M_Hotels{
     }
 
 
-    public function searchForHotels($data){
+    public function searchForHotels($destination){
         $this->db->query('SELECT * FROM hotels where Line1= :destination OR Line2= :destination OR District= :destination');
-        $this->db->bind(':destination',$data['destination']);
+        $this->db->bind(':destination',$destination);
         $hotelrecords=$this->db->resultSet();
 
         return $hotelrecords;
@@ -231,11 +231,24 @@ class M_Hotels{
     }
 
     public function findReviews($hotelID){
-        $this->db->query('SELECT * FROM hotel_reviews where HotelID=:hotelID');
-        $this->db->bind(':hotelID',$hotelID);
+        $this->db->query('SELECT hotel_reviews.*, users.profileimg, users.Name FROM hotel_reviews JOIN users
+        ON hotel_reviews.TravelerID = users.UserID WHERE users.UserID = :userID');
+        $this->db->bind(':userID',$_SESSION['user_id']);
 
         $reviews=$this->db->resultSet();
         return $reviews;
+    }
+
+    public function addReview($data){
+        $this->db->query('INSERT INTO hotel_reviews(TravelerID,HotelID,Rating,Description)
+            VALUES(:travelerID,:hotelID,:rating,:description)');
+
+        $this->db->bind(':travelerID',$_SESSION['user_id']);
+        $this->db->bind(':hotelID',$data['hotelID']);
+        $this->db->bind(':rating',$data['hotel_rating']);
+        $this->db->bind(':description',$data['review']);
+
+        return $this->db->execute();
 
     }
 }

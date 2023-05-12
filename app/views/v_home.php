@@ -114,70 +114,7 @@
                 <br><p style="color: #f2b203; text-align: center;">Register as a local guide</p>
                 <button class="home-book-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Join Tripify</button>
             </div>
-        </div>
-        
-
-        <!-- Ads -->
-        <!-- <div class="home-scroll-divs">
-            <br>
-            <div class="nav-main" id="home-ads">
-                <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showHotels'">
-
-                    <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
-                        <span id="home-ad-arrows-left" class="dot"><b>></b></span>
-                        <span id="home-ad-arrows-right" class="dot"><b><</b></span>
-                    </div>                    
-
-
-                    <div class="hotel-ad-card-desc" style="text-align: center;">
-                        <p style="font-size: 1.2rem;"><b>Register your hotel with Tripify and expand your customer base beyond Sri Lanka!</b></p>
-                        <br><button class="all-purpose-btn" id="home-register-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'"><b>Register Hotel</b></button><br>              
-                        <label id="display-hotel-address">No 108, Rajagiriya</label><br>
-                        <label>Partners Since 1990</label>
-                    </div>
-
-                </div>
-
-                <div class="hotel-ad-card">
-
-                    <label class="home-title-2">Taxis</label>
-
-                    <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/taxi-changed.png" alt="nine-arch">
-                        <span id="home-ad-arrows-left" class="dot">></span>
-                        <span id="home-ad-arrows-right" class="dot"><</span>
-                    </div>
-
-                    <div class="hotel-ad-card-desc" style="text-align: center;">
-                        <label id="display-hotel-name" for="hotel-name"><b>Kangaroo Cabs</b></label><br>
-                        <label id="display-hotel-address" for="hotel-address">Galle Rd, Panadura</label> 
-                        <label>Partners Since 1990</label>
-                    </div>
-                </div>
-
-                <div class="hotel-ad-card">
-
-                    <label class="home-title-2">Guides</label>
-
-                    <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide3.jpg" alt="nine-arch">
-                        <span id="home-ad-arrows-left" class="dot">></span>
-                        <span id="home-ad-arrows-right" class="dot"><</span>
-                    </div>
-
-                    <div class="hotel-ad-card-desc" style="text-align: center;">
-                        <label id="display-hotel-name" for="hotel-name"><b>Sunil Shantha</b></label><br>
-                        <label id="display-hotel-address" for="hotel-address">Galle Rd, Panadura</label> 
-                        <label>Partners Since 1990</label>
-                    </div>
-
-                </div>
-            
-                <br><br>
-            </div>
-        </div>     -->
-       
+        </div>       
         
     </div>
       
