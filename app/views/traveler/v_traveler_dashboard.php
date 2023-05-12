@@ -22,6 +22,9 @@ else {
 
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">User Profile</a>
+            <?php
+            if ($_SESSION['user_id']== $data->UserID) {
+                        ?>
             <a href="<?php echo URLROOT; ?>/Bookings/HotelBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Hotel Bookings</a>
             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Taxi Bookings</a>
             <a href="<?php echo URLROOT; ?>/Bookings/GuideBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Guide Bookings</a>
@@ -30,6 +33,9 @@ else {
             <a href="<?php echo URLROOT; ?>/Trips/yourtrips/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Your Trips</a>
             <a href="<?php echo URLROOT; ?>/Users/contactus" class="menu-item">Contact Admin</a>
             <a href="<?php echo URLROOT; ?>/Pages/home" class="menu-item">Exit Dashboard</a>
+            <?php
+            }
+            ?>
         </nav>
     </aside>
 
