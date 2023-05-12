@@ -1,8 +1,8 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 <br><br>
-<div class="wrapper"> 
-    <div class="content">
+<div class="wrapper" id="wrapper-home"> 
+    <div class="content" id="content-home">
         <?php flash('reg_flash'); ?>
         <p class="home-title" ><b>Plan your dream Sri Lankan vacation cost free!</b></p>
 
@@ -60,15 +60,69 @@
         <br><br>
         <hr class="divider">
         <br>
-        <p class="home-title-2" ><b>Find the Best Service Providers</b></p>
-        <br>
+        <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
+
+        <!-- hotel register -->
+        <div class="hotel-home-join-network" style="background-color: #03002e;">
+            <div class="service-div">
+                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
+            </div>
+
+            <div class="service-div" style="width: 100%; text-align: center;">
+                <p style="text-align: center; color: #f2b203; font-size: 1.9rem; display: flex; align-items: center; justify-content: center;">
+                <img id="home-img-12" src="<?php echo URLROOT; ?>/img/logo.png" alt="nine-arch">&nbsp;YOUR HOTEL</p>
+
+                <br><p style="color: #f2b203; text-align: center;">Expand your customer base, <br>
+                increase your visibility and<br>discover great deals</p>
+
+                <br><p style="color: #f2b203; text-align: center;">Register your hotel with Tripify</p>
+                <button class="home-book-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'">Join Tripify</button>               
+            </div>
+
+            <!-- Makes it easy for potential guests to discover and book your hotel with  -->
+        </div>
+
+        <div class="hotel-home-join-network">
+            <div class="service-div" style="width: 100%; text-align: center;">
+                <p style="text-align: center; color: #03002E; font-size: 1.9rem; display: flex; align-items: center; justify-content: center;">
+                GET GOING WITH&nbsp;<img id="home-img-12" src="<?php echo URLROOT; ?>/img/logo_processed.png" alt="nine-arch"></p>
+
+                <br><p style="color: #03002E; text-align: center;">Elevate your company hires, <br>
+                beat the competition<br>or simply boost your freelance driving career</p>
+
+                <br><p style="color: #03002E; text-align: center;">Register your taxis with Tripify</p>
+                <button class="home-book-btn" style="background-color: #03002E; color: #f2b203;" onclick="location.href='<?php echo URLROOT?>/Taxies/register'">Join Tripify</button>
+            </div>
+
+            <div class="service-div">
+                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/taxi-changed.png" alt="nine-arch">
+            </div>
+        </div>
         
-        <div class="home-scroll-divs">
+        <div class="hotel-home-join-network" style="background-color: #03002e;">
+            <div class="service-div">
+                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+            </div>
+
+            <div class="service-div" style="width: 100%; text-align: center;">
+                <p style="text-align: center; color: #f2b203; font-size: 1.9rem; display: flex; align-items: center; justify-content: center;">
+                GUIDE THE WAY WITH&nbsp;<img id="home-img-12" src="<?php echo URLROOT; ?>/img/logo.png" alt="nine-arch"></p>
+
+                <br><p style="color: #f2b203; text-align: center;">Looking for opportunities in your local area? <br>
+                Boost your profile and<br>become the top with Tripify! </p>
+
+                <br><p style="color: #f2b203; text-align: center;">Register as a local guide</p>
+                <button class="home-book-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Join Tripify</button>
+            </div>
+        </div>
+        
+
+        <!-- Ads -->
+        <!-- <div class="home-scroll-divs">
             <br>
-            <div class="nav-main">
+            <div class="nav-main" id="home-ads">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Hotels/showHotels'">
 
-                    <label class="home-title-2">Hotels</label>
                     <div class="hotel-ad-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari4.jpg" alt="nine-arch">
                         <span id="home-ad-arrows-left" class="dot"><b>></b></span>
@@ -77,8 +131,9 @@
 
 
                     <div class="hotel-ad-card-desc" style="text-align: center;">
-                        <label><b>Hotel Kingsbury</b></label> <br>
-                        <label id="display-hotel-address" for="hotel-address">No 108, Rajagiriya</label><br>
+                        <p style="font-size: 1.2rem;"><b>Register your hotel with Tripify and expand your customer base beyond Sri Lanka!</b></p>
+                        <br><button class="all-purpose-btn" id="home-register-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'"><b>Register Hotel</b></button><br>              
+                        <label id="display-hotel-address">No 108, Rajagiriya</label><br>
                         <label>Partners Since 1990</label>
                     </div>
 
@@ -118,34 +173,10 @@
                     </div>
 
                 </div>
-                </div>
+            
                 <br><br>
             </div>
-        </div>      
-        
-        <div class="hotel-home-join-network">
-
-            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
-            <div class="home-div-3">
-                
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Hotels/register'">Register Hotel</button>               
-                
-            </div>
-        </div>
-
-        <div class="hotel-home-join-network">
-            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
-            <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxies/register'">Register Taxi Owner</button>
-            </div>
-        </div>
-
-        <div class="hotel-home-join-network">
-            <p class="home-title-2" style="margin-bottom: 10px;">Join Our Network Today.</p>
-            <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Guides/register'">Register As a Guide</button>
-            </div>
-        </div>
+        </div>     -->
        
         
     </div>

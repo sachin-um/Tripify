@@ -50,23 +50,23 @@
             <div class="nav-grid">
                 
                 <?php
-                
+                $hotelImages=$data['images'];
+                $i=0;
                 foreach($data['allhotels'] as $hotel):
                 ?>
                 <!-- $hotels=$data['allhotels']; -->
 
-                <a href="<?php echo URLROOT?>/Hotels/hotelProfilewithoutrooms/<?php echo $hotel->HotelID?>" >
+                <a href="<?php echo URLROOT?>/Hotels/hotelProfilewithoutrooms/<?php echo $hotel->HotelID?>" style="text-decoration: none;">
                     <div class="hotel-ad-card">     
-                        <div class="hotel-ad-card-pic">                        
-                            <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">                        
+                        <div class="hotel-ad-card-pic">                
+                            <img id="hotel-img-ad" src="<?php echo URLROOT; ?>/public/img/hotel-uploads/<?php echo $hotelImages[$i++]->imgName; ?>" alt="nine-arch">                        
                             <span class="dot"><?php echo $hotel->Rating; ?></span>
                         </div>            
                         
                         <div class="hotel-ad-card-desc">
                             <label id="display-hotel-name" for="hotel-name"><b><?php echo $hotel->Name; ?></b></label> <br>
                             <label id="display-hotel-address" for="hotel-address"><?php 
-                            $address = $hotel->Line1.", ".$hotel->Line2.", ".$hotel->District;
-                            echo $address; 
+                            echo $hotel->District;
                             ?></label>
                         </div>
 

@@ -26,6 +26,7 @@ else {
 
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item is-active">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Admins/viewStats" class="menu-item">Site Statistics</a>
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item">Messages</a>
             <?php
 
@@ -42,7 +43,8 @@ else {
             ?>
             
             <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
-            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
+            <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item" id="user-profiles-link">User Profiles</a>
+            
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -169,6 +171,20 @@ else {
    var savebtn=document.getElementById("save-btn");
    var info = document.getElementsByClassName("info");
    var infoEdit = document.getElementsByClassName("sub-sub-edit");
+   var userProfilesLink = document.getElementById('user-profiles-link');
+   var driversLink = document.getElementById('drivers-link');
+   var vehiclesLink = document.getElementById('vehicles-link');
+
+   userProfilesLink.addEventListener('click', () => {
+        if (driversLink.style.display === 'none') {
+            driversLink.style.display = 'block';
+            vehiclesLink.style.display = 'block';
+        } else {
+            driversLink.style.display = 'none';
+            vehiclesLink.style.display = 'none';
+        }
+   });
+
    function toggeleEdit() {
        // editbtn.onclick=function() {window.location.reload();}; 
        Array.from(info).forEach(function(element) {

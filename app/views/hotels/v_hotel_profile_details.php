@@ -74,7 +74,9 @@
                         }
                         ?>
                     </div>
-                    <?php } ?>
+                    <?php } ?><br>
+                    <button class="all-purpose-btn" id="view-review-btn">
+                    <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;">See Reviews</a></button>
                 </div>
 
                 <div class="facility-2">
@@ -82,8 +84,7 @@
                 </div>
             </div>
                 
-            <button class="all-purpose-btn" id="view-review-btn">
-            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>">See Reviews</a></button>
+            
         </div>
 
         <p class="home-title-2">Check Available Rooms</p>

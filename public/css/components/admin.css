@@ -1,3 +1,13 @@
+#drivers-link{
+    display: none;
+    font-size: 0.9rem;
+}
+
+#vehicles-link{
+    display: none;
+    font-size: 0.9rem;
+}
+
 .form-admin-login{
     display: flex;
     z-index: 999;

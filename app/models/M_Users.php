@@ -155,8 +155,7 @@
             return $row;
         }
 
-        public function getAllUserDetails($usertype,$action=NULL)
-        {          
+        public function getAllUserDetails($usertype,$action=NULL){          
             
             
             if ($action=='verify') {
@@ -194,6 +193,20 @@
                 return $users;
             }
             
+        }
+
+        public function getUnverifiedDrivers(){
+            $this->db->query('SELECT * FROM taxi_drivers where verification_status=0' );
+
+            $result = $this->db->resultSet();
+            return $result;
+        }
+
+        public function getUnverifiedVehicles(){
+            $this->db->query('SELECT * FROM vehicles where verification_status=0' );
+
+            $result = $this->db->resultSet();
+            return $result;
         }
 
         public function getAdminDetails($userID)

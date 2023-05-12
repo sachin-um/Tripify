@@ -30,6 +30,8 @@ else {
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item">Guides</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotel" class="menu-item is-active">Hotels</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedDrivers" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Drivers</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedVehicles" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
