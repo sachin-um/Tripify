@@ -73,9 +73,9 @@ class M_Hotels{
     }
 
 
-    public function searchForHotels($data){
+    public function searchForHotels($destination){
         $this->db->query('SELECT * FROM hotels where Line1= :destination OR Line2= :destination OR District= :destination');
-        $this->db->bind(':destination',$data['destination']);
+        $this->db->bind(':destination',$destination);
         $hotelrecords=$this->db->resultSet();
 
         return $hotelrecords;

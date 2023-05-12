@@ -952,18 +952,17 @@
                 'bookingID' => ''
             ];
 
-
-            // print_r($_POST['roomIDs']);
+            
             if ($this->hotelBookingModel->addHotelBooking($data)) {
-                flash('reg_flash', 'You booking was successful');
+                flash('reg_flash', 'Your booking was successful');
                 $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                 $hotel=$this->hotelModel->getHotelById(intval($hotelID));
-                $mailData=[
-                    'userDetails'=>$user,
-                    'bookingDetails'=>$data,
-                    'hotelName'=>$hotel->Name
-                ];
-                confirmBookingHotel($mailData);
+                // $mailData=[
+                //     'userDetails'=>$user,
+                //     'bookingDetails'=>$data,
+                //     'hotelName'=>$hotel->Name
+                // ];
+                // confirmBookingHotel($mailData);
                 echo json_encode(true);
                 
             }else{

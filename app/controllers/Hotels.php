@@ -328,28 +328,54 @@ use Dompdf\Options;
             
                 $_POST = filter_input_array(INPUT_POST, FILTER_UNSAFE_RAW);
                 $destination = trim($_POST['place']);
-                $checkin = trim($_POST['date-1']);
-                $checkout = trim($_POST['date-2']);
-                $noofadults =trim($_POST['noofadults']);
-                
-                $data = [
-                    'destination' => trim($_POST['place'])
-                ];
 
-                $hotelSearch = $this->hotelModel->searchForHotels($data);
+                $hotelSearch = $this->hotelModel->searchForHotels($destination);
+                $images = $this->hotelModel->getImagesforHotels();
 
                 $data = [
                     'hotelSearch' => $hotelSearch,
-                    'destination' => $destination,
-                    'check-in' => trim($_POST['date-1']),
-                    'check-out' => trim($_POST['date-2']),
-                    'noofadults' => trim($_POST['noofadults'])
-                    
+                    'destination' => $destination,  
+                    'check-in' => $_POST['date-1'],
+                    'check-out' => $_POST['date-2'],
+                    'noofadults' => trim($_POST['noofadults']),
+                    'images'=>$images,
+
+                    'place_err' => '',
+                    'sdate_err' => '',
+                    'edate_err' => ''
                 ];
-                $this->view('hotels/v_searchResultsPage',$data);
+
+                
+                if(strtotime($data['check-in']) > strtotime($data['check-out'])){
+                    $data['edate_err'] = 'Check out date must be later than the check in date';
+                }
+
+                if(strtotime($data['check-in'])<time()){
+                    $data['sdate_err'] = 'Please enter a later date for check in date';
+                }
+                
+                if(empty($data['destination'])){
+                    $data['place_err'] = 'Please enter your destination';
+                }
+                
+                if(empty($data['edate_err']) && empty($data['place_err'])){
+                    $this->view('hotels/v_searchResultsPage',$data);
+                }else{
+                    $this->view('hotels/v_searchResultsPage',$data);
+                }                
             }else{
                 $data = [
-                    'destination' => ''
+                    'hotelSearch' => '',
+                    'destination' => '',  
+                    'check-in' => '',
+                    'check-out' => '',
+                    'noofadults' => '',
+                    'images'=>'',
+                    'destination' => '',
+
+                    'place_err' => '',
+                    'sdate_err' => '',
+                    'edate_err' => ''
                 ];
 
                 $this->view('hotels/v_searchResultsPage',$data);
@@ -403,16 +429,6 @@ use Dompdf\Options;
             ];
             $this->view('hotels/v_dash_profile',$data);
         }
-
-        public function loadFacilities(){
-            $facilities=$this->hotelModel->lookupfacilities($hotelID);
-            $data=[
-                'facilities'=>$facilities
-            ];
-            $this->view('hotels/v_dash_profile',$data);
-        }
-
-
 
         public function addFacilities(){
             if (isset($_POST['submit'])) {
@@ -519,7 +535,7 @@ use Dompdf\Options;
                     }
     
                 } else {
-                    $this->view('hotels/v_hotelReg', $data);
+                    $this->view('hotels/v_addReview', $data);
                 }
 
 

@@ -18,11 +18,11 @@
                     <option value="4">4 stars</option>
                     <option value="5">5 stars</option>
                 </select>  
-                <span class="invalid"><?php echo $data['rating_err']; ?></span>
+                <span id="reg-form-span"><?php echo $data['rating_err']; ?></span>
 
                 <p style="font-size: 1.1rem;">Review</p>
                 <textarea name="review" id="" cols="30" rows="10"></textarea>
-                <span class="invalid"><?php echo $data['review_err']; ?></span>
+                <span id="reg-form-span"><?php echo $data['review_err']; ?></span><br>
 
                 <button class="start-btn" type="submit">Submit</button>
             </form><br>
