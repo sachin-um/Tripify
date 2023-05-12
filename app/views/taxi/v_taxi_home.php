@@ -4,7 +4,7 @@
 
 <div class="wrapper"> 
 
-<div class="tax-home-content">
+    <div class="tax-home-content">
         
         <br><br><br>
         <p class="home-title-2" >Where are you going?</p>
@@ -14,6 +14,7 @@
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Vehicle Type</p>
                     <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
+                        <option value="all">All Type</option>
                         <option value="Tuk Tuk">Tuk Tuk</option>
                         <option value="Car">Car</option>
                         <option value="Van">Van</option>
@@ -34,7 +35,7 @@
                     <p class="hotel-labels-1">Pick up location</p>
                     <select class="district-labels-1" id="select-district" name="area">
                         <!-- <option value="<?php echo $data['area']?>" selected  hidden><?php echo $data['area']?></option> -->
-                                            
+                            <option value="all">All Districts</option>           
                             <option value="Ampara">Ampara</option>
                             <option value="Anuradhapura">Anuradhapura</option>
                             <option value="Badulla">Badulla</option>
@@ -65,16 +66,7 @@
 
                                                        
                                             
-                </div>
-
-
-
-                <!-- <div class="nav-parts">
-                    <p class="hotel-labels-1">Drop off location</p>
-                    <input type="text" class="hotel-labels-1" id="destination" name="destination" placeholder="Destination">
-                </div> -->
-
-                
+                </div>                
                 
                 
             </div>  

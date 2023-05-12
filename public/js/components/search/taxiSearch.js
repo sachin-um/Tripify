@@ -1,65 +1,77 @@
 $(document).ready(function() {
     
     // Add event listener to input element
-
-    $('#gobackBut').on('click', function() {
-        $('#goback').hide();
-        document.getElementById("hide-div").style.display = "block";
-  
-      });
-
-    $('input').on('click change', function() {
-      // Hide the div with id 'hide-div'
-      $('#hide-div').hide();
-      document.getElementById("goback").style.display = "block";
-
-    });
+    if ($('#gobackBut').length) {
+        $('#gobackBut').on('click', function() {
+            $('#goback').hide();
+            document.getElementById("hide-div").style.display = "block";
+      
+          });
+    }
+   
+    if ($('input').length) {
+        $('input').on('click change', function() {
+            // Hide the div with id 'hide-div'
+            $('#hide-div').hide();
+            if ($('#gobackBut').length) {
+                document.getElementById("goback").style.display = "block";
+            }
+      
+          });
+    }
+    
 
     $('select').on('click change', function() {
         // Hide the div with id 'hide-div'
         $('#hide-div').hide();
-        document.getElementById("goback").style.display = "block";
+        if ($('#gobackBut').length) {
+            document.getElementById("goback").style.display = "block";
+        }
+        
 
       });
   });
   
 
 
-// Get the search input element
-const searchInput = document.getElementById('searchInput');
+
 const div = document.getElementById("vehicle-list");
 const filterselect=document.getElementById("vehicle-type");
 const filterselectdis=document.getElementById("select-district");
 
 // Add an event listener to the search input
-searchInput.addEventListener('input', function() {
-  // Get the search term
-  const searchTerm = searchInput.value.toLowerCase();
 
-  // Get all the taxi view containers
-  const taxiViewContainers = document.querySelectorAll('.taxi_view_v_dash');
-
-  // Loop through each container
-  taxiViewContainers.forEach(function(container) {
-    // Get the owner name and company name elements in the container
-    const ownerNameElement = container.querySelector('.owner label:first-child');
-    const companyNameElement = container.querySelector('.owner label:first-child');
-
-    // Get the owner name and company name values
-    const ownerName = ownerNameElement.textContent.toLowerCase();
-    const companyName = companyNameElement.textContent.toLowerCase();
-
-    // Check if the search term matches the owner name or company name
-    if (ownerName.includes(searchTerm) || companyName.includes(searchTerm)) {
-      // Show the container
-      container.style.display = 'block';
-    } else {
-      // Hide the container
-      container.style.display = 'none';
-    }
-  });
-});
-
+// Get the search input element
+if ($('input').length) {
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function() {
+        // Get the search term
+        const searchTerm = searchInput.value.toLowerCase();
+      
+        // Get all the taxi view containers
+        const taxiViewContainers = document.querySelectorAll('.taxi_view_v_dash');
+      
+        // Loop through each container
+        taxiViewContainers.forEach(function(container) {
+          // Get the owner name and company name elements in the container
+          const ownerNameElement = container.querySelector('.owner label:first-child');
+          const companyNameElement = container.querySelector('.owner label:first-child');
+      
+          // Get the owner name and company name values
+          const ownerName = ownerNameElement.textContent.toLowerCase();
+          const companyName = companyNameElement.textContent.toLowerCase();
+      
+          // Check if the search term matches the owner name or company name
+          if (ownerName.includes(searchTerm) || companyName.includes(searchTerm)) {
+            // Show the container
+            container.style.display = 'block';
+          } else {
+            // Hide the container
+            container.style.display = 'none';
+          }
+        });
+      });
+}
 
 filterselect.addEventListener('change',()=>{
     const searchTerm = filterselect.value.toLowerCase();

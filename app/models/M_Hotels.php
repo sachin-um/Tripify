@@ -92,8 +92,10 @@ class M_Hotels{
         //     $this->db->bind(':facilityID',$facilitySelected->FacilityID);
         // }
         
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,contact_number,Pets,
-        Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:contact_number,:pets,
+
+
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,Category,contact_number,Pets,
+        Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:property_category,:contact_number,:pets,
         :check_in,:check_out,:reg_number)');
         $this->db->bind(':HotelID',$data['hotel_id']);
         $this->db->bind(':name',$data['name']);

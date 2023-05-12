@@ -33,6 +33,7 @@ use Dompdf\Options;
                 'hotel_reg_number' => trim($_POST['hotel_reg_number']),
                 'contact_number' => trim($_POST['contact']),
                 'pets' => ($_POST['pets']),
+
                 'check_in' => trim($_POST['check_in']),
                 'check_out' => trim($_POST['check_out']),
                 'description' => trim($_POST['description']),

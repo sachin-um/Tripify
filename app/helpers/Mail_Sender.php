@@ -102,7 +102,7 @@ function accountSuspendMail($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($email);     //Add a recipient
+        $mail->addAddress($data->Email);     
         
 
         //Content
@@ -142,23 +142,22 @@ function confirmBookingHotel($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($email);     //Add a recipient
+        $mail->addAddress($data->userDetails->Email);     //Add a recipient
         
 
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Confirmation of Booking';
         $mail->Body    = " <h4>Dear User,<h4><br><br>
-        <p>Thank you for booking your stay with $data->HotelName.<br>
+        <p>Thank you for booking your stay with $data->hotelName.<br>
         We're looking forward to your visit</p>
 
         <br><br><p>Your booking details are as follows :</p>
         
-        <br><br><h4>Check in :</h4><p>$data->checkin_date</p>
-        <br><br><h4>Check out :</h4><p>$data->checkout_date</p>
-        <br><br><h4>Room(s) :</h4><p>$data-></p>
-        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
-        <br><br><h4>Total :</h4><p>$data->payment</p>
+        <br><br><h4>Check in :</h4><p>$data->bookingDetails->checkin</p>
+        <br><br><h4>Check out :</h4><p>$data->bookingDetails->checkout</p>
+        <br><br><h4>Booked By :</h4><p>$data->userDetails->Name</p>
+        <br><br><h4>Total :</h4><p>$data->bookingDetails->payment</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
         <p>We hope you enjoy your stay with us.</p><br><br>
@@ -189,24 +188,24 @@ function confirmBookingTaxi($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($email);     //Add a recipient
+        $mail->addAddress($data->userdetails->Email);     //Add a recipient
         
 
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Confirmation of Booking';
         $mail->Body    = " <h4>Dear User,<h4><br><br>
-        <p>Thank you for booking your ride with $data->TaxiOwnerName.<br>
+        <p>Thank you for booking your ride with $data->taxiowner->Name.<br>
         We're looking forward to your trip.</p>
 
         <br><br><p>Your booking details are as follows :</p>
         
-        <br><br><h4>Pick up :</h4><p>$data->checkin_date</p>
-        <br><br><h4>Destination :</h4><p>$data->checkout_date</p>
-        <br><br><h4>Booking Date :</h4><p>$data->booking_date</p>
+        <br><br><h4>Pick up :</h4><p>$data->pickupL</p>
+        <br><br><h4>Destination :</h4><p>$data->dropL</p>
+        <br><br><h4>Booking Date :</h4><p>$data->s_date</p>
         <br><br><h4>No of Passengers :</h4><p>$data->passengers</p>
-        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
-        <br><br><h4>Total :</h4><p>$data->payment</p>
+        <br><br><h4>Booked By :</h4><p>$data->user->Name</p>
+        <br><br><h4>Total :</h4><p>$data->total</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
         <p>We hope you enjoy your trip with us.</p><br><br>
@@ -237,14 +236,14 @@ function confirmBookingGuide($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($email);     //Add a recipient
+        $mail->addAddress($data->userDetails->Email);     //Add a recipient
         
 
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Confirmation of Booking';
         $mail->Body    = " <h4>Dear User,<h4><br><br>
-        <p>Thank you for booking your guided tour with $data->GuideName.<br>
+        <p>Thank you for booking your guided tour with $data->guideDetails->Name.<br>
         We're looking forward to your trip.</p>
 
         <br><br><p>Your booking details are as follows :</p>
@@ -252,7 +251,7 @@ function confirmBookingGuide($data){
         <br><br><h4>Location :</h4><p>$data->Location</p>
         <br><br><h4>Start Date :</h4><p>$data->StartDate</p>
         <br><br><h4>End Date :</h4><p>$data->EndDate</p>
-        <br><br><h4>Booked By :</h4><p>$data->TravelerName</p>
+        <br><br><h4>Booked By :</h4><p>$data->travelerDetails->Name</p>
         <br><br><h4>Total :</h4><p>$data->payment</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>

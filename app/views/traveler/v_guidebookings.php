@@ -58,6 +58,13 @@ else {
         <br>
         <div class="first-container">
             <div class="admin-table-container">
+                <?php
+                    if (empty($data['guidebookings'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
                 <table class="message-table" id="message-table">
                     <thead>
                         <tr>
@@ -79,7 +86,7 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID">G<?php echo $booking->BookingID ?></td>
+                            <td data-lable="ID" data="<?php echo  $booking->BookingID ?>">G<?php echo $booking->BookingID ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->Guides_GuideID; ?>/Guide"><?php echo $booking->guide->Name ?></a></td>
                             <td data-lable="Email"><?php echo $booking->Location ?></td>
                             <td data-lable="Message"><?php echo $booking->StartDate ?></td>
@@ -165,6 +172,9 @@ else {
                         ?>
                     </tbody>
                 </table>
+                <?php
+                }
+                ?>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="trip-popup-content"></div>

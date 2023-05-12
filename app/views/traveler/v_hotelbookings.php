@@ -58,6 +58,13 @@ else {
         <?php flash('booking_flash'); ?>
         <div class="first-container">
             <div class="admin-table-container">
+                <?php
+                    if (empty($data['hotelbookings'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
                 <table class="message-table" id="message-table">
                     <thead>
                         <tr>
@@ -81,7 +88,7 @@ else {
                         ?>
                         <tr>
                             <!-- <td data-lable="ID"></td> -->
-                            <td data-lable="Name">H<?php echo $booking->booking_id ?></td>
+                            <td data-lable="Name"  data="<?php echo  $booking->booking_id ?>">H<?php echo $booking->booking_id ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hoteldetails->HotelID; ?>/Hotel"><?php echo $booking->hoteldetails->Name ?></a> </td>
                             <td data-lable="Name"><?php echo $booking->hoteldetails->Name?></td>
                             <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
@@ -184,7 +191,7 @@ else {
                                     }
                                     
                                 }
-                                elseif ($booking->status=='Completed') {
+                                elseif ($booking->status=='completed') {
                                     ?>
                                     <td data-lable="Name"><i class="fa-solid fa-check"style="margin-right: 10px"></i>Completed
                                     <?php
@@ -201,6 +208,9 @@ else {
                         ?>
                     </tbody>
                 </table>
+                <?php
+                }
+                ?>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="trip-popup-content"></div>

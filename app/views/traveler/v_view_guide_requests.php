@@ -72,6 +72,13 @@ else {
             </select>
         </div>
         <?php flash('guide_request_flash'); ?>
+                <?php
+                    if (empty($data['guiderequests'])) {
+                ?>
+                    <p style="font-size: 1.2rem; margin: auto;">No records to show...</p>
+                <?php        
+                } else {
+                ?>
         <div class="request-list" id="request-list">
 
         <?php
@@ -205,6 +212,9 @@ else {
             endforeach;
         ?>
         </div>
+        <?php
+            }
+        ?>
         </div>
 
     </main>

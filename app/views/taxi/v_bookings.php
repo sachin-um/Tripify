@@ -316,7 +316,7 @@ else {
 
 <?php }?>
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
 
 <script>
     var slidePosition = 1;
@@ -503,5 +503,5 @@ else {
 
 </script>
  
-
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
