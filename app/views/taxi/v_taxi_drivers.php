@@ -14,11 +14,17 @@
             <!-- <a href="#" class="menu-item is-active">Company</a> -->
             <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item is-active">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
+            <?php
+            if ($_SESSION['user_id']== $data['owner']) {
+                        ?>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
+            <?php
+            }
+            ?>
         </nav>
     </aside>
 
@@ -84,7 +90,7 @@
                                     
                                             <hr style="margin-bottom:10px;">
                                             <button class="acc-view-btn" type="button" onclick="showDriverDetails('<?php echo $driver->TaxiDriverID; ?>','<?php echo URLROOT; ?>')">Verification Details</button>
-                                            <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                            <a href="<?php echo URLROOT; ?>/Admins/verifydriver/<?php echo $driver->TaxiDriverID ?>">
                                                                     <button class="verify-btn" type="button">Verify</button>
                                             </a>
                                     

@@ -34,7 +34,7 @@ class M_Guides{
             $this->db->bind(':travelerid',$data['id']);
             $updatetraveler=$this->db->execute();
 
-            $this->db->query('UPDATE users SET UserType="Guide" WHERE UserID=:guideid');
+            $this->db->query('UPDATE users SET UserType="Guide",verification_status=2 WHERE UserID=:guideid');
             $this->db->bind(':guideid',$data['id']);
             $userupdate=$this->db->execute();
             if ($updatetraveler && $userupdate) {

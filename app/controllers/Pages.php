@@ -80,8 +80,13 @@
             }
         }
 
-        public function logins(){
-            $this->view('v_logins');
+        // public function logins(){
+        //     $this->view('v_error');
+        // }
+
+        public function errorpage()
+        {
+            $this->view('v_error');
         }
 
         public function rooms(){

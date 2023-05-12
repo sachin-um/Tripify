@@ -53,10 +53,14 @@ function filteritems($items,$usertype,$userid){
 function filteroffers($items,$usertype,$id){
     switch ($usertype) {
         case 'Taxi':
-            return $items;
+            return array_filter($items,function ($item) use($id){
+                return ($item->OwnerID == $_SESSION['user_id']);
+            });
             break;
         case 'Guide':
-            return $items;
+            return array_filter($items,function ($item) use($id){
+                return ($item->GuideID == $_SESSION['user_id']);
+            });
             break;
         case 'Traveler':
             return array_filter($items,function ($item) use($id){
@@ -95,19 +99,19 @@ function filterBookings($items,$usertype,$userid){
     
 }
 
-//user session
-function createUserSession($user){
-    $_SESSION['user_id']=$user->UserID;
-    $_SESSION['user_name']=$user->Name;
-    $_SESSION['user_email']=$user->Email;
-    $_SESSION['user_type']=$user->UserType;
+// //user session
+// function createUserSession($user){
+//     $_SESSION['user_id']=$user->UserID;
+//     $_SESSION['user_name']=$user->Name;
+//     $_SESSION['user_email']=$user->Email;
+//     $_SESSION['user_type']=$user->UserType;
     
-    $data=[
-        'isLoggedIn'=>$this->isLoggedIn()
-    ];
-    $this->view('v_home',$data);
-    // redirect('Pages/home',$data);
-}
+//     $data=[
+//         'isLoggedIn'=>$this->isLoggedIn()
+//     ];
+//     $this->view('v_home',$data);
+//     // redirect('Pages/home',$data);
+// }
 
 function isLoggedIn(){
     if (isset($_SESSION['user_id'])) {

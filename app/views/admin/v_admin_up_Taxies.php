@@ -47,10 +47,10 @@ else {
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
                 <option value="all account">All Account</option>
-                <option value="suspened">Suspended</option>
+                <option value="suspend">Suspend</option>
                 <option value="active">Active</option>
                 <option value="verified">Verified</option>
-                <option value="not-verified">Not Verified</option>
+                <option value="notv">Not Verified</option>
             </select>
         </div>
         <?php flash('admin_flash'); ?>
@@ -68,7 +68,7 @@ else {
                             <th>Company Name</th>
                             <th>No of Vehicles</th>
                             <th>status</th>
-                            <th style="display: none;">Verification status</th>
+                            
                             <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -86,7 +86,8 @@ else {
                                 }
                                 
                             ?>
-                            
+                            <th style="display: none;">Verification status</th>
+                            <th style="display: none;">Account status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -105,7 +106,7 @@ else {
                             <td data-lable="No of Vehicles"><?php echo $taxi->moreDetails->NoOfVehicles ?></td>
                             <td data-lable="No of Vehicles"><?php echo $taxi->acc_status ?></td>
                             <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $taxi->UserID ?>/Taxi'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
-                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
+                            
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
@@ -134,9 +135,9 @@ else {
                                 ?>
                                 
                                 
-                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $taxi->UserID ?>/Guide/<?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $taxi->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $taxi->UserID ?>/Guide/<?php echo  $taxi->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $taxi->acc_status=='Suspend' ? 'active-btn' : 'sus-btn'  ?> type="button">
                                         <?php 
-                                            if ($taxi->acc_status=='Suspended') {
+                                            if ($taxi->acc_status=='Suspend') {
                                                 ?>
                                                 <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
                                                 
@@ -149,12 +150,14 @@ else {
                                             }
                                         
                                         ?>
-                                        <?php echo  $taxi->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                                        <?php echo  $taxi->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?></button></a>
                                     </td>
                                 
                                 <?php
                             }
                             ?>
+                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'NotV' : 'Verified'  ?></td>
+                            <td style="display: none;"><?php echo $taxi->acc_status  ?>"</td>
                         </tr>
                         <?php
                             endforeach;

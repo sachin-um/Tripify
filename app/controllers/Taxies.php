@@ -49,8 +49,8 @@
                     if ($this->taxiModel->register($data)) {
                         unset($_SESSION['user_id']);
                         unset($_SESSION['user_email']);
-                        flash('reg_flash', 'You are Succusefully registered as Taxi Owner');
-                        redirect('Taxies/login');
+                        flash('reg_flash', 'You are Succusefully registered as Taxi Owner, Please wait for verication process is done...');
+                        redirect('Users/login');
                     }
                     else{
                         flash('reg_flash', 'Somthing went wrong please try again...');

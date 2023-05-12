@@ -16,11 +16,15 @@
             echo json_encode($driver);
         }
 
-        public function viewdrivers(){
+        public function viewdrivers($id=null){
             $user_id='';
-            if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
+            if ($id!='') {
+                $user_id=$id;
+            }
+            elseif($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin' ||  $_SESSION['admin_type']=='Traveler') {
                 $user_id=$_SESSION['service_id'];
-            } else {
+            } 
+            else {
                 $user_id=$_SESSION['user_id'];
             }
             $alldrivers=$this->taxi_driverModel->viewall($user_id);
@@ -28,6 +32,15 @@
             $data=[
                 'drivers'=> $alldrivers
             ];
+            if ($id!='') {
+                $data['owner']=$id;
+            }
+            elseif($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin' ||  $_SESSION['admin_type']=='Traveler') {
+                $data['owner']=$_SESSION['service_id'];
+            } 
+            else {
+                $data['owner']=$_SESSION['user_id'];
+            }
             $this->view('taxi/v_taxi_drivers',$data);
         }
 
