@@ -33,7 +33,7 @@
     margin: auto;
     padding: 1% 1%;
     width: 78%;
-    background-color: white;
+    background-color: #F2ECFF;
 }
 
 .trip-details-view .form-div .flex-2{
@@ -228,26 +228,18 @@
 }
 
 .create-plan-btn{
-    width: 10%;
+    background-color: #03002E;
     height: 60px;
     text-align: center;
-    border-radius: 10px;
-    color: white;
-    background-color: #005782;
+    color: #FFFFFF;
+    border-radius: 12px;
     cursor: pointer;
     margin-top: 2%;
 }
 
 .create-plan-btn:hover{
-    width: 10%;
-    height: 60px;
-    text-align: center;
-    border-radius: 10px;
-    color: black;
-    background-color: #F2ECFF;
-    cursor: pointer;
-    margin-top: 2%;
-    border: 2px solid #005782;
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 .main-container {

@@ -142,22 +142,22 @@ function confirmBookingHotel($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($data->userDetails->Email);     //Add a recipient
+        $mail->addAddress($data['userDetails']->Email);     //Add a recipient
         
 
         //Content
         $mail->isHTML(true);                              
         $mail->Subject = 'Confirmation of Booking';
         $mail->Body    = " <h4>Dear User,<h4><br><br>
-        <p>Thank you for booking your stay with $data->hotelName.<br>
+        <p>Thank you for booking your stay with ".$data['hotelName'].".<br>
         We're looking forward to your visit</p>
 
         <br><br><p>Your booking details are as follows :</p>
         
-        <br><br><h4>Check in :</h4><p>$data->bookingDetails->checkin</p>
-        <br><br><h4>Check out :</h4><p>$data->bookingDetails->checkout</p>
-        <br><br><h4>Booked By :</h4><p>$data->userDetails->Name</p>
-        <br><br><h4>Total :</h4><p>$data->bookingDetails->payment</p>
+        <br><br><h4>Check in :</h4><p>".$data['bookingDetails']->checkin."</p>
+        <br><br><h4>Check out :</h4><p>".$data['bookingDetails']->checkout."</p>
+        <br><br><h4>Booked By :</h4><p>".$data['userDetails']->Name."</p>
+        <br><br><h4>Total :</h4><p>".$data['bookingDetails']->payment."</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
         <p>We hope you enjoy your stay with us.</p><br><br>

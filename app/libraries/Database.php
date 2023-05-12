@@ -23,7 +23,8 @@
                 $this->dbh=new PDO($dsn, $this->user,$this->password,$options );
             } catch (PDOException $th) {
                 $this->error =$th->getMessage();
-                echo $this->error;
+                // echo $this->error;
+                redirect('Pages/errorpage');
             }
         }
 

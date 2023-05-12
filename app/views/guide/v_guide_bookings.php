@@ -66,7 +66,7 @@
                         </td>
                         
                     <?php
-                        }else if ($booking->status=='Confrimed') {
+                        }else if ($booking->status=='Confirmed') {
                     ?>
                
                         <td data-lable="Name">

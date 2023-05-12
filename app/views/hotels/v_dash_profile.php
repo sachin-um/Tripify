@@ -153,13 +153,11 @@ else{
             }
             ?>        
             </form> 
-            
             <?php 
                 if ($data['hotelaccountdetails']->UserID!= $_SESSION['user_id']) {
                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                 }  
             ?>
-             
         </div>       
         
         <br><br>
@@ -496,15 +494,15 @@ else{
             <!-- <img src="C:/xampp/htdocs/Tripify/public/img/hotel-uploads/echo $fetch['imgName'];" width="100px" height="100px"> -->
    
         </div><br><br>
-
+        
         </div>
 
         <div id="popup" class="trip-popup">
                         <div id="popup-content" class="profile-popup-content"></div>
         </div>
         <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
-
     </main>
+    
 </div>
 
 <?php

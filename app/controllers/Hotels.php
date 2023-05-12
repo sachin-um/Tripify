@@ -95,8 +95,9 @@ use Dompdf\Options;
             ) {
                 //Register Hotel
                 if ($this->hotelModel->register($data)) {
-                    flash('reg_flash', 'You are Successfully registered');
-                    redirect('Hotels/login');
+                    session_destroy();
+                    flash('reg_flash', 'You are Succusefully registered as Guide, Please wait for verication process is done...');
+                    redirect('Users/login');
                 } else {
                     die('Something went wrong');
                 }
@@ -407,17 +408,6 @@ use Dompdf\Options;
             ];
             $this->view('hotels/v_dash_profile',$data);
         }
-
-        public function loadFacilities(){
-            $facilities=$this->hotelModel->lookupfacilities($hotelID);
-            $data=[
-                'facilities'=>$facilities
-            ];
-            $this->view('hotels/v_dash_profile',$data);
-        }
-
-
-
         public function addFacilities(){
             if (isset($_POST['submit'])) {
                 $farray = implode(",",$_POST['facilities']);

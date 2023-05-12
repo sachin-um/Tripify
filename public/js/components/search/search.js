@@ -45,18 +45,16 @@ const filterselect=document.getElementById("account-type");
         else{
             for (let i = 1; i < table.rows.length; i++) {
                 const row = table.rows[i];
-                const cells = row.cells;
+                const lastTwoCells = row.cells.length > 1 ? [row.cells[row.cells.length - 2], row.cells[row.cells.length - 1]] : [];
                 let matchesSearch = false;
         
                 
-                for (let j = 0; j < cells.length; j++) {
-                const cell = cells[j];
+                Array.from(lastTwoCells).forEach(cell => {
                 
                 if (cell.textContent.toLowerCase().includes(searchTerm)) {
                     matchesSearch = true;
-                    break;
                 }
-                }
+                });
         
                 
                 if (matchesSearch) {

@@ -183,7 +183,7 @@ else{
                     </div>
                         
                     <div class="sub-sub">
-                        <?php if ($data->verification_status ==2) {
+                        <?php if ($data->verification_status ==3) {
                             ?><h3>Verified</h3><?php
                         }else {
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -241,7 +241,7 @@ else{
 
     </main>
  </div>
- <div id="popup" class="trip-popup">
+ <div id="profile-popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>
 </div>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
