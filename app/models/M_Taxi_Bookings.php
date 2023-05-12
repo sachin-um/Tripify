@@ -26,7 +26,9 @@
             $filteredbookings=filterBookings($bookings,$usertype,$userid);
             foreach ($filteredbookings as $booking) {
                 $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
+                $traveler=$this->getUserDetails($booking->TravelerID);
                 $booking->vehicle=$vehicle;
+                $booking->traveler=$traveler;
             }
             return $filteredbookings;
         }

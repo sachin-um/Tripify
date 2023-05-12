@@ -296,6 +296,9 @@
             if ($row->verification_status==0) {
                 return 'NotValidate';
             }
+            elseif ($row->verification_status==2) {
+                return 'ServiceNotValidate';
+            }
             else if (password_verify($data['password'], $hashed_password)) {
                 $this->db->query('UPDATE users set active_status="Active" WHERE Email= :email');
                 $this->db->bind(':email',$data['email']);

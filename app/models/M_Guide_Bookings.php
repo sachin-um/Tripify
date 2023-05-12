@@ -18,8 +18,10 @@
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
                     $traveler=$this->getUserDetails($booking->TravelerID);
-                    $traveler_name=$traveler->Name;
+                    $traveler_name=$traveler->Name;;
                     $booking->traveler_name=$traveler_name;
+                    $booking->traveler=$traveler;
+
                     $booking->guide=$guide;
                 }
             }
