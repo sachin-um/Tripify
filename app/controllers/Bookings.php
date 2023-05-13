@@ -78,10 +78,17 @@
         // public function filterGuidebooking($usertype,$userid){
         //     $filter=$this->guideBookingModel->filterguidebooking($usertype,$userid);
         //     $data=[
-        //         'filterbooking'=> $filter
+        //         'guidebookings'=> $filter
         //     ];
         //     $this->view('guide/v_guide_bookings',$data);
         // }
+
+
+
+
+
+
+
 
         public function ConfirmGuideBooking($ReservationID){
             
@@ -169,54 +176,59 @@
         }
 
 
-        public function GuideBooking($GuideID){
-            $guideDetails=$this->guideModel->getGuideById($GuideID);
-            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
-            
+        public function GuideBooking($GuideID){ //book a guide from guide booking 
+            if ($_SESSION['user_type'] == 'Traveler') { 
+                $guideDetails=$this->guideModel->getGuideById($GuideID);
+                $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
+                
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $data=[
-                    'GuideID' =>$GuideID,
-                    'StartDate'=>$_POST['sdate'],
-                    'EndDate'=>$_POST['endDate'],
-                    'PaymentMethod'=>$_POST['payment_option'],
-                    'payment'=>$_POST['total'],
-                    'TravelerID'=>$_SESSION['user_id'],
-                    'Location'=>$_POST['G_book_location']
-                ];
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                    $data=[
+                        'GuideID' =>$GuideID,
+                        'StartDate'=>$_POST['sdate'],
+                        'EndDate'=>$_POST['endDate'],
+                        'PaymentMethod'=>$_POST['payment_option'],
+                        'payment'=>$_POST['total'],
+                        'TravelerID'=>$_SESSION['user_id'],
+                        'Location'=>$_POST['G_book_location']
+                    ];
 
-                if($_SESSION['user_type']){
-                    if($this->guideBookingModel->insertGuideBooking($data)){
-                        $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
-                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
-                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
-                        confirmBookingGuide($data);
-                        flash('booking_flash', 'Guide Booked Sucessfully');
-                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    if($_SESSION['user_type']){
+                        if($this->guideBookingModel->insertGuideBooking($data)){
+                            $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
+                            $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
+                            $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
+                            confirmBookingGuide($data);
+                            flash('booking_flash', 'Guide Booked Sucessfully');
+                            redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                        }else{
+                            flash('booking_flash', 'Somthing went wrong try again');
+                            redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                        }
                     }else{
-                        flash('booking_flash', 'Somthing went wrong try again');
-                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                        flash('reg_flash', 'Access denied..');
+                        redirect('Users/login');
                     }
+
+                    
+
+                    
                 }else{
-                    flash('reg_flash', 'Access denied..');
-                    redirect('Users/login');
+                    $data=[
+                        'guidedetails'=>$guideDetails,
+                        'guideLanguages'=>$guidelanguages,
+                        'GuideID'=>$guideDetails->GuideID
+                    
+                    ];
+                    
+                    
+                    // echo var_dump($data);
+                    $this->view('guide/v_guide_booking',$data);
                 }
-
-                
-
-                
             }else{
-                $data=[
-                    'guidedetails'=>$guideDetails,
-                    'guideLanguages'=>$guidelanguages,
-                    'GuideID'=>$guideDetails->GuideID
-                   
-                ];
-                
-                
-                // echo var_dump($data);
-                $this->view('guide/v_guide_booking',$data);
+                flash('reg_flash', 'Only Traveler Can Place Booking...');
+                redirect('Users/login');
             }
         }
         
