@@ -188,7 +188,7 @@ if (empty($_SESSION['user_id'])) {
                         <br>
                         <div class="sub-description">
                             <div class="sub-sub">
-                                <h3>Price per Hour: </h3>
+                                <h3>Price per Day: </h3>
                             </div>
 
                             <div class="info">

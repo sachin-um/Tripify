@@ -1,7 +1,6 @@
 .request-list{
     margin-top: 2%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     padding: 15px;
     width: 50%;
     
@@ -10,7 +9,7 @@
     min-width: 880px;
     background-color: #fff;
     border-radius: 14px;
-    float: left;
+    margin: auto;
     text-align: center;
     height: fit-content;
     box-shadow: 0 0.4px 10px rgb(0 0 0 / 0.2);

@@ -51,11 +51,11 @@
 
                 //validate name
                 if (empty($data['charges'])) {
-                    $data['charges_err']='Please enter a Pickup Location';
+                    $data['charges_err']='Please enter the charge';
                 }
                 //validate email
                 if (empty($data['payment-option'])) {
-                    $data['payment-option_err']='please enter a Destination';
+                    $data['payment-option_err']='please enter a payment option';
                 }
                 
                 

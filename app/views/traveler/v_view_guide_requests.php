@@ -187,7 +187,7 @@ else {
                                 Delete
                                 </button>
                             </a>
-                            <a href="<?php echo URLROOT; ?>/Offers/guideoffers/<?php echo $guiderequest->request_id ?>" style="text-decoration:none;cursor:pointer;"><button id="request-offer-btn" type="submit" >
+                            <a href="<?php echo URLROOT; ?>/Offers/guideoffers/<?php echo $guiderequest->request_id ?>" style="text-decoration:none; cursor:pointer;"><button id="request-offer-btn" type="submit" >
                                 <i class="fa-brands fa-buffer" style="margin-right: 10px;"></i>
                                 View Offers
                                 </button>
