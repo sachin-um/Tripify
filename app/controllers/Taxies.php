@@ -3,6 +3,7 @@
         public function __construct(){
             $this->taxiModel=$this->model('M_Taxi');
             $this->userModel=$this->model('M_Users');
+            $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
             // $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
         }
         public function index(){
@@ -233,11 +234,11 @@
 
 
 
-        public function offers(){
-            $data=[];
-            $this->view('taxi/v_taxi_offers',$data);
+        // public function offers(){
+        //     $data=[];
+        //     $this->view('taxi/v_taxi_offers',$data);
             
-        }
+        // }
 
         
 
@@ -307,10 +308,19 @@
     // }
 
 
-        // public function payments(){
-        //     $data=[];
-        //     $this->view('taxi/v_taxi_payments',$data);
-        // }
+        public function payments(){
+            if($_SESSION['user_type'] == 'Taxi'){
+                $taxibookings = $this->taxiBookingModel->getPaymentDetails($_SESSION['user_type'],$_SESSION['user_id']);
+                $data=[
+                    'taxibookings'=>$taxibookings
+                ];
+                $this->view('taxi/v_taxi_payments',$data);
+            }else{
+                flash('reg_flash', 'Only Traveler Can Place Booking...');
+                redirect('Users/login');
+            }
+            
+        }
 
         
         // public function trip(){

@@ -167,7 +167,7 @@ else {
                         <div class="taxi_veh_det_cont">
                             <div id="slideshow-container-<?php echo $vehicle->VehicleID?>">
                                 <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
-                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:15em;max-height: 10em; object-fit: contain;">
+                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:20em;max-height: 15em;  object-fit: contain;">
                                 <?php } ?>
                             </div>
                         
