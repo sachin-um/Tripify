@@ -222,15 +222,14 @@
             dataType: "JSON",
             success: function(response) {
                 
-                // response.array.forEach(element => {
-                //     console.log(element);
-                // });
                 if(response){
-                    window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
+                    alert(response);
+                    // window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
 
                 }else{
                     alert("Failed");
                 }
+                // console.log(response);
                 
 
             },

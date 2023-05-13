@@ -18,8 +18,10 @@
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
                     $traveler=$this->getUserDetails($booking->TravelerID);
-                    $traveler_name=$traveler->Name;
+                    $traveler_name=$traveler->Name;;
                     $booking->traveler_name=$traveler_name;
+                    $booking->traveler=$traveler;
+
                     $booking->guide=$guide;
                 }
             }
@@ -34,6 +36,30 @@
             }
             return $filteredbookings;
         }
+        // public function filterguidebooking($usertype,$userid){
+        //     $this->db->query('SELECT * FROM guide_bookings where PaymentStatus="Completed"');
+        //     $bookings=$this->db->resultSet();
+        //     $filteredbookings=filterBookings($bookings,$usertype,$userid);
+        //     if ($usertype='Traveler') {
+        //         foreach ($filteredbookings as $booking) {
+        //             $guide=$this->getGuideById($booking->Guides_GuideID);
+        //             $traveler=$this->getUserDetails($booking->TravelerID);
+        //             $traveler_name=$traveler->Name;
+        //             $booking->traveler_name=$traveler_name;
+        //             $booking->guide=$guide;
+        //         }
+        //     }
+        //     elseif ($usertype='Guide') {
+        //         foreach ($filteredbookings as $booking) {
+        //             $traveler=$this->getUserDetails($booking->TravelerID);
+        //             $traveler_name=$traveler->Name;
+        //             $booking->traveler_name=$traveler_name;
+        //             // echo $traveler->Name;
+                    
+        //         }
+        //     }
+        //     return $filteredbookings;
+        // }
 
         public function getTravelerbyID($id){
             $this->db->query('SELECT * FROM users WHERE UserID=:id');
@@ -124,7 +150,7 @@
             }
         }
         public function getPaymentDetails(){
-            $this->db->query("SELECT `TravelerID`,'BookingID','payment','PaymentStatus' FROM guide_bookings WHERE Guides_GuideID=:id AND PaymentStatus ='Paid'");
+            $this->db->query("SELECT * FROM guide_bookings WHERE Guides_GuideID=:id AND PaymentStatus ='Paid'");
             $this->db->bind(':id',$_SESSION['user_id']);
 
             $bookings=$this->db->resultSet();
@@ -207,7 +233,24 @@
 
         }
 
+        public function getGuidePayforMonth(){
+            $this->db->query('SELECT SUM(payment) AS total_payment
+            FROM guide_bookings
+            WHERE DateAdded >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+            ');
 
+            $total = $this->db->single();
+            return $total->total_payment;
+        }
+
+        public function getGuideBookingsforMonth(){
+            $this->db->query('SELECT COUNT(*) AS total_bookings
+            FROM guide_bookings
+            WHERE status IN ("Completed", "Confirmed");');
+
+            $total = $this->db->single();
+            return $total->total_bookings;
+        }
         
     }
 

@@ -75,6 +75,13 @@
                 $this->view('guide/v_guide_bookings',$data);
             }
         }
+        // public function filterGuidebooking($usertype,$userid){
+        //     $filter=$this->guideBookingModel->filterguidebooking($usertype,$userid);
+        //     $data=[
+        //         'filterbooking'=> $filter
+        //     ];
+        //     $this->view('guide/v_guide_bookings',$data);
+        // }
 
         public function ConfirmGuideBooking($ReservationID){
             
@@ -157,16 +164,18 @@
             
             $guideAvailable = $this->guideBookingModel->checkGuideAvailable($GuideID,$bookingDate,$bookingEndDate);
             
-            echo json_encode($guideAvailable);
-        
+            echo json_encode($guideAvailable);        
 
         }
 
 
         public function GuideBooking($GuideID){
-            $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+            $guideDetails=$this->guideModel->getGuideById($GuideID);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
+            
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data=[
                     'GuideID' =>$GuideID,
                     'StartDate'=>$_POST['sdate'],
@@ -197,6 +206,17 @@
                 
 
                 
+            }else{
+                $data=[
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages'=>$guidelanguages,
+                    'GuideID'=>$guideDetails->GuideID
+                   
+                ];
+                
+                
+                // echo var_dump($data);
+                $this->view('guide/v_guide_booking',$data);
             }
         }
         
@@ -490,7 +510,7 @@
         
             if ($_SESSION['user_type'] == 'Traveler') {
                 $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
-            // var_dump($details);
+                // var_dump($details);
                 $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
                
@@ -993,12 +1013,16 @@
                 flash('reg_flash', 'Your booking was successful');
                 $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                 $hotel=$this->hotelModel->getHotelById(intval($hotelID));
-                // $mailData=[
-                //     'userDetails'=>$user,
-                //     'bookingDetails'=>$data,
-                //     'hotelName'=>$hotel->Name
-                // ];
-                // confirmBookingHotel($mailData);
+                $checkin = (string)$_SESSION['checkin'];
+                $mailData=[
+                    'userDetails'=>$user,
+                    'bookingDetails'=>$data,
+                    'hotelName'=>$hotel->Name,
+                    'payment' => $payment
+                ];
+
+                confirmBookingHotel($mailData);
+                // $type = gettype($mailData['bookingDetails']->Email);
                 echo json_encode(true);
                 
             }else{

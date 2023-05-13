@@ -134,12 +134,8 @@
         }
 
 
-        public function about($name,$age){
-            $data=[
-                'userName'=>$name,
-                'userAge'=>$age
-            ];
-            $this->view('v_about',$data);
+        public function about(){
+            $this->view('v_about');
         }
 
         

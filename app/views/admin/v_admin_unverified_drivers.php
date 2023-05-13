@@ -32,7 +32,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
             <a href="<?php echo URLROOT; ?>/Admins/unverifiedDrivers" class="menu-item is-active">&nbsp;&nbsp;&nbsp;&nbsp;Drivers</a>
             <a href="<?php echo URLROOT; ?>/Admins/unverifiedVehicles" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 

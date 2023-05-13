@@ -18,7 +18,7 @@
             <a href="#" class="menu-item">Trip Requests</a>
             <a href="#" class="menu-item">Offers</a>
             <a href="#" class="menu-item">Bookings</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 
