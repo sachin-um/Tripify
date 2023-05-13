@@ -85,6 +85,55 @@ function sendAdminMail($email,$user){
 }
 
 
+function accountVerification($data){
+    $mail = new PHPMailer(true);
+    $otp=rand(100000,999999);
+
+    try {
+        //Server settings
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                       
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'projecttripify@gmail.com';                     
+        $mail->Password   = MAIL_PASSWORD;                           
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
+
+        //Recipients
+        $mail->setFrom('tripify@gmail.com', 'Tripify');
+        $mail->addAddress($data->Email);     
+        
+
+        //Content
+        $mail->isHTML(true);                              
+        $mail->Subject = 'Your account is verified';
+        $mail->Body    = " 
+
+        <h3>Dear User,</h3>
+
+        <p>We are pleased to inform you that your Tripify account has been successfully verified as a 
+        service provider! This means that you can now start offering your services to our platform's users and get bookings.<p><br>
+
+        <p>As a verified service provider, you can list your hotels, taxis or guiding services on our platform and manage them easily. 
+        Users can easily discover and book your services based on their preferences and requirements, providing you with a steady stream of customers.</p><br>
+
+        <p>To get started, simply log in to your Tripify account and add your services to our platform. Be sure to provide detailed descriptions, 
+        attractive photos, and competitive pricing to attract more customers.</p><br>
+
+        <p>Thank you for choosing Tripify as your travel partner. We look forward to working with you and helping you grow your business.</p>
+
+        <p>Best regards,
+        The Tripify Team</p>";
+
+        $mail->send();
+
+        return $otp;
+    } catch (Exception $e) {
+        
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
 
 function accountSuspendMail($data){
     $mail = new PHPMailer(true);
@@ -154,10 +203,10 @@ function confirmBookingHotel($data){
 
         <br><br><p>Your booking details are as follows :</p>
         
-        <br><br><h4>Check in :</h4><p>".$data['bookingDetails']->checkin."</p>
-        <br><br><h4>Check out :</h4><p>".$data['bookingDetails']->checkout."</p>
+        <br><br><h4>Check in :</h4><p></p>
+        <br><br><h4>Check out :</h4><p></p>
         <br><br><h4>Booked By :</h4><p>".$data['userDetails']->Name."</p>
-        <br><br><h4>Total :</h4><p>".$data['bookingDetails']->payment."</p>
+        <br><br><h4>Total :</h4><p>".$data['payment']."</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
         <p>We hope you enjoy your stay with us.</p><br><br>
@@ -166,7 +215,6 @@ function confirmBookingHotel($data){
 
         $mail->send();
 
-        return $otp;
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }

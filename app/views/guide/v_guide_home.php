@@ -31,12 +31,10 @@
                 <a href=""></a> <button class="all-purpose-btn">Search</button>
             </div>
             
-        </form>
-
-        
+        </form><br>
 
 
-        <p class="home-title-2" >Top Rated guides </p>
+        <br><br><p class="home-title-2" >Top Rated guides </p>
 
         <div class="hotel-home-top-picks">
             <div class="nav-main">
@@ -48,7 +46,7 @@
                 <a href="<?php echo URLROOT?>/Bookings/GuideBooking/<?php echo $guide->GuideID?>" style="text-decoration:none;">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Guides/showGuides'">
                     <div class="hotel-ad-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">
+                        <img id="hotel-img-guides" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">
                         <span class="dot">3.0</span>
                     </div>                    
 

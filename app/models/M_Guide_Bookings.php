@@ -233,7 +233,24 @@
 
         }
 
+        public function getGuidePayforMonth(){
+            $this->db->query('SELECT SUM(payment) AS total_payment
+            FROM guide_bookings
+            WHERE DateAdded >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+            ');
 
+            $total = $this->db->single();
+            return $total->total_payment;
+        }
+
+        public function getGuideBookingsforMonth(){
+            $this->db->query('SELECT COUNT(*) AS total_bookings
+            FROM guide_bookings
+            WHERE status IN ("Completed", "Confirmed");');
+
+            $total = $this->db->single();
+            return $total->total_bookings;
+        }
         
     }
 

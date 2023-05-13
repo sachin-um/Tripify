@@ -15,18 +15,20 @@ else {
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper"> 
-    <br><br><br>
     <div class="tax-home-content">
         <div class="hotel-home-top-picks">
-            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']?></b></p>
-                <hr>
-            <br><br>
+            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']." "?>Company</b></p>
+            <p style="margin: auto; text-align: center; font-size: 1.1rem;"><?php echo $data['owner']->address?></p>
         </div>
         
         <div class="hotel-desc-page-div">
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
+                <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
+            </div>
             
             <div class="hotel-disc-2">
-                <br><br>
                 <div class="hotel-disc-3" style="text-align:center;">
                     <div class="hotel-disc-1">
                         <ul>
@@ -81,11 +83,6 @@ else {
                     </label>
                 </div>
             </div>        
-
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
-                <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
-            </div>
 
         </div>
         

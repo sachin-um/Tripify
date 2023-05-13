@@ -19,7 +19,7 @@
             </div>
 
             <div class="nav-parts">
-                <a href="<?php echo URLROOT ?>/Pages/home" id="nav-btns">About</a>
+                <a href="<?php echo URLROOT ?>/Pages/about" id="nav-btns">About</a>
             </div>
 
         </div>

@@ -26,9 +26,21 @@ else {
 
         <nav class="menu">
             <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Admins/viewStats" class="menu-item">Site Statistics</a>
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item is-active">Messages</a>
-            <a href="<?php echo URLROOT; ?>/Complains/viewall" class="menu-item">Complains</a>
-            <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
+            <?php
+
+                if($data->details->AssignedArea=='Super Admin'){
+                    ?>
+                    <a href="<?php echo URLROOT; ?>/Admins/manageadmins" class="menu-item">Manage Admins</a>
+                    <?php
+                }
+                elseif($data->details->AssignedArea=='verification'){
+                    ?>
+                    <a href="<?php echo URLROOT; ?>/Admins/verification/Guide" class="menu-item">Account Verifcation</a>
+                    <?php
+                }
+            ?>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
