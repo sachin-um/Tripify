@@ -376,7 +376,24 @@
             // }
         }
         
-        
+        public function getTaxiPayforMonth(){
+            $this->db->query('SELECT SUM(Price) AS total_payment
+            FROM taxi_reservation
+            WHERE DateAdded >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+            ');
+    
+            $total = $this->db->single();
+            return $total->total_payment;
+        }
+
+        public function getTaxiBookingsforMonth(){
+            $this->db->query('SELECT COUNT(*) AS total_bookings
+            FROM taxi_reservation
+            WHERE status IN ("Yet To Confirm", "Completed");');
+
+            $total = $this->db->single();
+            return $total->total_bookings;
+        }
     }
 
 ?>

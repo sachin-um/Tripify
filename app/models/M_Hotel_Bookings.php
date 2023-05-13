@@ -254,6 +254,25 @@ class M_Hotel_Bookings
         $result = $this->db->resultSet();
         return $result;
     }
+
+    public function getHotelPayforMonth(){
+        $this->db->query('SELECT SUM(payment) AS total_payment
+        FROM hotel_bookings
+        WHERE date_added >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+        ');
+
+        $total = $this->db->single();
+        return $total->total_payment;
+    }
+
+    public function getHotelBookingsforMonth(){
+        $this->db->query('SELECT COUNT(*) AS total_bookings
+        FROM hotel_bookings
+        WHERE status IN ("completed", "In progress");');
+
+        $total = $this->db->single();
+        return $total->total_bookings;
+    }
 }
 
 

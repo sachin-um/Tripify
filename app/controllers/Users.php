@@ -282,7 +282,7 @@
                     ];
 
                     if (uploadImage($data['profile-img']['tmp_name'],$data['profile-img_name'],'/img/profileImgs/')) {
-                        if ($this->userModel->editHotelDetails($data)) {
+                        if ($this->userModel->editHotelUserProfile($data)) {
                             unset($_SESSION['user_profile_image']);
                             $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                             $_SESSION['user_profile_image']=$user->profileimg;
@@ -876,6 +876,11 @@
             elseif ($_SESSION['user_type']=='Traveler') {
                 $this->view('traveler/v_complains');
             }
+        }
+
+        public function getUserNumbers(){
+            $result = $this->userModel->getUserNumbers();
+            print_r($result); 
         }
 
 

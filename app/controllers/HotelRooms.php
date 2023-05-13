@@ -35,6 +35,7 @@
                 //Data validation
                 $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $farray = implode(",",$_POST['facilities']);
+                print_r($farray);
             
                 $data=[
                         'RoomTypeID'=>rand(100000,999999),
@@ -63,7 +64,7 @@
                     ];               
 
                     if ($this->roomModel->addaroom($data)) {
-                        flash('reg_flash', 'Room is successfully added!');
+                        flash('room_add_flash', 'Room is successfully added!');
                         redirect('HotelRooms/rooms');
                     }
                     else{
@@ -96,8 +97,7 @@
 
                 ];
                 $this->view('hotels/v_dash_hotelRooms',$data);
-            }
-            
+            }           
         
         }
 
