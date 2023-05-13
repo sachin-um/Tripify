@@ -154,7 +154,17 @@
     height: 60px;
 }
 
-#taxi_veh_view:hover,#taxi_veh_delete:hover,#taxi_pro_addv:hover{
+#taxi_reserve_company_but{
+    background-color: #03002E;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 5px;
+    cursor: pointer;
+    height:4em;
+    width: 8em;
+}
+
+#taxi_veh_view:hover,#taxi_veh_delete:hover,#taxi_pro_addv:hover,#taxi_reserve_company_but:hover{
     background-color: #e8b122;
 }
 

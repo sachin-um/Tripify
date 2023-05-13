@@ -15,7 +15,7 @@ function validate(){   // when book now buuton clicked this fuction will be trig
 }
 
 function finalValidation(){
-  console.log(timeslotError+'  '+startdateError+'  '+enddateError+'  '+olderError);
+  // console.log(timeslotError+'  '+startdateError+'  '+enddateError+'  '+olderError);
  
   const submitButton = document.getElementById('book-now-btn');
 

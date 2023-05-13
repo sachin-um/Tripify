@@ -45,7 +45,7 @@ else {
                                         
                                         </div>
                                     </div>
-
+                                    <div id="hide-taxi-img" style="display:none;"></div>
                                     <div class="taxi_DriverPro_imgbox"> 
                                         <div class="img-description">Change Vehicle Photos</div>
                                         <div class="img-upload" style="text-align: center;">
@@ -181,6 +181,12 @@ else {
                                     <?php if(!empty($data['price_per_km_err'])){?>
                                     <tr><td><span class="invalid"><?php echo $data['price_per_km_err']?></span></td></tr>
                                     <?php }?>
+
+                                    <tr>
+                                        <td>Price per Day(Rs):</td>
+                                        <td><input type="text" id="taxi_add_v_flag" name="DayRate"placeholder="Price Per Day" value="<?php echo $data['DayRate']?>" required></td>
+                                        
+                                    </tr>
                                     
 
 
