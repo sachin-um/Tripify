@@ -73,59 +73,31 @@
                                     <a href="<?php echo URLROOT; ?>/Bookings/CompletedGuideBooking/<?php echo $booking->BookingID ?>"><button class="pay-btn" type="button">Finished</button></a>
                                     <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button class="btn" type="button">Cancel</button></a>
                                 </td>
-                                    
-
-                        <td data-lable="Name">
-                            <a href="<?php echo URLROOT; ?>/Bookings/ConfirmGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" id="taxi_veh_view" type="button">Confirm</button></a>
-                            <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
-                        </td>
-                        
-                    <?php
-                        }else if ($booking->status=='Confrimed') {
-                    ?>
-               
-                        <td data-lable="Name">
-                            <a href="<?php echo URLROOT; ?>/Bookings/CompletedGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" id="taxi-complete-btn" type="button">Finished</button></a>
-                            <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
-
-                        </td>
-                               
-                    <?php
-                        }  
-                    ?>
-
-                </tr>
-                <?php
-                    endforeach;
-                ?>
-                
-                
-
                             <?php
-                                }
-                                else if ($booking->status=='Cancelled') {
-                            ?>
-                    
-                                <td data-lable="Name">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </td>
-                                    
-                            <?php
-                                }else if ($booking->status=='Completed') {
+                                }  
+                                    else if ($booking->status=='Cancelled') {
                                     ?>
                             
                                         <td data-lable="Name">
-                                            <i class="fa-solid fa-check"></i>
+                                            <i class="fa-solid fa-xmark"></i>
                                         </td>
                                             
-                            <?php
-                                }  
-                            ?>
+                                    <?php
+                                        }else if ($booking->status=='Completed') {
+                                            ?>
+                                    
+                                                <td data-lable="Name">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </td>
+                                                    
+                                    <?php
+                                        }  
+                                    ?>
 
-                        </tr> 
-                        <?php
-                            endforeach;
-                        ?>
+                                </tr> 
+                                <?php
+                                    endforeach;
+                                ?>
                 </tbody>
             </table>
         </div>

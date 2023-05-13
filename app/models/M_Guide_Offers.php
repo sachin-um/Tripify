@@ -62,6 +62,20 @@
         }
 
 
+        public function deleteOffer($id)
+        {
+            $this->db->query('DELETE FROM guide_offers WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
         public function getGuideOfferId($offerid){
             $this->db->query('SELECT * FROM guide_offers WHERE OfferID=:offerid');
             $this->db->bind(':offerid',$offerid);

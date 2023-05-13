@@ -258,6 +258,20 @@
             }
         }
 
+        public function deleteOffer($id)
+        {
+            if ($this->guideofferModel->deleteOffer($id)) {
+                flash('guide_offer_flash','Offer succesfully removed');
+                redirect('Offers/guideoffers');
+            }
+            else {
+                flash('guide_offer_flash','Something went wrong please try again..');
+                redirect('Offers/guideoffers');
+            }
+            
+        }
+
+
         
 
 
