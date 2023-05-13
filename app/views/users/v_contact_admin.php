@@ -3,7 +3,7 @@
 
     <div class="contact-form">
         <div >
-            <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+            <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
             <p id="tag">Contact Admin...</p> 
         </div>
     

@@ -4,7 +4,7 @@
 <div class="taxi_sign_cont">
         <div class="taxi_sign_left">
         <!-- <img src="<?php echo URLROOT; ?>/img/logo1-removebg-preview 1.png" -->
-        <img src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" id="taxi_sign_img">
+        <img src="<?php echo URLROOT; ?>/img/updatedLOGO.png" id="taxi_sign_img">
             <p>Sign Up is Fast and Easy</p>
     
     
