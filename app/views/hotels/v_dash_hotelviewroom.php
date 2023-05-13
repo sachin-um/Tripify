@@ -37,22 +37,28 @@ else {
     <br>
     <p class="home-title-2">The Rooms You Add To Your Property Can Be Viewed Here</p>    
 
-    <div class="nav-grid" style="margin-top: 3%;">
+    <div class="nav-grid-wrap-1" style="width: 80%; margin: auto;">
+        <div class="nav-grid" style="margin-top: 3%; ">
                 
-        <?php
+            <?php
+            $i=0;
+            $roomImages = $data['images'];
+            foreach($data['allroomtypes'] as $roomType):
+            ?>
         
-        foreach($data['allroomtypes'] as $roomType):
-        ?>
-
             <!-- <a href="<?php echo URLROOT?>/Hotels/hotelProfile/<?php echo $hotel->HotelID?>" > -->
             <div class="hotel-ad-card">
                     
                 <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
-                <div id="hotel-img" class="hotel-room-card-pic">
-                    <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-                </div>                    
+                <!-- <div id="hotel-img-room-id" class="hotel-room-card-pic">
+                    <img id="hotel-img-room-id" src="<?php echo URLROOT; ?>/img/<?php echo $data['image']?>" alt="nine-arch">
+                </div>                    -->
 
-                <div class="hotel-ad-card-desc">
+                <div class="hotel-ad-card-pic" style="margin-bottom: 0;">                        
+                    <img id="hotel-img-ad" style="height: 200px; width: 300px;" src="<?php echo URLROOT; ?>/public/img/hotel-room-uploads/<?php echo $roomImages[$i++]?>" alt="nine-arch">    
+                </div>  
+
+                <div class="hotel-ad-card-desc" style="background-color: #D9D9D9 ;">
                     <label id="room-type" for="hotel-name"><h2><?php echo $roomType->RoomTypeName; ?></h2></label>
                     
                     <label id="display-hotel-address"><?php echo $roomType->RoomSize." "; ?>Square Feet</label><br>
@@ -63,14 +69,17 @@ else {
 
                     
                 <button class="reserve-room" for="hotel-price">
-                    <a href="<?php echo URLROOT?>/HotelRooms/viewhotelroom/Hotel/<?php echo $roomType->RoomTypeID?>">View and Edit</a></button>
+                    <a href="<?php echo URLROOT?>/HotelRooms/viewhotelroom/Hotel/<?php echo $roomType->RoomTypeID?>" style="text-decoration: none; font-size: 1rem; color: #D9D9D9; ">
+                    View and Edit</a></button> 
                     
             </div>
-            <!-- </a> -->
-        <?php
-        endforeach;
-        ?>
+            
+            <?php
+            endforeach;
+            ?>
+        </div>
     </div>
+    
 
     <div class="hotel-room-button-part" style="margin-top: 3%; margin-bottom: 5%; text-align: center;">
         <button class="all-purpose-btn" onclick="window.location='<?php echo URLROOT; ?>/HotelRooms/addroom'">Add Rooms</button>

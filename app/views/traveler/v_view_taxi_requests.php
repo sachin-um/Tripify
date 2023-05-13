@@ -202,7 +202,7 @@ else {
             <?php
             if ($_SESSION['user_type']=='Traveler') {
                 ?>
-                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>"><button id="request-edit-btn" type="submit">
+                    <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->request_id ?>" style="text-decoration:none;cursor:pointer;"><button id="request-edit-btn" type="submit">
                         <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
                         Edit
                     </button></a>
@@ -212,7 +212,7 @@ else {
                             Delete
                         </button>
                     </a>
-                    <a href="<?php echo URLROOT; ?>/Offers/taxioffers/<?php echo $taxirequest->request_id ?>"><button id="request-offer-btn" type="submit"><i class="fa-brands fa-buffer" style="margin-right: 10px;"></i>View Offers</button></a>
+                    <a href="<?php echo URLROOT; ?>/Offers/taxioffers/<?php echo $taxirequest->request_id ?>" style="text-decoration:none;cursor:pointer;"><button id="request-offer-btn" type="submit"><i class="fa-brands fa-buffer" style="margin-right: 10px;"></i>View Offers</button></a>
                 <?php
             }
             elseif ($_SESSION['user_type']=='Taxi') {

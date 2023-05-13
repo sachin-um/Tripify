@@ -28,6 +28,14 @@
     padding: 1%;
 }
 
+#wrapper-home{
+    margin-top: 1%;
+}
+
+#content-home{
+    margin-top: 2%;
+}
+
 .facility-all{
     display: flex;
 }
@@ -47,6 +55,8 @@
     width: calc(250px * 20);
     animation: scroll 20s linear infinite;
 }
+
+
 
 @keyframes scroll{
     0%{
@@ -164,8 +174,8 @@
 
 .card-image{
     position: relative;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background: #fff;
     padding: 3px;
@@ -237,7 +247,18 @@ hr{
     margin: 2% auto 2%;
     width: 80%;
     padding: 3%;
-    background: rgba(42, 157, 143, 0.1);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    background: #f2b203;
+}
+
+.service-div{
+    width: 50%;
+}
+
+.service{
+    width: 30%;
 }
 
 .hotel-home-top-picks{
@@ -255,7 +276,7 @@ hr{
 }
 
 .hotel-ad-card{
-    width: 75%;
+    width: 100%;
     /* height: ; */
     margin: auto;
     display: flex;
@@ -275,7 +296,14 @@ hr{
 .hotel-ad-card-desc{
     padding: 2% 5% 2%;
     background-color: white;
+    color: #03002E;
     font-size: 0.9rem;
+}
+
+#home-register-btn{
+    width: 100%;
+    background-color: #e8b122;
+    color: #03002E;
 }
 
 .hotel-ad-card-price{
@@ -368,7 +396,9 @@ hr{
     justify-content: space-around;
     width: 80%;
     padding: 3%;
-    background: rgba(232,177,34,0.2);
+    border-radius: 20px;
+    background-color: rgba(223,224,229,0.4);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 #facilities-reviews-section{
@@ -377,13 +407,13 @@ hr{
 }
 
 .facility-all{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-#view-review-btn{
-    margin: auto;
-    width: 15%;
+.facility-1{
+    display: flex;
+    flex-direction: column;
 }
 
 #room-price{
@@ -400,7 +430,7 @@ hr{
 
 .reserve-room:hover{
     cursor: pointer;
-    background-color: #e8b122;
+    background-color: black;
     color: #03002E;
     border: #e8b122;
 }

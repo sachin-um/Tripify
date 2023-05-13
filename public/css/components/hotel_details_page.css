@@ -31,7 +31,8 @@
 }
 
 #view-review-btn{
-    width: 80%;
+    width: 50%;
+    margin: auto;
     margin-top: 10%;
 }
 
@@ -147,7 +148,7 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 80%;
     height: 10%;
     padding: 10px;
     background-color: #EEEEEE;

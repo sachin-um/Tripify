@@ -6,7 +6,7 @@ let timeslotError= false;
 $(document).ready(function() {
   inputOrder();
   validation();
-  console.log('distance'+$('#distance').val());
+  // console.log('distance'+$('#distance').val());
 
 });
 
@@ -14,6 +14,7 @@ function finalValidation(){
   validationDateTime();
   const form = document.getElementById('taxi-booking-form');
   const submitButton = document.getElementById('taxi-get-price-but');
+  
 
   if(olddateError && passengersError && timeslotError){           // validation
     submitButton.style.backgroundColor = '#0F6C13'; 
@@ -45,6 +46,7 @@ function calculatePrice(dist,estimateTime) {
 
   let bookingDate = $('#bookingDate').val();
   let bookingTime = $('#bookingTime').val();
+  console.log(estimateTime);
   let estTime =estimateTime;
 
 
@@ -62,7 +64,7 @@ function calculatePrice(dist,estimateTime) {
   var endDate = localBookingDateTime.toISOString().slice(0, 10);
   var endTime = localBookingDateTime.toLocaleTimeString("en-US", {hour12:false});
   
-  console.log(bookingDateTime+'  '+endDate+'  '+endTime);
+  // console.log(bookingDateTime+'  '+endDate+'  '+endTime);
   
 
   document.getElementById("startDate").innerHTML = bookingDate;
@@ -201,11 +203,30 @@ function validation(){
 
 
 function availableTime(){   // Checking Time slot is Available
+  let est = $('#duration').val();
+  // if(!$('#taxi-days-input').val()==0){
+
+  //   const hours = $('#taxi-days-input').val() * 24;
+  //   const formattedHours = String(hours).padStart(2, '0');
+    
+  //   const minutes = Math.floor((hours - Math.floor(hours)) * 60);
+  //   const formattedMinutes = String(minutes).padStart(2, '0');
+
+  //   const seconds = Math.floor(((hours - Math.floor(hours)) * 60 - Math.floor(minutes)) * 60);
+  //   const formattedSeconds = String(seconds).padStart(2, '0');
+
+    
+  //   est = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  //   console.log(est);
+  // }
+  // else{
+  //   est = $('#duration').val();
+  // }
   
 
   let bookingDate = $('#bookingDate').val();
   let bookingTime = $('#bookingTime').val();
-  let est = $('#duration').val();
+  
   if( $('#checker').val()==0){
     $.ajax({
       url: URLROOT+'/Bookings/checkTimeSlot',
@@ -382,3 +403,31 @@ function inputOrder(){
 
 
 
+
+
+function bookdays(){
+  $("#taxi-day-bookingButs").hide();
+  document.getElementById("taxi_days").style.display = "block";
+  document.getElementById("hotel-booking-form").style.display = "block";
+  const taxiDaysInput = document.getElementById('taxi-days-input');
+  taxiDaysInput.value = '';
+
+  
+  
+}
+
+function bookTrip(){
+  $("#taxi-day-bookingButs").hide();
+  $("#taxi_days").hide();
+  document.getElementById("hotel-booking-form").style.display = "block";
+
+
+}
+
+
+
+
+
+
+   
+ 

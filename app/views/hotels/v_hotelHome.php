@@ -10,22 +10,22 @@
             <div class="nav-main">
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Where are you going?</p>
-                    <input class="hotel-labels-1" type="text" name="place" placeholder="Your Destination">
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="text" name="place" placeholder="Your Destination">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date">
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="date" name="date-1" placeholder="Check-In Date">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date">
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="date" name="date-2" placeholder="Check-Out Date">
                 </div>
                 &nbsp;
                 <div class="nav-parts">
                     <p class="hotel-labels-1">No of People</p> 
-                    <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
+                    <input class="hotel-labels-1" style="background-color: #D9D9D9;" type="number" name="noofadults" value="1" max="100">
                 </div>
             </div>
 
@@ -50,23 +50,23 @@
             <div class="nav-grid">
                 
                 <?php
-                
+                $hotelImages=$data['images'];
+                $i=0;
                 foreach($data['allhotels'] as $hotel):
                 ?>
                 <!-- $hotels=$data['allhotels']; -->
-
-                <a href="<?php echo URLROOT?>/Hotels/hotelProfilewithoutrooms/<?php echo $hotel->HotelID?>" >
+                
+                <a href="<?php echo URLROOT?>/Hotels/hotelProfilewithoutrooms/<?php echo $hotel->HotelID?>" style="text-decoration: none;">
                     <div class="hotel-ad-card">     
-                        <div class="hotel-ad-card-pic">                        
-                            <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">                        
+                        <div class="hotel-ad-card-pic">                
+                            <img id="hotel-img-ad" src="<?php echo URLROOT; ?>/public/img/hotel-uploads/<?php echo $hotelImages[$i]->imgName; ?>" alt="nine-arch">                        
                             <span class="dot"><?php echo $hotel->Rating; ?></span>
                         </div>            
                         
                         <div class="hotel-ad-card-desc">
                             <label id="display-hotel-name" for="hotel-name"><b><?php echo $hotel->Name; ?></b></label> <br>
                             <label id="display-hotel-address" for="hotel-address"><?php 
-                            $address = $hotel->Line1.", ".$hotel->Line2.", ".$hotel->District;
-                            echo $address; 
+                            echo $hotel->District;
                             ?></label>
                         </div>
 
@@ -76,6 +76,7 @@
                     </div>
                 </a>
                 <?php
+                $i=$i+1;
                 endforeach;
                 ?>
             </div>

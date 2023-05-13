@@ -49,22 +49,14 @@ else{
         </div> 
         <br>
         <div class="taxi-first-container">
-            <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
-                <br>
-                
-                <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+            
+            <div class="taxi-profile-image" >
+                <div class="taxi-own-profile-image" style="width: 450px; text-align: center;">
+                    <img id="taxi-owner-profile-img" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo$data->details->profileImg?>" alt="picture">
+                    <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data->details->owner_name;  ?></b></p>
+            </div>
+              
                
-                <br>
-                <div class="taxi-own-name">
-                    
-                    <div class="sub-sub">
-                        <h1 ><?php echo $data->details->owner_name;  ?></h1>
-                    </div>
-                            
-                </div>
-
-                <br>
-                <br>
                 
             </div>
     
@@ -191,7 +183,7 @@ else{
                     </div>
                         
                     <div class="sub-sub">
-                        <?php if ($data->verification_status ==2) {
+                        <?php if ($data->verification_status ==3) {
                             ?><h3>Verified</h3><?php
                         }else {
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -209,30 +201,36 @@ else{
                     </div>
                         
                 </div>
+                <br>
                 <div style="text-align: center;">
 
                 
                     <?php
                     if ($_SESSION['user_id']== $data->UserID) {
                         ?>
-                        <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn">Edit Info</button>
+                         <div style="display: flex; justify-content: space-around;">
+                            <button onclick="window.location.href='<?php echo URLROOT; ?>/Taxies/OwnerDeatails'" class="profile-btn-edit" id="edit-btn">Edit Info</button>
+                        </div>
+                    </div>
                         <?php
                     } else {
                         ?>
                         <div style="display: flex; justify-content: space-around;">
                         <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>
+                        </div>
                         <?php
                     }
                     ?>
                         
                     
-                        
+                <br><br>
                 </div>
                 <?php 
                     if ($data->UserID!= $_SESSION['user_id']) {
                          require APPROOT.'/views/inc/components/chat/chatarea.php'; 
                     }  
                 ?>
+                <br>
             </div>
             
 
@@ -243,7 +241,7 @@ else{
 
     </main>
  </div>
- <div id="popup" class="trip-popup">
+ <div id="profile-popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>
 </div>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>

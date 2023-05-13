@@ -30,6 +30,8 @@ else {
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item">Guides</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotel" class="menu-item is-active">Hotels</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedDrivers" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Drivers</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedVehicles" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -45,10 +47,10 @@ else {
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
                 <option value="all account">All Account</option>
-                <option value="suspened">Suspended</option>
+                <option value="suspend">Suspend</option>
                 <option value="active">Active</option>
                 <option value="verified">Verified</option>
-                <option value="not-verified">Not Verified</option>
+                <option value="notv">Not Verified</option>
             </select>
         </div>
         <?php flash('booking_flash'); ?>
@@ -83,7 +85,8 @@ else {
                                 }
                                 
                             ?>
-                            
+                            <th style="display: none;">Verification status</th>
+                            <th style="display: none;">Account status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,9 +134,9 @@ else {
                                 ?>
                                 
                                 
-                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $hotel->UserID ?>/Guide/<?php echo  $hotel->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $hotel->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                                <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $hotel->UserID ?>/Guide/<?php echo  $hotel->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $hotel->acc_status=='Suspend' ? 'active-btn' : 'sus-btn'  ?> type="button">
                                         <?php 
-                                            if ($hotel->acc_status=='Suspended') {
+                                            if ($hotel->acc_status=='Suspend') {
                                                 ?>
                                                 <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
                                                 
@@ -146,11 +149,13 @@ else {
                                             }
                                         
                                         ?>
-                                        <?php echo  $hotel->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                                        <?php echo  $hotel->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?></button></a>
                                     </td>
                                 <?php
                             }
                             ?>
+                            <td style="display: none;"><?php echo $hotel->verification_status==2 ? 'NotV' : 'Verified'  ?></td>
+                            <td style="display: none;"><?php echo $hotel->acc_status  ?>"</td>
                         </tr>
                         <?php
                             endforeach;

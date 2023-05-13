@@ -28,20 +28,20 @@
             }
             else {
                 $user_id='';
-                $user_type='';
+                $user_type='';  
                 if ($id!=null) {
                     $user_id=$id;
                     $_SESSION['service_id']=$id;
                 } else {
-                    $user_id=$_SESSION['user_id'];
-                    
+                    $user_id=$_SESSION['user_id'];                    
                 }
+
                 if ($type!=null) {
                     $user_type=$type;
                 } else {
                     $user_type=$_SESSION['user_type'];
                 }
-                
+
                 $data=$this->userModel->getUserDetails($user_id);
                 if ($user_type=='Traveler') {
                     $travelerDetails=$this->userModel->getTravelerDetails($user_id);
@@ -61,15 +61,15 @@
                     $this->view('guide/v_dash_profile',$data);
                 }
                 else if ($user_type=='Hotel') {
-                    $hotelvar=$this->hotelModel->findUserDetails();
-                    $hotelaccountvar= $this->userModel->getUserDetails($_SESSION['user_id']);
-                    $images = $this->hotelModel->getImages($_SESSION['user_id']);
+                    $hotelvar=$this->hotelModel->getHotelById($user_id);
+                    $hotelaccountvar= $this->userModel->getUserDetails($user_id);
+                    $images = $this->hotelModel->getImages($user_id);
                     $data=[
                         'hoteldetails'=>$hotelvar,
                         'hotelaccountdetails' => $hotelaccountvar,
                         'images'=>$images
                     ];
-                    $this->view('hotels/v_dash_profile',$data);
+                    $this->view('hotels/v_dash_profile',$data); 
                 }
                 else if ($user_type=='Admin') {
                     $admindetails=$this->userModel->getAdminDetails($user_id);
@@ -80,8 +80,13 @@
             }
         }
 
-        public function logins(){
-            $this->view('v_logins');
+        // public function logins(){
+        //     $this->view('v_error');
+        // }
+
+        public function errorpage()
+        {
+            $this->view('v_error');
         }
 
         public function rooms(){
@@ -90,9 +95,15 @@
 
         public function hotels(){
             $allhotels=$this->hotelModel->viewAllHotels();
+            $images = $this->hotelModel->getImagesforHotels();
 
             $data=[
-                'allhotels'=> $allhotels
+                'allhotels'=> $allhotels,
+                'images'=>$images,
+
+                'place_err' => '',
+                'sdate_err' => '',
+                'edate_err' => ''
             ];
             $this->view('hotels/v_hotelHome',$data);
         }

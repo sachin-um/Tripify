@@ -155,8 +155,7 @@
             return $row;
         }
 
-        public function getAllUserDetails($usertype,$action=NULL)
-        {          
+        public function getAllUserDetails($usertype,$action=NULL){          
             
             
             if ($action=='verify') {
@@ -194,6 +193,20 @@
                 return $users;
             }
             
+        }
+
+        public function getUnverifiedDrivers(){
+            $this->db->query('SELECT * FROM taxi_drivers where verification_status=0' );
+
+            $result = $this->db->resultSet();
+            return $result;
+        }
+
+        public function getUnverifiedVehicles(){
+            $this->db->query('SELECT * FROM vehicles where verification_status=0' );
+
+            $result = $this->db->resultSet();
+            return $result;
         }
 
         public function getAdminDetails($userID)
@@ -282,6 +295,9 @@
 
             if ($row->verification_status==0) {
                 return 'NotValidate';
+            }
+            elseif ($row->verification_status==2) {
+                return 'ServiceNotValidate';
             }
             else if (password_verify($data['password'], $hashed_password)) {
                 $this->db->query('UPDATE users set active_status="Active" WHERE Email= :email');

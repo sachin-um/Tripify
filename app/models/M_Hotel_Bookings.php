@@ -114,6 +114,17 @@ class M_Hotel_Bookings
         }
     }
 
+    public function getHotelBookingbyStatus($status, $userid)
+    {
+            $this->db->query('SELECT * FROM hotel_bookings where hotel_id=:userID and status=:status');
+            $this->db->bind(':userID', $userid);
+            $this->db->bind(':status', $status);
+
+            $bookings = $this->db->resultSet();
+            return $bookings;
+        
+    }
+
     public function getPayments(){
         $this->db->query('SELECT * FROM `hotel_bookings` WHERE payment_status="Paid" and hotel_id=:hotelID');
         // $this->db->bind(':pstatus', 'Paid');
@@ -128,12 +139,12 @@ class M_Hotel_Bookings
     {
         $this->db->query('UPDATE `hotel_bookings` SET status="Canceled" WHERE booking_id=:booking_id');
         $this->db->bind(':booking_id', $id);
-        //     if ($this->db->execute()) {
-        //         return true;
-        //     }
-        //     else {
-        //         return false;
-        //     }
+            if ($this->db->execute()) {
+                return true;
+            }
+            else {
+                return false;
+            }
     }
 
     public function getHotelIDandName($id)

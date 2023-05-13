@@ -41,19 +41,31 @@ if (empty($_SESSION['user_id'])) {
             <input class="input-payments" type="date" name="start-date">
             <input class="input-payments" type="date" name="end-date">
 
-            <!-- <button type="button" class="all-purpose-btn" style="width: 50%;"
-            >
-            View Room</button> -->
-
             <button class="input-payments-btn"
-            onclick="window.location.href='<?php echo URLROOT?>/HotelRooms/viewhotelroom/Traveler/<?php echo $room->RoomTypeID;?>'">
+            onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatePDF/Traveler'">
             Get Report</button>
         </div><br><br>
 
         <div class="booking-btns">
-            <button class="view-booking-btns is-active">Current Bookings</button>
-            <button class="view-booking-btns">Past Bookings</button>
-            <button class="view-booking-btns">Canceled Bookings</button>
+            <?php 
+            if($data['status']=='In progress'){?>
+                <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
+            <?php
+            }else if($data['status']=='completed'){?>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
+                <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
+            <?php
+            }else if($data['status']=='Canceled'){?>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
+                <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
+                <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
+            <?php
+            }
+            ?>
+            
         </div>
         <hr id="booking-header-hr">
         <div class="hotel-bookings-main-div" style="margin-left: 6%;">
@@ -64,31 +76,47 @@ if (empty($_SESSION['user_id'])) {
                     <th>BookingID</th>
                     <th>CustomerID</th>
                     <th>Date Added</th>
+                    <th>Booked Rooms</th>
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Payment Amount</th>
-                    <th>View</th>
                 </tr>
 
                 <?php
-                if (empty($data['bookings'])) {
-                    echo "its empty";
-                } else {
-                    foreach ($data['bookings'] as $booking) : ?>
+                foreach ($data['bookings'] as $booking) : ?>
+                    <tr>
+                        <td><?php echo $booking->booking_id; ?></td>
+                        <td><?php echo $booking->TravelerID; ?></td>
+                        <td><?php echo $booking->date_added; ?></td>
+                        <td><?php
+                        // $bookedrooms = explode(",",$booking->roomTypes);
+                        // echo gettype($bookedrooms);
+                        // $allroomtypes = $data['allroomtypes'];
+                        // $arr = array(); 
+                        // foreach($allroomtypes as $type){
+                        //     for($j=0;$j<count($bookedrooms);$j+2){
+                        //         echo "test";
+                        //         if($type == $bookedrooms[$j]){
+                        //             echo $type->RoomTypeName." - ";
+                        //             echo $bookedrooms[$j+1]."<br>";
+                        //         }
+                        //     }
+                        // }
 
 
-                        <tr>
-                            <td><?php echo $booking->booking_id; ?></td>
-                            <td><?php echo $booking->TravelerID; ?></td>
-                            <td><?php echo $booking->date_added; ?></td>
-                            <td><?php echo $booking->checkin_date; ?></td>
-                            <td><?php echo $booking->checkout_date; ?></td>
-                            <td><?php echo $booking->payment; ?></td>
-                            <td><button>View</button></td>
-                        </tr>
+                        // for($j=0;$j<count($bookedrooms);$j+2){
+                        //     echo $bookedrooms[$j]." - ";
+                        //     echo $bookedrooms[$j+1]."<br>";
+                        // }
+                        
+                        // ?>
+                        </td>
+                        <td><?php echo $booking->checkin_date; ?></td>
+                        <td><?php echo $booking->checkout_date; ?></td>
+                        <td><?php echo $booking->payment; ?></td>
+                    </tr>
                 <?php
                     endforeach;
-                }
                 ?>
 
             </table>

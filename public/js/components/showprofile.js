@@ -5,7 +5,7 @@ function showProfile(id,type,baseurl) {
           
           
           // popupContent.innerHTML = content;
-          const popup = document.getElementById("popup");
+          const popup = document.getElementById("profile-popup");
           const popupContent = document.getElementById("popup-content");
           $.ajax({
               url: baseurl+"/Users/getuser/"+type+"/"+userid,

@@ -42,7 +42,7 @@ else{
         </div> -->
 
         <!-- Account details start here - Photo upload doesn't work -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Account Details</p>
             <form action="<?php echo URLROOT; ?>/Users/editHotelDetails/<?php echo $data['hotelaccountdetails']->UserID ?>" method="POST" enctype="multipart/form-data">
             <div style="display: flex; flex-direction: row;">
@@ -152,13 +152,18 @@ else{
                 <?php
             }
             ?>        
-            </form>       
+            </form> 
+            <?php 
+                if ($data['hotelaccountdetails']->UserID!= $_SESSION['user_id']) {
+                        require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                }  
+            ?>
         </div>       
         
         <br><br>
             
         <!-- Edit Hotel Details -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Property Details</p>
             <form action="<?php echo URLROOT; ?>/Users/editHotelProfileDetails/<?php echo $data['hoteldetails']->HotelID ?>" method="POST" enctype="multipart/form-data">
 
@@ -188,28 +193,6 @@ else{
                                 <input type="text" name="line1" id="line1" placeholder="<?php echo $data['hoteldetails']->Line1; ?>" value="<?php echo $data['hoteldetails']->Line1; ?>">
                                 <input type="text" name="line2" id="line2" placeholder="<?php echo $data['hoteldetails']->Line2; ?>" value="<?php echo $data['hoteldetails']->Line2; ?>">
                                 <input type="text" name="district" id="district" placeholder="<?php echo $data['hoteldetails']->District; ?>" value="<?php echo $data['hoteldetails']->District; ?>">
-                            </div>                            
-                        </div>
-
-                        <div class="sub-description">
-                            <div class="sub-sub">
-                                <h3>Category : </h3>
-                            </div>
-                            
-                            <div class="info1">
-                                <p><?php echo $data['hoteldetails']->Category;  ?></p>
-                            </div>
-
-                            <div class="sub-sub-edit-1">
-                                <select name="category" id="category" name="category" placeholder="<?php echo $data['hoteldetails']->Category; ?>" value="<?php echo $data['hoteldetails']->Category; ?>">
-                                    <option value="Resort">Resort</option>
-                                    <option value="Villa">Villa</option>
-                                    <option value="Hostel">Hostel</option>
-                                    <option value="Inn">Inn</option>
-                                    <option value="Boutique">Boutique</option>
-                                    <option value="Bread and Breakfast">Bread and Breakfast</option>
-                                </select>
-                                <!-- <input type="text" name="category" id="category" placeholder="<?php echo $data['hoteldetails']->Category; ?>" value="<?php echo $data['hoteldetails']->Category; ?>"> -->
                             </div>                            
                         </div>
 
@@ -362,6 +345,7 @@ else{
                 </div>       
                 
                 <?php 
+
                 if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
                 ?>
 
@@ -382,7 +366,7 @@ else{
                 else {
                     ?>
                         <div style="display: flex; justify-content: space-around;">
-                            <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                            <button style="display: none;">Chat</button>    
                         </div>
                     <?php
                 }
@@ -396,7 +380,7 @@ else{
 
 
         <!-- Edit hotel facilities -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Hotel Facilities</p>
             <br>
 
@@ -437,7 +421,7 @@ else{
             else {
                 ?>
                     <div style="display: flex; justify-content: space-around;">
-                        <button id="chatopenbtn" class="chat-btn" type="button" onclick="showChat()">Chat</button>    
+                        <button style="display: none;">Chat</button>    
                     </div>
                 <?php
             }
@@ -447,7 +431,7 @@ else{
         </div><br><br>
 
         <!-- Upload photos -->
-        <div class="hotel-profile-account-details">
+        <div class="hotel-profile-service-providers">
             <p id="hotel-profile-title-1">Property Images</p>
             <?php 
             if ($data['hotelaccountdetails']->UserID== $_SESSION['user_id']) {
@@ -510,19 +494,15 @@ else{
             <!-- <img src="C:/xampp/htdocs/Tripify/public/img/hotel-uploads/echo $fetch['imgName'];" width="100px" height="100px"> -->
    
         </div><br><br>
-
+        
         </div>
 
         <div id="popup" class="trip-popup">
                         <div id="popup-content" class="profile-popup-content"></div>
         </div>
         <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/showprofile.js"></script>
-        <!-- <?php require APPROOT.'/views/inc/components/footer.php'; ?> -->
-
-
-
-
     </main>
+    
 </div>
 
 <?php

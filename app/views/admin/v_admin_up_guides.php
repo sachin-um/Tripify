@@ -30,6 +30,8 @@ else {
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Guide" class="menu-item is-active">Guides</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Hotel" class="menu-item">Hotels</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Taxi" class="menu-item">Taxies</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedDrivers" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Drivers</a>
+            <a href="<?php echo URLROOT; ?>/Admins/unverifiedVehicles" class="menu-item">&nbsp;&nbsp;&nbsp;&nbsp;Vehicles</a>
             <a href="#" class="menu-item">Exit Dashboard</a>
         </nav>
     </aside>
@@ -45,10 +47,10 @@ else {
             <select name="account-type" id="account-type">
                 <option value="" disabled selected>Account Type</option>
                 <option value="all account">All Account</option>
-                <option value="suspened">Suspended</option>
+                <option value="xuspend">Suspend</option>
                 <option value="active">Active</option>
                 <option value="verified">Verified</option>
-                <option value="not-verified">Not Verified</option>
+                <option value="notv">Not Verified</option>
             </select>
         </div>
         <?php flash('admin_flash'); ?>
@@ -65,7 +67,6 @@ else {
                             <th>Area</th>
                             <th>Rate</th>
                             <th>Account status</th>
-                            <th style="display: none;">Verification status</th>
                             <th>View </th>
                             <?php
                                 if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -82,7 +83,8 @@ else {
                                 }
                                 
                             ?>
-                            
+                            <th style="display: none;">Verification status</th>
+                            <th style="display: none;">Account status</th>
                             
                         </tr>
                     </thead>
@@ -100,7 +102,6 @@ else {
                             <td data-lable="Status"><?php echo $guide->moreDetails->Area ?></td>
                             <td data-lable="Status"><?php echo $guide->moreDetails->Rate ?></td>
                             <td data-lable="Status"><?php echo $guide->acc_status ?></td>
-                            <td style="display: none;"><?php echo $taxi->verification_status==2 ? 'Not Verified' : 'Verified'  ?>"</td>
                             <td data-lable="Email"><button class="acc-view-btn" type="button" onclick="location.href = '<?php echo URLROOT; ?>/Pages/profile/<?php echo $guide->UserID ?>/Guide'"><i class="fa-solid fa-eye" style="margin-right: 10px"></i>View </button></td>
                             <?php
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
@@ -111,9 +112,6 @@ else {
                                         <?php
                                             if ($guide->verification_status==2) {
                                                 ?>
-                                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $guide->UserID ?>/Guide">
-                                                    <button class="verify-btn" type="button">Verify</button>
-                                                </a>
                                                 <img src="<?php echo URLROOT; ?>/img/cancel.png" alt="user" class="post-by-img">
                                                 <?php
                                             }
@@ -131,9 +129,9 @@ else {
                             if ($_SESSION['admin_type']=='management' || $_SESSION['admin_type']=='Super Admin') {
                                     ?>
                                     
-                                    <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $guide->UserID ?>/Guide/<?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $guide->acc_status=='Suspended' ? 'active-btn' : 'sus-btn'  ?> type="button">
+                                    <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Users/suspendaccount/<?php echo $guide->UserID ?>/Guide/<?php echo  $guide->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?>"><button class=<?php echo $guide->acc_status=='Suspend' ? 'active-btn' : 'sus-btn'  ?> type="button">
                                         <?php 
-                                            if ($guide->acc_status=='Suspended') {
+                                            if ($guide->acc_status=='Suspend') {
                                                 ?>
                                                 <i class="fa-solid fa-circle-check" style="margin-right:10px"></i>
                                                 
@@ -146,13 +144,14 @@ else {
                                             }
                                         
                                         ?>
-                                        <?php echo  $guide->acc_status=='Suspended' ? 'Activate' : 'Suspend'  ?></button></a>
+                                        <?php echo  $guide->acc_status=='Suspend' ? 'Activate' : 'Suspend'  ?></button></a>
                                     </td>
                                     
                                     <?php
                             }
                             ?>
-                            
+                            <td style="display: none;"><?php echo $guide->verification_status==2 ? 'NotV' : 'Verified'  ?></td>
+                            <td style="display: none;"><?php echo $guide->acc_status  ?>"</td>
                         </tr>
                         <?php
                             endforeach;

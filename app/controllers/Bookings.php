@@ -189,9 +189,9 @@
 
                 if($_SESSION['user_type']){
                     if($this->guideBookingModel->insertGuideBooking($data)){
-                        $data->guideDetails=$this->guideModel->getGuideByID($data->GuideID);
-                        $data->userDetails=$this->userModel->getAllUserDetails($data->GuideID);
-                        $data->travelerDetails=$this->userModel->getAllUserDetails($data->TravelerID);
+                        $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
+                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
+                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
                         confirmBookingGuide($data);
                         flash('booking_flash', 'Guide Booked Sucessfully');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -509,6 +509,12 @@
             // var_dump($details);
                 $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
 
+               
+               
+                    $vehicle_images_str = $details->Vehicle_Images; // Example string from the database
+                    $vehicle_images_array = explode(",", $vehicle_images_str);
+                    $details->vehicle_images_arr=$vehicle_images_array;
+
                 if(isset($owner->company_name)){
                     $com_name = $owner->company_name;
                 }else{
@@ -530,6 +536,8 @@
                     $exTime=$_POST['duration']; //extimate time
 
                     $distance=$_POST['distance'];
+
+                    $days = $_POST['days'];
                     
                     $total = (float)$distance * (float)$details->price_per_km;
 
@@ -565,6 +573,7 @@
                         'extime'=>$exTime,
                         'com_name'=>$com_name,
                         'owner'=>$owner,
+                        'days'=>$days,
                         'TaxiOwnerID'=>$owner->OwnerID,
                         'distance'=>$distance,
                         'total' => $total     
@@ -700,6 +709,7 @@
                 'p_longitude'=>$_SESSION['booking_data']['p_longitude'],
                 'd_latitude'=>$_SESSION['booking_data']['d_latitude'],
                 'd_longitude'=>$_SESSION['booking_data']['d_longitude'],
+                'days'=>$_SESSION['booking_data']['days'],
                 'extime'=> $formattedTime ,
                 'distance'=>$_SESSION['booking_data']['distance'],
                 'travelerID'=>$userId,
@@ -967,39 +977,26 @@
                 'bookingID' => ''
             ];
 
-
-            // print_r($_POST['roomIDs']);
+            
             if ($this->hotelBookingModel->addHotelBooking($data)) {
-                flash('reg_flash', 'You booking was successful');
+                flash('reg_flash', 'Your booking was successful');
                 $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                 $hotel=$this->hotelModel->getHotelById(intval($hotelID));
-                $mailData=[
-                    'userDetails'=>$user,
-                    'bookingDetails'=>$data,
-                    'hotelName'=>$hotel->Name
-                ];
-                confirmBookingHotel($mailData);
+                // $mailData=[
+                //     'userDetails'=>$user,
+                //     'bookingDetails'=>$data,
+                //     'hotelName'=>$hotel->Name
+                // ];
+                // confirmBookingHotel($mailData);
                 echo json_encode(true);
                 
             }else{
                 echo json_encode(false);
             }
-                
-                //     // redirect('Bookings/HotelBookings/Traveler/'+$_SESSION['user_id']);
-                
-            // } else {
-            //     echo json_encode(0);
-            //     //die('Something went wrong');
-            // }
-
-            
             
         }
 
-        public function showAllHotelBookings(){
-            $this->roomBookingModel->getBookingID();
-            
-        }
+
 
     }
 ?>

@@ -411,7 +411,60 @@
                 redirect('Users/login');
             }
         }
+
+        public function unverifiedDrivers(){
+            $driverData=$this->userModel->getUnverifiedDrivers();
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+
+            $data = [
+                'driverData'=>$driverData,
+                'details' =>$admindetails,
+                'AssignedArea' =>$_SESSION['admin_type']
+            ];
+            $this->view("admin/v_admin_unverified_drivers",$data);
+        }
+
+        public function unverifiedVehicles(){
+            $vehicleData=$this->userModel->getUnverifiedVehicles();
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+
+            $data=[
+                'vehicleData'=>$vehicleData,
+                'details' =>$admindetails,
+                'AssignedArea' =>$_SESSION['admin_type']
+            ];
+            
+            $this->view("admin/v_admin_unverified_vehicles",$data);
+        }
+
+        public function verifydriver($id)
+        {
+            if ($this->adminModel->verifydriver($id)) {
+                flash('admin_driver_verify_flash', 'Verification Successful');
+                redirect('Admins/unverifiedDrivers');
+            }
+            else {
+                flash('admin_driver_verify_flash', 'Somthing Went Wrong Please Try again');
+                redirect('Admins/unverifiedDrivers');
+            }
+        }
+
+        public function verifyvehicle($id)
+        {
+            if ($this->adminModel->verifyvehicle($id)) {
+                flash('admin_vehicle_verify_flash', 'Verification Successful');
+                redirect('Admins/unverifiedVehicles');
+            }
+            else {
+                flash('admin_vehicle_verify_flash', 'Somthing Went Wrong Please Try again');
+                redirect('Admins/unverifiedVehicles');
+            }
+        }
         
+        public function viewStats(){
+            $this->view("admin/v_admin_statistic");
+
+        }
     }
 
 

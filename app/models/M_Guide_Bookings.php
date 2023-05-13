@@ -18,8 +18,10 @@
                 foreach ($filteredbookings as $booking) {
                     $guide=$this->getGuideById($booking->Guides_GuideID);
                     $traveler=$this->getUserDetails($booking->TravelerID);
-                    $traveler_name=$traveler->Name;
+                    $traveler_name=$traveler->Name;;
                     $booking->traveler_name=$traveler_name;
+                    $booking->traveler=$traveler;
+
                     $booking->guide=$guide;
                 }
             }
@@ -106,7 +108,7 @@
 
         public function confrimBooking($id)
         {
-            $this->db->query('UPDATE `guide_bookings` SET status="Confrimed" WHERE BookingID=:booking_id');
+            $this->db->query('UPDATE `guide_bookings` SET status="Confirmed" WHERE BookingID=:booking_id');
             $this->db->bind(':booking_id',$id);
 
             

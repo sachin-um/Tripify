@@ -14,11 +14,17 @@
             <!-- <a href="#" class="menu-item is-active">Company</a> -->
             <a href="<?php echo URLROOT; ?>/Taxi_Driver/viewdrivers" class="menu-item is-active">Drivers</a>
             <a href="<?php echo URLROOT; ?>/Taxi_Vehicle/viewvehicles" class="menu-item">Vehicles</a>
+            <?php
+            if ($_SESSION['user_id']== $data['owner']) {
+                        ?>
             <a href="<?php echo URLROOT; ?>/Taxies/payments" class="menu-item">Payments</a>
             <a href="<?php echo URLROOT; ?>/Request/TaxiRequest" class="menu-item">Trip Requests</a>
             <a href="<?php echo URLROOT; ?>/Offers/taxioffers" class="menu-item">Offers</a>
             <a href="<?php echo URLROOT; ?>/Bookings/TaxiBookings/<?php echo $_SESSION['user_type'] ?>/<?php echo $_SESSION['user_id'] ?>" class="menu-item">Bookings</a>
             <a href="<?php echo URLROOT; ?>/Pages/taxies" class="menu-item">Exit Dashboard</a>
+            <?php
+            }
+            ?>
         </nav>
     </aside>
 
@@ -70,10 +76,11 @@
                             </article>
 
 
-                            <div>
+                            <div >
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>   
                             </div>
+                            <br>
                             <div class="admin-action">
                             <?php if ($driver->verification_status ==1) {
                                 ?><h3>Verified </h3><?php
@@ -83,7 +90,7 @@
                                     
                                             <hr style="margin-bottom:10px;">
                                             <button class="acc-view-btn" type="button" onclick="showDriverDetails('<?php echo $driver->TaxiDriverID; ?>','<?php echo URLROOT; ?>')">Verification Details</button>
-                                            <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                            <a href="<?php echo URLROOT; ?>/Admins/verifydriver/<?php echo $driver->TaxiDriverID ?>">
                                                                     <button class="verify-btn" type="button">Verify</button>
                                             </a>
                                     
@@ -106,7 +113,7 @@
             </div>
                     
             <div  class="taxi-vec-view-contA">  <!-- // THIS DIV CLASS IS FORMAT IN VIEW VEHICLE CSS('taxi_dashboard.css') -->
-            <button class="taxi-dash-btn" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
+            <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
             </div>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>

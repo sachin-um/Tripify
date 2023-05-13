@@ -226,15 +226,17 @@ if (empty($_SESSION['user_id'])) {
                         ?>
 
                 </div>
-                <?php 
-                    if ($data->UserID!= $_SESSION['user_id']) {
-                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
-                    }  
-            ?>
+                    </form>
+                    
             </div>
             <br><br>
             </div>
-            <div id="popup" class="trip-popup">
+            <?php 
+                    if ($data->UserID!= $_SESSION['user_id']) {
+                         require APPROOT.'/views/inc/components/chat/chatarea.php'; 
+                    }  
+                    ?>
+            <div id="profile-popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>
             </div>
 
