@@ -11,6 +11,6 @@
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Hotel Bookings</a>
             <a href="#" class="menu-item">Taxis</a>
             <a href="#" class="menu-item">Guides</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>

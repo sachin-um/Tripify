@@ -39,7 +39,7 @@ else {
             ?>
             
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item" id="user-profiles-link">User Profiles</a>            
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 
@@ -57,12 +57,12 @@ else {
                 <canvas id="bookings"></canvas>
             </div>
 
-            <div style="width: 100%; height: 400px;">                
+            <div style="width: 100%; height: 400px; margin-top: 100px;">                
                 <p style="font-size: 1.1rem; text-align: center;">All payments received by Service Providers<br>for the past 30 days</p>
                 <canvas id="payments"></canvas>
             </div>
 
-            <div style="width: 100%; height: 400px;">                
+            <div style="width: 100%; height: 400px; margin-top: 100px;">                
                 <p style="font-size: 1.1rem; text-align: center;">All new Service Providers registered<br>during the past 30 days</p>
                 <canvas id="newUsers"></canvas>
             </div>

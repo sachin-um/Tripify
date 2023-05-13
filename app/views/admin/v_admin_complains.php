@@ -30,7 +30,7 @@ else {
             <a href="#" class="menu-item is-active">Complains</a>
             <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Articles</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item">User Profiles</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 
