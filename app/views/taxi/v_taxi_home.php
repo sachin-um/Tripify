@@ -76,22 +76,21 @@
     </div>
     <div class="tax-home-content" id="hide-div">
             
-        <div class="hotel-home-join-network">
+        <div class="hotel-home-join-network" style="align-items:center">
             
             <p class="home-title-2" style="margin-bottom: 10px;">Didn't find what you looking for ? Don't Worry you can still get what you want</p>
             
             <div class="home-div-3">
-                <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
+                <button class="taxi_request_but" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
+                
             </div>
 
 
         </div>
-
-
-        <p class="home-title-2" >Top Taxi Companies Around The Island</p>
-
+    </div>
 
     <div class="taxi_home_cont">
+    <p class="home-title-2" >Top Taxi Companies Around The Island</p>
         <div class="taxi-nav-main" id="vehicle-list">
                     
                     <?php
@@ -149,9 +148,9 @@
                             <div class="room-card-pic">
                             
 
-                            <div id="slideshow-container-<?php echo $vehicle->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" >
+                            <div id="slideshow-container-<?php echo $vehicle->VehicleID?>" style="width:100%; " >
                                 <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
-                                <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:100%;  object-fit: contain;">
+                                <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:20em;max-height: 15em;  object-fit: contain;">
                                 <?php } ?>
                             </div>
 
@@ -175,12 +174,12 @@
                                 </article>
                             </div>
 
-
-                            <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
+                            <br><br>
+                            <button class="taxi_booking_but_new" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
 
                             </div>
 
-                            <br><br>
+                            <br>
                             </div>
                     
                             

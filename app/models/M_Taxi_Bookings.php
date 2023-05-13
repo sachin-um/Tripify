@@ -379,8 +379,26 @@
             //     return false;
             // }
         }
+
+        public function getPaymentDetails(){
+            $this->db->query("SELECT * FROM taxi_reservation WHERE TaxiOwnerID=:id AND PaymentStatus ='Paid'");
+            $this->db->bind(':id',$_SESSION['user_id']);
+            $bookings=$this->db->resultSet();
+            $filteredbookings=filterBookings($bookings,$_SESSION['user_type'],$_SESSION['user_id']);
+            foreach ($filteredbookings as $booking) {
+                $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
+                $booking->vehicle=$vehicle;
+            }
+            return $filteredbookings;
+            
+            
+            return $bookings;
+        }
         
         
     }
+
+
+    
 
 ?>

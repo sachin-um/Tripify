@@ -32,42 +32,30 @@
                 <table class="taxi_pay_cont_table">
                     <tr id="tax_off_th">
                         <th>ReservationID</th>
-                        <th>VehicleID</th>
+                        <th>Vehicle Number</th>
                         <th>Date Added</th>
+                        <th>Trip</th>
                         <th>Payment Amount(Rs)</th>
                         <th>Payment Method</th>
                         <th>Payment Status</th>
                         <th></th>
                     </tr>
+                    <?php 
+                        foreach ($data['taxibookings'] as $booking){
+                       
+                    ?>
                     <tr>
-                        <td>R1001</td>
-                        <td>V7589</td>
-                        <td>02.10.2022</td>
-                        <td>10000.00</td>
-                        <td>Online</td>
-                        <td>Paid</td>
+                        <td><?php echo $booking->ReservationID?></td>
+                        <td><?php echo $booking->vehicle->vehicle_number?></td>
+                        <td><?php echo $booking->est_end_date?></td>
+                        <td><?php echo $booking->pickup_location.'-->'?><?php echo $booking->destination?></td>
+                        <td><?php echo $booking->Price?></td>
+                        <td><?php echo $booking->PaymentMethod?></td>
+                        <td><?php echo $booking->PaymentStatus?></td>
                         <td><button id="tax_off_tb_not">view</button></td>
                     </tr>
 
-                    <tr>
-                        <td>R1015</td>
-                        <td>V1005</td>
-                        <td>05.06.2023</td>
-                        <td>15000.00</td>
-                        <td>Online</td>
-                        <td>Paid</td>
-                        <td><button id="tax_off_tb_not">view</button></td>
-                    </tr>
-
-                    <tr>
-                        <td>R1056</td>
-                        <td>V1156</td>
-                        <td>16.08.2023</td>
-                        <td>26000.00</td>
-                        <td>Online</td>
-                        <td>Pending</td>
-                        <td><button id="tax_off_tb_not">view</button></td>
-                    </tr>
+                    <?php }?>
 
                 </table>
 

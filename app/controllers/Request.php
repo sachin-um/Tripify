@@ -242,32 +242,114 @@
         }
 
         public function addTaxiRequest(){
-            if ($_SERVER['REQUEST_METHOD']=='POST') {
-                //Data validation
-                $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-
-            
-                $data=[
-                        'vehicle_type'=>trim($_POST['vehicle_type']),
-                        'passengers'=>trim($_POST['passengers']),
-                        'pickuplocation'=>trim($_POST['pickuplocation']),
-                        'destination'=>trim($_POST['destination']),
-                        'date'=>trim($_POST['date']),
-                        'time'=>trim($_POST['time']),
-                        'no_of_days'=>trim($_POST['no_of_days']),
-                        'description'=>trim($_POST['description']),
-                        'travelerid'=>trim($_POST['travelerid']),
-                        'p-latitude'=>trim($_POST['p-latitude']),
-                        'p-longitude'=>trim($_POST['p-longitude']),
-                        'd-latitude'=>trim($_POST['d-latitude']),
-                        'd-longitude'=>trim($_POST['d-longitude']),
-                        'distance'=>trim($_POST['distance']),
-                        'duration'=>trim($_POST['duration']),
-
-
+            if ($_SESSION['user_type'] == 'Traveler') {
+                if ($_SERVER['REQUEST_METHOD']=='POST') {
+                    //Data validation
+                    $_POST=filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+    
+                
+                    $data=[
+                            'vehicle_type'=>trim($_POST['vehicle_type']),
+                            'passengers'=>trim($_POST['passengers']),
+                            'pickuplocation'=>trim($_POST['pickuplocation']),
+                            'destination'=>trim($_POST['destination']),
+                            'date'=>trim($_POST['date']),
+                            'time'=>trim($_POST['time']),
+                            'no_of_days'=>trim($_POST['no_of_days']),
+                            'description'=>trim($_POST['description']),
+                            'travelerid'=>trim($_POST['travelerid']),
+                            'p-latitude'=>trim($_POST['p-latitude']),
+                            'p-longitude'=>trim($_POST['p-longitude']),
+                            'd-latitude'=>trim($_POST['d-latitude']),
+                            'd-longitude'=>trim($_POST['d-longitude']),
+                            'distance'=>trim($_POST['distance']),
+                            'duration'=>trim($_POST['duration']),
+    
+    
+                            'vehicle_type_err'=>'',
+                            'passengers_err'=>'',
+                            'passengers_err'=>'',
+                            'pickuplocation_err'=>'',
+                            'destination_err'=>'',
+                            'date_err'=>'',
+                            'time_err'=>'',
+                            'description_err'=>'',
+                            'travelerid_err'=>''
+        
+                        ];
+    
+                        // var_dump( $data); 
+                        
+    
+    
+                    //validate name
+                    if (empty($data['vehicle_type'])) {
+                        $data['vehicle_type_err']='Please secelect a prefer vehicle type';
+                    }
+                    if (empty($data['passengers'])) {
+                        $data['passengers_err']='Please select the no of ppassengers';
+                    }
+    
+                    if (empty($data['pickuplocation'])) {
+                        $data['pickuplocation_err']='Please enter a Pickup Location';
+                    }
+                    //validate email
+                    if (empty($data['destination'])) {
+                        $data['destination_err']='please enter a Destination';
+                    }
+                    if (empty($data['date'])) {
+                        $data['date_err']='please enter a Pickup Date';
+                    }
+                    if (empty($data['time'])) {
+                        $data['time_err']='please enter a Pickup Time';
+                    }
+    
+                    if (empty($data['travelerid'])) {
+                        $data['travelerid_err']='Error with traveler ID';
+                    }
+                    
+                    
+    
+    
+                    if (empty($data['passengers_err']) && empty($data['vehicle_type_err']) && empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
+                        
+                        //Add a Taxi Request
+                        if ($this->taxirequestModel->addtaxirequest($data)) {
+                            flash('taxi_request_flash', 'Taxi Request is Succusefully added..!');
+                            redirect('Request/TaxiRequest');
+                        }
+                        else{
+                            die('Something went wrong');
+                        }
+                    }
+                    else {
+                        $this->view('traveler/v_taxi_request',$data);
+                    }
+    
+    
+    
+                }
+                else {
+                    $data=[
+                        'vehicle_type'=>'',
+                        'passengers'=>'',
+                        'caption'=>'',
+                        'pickuplocation'=>'',
+                        'destination'=>'',
+                        'date'=>'',
+                        'time'=>'',
+                        'no_of_days'=>'',
+                        'description'=>'',
+                        'travelerid'=>'',
+                        'p-latitude'=>'',
+                        'p-longitude'=>'',
+                        'd-latitude'=>'',
+                        'd-longitude'=>'',
+    
+    
                         'vehicle_type_err'=>'',
                         'passengers_err'=>'',
-                        'passengers_err'=>'',
+                        'caption_err'=>'',
                         'pickuplocation_err'=>'',
                         'destination_err'=>'',
                         'date_err'=>'',
@@ -276,90 +358,14 @@
                         'travelerid_err'=>''
     
                     ];
-
-                    // var_dump( $data); 
-                    
-
-
-                //validate name
-                if (empty($data['vehicle_type'])) {
-                    $data['vehicle_type_err']='Please secelect a prefer vehicle type';
-                }
-                if (empty($data['passengers'])) {
-                    $data['passengers_err']='Please select the no of ppassengers';
-                }
-
-                if (empty($data['pickuplocation'])) {
-                    $data['pickuplocation_err']='Please enter a Pickup Location';
-                }
-                //validate email
-                if (empty($data['destination'])) {
-                    $data['destination_err']='please enter a Destination';
-                }
-                if (empty($data['date'])) {
-                    $data['date_err']='please enter a Pickup Date';
-                }
-                if (empty($data['time'])) {
-                    $data['time_err']='please enter a Pickup Time';
-                }
-
-                if (empty($data['travelerid'])) {
-                    $data['travelerid_err']='Error with traveler ID';
-                }
-                
-                
-
-
-                if (empty($data['passengers_err']) && empty($data['vehicle_type_err']) && empty($data['pickuplocation_err']) &&  empty($data['destination_err']) && empty($data['date_err']) && empty($data['time_err']) && empty($data['travelerid_err'])) {
-                    
-                    //Add a Taxi Request
-                    if ($this->taxirequestModel->addtaxirequest($data)) {
-                        flash('taxi_request_flash', 'Taxi Request is Succusefully added..!');
-                        redirect('Request/TaxiRequest');
-                    }
-                    else{
-                        die('Something went wrong');
-                    }
-                }
-                else {
                     $this->view('traveler/v_taxi_request',$data);
                 }
-
-
-
+                $this->view('traveler/v_taxi_request');
+            }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
             }
-            else {
-                $data=[
-                    'vehicle_type'=>'',
-                    'passengers'=>'',
-                    'caption'=>'',
-                    'pickuplocation'=>'',
-                    'destination'=>'',
-                    'date'=>'',
-                    'time'=>'',
-                    'no_of_days'=>'',
-                    'description'=>'',
-                    'travelerid'=>'',
-                    'p-latitude'=>'',
-                    'p-longitude'=>'',
-                    'd-latitude'=>'',
-                    'd-longitude'=>'',
-
-
-                    'vehicle_type_err'=>'',
-                    'passengers_err'=>'',
-                    'caption_err'=>'',
-                    'pickuplocation_err'=>'',
-                    'destination_err'=>'',
-                    'date_err'=>'',
-                    'time_err'=>'',
-                    'description_err'=>'',
-                    'travelerid_err'=>''
-
-                ];
-                $this->view('traveler/v_taxi_request',$data);
-            }
-            $this->view('traveler/v_taxi_request');
+            
         }
 
 
