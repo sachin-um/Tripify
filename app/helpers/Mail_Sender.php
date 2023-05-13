@@ -126,8 +126,6 @@ function accountVerification($data){
         The Tripify Team</p>";
 
         $mail->send();
-
-        return $otp;
     } catch (Exception $e) {
         
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
