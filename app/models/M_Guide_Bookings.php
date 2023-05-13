@@ -199,7 +199,7 @@
             $conflicting_bookings = $result->conflicting_bookings;
            
             if($conflicting_bookings>0){
-                return true;
+                return true;  // we can't book Guide
             }else{
                 return false;
             }

@@ -525,7 +525,7 @@
                     $days = $_POST['days'];
                     
                     
-                    $total = (float)$distance * (float)$details->price_per_km;
+                    
                     
                     $bookingdatetime = new DateTime("$bookingDate $bookingTime");
 
@@ -544,8 +544,8 @@
                         // echo 'Estimated drop-off date and time: ' . $dropoff_date . ' ' . $dropoff_time;
                         $end_date = $dropoff_date;
                         $end_time = $dropoff_time;
-
-
+                        $total = (float)$days * (float)$details->DayRate;
+                        
 
                     }else{
                         
@@ -558,7 +558,7 @@
 
                         $end_date = date('Y-m-d', strtotime($est_datetime));
                         $end_time = date('H:i:s', strtotime($est_datetime));
-                        
+                        $total = (float)$distance * (float)$details->price_per_km;
                     }
                 
     
@@ -582,6 +582,7 @@
                         'com_name'=>$com_name,
                         'owner'=>$owner,
                         'days'=>$days,
+                        'DayRate'=>$details->DayRate,
                         'TaxiOwnerID'=>$owner->OwnerID,
                         'distance'=>$distance,
                         'total' => $total     

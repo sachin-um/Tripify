@@ -220,7 +220,7 @@ $guidelanguages= $data['guideLanguages']
     </div>
 </div>
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
 
 <script>
     var slidePosition = 1;
@@ -255,6 +255,7 @@ $guidelanguages= $data['guideLanguages']
 
 </script>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/guidedateValidation.js"></script>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 
 

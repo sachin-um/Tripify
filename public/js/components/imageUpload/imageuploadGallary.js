@@ -5,7 +5,7 @@ const galleryContainer = document.querySelector("#image-gallery");
 
 function showImages() {
     let files = inputPath.files;
-  
+    document.getElementById("hide-taxi-img").style.display = "none";
     // Check the number of files and total file size
     if (files.length > 4) {
       alert("You can only upload up to 4 images");

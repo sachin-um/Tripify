@@ -170,11 +170,11 @@
                                     <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><b><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p></b>
 
                                     <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><b><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p></b>
-                                    <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM</b></label><br>
+                                    <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM <br> <?php echo $vehicle->DayRate  ?> Per Day  </b></label><br>
                                 </article>
                             </div>
 
-                            <br><br>
+                            <br>
                             <button class="taxi_booking_but_new" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
 
                             </div>
