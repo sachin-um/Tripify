@@ -22,20 +22,53 @@ $guidelanguages= $data['guideLanguages']
                    
                     <br>
                     <div class="taxi-disc-3">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>:</td>
+                                    <td><?php echo $guidedetails-> Name ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Reg No</td>
+                                    <td>:</td>
+                                    <td><?php echo $guidedetails-> guideRegNo ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Area</td>
+                                    <td>:</td>
+                                    <td><?php echo $guidedetails->Area ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Phone No</td>
+                                    <td>:</td>
+                                    <td><?php echo $guidedetails->phone_number ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Languages</td>
+                                    <td>:</td>
+                                    <td><?php
+                                        $languages = $guidelanguages;
+                                        foreach ($languages as $key => $value) {
+                                        echo $value->language;
+                                        if ($key < count($languages) - 1) {
+                                echo ', ';
+    }
+}
+?>
+</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
 
-                        <label><b>Name :</b> <?php echo $guidedetails-> Name ?></label><br>
-                        <label><b>Reg No :</b> <?php echo $guidedetails-> guideRegNo ?></label><br>   
-                        <label><b>Area :</b> <?php echo $guidedetails->Area ?></label><br>
-                        <label><b>Phone No :</b> <?php echo $guidedetails->phone_number ?></label><br>
-                        <label><b>Languages :</b><?php
-                            $languages=$guidelanguages;
-                            //  print_r($languages);
-                            foreach($languages as $key=>$value):
-                                 echo $value->language . ' ';
-                            endforeach;    
-                        ?></label><br>
+                        <!-- <label><b>Name :</b> <?php echo $guidedetails-> Name ?></label><br>
+                        <label><b> :</b> <?php echo $guidedetails-> guideRegNo ?></label><br>   
+                        <label><b> :</b> </label><br>
+                        <label><b> :</b> </label><br>
+                        <label><b> :</b></label><br>
                        
-                        <label><b>Rate :</b><?php echo $guidedetails->Rate ?></label>  
+                        <label><b>Rate :</b><?php echo $guidedetails->Rate ?></label>   -->
         
                     </div>
                     
@@ -45,25 +78,19 @@ $guidelanguages= $data['guideLanguages']
                     <div id="booking-slideshow" class="slideshow-container fade">
                         <div class="Containers">
                             <div class="MessageInfo">1 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/taxi-galary-1.jpg" style="width:100%">
+                            <img src="<?php echo URLROOT?>/img/guide1.jpeg" style="width:100%">
                             <div class="H-Room-Info"></div>
                         </div>
 
                     <div class="Containers">
                         <div class="MessageInfo">2 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-2.jpg" style="width:100%">
+                        <img src="<?php echo URLROOT?>/img/guide2.jpeg" style="width:100%">
                         <div class="H-Room-Info"></div>
                     </div>
 
                     <div class="Containers">
                         <div class="MessageInfo">3 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-3.jpg" style="width:100%">
-                        <div class="H-Room-Info"></div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">4 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-4.jpg" style="width:100%">
+                        <img src="<?php echo URLROOT?>/img/guide3.jpg" style="width:100%">
                         <div class="H-Room-Info"></div>
                     </div>
 

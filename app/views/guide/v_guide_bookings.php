@@ -72,6 +72,7 @@
                         <td data-lable="Name">
                             <a href="<?php echo URLROOT; ?>/Bookings/CompletedGuideBooking/<?php echo $booking->BookingID ?>"><button class="edit-btn" id="taxi-complete-btn" type="button">Finished</button></a>
                             <a href="<?php echo URLROOT; ?>/Bookings/CancelGuideBooking/<?php echo $booking->BookingID ?>"><button id="taxi_veh_delete" type="button">Cancel</button></a>
+
                         </td>
                                
                     <?php

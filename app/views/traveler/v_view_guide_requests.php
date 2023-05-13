@@ -196,7 +196,7 @@ else {
                     }
                     elseif ($_SESSION['user_type']=='Guide') {
                         ?>
-                        <a href="<?php echo URLROOT; ?>/Offers/addGuideOffer/<?php echo $guiderequest->request_id ?>"><button id="request-offer-btn" type="submit">Make an offer</button></a>
+                        <a href="<?php echo URLROOT; ?>/Offers/addGuideOffer/<?php echo $guiderequest->request_id ?>" style="text-decoration: none;"><button id="request-offer-btn" type="submit">Make an offer</button></a>
                         
                         <?php
                     }

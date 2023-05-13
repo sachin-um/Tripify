@@ -75,6 +75,13 @@
                 $this->view('guide/v_guide_bookings',$data);
             }
         }
+        // public function filterGuidebooking($usertype,$userid){
+        //     $filter=$this->guideBookingModel->filterguidebooking($usertype,$userid);
+        //     $data=[
+        //         'filterbooking'=> $filter
+        //     ];
+        //     $this->view('guide/v_guide_bookings',$data);
+        // }
 
         public function ConfirmGuideBooking($ReservationID){
             
@@ -164,9 +171,12 @@
 
 
         public function GuideBooking($GuideID){
-            $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+            $guideDetails=$this->guideModel->getGuideById($GuideID);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
+            
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data=[
                     'GuideID' =>$GuideID,
                     'StartDate'=>$_POST['sdate'],
@@ -197,6 +207,17 @@
                 
 
                 
+            }else{
+                $data=[
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages'=>$guidelanguages,
+                    'GuideID'=>$guideDetails->GuideID
+                   
+                ];
+                
+                
+                // echo var_dump($data);
+                $this->view('guide/v_guide_booking',$data);
             }
         }
         
