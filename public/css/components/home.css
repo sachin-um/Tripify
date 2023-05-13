@@ -53,13 +53,20 @@
 }
 
 .all-purpose-btn{
-    height: 45px;
+  height: 60px;
     width: 15%;
-    font-size: 1rem;
     border: none;
     color: white;
     background-color: #03002E;
-    border-radius: 100px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.all-purpose-btn:hover{
+  background-color: #e8b122;
+  color: #03002E; 
 }
 
 .home-book-btn{
@@ -76,12 +83,6 @@
 .home-book-btn:hover{
   background-color: white;
   color: #03002E;
-  transition: 0.8s;
-  cursor: pointer;
-}
-
-.all-purpose-btn:hover{
-  background-color: black;
   transition: 0.8s;
   cursor: pointer;
 }

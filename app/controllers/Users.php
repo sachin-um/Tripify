@@ -743,6 +743,8 @@
         {
             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                 if ($this->userModel->verifyaccount($id)) {
+                    flash('admin_flash','Verificaton Successful');
+                    
                     if ($usertype=='Hotel') {
                         if ($_SESSION['admin_type']=='Super Admin') {
                             redirect('Admins/profiles/'.$usertype);
