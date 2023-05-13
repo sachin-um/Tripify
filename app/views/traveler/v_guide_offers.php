@@ -140,7 +140,7 @@ else {
                 <?php
                     if ($_SESSION['user_type']=='Guide') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?>"><button id="request-edit-btn" type="submit">Edit</button></a>
+                            <a href="<?php echo URLROOT; ?>/Request/editTaxiRequest/<?php echo $taxirequest->RequestID ?> " style="text-decoration: none;" ><button id="request-edit-btn" type="submit">Edit</button></a>
                             <button id="request-delete-btn" type="submit">Delete</button>
                         <?php
                     }

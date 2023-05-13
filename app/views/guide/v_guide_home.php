@@ -33,12 +33,7 @@
             
         </form>
 
-        <div class="hotel-home-join-network">
-            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a guide as you wish? Don't worry you can make a Request.</p>
-            <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Request/addGuideRequest'">Request a guide</button>
-            </div>
-        </div>
+        
 
 
         <p class="home-title-2" >Top Rated guides </p>
@@ -50,7 +45,7 @@
                 foreach($data['allguides'] as $guide):
                     
                 ?>
-                <a href="<?php echo URLROOT?>/Bookings/Placeguidebookings/<?php echo $guide->GuideID?>">
+                <a href="<?php echo URLROOT?>/Bookings/GuideBooking/<?php echo $guide->GuideID?>" style="text-decoration:none;">
                 <div class="hotel-ad-card" onclick="location.href='<?php echo URLROOT?>/Guides/showGuides'">
                     <div class="hotel-ad-card-pic">
                         <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide1.jpeg" alt="nine-arch">
@@ -64,7 +59,7 @@
                     </div>
 
                     <div class="hotel-ad-card-price">
-                        <label id="display-hotel-price" for="hotel-price"><b>Rs:<?php echo $guide->Rate;?> per hour</b></label>
+                        <label id="display-hotel-price" for="hotel-price"><b>Rs:<?php echo $guide->Rate;?> per day</b></label>
                     </div>
                 </div>
                 </a>
@@ -74,7 +69,13 @@
 
 
             </div>
-        </div>        
+        </div> 
+        <div class="hotel-home-join-network">
+            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a guide as you wish? Don't worry you can make a Request.</p>
+            <div class="home-div-3">
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Request/addGuideRequest'">Request a guide</button>
+            </div>
+        </div>       
         
     </div>
 
