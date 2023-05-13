@@ -6,7 +6,7 @@
         <div class="addtaxiownerinfo">
             <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->
-                <img id="taxi_add_own_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+                <img id="taxi_add_own_img" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
                 <h1 id="taxi_add_own_hed_tex"> Become a member of our Community as Taxi Owner </h1>
 
             </div>

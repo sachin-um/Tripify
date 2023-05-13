@@ -117,6 +117,9 @@ else {
 
                 </div> 
                 <br>
+                <?php 
+                    if(isset($data['hide'])){
+                ?>
                 <div id="taxi-day-bookingButs">
                     <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase; color:black" ><b>Choose Your Plan</b></p><hr><br>
                     <div style="display: flex; justify-content: center; gap:2.5em;">
@@ -130,9 +133,7 @@ else {
                 
 
                 <div id="hotel-booking-form" class="hotel-room-top-picks" style="display:none">
-                    <?php 
-                        if(isset($data['hide'])){
-                    ?>
+                    
                         <p class="home-title-2" >Book Now</p>
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
@@ -142,20 +143,20 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date"  required>
-                                        <span id="avail"></span>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" style="background: white;"  required>
+                                        
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Time<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" required>
+                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" style="background: white;" required>
                                     </div>
 
                                     <div class="hotel-reg-elements" id="taxi_days" style="display:none;">
                                         <p class="home-title-4">Days<sup> *</sup> :</p>
 
-                                        <input class="hotel-labels-2" type="number" value='0' id="taxi-days-input"  name="days" min="1"  required>
+                                        <input class="hotel-labels-2" type="number" value='0' id="taxi-days-input"  name="days" min="1" style="background: white;"  required>
                                         
                                     </div>
 
@@ -169,7 +170,7 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" style="background: white;" required>
                                         
                                         <input type="hidden" name="p-latitude" id="p-latitude" value="">
                                         <input type="hidden" name="p-longitude" id="p-longitude" value="">
@@ -177,7 +178,7 @@ else {
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Destination Location <sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" style="background: white;"  required>
 
                                         <!-- <span style="color:black;">Select the destination on Map(Optional)</span>
                                         <div id="map-container">
@@ -202,8 +203,8 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  required>
-                                        <span id="availSeats"></span>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  style="background: white;" required>
+                                        
                                     </div>
 
                                     <div class="hotel-reg-elements">
@@ -220,14 +221,17 @@ else {
                                    
                                 </div>
 
-                                <span id="availTime"></span><br>
+                                
                                 <span style="color:black;">Select the pickup location on Map(Optional)</span>
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
+                                <span id="avail"></span><br>
+                                <span id="availTime"></span><br>
+                                <span id="availSeats"></span><br>
                                 <span id="errorBut" ></span><br>
                                 <div class="hotel-reg-form-div-2">
-                                    <button id="taxi-get-price-but" class="all-purpose-btn" onclick="buttonclicked()" type="submit">Get Price Details</button>
+                                    <button id="taxi-get-price-but" class="taxi_booking_but_new" onclick="buttonclicked()" type="submit">Get Price Details</button>
                             </div>
                         </form>
                             </div><br>
@@ -280,12 +284,23 @@ else {
                             </div>
                             <br>
                             <div class="price-details-2">
+                                <?php if($data['days']==0){?>
                                 <div class="hotel-price-details">
                                     <label id="No-of-rooms"><?php echo $data['distance']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
                                     <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
+                                
+
+                                <?php } else{ ?>
+                                <div class="hotel-price-details">
+                                    <label id="No-of-rooms"><?php echo $data['days']?></label>
+                                    <label id="X">X</label>
+                                    <label id="No-of-nights"><?php echo $data['DayRate']?></label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                </div>
+                                <?php } ?>
 
                                 
 
@@ -299,11 +314,11 @@ else {
 
 
                             <div class="hotel-reg-form-div-2">
-                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="all-purpose-btn" type="submit"  >Book Now</button>
+                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="taxi_booking_but_new" type="submit"  >Book Now</button>
                             </div>
                             <br>
                             <div class="hotel-reg-form-div-2">
-                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_all-purpose-btn" type="submit">Cancel</button>
+                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_booking_but_new " type="submit">Cancel</button>
                             </div>
                             
                         </div>

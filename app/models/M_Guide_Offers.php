@@ -15,6 +15,7 @@
         public function addguideoffer($data){
             $this->db->query('INSERT INTO guide_offers(GuideID,RequestID,HourlyRate,AdditionalDetails,PaymentMethod) 
             VALUES(:guide_id,:requestid,:charges,:additional_info,:payment_option)');
+
             $this->db->bind(':charges',$data['charges']);
             $this->db->bind(':payment_option',$data['payment-option']);
             $this->db->bind(':additional_info',$data['additional-info']);
@@ -56,6 +57,20 @@
                 else {
                     return false;
                 }
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        public function deleteOffer($id)
+        {
+            $this->db->query('DELETE FROM guide_offers WHERE OfferID=:id');
+            $this->db->bind(':id',$id);
+
+            if ($this->db->execute()) {
+                return true;
             }
             else {
                 return false;

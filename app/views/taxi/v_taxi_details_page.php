@@ -15,18 +15,20 @@ else {
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper"> 
-    <br><br><br>
     <div class="tax-home-content">
         <div class="hotel-home-top-picks">
-            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']?></b></p>
-                <hr>
-            <br><br>
+            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']." "?>Company</b></p>
+            <p style="margin: auto; text-align: center; font-size: 1.1rem;"><?php echo $data['owner']->address?></p>
         </div>
         
         <div class="hotel-desc-page-div">
+
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
+                <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
+            </div>
             
             <div class="hotel-disc-2">
-                <br><br>
                 <div class="hotel-disc-3" style="text-align:center;">
                     <div class="hotel-disc-1">
                         <ul>
@@ -81,11 +83,6 @@ else {
                     </label>
                 </div>
             </div>        
-
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
-                <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
-            </div>
 
         </div>
         
@@ -167,7 +164,7 @@ else {
                         <div class="taxi_veh_det_cont">
                             <div id="slideshow-container-<?php echo $vehicle->VehicleID?>">
                                 <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
-                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:15em;max-height: 10em; object-fit: contain;">
+                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:20em;max-height: 15em;  object-fit: contain;">
                                 <?php } ?>
                             </div>
                         
@@ -183,12 +180,13 @@ else {
                                 <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p>
                                 
                                 <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><p id="taxi_view_v_flag"><?php echo $vehicle->price_per_km  ?> LKR</p>
+                                <img src="<?php echo URLROOT; ?>/img/Clock.png" alt=""><p id="taxi_view_v_flag"><?php echo $vehicle->DayRate  ?> LKR</p>
                                 
                                 <img src="<?php echo URLROOT; ?>/img/Taxi Driver.png" alt=""><p id="taxi_view_v_num"><?php echo $vehicle->Name  ?></p>
 
                             </article>
                             <div class="taxi_veh_det_cont" style="text-align: center;">
-                                <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
+                                <button id="taxi_reserve_company_but" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
 
                             </div>
                             

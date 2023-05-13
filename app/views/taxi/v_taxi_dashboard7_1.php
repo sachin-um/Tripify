@@ -54,10 +54,15 @@ else {
           <div class="taxi-booking-table-container">
             <div>
                 <table class="message-table">
-                        
+                
                         <tr>
                             <th>Booking ID</th>
                             <td data-lable="ID"><?php echo  $data['taxibookings']->ReservationID ?></td>
+                        </tr>
+
+                        <tr>
+                            <th>Traveler Name</th>
+                            <td data-lable="ID"><?php echo  $data['taxibookings']->travelerName ?></td>
                         </tr>
 
                         <tr>

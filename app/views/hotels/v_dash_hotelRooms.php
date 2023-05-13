@@ -271,6 +271,7 @@ else {
                 </div>
 
                 <br>
+
                 <!-- Uploading room photographs -->
                 <button class="all-purpose-btn">Submit</button>
                 &nbsp;<br>

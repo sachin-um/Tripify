@@ -242,3 +242,31 @@ input[type="radio"]{
 .hotel-details-div-one{
     width: 50%;
 }
+
+.about-page{
+  display: flex;
+}
+
+.semi-circle-container {
+  position: relative;
+}
+
+.semi-circle-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 100% 100%;
+  width: 100%;
+  height: 50vh;
+  background-color: #03002E;
+}
+
+.semi-circle-container::before {
+  /* Other styles here */
+  transform: translateY(-50%);
+}
+
+.hotel-img-guides{
+  width: 100%;
+}

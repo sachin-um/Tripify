@@ -25,12 +25,12 @@ else {
         </div>
 
         <nav class="menu">
-            <a href="#" class="menu-item">Admin Profile</a>
+            <a href="<?php echo URLROOT; ?>/Pages/profile" class="menu-item">Admin Profile</a>
             <a href="app/views/traveler/traveler_dashboard2.php" class="menu-item">Messages</a>
             <a href="#" class="menu-item">Complains</a>
             <a href="<?php echo URLROOT; ?>/Trips/trips" class="menu-item">Articles</a>
             <a href="<?php echo URLROOT; ?>/Request/GuideRequest" class="menu-item is-active">User Profiles</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 

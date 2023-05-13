@@ -45,16 +45,20 @@
                         <div class="taxi_veh_grid_edit_cont">
                     
                             <div class="taxi_dash_edit_veh">
-                                <?php
-                                    foreach ($data['vehicle_images_arr'] as $image_name) {
+                                <div id="hide-taxi-img">
+                                    <?php
+                                        foreach ($data['vehicle_images_arr'] as $image_name) {
 
-                                ?>
+                                    ?>
 
-                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" id="profile-img-placehoder"  alt="Driver image" >
-                                                
-                                <?php
-                                    }
-                                ?>
+                                        <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" id="profile-img-placehoder"  style="all:unset;width:18em;"  alt="Driver image" >
+                                        <hr>
+                                        <br>          
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                                
                                 
                             
                                 <div class="drag-area">
@@ -135,6 +139,12 @@
                                     <tr>
                                         <td>Price per KM(Rs):</td>
                                         <td><input name="price_per_km" id="tax-dash-vec-editBut"  type="number" value="<?php echo $data['price_per_km']?>"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Price per Day(Rs):</td>
+                                        <td><input type="text" id="taxi_add_v_flag" name="DayRate"placeholder="Price Per Day" value="<?php echo $data['DayRate']?>" required></td>
+                                        
                                     </tr>
 
                                     <!-- <tr>

@@ -463,6 +463,7 @@ use Dompdf\Options;
                     $imageName = $_FILES['image']['name'][$i];
                     $imageTempName = $_FILES['image']['tmp_name'][$i];
                     $targetPath = "C:/xampp/htdocs/Tripify/public/img/hotel-uploads/".$imageName;
+                    
                     if(move_uploaded_file($imageTempName, $targetPath)){
                         $this->hotelModel->insertingImages($hotelID,$imageName);                            
                     }

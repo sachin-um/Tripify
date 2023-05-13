@@ -16,7 +16,8 @@
                     <input type="email" id="email" name="email" placeholder="Email"  value="<?php echo $data['email']; ?>">
                     <span class="invalid"><?php echo $data['email_err']; ?></span>
                     <input type="password" id="password" name="password" placeholder="Password" value="<?php echo $data['password']; ?>">
-                    <p><a href="<?php echo URLROOT; ?>/Users/passwordverify" style="margin-bottom: 15px; display: block; text-align: center;">Forgot Password?</a></p>
+                    <p><a href="<?php echo URLROOT; ?>/Users/passwordverify" style="margin-bottom: 15px; display: block; text-align: center; color: #03002E; font-weight: 600;">Forgot Password?</a></p>
+                    <p><a href="<?php echo URLROOT; ?>/Users/register" style="margin-bottom: 15px; display: block; text-align: center; color: #03002E; font-weight: 600;">Don't have a account?</a></p>
                     <span class="invalid"><?php echo $data['password_err']; ?></span><br>
                     <input type="hidden" id="usertype" name="usertype" value="Traveler">
                     <button id="sign-up-btn-1" type="submit">Login</button>

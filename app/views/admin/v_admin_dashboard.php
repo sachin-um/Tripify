@@ -45,7 +45,7 @@ else {
             <a href="<?php echo URLROOT; ?>/Articles/articles" class="menu-item">Articles</a>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item" id="user-profiles-link">User Profiles</a>
             
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 

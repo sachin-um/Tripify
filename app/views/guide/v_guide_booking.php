@@ -147,7 +147,7 @@ $guidelanguages= $data['guideLanguages']
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="G_book_loc"  name="G_book_location" required>
+                                        <input class="hotel-labels-2" type="text" id="G_book_loc"  name="G_book_location" placeholder="Location" required>
                                         <span id="end_validate"></span>
                                     </div>
 
@@ -160,7 +160,7 @@ $guidelanguages= $data['guideLanguages']
                             <span id="older"></span><br>
                             <span id="avail"></span><br>
                             <div class="hotel-reg-form-div-2">
-                                <button id="book-now-btn" class="all-purpose-btn" onclick="validate()" type="submit">Book Now</button>
+                                <button id="book-now-btn" class="all-purpose-btn" onclick="validate()" type="submit">Check</button>
                             </div>
                         </form>
                         <br>
@@ -247,7 +247,7 @@ $guidelanguages= $data['guideLanguages']
     </div>
 </div>
 
-<?php require APPROOT.'/views/inc/components/footer.php'; ?>
+
 
 <script>
     var slidePosition = 1;
@@ -282,6 +282,7 @@ $guidelanguages= $data['guideLanguages']
 
 </script>
 <script type="text/JavaScript" src="<?php echo URLROOT;?>/js/components/guidedateValidation.js"></script>
+<?php require APPROOT.'/views/inc/components/footer.php'; ?>
 
 
 

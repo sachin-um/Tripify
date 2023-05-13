@@ -13,7 +13,7 @@
                 
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Vehicle Type</p>
-                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
+                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type" style="background-color: #D9D9D9;">
                         <option value="all">All Type</option>
                         <option value="Tuk Tuk">Tuk Tuk</option>
                         <option value="Car">Car</option>
@@ -21,19 +21,16 @@
                         <option value="Bus">Bus</option>
                     </select>
                 </div>
+
                 <div class="nav-parts">
-                <input type="text" placeholder="Search taxis by owner or company name" id="searchInput">
-
-
-                </div>
-
-                
+                    <p class="hotel-labels-1">Enter a taxi company</p>
+                    <input type="text" placeholder="Search taxis by owner or company name" id="searchInput"
+                    style="background-color: #D9D9D9; border: none;">
+                </div>             
         
-
-
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Pick up location</p>
-                    <select class="district-labels-1" id="select-district" name="area">
+                    <select class="district-labels-1" id="select-district" name="area" style="background-color: #D9D9D9; border: none; font-size: 1rem; text-align: center;">
                         <!-- <option value="<?php echo $data['area']?>" selected  hidden><?php echo $data['area']?></option> -->
                             <option value="all">All Districts</option>           
                             <option value="Ampara">Ampara</option>
@@ -69,30 +66,36 @@
                 </div>                
                 
                 
-            </div>  
+            </div> 
+
             <div class="home-div-3" id="goback" style="display:none">
                 <button class="all-purpose-btn" id="gobackBut">Go Back</button>
             </div>
-    </div>
-    <div class="tax-home-content" id="hide-div">
+    </div><br>
+
+
+    <div class="tax-home-content" id="hide-div" style="margin-top: 0;">
             
-        <div class="hotel-home-join-network">
-            
-            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find what you looking for ? Don't Worry you can still get what you want</p>
-            
+        <div class="taxi-home-join-network">
+            <br>
+            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a ride? Not to worry..<br></p>            
+            <p>Send a request to our drivers and let them offer you their best rates!</p><br>
+
             <div class="home-div-3">
-                <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'">Request a Ride</button>
-            </div>
-
-
+                <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'"
+                style="background-color: #e8b122; color: black;">Request a Ride</button>
+            </div>      
+            <br>    
         </div>
 
 
-        <p class="home-title-2" >Top Taxi Companies Around The Island</p>
+
+        <p class="home-title-2" style="margin-top: 3%;">Vehicles Offered by Our Taxi Companies</p>
 
 
-    <div class="taxi_home_cont">
-        <div class="taxi-nav-main" id="vehicle-list">
+        <div class="taxi_home_cont">
+            <div class="taxi-nav-main" id="vehicle-list" style="margin-top: 0;">
+
                     
                     <?php
                         $allvehicles=$data['vehicles'];
@@ -109,8 +112,7 @@
                                     
                                 ?> 
 
-                                <div class="taxi-ad-card" style="width:100%;" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails/<?php echo $owners->OwnerID?>'">
-                                    
+                                <div class="taxi-ad-card" style="width:100%;" onclick="location.href='<?php echo URLROOT?>/Taxi_Vehicle/taxideatails/<?php echo $owners->OwnerID?>'">                                  
 
 
                                     <div class="">      
@@ -126,14 +128,15 @@
                                             } else {
                                         ?>
                                             <div class="owner">
-                                                <label><b><?php echo $owners->company_name?></b></label><br>
+                                                <label><b><?php echo $owners->company_name." "?>pvt ltd</b></label><br>
                                                 <label><?php echo $owners->address?></label><br>
+                                                <p>Click to view company</p>
                                             </div>
                                             <?php 
                                                 }
                                             ?>
 
-                                        <label id="display-hotel-address" for="hotel-address"><?php echo $owners->address?></label><br>
+                                        <!-- <label id="display-hotel-address" for="hotel-address"><?php echo $owners->address?></label><br> -->
                                         
                                     </div>
                                 </div>
@@ -146,17 +149,14 @@
 
 
 
-                            <div class="room-card-pic">
-                            
-
-                            <div id="slideshow-container-<?php echo $vehicle->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" >
-                                <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
-                                <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:100%;  object-fit: contain;">
-                                <?php } ?>
-                            </div>
+                            <div class="room-card-pic" style="margin-bottom: 0;">                           
 
 
-
+                                <div id="slideshow-container-<?php echo $vehicle->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" >
+                                    <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
+                                    <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:100%;  object-fit: contain; height: 200px;">
+                                    <?php } ?>
+                                </div>
                             </div>                    
 
                             <div class="hotel-ad-card-desc">
@@ -171,16 +171,17 @@
                                     <img src="<?php echo URLROOT; ?>/img/Group.png" alt=""><b><p id="taxi_view_v_maxp"><?php echo $vehicle->no_of_seats  ?> Seats</p></b>
 
                                     <img src="<?php echo URLROOT; ?>/img/Place Marker.png" alt=""><b><p id="taxi_view_v_loc"><?php echo $vehicle->area  ?></p></b>
-                                    <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM</b></label><br>
+                                    <label id="room-price" for="hotel-address"><b><?php echo $vehicle->price_per_km  ?> LKR/KM <br> <?php echo $vehicle->DayRate  ?> Per Day  </b></label><br>
                                 </article>
                             </div>
 
 
-                            <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
+                            <br>
+                            <button class="taxi_booking_but_new" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
+
 
                             </div>
 
-                            <br><br>
                             </div>
                     
                             

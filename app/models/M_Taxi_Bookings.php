@@ -379,8 +379,43 @@
             //     return false;
             // }
         }
+
+        public function getPaymentDetails(){
+            $this->db->query("SELECT * FROM taxi_reservation WHERE TaxiOwnerID=:id AND PaymentStatus ='Paid'");
+            $this->db->bind(':id',$_SESSION['user_id']);
+            $bookings=$this->db->resultSet();
+            $filteredbookings=filterBookings($bookings,$_SESSION['user_type'],$_SESSION['user_id']);
+            foreach ($filteredbookings as $booking) {
+                $vehicle=$this->getVehicleById($booking->Vehicles_VehicleID);
+                $booking->vehicle=$vehicle;
+            }
+            return $filteredbookings;
+            
+            
+            return $bookings;
+        }
         
-        
+        public function getTaxiPayforMonth(){
+            $this->db->query('SELECT SUM(Price) AS total_payment
+            FROM taxi_reservation
+            WHERE DateAdded >= DATE_SUB(CURDATE(), INTERVAL 30 DAY);
+            ');
+    
+            $total = $this->db->single();
+            return $total->total_payment;
+        }
+
+        public function getTaxiBookingsforMonth(){
+            $this->db->query('SELECT COUNT(*) AS total_bookings
+            FROM taxi_reservation
+            WHERE status IN ("Yet To Confirm", "Completed");');
+
+            $total = $this->db->single();
+            return $total->total_bookings;
+        }
     }
+
+
+    
 
 ?>

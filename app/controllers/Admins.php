@@ -3,6 +3,9 @@
         public function __construct(){
             $this->adminModel=$this->model('M_Admins');
             $this->userModel=$this->model('M_Users');
+            $this->guideBookingModel=$this->model('M_Guide_Bookings');
+            $this->hotelBookingModel=$this->model('M_Hotel_Bookings');
+            $this->taxiBookingModel=$this->model('M_Taxi_Bookings');
         }
 
         public function index(){
@@ -375,8 +378,8 @@
             elseif($usertype=='Taxi'){
                 $this->view('admin/v_admin_up_Taxies',$data);
             }
-
         }
+
 
         public function verification($usertype){
 
@@ -462,7 +465,37 @@
         }
         
         public function viewStats(){
-            $this->view("admin/v_admin_statistic");
+            $data=$this->userModel->getUserDetails($_SESSION['user_id']);
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
+            $data->details=$admindetails;
+            $_SESSION['admin_type']=$data->details->AssignedArea;
+
+            $result = $this->userModel->getUserNumbers();
+            $newar = array();
+            foreach($result as $r){
+                $newar[] = $r->count;
+            }
+            $data->users = $newar;
+
+            $guidetotal = $this->guideBookingModel->getGuidePayforMonth();
+            $data->guideTotal = $guidetotal;
+
+            $hoteltotal = $this->hotelBookingModel->getHotelPayforMonth();
+            $data->hoteltotal = $hoteltotal;
+
+            $taxitotal = $this->taxiBookingModel->getTaxiPayforMonth();
+            $data->taxitotal = $taxitotal;
+
+            $guidebookingtotal = $this->guideBookingModel->getGuideBookingsforMonth();
+            $data->guideBookingTotal = $guidebookingtotal;
+
+            $hotelbookingtotal = $this->hotelBookingModel->getHotelBookingsforMonth();
+            $data->hotelBookingTotal = $hotelbookingtotal;
+
+            $taxibookingtotal = $this->taxiBookingModel->getTaxiBookingsforMonth();
+            $data->taxiBookingTotal = $taxibookingtotal;
+
+            $this->view("admin/v_admin_statistic",$data);
 
         }
     }
