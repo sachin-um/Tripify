@@ -197,15 +197,13 @@ function confirmBookingTaxi($data){
         $mail->Body    = " <h4>Dear User,<h4><br><br>
         <p>Thank you for booking your ride with ".$data['taxiowner']->Name.".<br>
         We're looking forward to your trip.</p>
-
-        <br><br><p>Your booking details are as follows :</p>
-        
-        <br><br><h4>Pick up :</h4><p>".$data['pickupL']."</p>
-        <br><br><h4>Destination :</h4><p>".$data['dropL']."</p>
-        <br><br><h4>Booking Date :</h4><p>".$data['s_date']."</p>
-        <br><br><h4>No of Passengers :</h4><p>".$data['passengers']."</p>
-        <br><br><h4>Booked By :</h4><p>".$data['user']->Name."</p>
-        <br><br><h4>Total :</h4><p>".$data['total']."</p>
+        <br><p>Your booking details are as follows :</p>
+        <br><h4>Pick up :</h4><p>".$data['pickupL']."</p>
+        <br><h4>Destination :</h4><p>".$data['dropL']."</p>
+        <br><h4>Booking Date :</h4><p>".$data['s_date']."</p>
+        <br><h4>No of Passengers :</h4><p>".$data['passengers']."</p>
+        <br><h4>Booked By :</h4><p>".$data['user']->Name."</p>
+        <br><h4>Total :</h4><p>".$data['total']."</p>
         
         <p>If you have any questions please don't hesitate to contact us.</p><br>
         <p>We hope you enjoy your trip with us.</p><br><br>

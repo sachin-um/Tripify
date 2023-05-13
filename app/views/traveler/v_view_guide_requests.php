@@ -177,7 +177,7 @@ else {
                 <?php
                     if ($_SESSION['user_type']=='Traveler') {
                         ?>
-                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->request_id ?>"><button id="request-edit-btn" type="submit">
+                            <a href="<?php echo URLROOT; ?>/Request/editGuideRequest/<?php echo $guiderequest->request_id ?>" style="text-decoration:none;cursor:pointer;"><button id="request-edit-btn" type="submit">
                                 <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
                                 Edit
                                 </button>

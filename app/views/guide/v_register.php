@@ -13,7 +13,7 @@ else {
     ?> 
 <div class="form">
         <div >
-            <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+            <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
             <p id="tag">Sign Up is fast and easy!</p> 
         </div>
     

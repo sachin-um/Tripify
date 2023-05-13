@@ -7,7 +7,7 @@
     <div class="content">
         <div class="form-login">
             <div >
-                <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+                <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
                 <p id="tag">Forgot Password..?</p> 
                 <span class="caption">don't worry we still got you...</span>
             </div>

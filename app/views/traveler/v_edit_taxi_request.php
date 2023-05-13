@@ -17,7 +17,7 @@ else {
     ?>
     <div class="form">
         <div >
-            <img id="logo" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+            <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
             <p id="tag">Edit Your Taxi Request...</p> 
         </div>
     
