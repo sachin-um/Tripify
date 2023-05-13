@@ -57,6 +57,7 @@ else {
         <div>
             <h2 class="title" >Guide Offers</h2>
             <hr>
+            <?php flash('guide_offer_flash'); ?>
         </div>
         <div class="request-list">
 

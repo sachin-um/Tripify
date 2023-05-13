@@ -75,6 +75,13 @@
                 $this->view('guide/v_guide_bookings',$data);
             }
         }
+        // public function filterGuidebooking($usertype,$userid){
+        //     $filter=$this->guideBookingModel->filterguidebooking($usertype,$userid);
+        //     $data=[
+        //         'filterbooking'=> $filter
+        //     ];
+        //     $this->view('guide/v_guide_bookings',$data);
+        // }
 
         public function ConfirmGuideBooking($ReservationID){
             
@@ -163,9 +170,12 @@
 
 
         public function GuideBooking($GuideID){
-            $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+            $guideDetails=$this->guideModel->getGuideById($GuideID);
+            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
+            
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
                 $data=[
                     'GuideID' =>$GuideID,
                     'StartDate'=>$_POST['sdate'],
@@ -196,6 +206,17 @@
                 
 
                 
+            }else{
+                $data=[
+                    'guidedetails'=>$guideDetails,
+                    'guideLanguages'=>$guidelanguages,
+                    'GuideID'=>$guideDetails->GuideID
+                   
+                ];
+                
+                
+                // echo var_dump($data);
+                $this->view('guide/v_guide_booking',$data);
             }
         }
         
@@ -254,14 +275,19 @@
 
         public function TaxiBookingsDetails($ReservationID){
             $usertype= $_SESSION['user_type'];
-        
+               
+
             if ($usertype == 'Taxi') {
                 $taxibookings = $this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
+                $traveler = $this->userModel->getUserDetails($taxibookings->TravelerID);
+                
                 
                     $vehicleDetails = $this->taxiBookingModel->getVehicleAndDriversbyID($taxibookings->Vehicles_VehicleID);
                     $taxibookings->Name = $vehicleDetails->Name;
                     $taxibookings->VehicleNumber = $vehicleDetails->vehicle_number;
                     $taxibookings->vdetails=$vehicleDetails;
+                    $taxibookings->travelerName=$traveler->Name;
+
                 $data = [
                     'taxibookings' => $taxibookings
                 ];
@@ -500,6 +526,7 @@
                 }
                 
                 
+                
 
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
@@ -514,21 +541,46 @@
                     $exTime=$_POST['duration']; //extimate time
 
                     $distance=$_POST['distance'];
+
+                    $days = $_POST['days'];
+                    
                     
                     $total = (float)$distance * (float)$details->price_per_km;
-
                     
                     $bookingdatetime = new DateTime("$bookingDate $bookingTime");
+
+                    if($days>0){
+                        
+                        $pickup_timestamp = strtotime($bookingDate . ' ' . $bookingTime);
+
+                       
+                        $dropoff_timestamp = strtotime('+' . $days . ' days', $pickup_timestamp);
+
+                        // Convert the drop-off timestamp to a date and time string
+                        $dropoff_date = date('Y-m-d', $dropoff_timestamp);
+                        $dropoff_time = date('H:i:s', $dropoff_timestamp);
+
+                        // Display the estimated end time to the customer
+                        // echo 'Estimated drop-off date and time: ' . $dropoff_date . ' ' . $dropoff_time;
+                        $end_date = $dropoff_date;
+                        $end_time = $dropoff_time;
+
+
+
+                    }else{
+                        
+                        $exHours = (int)substr($exTime, 0, 2);
+                        $exMinutes = (int)substr($exTime, 3, 2);
+                        $exSeconds = (int)substr($exTime, 6, 2);
+
+                        $bookingdatetime->add(new DateInterval("PT{$exHours}H{$exMinutes}M{$exSeconds}S"));
+                        $est_datetime = $bookingdatetime->format("Y-m-d H:i:s");
+
+                        $end_date = date('Y-m-d', strtotime($est_datetime));
+                        $end_time = date('H:i:s', strtotime($est_datetime));
+                        
+                    }
                 
-                    $exHours = (int)substr($exTime, 0, 2);
-                    $exMinutes = (int)substr($exTime, 3, 2);
-                    $exSeconds = (int)substr($exTime, 6, 2);
-
-                    $bookingdatetime->add(new DateInterval("PT{$exHours}H{$exMinutes}M{$exSeconds}S"));
-                    $est_datetime = $bookingdatetime->format("Y-m-d H:i:s");
-
-                    $end_date = date('Y-m-d', strtotime($est_datetime));
-                    $end_time = date('H:i:s', strtotime($est_datetime));
     
 
 
@@ -549,12 +601,15 @@
                         'extime'=>$exTime,
                         'com_name'=>$com_name,
                         'owner'=>$owner,
+                        'days'=>$days,
                         'TaxiOwnerID'=>$owner->OwnerID,
                         'distance'=>$distance,
                         'total' => $total     
                         ];
                         
                         $_SESSION['booking_data'] = $data;
+
+                        // var_dump($data);
 
                         $this->view('taxi/v_bookings',$data);
 
@@ -684,6 +739,7 @@
                 'p_longitude'=>$_SESSION['booking_data']['p_longitude'],
                 'd_latitude'=>$_SESSION['booking_data']['d_latitude'],
                 'd_longitude'=>$_SESSION['booking_data']['d_longitude'],
+                'days'=>$_SESSION['booking_data']['days'],
                 'extime'=> $formattedTime ,
                 'distance'=>$_SESSION['booking_data']['distance'],
                 'travelerID'=>$userId,

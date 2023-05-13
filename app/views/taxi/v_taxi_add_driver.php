@@ -4,7 +4,7 @@
 
     <div class="content">
         <div class="form-login">
-            <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/logo1-removebg-preview.png" alt="logo">
+            <img id="taxi_add_v_form_img" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
 
 
             <h1 id="taxi_add_v_p">Add Your Driver</h1>

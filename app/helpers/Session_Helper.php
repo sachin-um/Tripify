@@ -59,7 +59,7 @@ function filteroffers($items,$usertype,$id){
             break;
         case 'Guide':
             return array_filter($items,function ($item) use($id){
-                return ($item->GuideID == $_SESSION['user_id']);
+                return ($item->guide_id == $_SESSION['user_id']);
             });
             break;
         case 'Traveler':

@@ -396,6 +396,10 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
+                    }
+                    elseif ($log_user=='ServiceNotValidate') {
+                        flash('reg_flash', 'Sorry Wait for Verification Process of is Done...');
+                        redirect('Users/login');
                     }         
                     //logging user
                     else{

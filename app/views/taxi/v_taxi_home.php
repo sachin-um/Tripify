@@ -73,6 +73,7 @@
             </div>
     </div><br>
 
+
     <div class="tax-home-content" id="hide-div" style="margin-top: 0;">
             
         <div class="taxi-home-join-network">
@@ -88,11 +89,13 @@
         </div>
 
 
+
         <p class="home-title-2" style="margin-top: 3%;">Vehicles Offered by Our Taxi Companies</p>
 
 
         <div class="taxi_home_cont">
             <div class="taxi-nav-main" id="vehicle-list" style="margin-top: 0;">
+
                     
                     <?php
                         $allvehicles=$data['vehicles'];
@@ -148,6 +151,7 @@
 
                             <div class="room-card-pic" style="margin-bottom: 0;">                           
 
+
                                 <div id="slideshow-container-<?php echo $vehicle->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" >
                                     <?php foreach ($vehicle->vehicle_images_arr as $image_name) { ?>
                                     <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" class="slideshow-image-<?php echo $vehicle->VehicleID?>" style="width:100%;  object-fit: contain; height: 200px;">
@@ -171,9 +175,11 @@
                                 </article>
                             </div>
 
+
                             <button class="reserve-room" for="hotel-price" onclick="location.href='<?php echo URLROOT?>/Bookings/TaxiBookingPage/<?php echo $vehicle->VehicleID.'/'.$vehicle->OwnerID?>'"><b>Reserve Now</b></button>
 
                             </div>
+
                             </div>
                     
                             

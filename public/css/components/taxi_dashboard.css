@@ -204,3 +204,35 @@
     justify-items: center;
     gap:0.5em;
 }
+
+.taxi_booking_but_new {
+    background-color: #03002E;
+    color: #FFFFFF;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 5px;
+    display: block;
+    gap:0.5em;
+    /* font-size: 20px; */
+    cursor: pointer;
+    height: 60px;
+}
+
+
+.taxi_booking_but_new:hover{
+    background-color: #e8b122;
+}
+
+.taxi_request_but {
+    background-color: #03002E;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 5px;
+    cursor: pointer;
+    height: 60px;
+}
+
+.taxi_request_but:hover{
+    background-color: white;
+    color: black;
+}

@@ -85,54 +85,55 @@ else {
 
                 <div class="hotel-disc-2">
                     <div id="booking-slideshow" class="slideshow-container fade">
-                        <div class="Containers">
-                            <div class="MessageInfo">1 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/taxi-galary-1.jpg" style="width:100%">
-                            <div class="H-Room-Info"></div>
-                        </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">2 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-2.jpg" style="width:100%">
-                        <div class="H-Room-Info"></div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">3 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-3.jpg" style="width:100%">
-                        <div class="H-Room-Info"></div>
-                    </div>
-
-                    <div class="Containers">
-                        <div class="MessageInfo">4 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/taxi-galary-4.jpg" style="width:100%">
-                        <div class="H-Room-Info"></div>
-                    </div>
-
+                       
+                            <!-- <div id="slideshow-container-<?php echo $data['details']->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" > -->
+                            <?php foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
+                                <div class="Containers">
+                                    
+                                        <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" style="width: 35em;" >                                        
+                                    <div class="H-Room-Info"></div>
+                                </div>
+                                    
+                            <?php } ?>
+   
                         <!-- Back and forward buttons -->
                         <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                        </div>
+                            </div>
                         <br>
 
                         <!-- The circles/beads -->
                         <div style="text-align:center">
-                            <span class="beads" onclick="currentSlide(1)"></span>
-                            <span class="beads" onclick="currentSlide(2)"></span>
-                            <span class="beads" onclick="currentSlide(3)"></span>
-                            <span class="beads" onclick="currentSlide(4)"></span>
-                        </div> 
+                            <?php 
+                                $count=1;
+                            foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
+                                <span class="beads" onclick="currentSlide(<?php echo $count ?>)"></span>
+                                
+                                    
+                            <?php $count++; } ?>
+                        </div>
+                        
                     </div>
 
+                </div> 
+                <br>
+                <?php 
+                    if(isset($data['hide'])){
+                ?>
+                <div id="taxi-day-bookingButs">
+                    <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase; color:black" ><b>Choose Your Plan</b></p><hr><br>
+                    <div style="display: flex; justify-content: center; gap:2.5em;">
+                        <button onclick="bookdays()" class="profile-btn-edit" id="edit-btn"  style="width:10em;" >Hire for Days</button>
+                        <button onclick="bookTrip()" class="profile-btn-edit" id="edit-btn" style="width:10em;">Book a Trip</button>
+                    </div>
                 </div>
+                
                 
                
                 
 
-                <div id="hotel-booking-form" class="hotel-room-top-picks">
-                    <?php 
-                        if(isset($data['hide'])){
-                    ?>
+                <div id="hotel-booking-form" class="hotel-room-top-picks" style="display:none">
+                    
                         <p class="home-title-2" >Book Now</p>
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
@@ -142,14 +143,21 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date"  required>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" style="background: white;"  required>
                                         <span id="avail"></span>
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Time<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" required>
+                                        <input class="hotel-labels-2" type="time" id="bookingTime"  name="s_time" style="background: white;" required>
+                                    </div>
+
+                                    <div class="hotel-reg-elements" id="taxi_days" style="display:none;">
+                                        <p class="home-title-4">Days<sup> *</sup> :</p>
+
+                                        <input class="hotel-labels-2" type="number" value='0' id="taxi-days-input"  name="days" min="1" style="background: white;"  required>
+                                        
                                     </div>
 
                                    
@@ -162,7 +170,7 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Pick Up Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-PL" name="pickupL" style="background: white;" required>
                                         
                                         <input type="hidden" name="p-latitude" id="p-latitude" value="">
                                         <input type="hidden" name="p-longitude" id="p-longitude" value="">
@@ -170,7 +178,7 @@ else {
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Destination Location <sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" required>
+                                        <input class="hotel-labels-2" type="text" id="taxi-DL" name="dropL" style="background: white;"  required>
 
                                         <!-- <span style="color:black;">Select the destination on Map(Optional)</span>
                                         <div id="map-container">
@@ -195,7 +203,7 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  required>
+                                        <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  style="background: white;" required>
                                         <span id="availSeats"></span>
                                     </div>
 
@@ -219,13 +227,14 @@ else {
                                         <div id="map"></div>
                                     </div>
                                 <span id="errorBut" ></span><br>
+                                <div class="hotel-reg-form-div-2">
+                                    <button id="taxi-get-price-but" class="taxi_booking_but_new" onclick="buttonclicked()" type="submit">Get Price Details</button>
+                            </div>
+                        </form>
                             </div><br>
                             
 
-                            <div class="hotel-reg-form-div-2">
-                                    <button id="taxi-get-price-but" class="all-purpose-btn" onclick="buttonclicked()" type="submit">Get Price Details</button>
-                            </div>
-                        </form>
+                           
                         <br>
 
                         <script type="text/JavaScript">
@@ -291,11 +300,11 @@ else {
 
 
                             <div class="hotel-reg-form-div-2">
-                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="all-purpose-btn" type="submit"  >Book Now</button>
+                                <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="taxi_booking_but_new" type="submit"  >Book Now</button>
                             </div>
                             <br>
                             <div class="hotel-reg-form-div-2">
-                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_all-purpose-btn" type="submit">Cancel</button>
+                                <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_booking_but_new " type="submit">Cancel</button>
                             </div>
                             
                         </div>
