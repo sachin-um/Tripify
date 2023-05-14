@@ -24,7 +24,7 @@ else {
         <div class="form-login">
             <div >
                 <img id="logo" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
-                <p id="tag">Make an Offer for Travelers Request</p> 
+                <p id="tag">Make an Offer for Ride</p> 
             </div>
     
             <div >
