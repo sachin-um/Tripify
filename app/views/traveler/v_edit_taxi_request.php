@@ -47,6 +47,18 @@ else {
                 <span class="invalid"><?php echo $data['date_err']; ?></span>
                 <input type="text" id="time" name="time" placeholder="Pickup Time" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
+                <select class="search" id="no_of_days" name="no_of_days">
+                    <option value=0 disabled selected>No: of Days (Optional)</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                </select>
                 <select class="search" id="passengers" name="passengers">
                     <option value="" disabled>No: of Passengers</option>
                     <option value=1>1</option>

@@ -71,7 +71,8 @@
         <div class="taxi-home-join-network"><br>
             <p style="margin-bottom: 10px; font-size: 1.4rem;">Didn't find a guide as you wish? Don't worry you can make a Request.</p>
             <div class="home-div-3">
-                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Request/addGuideRequest'">Request a guide</button>
+                <button class="all-purpose-btn" onclick="location.href='<?php echo URLROOT?>/Request/addGuideRequest'" style="background-color: #e8b122;
+    color: black;">Request a guide</button>
             </div><br>
         </div>       
         

@@ -124,14 +124,14 @@ $guidelanguages= $data['guideLanguages']
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Start Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="sdate"  required>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="sdate" min="<?php echo date('Y-m-d'); ?>"  required>
                                         <span id="start_validate"></span>
                                     </div>
                                     
 
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">End Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" required>
+                                        <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" min="<?php echo date('Y-m-d'); ?>" required>
                                         <span id="end_validate"></span>
                                     </div>
 

@@ -40,9 +40,7 @@
 
 
       document.addEventListener('click', function(event) {
-        // check if the click event target is outside of the popup window
         if (!popupContent.contains(event.target)) {
-            // remove the popup window from the DOM
             popup.style.display = "none";
             $('#popup-content').empty();
         }
@@ -51,12 +49,10 @@
 
 
   function showRequest(id,baseurl) {
-      // get the table row
             
             const requestid = id;
             
             
-            // popupContent.innerHTML = content;
             const popup = document.getElementById("popup");
             const requestcontent = document.getElementById("request-content");
             $.ajax({
@@ -107,9 +103,7 @@
             });
     
             document.addEventListener('click', function(event) {
-            // check if the click event target is outside of the popup window
             if (!requestcontent.contains(event.target)) {
-                // remove the popup window from the DOM
                 popup.style.display = "none";
                 $('#request-content').empty();
             }
@@ -119,11 +113,9 @@
   }
 
   function showTaxiBooking(id,baseurl) {
-    // get the table row
           
           const bookingid = id;
           
-          // popupContent.innerHTML = content;
           const popup = document.getElementById("popup");
           const requestcontent = document.getElementById("popup-content");
           $.ajax({
@@ -177,9 +169,7 @@
           });
   
           document.addEventListener('click', function(event) {
-          // check if the click event target is outside of the popup window
           if (!requestcontent.contains(event.target)) {
-              // remove the popup window from the DOM
               popup.style.display = "none";
               $('#popup-content').empty();
           }
