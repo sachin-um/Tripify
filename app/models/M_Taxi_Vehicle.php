@@ -118,7 +118,7 @@ class M_Taxi_Vehicle{
             $this->db->query('SELECT taxi_drivers.*
                 FROM taxi_drivers
                 LEFT JOIN vehicles ON vehicles.driverID = taxi_drivers.TaxiDriverID
-                WHERE vehicles.driverID IS NULL AND taxi_drivers.OwnerID = :OwnerID;
+                WHERE vehicles.driverID IS NULL AND taxi_drivers.OwnerID = :OwnerID AND taxi_drivers.verification_status=1
             ');
             $this->db->bind(':OwnerID', $id);
             $drivers = $this->db->resultSet();
