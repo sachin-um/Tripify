@@ -17,7 +17,7 @@
 
                     <div class="hotel-reg-elements">
                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                        <input class="hotel-labels-2" type="date" id="name" name="name" required>
+                        <input class="hotel-labels-2" type="date" id="name" name="name" min="<?php echo date('Y-m-d'); ?>" required>
                     </div>
                 </div>
 

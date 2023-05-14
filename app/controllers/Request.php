@@ -384,6 +384,7 @@
                         'destination'=>trim($_POST['destination']),
                         'date'=>trim($_POST['date']),
                         'time'=>trim($_POST['time']),
+                        'no_of_days'=>trim($_POST['no_of_days']),
                         'description'=>trim($_POST['description']),
                         'travelerid'=>trim($_POST['travelerid']),
                         'p-latitude'=>trim($_POST['p-latitude']),

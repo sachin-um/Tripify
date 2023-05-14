@@ -135,7 +135,7 @@ else {
                                 <div class="hotel-reg-form-div-2">
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" style="background: white;"  required>
+                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" style="background: white;" min="<?php echo date('Y-m-d'); ?>" required>
                                         
                                     </div>
                                     
