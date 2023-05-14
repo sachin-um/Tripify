@@ -27,11 +27,11 @@ $guidelanguages= $data['guideLanguages']
                                     <td>:</td>
                                     <td><?php echo $guidedetails-> Name ?></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Reg No</td>
                                     <td>:</td>
                                     <td><?php echo $guidedetails-> guideRegNo ?></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>Area</td>
                                     <td>:</td>
@@ -72,11 +72,13 @@ $guidelanguages= $data['guideLanguages']
 
                     <br>
                 </div>             
+
                
             </div>
 
             <div id="hotel-booking-form" class="hotel-room-top-picks">
                     
+
                 <p class="home-title-2" >Check Availability</p>
                 <hr>
                 <br><br>

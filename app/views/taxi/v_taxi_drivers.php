@@ -75,11 +75,13 @@
                             
                             </article>
 
-
+                            <?php if ($_SESSION['user_type']=='Taxi' ){
+                            ?>
                             <div >
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/editdrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_view" >View</button>
                                 <a href="<?php echo URLROOT; ?>/Taxi_Driver/deleteTaxiDrivers/<?php echo $driver->TaxiDriverID ?>"><button id="taxi_veh_delete">Delete</button></a>   
                             </div>
+                            <?php }?>
                             <br>
                             <div class="admin-action">
                             <?php if ($driver->verification_status ==1) {
@@ -111,10 +113,13 @@
 
                
             </div>
+            <?php if ($_SESSION['user_type']=='Taxi' ){
+            ?>
                     
             <div  class="taxi-vec-view-contA">  <!-- // THIS DIV CLASS IS FORMAT IN VIEW VEHICLE CSS('taxi_dashboard.css') -->
-            <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
+                <button id="taxi_veh_view" onclick="window.location='<?php echo URLROOT; ?>/Taxi_Driver/adddriver'">Add Driver</button>
             </div>
+            <?php }?>
             <div id="popup" class="trip-popup">
                 <div id="popup-content" class="profile-popup-content"></div>
             </div>

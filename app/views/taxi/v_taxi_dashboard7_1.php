@@ -82,7 +82,7 @@ else {
 
                         <tr>
                             <th>Distance</th>
-                            <td data-lable="Message"><?php echo $data['taxibookings']->distance ?></td>
+                            <td data-lable="Message"><?php echo $data['taxibookings']->distance ?>KM</td>
                         </tr>
 
                         
@@ -125,7 +125,7 @@ else {
 
                         <tr>
                             <th>Estimate Time</th>
-                            <td data-lable="Name"><?php echo $data['taxibookings']->estTime ?></a></td>
+                            <td data-lable="Name"><?php echo $data['taxibookings']->estTime ?> Hr</a></td>
                         </tr>
 
                         <tr>

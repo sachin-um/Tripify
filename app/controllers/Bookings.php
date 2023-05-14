@@ -97,7 +97,7 @@
 
             if($booking->Guides_GuideID == $_SESSION['user_id']){
                 if($this->guideBookingModel->confrimBooking($ReservationID)){
-                    flash('booking_flash', 'Confrimed Success');
+                    flash('booking_flash', 'Booking Confrimed');
                     redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');
@@ -152,7 +152,7 @@
 
             if($booking->Guides_GuideID == $_SESSION['user_id']){
                 if($this->guideBookingModel->CompletedGuideBooking($ReservationID)){
-                    flash('booking_flash', 'Status Updated');
+                    flash('booking_flash', 'Booking Completed Awai For Payment');
                     redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');
@@ -163,6 +163,28 @@
                 redirect('Users/login');
             }
             
+        }
+
+        public function CompletedGuidePayment($bookingId)
+        {
+            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingId);
+
+            if($booking->Guides_GuideID == $_SESSION['user_id']){
+                $data=[
+                    'bookingid'=>$bookingId,
+                    
+                ];
+                if($this->guideBookingModel->GuideBookingPaymentUpdate($data)){
+                    flash('booking_flash', 'Payment Recieved');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                }else{
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                }
+            }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
         }
         
         public function GuideDateValidation(){
@@ -194,6 +216,7 @@
                         'TravelerID'=>$_SESSION['user_id'],
                         'Location'=>$_POST['G_book_location']
                     ];
+
 
                     if($_SESSION['user_type']){
                         if($this->guideBookingModel->insertGuideBooking($data)){
@@ -334,7 +357,7 @@
                 }
             }else if($_SESSION['user_type']=='Taxi'){
                  
-                if($booking->TaxiOwnerID == $_SERVER['user_id']){
+                if($booking->TaxiOwnerID == $_SESSION['user_id']){
                     if($this->taxiBookingModel->cancelBooking($bookingid)){
                         flash('booking_flash', 'Taxi Booking is Canceled');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -354,7 +377,7 @@
             
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
 
-            if($booking->TaxiOwnerID == $_SERVER['user_id']){
+            if($booking->TaxiOwnerID == $_SESSION['user_id']){
                 if($this->taxiBookingModel->confrimBooking($ReservationID)){
                     flash('booking_flash', 'Confrimed Success');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
@@ -586,8 +609,32 @@
 
                         $end_date = date('Y-m-d', strtotime($est_datetime));
                         $end_time = date('H:i:s', strtotime($est_datetime));
-
-                        $total = (float)$distance * (float)$details->price_per_km;
+                        if($details->VehicleType == "Tuk Tuk"){
+                            if($distance<=100){
+                                $total=$distance*30;
+                            }else{
+                                $total = (float)100*30+((float)$distance-100)*(float)$details->price_per_km;
+                            }
+                        }else if($details->VehicleType == "Car"){
+                            if($distance<=100){
+                                $total=$distance*40;
+                            }else{
+                                $total = (float)100*40+((float)$distance-100)*(float)$details->price_per_km;
+                            }
+                        }else if($details->VehicleType == "Van"){
+                            if($distance<=100){
+                                $total=$distance*50;
+                            }else{
+                                $total = ((float)100*50)+((float)$distance-100)*(float)$details->price_per_km;
+                               
+                            }
+                        }else if($details->VehicleType == "Bus"){
+                            if($distance<=100){
+                                $total=$distance*70;
+                            }else{
+                                $total = (float)100*70+((float)$distance-100)*(float)$details->price_per_km;
+                            }
+                        }
                     }
 
     
