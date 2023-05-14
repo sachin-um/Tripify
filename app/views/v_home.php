@@ -101,7 +101,7 @@
         
         <div class="hotel-home-join-network" style="background-color: #03002e;">
             <div class="service-div">
-                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/new.jpg" alt="nine-arch">
+                <img id="hotel-img" src="<?php echo URLROOT; ?>/img/guide2.jpeg" alt="nine-arch">
             </div>
 
             <div class="service-div" style="width: 100%; text-align: center;">

@@ -29,11 +29,11 @@ $guidelanguages= $data['guideLanguages']
                                     <td>:</td>
                                     <td><?php echo $guidedetails-> Name ?></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Reg No</td>
                                     <td>:</td>
                                     <td><?php echo $guidedetails-> guideRegNo ?></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>Area</td>
                                     <td>:</td>
@@ -80,9 +80,9 @@ $guidelanguages= $data['guideLanguages']
                             <div class="MessageInfo">1 / 4</div>
                             <img src="<?php echo URLROOT?>/img/guide1.jpeg" style="width:100%">
                             <div class="H-Room-Info"></div>
-                        </div>
+                </div>
 
-                    <div class="Containers">
+                    <!-- <div class="Containers">
                         <div class="MessageInfo">2 / 4</div>
                         <img src="<?php echo URLROOT?>/img/guide2.jpeg" style="width:100%">
                         <div class="H-Room-Info"></div>
@@ -92,9 +92,9 @@ $guidelanguages= $data['guideLanguages']
                         <div class="MessageInfo">3 / 4</div>
                         <img src="<?php echo URLROOT?>/img/guide3.jpg" style="width:100%">
                         <div class="H-Room-Info"></div>
-                    </div>
+                    </div> -->
 
-                        <!-- Back and forward buttons -->
+                       <!-- Back and forward buttons  -->
                         <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="forward" onclick="plusSlides(1)">&#10095;</a>
                         </div>
