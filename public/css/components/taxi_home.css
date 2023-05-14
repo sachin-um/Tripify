@@ -133,10 +133,18 @@
     /* min-height: 750px; */
     margin-top: 5%;
     /* background-color: rgba(211, 211, 211, 0.3); */
-
 }
 
-
+.taxi-home-join-network{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: #e8b122;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+}
 
 .home-title-2{
     text-align: center;
@@ -188,6 +196,7 @@
 
 .taxi-ad-card{
     text-align: center;
+    height: 75px;
     background-color: #03002E ;
     color: white;
 }
@@ -209,7 +218,8 @@
 }
 
 .taxi_home_cont{
-    padding: 10em;
+    padding-left: 10em;
+    padding-right: 10em;
 }
 .taxi-disc-2{
 

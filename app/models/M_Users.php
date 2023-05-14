@@ -135,9 +135,23 @@
             }
         }
 
+        public function editHotelUserProfile($data){
+            $this->db->query('UPDATE users set Name=:name,ContactNo=:contact,profileimg=:proimg WHERE UserID=:id');
+
+            $this->db->bind(':name',$data['name']);
+            $this->db->bind(':contact',$data['contactno']);
+            $this->db->bind(':proimg',$data['profile-img_name']);
+            $this->db->bind(':id',$data['id']);
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         
-        public function getUserDetails($userID)
-        {
+        public function getUserDetails($userID){
             $this->db->query('SELECT * FROM users WHERE UserID= :userid');
             $this->db->bind(':userid',$userID);
             $row=$this->db->single();
@@ -296,6 +310,9 @@
             if ($row->verification_status==0) {
                 return 'NotValidate';
             }
+            elseif ($row->verification_status==2) {
+                return 'ServiceNotValidate';
+            }
             else if (password_verify($data['password'], $hashed_password)) {
                 $this->db->query('UPDATE users set active_status="Active" WHERE Email= :email');
                 $this->db->bind(':email',$data['email']);
@@ -397,6 +414,13 @@
                 } else {
                     return false;
                 }
+        }
+
+        public function getUserNumbers(){
+            $this->db->query('SELECT UserType, COUNT(*) as count FROM users GROUP BY UserType
+            ;');
+            $result = $this->db->resultSet();
+            return $result;
         }
     }
 

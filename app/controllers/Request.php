@@ -63,8 +63,8 @@
                 if (empty($data['end_date'])) {
                     $data['end_date_err']='please enter the ending date';
                 }
-                if (empty($data['language'])) {
-                    $data['language_err']='please enter the language y';
+                if ($data['language']=='not-assigned') {
+                    $data['language_err']='please enter the language you prefer';
                 }
                 if (empty($data['travelerid'])) {
                     $data['travelerid_err']='Error with traveler ID';

@@ -282,7 +282,7 @@
                     ];
 
                     if (uploadImage($data['profile-img']['tmp_name'],$data['profile-img_name'],'/img/profileImgs/')) {
-                        if ($this->userModel->editHotelDetails($data)) {
+                        if ($this->userModel->editHotelUserProfile($data)) {
                             unset($_SESSION['user_profile_image']);
                             $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                             $_SESSION['user_profile_image']=$user->profileimg;
@@ -396,6 +396,10 @@
                         flash('verify_flash', 'You Should Verify your email address first..');
                         $this->createVerifySession($data['email']);
                         redirect('Users/emailverify');
+                    }
+                    elseif ($log_user=='ServiceNotValidate') {
+                        flash('reg_flash', 'Sorry Wait for Verification Process of is Done...');
+                        redirect('Users/login');
                     }         
                     //logging user
                     else{
@@ -739,6 +743,9 @@
         {
             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                 if ($this->userModel->verifyaccount($id)) {
+                    flash('admin_flash','Verificaton Successful');
+                    $user=$this->userModel->getUserDetails($id);
+                    accountVerification($user);
                     if ($usertype=='Hotel') {
                         if ($_SESSION['admin_type']=='Super Admin') {
                             redirect('Admins/profiles/'.$usertype);
@@ -844,11 +851,13 @@
         public function messages()
         {
             $messages=$this->messageModel->viewall();
+            $admindetails=$this->userModel->getAdminDetails($_SESSION['user_id']);
             // $messages=filtermessages($allmessages,$_SESSION['user_type'],$_SESSION['user_id']);
             $data=[
                 'messages'=>$messages
             ];
             if ($_SESSION['user_type']=='Admin') {
+                $data['details']=$admindetails;
                 $this->view('admin/v_admin_messages',$data);
             }
             elseif ($_SESSION['user_type']=='Traveler') {
@@ -876,6 +885,11 @@
             elseif ($_SESSION['user_type']=='Traveler') {
                 $this->view('traveler/v_complains');
             }
+        }
+
+        public function getUserNumbers(){
+            $result = $this->userModel->getUserNumbers();
+            print_r($result); 
         }
 
 

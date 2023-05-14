@@ -66,11 +66,12 @@
                     
                     //Add a Taxi Request
                     if ($this->guideofferModel->addguideoffer($data)) {
-                        flash('reg_flash', 'Your Guide Offer is Succusefully added..!');
+                        flash('guide_offer_flash', 'Your Guide Offer is Succusefully added..!');
                         redirect('Offers/guideoffers');
                     }
                     else{
-                        die('Something went wrong');
+                        $data['payment-option_err']='Something went wrong please try again';
+                        $this->view('guide/v_add_guide_offer',$data);
                     }
                 }
                 else {
@@ -256,6 +257,20 @@
                 }
             }
         }
+
+        public function deleteOffer($id)
+        {
+            if ($this->guideofferModel->deleteOffer($id)) {
+                flash('guide_offer_flash','Offer succesfully removed');
+                redirect('Offers/guideoffers');
+            }
+            else {
+                flash('guide_offer_flash','Something went wrong please try again..');
+                redirect('Offers/guideoffers');
+            }
+            
+        }
+
 
         
 

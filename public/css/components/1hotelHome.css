@@ -431,7 +431,7 @@ hr{
 .reserve-room:hover{
     cursor: pointer;
     background-color: black;
-    color: #03002E;
+    color: white;
     border: #e8b122;
 }
 
