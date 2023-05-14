@@ -17,9 +17,7 @@ $guidelanguages= $data['guideLanguages']
         </div>
         <div class="hotel-room-top-picks">
             <div class="hotel-desc-page-div">
-                <div class="taxi-disc-2">
-
-                   
+                <div class="taxi-disc-2">                
                     <br>
                     <div class="taxi-disc-3">
                         <table>
@@ -52,125 +50,90 @@ $guidelanguages= $data['guideLanguages']
                                         foreach ($languages as $key => $value) {
                                         echo $value->language;
                                         if ($key < count($languages) - 1) {
-                                echo ', ';
-    }
-}
-?>
-</td>
+                                        echo ', ';
+                                        }
+                                        }
+                                        ?>
+                                    </td>
                                 </tr>
                                 
                             </tbody>
                         </table>
-
-                        <!-- <label><b>Name :</b> <?php echo $guidedetails-> Name ?></label><br>
-                        <label><b> :</b> <?php echo $guidedetails-> guideRegNo ?></label><br>   
-                        <label><b> :</b> </label><br>
-                        <label><b> :</b> </label><br>
-                        <label><b> :</b></label><br>
-                       
-                        <label><b>Rate :</b><?php echo $guidedetails->Rate ?></label>   -->
         
                     </div>
-                    
+                
                 </div>        
 
                 <div class="hotel-disc-2">
-                    <div id="booking-slideshow" class="slideshow-container fade">
-                        <div class="Containers">
-                            <div class="MessageInfo">1 / 4</div>
-                            <img src="<?php echo URLROOT?>/img/guide1.jpeg" style="width:100%">
-                            <div class="H-Room-Info"></div>
-                </div>
-
-                    <!-- <div class="Containers">
-                        <div class="MessageInfo">2 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/guide2.jpeg" style="width:100%">
-                        <div class="H-Room-Info"></div>
-                    </div>
-
                     <div class="Containers">
-                        <div class="MessageInfo">3 / 4</div>
-                        <img src="<?php echo URLROOT?>/img/guide3.jpg" style="width:100%">
+                        <img src="<?php echo URLROOT?>/img/profileImgs/<?php echo $data['guideimg']?>" style="width:100%">
                         <div class="H-Room-Info"></div>
-                    </div> -->
-
-                       <!-- Back and forward buttons  -->
-                        <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                        </div>
-                        <br>
-
-                        <!-- The circles/beads -->
-                        <div style="text-align:center">
-                            <span class="beads" onclick="currentSlide(1)"></span>
-                            <span class="beads" onclick="currentSlide(2)"></span>
-                            <span class="beads" onclick="currentSlide(3)"></span>
-                            <span class="beads" onclick="currentSlide(4)"></span>
-                        </div> 
                     </div>
 
-                </div>
-                
+                    <br>
+                </div>             
+
                
-                
+            </div>
 
-                <div id="hotel-booking-form" class="hotel-room-top-picks">
+            <div id="hotel-booking-form" class="hotel-room-top-picks">
                     
-                        <p class="home-title-2" >Check Availability</p>
-                        <hr>
-                        <br><br>
-                        <form id="gide-booking-form" action="<?php echo URLROOT; ?>/Bookings/GuideBooking/<?php echo $data['guidedetails']->GuideID?>" method="POST">
-                            <div class="hotel-reg-form">
-                                <div class="hotel-reg-form-div-2">
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Start Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingDate" name="sdate" min="<?php echo date('Y-m-d'); ?>"  required>
-                                        <span id="start_validate"></span>
-                                    </div>
-                                    
 
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">End Date<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" min="<?php echo date('Y-m-d'); ?>" required>
-                                        <span id="end_validate"></span>
-                                    </div>
-
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Payment option<sup> *</sup> :</p>
-                                        <select class="search" id="payment-option" name="payment_option" style="background: white;">
-                                            <option value="" disabled selected hidden>Payment Option</option>
-                                            <option value="Cash">Cash</option>
-                                            <option value="Online">Online</option>
-                                            <option value="Cash or Online">Cash or Online</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="hotel-reg-elements">
-                                        <p class="home-title-4">Location<sup> *</sup> :</p>
-                                        <input class="hotel-labels-2" type="text" id="G_book_loc"  name="G_book_location" placeholder="Location" required>
-                                        <span id="end_validate"></span>
-                                    </div>
-
-                                    <input class="hotel-labels-2" type="hidden" id="guide_payment" name="total" >
-                                   
-                                </div>
-
-                               
-                            </div><br>
-                            <span id="older"></span><br>
-                            <span id="avail"></span><br>
-                            <div class="hotel-reg-form-div-2">
-                                <button id="book-now-btn" class="all-purpose-btn" onclick="validate()" type="submit">Check</button>
+                <p class="home-title-2" >Check Availability</p>
+                <hr>
+                <br><br>
+                <form id="gide-booking-form" action="<?php echo URLROOT; ?>/Bookings/GuideBooking/<?php echo $data['guidedetails']->GuideID?>" method="POST">
+                    <div class="hotel-reg-form">
+                        <div class="hotel-reg-form-div-2">
+                            <div class="hotel-reg-elements">
+                                <p class="home-title-4">Start Date<sup> *</sup> :</p>
+                                <input class="hotel-labels-2" type="date" id="bookingDate" name="sdate"  required>
+                                <span id="start_validate"></span>
                             </div>
-                        </form>
-                        <br>
-                        <script type="text/JavaScript">
-
-                            var URLROOT="<?php echo URLROOT;?>";
-                            var GuideID =  '<?php echo $data['guidedetails']->GuideID?>';
-                            var guideRate = '<?php echo $data['guidedetails']->Rate?>';
                             
-                        </script>
+
+                            <div class="hotel-reg-elements">
+                                <p class="home-title-4">End Date<sup> *</sup> :</p>
+                                <input class="hotel-labels-2" type="date" id="bookingEndDate"  name="endDate" required>
+                                <span id="end_validate"></span>
+                            </div>
+
+                            <div class="hotel-reg-elements">
+                                <p class="home-title-4">Payment option<sup> *</sup> :</p>
+                                <select class="search" id="payment-option" name="payment_option" style="background: white;">
+                                    <option value="" disabled selected hidden>Payment Option</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Online">Online</option>
+                                    <option value="Cash or Online">Cash or Online</option>
+                                </select>
+                            </div>
+
+                            <div class="hotel-reg-elements">
+                                <p class="home-title-4">Location<sup> *</sup> :</p>
+                                <input class="hotel-labels-2" type="text" id="G_book_loc"  name="G_book_location" placeholder="Location" required>
+                                <span id="end_validate"></span>
+                            </div>
+
+                            <input class="hotel-labels-2" type="hidden" id="guide_payment" name="total" >
+                            
+                        </div>
+
+                        
+                    </div><br>
+                    <span id="older"></span><br>
+                    <span id="avail"></span><br>
+                    <div class="hotel-reg-form-div-2">
+                        <button id="book-now-btn" class="all-purpose-btn" onclick="validate()" type="submit">Check</button>
+                    </div>
+                </form>
+                <br>
+                <script type="text/JavaScript">
+
+                    var URLROOT="<?php echo URLROOT;?>";
+                    var GuideID =  '<?php echo $data['guidedetails']->GuideID?>';
+                    var guideRate = '<?php echo $data['guidedetails']->Rate?>';
+                    
+                </script>
                        
                         
                    
@@ -237,7 +200,6 @@ $guidelanguages= $data['guideLanguages']
                             
                         
                 </div>
-            </div>
 
             
         </div>

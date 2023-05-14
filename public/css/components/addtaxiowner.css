@@ -4,18 +4,16 @@
 
 }
 
-
-
 #taxi_add_own_img{
-    width: 80%;
-    
+    width: 60%;
+    height: 100px;
+    margin: auto;
 }
 
 .add_taxi_info_caption{
     position: relative;
     top:40%;
     transform: translate(0%,-10%);
-    margin-left: 10%;
 }
 
 
@@ -57,8 +55,6 @@
 
 
 .addtaxiownerregform {
-    
-    margin-top: 1em;
     display: grid;
     justify-content: center;
     align-items: center;
