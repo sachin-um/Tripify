@@ -7,7 +7,7 @@
 $_SESSION['user_id'];
 
 
-if (empty($_SESSION['user_id'])) {
+if (empty($_SESSION['user_id'])) {  
     flash('reg_flash', 'You need to have logged in first...');
     redirect('Users/login');
 }

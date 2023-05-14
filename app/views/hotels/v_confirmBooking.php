@@ -1,5 +1,5 @@
 <?php require APPROOT.'/views/inc/components/header.php'; ?>
-<!-- <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?> -->
+<?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
     <div class="content" id="confirm-booking-content">
@@ -223,8 +223,8 @@
             success: function(response) {
                 
                 if(response){
-                    alert(response);
-                    // window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
+                    // alert(response);
+                    window.location = '<?= URLROOT ?>/Bookings/HotelBookings/Traveler/<?php echo $_SESSION['user_id']?>';
 
                 }else{
                     alert("Failed");

@@ -81,21 +81,11 @@ class M_Hotels{
         return $hotelrecords;
     }
 
-    public function register($data){
-        // foreach($data['facilities'] as $facility){
-        //     $this->db->query('SELECT * from hotelfacilities where FacilityName=:facilityName');
-        //     $this->db->bind(':facilityName',$facility);
-        //     $facilitySelected=$this->db->single();
-
-        //     $this->db->query('INSERT INTO hotelfacility_table(hotelID,facilityID) VALUES(:HotelID,:facilityID)');
-        //     $this->db->bind(':HotelID',$data['hotel_id']);
-        //     $this->db->bind(':facilityID',$facilitySelected->FacilityID);
-        // }
-        
+    public function register($data){        
 
 
-        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,Category,contact_number,Pets,
-        Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:property_category,:contact_number,:pets,
+        $this->db->query('INSERT INTO hotels(HotelID,Name,Description,Line1,Line2,District,contact_number,Pets,
+        Check_in,Check_out,reg_number) VALUES(:HotelID,:name,:Description,:line1,:line2,:district,:contact_number,:pets,
         :check_in,:check_out,:reg_number)');
         $this->db->bind(':HotelID',$data['hotel_id']);
         $this->db->bind(':name',$data['name']);
