@@ -33,7 +33,6 @@ use Dompdf\Options;
                 'hotel_reg_number' => trim($_POST['hotel_reg_number']),
                 'contact_number' => trim($_POST['contact']),
                 'pets' => ($_POST['pets']),
-
                 'check_in' => trim($_POST['check_in']),
                 'check_out' => trim($_POST['check_out']),
                 'description' => trim($_POST['description']),
@@ -561,15 +560,51 @@ use Dompdf\Options;
             // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
 
             // print_r($allroomtypes);
+            $start = date('Y-m-d', strtotime('-30 days')); 
+            $endDate = date('Y-m-d');
 
             $data=[                
                 'bookings'=>$hotelbookings,
-                'status'=>$status
+                'status'=>$status,
+                'startdate'=>$start,
+                'enddate'=>$endDate
                 // 'allroomtypes'=>$allroomtypes
             ];
             $this->view('hotels/v_dash_bookings',$data);
             
         }        
+
+
+        public function filterBooking($status=null){
+            $startDate = $_POST["start-date"];
+            $endDate = $_POST["end-date"];
+
+            $hotelbookings = $this->hotelBookingModel->filterBookings($startDate,$endDate,$_SESSION['status']);
+
+            // echo gettype($startDate);
+            // echo gettype($endDate);
+            // echo $startDate."<br>";
+            // echo $endDate."<br>";
+            // echo $_SESSION['status']."<br>";
+            if(empty($hotelbookings)){
+                echo "empty";
+            }
+
+            // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+            $_SESSION['filterbookings'] = $hotelbookings;
+            // print_r($allroomtypes);
+
+            $data=[                
+                'bookings'=>$hotelbookings,
+                'status'=>$_SESSION['status'],
+                'startdate'=>$startDate,
+                'enddate'=>$endDate
+                // 'allroomtypes'=>$allroomtypes
+            ];
+            $this->view('hotels/v_dash_bookings',$data);
+            
+        }        
+
 
         public function loadPayments(){
             $payments=$this->hotelBookingModel->getPayments();
@@ -601,28 +636,46 @@ use Dompdf\Options;
 
         public function generatePDF(){           
             
-            $startDate = $_POST["start-date"];
-            $endDate = $_POST["end-date"];
+            // $startDate = $_POST["start-date"];
+            // $endDate = $_POST["end-date"];
             
 
-            $results = $this->hotelBookingModel->filterPayments($startDate,$endDate);
+            $results = $this->hotelBookingModel->filterBookings();
         
             // $html = "<img style='text-align: center;' src='/public/img/logo.png'>";
-            $html = "<h1 style='color: #03002E'>Payments Between $startDate and $endDate</h1><hr>";
-            $html .= "<table><tr><th>Booking ID</th><th>CustomerID</th><th>Payment Amount</th><th>Payment Date</th><th>Payment Method</th></tr>";
+
+            $html = '<html> 
+    
+            <head>
+                
+                <link rel="stylesheet" href="'.  URLROOT .'/public/css/pdfstyle.css"> 
+            </head>
+            
+            <body>    
+        
+                <div class="invo-title">
+                    <h1>Booking Report</h1>
+                </div><br>
+                <p>From to</p>
+            
+            </body>
+            </html>';
+
+            // $html = "<h1 style='color: #03002E'>Payments Between $startDate and $endDate</h1><hr>";
+            // $html .= "<table><tr><th>Booking ID</th><th>CustomerID</th><th>Payment Amount</th><th>Payment Date</th><th>Payment Method</th></tr>";
             
 
-            foreach ($results as $payment){
-            $html .= "<tr><td>$payment->booking_id</td>
-                <td>$payment->TravelerID</td>
-                <td>$payment->payment</td>
-                <td>$payment->date_added</td>
-                <td>$payment->paymentmethod</td>
-            </tr>";
-            }
+            // foreach ($results as $payment){
+            // $html .= "<tr><td>$payment->booking_id</td>
+            //     <td>$payment->TravelerID</td>
+            //     <td>$payment->payment</td>
+            //     <td>$payment->date_added</td>
+            //     <td>$payment->paymentmethod</td>
+            // </tr>";
+            // }
 
-            $html .= "<br><br><hr>";
-            $html .= "<br><p>This is a system generated report by Tripify(pvt)ltd</p>";
+            // $html .= "<br><br><hr>";
+            // $html .= "<br><p>This is a system generated report by Tripify(pvt)ltd</p>";
 
             $options = new Options;
             $options->setChroot(__DIR__);
