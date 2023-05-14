@@ -169,8 +169,9 @@ else {
 
     <br><br>
     <div style="width: 80%; margin: auto; text-align: center;">
+        <p class="home-title-2">Upload Images</p>
         <form method="post" action="<?php echo URLROOT ?>/Hotels/uploadRoomPhotos/<?php echo $data['wantedRoom']->RoomTypeID?>" enctype="multipart/form-data">                
-            <input type="file" name="image[]" multiple>
+            <input id="upload-photo" type="file" name="image[]" multiple>
             <div style="display: flex; justify-content: center;">
                 <button class="all-purpose-btn" type="submit" name="submit">Upload</button>
             </div>

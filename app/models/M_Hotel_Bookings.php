@@ -252,6 +252,16 @@ class M_Hotel_Bookings
         $this->db->bind(':checkout', $end);
 
         $result = $this->db->resultSet();
+        return $result; 
+    }
+
+    public function filterBookings(){
+        $this->db->query('SELECT * FROM hotel_bookings WHERE payment_status = :status 
+        AND hotel_id = :id');
+        $this->db->bind(':status', $_SESSION['status']);
+        $this->db->bind(':id', $_SESSION['user_id']);
+
+        $result = $this->db->resultSet();
         return $result;
     }
 

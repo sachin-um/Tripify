@@ -16,60 +16,35 @@ else {
 
 <div class="wrapper"> 
     <div class="tax-home-content">
-        <div class="hotel-home-top-picks">
-            <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']." "?>Company</b></p>
-            <p style="margin: auto; text-align: center; font-size: 1.1rem;"><?php echo $data['owner']->address?></p>
-        </div>
-        
-        <div class="hotel-desc-page-div">
+               
+        <!-- Main intro div with name and grid -->
+        <div class="taxi-desc-page-div">
 
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="max-width:100%; max-height:17em; object-fit:contain;">
+                <img id="" src="<?php echo URLROOT; ?>/img/profileImgs/<?php echo $data['owner']->profileImg?>" alt="picture" style="width:70%;">
                 <div style="margin-top: 10px; text-align: center;"><p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['owner']->owner_name; ?></b></p></div>
             </div>
-            
-            <div class="hotel-disc-2">
-                <div class="hotel-disc-3" style="text-align:center;">
-                    <div class="hotel-disc-1">
-                        <ul>
-                           <!-- <li><i class="fa-solid fa-person-swimming fa-lg"></i><label></label></li> -->
-                           <?php if($data['vehicles'][0]->media){
-                            ?>
-                            <li><label>Media</label></li>
-                            <?php
-                           } ?>
-                           <?php if($data['vehicles'][0]->wifi){
-                            ?>
-                            <li><label>Free Wifi</label></li>
-                            <?php
-                           } ?>
-                           <?php if($data['vehicles'][0]->AC){
-                            ?>
-                             <li><label>Air Conditioning</label></li>
-                            <?php
-                           } ?>
-                              <!-- Default -->
-                            <li><label>24/7 Service</label></li>
-                        </ul>
-                        
-                    </div>
 
-                    <div class="hotel-disc-1">
+            <div>
+                <p class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name']." "?>Company</b></p>
+                <p style="margin: auto; text-align: center; font-size: 1.1rem;"><?php echo $data['owner']->address?></p><br>
+
+                <p style="font-size: 1.1rem; text-align: center;">We offer you our services for</p>
+                <div style="text-align: center;">
                     <?php
                         $services = $data['owner']->services;
                         $servicesArray = explode(",", $services);
 
-                        foreach ($servicesArray as $service) {
-                            echo "<label><b>$service</label><br>";
+                        foreach ($servicesArray as $service) {?>
+                            <label style="text-transform:uppercase; font-size: 1.3rem;"><b><?php echo $service."    "?></label></b>
+                            <?php
                         }
                     ?>
-                        
-                    </div>
                 </div>
 
                 <div id="review-btns-div" class="hotel-disc-3">
                     <div class="hotel-disc-1">
-                        <button id="review-btn" class="all-purpose-btn">Review This Taxi</button>
+                        <button id="review-btn" class="all-purpose-btn">Review This Provider</button>
                     </div>
 
                     <div class="hotel-disc-1">
@@ -77,26 +52,19 @@ else {
                     </div>                  
                     
                 </div>
-                <div id="hotel-address" class="hotel-disc-3">
-                    <label id="view-address">
-                        <?php echo $data['owner']->address?>
-                    </label>
-                </div>
-            </div>        
+            </div>      
 
         </div>
         
-
-        <br><br><br>
         <div class="hotel-home-top-picks">
 
-            <p class="home-title-2" >Our Vehicles</p><br>
+            <p class="home-title-2" >Search Our Vehicles</p><br>
             <hr><br><br>
             <div class="nav-main">
                 
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Vehicle Type</p>
-                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type">
+                    <select class="hotel-labels-1" id="vehicle-type" name="vehicle-type" style="background-color: #f5f5f5;">
                         <option value="all">All Type</option>
                         <option value="Tuk Tuk">Tuk Tuk</option>
                         <option value="Car">Car</option>

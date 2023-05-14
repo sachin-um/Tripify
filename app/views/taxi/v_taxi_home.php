@@ -75,22 +75,8 @@
 
 
     <div class="tax-home-content" id="hide-div" style="margin-top: 0;">
-            
-        <div class="taxi-home-join-network">
-            <br>
-            <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a ride? Not to worry..<br></p>            
-            <p>Send a request to our drivers and let them offer you their best rates!</p><br>
 
-            <div class="home-div-3">
-                <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'"
-                style="background-color: #e8b122; color: black;">Request a Ride</button>
-            </div>      
-            <br>    
-        </div>
-
-
-
-        <p class="home-title-2" style="margin-top: 3%;">Vehicles Offered by Our Taxi Companies</p>
+        <p class="home-title-2" style="margin-top: 3%;">Vehicles Offered by Our Champion Drivers</p>
 
 
         <div class="taxi_home_cont">
@@ -129,8 +115,7 @@
                                         ?>
                                             <div class="owner">
                                                 <label><b><?php echo $owners->company_name." "?>pvt ltd</b></label><br>
-                                                <label><?php echo $owners->address?></label><br>
-                                                <p>Click to view company</p>
+                                                <p style="font-size: 0.9rem"><?php echo $owners->address?></p><br>
                                             </div>
                                             <?php 
                                                 }
@@ -188,9 +173,21 @@
                     <?php
                         endforeach;
                     ?>
-
-                
+            </div>
+       
         </div>
+                   
+    </div><br>
+
+    <div class="taxi-home-join-network">
+        <br>
+        <p class="home-title-2" style="margin-bottom: 10px;">Didn't find a ride? Not to worry..<br></p>            
+        <p>Send a request to our drivers and let them offer you their best rates!</p><br>
+
+        <div class="home-div-3">
+            <button class="all-purpose-btn" type="button" onclick="window.location='<?php echo URLROOT; ?>/Request/addTaxiRequest'"
+            style="background-color: #e8b122; color: black;">Request a Ride</button>
+        </div><br>
     </div>
 
 
