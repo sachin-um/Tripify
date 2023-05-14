@@ -27,7 +27,7 @@ else {
 
                 <select class="search" id="vehicle_type" name="vehicle_type">
                     <option value="Vehicle type you prefer" disabled selected>Vehicle type you prefer</option>
-                    <option value='tok-tok'>Tuk Tuk</option>
+                    <option value='tuk-tuk'>Tuk Tuk</option>
                     <option value='car'>Car</option>
                     <option value='van'>Van</option>
                     

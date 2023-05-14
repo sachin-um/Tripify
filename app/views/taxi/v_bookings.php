@@ -116,7 +116,7 @@ else {
                     <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase; color:black" ><b>Choose Your Plan</b></p><hr><br>
                     <div style="display: flex; justify-content: center; gap:2.5em;">
                         <button onclick="bookdays()" class="profile-btn-edit" id="edit-btn"  style="width:10em;" >Hire for Days</button>
-                        <button onclick="bookTrip()" class="profile-btn-edit" id="edit-btn" style="width:10em;">Book a Trip</button>
+                        <button onclick="bookTrip()" class="profile-btn-edit" id="edit-btn" style="width:10em;">Book a Ride</button>
                     </div>
                 </div>
                 
