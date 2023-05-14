@@ -108,11 +108,7 @@ else {
                     </div>
 
                     <div class="hotel-reg-elements">
-                        <!-- <p class="home-title-4">Children :</p>
-                        <select name="children" id="hotel-reg-select" value="<?php echo $data['children']; ?>">
-                            <option value="1" selected>Yes</option>
-                            <option value="0">No</option>
-                        </select> -->
+                        
                     </div>
                 </div>
                 <br>
@@ -168,7 +164,7 @@ else {
 ?>
 
 
-<!-- <?php require APPROOT . '/views/inc/components/footer.php'; ?> -->
+<?php require APPROOT . '/views/inc/components/footer.php'; ?>
 
 <!-- <p class="home-title-3">Facilties</p>
                 <hr>

@@ -18,104 +18,96 @@ else {
 
 <div class="wrapper">
     <div class="content">
-        <div class="hotel-booking-title">
+        <div class="taxi-desc-page-div">
+            <div class="taxi-disc-2">
 
-            <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase;" ><b><?php echo $data['com_name'] ?></b></p>    
-        
-        </div>
-        <div class="hotel-room-top-picks">
-            <div class="hotel-desc-page-div">
-                <div class="taxi-disc-2">
+                <!-- <div class="taxi-disc-3"> -->
+                    <p id="hotel-booking-title-1" class="home-title-2" style="text-transform:uppercase; font-size: 2.5rem;" ><b><?php echo $data['com_name'] ?></b></p>
+                    <p style="margin: auto;"><?php echo $data['details']->Model.'&nbsp;&nbsp;'.$data['details']->vehicle_number?></p>                   
+                <!-- </div> -->
+                <br>
+                <div class="taxi-disc-3">
+                    <div class="taxi-disc-1">
+                        
+                        <label id="taxi_book_subhead">    
+                            <b><?php echo $data['details']->VehicleType?></b>       
+                        </label><br>          
 
-                    <div class="taxi-disc-3">
-                        <label id="taxi_book_subhead">
-                            <b><?php echo $data['details']->Model.'&nbsp;&nbsp;'.$data['details']->vehicle_number?></b>
-                        </label><br>
+                        <ul class="taxi_book_ul" style="list-style: circle;">
+                            <li><label><?php echo $data['details']->color?> Colour</label></li>
+                            <li><label><?php echo $data['details']->no_of_seats?> Seats</label></li>
+                        
+                            <?php 
+                                if($data['details']->AC){
+                            ?>
+                            <li><label><?php echo $data['details']->AC?></label></li>
+                            <?php
+                                }else if($data['details']->media){
+                            ?>
+                            <li><label><?php echo $data['details']->media?></label></li>
+                            <?php
+                                }else if($data['details']->wifi){
+                            ?>
+                            <li><label><?php echo $data['details']->wifi?></label></li>
+                            <?php
+                                }
+                            
+                            ?>
+                                
+                        </ul>
                         
                     </div>
+
+                    <div class="taxi-disc-1">
+                        <label id="taxi_book_subhead">
+                            <b>Driver</b>
+                        </label><br>
+
+                        <ul class="taxi_book_ul" style="list-style: circle;">
+                                <li><label>Name: <?php echo $data['details']->Name?></label></li>
+                                <li><label>Age: <?php echo $data['details']->Age?></label></li>
+                                <li><label>Contact Number: <?php echo $data['details']->contact_number?></label></li>
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>        
+
+            <div class="taxi-disc-2" style="width: 100%;">
+                <div id="booking-slideshow" class="slideshow-container fade">
+                    
+                    <!-- <div id="slideshow-container-<?php echo $data['details']->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" > -->
+                    <?php foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
+                        <div class="Containers">                            
+                            <img id="taxi-id-1" src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" style="width: 35em;" >                                        
+                            <div class="H-Room-Info"></div>
+                        </div>
+                            
+                    <?php } ?>
+
+                    <!-- Back and forward buttons -->
+                    <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="forward" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
                     <br>
-                    <div class="taxi-disc-3">
-                        <div class="taxi-disc-1">
-                            
-                            <label id="taxi_book_subhead">    
-                                <b><?php echo $data['details']->VehicleType?></b>       
-                            </label><br>          
 
-                            <ul class="taxi_book_ul" style="list-style: circle;">
-                                <li><label><?php echo $data['details']->color?> Colour</label></li>
-                                <li><label><?php echo $data['details']->no_of_seats?> Seats</label></li>
+                    <!-- The circles/beads -->
+                    <div style="text-align:center">
+                        <?php 
+                            $count=1;
+                        foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
+                            <span class="beads" onclick="currentSlide(<?php echo $count ?>)"></span>
                             
-                                <?php 
-                                    if($data['details']->AC){
-                                ?>
-                                <li><label><?php echo $data['details']->AC?></label></li>
-                                <?php
-                                    }else if($data['details']->media){
-                                ?>
-                                <li><label><?php echo $data['details']->media?></label></li>
-                                <?php
-                                    }else if($data['details']->wifi){
-                                ?>
-                                <li><label><?php echo $data['details']->wifi?></label></li>
-                                <?php
-                                    }
                                 
-                                ?>
-                                   
-                            </ul>
-                            
-                        </div>
-
-                        <div class="taxi-disc-1">
-                            <label id="taxi_book_subhead">
-                                <b>Driver</b>
-                            </label><br>
-
-                            <ul class="taxi_book_ul" style="list-style: circle;">
-                                    <li><label>Name: <?php echo $data['details']->Name?></label></li>
-                                    <li><label>Age: <?php echo $data['details']->Age?></label></li>
-                                    <li><label>Contact Number: <?php echo $data['details']->contact_number?></label></li>
-                                
-                                
-                            </ul>
-                        </div>
+                        <?php $count++; } ?>
                     </div>
                     
-                </div>        
+                </div>
 
-                <div class="hotel-disc-2">
-                    <div id="booking-slideshow" class="slideshow-container fade">
-                       
-                            <!-- <div id="slideshow-container-<?php echo $data['details']->VehicleID?>" style="width:100%; height: 17em; overflow: hidden;" > -->
-                            <?php foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
-                                <div class="Containers">
-                                    
-                                        <img src="<?php echo URLROOT; ?>/img/vehicle_images/<?php echo $image_name?>" alt="vehicle image" style="width: 35em;" >                                        
-                                    <div class="H-Room-Info"></div>
-                                </div>
-                                    
-                            <?php } ?>
-   
-                        <!-- Back and forward buttons -->
-                        <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                            </div>
-                        <br>
+            </div> 
 
-                        <!-- The circles/beads -->
-                        <div style="text-align:center">
-                            <?php 
-                                $count=1;
-                            foreach ($data['details']->vehicle_images_arr as $image_name) { ?>
-                                <span class="beads" onclick="currentSlide(<?php echo $count ?>)"></span>
-                                
-                                    
-                            <?php $count++; } ?>
-                        </div>
-                        
-                    </div>
-
-                </div> 
                 <br>
                 <?php 
                     if(isset($data['hide'])){
@@ -133,7 +125,7 @@ else {
                 
 
                 <div id="hotel-booking-form" class="hotel-room-top-picks" style="display:none">
-                    
+
                         <p class="home-title-2" >Book Now</p>
                         <hr>
                         <form id ="taxi-booking-form" action="<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>" method="POST">
@@ -259,36 +251,40 @@ else {
                     ?>
 
                     
-                        <div>
-                            <p class="home-title-3"><u>Price Details</u></p>
+                        <div style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; width: 60%; margin: auto;text-align: center;">
+                            <br><p class="home-title-2"><u>Price Details</u></p>
                             <br>
-                            <div class="price-details-1">
+                            <div class="price-details-taxi-check">
                                 <div class="hotel-price-check">
                                     <label><b>Trip Start :</b></label><br>
-                                    <label><b><?php echo $data['s_date']?></b></label><br>
-                                    <label><b><?php echo $data['s_time'].":00"?></b></label>
+                                    <p><?php echo $data['s_date']?></p><br>
+                                    <p><?php echo $data['s_time'].":00"?></p></label>
                                 </div>
                                 <div class="hotel-price-check">
                                     <label><b>Trip End :</b></label><br>
-                                    <label><b><?php echo $data['e_date']?></b></label><br>
-                                    <label><b><?php echo $data['e_time']?></b></label>
+                                    <p><?php echo $data['e_date']?></p><br>
+                                    <p><?php echo $data['e_time']?></p>
                                 </div>
                                 <div class="hotel-price-check">
-                                    <label><b><?php echo $data['pickupL']?></b></label><br>
+                                    <b>From</b><br>
+                                    <p><?php echo $data['pickupL']?></p><br>
                                     <label><p><b>To</b></p></label>
-                                    <label><b><?php echo $data['dropL']?></b></label>
+                                    <p><?php echo $data['dropL']?></p>
                                 </div>
-                                <div id="hotel-nights-days" class="hotel-price-check">
-                                    <label><?php echo $data['distance']?></label>
-                                </div>
+                                
+                            </div><br>
+                            <div id="hotel-nights-days" class="hotel-price-check">
+                                <label><?php echo $data['distance']?></label>
                             </div>
                             <br>
                             <div class="price-details-2">
+
                                 <?php if($data['days']==0){?>
                                 <div class="hotel-price-details">
                                     <label id="No-of-rooms"><?php echo $data['distance']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
+                                    <label id="X">=</label>
                                     <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
                                 
@@ -306,10 +302,7 @@ else {
 
                                 <hr id="prices-hr">
                                 
-                                <div class="hotel-price-details">
-                                    <label id="hotel-taxes">Total</label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
-                                </div>
+
                             </div>
 
 
@@ -319,14 +312,15 @@ else {
                             <br>
                             <div class="hotel-reg-form-div-2">
                                 <button onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingPage/<?php echo $data['details']->VehicleID.'/'.$data['details']->OwnerID?>';" id="confirm-booking-btn" class="taxi_booking_but_new " type="submit">Cancel</button>
-                            </div>
+                            </div><br>
                             
                         </div>
+                        <br>
                     <?php
                         }
                     ?>
                 </div>
-            </div>
+            
 
             
         </div>

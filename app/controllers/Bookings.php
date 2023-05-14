@@ -78,10 +78,17 @@
         // public function filterGuidebooking($usertype,$userid){
         //     $filter=$this->guideBookingModel->filterguidebooking($usertype,$userid);
         //     $data=[
-        //         'filterbooking'=> $filter
+        //         'guidebookings'=> $filter
         //     ];
         //     $this->view('guide/v_guide_bookings',$data);
         // }
+
+
+
+
+
+
+
 
         public function ConfirmGuideBooking($ReservationID){
             
@@ -169,54 +176,59 @@
         }
 
 
-        public function GuideBooking($GuideID){
-            $guideDetails=$this->guideModel->getGuideById($GuideID);
-            $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
-            
+        public function GuideBooking($GuideID){ //book a guide from guide booking 
+            if ($_SESSION['user_type'] == 'Traveler') { 
+                $guideDetails=$this->guideModel->getGuideById($GuideID);
+                $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
+                
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
-                $data=[
-                    'GuideID' =>$GuideID,
-                    'StartDate'=>$_POST['sdate'],
-                    'EndDate'=>$_POST['endDate'],
-                    'PaymentMethod'=>$_POST['payment_option'],
-                    'payment'=>$_POST['total'],
-                    'TravelerID'=>$_SESSION['user_id'],
-                    'Location'=>$_POST['G_book_location']
-                ];
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                    $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
+                    $data=[
+                        'GuideID' =>$GuideID,
+                        'StartDate'=>$_POST['sdate'],
+                        'EndDate'=>$_POST['endDate'],
+                        'PaymentMethod'=>$_POST['payment_option'],
+                        'payment'=>$_POST['total'],
+                        'TravelerID'=>$_SESSION['user_id'],
+                        'Location'=>$_POST['G_book_location']
+                    ];
 
-                if($_SESSION['user_type']){
-                    if($this->guideBookingModel->insertGuideBooking($data)){
-                        $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
-                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
-                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
-                        confirmBookingGuide($data);
-                        flash('booking_flash', 'Guide Booked Sucessfully');
-                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                    if($_SESSION['user_type']){
+                        if($this->guideBookingModel->insertGuideBooking($data)){
+                            $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
+                            $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
+                            $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
+                            confirmBookingGuide($data);
+                            flash('booking_flash', 'Guide Booked Sucessfully');
+                            redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                        }else{
+                            flash('booking_flash', 'Somthing went wrong try again');
+                            redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                        }
                     }else{
-                        flash('booking_flash', 'Somthing went wrong try again');
-                        redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                        flash('reg_flash', 'Access denied..');
+                        redirect('Users/login');
                     }
+
+                    
+
+                    
                 }else{
-                    flash('reg_flash', 'Access denied..');
-                    redirect('Users/login');
+                    $data=[
+                        'guidedetails'=>$guideDetails,
+                        'guideLanguages'=>$guidelanguages,
+                        'GuideID'=>$guideDetails->GuideID
+                    
+                    ];
+                    
+                    
+                    // echo var_dump($data);
+                    $this->view('guide/v_guide_booking',$data);
                 }
-
-                
-
-                
             }else{
-                $data=[
-                    'guidedetails'=>$guideDetails,
-                    'guideLanguages'=>$guidelanguages,
-                    'GuideID'=>$guideDetails->GuideID
-                   
-                ];
-                
-                
-                // echo var_dump($data);
-                $this->view('guide/v_guide_booking',$data);
+                flash('reg_flash', 'Only Traveler Can Place Booking...');
+                redirect('Users/login');
             }
         }
         
@@ -511,23 +523,18 @@
             if ($_SESSION['user_type'] == 'Traveler') {
                 $details=$this->taxiBookingModel->getVehicleAndDriversbyID($vehicleID);
                 // var_dump($details);
-                $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID); 
-
+                $owner=$this->taxiBookingModel->getTaxiOwnerbyID($ownerID);             
                
-               
-                    $vehicle_images_str = $details->Vehicle_Images; // Example string from the database
-                    $vehicle_images_array = explode(",", $vehicle_images_str);
-                    $details->vehicle_images_arr=$vehicle_images_array;
+                $vehicle_images_str = $details->Vehicle_Images; // Example string from the database
+                $vehicle_images_array = explode(",", $vehicle_images_str);
+                $details->vehicle_images_arr=$vehicle_images_array;
 
                 if(isset($owner->company_name)){
                     $com_name = $owner->company_name;
                 }else{
                     $com_name = $owner->owner_name;
-                }
+                }               
                 
-                
-                
-
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
                     $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -552,7 +559,6 @@
                     if($days>0){
                         
                         $pickup_timestamp = strtotime($bookingDate . ' ' . $bookingTime);
-
                        
                         $dropoff_timestamp = strtotime('+' . $days . ' days', $pickup_timestamp);
 
@@ -564,11 +570,12 @@
                         // echo 'Estimated drop-off date and time: ' . $dropoff_date . ' ' . $dropoff_time;
                         $end_date = $dropoff_date;
                         $end_time = $dropoff_time;
+
                         $total = (float)$days * (float)$details->DayRate;
                         
 
                     }else{
-                        
+
                         $exHours = (int)substr($exTime, 0, 2);
                         $exMinutes = (int)substr($exTime, 3, 2);
                         $exSeconds = (int)substr($exTime, 6, 2);
@@ -604,12 +611,9 @@
                                 $total = (float)100*70+((float)$distance-100)*(float)$details->price_per_km;
                             }
                         }
-                        
                     }
-                
+
     
-
-
                     $data=[
                         's_date'=>trim($_POST['s_date']),
                         's_time'=>trim($_POST['s_time']),
@@ -635,9 +639,6 @@
                         ];
                         
                         $_SESSION['booking_data'] = $data;
-
-                        // var_dump($data);
-
                         $this->view('taxi/v_bookings',$data);
 
                 }else{
@@ -658,8 +659,7 @@
             }else{
                 flash('reg_flash', 'Only Traveler Can Place Booking...');
                 redirect('Users/login');
-            }
-            
+            }           
             
 
         }
@@ -1040,15 +1040,14 @@
                 $user=$this->userModel->getUserDetails($_SESSION['user_id']);
                 $hotel=$this->hotelModel->getHotelById(intval($hotelID));
                 $checkin = (string)$_SESSION['checkin'];
-                $mailData=[
-                    'userDetails'=>$user,
-                    'bookingDetails'=>$data,
-                    'hotelName'=>$hotel->Name,
-                    'payment' => $payment
-                ];
+                // $mailData=[
+                //     'userDetails'=>$user,
+                //     'bookingDetails'=>$data,
+                //     'hotelName'=>$hotel->Name,
+                //     'payment' => $payment
+                // ];
 
-                confirmBookingHotel($mailData);
-                // $type = gettype($mailData['bookingDetails']->Email);
+                // confirmBookingHotel($mailData);
                 echo json_encode(true);
                 
             }else{

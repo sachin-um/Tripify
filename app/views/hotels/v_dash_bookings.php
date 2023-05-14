@@ -37,28 +37,41 @@ if (empty($_SESSION['user_id'])) {
         <br><br>
         <p class="home-title-2">Your Bookings</p><br>
 
-        <div class="search-payments">
-            <input class="input-payments" type="date" name="start-date">
-            <input class="input-payments" type="date" name="end-date">
+        <!-- Filter bookings -->
+        <!-- <form action="<?php echo URLROOT?>/Hotels/filterBooking" method="post">
+            <div class="search-payments">            
+                <input class="input-payments" type="date" name="start-date">
+                <input class="input-payments" type="date" name="end-date">
 
+                <button class="input-payments-btn" type="submit">Search</button>
+            </div>            
+        </form><br> -->
+        <div style="margin: auto; text-align: center;">
             <button class="input-payments-btn"
-            onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatePDF/Traveler'">
+            onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatePDF/<?php echo $data['startdate']?>/<?php echo $data['enddate']?>'">
             Get Report</button>
-        </div><br><br>
+        </div><br>
+        
 
         <div class="booking-btns">
             <?php 
-            if($data['status']=='In progress'){?>
+            if($data['status']=='In progress'){
+                $_SESSION['status']='In progress';
+                ?>
                 <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
             <?php
-            }else if($data['status']=='completed'){?>
+            }else if($data['status']=='completed'){
+                $_SESSION['status']='completed';
+                ?>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
                 <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
             <?php
-            }else if($data['status']=='Canceled'){?>
+            }else if($data['status']=='Canceled'){
+                $_SESSION['status']='Canceled';
+                ?>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
                 <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>

@@ -41,7 +41,10 @@ else {
         <?php
         if (empty($data['reviews'])) {
         ?>
-        <p style="font-size: 1.2rem; margin: auto;">No Payments</p>
+        <div id="review-id">
+            <p style="font-size: 1.2rem; margin: auto;">No Reviews Given</p>
+        </div>
+        
         <?php        
         } else {
         ?>
