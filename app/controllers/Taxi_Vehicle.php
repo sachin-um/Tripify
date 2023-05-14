@@ -78,7 +78,7 @@
 
         public function addavehicle(){
             
-            $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
+            $alldrivers=$this->taxi_vehicleModel->FreeDrivers($_SESSION['user_id']);
 
             if ($_SERVER['REQUEST_METHOD']=='POST') {
                 //Data validation
@@ -108,6 +108,7 @@
                         'vehicleNumber'=>trim($_POST['number']),
                         'area'=>trim($_POST['area']),
                         'color'=>trim($_POST['color']),
+                        'DayRate'=>trim($_POST['DayRate']),
                         'noOfSeats'=>trim($_POST['max']),
                         'price_per_km'=>trim($_POST['flag']),
                         'AC'=>trim($_POST['ac']) ?? '',
@@ -227,6 +228,7 @@
                     'yearofProduction'=>'',
                     'vehicleNumber'=>'',
                     'area'=>'',
+                    'DayRate'=>'',
                     'noOfSeats'=>'',
                     'price_per_km'=>'',                        
 
@@ -321,6 +323,7 @@
                     'vehicle_image_names'=>$Vehicle_Images_str,
                     'area'=>trim($_POST['area']),
                     'color'=>trim($_POST['color']),
+                    'DayRate'=>trim($_POST['DayRate']),
                     'no_of_seats'=>trim($_POST['noOfSeats']),
                     'AC'=>trim($_POST['TaxiAC'] ?? ''),
                     'media'=>trim($_POST['media'] ?? ''),
@@ -360,7 +363,7 @@
             }
             else {
 
-                $alldrivers=$this->taxi_driverModel->viewall($_SESSION['user_id']);
+                $alldrivers=$this->taxi_vehicleModel->FreeDrivers($_SESSION['user_id']);
 
                 $taxiVehicle= $this->taxi_vehicleModel->getVehicleByID($vehicle_id);
 
@@ -381,6 +384,7 @@
                         'vehicleType'=>$taxiVehicle->VehicleType,
                         'model'=>$taxiVehicle->Model,
                         'color'=>$taxiVehicle->color,
+                        'DayRate'=>$taxiVehicle->DayRate,
                         'yearofProduction'=>$taxiVehicle->YearOfProduction,
                         'vehicleNumber'=>$taxiVehicle->vehicle_number,
                         'area'=>$taxiVehicle->area,

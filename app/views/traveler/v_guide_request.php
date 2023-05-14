@@ -33,7 +33,7 @@ else {
                 <input type="text" id="time" name="time" placeholder="Time (Optional)" onfocus="(this.type='time')" value="<?php echo $data['time']; ?>" min="<?php echo date('Y-m-d'); ?>">
                 <span class="invalid"><?php echo $data['time_err']; ?></span>
                 <select class="search" id="language" name="language">
-                    <option value="" disabled selected>Prefer Language</option>
+                    <option value="not-assigned" selected>Prefer Language</option>
                     <option value='sinhala'>Sinhala</option>
                     <option value='english'>English</option>
                     <option value='tamil'>Tamil</option>

@@ -30,19 +30,19 @@ else {
             <a href="<?php echo URLROOT; ?>/Users/messages" class="menu-item is-active">Messages</a>
             <?php
 
-                if($data->details->AssignedArea=='Super Admin'){
+                if($data['details']->AssignedArea=='Super Admin'){
                     ?>
                     <a href="<?php echo URLROOT; ?>/Admins/manageadmins" class="menu-item">Manage Admins</a>
                     <?php
                 }
-                elseif($data->details->AssignedArea=='verification'){
+                elseif($data['details']->AssignedArea=='verification'){
                     ?>
                     <a href="<?php echo URLROOT; ?>/Admins/verification/Guide" class="menu-item">Account Verifcation</a>
                     <?php
                 }
             ?>
             <a href="<?php echo URLROOT; ?>/Admins/profiles/Traveler" class="menu-item">User Profiles</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 

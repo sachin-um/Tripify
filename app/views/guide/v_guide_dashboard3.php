@@ -15,7 +15,7 @@
             <a href="#" class="menu-item is-active">Offers</a>
             <a href="<?php echo URLROOT?>/" class="menu-item">Bookings</a>
             <a href="#" class="menu-item">Payments</a>
-            <a href="#" class="menu-item">Exit Dashboard</a>
+            <a href="<?php echo URLROOT; ?>/Pages/home/" class="menu-item" >Exit Dashboard</a>
         </nav>
     </aside>
 

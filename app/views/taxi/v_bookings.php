@@ -136,7 +136,7 @@ else {
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Date<sup> *</sup> :</p>
                                         <input class="hotel-labels-2" type="date" id="bookingDate" name="s_date" style="background: white;"  required>
-                                        <span id="avail"></span>
+                                        
                                     </div>
                                     
 
@@ -196,7 +196,7 @@ else {
                                     <div class="hotel-reg-elements">
                                         <p class="home-title-4">Passengers Count<sup> *</sup> :</p>
                                         <input class="hotel-labels-2" type="number" id="passengers" name="passengers" min="1"  style="background: white;" required>
-                                        <span id="availSeats"></span>
+                                        
                                     </div>
 
                                     <div class="hotel-reg-elements">
@@ -213,11 +213,14 @@ else {
                                    
                                 </div>
 
-                                <span id="availTime"></span><br>
+                                
                                 <span style="color:black;">Select the pickup location on Map(Optional)</span>
                                     <div id="map-container">
                                         <div id="map"></div>
                                     </div>
+                                <span id="avail"></span><br>
+                                <span id="availTime"></span><br>
+                                <span id="availSeats"></span><br>
                                 <span id="errorBut" ></span><br>
                                 <div class="hotel-reg-form-div-2">
                                     <button id="taxi-get-price-but" class="taxi_booking_but_new" onclick="buttonclicked()" type="submit">Get Price Details</button>
@@ -275,14 +278,25 @@ else {
                             </div>
                             <br>
                             <div class="price-details-2">
-                                <p style="font-size: 1.5rem; margin: auto;"><b>Total Trip Fare</b></p><br>
-                                <div class="hotel-price-details">                                    
+
+                                <?php if($data['days']==0){?>
+                                <div class="hotel-price-details">
                                     <label id="No-of-rooms"><?php echo $data['distance']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
                                     <label id="X">=</label>
                                     <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
                                 </div>
+                                
+
+                                <?php } else{ ?>
+                                <div class="hotel-price-details">
+                                    <label id="No-of-rooms"><?php echo $data['days']?></label>
+                                    <label id="X">X</label>
+                                    <label id="No-of-nights"><?php echo $data['DayRate']?></label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                </div>
+                                <?php } ?>
 
                                 
 
