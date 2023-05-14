@@ -74,7 +74,7 @@ else {
                             <th>Booking Date</th>
                             <th>Booking Time</th>
                             <th>Pickup Location</th>
-                            <th>Destination</th>
+                            <th style="display:none;">Destination</th>
                             <th>Payment</th>
                             <th>Payment Method</th>
                             <th>Booking Status</th>
@@ -93,7 +93,7 @@ else {
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
                             <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
-                            <td data-lable="Message"><?php echo $booking->destination ?></td>
+                            <td data-lable="Message" style="display:none;"><?php echo $booking->destination ?></td>
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
                             <td data-lable="Message"><?php echo $booking->PaymentMethod ?></td>
                             <td data-lable="Message"><?php echo $booking->status ?></td>

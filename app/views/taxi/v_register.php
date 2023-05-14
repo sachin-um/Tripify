@@ -25,18 +25,21 @@
                                 Browse
                             </div>  
                         </div>
+                <br>
                     </div>
                     <input type="text" id="taxicomname" name="ownername" placeholder="Owner Name" required><br>
                     <input type="text" id="taxicomname" name="ownernic" placeholder="NIC Number" required><br>
+                    <span class="invalid"><?php echo $data['nic_err']; ?></span>
+                    <br>
                     <input type="text" id="taxicomname" name="taxicomname" placeholder="Company Name If Exist" ><br>
 
                     <div class="taxi_own_mob_div">
                         <input id="taxiowncode" name="taxiowncode" type="text" value="+94" disabled >
                         <input type="tel" id="taxiownmobile" name="taxiownmobile" value=""  placeholder="Business Phone"  required ><br>
-
+                        
                     </div>
-                    
-
+                    <br>
+                    <span class="invalid"><?php echo $data['contact_no_err']; ?></span>
                     <input type="number" id="taxiownnov" name="taxiownnov" placeholder="Number of vehicle" required min="1"><br>
 
                     <!-- <label id="add_taxiown_p">Company Address</lable><br> -->

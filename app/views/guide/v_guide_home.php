@@ -10,19 +10,19 @@
             <div class="nav-main">
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Where are you going?</p>
-                    <input class="hotel-labels-1" type="text" id="place" placeholder="Your Destination">
+                    <input class="hotel-labels-2" type="text" id="place" placeholder="Your Destination">
                 </div>
 
 
                 <div class="nav-parts">
                     <p class="hotel-labels-1">Start Date</p>
-                    <input class="hotel-labels-1" type="date" id="date-1" placeholder="Check-In Date">
+                    <input class="hotel-labels-2" type="date" id="date-1" placeholder="Check-In Date">
                     <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                 </div>
 
                 <div class="nav-parts">
                     <p class="hotel-labels-1">End Date</p> 
-                    <input class="hotel-labels-1" type="date" id="date-2" placeholder="Check-Out Date">
+                    <input class="hotel-labels-2" type="date" id="date-2" placeholder="Check-Out Date">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <br><br><p class="home-title-2" >Top Rated guides </p>
 
         <div class="hotel-home-top-picks">
-            <div class="nav-main">
+            <div class="guide-ads-main">
                 <?php
                 
                 foreach($data['allguides'] as $guide):
