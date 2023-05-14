@@ -69,6 +69,7 @@
             }
             else if ($usertype=='Guide') {
                 $guidebookings=$this->guideBookingModel->viewBookings($usertype,$userid);
+                
                 $data=[
                     'guidebookings'=> $guidebookings
                 ];
@@ -180,7 +181,7 @@
             if ($_SESSION['user_type'] == 'Traveler') { 
                 $guideDetails=$this->guideModel->getGuideById($GuideID);
                 $guidelanguages=$this->guideModel->getGuideLanguageById($GuideID);
-                
+                $guide = $this->userModel->getUserDetails($GuideID);
 
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $_POST = filter_input_array(INPUT_POST,FILTER_UNSAFE_RAW);
@@ -218,8 +219,8 @@
                     $data=[
                         'guidedetails'=>$guideDetails,
                         'guideLanguages'=>$guidelanguages,
-                        'GuideID'=>$guideDetails->GuideID
-                    
+                        'GuideID'=>$guideDetails->GuideID,
+                        'guideimg' => $guide->profileimg
                     ];
                     
                     
