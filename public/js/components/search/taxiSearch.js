@@ -1,35 +1,35 @@
 $(document).ready(function() {
     
     // Add event listener to input element
-    if ($('#gobackBut').length) {
-        $('#gobackBut').on('click', function() {
-            $('#goback').hide();
-            document.getElementById("hide-div").style.display = "block";
+    // if ($('#gobackBut').length) {
+    //     $('#gobackBut').on('click', function() {
+    //         // $('#goback').hide();
+    //         // document.getElementById("hide-div").style.display = "block";
       
-          });
-    }
+    //       });
+    // }
    
-    if ($('input').length) {
-        $('input').on('click change', function() {
-            // Hide the div with id 'hide-div'
-            $('#hide-div').hide();
-            if ($('#gobackBut').length) {
-                document.getElementById("goback").style.display = "block";
-            }
+    // if ($('input').length) {
+    //     $('input').on('click change', function() {
+    //         // Hide the div with id 'hide-div'
+    //         $('#hide-div').hide();
+    //         // if ($('#gobackBut').length) {
+    //         //     document.getElementById("goback").style.display = "block";
+    //         // }
       
-          });
-    }
+    //       });
+    // }
     
 
-    $('select').on('click change', function() {
-        // Hide the div with id 'hide-div'
-        $('#hide-div').hide();
-        if ($('#gobackBut').length) {
-            document.getElementById("goback").style.display = "block";
-        }
+    // $('select').on('click change', function() {
+    //     // Hide the div with id 'hide-div'
+    //     $('#hide-div').hide();
+    //     // if ($('#gobackBut').length) {
+    //     //     document.getElementById("goback").style.display = "block";
+    //     // }
         
 
-      });
+    //   });
   });
   
 

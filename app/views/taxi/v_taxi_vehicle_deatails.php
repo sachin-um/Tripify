@@ -126,7 +126,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>No of Passengers:</td>
+                                        <td>Colour:</td>
                                         <td><input type="text" id="taxi_add_v_year" name="color" placeholder="Vehicle's Colour"  value="<?php echo $data['color']?>"required ></td>
                                     </tr>
   

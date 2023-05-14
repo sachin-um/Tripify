@@ -274,17 +274,40 @@ else {
                             </div><br>
                             <div id="hotel-nights-days" class="hotel-price-check">
                                 <label><?php echo $data['distance']?></label>
+                            </div><br>
+                            <div id="hotel-nights-days" class="hotel-price-check">
+                                <label><b><?php echo $data['total']?> LKR</b></label>
                             </div>
                             <br>
                             <div class="price-details-2">
 
                                 <?php if($data['days']==0){?>
-                                <div class="hotel-price-details">
-                                    <label id="No-of-rooms"><?php echo $data['distance']?></label>
-                                    <label id="X">X</label>
-                                    <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
-                                    <label id="X">=</label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                
+                                <?php if($data['distance']<=100){?>
+                                    <div class="hotel-price-details">
+                                        <label id="No-of-rooms"><?php echo $data['distance']?> KM</label>
+                                        <label id="X">X</label>
+                                        <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
+                                        <label id="X">=</label>
+                                        <label id="hotel-taxes-1"><b><?php echo $data['total']?> LKR</b></label>
+                                    </div>
+                                    <?php }else{?>
+                                        <div class="hotel-price-details">
+                                        <label id="No-of-rooms">100 KM</label>
+                                        <label id="X">X</label>
+                                        <label id="No-of-nights"><?php echo $data['price']?></label>
+                                    </div>
+                                    <div class="hotel-price-details">
+                                        <label id="No-of-rooms"><?php echo $data['lkm']?> KM</label>
+                                        <label id="X">X</label>
+                                        <label id="No-of-nights"><?php echo $data['details']->price_per_km?></label>
+                                        <label id="X">&nbsp;=&nbsp;</label>
+                                        <label ><b><?php echo $data['total']?> LKR</b></label>
+                                        
+                                    </div>
+                                
+                                <?php }?>
+                                    
                                 </div>
                                 
 
@@ -293,7 +316,7 @@ else {
                                     <label id="No-of-rooms"><?php echo $data['days']?></label>
                                     <label id="X">X</label>
                                     <label id="No-of-nights"><?php echo $data['DayRate']?></label>
-                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?></b></label>
+                                    <label id="hotel-taxes-1"><b><?php echo $data['total']?> LKR</b></label>
                                 </div>
                                 <?php } ?>
 
@@ -303,7 +326,7 @@ else {
                                 
 
                             </div>
-
+                            <br>
 
                             <div class="hotel-reg-form-div-2">
                                 <button  onclick="window.location.href='<?php echo URLROOT; ?>/Bookings/TaxiBookingdetails/<?php echo $data['details']->VehicleID.'/'.$_SESSION['user_id'];?>';"  id="confirm-booking-btn" class="taxi_booking_but_new" type="submit"  >Book Now</button>
