@@ -266,9 +266,27 @@
                 redirect('Users/login');
             }
             else {
+                $start_date = $request->start_date;
+                $end_date = $request->end_date;
+
+                // Convert date strings to timestamps
+                $start_timestamp = strtotime($start_date);
+                $end_timestamp = strtotime($end_date);
+
+                // Calculate difference in seconds
+                $seconds_diff = $end_timestamp - $start_timestamp;
+
+                // Convert seconds to days
+                $days_diff = round($seconds_diff / (60 * 60 * 24));
+
+                $total = $days_diff*$offer->HourlyRate;
+
+
                 $data=[
                     'request'=>$request,
-                    'offer'=>$offer
+                    'offer'=>$offer,
+                    'total'=>$total
+
                 ];
                 if ($this->guideBookingModel->addguideBooking($data)) {
                     if ($this->guideofferModel->acceptGuideOffer($offerid,$requestid)) {
@@ -609,29 +627,42 @@
                         $end_date = date('Y-m-d', strtotime($est_datetime));
                         $end_time = date('H:i:s', strtotime($est_datetime));
                         if($details->VehicleType == "Tuk Tuk"){
+                            $price=30;
                             if($distance<=100){
                                 $total=$distance*30;
                             }else{
                                 $total = (float)100*30+((float)$distance-100)*(float)$details->price_per_km;
+                                $lkm=(float)$distance-100;
+                                
                             }
                         }else if($details->VehicleType == "Car"){
+                                $price=40;
                             if($distance<=100){
                                 $total=$distance*40;
+                                
                             }else{
                                 $total = (float)100*40+((float)$distance-100)*(float)$details->price_per_km;
+                                $lkm=(float)$distance-100;
+                                
                             }
                         }else if($details->VehicleType == "Van"){
+                            $price=50;
                             if($distance<=100){
                                 $total=$distance*50;
                             }else{
                                 $total = ((float)100*50)+((float)$distance-100)*(float)$details->price_per_km;
+                                $lkm=(float)$distance-100;
+                               
                                
                             }
                         }else if($details->VehicleType == "Bus"){
+                            $price=70;
                             if($distance<=100){
                                 $total=$distance*70;
                             }else{
                                 $total = (float)100*70+((float)$distance-100)*(float)$details->price_per_km;
+                                $lkm=(float)$distance-100;
+                                
                             }
                         }
                     }
@@ -651,6 +682,8 @@
                         'pickupL'=>$pickupL,
                         'dropL'=>$dropL,
                         'details'=>$details,
+                        'lkm'=>$lkm,
+                        'price'=>$price,
                         'extime'=>$exTime,
                         'com_name'=>$com_name,
                         'owner'=>$owner,

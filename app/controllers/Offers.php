@@ -205,7 +205,7 @@
                     
                     //Add a Taxi Request
                     if ($this->taxiofferModel->makeTaxiOffer($data)) {
-                        flash('vehicle_flash', 'Your Vehicle is Succusefully added..!');
+                        flash('taxi_offer_flash', 'Your Offer is Succusefully added..!');
                         redirect('Offers/taxioffers');
                     }
                     else{

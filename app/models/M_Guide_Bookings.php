@@ -94,7 +94,7 @@
             $this->db->bind(':EndDate',$data['request']->end_date);
             $this->db->bind(':PaymentMethod',$data['offer']->paymentmethod);
             $this->db->bind(':Location',$data['request']->p_location);
-            $this->db->bind(':payment',$data['request']);
+            $this->db->bind(':payment',$data['total']);
             
 
             if ($this->db->execute()) {

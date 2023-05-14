@@ -1,33 +1,34 @@
-let slideIndex = 0;
-
 function slideshow(images) {
-    let i;
-    
-    for (i = 0; i < images.length; i++) {
-        images[i].style.display = "none";
-    }
+    let currentIndex = 0;
 
-    slideIndex++;
-    if (slideIndex > images.length) { slideIndex = 1 }
-    images[slideIndex - 1].style.display = "block";
-    const newImage=[];
-    for (i = 0; i < images.length; i++) {
-        if (i == 0) {
-            newImage[images.length - 1] = images[i];
+    function showImage() {
+        // Hide all images
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.display = "none";
         }
-        newImage[i] = images[(i + 1) % images.length];
+        // Show the current image
+        images[currentIndex].style.display = "block";
+        // console.log(images[currentIndex]);
+
+        // Increment the current index and loop back to the beginning if necessary
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            currentIndex = 0;
+        }
+
+        // Call the showImage function again after a delay
+        setTimeout(showImage, 2000); // Change image every 2 seconds
     }
 
-    setTimeout(function() {
-        slideshow(newImage);
-    }, 2000); // Change image every 2 seconds
+    // Call the showImage function to start the slideshow
+    showImage();
 }
 
 function showSlideShow(vid) {
     const container = document.getElementById("slideshow-container-" + vid);
     const images = container.getElementsByClassName("slideshow-image-" + vid);
-    console.log(images);
-    
+    // console.log(images);
+
     slideshow(images);
 }
 
@@ -35,6 +36,6 @@ function showSlideShow(vid) {
 const containers = document.querySelectorAll("[id^='slideshow-container-']");
 for (let i = 0; i < containers.length; i++) {
     const vid = containers[i].id.split("-")[2];
-    
+
     showSlideShow(vid);
 }
