@@ -89,7 +89,7 @@
 
             if($booking->Guides_GuideID == $_SESSION['user_id']){
                 if($this->guideBookingModel->confrimBooking($ReservationID)){
-                    flash('booking_flash', 'Confrimed Success');
+                    flash('booking_flash', 'Booking Confrimed');
                     redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');
@@ -144,7 +144,7 @@
 
             if($booking->Guides_GuideID == $_SESSION['user_id']){
                 if($this->guideBookingModel->CompletedGuideBooking($ReservationID)){
-                    flash('booking_flash', 'Status Updated');
+                    flash('booking_flash', 'Booking Completed Awai For Payment');
                     redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');
@@ -155,6 +155,28 @@
                 redirect('Users/login');
             }
             
+        }
+
+        public function CompletedGuidePayment($bookingId)
+        {
+            $booking=$this->guideBookingModel->getGudieBookingbyId($bookingId);
+
+            if($booking->Guides_GuideID == $_SESSION['user_id']){
+                $data=[
+                    'bookingid'=>$bookingId,
+                    
+                ];
+                if($this->guideBookingModel->GuideBookingPaymentUpdate($data)){
+                    flash('booking_flash', 'Payment Recieved');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
+                }else{
+                    flash('booking_flash', 'Somthing went wrong try again');
+                    redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);  
+                }
+            }else{
+                flash('reg_flash', 'Access Denied...');
+                redirect('Users/login');
+            }
         }
         
         public function GuideDateValidation(){
@@ -189,8 +211,8 @@
                 if($_SESSION['user_type']){
                     if($this->guideBookingModel->insertGuideBooking($data)){
                         $data['guideDetails']=$this->guideModel->getGuideByID($data->GuideID);
-                        $data['userDetails']=$this->userModel->getAllUserDetails($data->GuideID);
-                        $data['travelerDetails']=$this->userModel->getAllUserDetails($data->TravelerID);
+                        $data['userDetails']=$this->userModel-getUserDetails($data->GuideID);
+                        $data['travelerDetails']=$this->userModel->getUserDetails($data->TravelerID);
                         confirmBookingGuide($data);
                         flash('booking_flash', 'Guide Booked Sucessfully');
                         redirect('Bookings/GuideBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -321,7 +343,7 @@
                 }
             }else if($_SESSION['user_type']=='Taxi'){
                  
-                if($booking->TaxiOwnerID == $_SERVER['user_id']){
+                if($booking->TaxiOwnerID == $_SESSION['user_id']){
                     if($this->taxiBookingModel->cancelBooking($bookingid)){
                         flash('booking_flash', 'Taxi Booking is Canceled');
                         redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']);
@@ -341,7 +363,7 @@
             
             $booking=$this->taxiBookingModel->getTaxiBookingbyId($ReservationID);
 
-            if($booking->TaxiOwnerID == $_SERVER['user_id']){
+            if($booking->TaxiOwnerID == $_SESSION['user_id']){
                 if($this->taxiBookingModel->confrimBooking($ReservationID)){
                     flash('booking_flash', 'Confrimed Success');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
