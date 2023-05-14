@@ -278,7 +278,7 @@ function confirmBookingGuide($data){
 
         //Recipients
         $mail->setFrom('tripify@gmail.com', 'Tripify');
-        $mail->addAddress($data['userDetails']->Email);     //Add a recipient
+        $mail->addAddress($data['travelerDetails']->Email);     //Add a recipient
         
 
         //Content

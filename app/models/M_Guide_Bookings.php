@@ -84,6 +84,29 @@
             }
         }
 
+        public function addguideBooking($data)
+        {
+            $this->db->query('INSERT INTO `guide_bookings`(`TravelerID`, `Guides_GuideID`,  `StartDate`, `EndDate`, `Location`, `payment`, `PaymentMethod`) 
+                                                    VALUES (:TravelerID,:GuideID,:StartDate,:EndDate,:Location,:payment,:PaymentMethod)');
+            $this->db->bind(':TravelerID',$data['request']->traveler_id);
+            $this->db->bind(':GuideID',$data['offer']->guide_id);
+            $this->db->bind(':StartDate',$data['request']->start_date);
+            $this->db->bind(':EndDate',$data['request']->end_date);
+            $this->db->bind(':PaymentMethod',$data['offer']->paymentmethod);
+            $this->db->bind(':Location',$data['request']->p_location);
+            $this->db->bind(':payment',$data['request']);
+            
+
+            if ($this->db->execute()) {
+                
+                return true;
+            }
+            else {
+
+                return false;
+            }
+        }
+
         public function insertGuideBooking($data){
             $this->db->query('INSERT INTO `guide_bookings`(`TravelerID`, `Guides_GuideID`,  `StartDate`, `EndDate`, `Location`, `payment`, `PaymentMethod`) 
                                                     VALUES (:TravelerID,:GuideID,:StartDate,:EndDate,:Location,:payment,:PaymentMethod)');
@@ -225,7 +248,7 @@
             $conflicting_bookings = $result->conflicting_bookings;
            
             if($conflicting_bookings>0){
-                return true;  // we can't book Guide
+                return true;
             }else{
                 return false;
             }

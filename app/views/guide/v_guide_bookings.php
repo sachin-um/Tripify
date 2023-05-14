@@ -27,6 +27,7 @@
         <br><br>
         <h2>Bookings</h1>
         <hr>
+        <?php flash('booking_flash'); ?>
         <div class="admin-table-container">
             <table class="message-table" id="message-table">
                 <thead>
@@ -86,9 +87,22 @@
                                         }else if ($booking->status=='Completed') {
                                             ?>
                                     
-                                                <td data-lable="Name">
-                                                    <i class="fa-solid fa-check"></i>
-                                                </td>
+                                                <?php
+                                                    if ($booking->PaymentStatus!='Paid' && $booking->PaymentMethod=='Cash') {
+                                                        ?>
+                                                            <a href="<?php echo URLROOT; ?>/Bookings/CompletedGuidePayment/<?php echo $booking->BookingID ?>"><button class="pay-btn" type="button"><i class="fa-solid fa-square-dollar" style="margin-right: 10px"></i>Payment Recieved</button></a>
+                                                        <?php
+                                                    } else {
+                                                       ?>
+                                                            <td data-lable="Name">
+                                                                <i class="fa-solid fa-check"></i>
+                                                            </td>
+                                                       <?php
+                                                    }
+                                                    
+
+                                                ?>
+                                                
                                                     
                                     <?php
                                         }  

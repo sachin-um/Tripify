@@ -263,18 +263,18 @@ else {
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <div class="header-container">
-                                                        <div class="trip-heading">Time</div>
+                                                        <div class="trip-heading">Starting Date</div>
                                                     </div>
                                                     <div class="post-tag post-date trip-description">
-                                                        <?php echo $guide_booking->StartingTime ?>
+                                                    <?php echo $guide_booking->StartDate ?>
                                                     </div>
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <div class="header-container">
-                                                        <div class="trip-heading">Date</div>
+                                                        <div class="trip-heading">End Date</div>
                                                     </div>
                                                     <div class="post-tag post-date trip-description">
-                                                        <?php echo $guide_booking->StartDate ?>
+                                                        <?php echo $guide_booking->EndDate ?>
                                                     </div>
                                                 </div>
                                                 <a href="<?php echo URLROOT; ?>/Trips/removeFromTripPlan/<?php echo $data['trip_id'] ?>/<?php echo $guide_booking->BookingID ?>/guide" style="display: flex; align-items: center; color:red; text-decoration:none"><i class="fa-solid fa-xmark fa-xl" style="display: flex; align-items: center; color:red" title="Remove"></i></a>

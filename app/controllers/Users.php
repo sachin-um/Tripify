@@ -398,7 +398,7 @@
                         redirect('Users/emailverify');
                     }
                     elseif ($log_user=='ServiceNotValidate') {
-                        flash('reg_flash', 'Sorry Wait for Verification Process of is Done...');
+                        flash('reg_flash', 'Sorry, Wait Until the Verification Process is Done...');
                         redirect('Users/login');
                     }         
                     //logging user

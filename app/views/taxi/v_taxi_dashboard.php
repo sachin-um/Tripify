@@ -189,7 +189,7 @@ else{
                             if ($_SESSION['admin_type']=='verification' || $_SESSION['admin_type']=='Super Admin') {
                                 ?>
                                 <button class="acc-view-btn" type="button" onclick="showProfile('<?php echo $data->UserID; ?>','Taxi','<?php echo URLROOT; ?>')">Verification Details</button>
-                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Guide">
+                                <a href="<?php echo URLROOT; ?>/Users/verifyaccount/<?php echo $data->UserID ?>/Taxi">
                                                     <button class="verify-btn" type="button">Verify</button>
                                                 </a>
                                 <?php
