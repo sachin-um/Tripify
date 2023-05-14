@@ -560,13 +560,14 @@ use Dompdf\Options;
             // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
 
             // print_r($allroomtypes);
-            // $start = date('Y-m-d', strtotime('-30 days')); 
-            // $endDate = date('Y-m-d');
-            $_SESSION['hotelbookings'] = $hotelbookings;
+            $start = date('Y-m-d', strtotime('-30 days')); 
+            $endDate = date('Y-m-d');
 
             $data=[                
                 'bookings'=>$hotelbookings,
-                'status'=>$status
+                'status'=>$status,
+                'startdate'=>$start,
+                'enddate'=>$endDate
                 // 'allroomtypes'=>$allroomtypes
             ];
             $this->view('hotels/v_dash_bookings',$data);
@@ -574,35 +575,35 @@ use Dompdf\Options;
         }        
 
 
-        // public function filterBooking($status=null){
-        //     $startDate = $_POST["start-date"];
-        //     $endDate = $_POST["end-date"];
+        public function filterBooking($status=null){
+            $startDate = $_POST["start-date"];
+            $endDate = $_POST["end-date"];
 
-        //     $hotelbookings = $this->hotelBookingModel->filterBookings($startDate,$endDate,$_SESSION['status']);
+            $hotelbookings = $this->hotelBookingModel->filterBookings($startDate,$endDate,$_SESSION['status']);
 
-        //     // echo gettype($startDate);
-        //     // echo gettype($endDate);
-        //     // echo $startDate."<br>";
-        //     // echo $endDate."<br>";
-        //     // echo $_SESSION['status']."<br>";
-        //     if(empty($hotelbookings)){
-        //         echo "empty";
-        //     }
+            // echo gettype($startDate);
+            // echo gettype($endDate);
+            // echo $startDate."<br>";
+            // echo $endDate."<br>";
+            // echo $_SESSION['status']."<br>";
+            if(empty($hotelbookings)){
+                echo "empty";
+            }
 
-        //     // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
-        //     $_SESSION['filterbookings'] = $hotelbookings;
-        //     // print_r($allroomtypes);
+            // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
+            $_SESSION['filterbookings'] = $hotelbookings;
+            // print_r($allroomtypes);
 
-        //     $data=[                
-        //         'bookings'=>$hotelbookings,
-        //         'status'=>$_SESSION['status'],
-        //         'startdate'=>$startDate,
-        //         'enddate'=>$endDate
-        //         // 'allroomtypes'=>$allroomtypes
-        //     ];
-        //     $this->view('hotels/v_dash_bookings',$data);
+            $data=[                
+                'bookings'=>$hotelbookings,
+                'status'=>$_SESSION['status'],
+                'startdate'=>$startDate,
+                'enddate'=>$endDate
+                // 'allroomtypes'=>$allroomtypes
+            ];
+            $this->view('hotels/v_dash_bookings',$data);
             
-        // }        
+        }        
 
 
         public function loadPayments(){
@@ -639,88 +640,51 @@ use Dompdf\Options;
             // $endDate = $_POST["end-date"];
             
 
-            
+            $results = $this->hotelBookingModel->filterBookings();
         
             // $html = "<img style='text-align: center;' src='/public/img/logo.png'>";
 
             $html = '<html> 
     
             <head>
-                <style>
-                table{
-                    top: 25%;
-                    margin: auto;
-                    width: 100%; 
-                    border-collapse: collapse;
-                    border-spacing: 0;
-                    box-shadow: 0 2px 15px rgba(64,64,64,.7);
-                    border-radius: 12px 12px 0 0;
-                    overflow: hidden;
-                   
-                }
                 
-                td , th{
-                    padding: 15px 20px;
-                    text-align: center;
-                }
-                
-                th{
-                    background-color: #03002E;
-                    color: #fafafa;
-                    font-family: Open Sans,Sans-serif;
-                    font-weight: 200;
-                    text-transform: uppercase;
-                
-                }
-                
-                tr{
-                    width: 100%;
-                    background-color: #fafafa;
-                    font-family: Montserrat, sans-serif;
-                }
-                
-                tr:nth-child(even){
-                    background-color: #eeeeee;
-                }
-                </style>
+                <link rel="stylesheet" href="'.  URLROOT .'/public/css/pdfstyle.css"> 
             </head>
             
             <body>    
         
-                <div style="background-color: #03002E; color: #e8b122; text-align: center;">
-                    <br><h1>Booking Report For '.$_SESSION['status'].' Bookings</h1><br>
+                <div class="invo-title">
+                    <h1>Booking Report</h1>
                 </div><br>
-                <h3>HotelID : '.$_SESSION['user_id'].'</h3><br>
-            <table>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>CustomerID</th>
-                    <th>Payment Amount</th>
-                    <th>Payment Date</th>   
-                    <th>Payment Method</th>
-                </tr>';
-
-              foreach ($_SESSION['hotelbookings'] as $payment){
-                    $html .='<tr>
-                        <td>'.$payment->booking_id.'</td>
-                        <td>'.$payment->TravelerID.'</td>
-                        <td>'.$payment->payment.'</td>
-                        <td>'.$payment->date_added.'</td>
-                        <td>'.$payment->paymentmethod.'</td>
-                    </tr>'; 
-                }
-
-                $html .= '</table><br>
-
-                <p style="margin:auto; text-align:center;">This is a system generated report by Tripify pvt ltd</p><br>
-                
-                </body></html>';
-
+                <p>From to</p>
             
+            </body>
+            </html>';
+
+            // $html = "<h1 style='color: #03002E'>Payments Between $startDate and $endDate</h1><hr>";
+            // $html .= "<table><tr><th>Booking ID</th><th>CustomerID</th><th>Payment Amount</th><th>Payment Date</th><th>Payment Method</th></tr>";
+            
+
+            // foreach ($results as $payment){
+            // $html .= "<tr><td>$payment->booking_id</td>
+            //     <td>$payment->TravelerID</td>
+            //     <td>$payment->payment</td>
+            //     <td>$payment->date_added</td>
+            //     <td>$payment->paymentmethod</td>
+            // </tr>";
+            // }
+
+            // $html .= "<br><br><hr>";
+            // $html .= "<br><p>This is a system generated report by Tripify(pvt)ltd</p>";
+
             $options = new Options;
             $options->setChroot(__DIR__);
 
             $dompdf = new Dompdf($options);
+
+            // $dompdf = new Dompdf([
+            //     "chroot" => __DIR__
+            // ]);
 
             $dompdf->loadHtml($html);
 

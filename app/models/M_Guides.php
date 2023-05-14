@@ -113,25 +113,6 @@ class M_Guides{
         return $guideset;
     }
 
-    public function getGuideImg(){
-        $this->db->query('SELECT users.profileimg, users.UserID
-        FROM users
-        JOIN guides ON users.UserID = guides.GuideID;');
-
-        $imgs = $this->db->resultset();
-        return $imgs;
-    }
-
-    public function getImg($id){
-        $this->db->query('SELECT users.profileimg
-        FROM users
-        INNER JOIN guides
-        ON users.UserID = guides.GuideID
-        WHERE guides.GuideID = :guide_id');
-        $this->db->bind(':guide_id',$id);
-
-    }
-
 }
 
 ?>

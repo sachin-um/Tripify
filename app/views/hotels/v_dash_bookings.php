@@ -48,7 +48,7 @@ if (empty($_SESSION['user_id'])) {
         </form><br> -->
         <div style="margin: auto; text-align: center;">
             <button class="input-payments-btn"
-            onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatePDF'">
+            onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatePDF/<?php echo $data['startdate']?>/<?php echo $data['enddate']?>'">
             Get Report</button>
         </div><br>
         
@@ -56,14 +56,14 @@ if (empty($_SESSION['user_id'])) {
         <div class="booking-btns">
             <?php 
             if($data['status']=='In progress'){
-                $_SESSION['status']='Ongoing';
+                $_SESSION['status']='In progress';
                 ?>
                 <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/Canceled'">Canceled Bookings</button>
             <?php
             }else if($data['status']=='completed'){
-                $_SESSION['status']='Completed';
+                $_SESSION['status']='completed';
                 ?>
                 <button class="view-booking-btns" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking'">Current Bookings</button>
                 <button class="view-booking-btns is-active" onclick="location.href='<?php echo URLROOT?>/Hotels/loadBooking/completed'">Past Bookings</button>

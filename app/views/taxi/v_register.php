@@ -2,12 +2,13 @@
 <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
 <div class="wrapper">
-    <div class="content" id="taxi-signup">
-        <div class="add-taxiowner-info">
-            <div class="add_taxi_info_caption"><br><br>
+    <div class="content">
+        <div class="addtaxiownerinfo">
+            <div class="add_taxi_info_caption">
                 <!-- <img src="Pics/logo1-removebg-preview 1.png" id="taxi_add_own_img"> -->
                 <img id="taxi_add_own_img" src="<?php echo URLROOT; ?>/img/updatedLOGO.png" alt="logo">
-                <p class="home-title-2">Become a member of our Community as a Taxi Owner</p>
+                <h1 id="taxi_add_own_hed_tex"> Become a member of our Community as Taxi Owner </h1>
+
             </div>
 
             <div class="addtaxiownerregform">
