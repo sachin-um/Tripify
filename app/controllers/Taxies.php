@@ -33,7 +33,9 @@
                     'services'=>trim($_POST['services']),
                     'owner_id'=>$_SESSION['user_id'],
 
-                    'profileImg_err'=>''
+                    'profileImg_err'=>'',
+                    'nic_err'=>'',
+                    'contact_no_err'=>''
                     
                 ];
 
@@ -42,11 +44,16 @@
                 }else{
                     $data['profileImg_err']='Profile Picture Uploading Unsucess!';
                 }
+                if ((strlen((string)$data['NIC_no'])!=10) && (strlen((string)$data['NIC_no'])!=12)) {
+                        $data['nic_err']='Please enter a Valid NIC number';
+                    
+                }
+                if (strlen((string)$data['contact_number'])!=10) {
+                    $data['contact_no_err']='Please Enter a Valid Contact Number';
+                }
 
-                
+                if (empty($data['nic_err']) && empty($data['contact_no_err'])) {
 
-                
-                    //Register Taxi Account
                     if ($this->taxiModel->register($data)) {
                         unset($_SESSION['user_id']);
                         unset($_SESSION['user_email']);
@@ -57,6 +64,10 @@
                         flash('reg_flash', 'Somthing went wrong please try again...');
                         redirect('Taxies/register');
                     }
+                }
+                else {
+                    $this->view('taxi/v_register',$data);
+                }
                 
 
 
@@ -70,6 +81,8 @@
                     'contact_number'=>'',
                     'noOfVehicle'=>'',
                     'address'=>'',
+                    'nic_err'=>'',
+                    'contact_no_err'=>''
 
                 ];
                 $this->view('taxi/v_register',$data);

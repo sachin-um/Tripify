@@ -23,6 +23,17 @@
    
 }
 
+.guide-ads-main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    height: 80%;
+    width: 80%;
+    padding: 8px 0;
+    margin: auto;
+}
+
 .guide-content{
     overflow: auto;
     flex: 1;

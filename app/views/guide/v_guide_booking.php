@@ -104,7 +104,6 @@ $guidelanguages= $data['guideLanguages']
                                     <option value="" disabled selected hidden>Payment Option</option>
                                     <option value="Cash">Cash</option>
                                     <option value="Online">Online</option>
-                                    <option value="Cash or Online">Cash or Online</option>
                                 </select>
                             </div>
 

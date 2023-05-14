@@ -50,14 +50,14 @@ else {
                 <table class="message-table">
                     <thead>
                         <tr>
-                            <th>Booking ID</th>
+                            <th style="display:none;">Booking ID</th>
                             <th>Vehicle Number</th>
                             <th>Driver Name</th>
                             <th>Traveler Name</th>
                             <th>Booking Date</th>
                             <th>Booking Time</th>
-                            <th>Pickup Location</th>
-                            <th>Destination</th>
+                            <th style="display:none;">Pickup Location</th>
+                            <th style="display:none;">Destination</th>
                             <th>Payment</th>
                             <th>Payment Status</th>
                             <th>Booking Status</th>
@@ -70,14 +70,14 @@ else {
                             foreach($bookings as $booking):
                         ?>
                         <tr>
-                            <td data-lable="ID"><?php echo  $booking->ReservationID ?></td>
+                            <td data-lable="ID" style="display:none;"><?php echo  $booking->ReservationID ?></td>
                             <td data-lable="Name"><?php echo $booking->vehicle->vehicle_number ?></a></td>
                             <td data-lable="Email"><?php echo $booking->vehicle->Name ?></td>
                             <td data-lable="Email"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->traveler->UserID; ?>/Traveler" style="text-decoration:none;cursor:pointer;"><?php echo $booking->traveler->Name ?></a></td>
                             <td data-lable="Message"><?php echo $booking->booking_date ?></td>
                             <td data-lable="Message"><?php echo $booking->booking_time ?></td>
-                            <td data-lable="Message"><?php echo $booking->pickup_location ?></td>
-                            <td data-lable="Message"><?php echo $booking->destination ?></td>
+                            <td data-lable="Message" style="display:none;"><?php echo $booking->pickup_location ?></td>
+                            <td data-lable="Message" style="display:none;"><?php echo $booking->destination ?></td>
                             <td data-lable="Message"><?php echo $booking->Price ?></td>
                             <td data-lable="Message"><?php echo $booking->PaymentStatus ?></td>
                     

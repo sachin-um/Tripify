@@ -69,7 +69,7 @@ else {
                         <tr>
                             <th>Booking ID</th>
                             <th>Hotel Name</th>
-                            <th>Room number-Room type</th>
+                            <th style="display:none;">Room number-Room type</th>
                             <th>Check In</th>
                             <th>Check Out</th>
                             <th>Payment</th>
@@ -89,7 +89,7 @@ else {
                             <!-- <td data-lable="ID"></td> -->
                             <td data-lable="Name"  data="<?php echo  $booking->booking_id ?>">H<?php echo $booking->booking_id ?></td>
                             <td data-lable="Name"><a href="<?php echo URLROOT; ?>/Pages/profile/<?php echo $booking->hoteldetails->HotelID; ?>/Hotel" style="text-decoration:none;cursor:pointer;"><?php echo $booking->hoteldetails->Name ?></a> </td>
-                            <td data-lable="Name"><?php echo $booking->hoteldetails->Name?></td>
+                            <td data-lable="Name" style="display:none;"><?php echo $booking->hoteldetails->Name?></td>
                             <td data-lable="Name"><?php echo $booking->checkin_date ?></td>
                             <td data-lable="Name"><?php echo $booking->checkout_date ?></td>
                             <td data-lable="Name"><?php echo $booking->payment ?></td>
