@@ -126,13 +126,10 @@
 
         public function guides(){
             $allguides=$this->guideModel->viewAllguides();
-            $guideImgs = $this->guideModel->getGuideImg();
-            
-            $data=[
-                'allguides'=> $allguides,
-                'guideImgs'=> $guideImgs
-            ];
 
+            $data=[
+                'allguides'=> $allguides
+            ];
             $this->view('guide/v_guide_home',$data);
         }
 
