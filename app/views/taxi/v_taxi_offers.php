@@ -90,7 +90,7 @@
                                     <div class="heading">Vehicle Number</div>
                                 </div>
                                 <div class="post-tag post-date description" style="margin-left: 33px">
-                                    <?php echo $taxioffer->vehicle->VehicleID; ?></span>
+                                    <?php echo $taxioffer->vehicle->vehicle_number; ?></span>
                                 </div>
                             </div>
                             <div class="detail-container">
