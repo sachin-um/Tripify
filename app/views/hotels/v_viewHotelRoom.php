@@ -154,6 +154,7 @@ else {
             
             <div style="display: flex; justify-content: center; padding: 20px">
                 <button style="margin-right: 10px" class="profile-btn-edit" id="edit-room-btn">Edit Info</button>
+                
                 <!-- class="all-purpose-btn" id="account-details-edit" -->
                 <button style="margin-right: 10px" class="profile-btn-cancel" id="cancel-room-btn">
                     Discard
@@ -162,6 +163,12 @@ else {
                     Save Changes
                 </button>      
             </div> 
+
+            <div style="margin: auto; text-align: center;">
+            <button class="all-purpose-btn" id="delete-room-btn"
+            onclick="window.location='<?php echo URLROOT?>/HotelRooms/deleteRoom/<?php echo $data['wantedRoom']->RoomTypeID?>'">Delete this Room</button>
+            </div>
+            
         </form>
         <!-- <button class="profile-btn" onclick="<?php echo URLROOT?>/Hotels/editProfileDetails">Edit Property Details</button> -->
         

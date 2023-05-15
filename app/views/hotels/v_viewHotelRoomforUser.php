@@ -19,107 +19,78 @@ else {
 
         <div class="hotel-profile-account-details">
 
-            <div class="hotel-profile-details-sub">
-                <br>
-                <div id="booking-slideshow" class="slideshow-container fade" style="width: 95%;">
-                    
-                    <div class="Containers">
-                        <img src="<?php echo URLROOT?>/img/hotel-room-uploads/<?php echo $image?>" style="width:100%">
+            <br>
+            <ul>
+                <li>
+                    <div class="profile-info">
+                        <h3>Room ID : </h3>
+                        <p><?php echo $data['wantedRoom']->RoomTypeID;  ?></p>
                     </div>
+                </li><br>
 
-                    <div class="Containers">
-                        <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
+                <li>
+                    <div class="profile-info">
+                        <h3>Type of Beds : </h3>
+                        <p><?php 
+                        foreach($data['beds'] as $bed):
+                            echo $bed->bedType."   "."x"."   ";
+                            echo $bed->noofbeds."<br>";
+                        endforeach;  
+                        ?></p>
                     </div>
+                </li><br>
 
-                    <div class="Containers">
-                        <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
+                <li>
+                    <div class="profile-info">
+                        <h3>Price per Night : </h3>
+                        <p>LKR<?php 
+                        echo " ".$data['wantedRoom']->PricePerNight;
+                        ?></p>
                     </div>
+                </li><br>
 
-                    <div class="Containers">
-                        <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
+                <li>
+                    <div class="profile-info">
+                        <h3>Room Size : </h3>
+                        <p><?php 
+                        echo $data['wantedRoom']->RoomSize." ";
+                        ?>Square Meters</p>
                     </div>
+                </li><br>
 
-                    <!-- Back and forward buttons -->
-                    <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-                    
-                    <br>
+                <li>
+                    <div class="profile-info">
+                        <h3>No of guests : </h3>
+                        <p><?php 
+                        echo $data['wantedRoom']->NoofGuests;
+                        ?></p>
+                    </div>
+                </li><br>
 
-                    <!-- The circles/beads -->
-                    <?php 
-                    $count = count($data['images']);
-                    ?>
-                    <div style="text-align:center">
-                        
-                        <span class="beads" onclick="currentSlide(1)"></span>
-                        <span class="beads" onclick="currentSlide(2)"></span>
-                        <span class="beads" onclick="currentSlide(3)"></span>
-                        <span class="beads" onclick="currentSlide(4)"></span>
-                    </div> 
-                </div>
-            </div>
+                <li>
+                    <div class="profile-info">
+                        <h3>No of rooms of this type : </h3>
+                        <p><?php 
+                        echo $data['wantedRoom']->no_of_rooms;;
+                        ?></p>
+                    </div>
+                </li><br>
 
-            <div class="hotel-profile-details-sub" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                <br>
-                <ul>
-                    <li>
-                        <div class="profile-info">
-                            <h3>Room ID : </h3>
-                            <p><?php echo $data['wantedRoom']->RoomTypeID;  ?></p>
-                        </div>
-                    </li><br>
-
-                    <li>
-                        <div class="profile-info">
-                            <h3>Type of Beds : </h3>
-                            <p><?php 
-                            foreach($data['beds'] as $bed):
-                                echo $bed->bedType."   "."x"."   ";
-                                echo $bed->noofbeds."<br>";
-                            endforeach;  
-                            ?></p>
-                        </div>
-                    </li><br>
-
-                    <li>
-                        <div class="profile-info">
-                            <h3>Price per Night : </h3>
-                            <p>LKR<?php 
-                            echo " ".$data['wantedRoom']->PricePerNight;
-                            ?></p>
-                        </div>
-                    </li><br>
-
-                    <li>
-                        <div class="profile-info">
-                            <h3>Room Size : </h3>
-                            <p><?php 
-                            echo $data['wantedRoom']->RoomSize." ";
-                            ?>Square Meters</p>
-                        </div>
-                    </li><br>
-
-                    <li>
-                        <div class="profile-info">
-                            <h3>No of guests : </h3>
-                            <p><?php 
-                            echo $data['wantedRoom']->NoofGuests;
-                            ?></p>
-                        </div>
-                    </li><br>
-
-                    <li>
-                        <div class="profile-info">
-                            <h3>No of rooms of this type : </h3>
-                            <p><?php 
-                            echo $data['wantedRoom']->no_of_rooms;;
-                            ?></p>
-                        </div>
-                    </li><br>
-                </ul>
-            </div>
+                <li>
+                    <div class="profile-info">
+                        <h3>Amenities : </h3>
+                        <p><?php 
+                        $array = explode(",",$data['wantedRoom']->facilities);
+                        foreach($array as $a){
+                            echo $a."<br>";
+                        }
+                        ?></p>
+                    </div>
+                </li><br>
+            </ul>
+            
         
-        </div>
+        </div><br>
 
         <div class="img-container">
 

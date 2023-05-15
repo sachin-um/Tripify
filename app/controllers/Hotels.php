@@ -403,7 +403,9 @@ use Dompdf\Options;
                 'profileName'=> $profileDetails->Name,
                 'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,
                 'description'=>$profileDetails->Description,
-                'images'=>$images
+                'images'=>$images,
+                'sdate_err'=>'',
+                'edate_err'=>''
                 // 'facilities'=>$facilities
             ];
             $this->view('hotels/v_hotel_profile_details',$data);
@@ -574,39 +576,27 @@ use Dompdf\Options;
         }        
 
 
-        // public function filterBooking($status=null){
-        //     $startDate = $_POST["start-date"];
-        //     $endDate = $_POST["end-date"];
+        public function filterPayments(){
+            $startDate = $_POST["start-date"];
+            $endDate = $_POST["end-date"];
 
-        //     $hotelbookings = $this->hotelBookingModel->filterBookings($startDate,$endDate,$_SESSION['status']);
+            $_SESSION['startDate'] = $startDate;
+            $_SESSION['endDate'] = $endDate;
 
-        //     // echo gettype($startDate);
-        //     // echo gettype($endDate);
-        //     // echo $startDate."<br>";
-        //     // echo $endDate."<br>";
-        //     // echo $_SESSION['status']."<br>";
-        //     if(empty($hotelbookings)){
-        //         echo "empty";
-        //     }
-
-        //     // $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);
-        //     $_SESSION['filterbookings'] = $hotelbookings;
-        //     // print_r($allroomtypes);
-
-        //     $data=[                
-        //         'bookings'=>$hotelbookings,
-        //         'status'=>$_SESSION['status'],
-        //         'startdate'=>$startDate,
-        //         'enddate'=>$endDate
-        //         // 'allroomtypes'=>$allroomtypes
-        //     ];
-        //     $this->view('hotels/v_dash_bookings',$data);
             
-        // }        
+            $hotelpayments = $this->hotelBookingModel->filterPayments($startDate,$endDate);
+            $_SESSION['payments'] = $hotelpayments;
+            $data=[                
+                'payments'=>$hotelpayments
+            ];
+            $this->view('hotels/v_dash_payments',$data);
+            
+        }        
 
 
         public function loadPayments(){
             $payments=$this->hotelBookingModel->getPayments();
+            $_SESSION['payments'] = $payments;
             $data=[                
                 'payments'=>$payments
             ];
@@ -633,15 +623,9 @@ use Dompdf\Options;
             }
         }
 
-        public function generatePDF(){           
-            
-            // $startDate = $_POST["start-date"];
-            // $endDate = $_POST["end-date"];
-            
 
-            
-        
-            // $html = "<img style='text-align: center;' src='/public/img/logo.png'>";
+
+        public function generatePDF(){           
 
             $html = '<html> 
     
@@ -690,13 +674,15 @@ use Dompdf\Options;
                 <div style="background-color: #03002E; color: #e8b122; text-align: center;">
                     <br><h1>Booking Report For '.$_SESSION['status'].' Bookings</h1><br>
                 </div><br>
-                <h3>HotelID : '.$_SESSION['user_id'].'</h3><br>
             <table>
                 <tr>
                     <th>Booking ID</th>
                     <th>CustomerID</th>
-                    <th>Payment Amount</th>
-                    <th>Payment Date</th>   
+                    <th>Date Added</th>
+                    <th>Booked Rooms</th>
+                    <th>Check in</th>
+                    <th>Check out</th>
+                    <th>Payment Amount</th>   
                     <th>Payment Method</th>
                 </tr>';
 
@@ -704,8 +690,11 @@ use Dompdf\Options;
                     $html .='<tr>
                         <td>'.$payment->booking_id.'</td>
                         <td>'.$payment->TravelerID.'</td>
-                        <td>'.$payment->payment.'</td>
                         <td>'.$payment->date_added.'</td>
+                        <td>'.$payment->roomTypes.'</td>
+                        <td>'.$payment->checkin_date.'</td>
+                        <td>'.$payment->checkout_date.'</td>
+                        <td>'.$payment->payment.'</td>
                         <td>'.$payment->paymentmethod.'</td>
                     </tr>'; 
                 }
@@ -713,6 +702,104 @@ use Dompdf\Options;
                 $html .= '</table><br>
 
                 <p style="margin:auto; text-align:center;">This is a system generated report by Tripify pvt ltd</p><br>
+                <p style="margin:auto; text-align:center; font-size: 0.7rem;">'.date('Y-m-d H:i:s').'</p><br>
+                
+                </body></html>';
+
+            
+            $options = new Options;
+            $options->setChroot(__DIR__);
+
+            $dompdf = new Dompdf($options);
+
+            $dompdf->loadHtml($html);
+
+            $dompdf->setPaper('A4','landscape');
+
+            $dompdf->render();
+            $dompdf->stream();
+            unset($_SESSION['']);
+            
+        }
+
+        public function generatepaymentPDF(){           
+
+            $html = '<html> 
+    
+            <head>
+                <style>
+                table{
+                    top: 25%;
+                    margin: auto;
+                    width: 100%; 
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+                    border-radius: 12px 12px 0 0;
+                    overflow: hidden;
+                   
+                }
+                
+                td , th{
+                    padding: 15px 20px;
+                    text-align: center;
+                }
+                
+                th{
+                    background-color: #03002E;
+                    color: #fafafa;
+                    font-family: Open Sans,Sans-serif;
+                    font-weight: 200;
+                    text-transform: uppercase;
+                
+                }
+                
+                tr{
+                    width: 100%;
+                    background-color: #fafafa;
+                    font-family: Montserrat, sans-serif;
+                }
+                
+                tr:nth-child(even){
+                    background-color: #eeeeee;
+                }
+                </style>
+            </head>
+            
+            <body>    
+        
+                <div style="background-color: #03002E; color: #e8b122; text-align: center;">
+                    <br><h3>Payment Report From '.$_SESSION['startDate'].' To '.$_SESSION['endDate'].'</h3><br>
+                </div><br>
+            <table>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>CustomerID</th>
+                    <th>Payment Amount</th>
+                    <th>Payment Date</th>   
+                    <th>Checkout Date</th>   
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                </tr>';
+              $total = 0;
+              foreach ($_SESSION['payments'] as $payment){
+                    $html .='<tr>
+                        <td>'.$payment->booking_id.'</td>
+                        <td>'.$payment->TravelerID.'</td>
+                        <td>'.$payment->payment.'</td>
+                        <td>'.$payment->date_added.'</td>
+                        <td>'.$payment->checkout_date.'</td>
+                        <td>'.$payment->paymentmethod.'</td>
+                        <td>Paid</td>
+                    </tr>'; 
+                    $total = $total+$payment->payment;
+                }
+
+                $html .= '</table><br>
+                <p style="margin:auto; text-align:center; font-size=1.4rem">Total earnings for the period : '.$total.'</p><br>
+
+                <br><br><p style="margin:auto; text-align:center;">This is a system generated report by Tripify pvt ltd</p><br>
+                <p style="margin:auto; text-align:center; font-size: 0.7rem;">'.date('Y-m-d H:i:s').'</p><br>
                 
                 </body></html>';
 

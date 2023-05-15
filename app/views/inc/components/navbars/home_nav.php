@@ -44,7 +44,7 @@
                                     <h2>View Profile</h2>
                                     <span>></span>
                                 </a>
-                                <a href="" class="sub-link-menu">
+                                <a href="<?php echo URLROOT?>/Users/privacy" class="sub-link-menu">
                                     <img src="<?php echo URLROOT; ?>/img/setting.png" alt="">
                                     <h2>Privacy and policy</h2>
                                     <span>></span>

@@ -141,6 +141,10 @@
             $this->view('v_about');
         }
 
+        public function privacy(){
+            $this->view('v_privacyPolicy');
+        }
+
         
         
     }
