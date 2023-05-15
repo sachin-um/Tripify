@@ -13,7 +13,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/2e8a0dae3e.js" crossorigin="anonymous"></script>
-
+    <link rel = "icon" href = "<?php echo URLROOT; ?>/img/logo.png" 
+        type = "image/x-icon">
     <title><?php echo SITENAME;  ?></title>
 </head>
 <body>
