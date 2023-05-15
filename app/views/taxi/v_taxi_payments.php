@@ -60,7 +60,7 @@
                 </table>
 
             </div>
-            <button id="tax_dash_paybut">Get Full Report</button>
+            <button id="tax_dash_paybut" onclick="window.location.href='<?php echo URLROOT?>/Taxies/generatepaymentPDF'">Get Full Report</button>
             
 
         </div>

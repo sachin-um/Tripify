@@ -39,14 +39,19 @@ else {
     <p class="home-title-2">Payments</p><br>
 
     
-    <form action="<?php echo URLROOT?>/Hotels/generatePDF" method="post">
+    <form action="<?php echo URLROOT?>/Hotels/filterPayments" method="post">
         <div class="search-payments">
             <input class="input-payments" type="date" name="start-date">
             <input class="input-payments" type="date" name="end-date">
 
-            <button class="input-payments-btn" type="submit">Get Report</button>
+            <button class="all-purpose-btn" type="submit">Search</button>
         </div>
-    </form>
+    </form><br>
+
+
+    <div style="margin: auto; text-align: center;">
+    <button class="input-payments-btn" onclick="window.location.href='<?php echo URLROOT?>/Hotels/generatepaymentPDF'">Get Report</button>
+    </div>    
 
     <div class="hotel-bookings-main-div">
         <?php
@@ -63,6 +68,7 @@ else {
                 <th>CustomerID</th>
                 <th>Payment Amount</th>
                 <th>Payment Date</th>
+                <th>Checkout Date</th>
                 <th>Payment Method</th>
             </tr>
 
@@ -75,6 +81,7 @@ else {
                             <td><?php echo $payment->TravelerID; ?></td>
                             <td><?php echo $payment->payment; ?></td>
                             <td><?php echo $payment->date_added; ?></td>
+                            <td><?php echo $payment->checkout_date; ?></td>
                             <td><?php echo $payment->paymentmethod; ?></td>
                         </tr>
                 <?php

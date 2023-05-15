@@ -101,6 +101,15 @@
         
         }
 
+        public function deleteRoom($roomType){
+            echo "test1";
+            $result = $this->roomModel->deleteRoom($roomType);
+            if($result){
+                flash('delete_flash','The room has been successfully deleted.');
+                $this->view('hotels/v_dash_hotelviewroom');
+            }
+        }
+
         //View all rooms for hotel owner
         public function rooms(){            
             $allroomtypes=$this->roomModel->viewAllRooms($_SESSION['user_id']);

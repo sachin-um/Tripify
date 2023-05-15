@@ -103,12 +103,16 @@
             </div>
 
             <div class="second-div">
-                <h3 style="color: green; margin-top: 10px;">Any special requests?</h3>
-                <p>*Please note that special requests can't be guaranteed.
+                
+                <br><br><p><span style="color: red;">*</span>Please note that the bookings made through Tripify can only be cancelled
+                    48 hours prior to checkin.
+                </p><br><br>
+
+                <p><span style="color: red;">*</span>Any and all cancellations done after the given period will be taken under the
+                    refund policy of the respective hotel. Tripify is not responsible for refunds in 
+                    such a case.
                 </p>
 
-                <textarea name="hotel-requests" rows="9"
-                placeholder="I want an extra single bed.."></textarea>
             </div>
             
 
@@ -122,6 +126,7 @@
 
     </div>
 </div>
+
 
 <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
 
@@ -267,3 +272,5 @@
     }
 
 </script>
+
+<?php require APPROOT . '/views/inc/components/footer.php'; ?>

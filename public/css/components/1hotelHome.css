@@ -8,6 +8,14 @@
     grid-row-gap: 20px; /* space between rows, change as needed */
 }
 
+
+.nav-grid-hotel{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px; /* space between columns, change as needed */
+    grid-row-gap: 20px;
+}
+
 .nav-grid-1{
     width: 80%;
     margin: auto;
@@ -397,8 +405,10 @@ hr{
     width: fit-content;
 }
 
+
 .hotel-desc-page-div{
     margin: 2% auto 2%;
+    padding: 2%;
     display: flex;
     justify-content: space-around;
     width: 80%;

@@ -863,65 +863,109 @@
                 $_SESSION['checkout'] = $checkout;
                 $noofadults =trim($_POST['noofadults']);
 
-                $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
-                $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
-                $beds = $this->roomBookingModel->getAllBedsforAllRooms();
-
-                $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
-
-                //The array with booked records
-                // echo "This is the bookedrecords thingy"."<br>";
-                // print_r($bookedrecords)."<br>";
-
-                //get all room types and their total number
-                $allrooms = array();
-                foreach($allroomtypes as $roomtype){
-                    $allrooms[] = $roomtype->RoomTypeID;
-                    $allrooms[] = $roomtype->no_of_rooms;
-                }
-
-                
-
-                // get bookedrecords' room types and no of them
-                $bookedrooms = array();
-                foreach($bookedrecords as $record){
-                    $bookedrecordsarray = explode(",",$record->roomTypes);
-                    // print_r($bookedrecordsarray)."<br>";
-                    foreach($bookedrecordsarray as $a){
-                        $bookedrooms[] = $a;
-                    }
-                }
-                
-
-                for($i=0;$i<count($allrooms);$i=$i+2){
-                    if(!empty($bookedrooms)){
-                        for($j=0;$j<count($bookedrooms);$j=$j+2){
-                            if($allrooms[$i]==$bookedrooms[$j]){
-                                $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
-                            }
-                        }
-                    }                    
-                }
-
-                // print_r($allrooms); 
-                $images = $this->hotelModel->getImages($hotelID);
-
-                $data=[
-                    'hotelID'=>$hotelID,
-                    'profileDetails'=>$profileDetails,
-                    'profileName'=> $profileDetails->Name,
-                    'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
-                    'allroomtypes'=> $allroomtypes,
-                    'description'=>$profileDetails->Description,
-                    'availablerooms'=>$allrooms,
-                    'images'=>$images,
-                    'allBeds'=>$beds
-                    // 'noofadults' => $data['noofadults']
-                    // 'profileName'=> $profileDetails->Name,
-                    // 'profileName'=> $profileDetails->Name
-    
+                $data1=[
+                    'edate_err'=>'',
+                    'sdate_err'=>''
                 ];
-                $this->view('hotels/v_hotel_details_page',$data);
+
+                if(strtotime($checkin) > strtotime($checkout)){
+                    $data1['edate_err'] = 'Check out date must be later than the check in date';
+                }
+
+                if(strtotime($checkin)<time()){
+                    $data1['sdate_err'] = 'Please enter a later date for check in date';
+                }
+                
+                if(empty($checkin)){
+                    $data1['sdate_err'] = 'Please enter the checkin date';
+                }
+
+                if(empty($checkout)){
+                    $data1['edate_err'] = 'Please enter the checkout date';
+                }
+                
+                if(empty($data1['edate_err']) && empty($data1['sdate_err'])){
+                    $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+                    $allroomtypes=$this->roomBookingModel->viewAllRooms($hotelID);
+                    $beds = $this->roomBookingModel->getAllBedsforAllRooms();
+
+                    $bookedrecords = $this->hotelBookingModel->RoomAvailabilityRecords($hotelID);
+
+                    //get all room types and their total number
+                    $allrooms = array();
+                    foreach($allroomtypes as $roomtype){
+                        $allrooms[] = $roomtype->RoomTypeID;
+                        $allrooms[] = $roomtype->no_of_rooms;
+                    }
+
+                
+
+                    // get bookedrecords' room types and no of them
+                    $bookedrooms = array();
+                    foreach($bookedrecords as $record){
+                        $bookedrecordsarray = explode(",",$record->roomTypes);
+                        // print_r($bookedrecordsarray)."<br>";
+                        foreach($bookedrecordsarray as $a){
+                            $bookedrooms[] = $a;
+                        }
+                    }
+                
+
+                    for($i=0;$i<count($allrooms);$i=$i+2){
+                        if(!empty($bookedrooms)){
+                            for($j=0;$j<count($bookedrooms);$j=$j+2){
+                                if($allrooms[$i]==$bookedrooms[$j]){
+                                    $allrooms[$i+1]=$allrooms[$i+1]-$bookedrooms[$j+1];
+                                }
+                            }
+                        }                    
+                    }
+
+                    $images = $this->hotelModel->getImages($hotelID);
+
+                    $data=[
+                        'hotelID'=>$hotelID,
+                        'profileDetails'=>$profileDetails,
+                        'profileName'=> $profileDetails->Name,
+                        'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,   
+                        'allroomtypes'=> $allroomtypes,
+                        'description'=>$profileDetails->Description,
+                        'availablerooms'=>$allrooms,
+                        'images'=>$images,
+                        'allBeds'=>$beds
+                        // 'noofadults' => $data['noofadults']
+                        // 'profileName'=> $profileDetails->Name,
+                        // 'profileName'=> $profileDetails->Name
+        
+                    ];
+                    $this->view('hotels/v_hotel_details_page',$data);
+                }else{
+
+                    $profileDetails = $this->hotelModel->getProfileInfo($hotelID);
+                    $images = $this->hotelModel->getImages($hotelID);
+            
+                    $data=[
+                        'hotelID'=>$hotelID,
+                        'profileDetails'=>$profileDetails,
+                        'profileName'=> $profileDetails->Name,
+                        'profileAddress'=> $profileDetails->Line1.", ".$profileDetails->Line2.", ".$profileDetails->District,
+                        'description'=>$profileDetails->Description,
+                        'images'=>$images,
+                        'sdate_err'=>$data1['sdate_err'],
+                        'edate_err'=>$data1['edate_err']
+                        // 'facilities'=>$facilities
+                    ];
+
+                    $this->view('hotels/v_hotel_profile_details',$data);
+                }     
+                
+            }else{
+                $data=[
+                    'sdate_err'=>'',
+                    'edate_err'=>''
+                ];
+                $this->view('hotels/v_hotel_profile_details',$data);
+
             }
     
         }

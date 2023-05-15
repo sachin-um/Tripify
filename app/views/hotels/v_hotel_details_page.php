@@ -52,39 +52,36 @@
 
         <!-- facilities/map and reviews section -->
         <div class="hotel-desc-page-div" id="facilities-reviews-section">
-            <!-- <p class="home-title-2">Facilities</p> -->
-            <div class="facility-all">
-                <div class="facility-1">
+            <p class="home-title-2">Our Facilities</p><br>
+            <div class="facility-1">
 
-                    <?php if (empty($data['profileDetails']->Facilities)) { ?>
-                    <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
-                    <?php } 
-                    else { 
-                    $farray = explode(",",$data['profileDetails']->Facilities);
-                    $indentation = str_repeat("\t", 3);
-                    $i=0;?>
+                <?php if (empty($data['profileDetails']->Facilities)) { ?>
+                <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
+                <?php } 
+                else { 
+                $farray = explode(",",$data['profileDetails']->Facilities);
+                $indentation = str_repeat("\t", 3);
+                $i=0;?>
 
-                    <div class="nav-grid">
-                        <?php
-                        foreach($farray as $element){
-                            $i=$i+1;
-                            ?>
-                            <div style="text-align: center;"><?php echo $element."<br>";?></div>
-                        
-                        <?php                            
-                        }
+                <div class="nav-grid-hotel">
+                    <?php
+                    foreach($farray as $element){
+                        $i=$i+1;
                         ?>
-                    </div>
-                    <?php } ?>
+                        <div style="text-align: center;"><?php echo $element."<br>";?></div>
+                    
+                    <?php                            
+                    }
+                    ?>
                 </div>
-
-                <div class="facility-2">
-                    MAP
-                </div>
-            </div>
+                <?php } ?>
                 
+            </div>
             <br><button class="all-purpose-btn" id="view-review-btn">
-            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>">See Reviews</a></button>
+            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;
+            color: white;">See Reviews</a></button>
+                
+            
         </div>
 
         <p class="home-title-2">Check Available Rooms</p>
@@ -95,21 +92,21 @@
                 
                 <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-In Date</p>
-                    <input class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date"
+                    <input style="background-color: lightgray;" class="hotel-labels-1" type="date" name="date-1" placeholder="Check-In Date"
                     value="<?php echo $_SESSION['checkin']?>">
                     <!-- <p class="hotel-labels-1">Check-In Date</p>  -->
                 </div>
                 &nbsp;
                 <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">Check-Out Date</p> 
-                    <input class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date"
+                    <input style="background-color: lightgray;" class="hotel-labels-1" type="date" name="date-2" placeholder="Check-Out Date"
                     value="<?php echo $_SESSION['checkout']?>">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
                 &nbsp;
                 <div class="nav-parts-hotel-room">
                     <p class="hotel-labels-1">No of People</p> 
-                    <input class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
+                    <input style="background-color: lightgray;" class="hotel-labels-1" type="number" name="noofadults" value="1" max="100">
                     <!-- <p class="hotel-labels-1">Check-Out Date</p>  -->
                 </div>
             </div>
@@ -186,136 +183,6 @@
                 <button class="all-purpose-btn" id="booking-btn" type="submit">Book Now</button>
             </div>
         </form>
-
-        <!-- <div class="slideshow-container fade">
-
-                <div class="Containers">
-                    <div class="MessageInfo">1 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/Galadari1.jpg" style="width:100%">
-                    <div class="H-Room-Info">First caption</div>[
-                        ]
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">2 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/Galadari2.jpg" style="width:100%">
-                    <div class="H-Room-Info">Second Caption</div>
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">3 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/Galadari3.jpg" style="width:100%">
-                    <div class="H-Room-Info">Third Caption</div>
-                </div>
-
-                <div class="Containers">
-                    <div class="MessageInfo">4 / 4</div>
-                    <img src="<?php echo URLROOT?>/img/Galadari4.jpg" style="width:100%">
-                    <div class="H-Room-Info">F Caption</div>
-                </div>
-
-                <!-- Back and forward buttons -->
-                <!-- <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="forward" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <br>
-
-                <!-- The circles/beads -->
-            <!-- <div style="text-align:center">
-                <span class="beads" onclick="currentSlide(1)"></span>
-                <span class="beads" onclick="currentSlide(2)"></span>
-                <span class="beads" onclick="currentSlide(3)"></span>
-                <span class="beads" onclick="currentSlide(4)"></span>
-            </div> 
-        </div>  --> 
-
-        <!-- <div class="hotel-home-top-picks">
-
-            <p class="home-title-2" >Our Rooms</p><br>
-            <hr><br>
-
-            <div class="nav-grid">
-                <?php                
-                foreach($data['allroomtypes'] as $room):
-                ?>
-                
-                <a href="<?php echo URLROOT?>/HotelRooms/viewhotelroom/<?php echo $room->RoomTypeID?>" style="text-decoration: none;">
-                <!-- <?php echo URLROOT?>/HotelRooms/rooms/<?php echo $hotel->HotelID?> -->
-
-                <div class="hotel-ad-card">
-                    
-                    <!-- onclick="location.href='<?php echo URLROOT?>/HotelBookings/bookaroom'" -->
-                    <!--<div id="hotel-img" class="hotel-room-card-pic">
-                        <img id="hotel-img" src="<?php echo URLROOT; ?>/img/Galadari3.jpg" alt="nine-arch">
-                    </div>                    
-
-                    <div class="hotel-ad-card-desc">
-                       <label id="room-type" for="hotel-name"><h2><?php echo $room->RoomTypeName; ?></h2></label>
-                       
-                       <label id="display-hotel-address" for="hotel-address"><?php echo $room->RoomSize." "; ?>Square Feet</label><br>
-                       <label id="display-hotel-address" for="hotel-address"><?php echo $room->NoofBeds." "; ?>Beds</label><br>
-                       <label id="room-price" for="hotel-address"><b><?php echo $room->PricePerNight." "; ?>LKR per night</b></label><br>
-                       <label id="room-remain" for="hotel-address"><?php echo $room->no_of_rooms." "; ?>Bedrooms left</label>
-                    </div>
-
-                    
-                    <button class="reserve-room" for="hotel-price"><b>Reserve Now</b></button>
-                    
-                </div>
-                </a>
-                <?php
-                endforeach;
-                ?>         
-
-                
-            </div>  
-        </div> -->
-
-        <div class="hotel-desc-page-div">
-            <div class="hotel-disc-2">
-
-                <div id="hotel-address" class="hotel-disc-3">
-                    
-                    </label>
-                </div>
-                <div class="hotel-disc-3">
-                    <div class="hotel-disc-1">
-                        <ul>
-                           <li><i class="fa-solid fa-person-swimming fa-lg"></i><label>Swimming Pool</label></li>
-                            <li><label>Parking</label></li>
-                            <li><label>Free Wifi</label></li>
-                            <li><label>Air Conditioning</label></li>
-                            <li><label>Gym</label></li>
-                        </ul>
-                        
-                    </div>
-
-                    <div class="hotel-disc-1">
-                        <label>24/7 Room Service</label><br>
-                        <label>Restaurent</label><br>
-                        <label>Spa Lounge/Relaxation Area</label><br>
-                        <label>Airport Shuttle</label><br>
-                        <label>Bar</label>
-                    </div>
-                </div>
-
-                <div id="review-btns-div" class="hotel-disc-3">
-                    <div class="hotel-disc-1">
-                        <button id="review-btn" class="all-purpose-btn">Review This Hotel</button>
-                    </div>
-
-                    <div class="hotel-disc-1">
-                        <button id="view-review-btn" class="all-purpose-btn">View Reviews</button>
-                    </div>                  
-                    
-                </div>
-                
-            </div>        
-
-            <div class="hotel-disc-2">
-                <iframe id="hotel-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.0289869750545!2d79.84089513600121!3d6.931715604596578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259251b57a431%3A0x8f44e226d6d20a7e!2sGaladari%20Hotel!5e0!3m2!1sen!2slk!4v1675719620750!5m2!1sen!2slk" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
 
         
     </div>

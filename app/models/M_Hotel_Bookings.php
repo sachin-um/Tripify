@@ -247,7 +247,7 @@ class M_Hotel_Bookings
 
     public function filterPayments($start,$end){
         $this->db->query('SELECT * FROM hotel_bookings WHERE payment_status = "Paid" 
-        AND date_added BETWEEN :checkin AND :checkout');
+        AND checkout_date BETWEEN :checkin AND :checkout');
         $this->db->bind(':checkin', $start);
         $this->db->bind(':checkout', $end);
 
@@ -260,8 +260,9 @@ class M_Hotel_Bookings
         AND hotel_id = :id');
         $this->db->bind(':status', $_SESSION['status']);
         $this->db->bind(':id', $_SESSION['user_id']);
-
+ 
         $result = $this->db->resultSet();
+        $_SESSION['payments'] = $result;
         return $result;
     }
 

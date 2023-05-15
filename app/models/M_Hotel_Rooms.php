@@ -7,7 +7,17 @@ class M_Hotel_Rooms{
         $this->db=new Database();
     }
 
-       
+    public function deleteRoom($roomType){
+        $this->db->query('Delete from hotel_rooms where RoomTypeID=:toomType');
+        $this->db->bind(':RoomtypeID',$roomType);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }   
+
+
     //Add a hotel room type, their room IDs and their bed types under a hotel
     public function addaroom($data){
         $this->db->query('INSERT INTO hotel_rooms(RoomTypeID,HotelID,RoomTypeName,NoofGuests,NoofBeds,RoomSize,PricePerNight,no_of_rooms,facilities)

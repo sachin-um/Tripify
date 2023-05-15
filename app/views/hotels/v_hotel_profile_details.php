@@ -52,39 +52,34 @@
         </div>
 
         <div class="hotel-desc-page-div" id="facilities-reviews-section">
-            <!-- <p class="home-title-2">Facilities</p> -->
-            <div class="facility-all">
-                <div class="facility-1">
+            <p class="home-title-2">Our Facilities</p><br>
+            <div class="facility-1">
 
-                    <?php if (empty($data['profileDetails']->Facilities)) { ?>
-                    <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
-                    <?php } 
-                    else { 
-                    $farray = explode(",",$data['profileDetails']->Facilities);
-                    $indentation = str_repeat("\t", 3);
-                    $i=0;?>
+                <?php if (empty($data['profileDetails']->Facilities)) { ?>
+                <p style="text-align: center; font-size: 1.2rem;">No Facilities are Listed</p>
+                <?php } 
+                else { 
+                $farray = explode(",",$data['profileDetails']->Facilities);
+                $indentation = str_repeat("\t", 3);
+                $i=0;?>
 
-                    <div class="nav-grid">
-                        <?php
-                        foreach($farray as $element){
-                            $i=$i+1;
-                            ?>
-                            <div style="text-align: center;"><?php echo $element."<br>";?></div>
-                        
-                        <?php                            
-                        }
+                <div class="nav-grid-hotel">
+                    <?php
+                    foreach($farray as $element){
+                        $i=$i+1;
                         ?>
-                    </div>
-                    <?php } ?><br>
-                    <button class="all-purpose-btn" id="view-review-btn">
-                    <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;
-                    color: white;">See Reviews</a></button>
+                        <div style="text-align: center;"><?php echo $element."<br>";?></div>
+                    
+                    <?php                            
+                    }
+                    ?>
                 </div>
-
-                <div class="facility-2">
-                    MAP
-                </div>
+                <?php } ?>
+                
             </div>
+            <br><button class="all-purpose-btn" id="view-review-btn">
+            <a href="<?php echo URLROOT ?>/Hotels/hotelReviews/<?php echo $data['hotelID']?>" style="text-decoration: none;
+            color: white;">See Reviews</a></button>
                 
             
         </div>
@@ -119,6 +114,8 @@
             </div>
 
             <div class="home-div-3">
+                <span id="reg-form-span"><?php echo $data['sdate_err']; ?></span><br>
+                <span id="reg-form-span"><?php echo $data['edate_err']; ?></span><br>
                 <a id="review-btn-id" href="<?php echo URLROOT?>/Hotels/showHotels"><button class="all-purpose-btn" type="submit">Go</button></a> 
             </div>
             

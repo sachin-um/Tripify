@@ -1,4 +1,7 @@
 <?php
+require_once APPROOT.'/vendor/autoload.php';
+use Dompdf\Dompdf;
+use Dompdf\Options;
     class Taxies extends Controller{
         public function __construct(){
             $this->taxiModel=$this->model('M_Taxi');
@@ -62,7 +65,7 @@
                     }
                     else{
                         flash('reg_flash', 'Somthing went wrong please try again...');
-                        redirect('Taxies/register');
+                           redirect('Taxies/register');
                     }
                 }
                 else {
@@ -324,6 +327,7 @@
         public function payments(){
             if($_SESSION['user_type'] == 'Taxi'){
                 $taxibookings = $this->taxiBookingModel->getPaymentDetails($_SESSION['user_type'],$_SESSION['user_id']);
+                $_SESSION['printTaxtPay'] = $taxibookings;
                 $data=[
                     'taxibookings'=>$taxibookings
                 ];
@@ -335,17 +339,100 @@
             
         }
 
+        public function generatepaymentPDF(){           
+
+            $html = '<html> 
+    
+            <head>
+                <style>
+                table{
+                    top: 25%;
+                    margin: auto;
+                    width: 100%; 
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+                    border-radius: 12px 12px 0 0;
+                    overflow: hidden;
+                   
+                }
+                
+                td , th{
+                    padding: 15px 20px;
+                    text-align: center;
+                }
+                
+                th{
+                    background-color: #03002E;
+                    color: #fafafa;
+                    font-family: Open Sans,Sans-serif;
+                    font-weight: 200;
+                    text-transform: uppercase;
+                
+                }
+                
+                tr{
+                    width: 100%;
+                    background-color: #fafafa;
+                    font-family: Montserrat, sans-serif;
+                }
+                
+                tr:nth-child(even){
+                    background-color: #eeeeee;
+                }
+                </style>
+            </head>
+            
+            <body>    
         
-        // public function trip(){
-        //     $data=[];
-        //     $this->view('taxi/v_taxi_dashboard8',$data);
-        // }
+                <div style="background-color: #03002E; color: #e8b122; text-align: center;">
+                    <br><h3>Payments Report for Your Company</h3><br>
+                </div><br>
+            <table>
+                <tr>
+                    <th>ReservationID</th>
+                    <th>Vehicle number</th>
+                    <th>Pickup Location</th>   
+                    <th>Payment Amout</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                </tr>';
+              $total = 0;
+              foreach ($_SESSION['printTaxtPay']as $payment){
+                    $html .='<tr>
+                        <td>'.$payment->ReservationID.'</td>
+                        <td>'.$payment->vehicle->vehicle_number.'</td>
+                        <td>'.$payment->pickup_location.'</td>
+                        <td>'.$payment->Price.'</td>
+                        <td>'.$payment->PaymentMethod.'</td>
+                        <td>'.$payment->PaymentStatus.'</td>
+                    </tr>'; 
+                    $total = $total+$payment->Price;
+        
+                }
 
+                $html .= '</table><br>
+                <p style="margin:auto; text-align:center; font-size=1.4rem">Total earnings for the period : '.$total.'</p><br>
 
-        // public function tripview(){
-        //     $data=[];
-        //     $this->view('taxi/v_taxi_dashboard8_1',$data);
-        // }
+                <br><br><p style="margin:auto; text-align:center;">This is a system generated report by Tripify pvt ltd</p><br>
+                <p style="margin:auto; text-align:center; font-size: 0.7rem;">'.date('Y-m-d H:i:s').'</p><br>
+                
+                </body></html>';
+
+            
+            $options = new Options;
+            $options->setChroot(__DIR__);
+
+            $dompdf = new Dompdf($options);
+
+            $dompdf->loadHtml($html);
+
+            // $dompdf->setPaper('A4','landscape');
+
+            $dompdf->render();
+            $dompdf->stream();
+            
+        }
 
         
         

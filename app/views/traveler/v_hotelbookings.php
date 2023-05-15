@@ -131,7 +131,7 @@ else {
                                                             Edit
                                                         </button>
                                                     </a>
-                                                    <a href="<?php echo URLROOT; ?>/Bookings/CancelTaxiBooking/<?php echo $booking->ReservationID ?>"><button class="btn" type="button" style="margin-top:10px">
+                                                    <a href="<?php echo URLROOT; ?>/Bookings/CancelHotelBooking/<?php echo $booking->booking_id ?>"><button class="btn" type="button" style="margin-top:10px">
                                                         <i class="fa-solid fa-xmark"></i>
                                                         Cancel
                                                         </button>

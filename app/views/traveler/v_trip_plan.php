@@ -19,29 +19,29 @@ else {
 
     <?php require APPROOT.'/views/inc/components/navbars/home_nav.php'; ?>
 
-    <div class="content">
+    <div class="content" id="trip-plan-content">
         <div class="trip-details" id="trip-details">
             <div class="white-space">
-                <p class="home-title-2">Plan Your Trip</p>
+                <h3 class="home-title-2">Plan Your Trip With <br><img src="<?php echo URLROOT?>/img/logo_processed.png" alt=""></h3>
                 <br>
                 <br>
             </div>
             <form class="form-div" action="<?php echo URLROOT; ?>/Trips/tripplan" method="post">   
             
-                    <div class="flex-2">
+                    <div class="flex-trip">
                         <div class="trip-name">
                             <input type="text" class="info-2" id="trip_name" name="trip_name" placeholder="Name your Trip">
                         </div>
                         <div class="trip-location">
-                            <input type="text" class="info-2" id="trip_location" name="trip_location" placeholder="Where you plant to go ?">
+                            <input type="text" class="info-2" id="trip_location" name="trip_location" placeholder="Where do you plan to go ?">
                         </div>
 
                         <div class="trip-startdate">
-                            <input type="text" id="trip_startdate" name="trip_startdate" placeholder="When your trip begin ?" onfocus="(this.type='date')" value="<?php  ?>" min="<?php echo date('Y-m-d'); ?>">
+                            <input type="text" id="trip_startdate" name="trip_startdate" placeholder="When does your trip begin ?" onfocus="(this.type='date')" value="<?php  ?>" min="<?php echo date('Y-m-d'); ?>">
                         </div>
                         
                         <div class="trip_enddate">
-                            <input type="text" id="trip_enddate" name="trip_enddate" placeholder="When your trip begin ?" onfocus="(this.type='date')" value="<?php   ?>" min="<?php echo date('Y-m-d'); ?>">
+                            <input type="text" id="trip_enddate" name="trip_enddate" placeholder="When does your trip end ?" onfocus="(this.type='date')" value="<?php   ?>" min="<?php echo date('Y-m-d'); ?>">
                         </div>
                         
                     </div>

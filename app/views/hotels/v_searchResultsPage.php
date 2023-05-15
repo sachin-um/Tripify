@@ -31,7 +31,6 @@
             </div>
 
             <div class="home-div-3">
-                <span id="reg-form-span"><?php echo $data['place_err']; ?></span><br>
                 <span id="reg-form-span"><?php echo $data['sdate_err']; ?></span><br>
                 <span id="reg-form-span"><?php echo $data['edate_err']; ?></span><br>
                 <button class="all-purpose-btn" onclick="" type="submit">Go</button>
