@@ -27,7 +27,7 @@ function finalValidation(){
     
     
   }else{
-    $('#errorBut').html('There is an Error! Please Check Your Details');
+    $('#errorBut').html('');
     submitButton.style.backgroundColor = '#03002E';
   }
 }
