@@ -397,7 +397,7 @@
 
             if($booking->TaxiOwnerID == $_SESSION['user_id']){
                 if($this->taxiBookingModel->confrimBooking($ReservationID)){
-                    flash('booking_flash', 'Confrimed Success');
+                    flash('booking_flash', 'Booking Confirmed');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');
@@ -413,7 +413,7 @@
         public function CompleteTaxiBooking($ReservationID,$taxiOwnerID){
             if($taxiOwnerID==$_SESSION['user_id']){
                 if($this->taxiBookingModel->CompleteTaxiBooking($ReservationID)){
-                    flash('booking_flash', 'Status Updated');
+                    flash('booking_flash', 'Booking Completed');
                     redirect('Bookings/TaxiBookings/'.$_SESSION['user_type'].'/'.$_SESSION['user_id']); 
                 }else{
                     flash('booking_flash', 'Somthing went wrong try again');

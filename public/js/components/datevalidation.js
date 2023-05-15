@@ -242,7 +242,7 @@ function availableTime(){   // Checking Time slot is Available
       success: function(result) {
         
         if (result) {
-          $('#avail').html('Time Slot Not Available or Enough!');
+          $('#avail').html('sorry, This Vehicle is not available on this time slot');
           timeslotError=false;
         } else {
           $('#avail').html('');
