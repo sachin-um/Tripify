@@ -45,7 +45,6 @@ else{
         <div>
             <h2 class="title" >Settings</h2>
             <hr>
-            <?php flash('request_flash'); ?>
         </div> 
         <br>
         <div class="taxi-first-container">
